@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "prepare:knowledge": "tsx scripts/build-knowledge-index.ts",
-    "dev": "npm run prepare:knowledge && next dev",
+    "dev": "tsx scripts/dev-with-knowledge-watch.ts",
     "build": "npm run prepare:knowledge && next build",
     "start": "next start",
     "lint": "npm run prepare:knowledge && eslint .",

@@ -167,6 +167,10 @@ function flattenKeywordStrings(value: JsonValue, bucket: string[]) {
   }
 }
 
+function normalizeExcerpt(value: string | null | undefined) {
+  return value?.replace(/\s+/g, " ").trim() ?? "";
+}
+
 export function getSourceIdentifiers(source: KnowledgeSource) {
   const rawUrl = getRecordString(source.raw, "url");
   const sourceUrl = normalizeUrl(rawUrl) ?? normalizeUrl(source.urlOrIdentifier);
@@ -276,6 +280,33 @@ export function getEvidenceClaimLabel(chunk: EvidenceChunk) {
 
 export function getEvidenceLocatorText(chunk: EvidenceChunk) {
   return [chunk.locatorType ?? null, chunk.locatorValue ?? null].filter(Boolean).join(" ");
+}
+
+export function getEvidencePrimaryExcerpt(chunk: EvidenceChunk) {
+  return chunk.verbatimQuote ?? chunk.quote ?? chunk.chunkText ?? chunk.summary ?? null;
+}
+
+export function getEvidenceSecondaryExcerpt(chunk: EvidenceChunk) {
+  const primary = normalizeExcerpt(getEvidencePrimaryExcerpt(chunk));
+  const translated = normalizeExcerpt(chunk.translatedQuote);
+  const summary = normalizeExcerpt(chunk.summary);
+  const chunkText = normalizeExcerpt(chunk.chunkText);
+
+  for (const candidate of [translated, summary, chunkText]) {
+    if (candidate && candidate !== primary) {
+      return candidate;
+    }
+  }
+
+  return null;
+}
+
+export function getEvidenceExcerptLabel(chunk: EvidenceChunk) {
+  return chunk.verbatimQuote ? "원문 발췌" : "등록된 발췌";
+}
+
+export function hasOriginalEvidenceExcerpt(chunk: EvidenceChunk) {
+  return Boolean(chunk.verbatimQuote);
 }
 
 export function getEvidenceCheckHint(chunk: EvidenceChunk, source?: KnowledgeSource | null) {

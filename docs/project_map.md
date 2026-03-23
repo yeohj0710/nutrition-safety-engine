@@ -59,19 +59,21 @@
 - `src/generated/knowledge-index.json`
   - 앱이 실제로 읽는 단일 런타임 인덱스.
   - 수정하지 말고 `npm run prepare:knowledge`로 재생성.
+  - `npm run dev` 중에는 `data/knowledge_pack.json` 저장 시 자동으로 다시 생성됨.
 
 ## 5. 데이터 원본
 
 - `data/knowledge_pack.json`
-  - 통합 원본 팩이 있을 때 우선 사용.
+  - 기본 단일 원본. 있으면 이 파일만 읽음.
+  - 깨져 있거나 필수 섹션이 없으면 정규화가 실패함.
 - `data/source_registry.json`
-  - 출처 원본.
+  - 레거시 분리 원본. `knowledge_pack.json`이 없을 때만 fallback으로 사용.
 - `data/evidence_chunks.json`
-  - 근거 청크 원본.
+  - 레거시 분리 원본. `knowledge_pack.json`이 없을 때만 fallback으로 사용.
 - `data/ingredients.json`
-  - 성분/별칭 원본.
+  - 레거시 분리 원본. `knowledge_pack.json`이 없을 때만 fallback으로 사용.
 - `data/safety_rules.json`
-  - 규칙 원본.
+  - 레거시 분리 원본. `knowledge_pack.json`이 없을 때만 fallback으로 사용.
 - `data/package_meta.json`, `data/manifest.json`
   - 패키지 메타데이터.
 - `data/sample_evaluation_input.json`
@@ -116,7 +118,8 @@
 
 1. 화면 수정: `app/page.tsx` -> `src/components/rule-explorer-client.tsx` -> `src/components/rule-card.tsx`
 2. 엔진 수정: `src/lib/safety-engine/index.ts` -> `src/types/knowledge.ts` -> 관련 테스트
-3. 출처/근거 수정: `data/*.json` -> `src/lib/knowledge/normalize.ts` -> `npm run prepare:knowledge`
+3. 출처/근거 수정: 보통 `data/knowledge_pack.json` -> `src/lib/knowledge/normalize.ts`
+   - 개발 서버에서는 저장 즉시 자동 반영, 수동 검증/배포 전에는 `npm run prepare:knowledge`
 4. 출처 화면 수정: `app/sources/page.tsx` -> `src/components/source-browser-client.tsx` -> `app/sources/[id]/page.tsx`
 5. AI 설명 수정: `app/api/ai-explain/route.ts` -> `src/lib/ai/*`
 

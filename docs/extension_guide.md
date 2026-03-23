@@ -3,13 +3,16 @@
 작업 시작 전에 전체 파일 위치는 `docs/project_map.md`를 먼저 참고하면 빠릅니다.
 
 관련 파일:
-- 규칙 원본: `data/safety_rules.json`
-- 출처 원본: `data/source_registry.json`
-- 근거 청크: `data/evidence_chunks.json`
-- 성분 원본: `data/ingredients.json`
+- 기본 원본: `data/knowledge_pack.json`
+- 레거시 분리 원본: `data/source_registry.json`, `data/evidence_chunks.json`, `data/ingredients.json`, `data/safety_rules.json`
 - 정규화: `src/lib/knowledge/normalize.ts`
 - 엔진: `src/lib/safety-engine/index.ts`
 - 타입: `src/types/knowledge.ts`
+
+데이터 로딩 원칙:
+- `knowledge_pack.json`이 있으면 그 파일만 읽습니다.
+- `knowledge_pack.json`이 깨져 있으면 fallback 하지 않고 실패합니다.
+- 분리 JSON은 `knowledge_pack.json`이 없을 때만 레거시 호환용으로 사용합니다.
 
 ## 1) 새 규칙을 추가할 때 최소 체크리스트
 - source가 먼저 등록되었는가?

@@ -1,6 +1,7 @@
 import path from "node:path";
 import { readFile, writeFile } from "node:fs/promises";
 
+import { buildIngredientAliases } from "@/src/lib/knowledge/ingredient-aliases";
 import {
   confidenceSchema,
   type IngredientRecord,
@@ -47,11 +48,17 @@ type RawEvidenceChunk = {
   ingredient_ids?: string[] | null;
   locator_type?: string | null;
   locator_value?: string | null;
+  excerpt_verbatim?: string | null;
+  excerpt_original?: string | null;
+  excerpt_original_en?: string | null;
+  excerpt_quote?: string | null;
+  excerpt_translation_ko?: string | null;
   excerpt_summary_ko?: string | null;
   claim_type?: string | null;
   structured_claim?: Record<string, unknown> | null;
   confidence?: string | null;
   notes_ko?: string | null;
+  [key: string]: unknown;
 };
 
 type RawRule = {
@@ -83,13 +90,15 @@ type RawKnowledgePack = {
     package_name?: string;
     version?: string;
     generated_at?: string;
-    description_ko?: string;
+    description_ko?: string | null;
   };
   sources?: RawSource[];
   ingredients?: RawIngredient[];
   evidence_chunks?: RawEvidenceChunk[];
   safety_rules?: RawRule[];
 };
+
+type KnowledgeDataSource = "knowledge_pack" | "legacy_split_files";
 
 function splitAuthors(authors: RawSource["authors"]) {
   if (!authors) {
@@ -104,6 +113,26 @@ function splitAuthors(authors: RawSource["authors"]) {
     .split(/[,;|]/)
     .map((value) => value.trim())
     .filter(Boolean);
+}
+
+function getOptionalString(value: unknown) {
+  if (typeof value !== "string") {
+    return null;
+  }
+
+  const trimmed = value.trim();
+  return trimmed.length > 0 ? trimmed : null;
+}
+
+function firstNonEmptyString(...values: unknown[]) {
+  for (const value of values) {
+    const normalized = getOptionalString(value);
+    if (normalized) {
+      return normalized;
+    }
+  }
+
+  return null;
 }
 
 function inferConfidence(rule: RawRule, chunks: RawEvidenceChunk[]) {
@@ -226,15 +255,14 @@ function buildRuleConditions(appliesWhen: Record<string, unknown>): RuleConditio
 }
 
 function buildIngredientRecord(rawIngredient: RawIngredient) {
-  const aliases = [
-    rawIngredient.ingredient_name_ko,
-    rawIngredient.ingredient_name_en ?? "",
-    ...(rawIngredient.forms ?? []),
-    ...(rawIngredient.matching_aliases_ko ?? []),
-    ...(rawIngredient.matching_aliases_en ?? []),
-  ]
-    .map((value) => value.trim())
-    .filter(Boolean);
+  const aliases = buildIngredientAliases({
+    id: rawIngredient.ingredient_id,
+    nameKo: rawIngredient.ingredient_name_ko,
+    nameEn: rawIngredient.ingredient_name_en ?? null,
+    forms: rawIngredient.forms ?? [],
+    matchingAliasesKo: rawIngredient.matching_aliases_ko ?? [],
+    matchingAliasesEn: rawIngredient.matching_aliases_en ?? [],
+  });
 
   return ingredientRecordSchema.parse({
     id: rawIngredient.ingredient_id,
@@ -308,37 +336,72 @@ function buildSafetyRule(
   });
 }
 
-async function readKnowledgePack(projectRoot: string) {
+function ensureKnowledgePackSections(knowledgePack: RawKnowledgePack) {
+  const requiredSections = [
+    "sources",
+    "ingredients",
+    "evidence_chunks",
+    "safety_rules",
+  ] as const satisfies ReadonlyArray<keyof RawKnowledgePack>;
+
+  for (const section of requiredSections) {
+    if (!Array.isArray(knowledgePack[section])) {
+      throw new Error(`data/knowledge_pack.json is missing a valid "${section}" array.`);
+    }
+  }
+}
+
+async function readLegacyKnowledgePack(projectRoot: string): Promise<RawKnowledgePack> {
+  const [sourcesRaw, ingredientsRaw, evidenceRaw, rulesRaw] = await Promise.all([
+    readFile(path.join(projectRoot, "data", "source_registry.json"), "utf8"),
+    readFile(path.join(projectRoot, "data", "ingredients.json"), "utf8"),
+    readFile(path.join(projectRoot, "data", "evidence_chunks.json"), "utf8"),
+    readFile(path.join(projectRoot, "data", "safety_rules.json"), "utf8"),
+  ]);
+
+  return {
+    package_meta: {
+      package_name: "fallback_local_pack",
+      version: "0.0.0",
+      generated_at: new Date().toISOString(),
+      description_ko: null,
+    },
+    sources: JSON.parse(sourcesRaw) as RawSource[],
+    ingredients: JSON.parse(ingredientsRaw) as RawIngredient[],
+    evidence_chunks: JSON.parse(evidenceRaw) as RawEvidenceChunk[],
+    safety_rules: JSON.parse(rulesRaw) as RawRule[],
+  };
+}
+
+async function readKnowledgePack(projectRoot: string): Promise<{
+  knowledgePack: RawKnowledgePack;
+  dataSource: KnowledgeDataSource;
+}> {
   const knowledgePackPath = path.join(projectRoot, "data", "knowledge_pack.json");
 
   try {
     const knowledgePackRaw = await readFile(knowledgePackPath, "utf8");
-    return JSON.parse(knowledgePackRaw) as RawKnowledgePack;
-  } catch {
-    const [sourcesRaw, ingredientsRaw, evidenceRaw, rulesRaw] = await Promise.all([
-      readFile(path.join(projectRoot, "data", "source_registry.json"), "utf8"),
-      readFile(path.join(projectRoot, "data", "ingredients.json"), "utf8"),
-      readFile(path.join(projectRoot, "data", "evidence_chunks.json"), "utf8"),
-      readFile(path.join(projectRoot, "data", "safety_rules.json"), "utf8"),
-    ]);
+    const knowledgePack = JSON.parse(knowledgePackRaw) as RawKnowledgePack;
+    ensureKnowledgePackSections(knowledgePack);
 
     return {
-      package_meta: {
-        package_name: "fallback_local_pack",
-        version: "0.0.0",
-        generated_at: new Date().toISOString(),
-        description_ko: null,
-      },
-      sources: JSON.parse(sourcesRaw) as RawSource[],
-      ingredients: JSON.parse(ingredientsRaw) as RawIngredient[],
-      evidence_chunks: JSON.parse(evidenceRaw) as RawEvidenceChunk[],
-      safety_rules: JSON.parse(rulesRaw) as RawRule[],
+      knowledgePack,
+      dataSource: "knowledge_pack",
+    };
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "ENOENT") {
+      throw error;
+    }
+
+    return {
+      knowledgePack: await readLegacyKnowledgePack(projectRoot),
+      dataSource: "legacy_split_files",
     };
   }
 }
 
 export async function buildKnowledgeIndex(projectRoot: string) {
-  const knowledgePack = await readKnowledgePack(projectRoot);
+  const { knowledgePack, dataSource } = await readKnowledgePack(projectRoot);
   const generatedAt = knowledgePack.package_meta?.generated_at ?? new Date().toISOString();
 
   const ingredients = (knowledgePack.ingredients ?? []).map(buildIngredientRecord);
@@ -360,22 +423,48 @@ export async function buildKnowledgeIndex(projectRoot: string) {
     }),
   );
 
-  const evidenceChunks = (knowledgePack.evidence_chunks ?? []).map((rawChunk) => ({
-    id: rawChunk.chunk_id,
-    sourceId: rawChunk.source_id,
-    locatorType: rawChunk.locator_type ?? null,
-    locatorValue: rawChunk.locator_value ?? null,
-    quote: rawChunk.excerpt_summary_ko ?? null,
-    summary: rawChunk.excerpt_summary_ko ?? null,
-    chunkText: rawChunk.notes_ko ?? rawChunk.excerpt_summary_ko ?? null,
-    relevantEntities: rawChunk.ingredient_ids ?? [],
-    metadata: {
-      claimType: rawChunk.claim_type ?? null,
-      structuredClaim: rawChunk.structured_claim ?? null,
-      confidence: rawChunk.confidence ?? null,
-      notesKo: rawChunk.notes_ko ?? null,
-    },
-  }));
+  const evidenceChunks = (knowledgePack.evidence_chunks ?? []).map((rawChunk) => {
+    const verbatimQuote = firstNonEmptyString(
+      rawChunk.excerpt_verbatim,
+      rawChunk.excerpt_original,
+      rawChunk.excerpt_original_en,
+      rawChunk.excerpt_quote,
+      rawChunk.verbatim_quote,
+      rawChunk.original_quote,
+      rawChunk.quote_en,
+      rawChunk.quote_original,
+    );
+    const translatedQuote = firstNonEmptyString(
+      rawChunk.excerpt_translation_ko,
+      rawChunk.excerpt_summary_ko,
+      rawChunk.translation_ko,
+      rawChunk.summary_ko,
+    );
+    const chunkText = firstNonEmptyString(
+      rawChunk.notes_ko,
+      translatedQuote,
+      verbatimQuote,
+    );
+
+    return {
+      id: rawChunk.chunk_id,
+      sourceId: rawChunk.source_id,
+      locatorType: rawChunk.locator_type ?? null,
+      locatorValue: rawChunk.locator_value ?? null,
+      verbatimQuote,
+      translatedQuote,
+      quote: verbatimQuote ?? translatedQuote,
+      summary: translatedQuote ?? verbatimQuote,
+      chunkText,
+      relevantEntities: rawChunk.ingredient_ids ?? [],
+      metadata: {
+        claimType: rawChunk.claim_type ?? null,
+        structuredClaim: rawChunk.structured_claim ?? null,
+        confidence: rawChunk.confidence ?? null,
+        notesKo: rawChunk.notes_ko ?? null,
+      },
+    };
+  });
 
   const rawEvidenceMap = new Map((knowledgePack.evidence_chunks ?? []).map((chunk) => [chunk.chunk_id, chunk]));
 
@@ -393,6 +482,7 @@ export async function buildKnowledgeIndex(projectRoot: string) {
       version: knowledgePack.package_meta?.version ?? "0.0.0",
       generatedAt,
       descriptionKo: knowledgePack.package_meta?.description_ko ?? null,
+      dataSource,
       sourceCount: sources.length,
       ingredientCount: ingredients.length,
       evidenceChunkCount: evidenceChunks.length,

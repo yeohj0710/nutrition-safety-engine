@@ -1,6 +1,18 @@
 import "server-only";
 
+import { readFileSync, statSync } from "node:fs";
+import path from "node:path";
+
 import knowledgeIndexJson from "@/src/generated/knowledge-index.json";
+import {
+  getConditionAliases,
+  getConditionDisplayLabel,
+  getConditionPresetCanonicalValues,
+} from "@/src/lib/knowledge/condition-aliases";
+import {
+  getMedicationAliases,
+  getMedicationDisplayLabel,
+} from "@/src/lib/knowledge/medication-aliases";
 import {
   knowledgeIndexSchema,
   type EvidenceChunk,
@@ -10,9 +22,45 @@ import {
 } from "@/src/types/knowledge";
 
 const knowledgeIndex = knowledgeIndexSchema.parse(knowledgeIndexJson) as KnowledgeIndex;
+const generatedKnowledgeIndexPath = path.join(
+  process.cwd(),
+  "src",
+  "generated",
+  "knowledge-index.json",
+);
+
+let developmentKnowledgeIndex: KnowledgeIndex | null = null;
+let developmentKnowledgeIndexMtimeMs = -1;
+
+function getDevelopmentKnowledgeIndex() {
+  try {
+    const fileStat = statSync(generatedKnowledgeIndexPath);
+
+    if (
+      developmentKnowledgeIndex &&
+      fileStat.mtimeMs === developmentKnowledgeIndexMtimeMs
+    ) {
+      return developmentKnowledgeIndex;
+    }
+
+    const rawJson = readFileSync(generatedKnowledgeIndexPath, "utf8");
+    const parsed = knowledgeIndexSchema.parse(
+      JSON.parse(rawJson),
+    ) as KnowledgeIndex;
+
+    developmentKnowledgeIndex = parsed;
+    developmentKnowledgeIndexMtimeMs = fileStat.mtimeMs;
+
+    return parsed;
+  } catch {
+    return knowledgeIndex;
+  }
+}
 
 export function getKnowledgeIndex() {
-  return knowledgeIndex;
+  return process.env.NODE_ENV === "development"
+    ? getDevelopmentKnowledgeIndex()
+    : knowledgeIndex;
 }
 
 export function getKnowledgeMeta() {
@@ -26,6 +74,34 @@ export function getIngredientOptions() {
     aliases: ingredient.aliases,
     category: ingredient.category,
   }));
+}
+
+function humanizeExplorerValue(value: string) {
+  return value.replace(/_/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function buildMedicationExplorerOptions(values: string[]) {
+  return [...new Set(values.map((value) => value.trim()).filter(Boolean))]
+    .sort((left, right) =>
+      getMedicationDisplayLabel(left).localeCompare(getMedicationDisplayLabel(right), "ko"),
+    )
+    .map((value) => ({
+      label: getMedicationDisplayLabel(value),
+      canonicalValue: humanizeExplorerValue(value),
+      aliases: [...new Set([value, humanizeExplorerValue(value), ...getMedicationAliases(value)])],
+    }));
+}
+
+function buildConditionExplorerOptions(values: string[]) {
+  return [...new Set(values.map((value) => value.trim()).filter(Boolean))]
+    .sort((left, right) =>
+      getConditionDisplayLabel(left).localeCompare(getConditionDisplayLabel(right), "ko"),
+    )
+    .map((value) => ({
+      label: getConditionDisplayLabel(value),
+      canonicalValue: humanizeExplorerValue(value),
+      aliases: [...new Set([value, humanizeExplorerValue(value), ...getConditionAliases(value)])],
+    }));
 }
 
 export function getSourceById(sourceId: string) {
@@ -138,9 +214,33 @@ export function getRuleBrowseData() {
 }
 
 export function getExplorerMetadata() {
+  const medicationValues = [
+    ...knowledgeIndex.safetyRules.flatMap((rule) => rule.interactionDrugs),
+    ...knowledgeIndex.safetyRules.flatMap((rule) =>
+      rule.conditions
+        .filter((condition) => ["medications_any", "or_medications_any"].includes(condition.field))
+        .flatMap((condition) =>
+          Array.isArray(condition.value) ? condition.value.map((item) => String(item)) : [],
+        ),
+    ),
+  ];
+  const conditionValues = [
+    ...knowledgeIndex.safetyRules.flatMap((rule) => rule.interactionDiseases),
+    ...knowledgeIndex.safetyRules.flatMap((rule) =>
+      rule.conditions
+        .filter((condition) => condition.field === "diseases_any")
+        .flatMap((condition) =>
+          Array.isArray(condition.value) ? condition.value.map((item) => String(item)) : [],
+        ),
+    ),
+    ...getConditionPresetCanonicalValues(),
+  ];
+
   return {
     meta: knowledgeIndex.meta,
     ingredients: getIngredientOptions(),
+    medicationOptions: buildMedicationExplorerOptions(medicationValues),
+    conditionOptions: buildConditionExplorerOptions(conditionValues),
     sources: knowledgeIndex.sources.map((source) => ({
       id: source.id,
       title: source.title,

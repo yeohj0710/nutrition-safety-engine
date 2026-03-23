@@ -37,6 +37,7 @@
 - 원본 데이터 위치: `data/`
 - 정규화 스크립트: `scripts/build-knowledge-index.ts`
 - 런타임 인덱스: `src/generated/knowledge-index.json`
+  - `npm run dev` 중에는 `data/knowledge_pack.json` 저장 시 자동 재생성되고 화면에도 바로 반영됩니다.
 - 타입과 검증: `src/types/knowledge.ts`
 
 정규화 결과는 아래 엔터티를 포함합니다.
@@ -97,6 +98,7 @@ AI가 실패하면 앱은 그대로 결정적 결과만 보여 줍니다.
 
 1. `data/`의 원본 파일을 정규화 스크립트가 읽습니다.
 2. 스크립트가 `src/generated/knowledge-index.json`을 생성합니다.
+   - 개발 서버(`npm run dev`)에서는 이 생성 과정이 자동 감시됩니다.
 3. 서버 전용 로더가 인덱스를 Zod로 검증합니다.
 4. `/api/rules/query`가 `EngineQuery`를 받아 결정적 엔진을 실행합니다.
 5. 클라이언트는 결과 카드, 근거 패널, 필터를 렌더링합니다.
@@ -151,11 +153,12 @@ npm run build
 
 ## 정규화 플로우
 
-1. `knowledge_pack.json`이 있으면 우선 사용합니다.
-2. 없으면 개별 source / evidence / rules 파일을 읽습니다.
-3. 스크립트가 공통 스키마로 정규화합니다.
-4. Zod 검증 후 `knowledge-index.json`을 생성합니다.
-5. 앱 런타임은 이 단일 JSON 인덱스만 사용합니다.
+1. `data/knowledge_pack.json`이 있으면 그 파일만 단일 원본으로 사용합니다.
+2. `knowledge_pack.json`이 깨져 있거나 필수 섹션이 빠져 있으면 즉시 실패합니다.
+3. `knowledge_pack.json`이 아예 없을 때만 개별 source / evidence / rules 파일을 레거시 fallback으로 읽습니다.
+4. 스크립트가 공통 스키마로 정규화합니다.
+5. Zod 검증 후 `src/generated/knowledge-index.json`을 생성합니다.
+6. 앱 런타임은 이 생성된 단일 JSON 인덱스만 사용합니다.
 
 ## 테스트 전략
 
@@ -203,7 +206,7 @@ npm run build
 1. `data/`에 새 출처와 근거 청크를 추가합니다.
 2. 성분 사전에 alias / category / form을 보완합니다.
 3. `safety_rules` 원본에 새 규칙을 추가합니다.
-4. `npm run prepare:knowledge`로 정규화 인덱스를 다시 생성합니다.
+4. 개발 중에는 저장만 해도 자동 반영되고, 수동 검증이나 배포 전에는 `npm run prepare:knowledge`로 다시 생성합니다.
 5. fixture 또는 단위 테스트를 추가합니다.
 6. `/sources`와 `/rules/[id]`에서 연결이 잘 보이는지 확인합니다.
 

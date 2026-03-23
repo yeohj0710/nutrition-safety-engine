@@ -12,6 +12,11 @@ import {
   type RuleMatch,
   type SafetyRule,
 } from "@/src/types/knowledge";
+import {
+  getConditionAliases,
+  getConditionPresetCanonicalValues,
+} from "@/src/lib/knowledge/condition-aliases";
+import { getMedicationAliases } from "@/src/lib/knowledge/medication-aliases";
 
 const severityRank = {
   contraindicated: 4,
@@ -29,6 +34,13 @@ const confidenceRank = {
 
 function normalizeText(value: string) {
   return value.trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+function normalizeLookupKey(value: string) {
+  return normalizeText(value)
+    .replace(/[_\-\/()]+/g, " ")
+    .replace(/[^a-z0-9가-힣\s]+/g, "")
+    .replace(/\s+/g, "");
 }
 
 function normalizeTextArray(values?: string[]) {
@@ -149,19 +161,94 @@ function buildIngredientAliasMap(knowledgeIndex: KnowledgeIndex) {
 
   for (const ingredient of knowledgeIndex.ingredients) {
     aliasMap.set(normalizeText(ingredient.id), ingredient);
+    aliasMap.set(normalizeLookupKey(ingredient.id), ingredient);
     aliasMap.set(normalizeText(ingredient.nameKo), ingredient);
+    aliasMap.set(normalizeLookupKey(ingredient.nameKo), ingredient);
     if (ingredient.nameEn) aliasMap.set(normalizeText(ingredient.nameEn), ingredient);
-    for (const alias of ingredient.aliases) aliasMap.set(normalizeText(alias), ingredient);
+    if (ingredient.nameEn) aliasMap.set(normalizeLookupKey(ingredient.nameEn), ingredient);
+    for (const alias of ingredient.aliases) {
+      aliasMap.set(normalizeText(alias), ingredient);
+      aliasMap.set(normalizeLookupKey(alias), ingredient);
+    }
   }
 
   return aliasMap;
+}
+
+function buildMedicationAliasMap(knowledgeIndex: KnowledgeIndex) {
+  const aliasMap = new Map<string, string>();
+  const medicationValues = new Set(
+    knowledgeIndex.safetyRules.flatMap((rule) => [
+      ...rule.interactionDrugs,
+      ...rule.conditions
+        .filter((condition) => ["medications_any", "or_medications_any"].includes(condition.field))
+        .flatMap((condition) =>
+          Array.isArray(condition.value) ? condition.value.map((item) => String(item)) : [],
+        ),
+    ]),
+  );
+
+  for (const value of medicationValues) {
+    const canonical = normalizeText(value);
+    const aliases = [value, ...getMedicationAliases(value)];
+
+    for (const alias of aliases) {
+      aliasMap.set(normalizeText(alias), canonical);
+      aliasMap.set(normalizeLookupKey(alias), canonical);
+    }
+  }
+
+  return aliasMap;
+}
+
+function buildConditionAliasMap(knowledgeIndex: KnowledgeIndex) {
+  const aliasMap = new Map<string, string>();
+  const conditionValues = new Set(
+    [
+      ...knowledgeIndex.safetyRules.flatMap((rule) => [
+        ...rule.interactionDiseases,
+        ...rule.conditions
+          .filter((condition) => condition.field === "diseases_any")
+          .flatMap((condition) =>
+            Array.isArray(condition.value) ? condition.value.map((item) => String(item)) : [],
+          ),
+      ]),
+      ...getConditionPresetCanonicalValues(),
+    ],
+  );
+
+  for (const value of conditionValues) {
+    const canonical = normalizeText(value);
+    const aliases = [value, ...getConditionAliases(value)];
+
+    for (const alias of aliases) {
+      aliasMap.set(normalizeText(alias), canonical);
+      aliasMap.set(normalizeLookupKey(alias), canonical);
+    }
+  }
+
+  return aliasMap;
+}
+
+function normalizeProfileEntries(values: string[] | undefined, aliasMap?: Map<string, string>) {
+  const normalizedValues = (values ?? []).map((value) => {
+    const canonical =
+      aliasMap?.get(normalizeText(value)) ??
+      aliasMap?.get(normalizeLookupKey(value));
+
+    return canonical ?? normalizeText(value);
+  });
+
+  return [...new Set(normalizedValues.filter(Boolean))];
 }
 
 function normalizeCandidateItems(candidateItems: CandidateItem[] | undefined, selectedCompounds: string[], aliasMap: Map<string, IngredientRecord>) {
   const normalizedCandidates = (candidateItems ?? []).map((candidate) => {
     const ingredient =
       (candidate.ingredientId ? aliasMap.get(normalizeText(candidate.ingredientId)) : null) ??
-      aliasMap.get(normalizeText(candidate.name));
+      (candidate.ingredientId ? aliasMap.get(normalizeLookupKey(candidate.ingredientId)) : null) ??
+      aliasMap.get(normalizeText(candidate.name)) ??
+      aliasMap.get(normalizeLookupKey(candidate.name));
 
     return {
       ingredientId: ingredient?.id ?? candidate.ingredientId ?? null,
@@ -200,6 +287,8 @@ function normalizeCandidateItems(candidateItems: CandidateItem[] | undefined, se
 function normalizeQuery(query: EngineQuery, knowledgeIndex: KnowledgeIndex) {
   const parsed = engineQuerySchema.parse(query);
   const aliasMap = buildIngredientAliasMap(knowledgeIndex);
+  const medicationAliasMap = buildMedicationAliasMap(knowledgeIndex);
+  const conditionAliasMap = buildConditionAliasMap(knowledgeIndex);
   const memoTokens = tokenizeMemo(parsed.profile.memo);
   const selectedCompounds = normalizeTextArray([...(parsed.profile.selectedCompounds ?? []), ...memoTokens]);
   const candidateItems = normalizeCandidateItems(parsed.candidateItems, selectedCompounds, aliasMap);
@@ -231,8 +320,8 @@ function normalizeQuery(query: EngineQuery, knowledgeIndex: KnowledgeIndex) {
     pregnancyStatus: parsed.profile.pregnancyStatus ? normalizeText(parsed.profile.pregnancyStatus) : undefined,
     lactationStatus: parsed.profile.lactationStatus ? normalizeText(parsed.profile.lactationStatus) : undefined,
     smokerStatus: parsed.profile.smokerStatus ? normalizeText(parsed.profile.smokerStatus) : undefined,
-    medications: normalizeTextArray([...(parsed.profile.medications ?? []), ...memoTokens]),
-    conditions: normalizeTextArray([...(parsed.profile.conditions ?? []), ...memoTokens]),
+    medications: normalizeProfileEntries([...(parsed.profile.medications ?? []), ...memoTokens], medicationAliasMap),
+    conditions: normalizeProfileEntries([...(parsed.profile.conditions ?? []), ...memoTokens], conditionAliasMap),
     allergies: normalizeTextArray([...(parsed.profile.allergies ?? []), ...memoTokens]),
     selectedCompounds,
     jurisdiction: parsed.profile.jurisdiction ? normalizeText(parsed.profile.jurisdiction) : "kr",
@@ -250,6 +339,14 @@ function normalizeQuery(query: EngineQuery, knowledgeIndex: KnowledgeIndex) {
 
 function findCandidateForRule(profile: NormalizedProfile, rule: SafetyRule) {
   return profile.candidateItems.filter((candidate) => candidate.ingredientId === rule.ingredientId);
+}
+
+function findLooseMatch(profileValues: string[], candidateValues: unknown[]) {
+  const profileKeys = new Set(profileValues.map((value) => normalizeLookupKey(value)));
+
+  return candidateValues
+    .map((value) => normalizeText(String(value)))
+    .find((value) => profileKeys.has(normalizeLookupKey(value))) ?? null;
 }
 
 function ingredientFormsCoverRule(ingredient: IngredientRecord | null, conditionValues: string[]) {
@@ -361,8 +458,8 @@ function evaluateCondition(
     case "or_medications_any": {
       if (profile.medications.length === 0) return missingCondition(condition, `${valueLabel} 정보가 없어 판정 보류`);
 
-      const required = (condition.value as unknown[]).map((item) => normalizeText(String(item)));
-      const matchedMedication = required.find((item) => profile.medications.includes(item));
+      const required = condition.value as unknown[];
+      const matchedMedication = findLooseMatch(profile.medications, required);
 
       return {
         conditionId: condition.id,
@@ -377,8 +474,8 @@ function evaluateCondition(
     case "diseases_any": {
       if (profile.conditions.length === 0) return missingCondition(condition, `${valueLabel} 정보가 없어 판정 보류`);
 
-      const required = (condition.value as unknown[]).map((item) => normalizeText(String(item)));
-      const matchedDisease = required.find((item) => profile.conditions.includes(item));
+      const required = condition.value as unknown[];
+      const matchedDisease = findLooseMatch(profile.conditions, required);
 
       return {
         conditionId: condition.id,
@@ -532,8 +629,7 @@ function evaluateCondition(
     case "population_any": {
       if (profile.populationTags.length === 0) return missingCondition(condition, "대상 집단 정보가 없어 판정 보류");
 
-      const required = (condition.value as unknown[]).map((item) => normalizeText(String(item)));
-      const matched = required.some((item) => profile.populationTags.includes(item));
+      const matched = Boolean(findLooseMatch(profile.populationTags, condition.value as unknown[]));
 
       return {
         conditionId: condition.id,
@@ -546,8 +642,7 @@ function evaluateCondition(
     case "exposure_any": {
       if (profile.exposures.length === 0) return missingCondition(condition, "노출 이력 정보가 없어 판정 보류");
 
-      const required = (condition.value as unknown[]).map((item) => normalizeText(String(item)));
-      const matched = required.some((item) => profile.exposures.includes(item));
+      const matched = Boolean(findLooseMatch(profile.exposures, condition.value as unknown[]));
 
       return {
         conditionId: condition.id,
@@ -560,8 +655,7 @@ function evaluateCondition(
     case "immune_status_any": {
       if (!profile.immuneStatus) return missingCondition(condition, "면역 상태 정보가 없어 판정 보류");
 
-      const required = (condition.value as unknown[]).map((item) => normalizeText(String(item)));
-      const matched = required.includes(profile.immuneStatus);
+      const matched = Boolean(findLooseMatch([profile.immuneStatus], condition.value as unknown[]));
 
       return {
         conditionId: condition.id,
@@ -574,8 +668,7 @@ function evaluateCondition(
     case "devices_any": {
       if (profile.devices.length === 0) return missingCondition(condition, "의료기기 정보가 없어 판정 보류");
 
-      const required = (condition.value as unknown[]).map((item) => normalizeText(String(item)));
-      const matched = required.some((item) => profile.devices.includes(item));
+      const matched = Boolean(findLooseMatch(profile.devices, condition.value as unknown[]));
 
       return {
         conditionId: condition.id,

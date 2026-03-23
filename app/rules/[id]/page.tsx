@@ -1,8 +1,40 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { RuleCard } from "@/src/components/rule-card";
 import { getKnowledgeIndex, getRuleDetail } from "@/src/lib/knowledge";
+import { siteName } from "@/src/lib/site";
+
+export async function generateMetadata(props: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await props.params;
+  const detail = getRuleDetail(id);
+
+  if (!detail) {
+    return {
+      title: `규칙을 찾을 수 없음 | ${siteName}`,
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
+  return {
+    title: `${detail.rule.nutrientOrIngredient} 안전 안내`,
+    description: detail.rule.action || detail.rule.messageShort,
+    alternates: {
+      canonical: `/rules/${detail.rule.id}`,
+    },
+    openGraph: {
+      title: `${detail.rule.nutrientOrIngredient} 안전 안내`,
+      description: detail.rule.action || detail.rule.messageShort,
+      url: `/rules/${detail.rule.id}`,
+    },
+  };
+}
 
 export default async function RuleDetailPage(props: { params: Promise<{ id: string }> }) {
   const { id } = await props.params;
@@ -35,31 +67,28 @@ export default async function RuleDetailPage(props: { params: Promise<{ id: stri
   };
 
   return (
-    <main className="min-h-screen bg-[linear-gradient(180deg,_#f7f4ee_0%,_#f2efe7_100%)] px-4 py-8 md:px-8">
+    <main className="app-page min-h-screen px-4 py-8 md:px-8">
       <div className="mx-auto max-w-5xl space-y-6">
-        <div className="flex items-center justify-between">
+        <div className="surface-card-strong flex flex-col gap-5 rounded-[2rem] px-6 py-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-xs uppercase tracking-[0.24em] text-stone-500">Rule Detail</p>
-            <h1 className="mt-2 text-3xl font-semibold text-stone-950">{detail.rule.nutrientOrIngredient}</h1>
-            <p className="mt-2 text-sm text-stone-600">{detail.rule.id}</p>
+            <p className="eyebrow">Rule Detail</p>
+            <h1 className="mt-4 font-display text-[clamp(2.3rem,4vw,3.6rem)] leading-[0.98] tracking-[-0.05em] text-foreground">
+              {detail.rule.nutrientOrIngredient}
+            </h1>
+            <p className="mt-3 text-sm text-muted">{detail.rule.id}</p>
           </div>
-          <div className="flex gap-3">
-            <Link href="/" className="rounded-full border border-stone-200 bg-white px-4 py-2 text-sm text-stone-700">
-              탐색기
-            </Link>
-            <Link
-              href="/sources"
-              className="rounded-full border border-stone-200 bg-white px-4 py-2 text-sm text-stone-700"
-            >
-              출처 브라우저
-            </Link>
-          </div>
+          <Link
+            href="/"
+            className="inline-flex min-h-11 items-center justify-center rounded-full border border-border-subtle bg-white/82 px-4 py-2 text-sm font-semibold text-foreground transition duration-200 hover:-translate-y-0.5 hover:border-stone-300 hover:bg-white"
+          >
+            메인 안내로 돌아가기
+          </Link>
         </div>
 
         <RuleCard match={mockMatch} defaultExpandedEvidence />
 
-        <section className="rounded-[2rem] border border-stone-200 bg-white p-6 shadow-sm">
-          <h2 className="text-xl font-semibold text-stone-950">규칙 조건</h2>
+        <section className="surface-card rounded-[2rem] p-6">
+          <h2 className="font-display text-2xl tracking-[-0.03em] text-foreground">규칙 조건</h2>
           {detail.rule.conditions.length === 0 ? (
             <p className="mt-4 text-sm text-stone-600">명시된 조건이 없는 일반 참고 규칙입니다.</p>
           ) : (
@@ -74,8 +103,8 @@ export default async function RuleDetailPage(props: { params: Promise<{ id: stri
           )}
         </section>
 
-        <section className="rounded-[2rem] border border-stone-200 bg-white p-6 shadow-sm">
-          <h2 className="text-xl font-semibold text-stone-950">규칙 결과</h2>
+        <section className="surface-card rounded-[2rem] p-6">
+          <h2 className="font-display text-2xl tracking-[-0.03em] text-foreground">규칙 결과</h2>
           <dl className="mt-4 grid gap-4 text-sm md:grid-cols-2">
             <div>
               <dt className="font-semibold text-stone-900">짧은 메시지</dt>
@@ -92,10 +121,10 @@ export default async function RuleDetailPage(props: { params: Promise<{ id: stri
           </dl>
         </section>
 
-        <section className="rounded-[2rem] border border-stone-200 bg-white p-6 shadow-sm">
+        <section className="surface-card rounded-[2rem] p-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-semibold text-stone-950">지원 출처</h2>
-            <span className="rounded-full bg-stone-100 px-3 py-1 text-sm text-stone-700">
+            <h2 className="font-display text-2xl tracking-[-0.03em] text-foreground">지원 출처</h2>
+            <span className="rounded-full border border-border-subtle bg-white/82 px-3 py-1 text-sm text-muted">
               {detail.supportingSources.length}건
             </span>
           </div>
@@ -104,7 +133,7 @@ export default async function RuleDetailPage(props: { params: Promise<{ id: stri
           ) : (
             <div className="mt-4 grid gap-3">
               {detail.supportingSources.map((source) => (
-                <article key={source.id} className="rounded-2xl border border-stone-200 p-4">
+                <article key={source.id} className="rounded-2xl border border-border-subtle bg-white/72 p-4">
                   <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                     <div>
                       <p className="font-semibold text-stone-950">{source.title}</p>
@@ -113,7 +142,7 @@ export default async function RuleDetailPage(props: { params: Promise<{ id: stri
                     </div>
                     <Link
                       href={`/sources/${source.id}`}
-                      className="rounded-full border border-stone-200 px-4 py-2 text-sm text-stone-700"
+                      className="rounded-full border border-border-subtle px-4 py-2 text-sm text-foreground"
                     >
                       출처 상세
                     </Link>
@@ -124,10 +153,10 @@ export default async function RuleDetailPage(props: { params: Promise<{ id: stri
           )}
         </section>
 
-        <section className="rounded-[2rem] border border-stone-200 bg-white p-6 shadow-sm">
+        <section className="surface-card rounded-[2rem] p-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-semibold text-stone-950">지원 근거 청크</h2>
-            <span className="rounded-full bg-stone-100 px-3 py-1 text-sm text-stone-700">
+            <h2 className="font-display text-2xl tracking-[-0.03em] text-foreground">지원 근거 청크</h2>
+            <span className="rounded-full border border-border-subtle bg-white/82 px-3 py-1 text-sm text-muted">
               {detail.supportingEvidenceChunks.length}건
             </span>
           </div>

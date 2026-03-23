@@ -106,4 +106,84 @@ describe("runSafetyEngine", () => {
 
     expect(visibleRuleIds.has("RULE-GARCINIA-LIVER-AVOID")).toBe(false);
   });
+
+  it("matches ingredients and medications even when spacing and casing vary", () => {
+    const response = runSafetyEngine(
+      {
+        profile: {
+          selectedCompounds: ["VitaminK"],
+          medications: ["War Farin"],
+          jurisdiction: "KR",
+        },
+        sort: "severity_desc",
+      },
+      knowledgeIndex,
+    );
+
+    const matchedIds = new Set(
+      response.definitely_matched.map((match) => match.ruleId),
+    );
+
+    expect(matchedIds.has("RULE-VITK-WARFARIN-CONSISTENCY")).toBe(true);
+  });
+
+  it("matches common Korean medication aliases to the same medication entity", () => {
+    const response = runSafetyEngine(
+      {
+        profile: {
+          selectedCompounds: ["vitamin k"],
+          medications: ["와파린"],
+          jurisdiction: "KR",
+        },
+        sort: "severity_desc",
+      },
+      knowledgeIndex,
+    );
+
+    const matchedIds = new Set(
+      response.definitely_matched.map((match) => match.ruleId),
+    );
+
+    expect(matchedIds.has("RULE-VITK-WARFARIN-CONSISTENCY")).toBe(true);
+  });
+
+  it("matches common Korean condition aliases to the same condition entity", () => {
+    const response = runSafetyEngine(
+      {
+        profile: {
+          selectedCompounds: ["글루코사민"],
+          conditions: ["당뇨병"],
+          jurisdiction: "KR",
+        },
+        sort: "severity_desc",
+      },
+      knowledgeIndex,
+    );
+
+    const matchedIds = new Set(
+      response.definitely_matched.map((match) => match.ruleId),
+    );
+
+    expect(matchedIds.has("RULE-GLUCOSAMINE-DIABETES-MONITOR")).toBe(true);
+  });
+
+  it("matches ingredient abbreviations such as vit k to the same ingredient entity", () => {
+    const response = runSafetyEngine(
+      {
+        profile: {
+          selectedCompounds: ["vit k"],
+          medications: ["warfarin"],
+          jurisdiction: "KR",
+        },
+        sort: "severity_desc",
+      },
+      knowledgeIndex,
+    );
+
+    const matchedIds = new Set(
+      response.definitely_matched.map((match) => match.ruleId),
+    );
+
+    expect(matchedIds.has("RULE-VITK-WARFARIN-CONSISTENCY")).toBe(true);
+  });
 });

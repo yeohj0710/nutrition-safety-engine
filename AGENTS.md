@@ -13,4 +13,5 @@ Before exploring the repo from scratch, check `docs/project_map.md`.
 - Result card UI: `src/components/rule-card.tsx`
 - Safety engine: `src/lib/safety-engine/index.ts`
 - Knowledge loader/normalizer: `src/lib/knowledge/`
-- Data source files: `data/*.json`
+- Primary data source: `data/knowledge_pack.json`
+- Runtime index: `src/generated/knowledge-index.json`
