@@ -1,114 +1,210 @@
-# Safety Engine Reference Pack v0.1
+# Nutrition Safety Rule Explorer
 
-생성시각: 2026-03-22T16:58:00Z
+생성 시각: 2026-03-23
 
-## 이 팩이 하는 일
-이 팩은 건강기능식품/영양소 **안전 검증 엔진**을 만들 때 바로 개발에 넣을 수 있도록,
-다음 4개 핵심 테이블을 정규화해서 제공합니다.
+## 목적
 
-1. `source_registry.json`
-   - 논문/정부문서/규정/데이터셋 메타데이터
-2. `ingredients.json`
-   - 원료/영양소 표준 ID와 alias
-3. `evidence_chunks.json`
-   - **논문의 어떤 부분 / 문서의 어느 위치**를 근거로 쓸지 저장하는 청크 레이어
-4. `safety_rules.json`
-   - 실제 엔진 규칙 레이어
+이 프로젝트는 건강기능식품, 영양소, 허브 성분에 대한 안전 규칙을 **결정적 규칙 엔진**으로 조회하는 Next.js 앱입니다.
 
-즉, **JSON 하나로 끝내는 구조가 아니라, 확장 가능한 정규화 구조 + SQL 스키마 + 엑셀 뷰**를 같이 줍니다.
+- 로컬 데이터만 사용합니다.
+- 규칙 매칭은 재현 가능해야 합니다.
+- AI는 선택적 설명 계층일 뿐, 규칙 판정 권한이 없습니다.
+- 출처와 근거 청크를 항상 따라갈 수 있어야 합니다.
 
-## 왜 단일 JSON보다 이 구조가 더 좋은가
-단일 JSON은 빨리 시작하기엔 편하지만, 아래 문제가 생깁니다.
+## 핵심 원칙
 
-- 같은 논문을 여러 규칙이 재사용할 때 중복이 커짐
-- 한국/미국/EU 기준이 충돌할 때 관리가 어려움
-- 나중에 premium DB(Micromedex/Natural Medicines/USP) 연동 시 구조가 깨짐
-- “이 규칙이 정확히 어떤 문장/어느 줄에서 왔는지” 추적이 어려움
+- deterministic engine = authoritative layer
+- AI explanation = optional presentation layer
+- reference data = local versioned assets
+- no hidden magic
 
-그래서 이 팩은 다음 원칙으로 설계했습니다.
+## 아키텍처
 
-- `source` 와 `evidence_chunk` 분리
-- `ingredient` 와 `rule` 분리
-- `rule -> evidence_chunk -> source`로 역추적 가능
-- `jurisdiction`, `threshold_scope`, `review_status` 독립 보관
-- 샘플 엔진 입출력(`sample_evaluation_input.json`, `sample_engine_output.json`) 포함
+### 1. 데이터 레이어
 
-## 폴더 구조
-- `schemas/`
-  - JSON Schema
-- `data/`
-  - 실제 데이터(JSON)
-- `exports/`
-  - CSV / XLSX
-- `docs/`
-  - SQL 스키마, 확장 가이드
+- 원본 데이터 위치: `data/`
+- 정규화 스크립트: `scripts/build-knowledge-index.ts`
+- 런타임 인덱스: `src/generated/knowledge-index.json`
+- 타입과 검증: `src/types/knowledge.ts`
 
-## 핵심 엔티티 관계
+정규화 결과는 아래 엔터티를 포함합니다.
+
+- `KnowledgeSource`
+- `EvidenceChunk`
+- `SafetyRule`
+- `RuleCondition`
+- `RuleOutcome`
+- `PersonProfile`
+- `EngineQuery`
+- `RuleMatch`
+- `EngineResponse`
+
+### 2. 결정적 규칙 엔진
+
+- 위치: `src/lib/safety-engine/`
+- 입력: `EngineQuery`
+- 출력: `EngineResponse`
+- 분류:
+  - `definitely_matched`
+  - `possibly_relevant`
+  - `needs_more_info`
+  - `excluded`
+
+엔진은 다음 원칙으로 동작합니다.
+
+- 입력이 비어 있다고 해서 자동 배제하지 않습니다.
+- 특정 필드가 반드시 필요한 규칙인데 값이 없으면 `needs_more_info`로 보냅니다.
+- 수치 비교, 임신/수유/흡연, 약물/질환 상호작용, 제형 조건은 모두 코드로만 평가합니다.
+- 정렬과 필터는 결과 표현 계층에서만 적용합니다.
+
+### 3. AI 설명 계층
+
+- 위치: `src/lib/ai/`
+- 서버 라우트: `app/api/ai-explain/route.ts`
+- 사용 SDK: 공식 `openai` 패키지
+- API: Responses API + Structured Outputs
+
+AI 계층은 이미 계산된 `EngineResponse`의 축약본만 입력으로 받습니다.
+
+- matched / possibly relevant / needs more info 규칙 일부
+- source title
+- 짧은 evidence excerpt
+- deterministic reason
+
+AI는 절대 다음을 하지 않습니다.
+
+- 규칙 매칭 판정
+- threshold 변경
+- severity 변경
+- contraindication / interaction 변경
+- 숫자값 보정
+
+AI가 실패하면 앱은 그대로 결정적 결과만 보여 줍니다.
+
+## 데이터 흐름
+
+1. `data/`의 원본 파일을 정규화 스크립트가 읽습니다.
+2. 스크립트가 `src/generated/knowledge-index.json`을 생성합니다.
+3. 서버 전용 로더가 인덱스를 Zod로 검증합니다.
+4. `/api/rules/query`가 `EngineQuery`를 받아 결정적 엔진을 실행합니다.
+5. 클라이언트는 결과 카드, 근거 패널, 필터를 렌더링합니다.
+6. 사용자가 AI 설명을 켜면 `/api/ai-explain`이 최소 payload만 모델에 전달합니다.
+
+## 폴더 가이드
+
 ```text
-source_registry (문헌/규정/DB)
-    1 --- N evidence_chunks (문헌 내 위치 단위 근거)
-
-ingredients (원료/영양소 사전)
-    1 --- N safety_rules (해당 원료 규칙)
-
-evidence_chunks
-    N --- N safety_rules
-    (현재는 rule row에 evidence_chunk_ids 배열로 연결)
+app/
+  api/
+    ai-explain/
+    rules/query/
+  rules/[id]/
+  sources/
+  sources/[id]/
+src/
+  components/
+  generated/
+  lib/
+    ai/
+    knowledge/
+    safety-engine/
+  types/
+scripts/
+__tests__/
+  fixtures/
 ```
 
-## 주요 필드 설명
+## 환경 변수
 
-### source_registry
-- `source_id`: 고유 소스 ID
-- `title`: 논문/문서 제목
-- `source_type`: rct, review, government_fact_sheet, regulation_notice 등
-- `jurisdiction`: KR / US / EU / GLOBAL
-- `evidence_tier`: national_reference, regulation, systematic_review_meta_analysis 등
-- `access_model`: public / licensed
-- `ingestion_status`: ingested_chunked / catalog_only / planned
+- `OPENAI_API_KEY`
+  - 선택 사항입니다.
+  - 서버에서만 읽습니다.
+  - 없으면 AI 설명 기능은 자동으로 비활성 fallback 응답을 반환합니다.
 
-### evidence_chunks
-- `chunk_id`: 고유 청크 ID
-- `source_id`: 어떤 문헌에서 왔는지
-- `locator_type`: lines / abstract / section / pdf_page / manual_note
-- `locator_value`: **논문/문서 내 위치**
-- `excerpt_summary_ko`: 한국어 요약
-- `structured_claim`: 엔진이 바로 쓰기 쉬운 구조화 claim
+## 설치와 실행
 
-### safety_rules
-- `rule_id`: 고유 규칙 ID
-- `ingredient_id`: 대상 성분
-- `rule_category`: dose_limit / interaction / pregnancy_lactation / disease_caution 등
-- `severity`: contraindicated / avoid / warn / monitor
-- `applies_when`: 연령, 성별, 질환, 약물, 흡연력 등 조건 JSON
-- `threshold_*`: 수치 기준
-- `evidence_chunk_ids`: 어떤 chunk가 근거인지
-- `review_status`: starter_validated / starter_hypothesis
+```bash
+npm install
+npm run dev
+```
 
-## 현재 포함된 성분 범위
-비타민/미네랄 + 대표 위험원료 중심 24개 성분:
-- 비타민 A(프리폼드), 베타카로틴, 비타민 D, 칼슘, 마그네슘, 철, 엽산, 비타민 K
-- 오메가3, 아연, 셀레늄, 요오드, 나이아신, 비타민 B6
-- St. John’s wort, Red yeast rice, Green tea extract, Melatonin, Probiotics
-- Ashwagandha, Asian ginseng, Glucosamine/Chondroitin, CoQ10, Garcinia cambogia
+주요 명령:
 
-## review_status 해석
-- `starter_validated`: 공개 근거와 현재 수집 범위에서 엔진 스타터팩으로 사용 가능
-- `starter_hypothesis`: 추가 검증 전 hard-stop으로 쓰기보다 manual review 대상으로 권장
+```bash
+npm run prepare:knowledge
+npm run typecheck
+npm run lint
+npm run test
+npm run build
+```
 
-## 확장 방법
-1. 새 문헌을 `source_registry`에 추가
-2. 문헌에서 쓸 문장/표/절을 `evidence_chunks`로 추가
-3. 성분 alias를 `ingredients`에 추가
-4. `safety_rules`에 rule row 추가
-5. 샘플 엔진 테스트를 돌려 regression 확인
+## 정규화 플로우
 
-## 권장 다음 작업
-- 2025 한국인 영양소 섭취기준을 nutrient x age x sex x life_stage row로 완전 분해
-- 식품안전나라 제품별 섭취주의를 제품 레벨 테이블로 분리
-- MFDS 이상사례 데이터를 signal table로 추가
-- 질환/검사값/약물 표준코드(RxNorm, ATC, ICD, LOINC 등) 매핑 레이어 추가
+1. `knowledge_pack.json`이 있으면 우선 사용합니다.
+2. 없으면 개별 source / evidence / rules 파일을 읽습니다.
+3. 스크립트가 공통 스키마로 정규화합니다.
+4. Zod 검증 후 `knowledge-index.json`을 생성합니다.
+5. 앱 런타임은 이 단일 JSON 인덱스만 사용합니다.
 
-## 주의
-이 팩은 **엔진 스타터팩**입니다.
-의료행위 대체용이 아니라, 안전 필터링/근거 추적/개발 스키마 구축용 초기 베이스입니다.
+## 테스트 전략
+
+### 단위 테스트
+
+- 결정적 엔진의 대표 규칙 매칭
+- 제형 정보 누락 시 `needs_more_info`
+- 일반 참고 규칙의 `possibly_relevant`
+
+### fixture 시나리오
+
+`__tests__/fixtures/`에 실제 데모용 프로필 시나리오를 넣었습니다.
+
+- 32세 여성, 임신 중, 비타민 A 관련 주의
+- 29세 여성, 수유 중
+- 55세 남성, 흡연자, beta-carotene 관련 주의
+- 68세 남성, warfarin 복용, vitamin K 관련 상호작용
+- 61세 여성, thiazide 복용, vitamin D/calcium 관련 주의
+- 47세 남성, quinolone 항생제 복용, magnesium/calcium/iron 간격 주의
+- 정보 부족 케이스: 나이/성별 미입력
+
+이 시나리오는 결정적 분류가 안정적으로 유지되는지 검증합니다.
+
+## UI 가이드
+
+- `/`
+  - 좌측: 프로필 및 필터
+  - 우측: AI 정리 + 근거 규칙 원문
+- `/sources`
+  - 검색, 관할권, 근거 수준 필터
+- `/sources/[id]`
+  - 출처 상세, 연결 규칙, 연결 근거 청크
+- `/rules/[id]`
+  - 규칙 상세, 지원 출처, 지원 근거 청크
+
+## 안전 제한 사항
+
+- 의학적 진단 도구가 아닙니다.
+- 복용 여부의 최종 결정은 임상의 판단을 대체하지 않습니다.
+- 로컬 데이터에 없는 최신 규제 변경은 반영되지 않을 수 있습니다.
+- free-text memo는 안전한 exact keyword 보조 용도로만 다룹니다.
+
+## 새 출처/규칙 추가 방법
+
+1. `data/`에 새 출처와 근거 청크를 추가합니다.
+2. 성분 사전에 alias / category / form을 보완합니다.
+3. `safety_rules` 원본에 새 규칙을 추가합니다.
+4. `npm run prepare:knowledge`로 정규화 인덱스를 다시 생성합니다.
+5. fixture 또는 단위 테스트를 추가합니다.
+6. `/sources`와 `/rules/[id]`에서 연결이 잘 보이는지 확인합니다.
+
+## Vercel 배포 메모
+
+- 이 프로젝트는 DB 없이 정적 자산 + 서버 라우트로 동작합니다.
+- `OPENAI_API_KEY`는 Vercel 프로젝트 환경 변수에만 설정합니다.
+- 서버 전용 로더와 route handler에서만 비밀값을 접근합니다.
+- `npm run build`가 배포 전 최종 게이트입니다.
+
+## 남겨둘 만한 개선 후보
+
+- Lighthouse 및 실제 모바일 기기 점검
+- source title / evidence excerpt 하이라이트
+- 더 많은 fixture 시나리오와 회귀 테스트
+- 배포 환경 로그 연동

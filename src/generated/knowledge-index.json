@@ -1164,7 +1164,7 @@
       "year": 2021,
       "journalOrPublisher": "Hepatology",
       "jurisdiction": "INTL",
-      "urlOrIdentifier": null,
+      "urlOrIdentifier": "https://pubmed.ncbi.nlm.nih.gov/32892374/",
       "updatedAt": "2026-03-22T16:58:00Z",
       "evidenceLevel": "observational_genetic_association",
       "raw": {
@@ -1175,9 +1175,9 @@
         "jurisdiction": "INTL",
         "publication_year": 2021,
         "publication_date": null,
-        "url": null,
-        "doi": null,
-        "pmid": null,
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32892374/",
+        "doi": "10.1002/hep.31538",
+        "pmid": "32892374",
         "authors": null,
         "journal": "Hepatology",
         "evidence_tier": "observational_genetic_association",
@@ -1194,7 +1194,7 @@
       "year": 2019,
       "journalOrPublisher": "World Journal of Hepatology",
       "jurisdiction": "INTL",
-      "urlOrIdentifier": null,
+      "urlOrIdentifier": "https://pubmed.ncbi.nlm.nih.gov/31772720/",
       "updatedAt": "2026-03-22T16:58:00Z",
       "evidenceLevel": "case_report",
       "raw": {
@@ -1205,9 +1205,9 @@
         "jurisdiction": "INTL",
         "publication_year": 2019,
         "publication_date": null,
-        "url": null,
-        "doi": null,
-        "pmid": null,
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31772720/",
+        "doi": "10.4254/wjh.v11.i11.735",
+        "pmid": "31772720",
         "authors": null,
         "journal": "World Journal of Hepatology",
         "evidence_tier": "case_report",
@@ -1224,7 +1224,7 @@
       "year": 2018,
       "journalOrPublisher": "European Food Safety Authority",
       "jurisdiction": "EU",
-      "urlOrIdentifier": null,
+      "urlOrIdentifier": "https://www.efsa.europa.eu/en/efsajournal/pub/5368",
       "updatedAt": "2026-03-22T16:58:00Z",
       "evidenceLevel": "scientific_opinion",
       "raw": {
@@ -1235,7 +1235,7 @@
         "jurisdiction": "EU",
         "publication_year": 2018,
         "publication_date": null,
-        "url": null,
+        "url": "https://www.efsa.europa.eu/en/efsajournal/pub/5368",
         "doi": null,
         "pmid": null,
         "authors": null,
@@ -10495,6 +10495,7 @@
         "CHK-GARCINIA-LIVER"
       ],
       "sourceIds": [
+        "SRC-PMID-GARCINIA-CASE-2019",
         "SRC-US-NCCIH-GARCINIA"
       ],
       "confidence": "high",
@@ -10543,6 +10544,7 @@
           "CHK-GARCINIA-LIVER"
         ],
         "source_ids": [
+          "SRC-PMID-GARCINIA-CASE-2019",
           "SRC-US-NCCIH-GARCINIA"
         ],
         "review_status": "starter_validated",

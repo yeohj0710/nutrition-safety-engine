@@ -49,11 +49,14 @@ type ExplainDependencies = {
 const explanationCache = new Map<string, CachedExplanation>();
 
 function truncateText(text: string | null | undefined, maxLength = AI_EXPLAIN_MAX_TEXT_LENGTH) {
-  if (!text) {
-    return null;
-  }
-
+  if (!text) return null;
   return text.length > maxLength ? `${text.slice(0, maxLength - 1)}…` : text;
+}
+
+function sanitizeReason(text: string, fallback: string) {
+  const trimmed = text.trim();
+  if (!trimmed) return fallback;
+  return /[�?]/.test(trimmed) ? fallback : trimmed;
 }
 
 function severityToLabel(severity: RuleMatch["resolvedSeverity"]) {
@@ -76,8 +79,14 @@ function pickRules(matches: RuleMatch[]) {
     nutrientOrIngredient: match.rule.nutrientOrIngredient,
     severity: severityToLabel(match.resolvedSeverity),
     shortMessage: truncateText(match.resolvedMessage),
-    matchedBecause: match.matchedBecause.slice(0, 2).map((item) => truncateText(item) ?? "").filter(Boolean),
-    needsMoreInfo: match.needsMoreInfo.slice(0, 3).map((item) => truncateText(item) ?? "").filter(Boolean),
+    matchedBecause: match.matchedBecause
+      .slice(0, 2)
+      .map((item) => truncateText(sanitizeReason(item, "프로필 조건과 규칙 조건이 일치했습니다.")) ?? "")
+      .filter(Boolean),
+    needsMoreInfo: match.needsMoreInfo
+      .slice(0, 3)
+      .map((item) => truncateText(sanitizeReason(item, "필수 프로필 정보가 더 필요합니다.")) ?? "")
+      .filter(Boolean),
     sourceTitles: match.supportingSources.map((source) => source.title).slice(0, 3),
     evidence: match.supportingEvidenceChunks
       .slice(0, AI_EXPLAIN_MAX_EVIDENCE_PER_RULE)
@@ -100,9 +109,7 @@ function buildCompactPayload(input: AiExplainRequest) {
 }
 
 function buildCacheKey(payload: ReturnType<typeof buildCompactPayload>) {
-  return createHash("sha256")
-    .update(JSON.stringify({ model: AI_EXPLAIN_MODEL, payload }))
-    .digest("hex");
+  return createHash("sha256").update(JSON.stringify({ model: AI_EXPLAIN_MODEL, payload })).digest("hex");
 }
 
 function createClient(apiKey: string) {
@@ -114,25 +121,20 @@ function createClient(apiKey: string) {
 }
 
 function isTimeoutError(error: unknown) {
-  if (!(error instanceof Error)) {
-    return false;
-  }
-
-  return /timeout/i.test(error.message) || /abort/i.test(error.message);
+  return error instanceof Error && (/timeout/i.test(error.message) || /abort/i.test(error.message));
 }
 
 function buildInstructions() {
   return [
     "당신은 nutrition safety rule explorer의 보조 설명 계층입니다.",
-    "결정적 규칙 엔진이 이미 규칙 매칭을 끝냈습니다.",
-    "절대로 규칙 매칭 여부를 새로 판단하지 마십시오.",
-    "절대로 threshold, severity, contraindication, interaction, 숫자 값을 바꾸거나 추정하지 마십시오.",
-    "오직 전달된 deterministic 결과를 한국어로 짧고 읽기 쉽게 정리하십시오.",
-    "결과는 보수적이고 비진단적이어야 합니다.",
+    "결정적 규칙 엔진이 이미 규칙 매칭을 계산했습니다.",
+    "규칙 매칭 여부를 새로 판단하지 마십시오.",
+    "threshold, severity, contraindication, interaction, 숫자값을 수정하거나 추정하지 마십시오.",
+    "주어진 deterministic 결과를 한국어로 짧고 보수적으로 정리하십시오.",
     "출처는 입력에 포함된 source title만 언급하십시오.",
-    "논문, 저자, 저널, 청크 ID를 새로 만들지 마십시오.",
+    "논문, 저자, 저널, chunk ID를 새로 만들지 마십시오.",
     "정보가 부족하면 무엇이 부족한지 명시하십시오.",
-    "AI 정리라는 성격이 드러나야 하며, 엔진 자체처럼 말하지 마십시오.",
+    "설명은 비진단적이어야 하며 AI 정리라는 점이 드러나야 합니다.",
   ].join(" ");
 }
 
@@ -178,9 +180,7 @@ export async function explainSafetyResults(
             ],
           },
         ],
-        text: {
-          format: aiExplanationTextFormat,
-        },
+        text: { format: aiExplanationTextFormat },
         max_output_tokens: AI_EXPLAIN_MAX_OUTPUT_TOKENS,
         store: false,
       },
@@ -192,6 +192,7 @@ export async function explainSafetyResults(
     );
 
     const explanation = aiExplanationSchema.safeParse(parsed.output_parsed);
+
     if (!explanation.success) {
       console.warn("[ai-explain] invalid structured output", {
         requestId,

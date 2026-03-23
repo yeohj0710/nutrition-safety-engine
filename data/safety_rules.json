@@ -2259,6 +2259,7 @@
       "CHK-GARCINIA-LIVER"
     ],
     "source_ids": [
+      "SRC-PMID-GARCINIA-CASE-2019",
       "SRC-US-NCCIH-GARCINIA"
     ],
     "review_status": "starter_validated",

@@ -1,8 +1,8 @@
 import sampleEvaluationInput from "@/data/sample_evaluation_input.json";
 import knowledgeIndexJson from "@/src/generated/knowledge-index.json";
 import { explainSafetyResults } from "@/src/lib/ai/explainSafetyResults";
-import { knowledgeIndexSchema, type EngineQuery } from "@/src/types/knowledge";
 import { runSafetyEngine } from "@/src/lib/safety-engine";
+import { knowledgeIndexSchema, type EngineQuery } from "@/src/types/knowledge";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("server-only", () => ({}));
@@ -117,22 +117,22 @@ describe("explainSafetyResults", () => {
             _request_id: "req_ok",
             output_parsed: {
               summaryTitle: "AI 정리: 주요 주의사항",
-              summaryParagraph: "비타민 D와 세인트존스워트 관련 경고가 우선적으로 보입니다.",
+              summaryParagraph: "비타민 D와 vitamin K 관련 경고가 우선적으로 보입니다.",
               topAlerts: [
                 {
-                  title: "세인트존스워트 병용 금지 수준 경고",
+                  title: "비타민 K와 warfarin 관련 경고",
                   severity: "금지/중단",
-                  reason: "warfarin과의 상호작용 규칙이 deterministic 결과에 포함되어 있습니다. 출처: Vitamin K - Health Professional Fact Sheet",
+                  reason: "deterministic 결과에 warfarin 상호작용 규칙이 포함되어 있습니다. 출처: Vitamin K - Health Professional Fact Sheet",
                 },
               ],
               groupedFindings: [
                 {
                   sectionTitle: "약물 상호작용",
-                  items: ["warfarin과 관련된 규칙이 여러 건 매칭되었습니다."],
+                  items: ["warfarin과 관련된 규칙이 매칭되었습니다."],
                 },
               ],
-              missingInformation: ["제형 정보가 없는 성분은 일부 규칙이 보류될 수 있습니다."],
-              userFriendlyNextSteps: ["현재 복용 중인 약물과 성분 제형을 함께 확인하세요."],
+              missingInformation: ["일부 성분은 제형 정보가 없어서 추가 확인이 필요합니다."],
+              userFriendlyNextSteps: ["현재 복용 중인 약물과 성분 제형을 다시 확인해 보세요."],
               disclaimer: "AI 정리는 결정적 규칙 엔진 결과를 쉽게 읽도록 정리한 보조 설명입니다.",
             },
           }),

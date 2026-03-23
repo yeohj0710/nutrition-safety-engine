@@ -61,6 +61,69 @@ export function buildReferenceBundle(rule: SafetyRule) {
   };
 }
 
+export function getRulesBySourceId(sourceId: string) {
+  return knowledgeIndex.safetyRules.filter((rule) => rule.sourceIds.includes(sourceId));
+}
+
+export function getRulesByEvidenceChunkId(chunkId: string) {
+  return knowledgeIndex.safetyRules.filter((rule) => rule.evidenceChunkIds.includes(chunkId));
+}
+
+export function getEvidenceChunksBySourceId(sourceId: string) {
+  return knowledgeIndex.evidenceChunks.filter((chunk) => chunk.sourceId === sourceId);
+}
+
+export function getSourceDetail(sourceId: string) {
+  const source = getSourceById(sourceId);
+  if (!source) {
+    return null;
+  }
+
+  const evidenceChunks = getEvidenceChunksBySourceId(sourceId);
+  const linkedRules = getRulesBySourceId(sourceId);
+
+  return {
+    source,
+    evidenceChunks,
+    linkedRules,
+  };
+}
+
+export function getRuleDetail(ruleId: string) {
+  const rule = getRuleById(ruleId);
+  if (!rule) {
+    return null;
+  }
+
+  const supportingSources = rule.sourceIds
+    .map((sourceId) => getSourceById(sourceId))
+    .filter((source): source is KnowledgeSource => Boolean(source));
+  const supportingEvidenceChunks = rule.evidenceChunkIds
+    .map((chunkId) => getEvidenceChunkById(chunkId))
+    .filter((chunk): chunk is EvidenceChunk => Boolean(chunk));
+
+  return {
+    rule,
+    ingredient: getIngredientById(rule.ingredientId),
+    supportingSources,
+    supportingEvidenceChunks,
+  };
+}
+
+export function getSourceBrowseData() {
+  return knowledgeIndex.sources.map((source) => ({
+    id: source.id,
+    title: source.title,
+    sourceType: source.sourceType,
+    year: source.year,
+    jurisdiction: source.jurisdiction,
+    evidenceLevel: source.evidenceLevel,
+    journalOrPublisher: source.journalOrPublisher,
+    linkedRuleCount: getRulesBySourceId(source.id).length,
+    linkedChunkCount: getEvidenceChunksBySourceId(source.id).length,
+  }));
+}
+
 export function getRuleBrowseData() {
   return knowledgeIndex.safetyRules.map((rule) => ({
     id: rule.id,
@@ -84,6 +147,13 @@ export function getExplorerMetadata() {
       jurisdiction: source.jurisdiction,
       evidenceLevel: source.evidenceLevel,
     })),
+    sourceEvidenceLevels: [
+      ...new Set(
+        knowledgeIndex.sources
+          .map((source) => source.evidenceLevel)
+          .filter((value): value is string => Boolean(value)),
+      ),
+    ],
     jurisdictions: [
       ...new Set(
         knowledgeIndex.safetyRules
