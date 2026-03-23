@@ -2,6 +2,8 @@
 
 이 문서는 starter pack에 포함된 source를 사람이 빠르게 검토할 수 있도록 묶어둔 요약표입니다.
 
+전체 코드/데이터 위치는 `docs/project_map.md`를 먼저 보면 됩니다.
+
 ## adverse_event_dataset
 - `SRC-KR-MFDS-AE-DATA` | 건강기능식품 이상사례 신고 현황 | 식품의약품안전처 / KR / public / catalog_only
 - `SRC-US-FDA-CAERS` | Center for Food Safety and Applied Nutrition Adverse Event Reporting System | U.S. Food and Drug Administration / US / public / ingested_chunked

@@ -608,6 +608,10 @@ function evaluateRule(rule: SafetyRule, ingredient: IngredientRecord | null, pro
   const selectedIngredient = profile.selectedIngredientIds.length === 0 || profile.selectedIngredientIds.includes(rule.ingredientId);
   const conditionResults = rule.conditions.map((condition) => evaluateCondition(condition, rule, ingredient, profile));
   const groupedResults = groupBy(conditionResults, (result) => result.requirementGroup);
+  const matchedConditions = conditionResults.filter((result) => result.status === "matched");
+  const matchedOnlyByGeneralUse =
+    matchedConditions.length > 0 &&
+    matchedConditions.every((result) => result.field === "or_use_general");
 
   const matchedBecause: string[] = [];
   const missingReasons: string[] = [];
@@ -672,6 +676,8 @@ function evaluateRule(rule: SafetyRule, ingredient: IngredientRecord | null, pro
     ? "excluded"
     : rule.conditions.length === 0 && !hasThreshold
       ? "possibly_relevant"
+      : matchedOnlyByGeneralUse
+        ? "excluded"
       : hasMissing
         ? "needs_more_info"
         : "definitely_matched";

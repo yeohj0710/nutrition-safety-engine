@@ -11,6 +11,18 @@
 - AI는 선택적 설명 계층일 뿐, 규칙 판정 권한이 없습니다.
 - 출처와 근거 청크를 항상 따라갈 수 있어야 합니다.
 
+## 빠른 진입
+
+새 세션에서 바로 작업을 시작하려면 먼저 `docs/project_map.md`를 보세요.
+
+- 화면 진입점: `app/page.tsx`
+- 메인 UI: `src/components/rule-explorer-client.tsx`
+- 결과 카드: `src/components/rule-card.tsx`
+- 엔진 핵심: `src/lib/safety-engine/index.ts`
+- 데이터 로더: `src/lib/knowledge/index.ts`
+- 원본 데이터: `data/*.json`
+- 테스트: `__tests__/`
+
 ## 핵심 원칙
 
 - deterministic engine = authoritative layer

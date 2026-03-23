@@ -3,6 +3,10 @@
 :root {
   --background: #f7f4ee;
   --foreground: #171717;
+  --font-app-sans: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic",
+    "Segoe UI", sans-serif;
+  --font-app-mono: "Geist Mono", "SFMono-Regular", "Cascadia Code",
+    "Fira Code", monospace;
 }
 
 @theme inline {
@@ -28,6 +32,16 @@ input,
 select,
 textarea {
   font: inherit;
+}
+
+button:not(:disabled),
+summary,
+[role="button"] {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
 }
 
 a:focus-visible,

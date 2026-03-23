@@ -1,0 +1,10 @@
+
+> nutrition-safety-engine@0.1.0 dev
+> npm run prepare:knowledge && next dev --port 3001
+
+
+> nutrition-safety-engine@0.1.0 prepare:knowledge
+> tsx scripts/build-knowledge-index.ts
+
+knowledge-index generated: 70 rules, 72 evidence chunks
+[?25h
