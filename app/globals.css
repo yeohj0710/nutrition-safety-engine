@@ -100,6 +100,16 @@ textarea:focus-visible {
   background: transparent;
 }
 
+.page-shell {
+  width: min(100%, 62rem);
+  margin-inline: auto;
+}
+
+.page-shell-narrow {
+  width: min(100%, 56rem);
+  margin-inline: auto;
+}
+
 .app-page::before,
 .app-page::after {
   content: "";
@@ -136,7 +146,7 @@ textarea:focus-visible {
 }
 
 .measure-copy {
-  max-width: 60ch;
+  max-width: 54ch;
 }
 
 @keyframes rise-in {

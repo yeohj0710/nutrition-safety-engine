@@ -612,6 +612,8 @@ export function RuleCard({
                   const evidenceNote = getEvidenceNote(chunk);
                   const verificationLabel = getEvidenceVerificationLabel(chunk);
                   const captureLabel = getEvidenceCaptureLabel(chunk);
+                  const locatorText = getEvidenceLocatorText(chunk);
+                  const linkedRuleIds = Array.isArray(chunk.usedInRuleIds) ? chunk.usedInRuleIds : [];
 
                   return (
                     <li key={chunk.id} className="rounded-[1.25rem] border border-border-subtle bg-white/76 px-4 py-4">
@@ -634,14 +636,14 @@ export function RuleCard({
                             {getSourceTrustSummary(source)}
                           </span>
                         ) : null}
-                        {getEvidenceLocatorText(chunk) ? (
+                        {locatorText ? (
                           <span className="rounded-full border border-border-subtle px-2.5 py-1 text-muted">
-                            {getEvidenceLocatorText(chunk)}
+                            {locatorText}
                           </span>
                         ) : null}
-                        {chunk.usedInRuleIds.length > 0 ? (
+                        {linkedRuleIds.length > 0 ? (
                           <span className="rounded-full border border-border-subtle px-2.5 py-1 text-muted">
-                            linked rules {chunk.usedInRuleIds.length}
+                            linked rules {linkedRuleIds.length}
                           </span>
                         ) : null}
                       </div>

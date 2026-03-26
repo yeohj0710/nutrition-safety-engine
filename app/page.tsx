@@ -32,9 +32,9 @@ export default function Home() {
 
   return (
     <main className="min-h-screen px-4 py-5 sm:px-6 lg:px-8 lg:py-8">
-      <div className="mx-auto flex max-w-[74rem] flex-col gap-6">
+      <div className="page-shell flex flex-col gap-6">
         <section className="surface-card overflow-hidden rounded-[1.75rem]">
-          <div className="grid gap-8 px-6 py-6 md:px-8 md:py-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(18rem,0.9fr)]">
+          <div className="grid gap-8 px-6 py-6 md:px-8 md:py-8 xl:grid-cols-[minmax(0,1.1fr)_minmax(17rem,0.85fr)]">
             <div className="space-y-6">
               <p className="eyebrow text-muted">증거 기반 확인</p>
               <div className="space-y-4">

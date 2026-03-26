@@ -71,7 +71,7 @@ export function SourceBrowserClient({
     <div className="space-y-5">
       <section className="surface-card rounded-[2rem] px-5 py-5 md:px-6 md:py-6">
         <div className="flex flex-col gap-5">
-          <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+          <div className="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
             <div className="max-w-2xl">
               <p className="eyebrow">Browse and verify</p>
               <h2 className="mt-4 font-display text-[clamp(1.9rem,3vw,2.9rem)] leading-[0.98] tracking-[-0.04em] text-foreground">
@@ -103,7 +103,7 @@ export function SourceBrowserClient({
             </div>
           </div>
 
-          <div className="grid gap-3 lg:grid-cols-[minmax(0,1.2fr)_13rem_14rem]">
+          <div className="grid gap-3 xl:grid-cols-[minmax(0,1.2fr)_13rem_14rem]">
             <label className="space-y-2">
               <span className="text-sm font-semibold text-foreground">
                 출처 검색
@@ -172,7 +172,7 @@ export function SourceBrowserClient({
               key={source.id}
               className="surface-card rounded-[1.8rem] px-5 py-5 transition duration-200 hover:-translate-y-0.5 hover:border-stone-300 hover:bg-white/92"
             >
-              <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+              <div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
                 <div className="min-w-0 space-y-4">
                   <div className="flex flex-wrap gap-2 text-[11px]">
                     {source.year ? (
@@ -196,13 +196,13 @@ export function SourceBrowserClient({
                   </div>
 
                   <div>
-                    <h3 className="max-w-4xl font-display text-[clamp(1.6rem,2.4vw,2.3rem)] leading-[1.02] tracking-[-0.04em] text-foreground">
+                    <h3 className="max-w-3xl font-display text-[clamp(1.6rem,2.4vw,2.3rem)] leading-[1.02] tracking-[-0.04em] text-foreground">
                       {source.title}
                     </h3>
                     <p className="mt-2 text-sm text-muted">{source.id}</p>
                   </div>
 
-                  <div className="grid gap-3 md:grid-cols-[minmax(0,1fr)_14rem]">
+                  <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_13rem]">
                     <div className="rounded-[1.25rem] border border-border-subtle bg-white/75 px-4 py-4">
                       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
                         발행 기관

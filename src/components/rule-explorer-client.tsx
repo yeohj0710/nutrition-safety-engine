@@ -1091,7 +1091,7 @@ export function RuleExplorerClient({
           </div>
 
           <div className="px-6 py-6 md:px-7">
-            <div className="grid gap-4 lg:grid-cols-3">
+            <div className="grid gap-4 xl:grid-cols-3">
               <label className={`${fieldGroupClass} rounded-[1rem] border border-stone-200 bg-white p-4`}>
                 <div className="mb-3 flex items-center justify-between gap-3">
                   <span className={fieldLabelClass}>1. 선택 성분</span>
@@ -1384,7 +1384,7 @@ export function RuleExplorerClient({
 
       {response ? (
         <section className="surface-card rounded-[1.5rem] p-5 md:p-6">
-          <div className="flex flex-col gap-3 border-b border-border-subtle pb-5 lg:flex-row lg:items-end lg:justify-between">
+          <div className="flex flex-col gap-3 border-b border-border-subtle pb-5 xl:flex-row xl:items-end xl:justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">결과</p>
               <h2 className="mt-2 text-[clamp(1.35rem,2.2vw,1.75rem)] font-semibold tracking-[-0.03em] text-foreground">
@@ -1400,7 +1400,7 @@ export function RuleExplorerClient({
           </div>
 
           <div className="mt-5 grid gap-5 xl:grid-cols-[minmax(0,1.15fr)_minmax(18rem,0.85fr)]">
-            <div className="grid gap-3 md:grid-cols-3">
+            <div className="grid gap-3 lg:grid-cols-3">
               {resultOverview.map((item) => (
                 <div key={item.key} className={`rounded-[1rem] border px-4 py-4 ${item.tone}`}>
                   <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted">

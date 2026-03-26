@@ -79,9 +79,9 @@ async function main() {
   await rebuildKnowledgeIndex("initial build");
 
   const watchers = startWatchers();
-  const nextBinary = process.platform === "win32" ? "npx.cmd" : "npx";
-  const nextArgs = ["next", "dev", ...process.argv.slice(2)];
-  const child = spawn(nextBinary, nextArgs, {
+  const nextCliPath = path.join(projectRoot, "node_modules", "next", "dist", "bin", "next");
+  const nextArgs = [nextCliPath, "dev", ...process.argv.slice(2)];
+  const child = spawn(process.execPath, nextArgs, {
     cwd: projectRoot,
     stdio: "inherit",
     shell: false,

@@ -113,7 +113,7 @@ export default async function SourceDetailPage(props: {
 
   return (
     <main className="app-page min-h-screen px-4 py-8 md:px-5 lg:px-6">
-      <div className="mx-auto max-w-[56rem] space-y-5">
+      <div className="page-shell-narrow space-y-5">
         <section className="surface-card-strong rounded-[2rem] px-6 py-6">
           <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
             <div className="min-w-0">
@@ -166,7 +166,7 @@ export default async function SourceDetailPage(props: {
             </div>
           </div>
 
-          <div className="mt-6 grid gap-3 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+          <div className="mt-6 grid gap-3 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
             <div className="rounded-[1.5rem] border border-border-subtle bg-white/76 p-4">
               <p className="text-sm font-semibold text-stone-900">
                 원문 먼저 확인해 보세요
@@ -363,7 +363,7 @@ export default async function SourceDetailPage(props: {
                       ) : null}
                     </div>
 
-                    <div className="mt-4 grid gap-3 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+                    <div className="mt-4 grid gap-3 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
                       <div className="rounded-[1.2rem] border border-stone-200 bg-white p-4">
                         <p className="text-sm font-semibold text-stone-900">
                           어디를 보면 되나요?

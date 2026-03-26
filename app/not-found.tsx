@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <main className="app-page min-h-screen px-4 py-8 md:px-8 md:py-10">
-      <div className="mx-auto max-w-4xl">
+    <main className="app-page min-h-screen px-4 py-8 md:px-6 md:py-10">
+      <div className="page-shell-narrow">
         <section className="surface-card-strong rounded-[2.2rem] px-7 py-9 md:px-10 md:py-12">
           <p className="eyebrow">Not Found</p>
           <h1 className="mt-5 font-display text-[clamp(2.4rem,5vw,4.3rem)] leading-[0.96] tracking-[-0.05em] text-foreground">

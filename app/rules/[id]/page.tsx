@@ -80,8 +80,8 @@ export default async function RuleDetailPage(props: { params: Promise<{ id: stri
   };
 
   return (
-    <main className="app-page min-h-screen px-4 py-8 md:px-8">
-      <div className="mx-auto max-w-5xl space-y-6">
+    <main className="app-page min-h-screen px-4 py-8 md:px-6 lg:px-8">
+      <div className="page-shell-narrow space-y-6">
         <div className="surface-card-strong flex flex-col gap-5 rounded-[2rem] px-6 py-6 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="eyebrow">Rule Detail</p>
