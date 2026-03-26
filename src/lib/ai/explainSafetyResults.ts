@@ -73,6 +73,36 @@ function severityToLabel(severity: RuleMatch["resolvedSeverity"]) {
   }
 }
 
+function summarizeEvidenceForAi(match: RuleMatch) {
+  return match.supportingEvidenceChunks
+    .slice(0, AI_EXPLAIN_MAX_EVIDENCE_PER_RULE)
+    .map((chunk) => {
+      const excerpt =
+        chunk.quoteOriginal ??
+        chunk.quoteTranslationKo ??
+        chunk.summary ??
+        chunk.quote ??
+        chunk.chunkText;
+
+      if (!excerpt) {
+        return null;
+      }
+
+      const statusPrefix =
+        chunk.verificationStatus === "verified_against_source"
+          ? "[원문 확인] "
+          : chunk.verificationStatus === "supported_inference"
+            ? "[원문+해석] "
+            : chunk.verificationStatus === "pending_manual_extraction"
+              ? "[원문 발췌 대기] "
+              : "";
+      const locatorSuffix = chunk.locatorValue ? ` (${chunk.locatorValue})` : "";
+
+      return truncateText(`${statusPrefix}${excerpt}${locatorSuffix}`);
+    })
+    .filter((item): item is string => Boolean(item));
+}
+
 function pickRules(matches: RuleMatch[]) {
   return matches.slice(0, AI_EXPLAIN_MAX_RULES_PER_BUCKET).map((match) => ({
     ruleId: match.ruleId,
@@ -88,10 +118,7 @@ function pickRules(matches: RuleMatch[]) {
       .map((item) => truncateText(sanitizeReason(item, "필수 프로필 정보가 더 필요합니다.")) ?? "")
       .filter(Boolean),
     sourceTitles: match.supportingSources.map((source) => source.title).slice(0, 3),
-    evidence: match.supportingEvidenceChunks
-      .slice(0, AI_EXPLAIN_MAX_EVIDENCE_PER_RULE)
-      .map((chunk) => truncateText(chunk.summary ?? chunk.quote ?? chunk.chunkText))
-      .filter((item): item is string => Boolean(item)),
+    evidence: summarizeEvidenceForAi(match),
   }));
 }
 

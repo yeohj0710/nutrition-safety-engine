@@ -4,6 +4,18 @@ import { notFound } from "next/navigation";
 
 import { RuleCard } from "@/src/components/rule-card";
 import { getKnowledgeIndex, getRuleDetail } from "@/src/lib/knowledge";
+import {
+  getEvidenceCaptureLabel,
+  getEvidenceExcerptLabel,
+  getEvidenceLocatorText,
+  getEvidenceNote,
+  getEvidencePrimaryExcerpt,
+  getEvidenceSecondaryExcerpt,
+  getEvidenceVerificationLabel,
+  getEvidenceVerificationSummary,
+  getSourceReferenceLinks,
+  hasOriginalEvidenceExcerpt,
+} from "@/src/lib/references";
 import { siteName } from "@/src/lib/site";
 
 export async function generateMetadata(props: {
@@ -44,6 +56,7 @@ export default async function RuleDetailPage(props: { params: Promise<{ id: stri
     notFound();
   }
 
+  const sourceLookup = new Map(detail.supportingSources.map((source) => [source.id, source]));
   const mockMatch = {
     ruleId: detail.rule.id,
     classification: "possibly_relevant" as const,
@@ -81,7 +94,7 @@ export default async function RuleDetailPage(props: { params: Promise<{ id: stri
             href="/"
             className="inline-flex min-h-11 items-center justify-center rounded-full border border-border-subtle bg-white/82 px-4 py-2 text-sm font-semibold text-foreground transition duration-200 hover:-translate-y-0.5 hover:border-stone-300 hover:bg-white"
           >
-            메인 안내로 돌아가기
+            메인 탐색으로 돌아가기
           </Link>
         </div>
 
@@ -90,7 +103,7 @@ export default async function RuleDetailPage(props: { params: Promise<{ id: stri
         <section className="surface-card rounded-[2rem] p-6">
           <h2 className="font-display text-2xl tracking-[-0.03em] text-foreground">규칙 조건</h2>
           {detail.rule.conditions.length === 0 ? (
-            <p className="mt-4 text-sm text-stone-600">명시된 조건이 없는 일반 참고 규칙입니다.</p>
+            <p className="mt-4 text-sm text-stone-600">명시적 조건이 없는 일반 참고 규칙입니다.</p>
           ) : (
             <ul className="mt-4 space-y-3 text-sm text-stone-700">
               {detail.rule.conditions.map((condition) => (
@@ -107,15 +120,15 @@ export default async function RuleDetailPage(props: { params: Promise<{ id: stri
           <h2 className="font-display text-2xl tracking-[-0.03em] text-foreground">규칙 결과</h2>
           <dl className="mt-4 grid gap-4 text-sm md:grid-cols-2">
             <div>
-              <dt className="font-semibold text-stone-900">짧은 메시지</dt>
+              <dt className="font-semibold text-stone-900">짧은 안내</dt>
               <dd className="mt-1 text-stone-700">{detail.rule.messageShort}</dd>
             </div>
             <div>
-              <dt className="font-semibold text-stone-900">조치</dt>
+              <dt className="font-semibold text-stone-900">권장 조치</dt>
               <dd className="mt-1 text-stone-700">{detail.rule.action}</dd>
             </div>
             <div className="md:col-span-2">
-              <dt className="font-semibold text-stone-900">긴 설명</dt>
+              <dt className="font-semibold text-stone-900">상세 설명</dt>
               <dd className="mt-1 text-stone-700">{detail.rule.messageLong}</dd>
             </div>
           </dl>
@@ -155,30 +168,92 @@ export default async function RuleDetailPage(props: { params: Promise<{ id: stri
 
         <section className="surface-card rounded-[2rem] p-6">
           <div className="flex items-center justify-between">
-            <h2 className="font-display text-2xl tracking-[-0.03em] text-foreground">지원 근거 청크</h2>
+            <h2 className="font-display text-2xl tracking-[-0.03em] text-foreground">지원 근거</h2>
             <span className="rounded-full border border-border-subtle bg-white/82 px-3 py-1 text-sm text-muted">
               {detail.supportingEvidenceChunks.length}건
             </span>
           </div>
           {detail.supportingEvidenceChunks.length === 0 ? (
-            <p className="mt-4 text-sm text-stone-600">연결된 근거 청크가 없습니다.</p>
+            <p className="mt-4 text-sm text-stone-600">연결된 근거가 없습니다.</p>
           ) : (
             <div className="mt-4 space-y-3">
-              {detail.supportingEvidenceChunks.map((chunk) => (
-                <article key={chunk.id} className="rounded-2xl border border-stone-200 p-4">
-                  <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
-                    <div>
-                      <p className="font-semibold text-stone-950">{chunk.id}</p>
-                      <p className="mt-1 text-sm text-stone-600">
-                        {chunk.locatorType ?? "위치"} {chunk.locatorValue ?? "미상"}
-                      </p>
+              {detail.supportingEvidenceChunks.map((chunk) => {
+                const source = sourceLookup.get(chunk.sourceId) ?? null;
+                const sourceLinks = source ? getSourceReferenceLinks(source) : [];
+                const primaryExcerpt = getEvidencePrimaryExcerpt(chunk);
+                const secondaryExcerpt = getEvidenceSecondaryExcerpt(chunk);
+                const evidenceNote = getEvidenceNote(chunk);
+                const verificationLabel = getEvidenceVerificationLabel(chunk);
+                const captureLabel = getEvidenceCaptureLabel(chunk);
+                const locatorText = getEvidenceLocatorText(chunk);
+
+                return (
+                  <article key={chunk.id} className="rounded-2xl border border-stone-200 p-4">
+                    <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                      <div>
+                        <div className="flex flex-wrap gap-2 text-[11px]">
+                          {verificationLabel ? (
+                            <span className="rounded-full bg-emerald-50 px-3 py-1 text-emerald-900">
+                              {verificationLabel}
+                            </span>
+                          ) : null}
+                          {captureLabel ? (
+                            <span className="rounded-full border border-stone-200 bg-white px-3 py-1 text-stone-700">
+                              {captureLabel}
+                            </span>
+                          ) : null}
+                          {locatorText ? (
+                            <span className="rounded-full border border-stone-200 bg-white px-3 py-1 text-stone-700">
+                              {locatorText}
+                            </span>
+                          ) : null}
+                        </div>
+                        <p className="mt-3 font-semibold text-stone-950">{chunk.id}</p>
+                        {source ? (
+                          <p className="mt-1 text-sm text-stone-600">{source.title}</p>
+                        ) : null}
+                      </div>
+
+                      {sourceLinks.length > 0 ? (
+                        <div className="flex flex-wrap gap-2">
+                          {sourceLinks.map((link) => (
+                            <a
+                              key={`${chunk.id}-${link.label}-${link.url}`}
+                              href={link.url}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-stone-700 transition hover:-translate-y-0.5 hover:border-stone-300 hover:text-stone-950"
+                            >
+                              {link.label}
+                            </a>
+                          ))}
+                        </div>
+                      ) : null}
                     </div>
-                  </div>
-                  <p className="mt-3 rounded-2xl bg-stone-50 px-4 py-3 text-sm leading-6 text-stone-700">
-                    {chunk.summary ?? chunk.quote ?? chunk.chunkText ?? "발췌 내용 없음"}
-                  </p>
-                </article>
-              ))}
+
+                    <div className="mt-3 rounded-2xl bg-stone-50 px-4 py-3">
+                      <p className="text-xs font-semibold text-stone-500">{getEvidenceExcerptLabel(chunk)}</p>
+                      <p className="mt-2 text-sm leading-6 text-stone-700">
+                        {primaryExcerpt
+                          ? hasOriginalEvidenceExcerpt(chunk)
+                            ? `"${primaryExcerpt}"`
+                            : primaryExcerpt
+                          : "발췌 내용이 아직 없습니다."}
+                      </p>
+                      {secondaryExcerpt ? (
+                        <p className="mt-3 text-sm leading-6 text-stone-600">{secondaryExcerpt}</p>
+                      ) : null}
+                    </div>
+
+                    <p className="mt-3 text-sm leading-6 text-stone-700">
+                      {getEvidenceVerificationSummary(chunk)}
+                    </p>
+                    {evidenceNote ? (
+                      <p className="mt-2 text-sm leading-6 text-stone-600">{evidenceNote}</p>
+                    ) : null}
+                  </article>
+                );
+              })}
             </div>
           )}
         </section>

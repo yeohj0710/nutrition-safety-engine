@@ -4,13 +4,17 @@ import { notFound } from "next/navigation";
 
 import { getKnowledgeIndex, getSourceDetail } from "@/src/lib/knowledge";
 import {
+  getEvidenceCaptureLabel,
   getEvidenceCheckHint,
   getEvidenceClaimLabel,
   getEvidenceExcerptLabel,
   getEvidenceLocatorText,
+  getEvidenceNote,
   getEvidencePrimaryExcerpt,
   getEvidenceSearchKeywords,
   getEvidenceSecondaryExcerpt,
+  getEvidenceVerificationLabel,
+  getEvidenceVerificationSummary,
   getSourceReferenceLinks,
   getSourceTrustSummary,
   hasOriginalEvidenceExcerpt,
@@ -97,6 +101,15 @@ export default async function SourceDetailPage(props: {
     sourceLookup,
   );
   const sortedRules = sortRulesByPriority(detail.linkedRules);
+  const verifiedChunkCount = sortedEvidenceChunks.filter(
+    (chunk) => chunk.verificationStatus === "verified_against_source",
+  ).length;
+  const supportedInferenceCount = sortedEvidenceChunks.filter(
+    (chunk) => chunk.verificationStatus === "supported_inference",
+  ).length;
+  const pendingChunkCount = sortedEvidenceChunks.filter(
+    (chunk) => chunk.verificationStatus === "pending_manual_extraction",
+  ).length;
 
   return (
     <main className="app-page min-h-screen px-4 py-8 md:px-5 lg:px-6">
@@ -205,6 +218,12 @@ export default async function SourceDetailPage(props: {
                   <dt className="text-stone-500">근거 발췌</dt>
                   <dd className="text-stone-800">{sortedEvidenceChunks.length}건</dd>
                 </div>
+                <div className="grid grid-cols-[6.5rem_minmax(0,1fr)] gap-3">
+                  <dt className="text-stone-500">원문 상태</dt>
+                  <dd className="text-stone-800">
+                    확인 {verifiedChunkCount} / 해석 {supportedInferenceCount} / 대기 {pendingChunkCount}
+                  </dd>
+                </div>
               </dl>
             </div>
           </div>
@@ -240,6 +259,10 @@ export default async function SourceDetailPage(props: {
                 const searchKeywords = getEvidenceSearchKeywords(chunk);
                 const claimLabel = getEvidenceClaimLabel(chunk);
                 const locatorText = getEvidenceLocatorText(chunk);
+                const evidenceNote = getEvidenceNote(chunk);
+                const verificationLabel = getEvidenceVerificationLabel(chunk);
+                const captureLabel = getEvidenceCaptureLabel(chunk);
+                const verificationSummary = getEvidenceVerificationSummary(chunk);
 
                 return (
                   <article
@@ -249,6 +272,16 @@ export default async function SourceDetailPage(props: {
                     <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                       <div className="min-w-0">
                         <div className="flex flex-wrap gap-2 text-[11px]">
+                          {verificationLabel ? (
+                            <span className="rounded-full bg-emerald-50 px-3 py-1 text-emerald-900">
+                              {verificationLabel}
+                            </span>
+                          ) : null}
+                          {captureLabel ? (
+                            <span className="rounded-full border border-stone-200 bg-white px-3 py-1 text-stone-700">
+                              {captureLabel}
+                            </span>
+                          ) : null}
                           <span className="rounded-full border border-stone-200 bg-white px-3 py-1 text-stone-700">
                             {getEvidenceExcerptLabel(chunk)}
                           </span>
@@ -260,6 +293,11 @@ export default async function SourceDetailPage(props: {
                           {locatorText ? (
                             <span className="rounded-full bg-stone-100 px-3 py-1 text-stone-700">
                               {locatorText}
+                            </span>
+                          ) : null}
+                          {chunk.usedInRuleIds.length > 0 ? (
+                            <span className="rounded-full bg-stone-100 px-3 py-1 text-stone-700">
+                              linked rules {chunk.usedInRuleIds.length}
                             </span>
                           ) : null}
                         </div>
@@ -301,6 +339,18 @@ export default async function SourceDetailPage(props: {
                           <p className="mt-2 text-sm leading-6 text-stone-700">
                             {secondaryExcerpt}
                           </p>
+                        </div>
+                      ) : null}
+
+                      <div className="mt-4 rounded-xl bg-stone-50 px-4 py-3">
+                        <p className="text-xs font-semibold text-stone-500">검증 상태</p>
+                        <p className="mt-2 text-sm leading-6 text-stone-700">{verificationSummary}</p>
+                      </div>
+
+                      {evidenceNote ? (
+                        <div className="mt-4 rounded-xl bg-stone-50 px-4 py-3">
+                          <p className="text-xs font-semibold text-stone-500">메모</p>
+                          <p className="mt-2 text-sm leading-6 text-stone-700">{evidenceNote}</p>
                         </div>
                       ) : null}
 

@@ -48,6 +48,10 @@ type RawEvidenceChunk = {
   ingredient_ids?: string[] | null;
   locator_type?: string | null;
   locator_value?: string | null;
+  locator?: {
+    locator_type?: string | null;
+    locator_value?: string | null;
+  } | null;
   excerpt_verbatim?: string | null;
   excerpt_original?: string | null;
   excerpt_original_en?: string | null;
@@ -58,6 +62,21 @@ type RawEvidenceChunk = {
   structured_claim?: Record<string, unknown> | null;
   confidence?: string | null;
   notes_ko?: string | null;
+  evidence_type?: string | null;
+  quote_original?: string | null;
+  quote_language?: string | null;
+  quote_translation_ko?: string | null;
+  translation_status?: string | null;
+  verification_status?: string | null;
+  extraction_method?: string | null;
+  quote_original_is_short_excerpt?: boolean | null;
+  quote_capture_status?: string | null;
+  copyright_scope?: string | null;
+  source_access_note?: string | null;
+  used_in_rule_ids?: string[] | null;
+  quote_original_word_count?: number | null;
+  quote_full_sentence_available?: boolean | null;
+  verbatim_note_ko?: string | null;
   [key: string]: unknown;
 };
 
@@ -133,6 +152,24 @@ function firstNonEmptyString(...values: unknown[]) {
   }
 
   return null;
+}
+
+function getOptionalNumber(value: unknown) {
+  return typeof value === "number" && Number.isFinite(value) ? value : null;
+}
+
+function getOptionalBoolean(value: unknown) {
+  return typeof value === "boolean" ? value : null;
+}
+
+function toStringArray(values: unknown) {
+  if (!Array.isArray(values)) {
+    return [];
+  }
+
+  return values
+    .map((value) => (typeof value === "string" ? value.trim() : String(value ?? "").trim()))
+    .filter(Boolean);
 }
 
 function inferConfidence(rule: RawRule, chunks: RawEvidenceChunk[]) {
@@ -423,8 +460,28 @@ export async function buildKnowledgeIndex(projectRoot: string) {
     }),
   );
 
+  const derivedRuleIdsByChunk = new Map<string, Set<string>>();
+  for (const rawRule of knowledgePack.safety_rules ?? []) {
+    for (const chunkId of rawRule.evidence_chunk_ids ?? []) {
+      if (!derivedRuleIdsByChunk.has(chunkId)) {
+        derivedRuleIdsByChunk.set(chunkId, new Set());
+      }
+
+      derivedRuleIdsByChunk.get(chunkId)!.add(rawRule.rule_id);
+    }
+  }
+
   const evidenceChunks = (knowledgePack.evidence_chunks ?? []).map((rawChunk) => {
+    const locatorType = firstNonEmptyString(
+      rawChunk.locator?.locator_type,
+      rawChunk.locator_type,
+    );
+    const locatorValue = firstNonEmptyString(
+      rawChunk.locator?.locator_value,
+      rawChunk.locator_value,
+    );
     const verbatimQuote = firstNonEmptyString(
+      rawChunk.quote_original,
       rawChunk.excerpt_verbatim,
       rawChunk.excerpt_original,
       rawChunk.excerpt_original_en,
@@ -432,29 +489,57 @@ export async function buildKnowledgeIndex(projectRoot: string) {
       rawChunk.verbatim_quote,
       rawChunk.original_quote,
       rawChunk.quote_en,
-      rawChunk.quote_original,
     );
     const translatedQuote = firstNonEmptyString(
+      rawChunk.quote_translation_ko,
       rawChunk.excerpt_translation_ko,
       rawChunk.excerpt_summary_ko,
       rawChunk.translation_ko,
       rawChunk.summary_ko,
     );
-    const chunkText = firstNonEmptyString(
+    const summary = firstNonEmptyString(
+      rawChunk.excerpt_summary_ko,
+      rawChunk.summary_ko,
       rawChunk.notes_ko,
       translatedQuote,
       verbatimQuote,
     );
+    const chunkText = firstNonEmptyString(
+      rawChunk.notes_ko,
+      summary,
+      verbatimQuote,
+    );
+    const usedInRuleIds = [
+      ...new Set([
+        ...toStringArray(rawChunk.used_in_rule_ids),
+        ...Array.from(derivedRuleIdsByChunk.get(rawChunk.chunk_id) ?? []),
+      ]),
+    ];
 
     return {
       id: rawChunk.chunk_id,
       sourceId: rawChunk.source_id,
-      locatorType: rawChunk.locator_type ?? null,
-      locatorValue: rawChunk.locator_value ?? null,
+      locatorType,
+      locatorValue,
+      evidenceType: firstNonEmptyString(rawChunk.evidence_type),
+      quoteOriginal: verbatimQuote,
+      quoteTranslationKo: firstNonEmptyString(rawChunk.quote_translation_ko, translatedQuote),
+      quoteLanguage: firstNonEmptyString(rawChunk.quote_language),
+      translationStatus: firstNonEmptyString(rawChunk.translation_status),
+      verificationStatus: firstNonEmptyString(rawChunk.verification_status),
+      extractionMethod: firstNonEmptyString(rawChunk.extraction_method),
+      quoteOriginalIsShortExcerpt: getOptionalBoolean(rawChunk.quote_original_is_short_excerpt),
+      quoteCaptureStatus: firstNonEmptyString(rawChunk.quote_capture_status),
+      copyrightScope: firstNonEmptyString(rawChunk.copyright_scope),
+      sourceAccessNote: firstNonEmptyString(rawChunk.source_access_note),
+      usedInRuleIds,
+      quoteOriginalWordCount: getOptionalNumber(rawChunk.quote_original_word_count),
+      quoteFullSentenceAvailable: getOptionalBoolean(rawChunk.quote_full_sentence_available),
+      verbatimNoteKo: firstNonEmptyString(rawChunk.verbatim_note_ko),
       verbatimQuote,
       translatedQuote,
-      quote: verbatimQuote ?? translatedQuote,
-      summary: translatedQuote ?? verbatimQuote,
+      quote: verbatimQuote ?? translatedQuote ?? summary,
+      summary,
       chunkText,
       relevantEntities: rawChunk.ingredient_ids ?? [],
       metadata: {
@@ -476,6 +561,17 @@ export async function buildKnowledgeIndex(projectRoot: string) {
     return buildSafetyRule(rawRule, ingredientMap.get(rawRule.ingredient_id), ruleEvidenceChunks, generatedAt);
   });
 
+  const originalExcerptCount = evidenceChunks.filter((chunk) => Boolean(chunk.quoteOriginal)).length;
+  const verifiedAgainstSourceCount = evidenceChunks.filter(
+    (chunk) => chunk.verificationStatus === "verified_against_source",
+  ).length;
+  const supportedInferenceCount = evidenceChunks.filter(
+    (chunk) => chunk.verificationStatus === "supported_inference",
+  ).length;
+  const pendingManualExtractionCount = evidenceChunks.filter(
+    (chunk) => chunk.verificationStatus === "pending_manual_extraction",
+  ).length;
+
   return knowledgeIndexSchema.parse({
     meta: {
       packageName: knowledgePack.package_meta?.package_name ?? "knowledge_pack",
@@ -487,6 +583,10 @@ export async function buildKnowledgeIndex(projectRoot: string) {
       ingredientCount: ingredients.length,
       evidenceChunkCount: evidenceChunks.length,
       safetyRuleCount: safetyRules.length,
+      originalExcerptCount,
+      verifiedAgainstSourceCount,
+      supportedInferenceCount,
+      pendingManualExtractionCount,
     },
     sources,
     ingredients,

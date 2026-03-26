@@ -50,7 +50,19 @@ function buildKnowledgePack(packageName: string, ingredientId: string) {
         chunk_id: `${ingredientId}-chunk`,
         source_id: `${ingredientId}-source`,
         ingredient_ids: [ingredientId],
+        locator: {
+          locator_type: "abstract",
+          locator_value: "Results",
+        },
         excerpt_summary_ko: `${ingredientId} excerpt`,
+        quote_original: `${ingredientId} original quote`,
+        quote_translation_ko: `${ingredientId} translated quote`,
+        verification_status: "verified_against_source",
+        extraction_method: "manual_from_source",
+        quote_capture_status: "verified_short_excerpt",
+        used_in_rule_ids: [],
+        quote_original_word_count: 3,
+        verbatim_note_ko: `${ingredientId} note`,
         confidence: "high",
       },
     ],
@@ -116,8 +128,23 @@ describe("buildKnowledgeIndex", () => {
 
     expect(knowledgeIndex.meta.dataSource).toBe("knowledge_pack");
     expect(knowledgeIndex.meta.packageName).toBe("pack-primary");
+    expect(knowledgeIndex.meta.originalExcerptCount).toBe(1);
+    expect(knowledgeIndex.meta.verifiedAgainstSourceCount).toBe(1);
+    expect(knowledgeIndex.meta.pendingManualExtractionCount).toBe(0);
     expect(knowledgeIndex.ingredients.map((ingredient) => ingredient.id)).toEqual(["pack_ing"]);
     expect(knowledgeIndex.safetyRules.map((rule) => rule.id)).toEqual(["pack_ing-rule"]);
+    expect(knowledgeIndex.evidenceChunks[0]).toMatchObject({
+      locatorType: "abstract",
+      locatorValue: "Results",
+      quoteOriginal: "pack_ing original quote",
+      quoteTranslationKo: "pack_ing translated quote",
+      verificationStatus: "verified_against_source",
+      extractionMethod: "manual_from_source",
+      quoteCaptureStatus: "verified_short_excerpt",
+      quoteOriginalWordCount: 3,
+      verbatimNoteKo: "pack_ing note",
+      usedInRuleIds: ["pack_ing-rule"],
+    });
   });
 
   it("throws when knowledge_pack.json exists but is malformed instead of silently falling back", async () => {

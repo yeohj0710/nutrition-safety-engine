@@ -1,13 +1,17 @@
 import Link from "next/link";
 
 import {
+  getEvidenceCaptureLabel,
   getEvidenceCheckHint,
   getEvidenceClaimLabel,
   getEvidenceExcerptLabel,
   getEvidenceLocatorText,
+  getEvidenceNote,
   getEvidencePrimaryExcerpt,
   getEvidenceSearchKeywords,
   getEvidenceSecondaryExcerpt,
+  getEvidenceVerificationLabel,
+  getEvidenceVerificationSummary,
   getSourceReferenceLinks,
   getSourceTrustSummary,
   hasOriginalEvidenceExcerpt,
@@ -300,6 +304,9 @@ export function RuleCard({
   const primaryEvidence = sortedEvidenceChunks[0] ?? null;
   const primaryEvidenceExcerpt = primaryEvidence ? getEvidencePrimaryExcerpt(primaryEvidence) : null;
   const primaryEvidenceSecondary = primaryEvidence ? getEvidenceSecondaryExcerpt(primaryEvidence) : null;
+  const primaryEvidenceNote = primaryEvidence ? getEvidenceNote(primaryEvidence) : null;
+  const primaryEvidenceVerificationLabel = primaryEvidence ? getEvidenceVerificationLabel(primaryEvidence) : null;
+  const primaryEvidenceCaptureLabel = primaryEvidence ? getEvidenceCaptureLabel(primaryEvidence) : null;
   const confidenceLabel = formatBadgeLabel(match.rule.confidence) ?? "unknown";
   const supportingSourceCount = sortedSources.length;
   const supportingEvidenceCount = sortedEvidenceChunks.length;
@@ -445,6 +452,25 @@ export function RuleCard({
               </div>
 
               <div className="rounded-[1rem] border border-stone-200 bg-stone-50/60 px-4 py-4">
+                {primaryEvidence ? (
+                  <div className="mb-3 flex flex-wrap gap-2 text-[11px]">
+                    {primaryEvidenceVerificationLabel ? (
+                      <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-emerald-900">
+                        {primaryEvidenceVerificationLabel}
+                      </span>
+                    ) : null}
+                    {primaryEvidenceCaptureLabel ? (
+                      <span className="rounded-full border border-stone-200 bg-white px-2.5 py-1 text-muted">
+                        {primaryEvidenceCaptureLabel}
+                      </span>
+                    ) : null}
+                    {getEvidenceLocatorText(primaryEvidence) ? (
+                      <span className="rounded-full border border-stone-200 bg-white px-2.5 py-1 text-muted">
+                        {getEvidenceLocatorText(primaryEvidence)}
+                      </span>
+                    ) : null}
+                  </div>
+                ) : null}
                 <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">
                   {primaryEvidence ? getEvidenceExcerptLabel(primaryEvidence) : "대표 근거"}
                 </p>
@@ -457,6 +483,14 @@ export function RuleCard({
                 </blockquote>
                 {primaryEvidenceSecondary ? (
                   <p className="mt-3 text-sm leading-6 text-muted">{primaryEvidenceSecondary}</p>
+                ) : null}
+                {primaryEvidence ? (
+                  <p className="mt-3 text-xs leading-5 text-muted">
+                    {getEvidenceVerificationSummary(primaryEvidence)}
+                  </p>
+                ) : null}
+                {primaryEvidenceNote ? (
+                  <p className="mt-2 text-xs leading-5 text-muted">{primaryEvidenceNote}</p>
                 ) : null}
               </div>
             </div>
@@ -575,10 +609,23 @@ export function RuleCard({
                   const claimLabel = getEvidenceClaimLabel(chunk);
                   const primaryExcerpt = getEvidencePrimaryExcerpt(chunk);
                   const secondaryExcerpt = getEvidenceSecondaryExcerpt(chunk);
+                  const evidenceNote = getEvidenceNote(chunk);
+                  const verificationLabel = getEvidenceVerificationLabel(chunk);
+                  const captureLabel = getEvidenceCaptureLabel(chunk);
 
                   return (
                     <li key={chunk.id} className="rounded-[1.25rem] border border-border-subtle bg-white/76 px-4 py-4">
                       <div className="flex flex-wrap items-center gap-2 text-[11px]">
+                        {verificationLabel ? (
+                          <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-emerald-900">
+                            {verificationLabel}
+                          </span>
+                        ) : null}
+                        {captureLabel ? (
+                          <span className="rounded-full border border-border-subtle bg-white px-2.5 py-1 text-muted">
+                            {captureLabel}
+                          </span>
+                        ) : null}
                         {claimLabel ? (
                           <span className="rounded-full bg-foreground px-2.5 py-1 text-white">{claimLabel}</span>
                         ) : null}
@@ -590,6 +637,11 @@ export function RuleCard({
                         {getEvidenceLocatorText(chunk) ? (
                           <span className="rounded-full border border-border-subtle px-2.5 py-1 text-muted">
                             {getEvidenceLocatorText(chunk)}
+                          </span>
+                        ) : null}
+                        {chunk.usedInRuleIds.length > 0 ? (
+                          <span className="rounded-full border border-border-subtle px-2.5 py-1 text-muted">
+                            linked rules {chunk.usedInRuleIds.length}
                           </span>
                         ) : null}
                       </div>
@@ -606,6 +658,12 @@ export function RuleCard({
                           </blockquote>
                           {secondaryExcerpt ? (
                             <p className="mt-3 text-sm leading-6 text-muted">{secondaryExcerpt}</p>
+                          ) : null}
+                          <p className="mt-3 text-xs leading-5 text-muted">
+                            {getEvidenceVerificationSummary(chunk)}
+                          </p>
+                          {evidenceNote ? (
+                            <p className="mt-2 text-xs leading-5 text-muted">{evidenceNote}</p>
                           ) : null}
                         </div>
                       ) : null}

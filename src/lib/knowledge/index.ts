@@ -64,11 +64,11 @@ export function getKnowledgeIndex() {
 }
 
 export function getKnowledgeMeta() {
-  return knowledgeIndex.meta;
+  return getKnowledgeIndex().meta;
 }
 
 export function getIngredientOptions() {
-  return knowledgeIndex.ingredients.map((ingredient) => ({
+  return getKnowledgeIndex().ingredients.map((ingredient) => ({
     id: ingredient.id,
     label: ingredient.nameKo,
     aliases: ingredient.aliases,
@@ -105,19 +105,19 @@ function buildConditionExplorerOptions(values: string[]) {
 }
 
 export function getSourceById(sourceId: string) {
-  return knowledgeIndex.sources.find((source) => source.id === sourceId) ?? null;
+  return getKnowledgeIndex().sources.find((source) => source.id === sourceId) ?? null;
 }
 
 export function getRuleById(ruleId: string) {
-  return knowledgeIndex.safetyRules.find((rule) => rule.id === ruleId) ?? null;
+  return getKnowledgeIndex().safetyRules.find((rule) => rule.id === ruleId) ?? null;
 }
 
 export function getIngredientById(ingredientId: string) {
-  return knowledgeIndex.ingredients.find((ingredient) => ingredient.id === ingredientId) ?? null;
+  return getKnowledgeIndex().ingredients.find((ingredient) => ingredient.id === ingredientId) ?? null;
 }
 
 export function getEvidenceChunkById(chunkId: string) {
-  return knowledgeIndex.evidenceChunks.find((chunk) => chunk.id === chunkId) ?? null;
+  return getKnowledgeIndex().evidenceChunks.find((chunk) => chunk.id === chunkId) ?? null;
 }
 
 export function buildReferenceBundle(rule: SafetyRule) {
@@ -138,15 +138,15 @@ export function buildReferenceBundle(rule: SafetyRule) {
 }
 
 export function getRulesBySourceId(sourceId: string) {
-  return knowledgeIndex.safetyRules.filter((rule) => rule.sourceIds.includes(sourceId));
+  return getKnowledgeIndex().safetyRules.filter((rule) => rule.sourceIds.includes(sourceId));
 }
 
 export function getRulesByEvidenceChunkId(chunkId: string) {
-  return knowledgeIndex.safetyRules.filter((rule) => rule.evidenceChunkIds.includes(chunkId));
+  return getKnowledgeIndex().safetyRules.filter((rule) => rule.evidenceChunkIds.includes(chunkId));
 }
 
 export function getEvidenceChunksBySourceId(sourceId: string) {
-  return knowledgeIndex.evidenceChunks.filter((chunk) => chunk.sourceId === sourceId);
+  return getKnowledgeIndex().evidenceChunks.filter((chunk) => chunk.sourceId === sourceId);
 }
 
 export function getSourceDetail(sourceId: string) {
@@ -187,7 +187,9 @@ export function getRuleDetail(ruleId: string) {
 }
 
 export function getSourceBrowseData() {
-  return knowledgeIndex.sources.map((source) => ({
+  const index = getKnowledgeIndex();
+
+  return index.sources.map((source) => ({
     id: source.id,
     title: source.title,
     sourceType: source.sourceType,
@@ -201,7 +203,7 @@ export function getSourceBrowseData() {
 }
 
 export function getRuleBrowseData() {
-  return knowledgeIndex.safetyRules.map((rule) => ({
+  return getKnowledgeIndex().safetyRules.map((rule) => ({
     id: rule.id,
     ingredientId: rule.ingredientId,
     nutrientOrIngredient: rule.nutrientOrIngredient,
@@ -214,9 +216,10 @@ export function getRuleBrowseData() {
 }
 
 export function getExplorerMetadata() {
+  const index = getKnowledgeIndex();
   const medicationValues = [
-    ...knowledgeIndex.safetyRules.flatMap((rule) => rule.interactionDrugs),
-    ...knowledgeIndex.safetyRules.flatMap((rule) =>
+    ...index.safetyRules.flatMap((rule) => rule.interactionDrugs),
+    ...index.safetyRules.flatMap((rule) =>
       rule.conditions
         .filter((condition) => ["medications_any", "or_medications_any"].includes(condition.field))
         .flatMap((condition) =>
@@ -225,8 +228,8 @@ export function getExplorerMetadata() {
     ),
   ];
   const conditionValues = [
-    ...knowledgeIndex.safetyRules.flatMap((rule) => rule.interactionDiseases),
-    ...knowledgeIndex.safetyRules.flatMap((rule) =>
+    ...index.safetyRules.flatMap((rule) => rule.interactionDiseases),
+    ...index.safetyRules.flatMap((rule) =>
       rule.conditions
         .filter((condition) => condition.field === "diseases_any")
         .flatMap((condition) =>
@@ -237,11 +240,11 @@ export function getExplorerMetadata() {
   ];
 
   return {
-    meta: knowledgeIndex.meta,
+    meta: index.meta,
     ingredients: getIngredientOptions(),
     medicationOptions: buildMedicationExplorerOptions(medicationValues),
     conditionOptions: buildConditionExplorerOptions(conditionValues),
-    sources: knowledgeIndex.sources.map((source) => ({
+    sources: index.sources.map((source) => ({
       id: source.id,
       title: source.title,
       jurisdiction: source.jurisdiction,
@@ -249,14 +252,14 @@ export function getExplorerMetadata() {
     })),
     sourceEvidenceLevels: [
       ...new Set(
-        knowledgeIndex.sources
+        index.sources
           .map((source) => source.evidenceLevel)
           .filter((value): value is string => Boolean(value)),
       ),
     ],
     jurisdictions: [
       ...new Set(
-        knowledgeIndex.safetyRules
+        index.safetyRules
           .map((rule) => rule.jurisdiction)
           .filter((value): value is string => Boolean(value)),
       ),

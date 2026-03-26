@@ -7,7 +7,7 @@ async function main() {
   const knowledgeIndex = await writeKnowledgeIndex(projectRoot);
 
   console.log(
-    `knowledge-index generated: ${knowledgeIndex.meta.safetyRuleCount} rules, ${knowledgeIndex.meta.evidenceChunkCount} evidence chunks`,
+    `knowledge-index generated: ${knowledgeIndex.meta.safetyRuleCount} rules, ${knowledgeIndex.meta.evidenceChunkCount} evidence chunks (${knowledgeIndex.meta.verifiedAgainstSourceCount} verified, ${knowledgeIndex.meta.supportedInferenceCount} inference, ${knowledgeIndex.meta.pendingManualExtractionCount} pending)`,
   );
 }
 
