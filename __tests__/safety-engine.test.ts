@@ -85,28 +85,6 @@ describe("runSafetyEngine", () => {
     expect(melatoninQualityRule).toBeDefined();
   });
 
-  it("suppresses garcinia general-use warnings unless a direct trigger is matched", () => {
-    const response = runSafetyEngine(
-      {
-        profile: {
-          sex: "female",
-          selectedCompounds: ["가르시니아 캄보지아"],
-          jurisdiction: "KR",
-        },
-        sort: "severity_desc",
-      },
-      knowledgeIndex,
-    );
-
-    const visibleRuleIds = new Set([
-      ...response.definitely_matched,
-      ...response.possibly_relevant,
-      ...response.needs_more_info,
-    ].map((match) => match.ruleId));
-
-    expect(visibleRuleIds.has("RULE-GARCINIA-LIVER-AVOID")).toBe(false);
-  });
-
   it("matches ingredients and medications even when spacing and casing vary", () => {
     const response = runSafetyEngine(
       {

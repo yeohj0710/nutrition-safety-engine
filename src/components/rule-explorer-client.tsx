@@ -3,6 +3,7 @@
 import { useEffect, useState, useTransition } from "react";
 
 import { RuleCard } from "@/src/components/rule-card";
+import type { AiExplainResponse } from "@/src/lib/ai/schema";
 import type {
   EngineQuery,
   EngineResponse,
@@ -95,7 +96,7 @@ const ghostButtonClass =
   "rounded-full border border-stone-200 bg-white px-4 py-2.5 text-sm font-medium text-stone-700 transition duration-150 hover:border-stone-300 hover:bg-stone-50";
 const subtleActionButtonClass =
   "rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-stone-600 transition duration-150 hover:border-stone-300 hover:text-stone-900";
-const explorerStorageKey = "nutrition-safety-explorer-state-v1";
+const explorerStorageKey = "nutrition-safety-explorer-state-v2";
 
 type PersistedExplorerState = {
   version: 1;
@@ -617,6 +618,32 @@ function getVisibleSections(
   };
 }
 
+function buildAiProfileSummary(response: EngineResponse) {
+  const parts: string[] = [];
+  const profile = response.query.profile;
+  const selectedItems = (response.query.candidateItems ?? [])
+    .map((item) => item.name.trim())
+    .filter(Boolean);
+
+  if (profile.age) parts.push(`나이 ${profile.age}`);
+  if (profile.sex) parts.push(`성별 ${profile.sex}`);
+  if (profile.medications && profile.medications.length > 0) {
+    parts.push(`복용 약물 ${profile.medications.join(", ")}`);
+  }
+  if (profile.conditions && profile.conditions.length > 0) {
+    parts.push(`질환/상태 ${profile.conditions.join(", ")}`);
+  }
+  if (selectedItems.length > 0) {
+    parts.push(`선택 성분 ${selectedItems.join(", ")}`);
+  }
+  if (profile.pregnancyStatus) parts.push(`임신 ${profile.pregnancyStatus}`);
+  if (profile.lactationStatus) parts.push(`수유 ${profile.lactationStatus}`);
+  if (profile.smokerStatus) parts.push(`흡연 ${profile.smokerStatus}`);
+  if (profile.jurisdiction) parts.push(`관할권 ${profile.jurisdiction}`);
+
+  return parts.join(" / ") || "선택 성분과 개인 조건에 맞춘 영양 안전 결과";
+}
+
 export function RuleExplorerClient({
   metadata,
 }: {
@@ -641,6 +668,7 @@ export function RuleExplorerClient({
   const [sort, setSort] =
     useState<NonNullable<EngineQuery["sort"]>>("severity_desc");
   const [response, setResponse] = useState<EngineResponse | null>(null);
+  const [aiRuleRecommendations, setAiRuleRecommendations] = useState<Record<string, string>>({});
   const [hasQueried, setHasQueried] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isAdvancedOpen, setIsAdvancedOpen] = useState(false);
@@ -783,6 +811,57 @@ export function RuleExplorerClient({
     response,
     hasRestoredState,
   ]);
+
+  useEffect(() => {
+    if (!response) {
+      setAiRuleRecommendations({});
+      return;
+    }
+
+    const currentResponse = response;
+    const controller = new AbortController();
+
+    async function loadAiGuidance() {
+      try {
+        const result = await fetch("/api/ai-explain", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            engineResponse: currentResponse,
+            profileSummary: buildAiProfileSummary(currentResponse),
+          }),
+          signal: controller.signal,
+        });
+
+        if (!result.ok) {
+          setAiRuleRecommendations({});
+          return;
+        }
+
+        const payload = (await result.json()) as AiExplainResponse | { error?: string };
+        if (!("ok" in payload) || !payload.ok) {
+          setAiRuleRecommendations({});
+          return;
+        }
+
+        setAiRuleRecommendations(
+          Object.fromEntries(
+            payload.explanation.ruleCardActions.map((item) => [item.ruleId, item.recommendation]),
+          ),
+        );
+      } catch (caught) {
+        if (caught instanceof Error && caught.name === "AbortError") {
+          return;
+        }
+
+        setAiRuleRecommendations({});
+      }
+    }
+
+    void loadAiGuidance();
+
+    return () => controller.abort();
+  }, [response]);
 
   function resetSectionPreviewCounts() {
     setSectionVisibleCounts({ ...sectionPreviewCounts });
@@ -942,8 +1021,6 @@ export function RuleExplorerClient({
     "needs_more_info",
   ];
 
-  const quickIngredientSuggestions = metadata.ingredients.slice(0, 4);
-  const quickMedicationSuggestions = metadata.medicationOptions.slice(0, 3);
   const highlightedCounts = [
     {
       label: "출처",
@@ -965,21 +1042,24 @@ export function RuleExplorerClient({
     {
       key: "definitely_matched",
       label: sectionLabels.definitely_matched,
-      description: sectionDescriptions.definitely_matched,
+      shortLabel: "먼저 보기",
+      description: "직접 관련",
       count: visible?.definitely_matched.length ?? 0,
       tone: "border-stone-200 bg-white",
     },
     {
       key: "possibly_relevant",
       label: sectionLabels.possibly_relevant,
-      description: sectionDescriptions.possibly_relevant,
+      shortLabel: "같이 보기",
+      description: "함께 참고",
       count: visible?.possibly_relevant.length ?? 0,
       tone: "border-stone-200 bg-white",
     },
     {
       key: "needs_more_info",
       label: sectionLabels.needs_more_info,
-      description: sectionDescriptions.needs_more_info,
+      shortLabel: "추가 확인",
+      description: "정보 더 필요",
       count: visible?.needs_more_info.length ?? 0,
       tone: "border-amber-200 bg-amber-50/60",
     },
@@ -1053,13 +1133,13 @@ export function RuleExplorerClient({
 
   return (
     <div className="space-y-8">
-      <section className="grid gap-5 xl:grid-cols-[minmax(0,1.15fr)_19rem]">
-        <div className="surface-card overflow-hidden rounded-[1.5rem]">
+      <section className="surface-card overflow-hidden rounded-[1.5rem]">
+        <div>
           <div className="border-b border-border-subtle px-6 py-5 md:px-7">
             <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">입력</p>
-                <h2 className="mt-2 text-[clamp(1.5rem,2.8vw,2rem)] font-semibold tracking-[-0.03em] text-foreground">
+                <h2 className="mt-2 text-[clamp(1.35rem,2.3vw,1.75rem)] font-semibold tracking-[-0.02em] text-foreground">
                   필요한 정보만 입력하세요
                 </h2>
                 <p className="measure-copy mt-2 text-sm leading-6 text-muted">
@@ -1091,7 +1171,7 @@ export function RuleExplorerClient({
           </div>
 
           <div className="px-6 py-6 md:px-7">
-            <div className="grid gap-4 xl:grid-cols-3">
+            <div className="grid gap-4 2xl:grid-cols-3">
               <label className={`${fieldGroupClass} rounded-[1rem] border border-stone-200 bg-white p-4`}>
                 <div className="mb-3 flex items-center justify-between gap-3">
                   <span className={fieldLabelClass}>1. 선택 성분</span>
@@ -1314,80 +1394,14 @@ export function RuleExplorerClient({
           </div>
         </div>
 
-        <aside className="surface-card rounded-[1.5rem] p-5">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">가이드</p>
-          <h3 className="mt-2 text-lg font-semibold leading-tight text-foreground">
-            먼저 이것만 기억하면 됩니다
-          </h3>
-          <div className="mt-5 space-y-3">
-            <div className="rounded-[1rem] bg-white px-4 py-4">
-              <p className="text-sm font-semibold text-foreground">성분 하나부터 시작</p>
-              <p className="mt-2 text-sm leading-6 text-muted">
-                개인 조건이 비어 있으면 일반 참고 안내 중심으로 먼저 보여드립니다.
-              </p>
-            </div>
-            <div className="rounded-[1rem] bg-white px-4 py-4">
-              <p className="text-sm font-semibold text-foreground">약물·질환 추가</p>
-              <p className="mt-2 text-sm leading-6 text-muted">
-                직접 관련된 규칙을 앞쪽에 끌어올리려면 함께 입력해 주세요.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
-              빠른 입력
-            </p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {quickIngredientSuggestions.map((item) => (
-                <button
-                  key={`quick-ingredient-${item.id}`}
-                  type="button"
-                  onClick={() =>
-                    setSelectedCompounds((current) =>
-                      applySuggestionToField(current, item.label),
-                    )
-                  }
-                  className="rounded-full border border-border-subtle bg-white px-3 py-1.5 text-xs font-medium text-foreground transition duration-200 hover:-translate-y-0.5 hover:border-stone-300"
-                >
-                  {item.label}
-                </button>
-              ))}
-              {quickMedicationSuggestions.map((item) => (
-                <button
-                  key={`quick-medication-${item.label}`}
-                  type="button"
-                  onClick={() =>
-                    setMedications((current) =>
-                      applySuggestionToField(current, item.label),
-                    )
-                  }
-                  className="rounded-full border border-border-subtle bg-accent-soft/70 px-3 py-1.5 text-xs font-medium text-accent-strong transition duration-200 hover:-translate-y-0.5 hover:border-accent/40"
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-5 rounded-[1rem] border border-stone-200 bg-white px-4 py-4">
-            <p className="text-sm font-semibold text-foreground">
-              마지막 조회는 브라우저에 잠시 저장됩니다
-            </p>
-            <p className="mt-2 text-sm leading-6 text-muted">
-              입력값과 마지막 결과만 이어서 볼 수 있게 저장하며, 새로고침 후에도
-              흐름이 끊기지 않도록 돕습니다.
-            </p>
-          </div>
-        </aside>
       </section>
 
       {response ? (
         <section className="surface-card rounded-[1.5rem] p-5 md:p-6">
-          <div className="flex flex-col gap-3 border-b border-border-subtle pb-5 xl:flex-row xl:items-end xl:justify-between">
+          <div className="flex flex-col gap-3 border-b border-border-subtle pb-5 2xl:flex-row 2xl:items-end 2xl:justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">결과</p>
-              <h2 className="mt-2 text-[clamp(1.35rem,2.2vw,1.75rem)] font-semibold tracking-[-0.03em] text-foreground">
+              <h2 className="mt-2 text-[clamp(1.2rem,1.8vw,1.55rem)] font-semibold tracking-[-0.02em] text-foreground">
                 중요한 내용부터 바로 확인하세요
               </h2>
               <p className="mt-2 text-sm leading-6 text-muted">
@@ -1399,30 +1413,47 @@ export function RuleExplorerClient({
             </p>
           </div>
 
-          <div className="mt-5 grid gap-5 xl:grid-cols-[minmax(0,1.15fr)_minmax(18rem,0.85fr)]">
-            <div className="grid gap-3 lg:grid-cols-3">
+          <div className="mt-5 space-y-4">
+            <div className="space-y-2">
               {resultOverview.map((item) => (
-                <div key={item.key} className={`rounded-[1rem] border px-4 py-4 ${item.tone}`}>
-                  <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted">
-                    {item.label}
-                  </p>
-                  <p className="mt-3 text-3xl font-semibold leading-none text-foreground tabular-nums">
-                    {item.count}
-                  </p>
-                  <p className="mt-3 text-sm leading-6 text-muted">
-                    {item.description}
-                  </p>
+                <div
+                  key={item.key}
+                  className={`rounded-[1rem] border px-4 py-3.5 ${item.tone}`}
+                >
+                  <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                    <div className="min-w-0 md:flex md:items-center md:gap-3">
+                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted md:min-w-[4.5rem]">
+                        {item.shortLabel}
+                      </p>
+                      <p className="mt-1 text-sm font-medium leading-5 text-foreground md:mt-0">
+                        {item.label}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-3 md:shrink-0">
+                      <p className="text-xs leading-5 text-muted">{item.description}</p>
+                      <p className="text-2xl font-semibold leading-none text-foreground tabular-nums">
+                        {item.count}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
 
-            <div className="rounded-[1rem] border border-stone-200 bg-white p-4">
-              <p className="text-sm font-semibold text-foreground">결과 보기 설정</p>
-              <p className="mt-1 text-xs leading-5 text-muted">
-                위험도와 정렬, 관련 조건 필터를 조합해 원하는 범위만 남겨보세요.
-              </p>
+            <div className="rounded-[1rem] border border-stone-200 bg-white p-4 md:p-5">
+              <div className="flex flex-col gap-3 border-b border-border-subtle pb-4 lg:flex-row lg:items-start lg:justify-between">
+                <div>
+                  <p className="text-sm font-semibold text-foreground">결과 보기 설정</p>
+                  <p className="mt-1 text-xs leading-5 text-muted">
+                    필요한 범위만 남기도록 필터를 간단히 조절해 보세요.
+                  </p>
+                </div>
+                <button type="button" onClick={resetResultFilters} className={ghostButtonClass}>
+                  필터 초기화
+                </button>
+              </div>
 
-              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              <div className="mt-4 space-y-4">
                 <SelectField
                   label="위험도"
                   value={severityFilter}
@@ -1444,28 +1475,29 @@ export function RuleExplorerClient({
                   }
                   options={metadata.sortOptions}
                 />
-              </div>
 
-              <div className="mt-4 flex flex-wrap gap-2">
-                <ToggleChip
-                  checked={medicationOnly}
-                  onChange={updateMedicationOnly}
-                  label="약물 관련만"
-                />
-                <ToggleChip
-                  checked={diseaseOnly}
-                  onChange={updateDiseaseOnly}
-                  label="질환 관련만"
-                />
-                <ToggleChip
-                  checked={pregnancyOnly}
-                  onChange={updatePregnancyOnly}
-                  label="임신/수유만"
-                />
-              </div>
-
-              <div className="mt-4">
-                <button type="button" onClick={resetResultFilters} className={ghostButtonClass}>필터 초기화</button>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+                    관련 조건
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <ToggleChip
+                      checked={medicationOnly}
+                      onChange={updateMedicationOnly}
+                      label="약물 관련만"
+                    />
+                    <ToggleChip
+                      checked={diseaseOnly}
+                      onChange={updateDiseaseOnly}
+                      label="질환 관련만"
+                    />
+                    <ToggleChip
+                      checked={pregnancyOnly}
+                      onChange={updatePregnancyOnly}
+                      label="임신/수유만"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1539,7 +1571,10 @@ export function RuleExplorerClient({
                       className="motion-safe:animate-[rise-in_540ms_var(--ease-emphasized)_both]"
                       style={{ animationDelay: `${index * 90 + matchIndex * 45}ms` }}
                     >
-                      <RuleCard match={match} />
+                      <RuleCard
+                        match={match}
+                        aiRecommendation={aiRuleRecommendations[match.ruleId] ?? null}
+                      />
                     </div>
                   ))}
 
@@ -1594,7 +1629,7 @@ export function RuleExplorerClient({
         ) : (
           <section className="surface-card rounded-[1.5rem] px-6 py-6 md:px-7">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">필터 결과 없음</p>
-            <h3 className="mt-3 text-[clamp(1.35rem,2.2vw,1.75rem)] font-semibold tracking-[-0.03em] text-foreground">
+            <h3 className="mt-3 text-[clamp(1.2rem,1.8vw,1.5rem)] font-semibold tracking-[-0.02em] text-foreground">
               지금 적용된 필터 안에서는 보이는 항목이 없어요.
             </h3>
             <p className="measure-copy mt-3 text-sm leading-6 text-muted">
@@ -1613,7 +1648,7 @@ export function RuleExplorerClient({
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
             {hasQueried ? "결과 없음" : "입력 전"}
           </p>
-          <h3 className="mt-3 text-[clamp(1.35rem,2.2vw,1.75rem)] font-semibold tracking-[-0.03em] text-foreground">
+          <h3 className="mt-3 text-[clamp(1.2rem,1.8vw,1.5rem)] font-semibold tracking-[-0.02em] text-foreground">
             {hasQueried ? "현재 조건으로는 연결된 결과를 찾지 못했어요." : "첫 입력은 아주 간단해도 괜찮아요."}
           </h3>
           <p className="measure-copy mt-3 text-sm leading-6 text-muted">

@@ -4,17 +4,19 @@ import {
   getEvidenceCaptureLabel,
   getEvidenceCheckHint,
   getEvidenceClaimLabel,
+  getEvidenceContextSummary,
   getEvidenceExcerptLabel,
   getEvidenceLocatorText,
   getEvidenceNote,
   getEvidencePrimaryExcerpt,
   getEvidenceSearchKeywords,
-  getEvidenceSecondaryExcerpt,
+  getEvidenceTranslationExcerpt,
   getEvidenceVerificationLabel,
   getEvidenceVerificationSummary,
   getSourceReferenceLinks,
   getSourceTrustSummary,
   hasOriginalEvidenceExcerpt,
+  isShortOriginalEvidenceExcerpt,
   sortEvidenceChunksByPriority,
   sortSourcesByPriority,
 } from "@/src/lib/references";
@@ -233,6 +235,47 @@ function getActionSentence(match: RuleMatch) {
   }
 }
 
+function buildDeterministicRecommendation(match: RuleMatch, guidanceSource: string) {
+  if (match.classification === "needs_more_info") {
+    const thresholdText = formatThreshold(match);
+    if (thresholdText) {
+      return `현재 드시는 양을 먼저 확인하고, ${thresholdText} 기준에 해당하는지 살펴보세요.`;
+    }
+
+    return humanizeMissingReason(
+      sanitizeExplanations(
+        match.needsMoreInfo,
+        "안전 기준을 판단하려면 정보가 조금 더 필요합니다.",
+      )[0]!,
+    );
+  }
+
+  const normalized = stripTrailingPunctuation(guidanceSource).replace(/\s+/g, " ");
+  const firstDrug = match.rule.interactionDrugs[0];
+  const lead = firstDrug ? `${firstDrug}을 복용 중이라면 ` : "";
+  const ingredient = match.rule.nutrientOrIngredient;
+
+  if (/일관되게 유지(?:해야 한다|한다|하는 것이 좋다|하는 편이 좋다)?/u.test(normalized)) {
+    return `${lead}${ingredient}가 많은 음식과 보충제 섭취량을 갑자기 바꾸지 말고, 지금 드시는 패턴을 일정하게 유지하세요.`;
+  }
+
+  if (/함께 복용하지 않는 편이 안전|금기|피해야|피하는 편이/u.test(normalized)) {
+    return firstDrug
+      ? `${firstDrug}과 ${ingredient}은 가능하면 함께 복용하지 마세요.`
+      : `${ingredient}은 가능하면 피하거나 함께 쓰지 않는 쪽이 안전합니다.`;
+  }
+
+  if (/시간 간격|같은 시간대에 함께 드시지/u.test(normalized)) {
+    return `${ingredient}은 다른 약이나 성분과 같은 시간대에 함께 먹지 말고, 시간을 띄워서 드세요.`;
+  }
+
+  if (/모니터링|함께 살펴|확인/u.test(normalized)) {
+    return `${lead}복용 전후 변화가 있는지 몸 상태와 복용 조건을 한 번 더 확인하세요.`;
+  }
+
+  return getActionSentence(match);
+}
+
 function buildMainMessage(match: RuleMatch) {
   const summarySource = match.rule.messageLong || match.resolvedMessage || match.rule.messageShort;
   const politeSummary = toPoliteRuleSummary(summarySource);
@@ -290,9 +333,11 @@ function getActionPanelTone(match: RuleMatch) {
 export function RuleCard({
   match,
   defaultExpandedEvidence = false,
+  aiRecommendation = null,
 }: {
   match: RuleMatch;
   defaultExpandedEvidence?: boolean;
+  aiRecommendation?: string | null;
 }) {
   const badgeMeta = getBadgeMeta(match);
   const actionPanelTone = getActionPanelTone(match);
@@ -303,47 +348,62 @@ export function RuleCard({
   const primaryLinks = primarySource ? getSourceReferenceLinks(primarySource) : [];
   const primaryEvidence = sortedEvidenceChunks[0] ?? null;
   const primaryEvidenceExcerpt = primaryEvidence ? getEvidencePrimaryExcerpt(primaryEvidence) : null;
-  const primaryEvidenceSecondary = primaryEvidence ? getEvidenceSecondaryExcerpt(primaryEvidence) : null;
+  const primaryEvidenceTranslation = primaryEvidence ? getEvidenceTranslationExcerpt(primaryEvidence) : null;
+  const primaryEvidenceContextSummary = primaryEvidence ? getEvidenceContextSummary(primaryEvidence) : null;
   const primaryEvidenceNote = primaryEvidence ? getEvidenceNote(primaryEvidence) : null;
   const primaryEvidenceVerificationLabel = primaryEvidence ? getEvidenceVerificationLabel(primaryEvidence) : null;
   const primaryEvidenceCaptureLabel = primaryEvidence ? getEvidenceCaptureLabel(primaryEvidence) : null;
+  const primaryEvidenceIsShortOriginal = primaryEvidence
+    ? isShortOriginalEvidenceExcerpt(primaryEvidence)
+    : false;
+  const supportingGuidanceSource =
+    primaryEvidenceContextSummary ??
+    primaryEvidenceTranslation ??
+    toPoliteRuleSummary(match.rule.messageShort || match.resolvedMessage);
+  const primaryRecommendation =
+    aiRecommendation ?? buildDeterministicRecommendation(match, supportingGuidanceSource);
   const confidenceLabel = formatBadgeLabel(match.rule.confidence) ?? "unknown";
   const supportingSourceCount = sortedSources.length;
   const supportingEvidenceCount = sortedEvidenceChunks.length;
 
   return (
     <article className="surface-card overflow-hidden rounded-[1.5rem] px-5 py-5 md:px-6 md:py-6">
-      <div className="grid gap-5 xl:grid-cols-[minmax(0,1.2fr)_19rem]">
-        <div className="space-y-5">
-          <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-            <div className="min-w-0 space-y-3">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className={`rounded-full border px-3 py-1 text-[11px] font-semibold ${badgeMeta.tone}`}>
-                  {badgeMeta.label}
-                </span>
+      <div className="space-y-4">
+        <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+          <div className="min-w-0 space-y-3">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className={`rounded-full border px-3 py-1 text-[11px] font-semibold ${badgeMeta.tone}`}>
+                {badgeMeta.label}
+              </span>
+              <span className="rounded-full border border-border-subtle bg-white/82 px-3 py-1 text-[11px] text-muted">
+                {ruleCategoryLabelMap[match.rule.ruleCategory] ?? match.rule.ruleCategory}
+              </span>
+              {match.rule.jurisdiction ? (
                 <span className="rounded-full border border-border-subtle bg-white/82 px-3 py-1 text-[11px] text-muted">
-                  {ruleCategoryLabelMap[match.rule.ruleCategory] ?? match.rule.ruleCategory}
+                  {match.rule.jurisdiction}
                 </span>
-                {match.rule.jurisdiction ? (
-                  <span className="rounded-full border border-border-subtle bg-white/82 px-3 py-1 text-[11px] text-muted">
-                    {match.rule.jurisdiction}
-                  </span>
-                ) : null}
-                <span className="rounded-full border border-border-subtle bg-[color:rgba(244,240,233,0.88)] px-3 py-1 text-[11px] text-muted">
-                  신뢰도 {confidenceLabel}
-                </span>
-              </div>
-
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
-                  {getAdviceHeading(match)}
-                </p>
-                <h3 className="mt-2 text-[clamp(1.35rem,2.4vw,1.8rem)] font-semibold tracking-[-0.03em] text-foreground">
-                  {match.rule.nutrientOrIngredient}
-                </h3>
-              </div>
+              ) : null}
             </div>
 
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+                {getAdviceHeading(match)}
+              </p>
+              <h3 className="mt-2 text-[clamp(1.3rem,2.2vw,1.7rem)] font-semibold tracking-[-0.03em] text-foreground">
+                {match.rule.nutrientOrIngredient}
+              </h3>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="flex items-center gap-2 rounded-full border border-stone-200 bg-white px-3 py-2 text-xs text-muted">
+              <span>출처 {supportingSourceCount}</span>
+              <span className="text-border-subtle">/</span>
+              <span>근거 {supportingEvidenceCount}</span>
+            </div>
+            <span className="rounded-full border border-border-subtle bg-[color:rgba(244,240,233,0.88)] px-3 py-2 text-xs text-muted">
+              신뢰도 {confidenceLabel}
+            </span>
             <Link
               href={`/rules/${match.ruleId}`}
               className="inline-flex min-h-10 shrink-0 items-center justify-center rounded-full border border-stone-200 bg-white px-4 py-2 text-sm font-semibold text-foreground transition duration-150 hover:border-stone-300 hover:bg-stone-50"
@@ -351,158 +411,54 @@ export function RuleCard({
               규칙 상세
             </Link>
           </div>
-
-          <div className={`rounded-[1rem] border px-5 py-4 ${actionPanelTone}`}>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">핵심 안내</p>
-            <p className="mt-2 text-sm leading-7 text-stone-900">{buildMainMessage(match)}</p>
-          </div>
-
-          <div className="grid gap-4 lg:grid-cols-[minmax(0,1.02fr)_minmax(0,0.98fr)]">
-            <section className="rounded-[1rem] border border-stone-200 bg-white px-4 py-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
-                왜 이 결과가 떴나요
-              </p>
-              <p className="mt-3 text-sm leading-7 text-foreground">{buildFriendlyReason(match)}</p>
-              <p className="mt-4 text-xs leading-6 text-muted">
-                현재 연결된 조건: {getTargetSummary(match)}
-              </p>
-            </section>
-
-            <section className="rounded-[1rem] border border-stone-200 bg-white px-4 py-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
-                요약 정보
-              </p>
-              <dl className="mt-3 grid gap-3 text-sm">
-                <div className="flex items-start justify-between gap-3 border-b border-border-subtle/70 pb-3">
-                  <dt className="text-muted">정량 기준</dt>
-                  <dd className="min-w-0 text-right text-foreground">{formatThreshold(match) ?? "없음"}</dd>
-                </div>
-                <div className="flex items-start justify-between gap-3 border-b border-border-subtle/70 pb-3">
-                  <dt className="text-muted">신뢰도</dt>
-                  <dd className="min-w-0 text-right text-foreground">
-                    {formatBadgeLabel(match.rule.confidence) ?? "unknown"}
-                  </dd>
-                </div>
-                <div className="flex items-start justify-between gap-3">
-                  <dt className="text-muted">마지막 검토</dt>
-                  <dd className="min-w-0 text-right text-foreground">
-                    {match.rule.lastReviewedAt ?? "정보 없음"}
-                  </dd>
-                </div>
-              </dl>
-            </section>
-          </div>
         </div>
 
-        <aside className="rounded-[1rem] border border-stone-200 bg-white px-5 py-5">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
-            근거
+        <div className={`rounded-[1rem] border px-5 py-4 ${actionPanelTone}`}>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">핵심 안내</p>
+          <p className="mt-2 text-base font-semibold leading-7 text-stone-900">{primaryRecommendation}</p>
+          {aiRecommendation ? (
+            <p className="mt-3 text-xs font-semibold uppercase tracking-[0.14em] text-muted">
+              기준 문장
+            </p>
+          ) : null}
+          <p className="mt-2 text-sm leading-6 text-muted">
+            {supportingGuidanceSource}
           </p>
-          <div className="mt-4 grid grid-cols-2 gap-3 rounded-[1rem] border border-stone-200 bg-stone-50/60 px-4 py-4">
-            <div>
-              <p className="text-[11px] uppercase tracking-[0.16em] text-muted">출처</p>
-              <p className="mt-2 text-2xl font-semibold leading-none text-foreground tabular-nums">
-                {supportingSourceCount}
-              </p>
-            </div>
-            <div>
-              <p className="text-[11px] uppercase tracking-[0.16em] text-muted">근거 청크</p>
-              <p className="mt-2 text-2xl font-semibold leading-none text-foreground tabular-nums">
-                {supportingEvidenceCount}
-              </p>
-            </div>
+        </div>
+
+        <div className="grid gap-3 md:grid-cols-[minmax(0,1fr)_auto] md:items-start">
+          <div className="rounded-[1rem] border border-stone-200 bg-white px-4 py-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">먼저 보면 되는 이유</p>
+            <p className="mt-2 text-sm leading-6 text-foreground">{buildFriendlyReason(match)}</p>
           </div>
 
           {primarySource ? (
-            <div className="mt-4 space-y-4">
-              <div className="flex flex-wrap items-center gap-2 text-[11px]">
-                <span className="rounded-full bg-accent-soft px-3 py-1 text-accent-strong">
+            <div className="rounded-[1rem] border border-stone-200 bg-white px-4 py-4 md:min-w-[18rem]">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">대표 출처</p>
+              <Link
+                href={`/sources/${primarySource.id}`}
+                className="mt-2 block text-sm font-semibold leading-6 text-foreground transition hover:text-stone-700"
+              >
+                {primarySource.title}
+              </Link>
+              <div className="mt-3 flex flex-wrap items-center gap-2 text-[11px]">
+                <span className="rounded-full bg-accent-soft px-2.5 py-1 text-accent-strong">
                   {getSourceTrustSummary(primarySource)}
                 </span>
                 {primarySource.year ? (
-                  <span className="rounded-full border border-stone-200 px-3 py-1 text-muted">
+                  <span className="rounded-full border border-stone-200 px-2.5 py-1 text-muted">
                     {primarySource.year}
                   </span>
                 ) : null}
               </div>
-
-              <Link
-                href={`/sources/${primarySource.id}`}
-                className="block text-base font-semibold leading-7 text-foreground transition hover:text-stone-700"
-              >
-                {primarySource.title}
-              </Link>
-
-              <div className="flex flex-wrap gap-2">
-                {primaryLinks.length > 0 ? (
-                  primaryLinks.map((link) => (
-                    <a
-                      key={`${primarySource.id}-${link.label}-${link.url}`}
-                      href={link.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="rounded-full border border-stone-200 px-3 py-1.5 text-xs font-medium text-foreground transition duration-150 hover:border-stone-300 hover:bg-stone-50"
-                    >
-                      {link.label}
-                    </a>
-                  ))
-                ) : (
-                  <span className="text-xs text-muted">외부 원문 링크 정보가 아직 없습니다.</span>
-                )}
-              </div>
-
-              <div className="rounded-[1rem] border border-stone-200 bg-stone-50/60 px-4 py-4">
-                {primaryEvidence ? (
-                  <div className="mb-3 flex flex-wrap gap-2 text-[11px]">
-                    {primaryEvidenceVerificationLabel ? (
-                      <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-emerald-900">
-                        {primaryEvidenceVerificationLabel}
-                      </span>
-                    ) : null}
-                    {primaryEvidenceCaptureLabel ? (
-                      <span className="rounded-full border border-stone-200 bg-white px-2.5 py-1 text-muted">
-                        {primaryEvidenceCaptureLabel}
-                      </span>
-                    ) : null}
-                    {getEvidenceLocatorText(primaryEvidence) ? (
-                      <span className="rounded-full border border-stone-200 bg-white px-2.5 py-1 text-muted">
-                        {getEvidenceLocatorText(primaryEvidence)}
-                      </span>
-                    ) : null}
-                  </div>
-                ) : null}
-                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">
-                  {primaryEvidence ? getEvidenceExcerptLabel(primaryEvidence) : "대표 근거"}
-                </p>
-                <blockquote className="mt-3 text-sm leading-7 text-foreground">
-                  {primaryEvidenceExcerpt
-                    ? hasOriginalEvidenceExcerpt(primaryEvidence!)
-                      ? `"${primaryEvidenceExcerpt}"`
-                      : primaryEvidenceExcerpt
-                    : "대표 근거 문장이 아직 등록되지 않았습니다."}
-                </blockquote>
-                {primaryEvidenceSecondary ? (
-                  <p className="mt-3 text-sm leading-6 text-muted">{primaryEvidenceSecondary}</p>
-                ) : null}
-                {primaryEvidence ? (
-                  <p className="mt-3 text-xs leading-5 text-muted">
-                    {getEvidenceVerificationSummary(primaryEvidence)}
-                  </p>
-                ) : null}
-                {primaryEvidenceNote ? (
-                  <p className="mt-2 text-xs leading-5 text-muted">{primaryEvidenceNote}</p>
-                ) : null}
-              </div>
             </div>
-          ) : (
-            <p className="mt-4 text-sm leading-7 text-muted">연결된 주요 레퍼런스가 아직 없습니다.</p>
-          )}
-        </aside>
+          ) : null}
+        </div>
       </div>
 
       <details className="mt-5 rounded-[1rem] border border-stone-200 bg-white" open={defaultExpandedEvidence}>
         <summary className="list-none px-4 py-4 text-sm font-semibold text-foreground">
-          세부 조건과 근거 더 보기
+          자세한 이유와 근거 펼쳐보기
         </summary>
 
         <div className="grid gap-5 border-t border-stone-200 px-4 py-5 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
@@ -521,6 +477,10 @@ export function RuleCard({
                   <dd className="mt-1 leading-6 text-foreground">{getTargetSummary(match)}</dd>
                 </div>
                 <div className="rounded-[1rem] border border-border-subtle bg-white/72 px-4 py-3">
+                  <dt className="font-medium text-muted">왜 이 결과가 떴나요</dt>
+                  <dd className="mt-1 leading-6 text-foreground">{buildFriendlyReason(match)}</dd>
+                </div>
+                <div className="rounded-[1rem] border border-border-subtle bg-white/72 px-4 py-3">
                   <dt className="font-medium text-muted">추가로 확인하면 좋은 정보</dt>
                   <dd className="mt-1 leading-6 text-foreground">
                     {match.needsMoreInfo.length > 0
@@ -537,6 +497,14 @@ export function RuleCard({
                 <div className="rounded-[1rem] border border-border-subtle bg-white/72 px-4 py-3">
                   <dt className="font-medium text-muted">질환/상태</dt>
                   <dd className="mt-1 leading-6 text-foreground">{renderList(match.rule.interactionDiseases)}</dd>
+                </div>
+                <div className="rounded-[1rem] border border-border-subtle bg-white/72 px-4 py-3">
+                  <dt className="font-medium text-muted">정량 기준</dt>
+                  <dd className="mt-1 leading-6 text-foreground">{formatThreshold(match) ?? "없음"}</dd>
+                </div>
+                <div className="rounded-[1rem] border border-border-subtle bg-white/72 px-4 py-3">
+                  <dt className="font-medium text-muted">마지막 검토</dt>
+                  <dd className="mt-1 leading-6 text-foreground">{match.rule.lastReviewedAt ?? "정보 없음"}</dd>
                 </div>
               </dl>
             </section>
@@ -602,18 +570,132 @@ export function RuleCard({
           {sortedEvidenceChunks.length > 0 ? (
             <section>
               <h4 className="text-sm font-semibold text-foreground">근거 확인 포인트</h4>
+              <div className="mt-3 grid grid-cols-2 gap-3 rounded-[1rem] border border-stone-200 bg-stone-50/60 px-4 py-4">
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.16em] text-muted">출처</p>
+                  <p className="mt-2 text-2xl font-semibold leading-none text-foreground tabular-nums">
+                    {supportingSourceCount}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.16em] text-muted">근거 청크</p>
+                  <p className="mt-2 text-2xl font-semibold leading-none text-foreground tabular-nums">
+                    {supportingEvidenceCount}
+                  </p>
+                </div>
+              </div>
+
+              {primarySource ? (
+                <div className="mt-3 rounded-[1rem] border border-stone-200 bg-stone-50/60 px-4 py-4">
+                  <div className="flex flex-wrap items-center gap-2 text-[11px]">
+                    <span className="rounded-full bg-accent-soft px-2.5 py-1 text-accent-strong">
+                      {getSourceTrustSummary(primarySource)}
+                    </span>
+                    {primarySource.year ? (
+                      <span className="rounded-full border border-stone-200 bg-white px-2.5 py-1 text-muted">
+                        {primarySource.year}
+                      </span>
+                    ) : null}
+                  </div>
+
+                  <Link
+                    href={`/sources/${primarySource.id}`}
+                    className="mt-3 block text-sm font-semibold leading-6 text-foreground transition hover:text-stone-700"
+                  >
+                    {primarySource.title}
+                  </Link>
+
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {primaryLinks.length > 0 ? (
+                      primaryLinks.map((link) => (
+                        <a
+                          key={`${primarySource.id}-${link.label}-${link.url}`}
+                          href={link.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-foreground transition duration-150 hover:border-stone-300 hover:bg-stone-50"
+                        >
+                          {link.label}
+                        </a>
+                      ))
+                    ) : (
+                      <span className="text-xs text-muted">외부 원문 링크 정보가 아직 없습니다.</span>
+                    )}
+                  </div>
+                </div>
+              ) : null}
+
+              {primaryEvidence ? (
+                <div className="mt-3 rounded-[1rem] border border-stone-200 bg-stone-50/60 px-4 py-4">
+                  <div className="mb-3 flex flex-wrap gap-2 text-[11px]">
+                    {primaryEvidenceVerificationLabel ? (
+                      <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-emerald-900">
+                        {primaryEvidenceVerificationLabel}
+                      </span>
+                    ) : null}
+                    {primaryEvidenceCaptureLabel ? (
+                      <span className="rounded-full border border-stone-200 bg-white px-2.5 py-1 text-muted">
+                        {primaryEvidenceCaptureLabel}
+                      </span>
+                    ) : null}
+                    {getEvidenceLocatorText(primaryEvidence) ? (
+                      <span className="rounded-full border border-stone-200 bg-white px-2.5 py-1 text-muted">
+                        {getEvidenceLocatorText(primaryEvidence)}
+                      </span>
+                    ) : null}
+                  </div>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">
+                    {getEvidenceExcerptLabel(primaryEvidence)}
+                  </p>
+                  <blockquote className="mt-3 text-sm leading-7 text-foreground">
+                    {primaryEvidenceExcerpt
+                      ? hasOriginalEvidenceExcerpt(primaryEvidence)
+                        ? `"${primaryEvidenceExcerpt}"`
+                        : primaryEvidenceExcerpt
+                      : "대표 근거 문장이 아직 등록되지 않았습니다."}
+                  </blockquote>
+                  {primaryEvidenceTranslation ? (
+                    <div className="mt-3">
+                      <p className="text-xs font-semibold text-muted">
+                        {primaryEvidenceIsShortOriginal ? "한국어 옮김" : "번역"}
+                      </p>
+                      <p className="mt-1 text-sm leading-6 text-muted">{primaryEvidenceTranslation}</p>
+                    </div>
+                  ) : null}
+                  {primaryEvidenceContextSummary ? (
+                    <div className="mt-3">
+                      <p className="text-xs font-semibold text-muted">문맥 요약</p>
+                      <p className="mt-1 text-sm leading-6 text-muted">{primaryEvidenceContextSummary}</p>
+                    </div>
+                  ) : null}
+                  <p className="mt-3 text-xs leading-5 text-muted">
+                    {getEvidenceVerificationSummary(primaryEvidence)}
+                  </p>
+                  {primaryEvidenceIsShortOriginal ? (
+                    <p className="mt-2 text-xs leading-5 text-muted">
+                      저장된 원문은 아주 짧은 확인 구절이라, 전체 맥락은 아래 위치 정보와 원문 페이지에서 함께 확인하는 편이 좋습니다.
+                    </p>
+                  ) : null}
+                  {primaryEvidenceNote ? (
+                    <p className="mt-2 text-xs leading-5 text-muted">{primaryEvidenceNote}</p>
+                  ) : null}
+                </div>
+              ) : null}
+
               <ul className="mt-3 space-y-3">
                 {sortedEvidenceChunks.map((chunk) => {
                   const source = sourceLookup.get(chunk.sourceId) ?? null;
                   const searchKeywords = getEvidenceSearchKeywords(chunk);
                   const claimLabel = getEvidenceClaimLabel(chunk);
                   const primaryExcerpt = getEvidencePrimaryExcerpt(chunk);
-                  const secondaryExcerpt = getEvidenceSecondaryExcerpt(chunk);
+                  const translationExcerpt = getEvidenceTranslationExcerpt(chunk);
+                  const contextSummary = getEvidenceContextSummary(chunk);
                   const evidenceNote = getEvidenceNote(chunk);
                   const verificationLabel = getEvidenceVerificationLabel(chunk);
                   const captureLabel = getEvidenceCaptureLabel(chunk);
                   const locatorText = getEvidenceLocatorText(chunk);
                   const linkedRuleIds = Array.isArray(chunk.usedInRuleIds) ? chunk.usedInRuleIds : [];
+                  const isShortOriginal = isShortOriginalEvidenceExcerpt(chunk);
 
                   return (
                     <li key={chunk.id} className="rounded-[1.25rem] border border-border-subtle bg-white/76 px-4 py-4">
@@ -658,12 +740,28 @@ export function RuleCard({
                           <blockquote className="mt-2 text-sm leading-6 text-foreground">
                             {hasOriginalEvidenceExcerpt(chunk) ? `"${primaryExcerpt}"` : primaryExcerpt}
                           </blockquote>
-                          {secondaryExcerpt ? (
-                            <p className="mt-3 text-sm leading-6 text-muted">{secondaryExcerpt}</p>
+                          {translationExcerpt ? (
+                            <div className="mt-3">
+                              <p className="text-xs font-semibold text-muted">
+                                {isShortOriginal ? "한국어 옮김" : "번역"}
+                              </p>
+                              <p className="mt-1 text-sm leading-6 text-muted">{translationExcerpt}</p>
+                            </div>
+                          ) : null}
+                          {contextSummary ? (
+                            <div className="mt-3">
+                              <p className="text-xs font-semibold text-muted">문맥 요약</p>
+                              <p className="mt-1 text-sm leading-6 text-muted">{contextSummary}</p>
+                            </div>
                           ) : null}
                           <p className="mt-3 text-xs leading-5 text-muted">
                             {getEvidenceVerificationSummary(chunk)}
                           </p>
+                          {isShortOriginal ? (
+                            <p className="mt-2 text-xs leading-5 text-muted">
+                              저장된 원문은 아주 짧은 확인 구절이라, 전체 맥락은 위치 정보와 원문 페이지에서 함께 확인하는 편이 좋습니다.
+                            </p>
+                          ) : null}
                           {evidenceNote ? (
                             <p className="mt-2 text-xs leading-5 text-muted">{evidenceNote}</p>
                           ) : null}

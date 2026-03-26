@@ -1402,44 +1402,5 @@
     },
     "confidence": "high",
     "notes_ko": null
-  },
-  {
-    "chunk_id": "CHK-GARCINIA-LIVER",
-    "source_id": "SRC-US-NCCIH-GARCINIA",
-    "ingredient_ids": [
-      "garcinia_cambogia"
-    ],
-    "locator_type": "lines",
-    "locator_value": "L123-L134",
-    "excerpt_summary_ko": "가르시니아 캄보지아는 간독성 사례가 다수 보고되었고 일부는 중증이었다.",
-    "claim_type": "adverse_effect_signal",
-    "structured_claim": {
-      "risks": [
-        "liver_toxicity",
-        "severe_liver_damage"
-      ]
-    },
-    "confidence": "high",
-    "notes_ko": null
-  },
-  {
-    "chunk_id": "CHK-GARCINIA-DRUGS-PREG",
-    "source_id": "SRC-US-NCCIH-GARCINIA",
-    "ingredient_ids": [
-      "garcinia_cambogia"
-    ],
-    "locator_type": "lines",
-    "locator_value": "L131-L134",
-    "excerpt_summary_ko": "가르시니아는 serotonin 관련 약물 및 간에 영향을 주는 약물과 상호작용할 수 있고, 임신/수유 중 안전성 자료가 부족하다.",
-    "claim_type": "interaction",
-    "structured_claim": {
-      "medications_any": [
-        "serotonergic_drug",
-        "liver_affecting_drug"
-      ],
-      "pregnancy_lactation": "insufficient_data"
-    },
-    "confidence": "high",
-    "notes_ko": null
   }
 ]

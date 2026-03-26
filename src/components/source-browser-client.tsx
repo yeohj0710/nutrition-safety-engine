@@ -71,7 +71,7 @@ export function SourceBrowserClient({
     <div className="space-y-5">
       <section className="surface-card rounded-[2rem] px-5 py-5 md:px-6 md:py-6">
         <div className="flex flex-col gap-5">
-          <div className="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
+          <div className="flex flex-col gap-3 2xl:flex-row 2xl:items-end 2xl:justify-between">
             <div className="max-w-2xl">
               <p className="eyebrow">Browse and verify</p>
               <h2 className="mt-4 font-display text-[clamp(1.9rem,3vw,2.9rem)] leading-[0.98] tracking-[-0.04em] text-foreground">
@@ -103,7 +103,7 @@ export function SourceBrowserClient({
             </div>
           </div>
 
-          <div className="grid gap-3 xl:grid-cols-[minmax(0,1.2fr)_13rem_14rem]">
+          <div className="grid gap-3 2xl:grid-cols-[minmax(0,1.2fr)_12rem_13rem]">
             <label className="space-y-2">
               <span className="text-sm font-semibold text-foreground">
                 출처 검색
@@ -172,7 +172,7 @@ export function SourceBrowserClient({
               key={source.id}
               className="surface-card rounded-[1.8rem] px-5 py-5 transition duration-200 hover:-translate-y-0.5 hover:border-stone-300 hover:bg-white/92"
             >
-              <div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
+              <div className="flex flex-col gap-4 2xl:flex-row 2xl:items-start 2xl:justify-between">
                 <div className="min-w-0 space-y-4">
                   <div className="flex flex-wrap gap-2 text-[11px]">
                     {source.year ? (

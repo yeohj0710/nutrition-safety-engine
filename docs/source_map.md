@@ -12,7 +12,6 @@
 - `SRC-PMID-27855744` | Melatonin Natural Health Products and Supplements: Presence of Serotonin and Significant Variability of Melatonin Content | J Clin Sleep Med / PubMed / INTL / 2017 / public / ingested_chunked
 
 ## case_report
-- `SRC-PMID-GARCINIA-CASE-2019` | Hepatoxicity associated with garcinia cambogia: a case report | World Journal of Hepatology / PubMed / INTL / 2019 / public / catalog_only
 
 ## case_series
 - `SRC-PMID-37756041` | Ashwagandha-induced liver injury-A case series from India and literature review | Hepatology Communications / PubMed / INTL / 2023 / public / ingested_chunked
@@ -42,7 +41,6 @@
 - `SRC-US-NCCIH-PROBIOTICS` | Probiotics: Usefulness and Safety | National Center for Complementary and Integrative Health / US / public / ingested_chunked
 - `SRC-US-NCCIH-ASIANGINSENG` | Asian Ginseng | National Center for Complementary and Integrative Health / US / public / ingested_chunked
 - `SRC-US-NCCIH-GLUCOSAMINE-CHONDROITIN` | Glucosamine and Chondroitin for Osteoarthritis: What You Need To Know | National Center for Complementary and Integrative Health / US / public / ingested_chunked
-- `SRC-US-NCCIH-GARCINIA` | Garcinia Cambogia | National Center for Complementary and Integrative Health / US / public / ingested_chunked
 - `SRC-US-NCCIH-HEADACHES-COQ10` | Headaches: What You Need To Know | National Center for Complementary and Integrative Health / US / public / ingested_chunked
 
 ## government_guideline

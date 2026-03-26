@@ -537,27 +537,5 @@
       "ubiquinol"
     ],
     "quality_notes_ko": "warfarin/insulin interaction caution."
-  },
-  {
-    "ingredient_id": "garcinia_cambogia",
-    "ingredient_name_ko": "가르시니아 캄보지아",
-    "ingredient_name_en": "Garcinia cambogia",
-    "category": "plant_extract",
-    "forms": [
-      "hydroxycitric acid",
-      "HCA"
-    ],
-    "matching_aliases_ko": [
-      "가르시니아",
-      "가르시니아캄보지아",
-      "하이드록시시트르산",
-      "HCA"
-    ],
-    "matching_aliases_en": [
-      "garcinia cambogia",
-      "hca",
-      "hydroxycitric acid"
-    ],
-    "quality_notes_ko": "간독성 시그널과 serotonin/liver drug interaction caution."
   }
 ]

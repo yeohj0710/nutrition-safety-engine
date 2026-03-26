@@ -21,7 +21,7 @@ export default function SourcesPage() {
   return (
     <main className="app-page min-h-screen px-4 pb-20 pt-6 md:px-6 lg:px-8">
       <div className="page-shell space-y-8">
-        <section className="grid gap-4 xl:grid-cols-[minmax(0,1.12fr)_16rem] xl:items-end">
+        <section className="grid gap-4 2xl:grid-cols-[minmax(0,1.12fr)_15rem] 2xl:items-end">
           <div className="surface-card-strong rounded-[2.1rem] px-6 py-7 md:px-8 md:py-9">
             <p className="eyebrow">Sources</p>
             <h1 className="mt-5 font-display text-[clamp(2.6rem,5vw,4.6rem)] leading-[0.96] tracking-[-0.05em] text-foreground">

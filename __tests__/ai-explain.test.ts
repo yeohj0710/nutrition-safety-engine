@@ -133,6 +133,12 @@ describe("explainSafetyResults", () => {
               ],
               missingInformation: ["일부 성분은 제형 정보가 없어서 추가 확인이 필요합니다."],
               userFriendlyNextSteps: ["현재 복용 중인 약물과 성분 제형을 다시 확인해 보세요."],
+              ruleCardActions: [
+                {
+                  ruleId: "RULE-VITK-WARFARIN-CONSISTENCY",
+                  recommendation: "warfarin을 복용 중이면 vitamin K 음식과 보충제 섭취량을 갑자기 바꾸지 말고 일정하게 유지해 주세요.",
+                },
+              ],
               disclaimer: "AI 정리는 결정적 규칙 엔진 결과를 쉽게 읽도록 정리한 보조 설명입니다.",
             },
           }),
@@ -143,6 +149,7 @@ describe("explainSafetyResults", () => {
     expect(response.ok).toBe(true);
     if (response.ok) {
       expect(response.explanation.summaryTitle).toContain("AI 정리");
+      expect(response.explanation.ruleCardActions[0]?.ruleId).toBe("RULE-VITK-WARFARIN-CONSISTENCY");
       expect(response.meta.model).toBe("gpt-5.4-mini");
     }
   });

@@ -18,11 +18,11 @@
       "premium DB(Micromedex, Natural Medicines, USP) 슬롯을 예약해 후속 라이선스 연동 가능"
     ],
     "counts": {
-      "sources": 134,
-      "ingredients": 35,
-      "evidence_chunks": 184,
-      "safety_rules": 114,
-      "validated_rules": 114,
+      "sources": 126,
+      "ingredients": 34,
+      "evidence_chunks": 176,
+      "safety_rules": 110,
+      "validated_rules": 110,
       "hypothesis_rules": 0,
       "verbatim_enriched_chunks": 103,
       "verbatim_supported_inference_chunks": 3,
@@ -87,7 +87,6 @@
       "프로바이오틱스(유산균)",
       "비타민B",
       "마그네슘",
-      "가르시니아",
       "멀티비타민",
       "아연",
       "차전자피 식이섬유",
@@ -111,7 +110,6 @@
       "probiotics",
       "vitamin_b_complex",
       "magnesium_supplement",
-      "garcinia_cambogia",
       "multivitamin_multimineral",
       "zinc",
       "psyllium_husk",
@@ -720,24 +718,6 @@
       "notes_ko": null
     },
     {
-      "source_id": "SRC-US-NCCIH-GARCINIA",
-      "title": "Garcinia Cambogia",
-      "source_type": "government_fact_sheet",
-      "organization": "National Center for Complementary and Integrative Health",
-      "jurisdiction": "US",
-      "publication_year": null,
-      "publication_date": null,
-      "url": "https://www.nccih.nih.gov/health/garcinia-cambogia",
-      "doi": null,
-      "pmid": null,
-      "authors": null,
-      "journal": null,
-      "evidence_tier": "government_fact_sheet",
-      "access_model": "public",
-      "ingestion_status": "ingested_chunked",
-      "notes_ko": null
-    },
-    {
       "source_id": "SRC-US-NCCIH-HEADACHES-COQ10",
       "title": "Headaches: What You Need To Know",
       "source_type": "government_fact_sheet",
@@ -880,24 +860,6 @@
       "access_model": "public",
       "ingestion_status": "catalog_only",
       "notes_ko": "NCCIH green tea page reference로 확인된 핵심 논문. PMID/DOI 후속 보강 필요."
-    },
-    {
-      "source_id": "SRC-PMID-GARCINIA-CASE-2019",
-      "title": "Hepatoxicity associated with garcinia cambogia: a case report",
-      "source_type": "case_report",
-      "organization": "World Journal of Hepatology / PubMed",
-      "jurisdiction": "INTL",
-      "publication_year": 2019,
-      "publication_date": null,
-      "url": null,
-      "doi": null,
-      "pmid": null,
-      "authors": null,
-      "journal": "World Journal of Hepatology",
-      "evidence_tier": "case_report",
-      "access_model": "public",
-      "ingestion_status": "catalog_only",
-      "notes_ko": "NCCIH garcinia page reference. PMID/DOI 후속 보강 필요."
     },
     {
       "source_id": "SRC-EU-EFSA-RED-YEAST-RICE-2018-OPINION",
@@ -1512,60 +1474,6 @@
       "notes_ko": "bulk-forming psyllium granular dosage form의 질식/폐색 관련 FDA 최종 규칙."
     },
     {
-      "source_id": "SRC-US-LIVERTOX-GARCINIA",
-      "title": "Garcinia cambogia - LiverTox",
-      "source_type": "government_fact_sheet",
-      "organization": "National Institute of Diabetes and Digestive and Kidney Diseases",
-      "jurisdiction": "US",
-      "publication_year": 2019,
-      "publication_date": "2019-02-13",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK548087/",
-      "doi": null,
-      "pmid": null,
-      "authors": null,
-      "journal": null,
-      "evidence_tier": "government_fact_sheet",
-      "access_model": "public",
-      "ingestion_status": "ingested_chunked",
-      "notes_ko": "가르시니아의 clinically apparent acute liver injury, 중증·치명적 사례 가능성을 정리."
-    },
-    {
-      "source_id": "SRC-PMID-29802521",
-      "title": "Acute liver injury following Garcinia cambogia weight-loss supplementation: case series and literature review",
-      "source_type": "case_series",
-      "organization": null,
-      "jurisdiction": "INTL",
-      "publication_year": 2018,
-      "publication_date": null,
-      "url": "https://pubmed.ncbi.nlm.nih.gov/29802521/",
-      "doi": null,
-      "pmid": "29802521",
-      "authors": null,
-      "journal": "Internal and Emergency Medicine",
-      "evidence_tier": "case_series",
-      "access_model": "public",
-      "ingestion_status": "ingested_chunked",
-      "notes_ko": "가르시니아 체중감량 보충제 복용 후 여성 급성간부전 4례 및 문헌고찰."
-    },
-    {
-      "source_id": "SRC-PMID-41262061",
-      "title": "Hepatotoxicity of dietary supplements containing Garcinia cambogia",
-      "source_type": "review",
-      "organization": null,
-      "jurisdiction": "INTL",
-      "publication_year": 2025,
-      "publication_date": null,
-      "url": "https://pubmed.ncbi.nlm.nih.gov/41262061/",
-      "doi": null,
-      "pmid": "41262061",
-      "authors": null,
-      "journal": null,
-      "evidence_tier": "narrative_review",
-      "access_model": "public",
-      "ingestion_status": "ingested_chunked",
-      "notes_ko": "가르시니아 관련 간손상 adverse events 200건+, 34 case reports, 1 death, 9 transplants를 정리."
-    },
-    {
       "source_id": "SRC-PMID-23381591",
       "title": "Ascorbic acid supplements and kidney stone incidence among men: a prospective study",
       "source_type": "prospective_cohort",
@@ -2032,60 +1940,6 @@
       "access_model": "public",
       "ingestion_status": "ingested_chunked",
       "notes_ko": "경구 magnesium의 minor GI adverse events(특히 diarrhea) 빈도를 기술한 체계적 고찰."
-    },
-    {
-      "source_id": "SRC-PMID-29721342",
-      "title": "Hepatotoxicity Associated with Use of the Weight Loss Supplement Garcinia cambogia: A Case Report and Review of the Literature",
-      "source_type": "case_report_review",
-      "organization": null,
-      "jurisdiction": "INTL",
-      "publication_year": 2018,
-      "publication_date": null,
-      "url": "https://pubmed.ncbi.nlm.nih.gov/29721342/",
-      "doi": "10.1155/2018/6483605",
-      "pmid": "29721342",
-      "authors": null,
-      "journal": "Case Reports in Hepatology",
-      "evidence_tier": "case_report_review",
-      "access_model": "public",
-      "ingestion_status": "ingested_chunked",
-      "notes_ko": "가르시니아 연관 간독성 사례와 문헌검토."
-    },
-    {
-      "source_id": "SRC-PMID-31772720",
-      "title": "Hepatotoxicity associated with Garcinia cambogia: A case report",
-      "source_type": "case_report",
-      "organization": null,
-      "jurisdiction": "INTL",
-      "publication_year": 2019,
-      "publication_date": null,
-      "url": "https://pubmed.ncbi.nlm.nih.gov/31772720/",
-      "doi": "10.4254/wjh.v11.i11.735",
-      "pmid": "31772720",
-      "authors": null,
-      "journal": "World Journal of Hepatology",
-      "evidence_tier": "case_report",
-      "access_model": "public",
-      "ingestion_status": "ingested_chunked",
-      "notes_ko": "가르시니아 관련 간손상 사례 보고."
-    },
-    {
-      "source_id": "SRC-PMID-26626648",
-      "title": "Acute liver failure associated with Garcinia cambogia use",
-      "source_type": "case_report",
-      "organization": null,
-      "jurisdiction": "INTL",
-      "publication_year": 2016,
-      "publication_date": null,
-      "url": "https://pubmed.ncbi.nlm.nih.gov/26626648/",
-      "doi": null,
-      "pmid": "26626648",
-      "authors": null,
-      "journal": null,
-      "evidence_tier": "case_report",
-      "access_model": "public",
-      "ingestion_status": "ingested_chunked",
-      "notes_ko": "가르시니아 사용 후 급성 간부전 및 이식 사례 보고."
     },
     {
       "source_id": "SRC-PMID-35727272",
@@ -3153,30 +3007,6 @@
       "quality_notes_ko": "warfarin과 상호작용 보고가 있으나 소규모 무작위시험은 불일치. 모니터링 중심 접근 권장.",
       "focus_priority_rank": 21,
       "focus_update_status": "expanded_v0_3"
-    },
-    {
-      "ingredient_id": "garcinia_cambogia",
-      "ingredient_name_ko": "가르시니아 캄보지아",
-      "ingredient_name_en": "Garcinia cambogia",
-      "category": "plant_extract",
-      "forms": [
-        "hydroxycitric acid",
-        "HCA"
-      ],
-      "matching_aliases_ko": [
-        "가르시니아",
-        "가르시니아캄보지아",
-        "하이드록시시트르산",
-        "HCA"
-      ],
-      "matching_aliases_en": [
-        "garcinia cambogia",
-        "hca",
-        "hydroxycitric acid"
-      ],
-      "quality_notes_ko": "간독성 시그널과 serotonin/liver drug interaction caution.",
-      "focus_priority_rank": 10,
-      "focus_update_status": "expanded_v0_2"
     },
     {
       "ingredient_id": "vitamin_c",
@@ -6374,88 +6204,6 @@
       "verbatim_note_ko": "공개 팩트시트 또는 PubMed abstract에서 짧은 원문 발췌를 확인했다."
     },
     {
-      "chunk_id": "CHK-GARCINIA-LIVER",
-      "source_id": "SRC-US-NCCIH-GARCINIA",
-      "ingredient_ids": [
-        "garcinia_cambogia"
-      ],
-      "locator_type": "lines",
-      "locator_value": "L123-L134",
-      "excerpt_summary_ko": "가르시니아 캄보지아는 간독성 사례가 다수 보고되었고 일부는 중증이었다.",
-      "claim_type": "adverse_effect_signal",
-      "structured_claim": {
-        "risks": [
-          "liver_toxicity",
-          "severe_liver_damage"
-        ]
-      },
-      "confidence": "high",
-      "notes_ko": null,
-      "evidence_type": "verbatim_text",
-      "locator": {
-        "locator_type": "lines",
-        "locator_value": "L123-L134"
-      },
-      "quote_original": "Numerous reports of liver toxicity",
-      "quote_language": "en",
-      "quote_translation_ko": "간독성 보고가 다수 있다.",
-      "translation_status": "draft_review_needed",
-      "verification_status": "verified_against_source",
-      "extraction_method": "manual_from_source",
-      "quote_original_is_short_excerpt": true,
-      "quote_capture_status": "verified_short_excerpt",
-      "copyright_scope": "short_excerpt_only",
-      "source_access_note": "public_factsheet_or_pubmed_abstract",
-      "used_in_rule_ids": [
-        "RULE-GARCINIA-LIVER-AVOID"
-      ],
-      "quote_original_word_count": 5,
-      "quote_full_sentence_available": false,
-      "verbatim_note_ko": "공개 팩트시트 또는 PubMed abstract에서 짧은 원문 발췌를 확인했다."
-    },
-    {
-      "chunk_id": "CHK-GARCINIA-DRUGS-PREG",
-      "source_id": "SRC-US-NCCIH-GARCINIA",
-      "ingredient_ids": [
-        "garcinia_cambogia"
-      ],
-      "locator_type": "lines",
-      "locator_value": "L131-L134",
-      "excerpt_summary_ko": "가르시니아는 serotonin 관련 약물 및 간에 영향을 주는 약물과 상호작용할 수 있고, 임신/수유 중 안전성 자료가 부족하다.",
-      "claim_type": "interaction",
-      "structured_claim": {
-        "medications_any": [
-          "serotonergic_drug",
-          "liver_affecting_drug"
-        ],
-        "pregnancy_lactation": "insufficient_data"
-      },
-      "confidence": "high",
-      "notes_ko": null,
-      "evidence_type": "verbatim_text",
-      "locator": {
-        "locator_type": "lines",
-        "locator_value": "L131-L134"
-      },
-      "quote_original": "some drugs affecting the liver and some drugs affecting serotonin",
-      "quote_language": "en",
-      "quote_translation_ko": "간에 영향을 주는 일부 약물과 세로토닌에 영향을 주는 일부 약물.",
-      "translation_status": "draft_review_needed",
-      "verification_status": "verified_against_source",
-      "extraction_method": "manual_from_source",
-      "quote_original_is_short_excerpt": true,
-      "quote_capture_status": "verified_short_excerpt",
-      "copyright_scope": "short_excerpt_only",
-      "source_access_note": "public_factsheet_or_pubmed_abstract",
-      "used_in_rule_ids": [
-        "RULE-GARCINIA-SEROTONIN-LIVER-DRUGS",
-        "RULE-GARCINIA-PREGNANCY"
-      ],
-      "quote_original_word_count": 10,
-      "quote_full_sentence_available": false,
-      "verbatim_note_ko": "공개 팩트시트 또는 PubMed abstract에서 짧은 원문 발췌를 확인했다."
-    },
-    {
       "chunk_id": "CHK-VITC-UL-US",
       "source_id": "SRC-US-ODS-VITAMIN-C",
       "ingredient_ids": [
@@ -7847,128 +7595,6 @@
       "source_access_note": null,
       "used_in_rule_ids": [
         "RULE-MAG-DIURETIC-STATUS"
-      ],
-      "quote_original_word_count": null,
-      "quote_full_sentence_available": false,
-      "verbatim_note_ko": "원문 짧은 발췌는 아직 추가되지 않았다. source URL을 따라가 수동 추출/검수 필요."
-    },
-    {
-      "chunk_id": "CHK-GARCINIA-LIVERTOX-SEVERE",
-      "source_id": "SRC-US-LIVERTOX-GARCINIA",
-      "ingredient_ids": [
-        "garcinia_cambogia"
-      ],
-      "locator_type": "summary",
-      "locator_value": "LiverTox introduction/mechanism",
-      "excerpt_summary_ko": "Garcinia cambogia는 clinically apparent acute liver injury와 연결되어 왔고 일부 사례는 중증 또는 치명적이었다.",
-      "claim_type": "adverse_effect_signal",
-      "structured_claim": {
-        "risk": "acute_liver_injury",
-        "severity": [
-          "severe",
-          "fatal"
-        ]
-      },
-      "confidence": "high",
-      "notes_ko": null,
-      "evidence_type": "verbatim_text",
-      "locator": {
-        "locator_type": "summary",
-        "locator_value": "LiverTox introduction/mechanism"
-      },
-      "quote_original": "Several cases of liver damage have been reported",
-      "quote_language": "en",
-      "quote_translation_ko": "간손상 사례가 여러 건 보고되었다.",
-      "translation_status": "draft_review_needed",
-      "verification_status": "verified_against_source",
-      "extraction_method": "manual_from_source",
-      "quote_original_is_short_excerpt": true,
-      "quote_capture_status": "verified_short_excerpt",
-      "copyright_scope": "short_excerpt_only",
-      "source_access_note": "public_factsheet_or_pubmed_abstract",
-      "used_in_rule_ids": [
-        "RULE-GARCINIA-LIVER-AVOID",
-        "RULE-GARCINIA-HISTORY-DILI"
-      ],
-      "quote_original_word_count": 8,
-      "quote_full_sentence_available": false,
-      "verbatim_note_ko": "공개 팩트시트 또는 PubMed abstract에서 짧은 원문 발췌를 확인했다."
-    },
-    {
-      "chunk_id": "CHK-GARCINIA-CASESERIES-4ALF",
-      "source_id": "SRC-PMID-29802521",
-      "ingredient_ids": [
-        "garcinia_cambogia"
-      ],
-      "locator_type": "abstract",
-      "locator_value": "PMID 29802521",
-      "excerpt_summary_ko": "문헌고찰 동반 case series에서 가르시니아 체중감량 보충제 복용 여성 4명의 acute liver failure가 보고되었다.",
-      "claim_type": "case_series_finding",
-      "structured_claim": {
-        "cases": 4,
-        "outcome": "acute_liver_failure"
-      },
-      "confidence": "high",
-      "notes_ko": null,
-      "evidence_type": "verbatim_text",
-      "locator": {
-        "locator_type": "abstract",
-        "locator_value": "PMID 29802521"
-      },
-      "quote_original": null,
-      "quote_language": null,
-      "quote_translation_ko": null,
-      "translation_status": "not_available",
-      "verification_status": "pending_manual_extraction",
-      "extraction_method": null,
-      "quote_original_is_short_excerpt": false,
-      "quote_capture_status": "pending",
-      "copyright_scope": "short_excerpt_only",
-      "source_access_note": null,
-      "used_in_rule_ids": [
-        "RULE-GARCINIA-LIVER-AVOID",
-        "RULE-GARCINIA-HISTORY-DILI"
-      ],
-      "quote_original_word_count": null,
-      "quote_full_sentence_available": false,
-      "verbatim_note_ko": "원문 짧은 발췌는 아직 추가되지 않았다. source URL을 따라가 수동 추출/검수 필요."
-    },
-    {
-      "chunk_id": "CHK-GARCINIA-REVIEW-2025",
-      "source_id": "SRC-PMID-41262061",
-      "ingredient_ids": [
-        "garcinia_cambogia"
-      ],
-      "locator_type": "abstract",
-      "locator_value": "PMID 41262061",
-      "excerpt_summary_ko": "2025 review는 Garcinia 관련 liver injury adverse event 200건+, 34 case reports, 1 death, 9 liver transplants를 정리했다.",
-      "claim_type": "adverse_effect_signal",
-      "structured_claim": {
-        "adverse_events_over": 200,
-        "case_reports": 34,
-        "deaths": 1,
-        "liver_transplants": 9
-      },
-      "confidence": "high",
-      "notes_ko": null,
-      "evidence_type": "verbatim_text",
-      "locator": {
-        "locator_type": "abstract",
-        "locator_value": "PMID 41262061"
-      },
-      "quote_original": null,
-      "quote_language": null,
-      "quote_translation_ko": null,
-      "translation_status": "not_available",
-      "verification_status": "pending_manual_extraction",
-      "extraction_method": null,
-      "quote_original_is_short_excerpt": false,
-      "quote_capture_status": "pending",
-      "copyright_scope": "short_excerpt_only",
-      "source_access_note": null,
-      "used_in_rule_ids": [
-        "RULE-GARCINIA-LIVER-AVOID",
-        "RULE-GARCINIA-HISTORY-DILI"
       ],
       "quote_original_word_count": null,
       "quote_full_sentence_available": false,
@@ -9740,122 +9366,6 @@
       "quote_original_word_count": null,
       "quote_full_sentence_available": false,
       "verbatim_note_ko": "원문 짧은 발췌는 아직 추가되지 않았다. source URL을 따라가 수동 추출/검수 필요."
-    },
-    {
-      "chunk_id": "CHK-PMID-29721342",
-      "source_id": "SRC-PMID-29721342",
-      "ingredient_ids": [
-        "garcinia_cambogia"
-      ],
-      "locator_type": "summary",
-      "locator_value": "PubMed case report summary",
-      "excerpt_summary_ko": "가르시니아 체중감량 보충제 사용과 간독성 사례가 문헌검토와 함께 보고되었다.",
-      "claim_type": "hepatotoxicity_signal",
-      "structured_claim": {
-        "finding": "liver_injury_case_reports",
-        "context": "weight_loss_supplement"
-      },
-      "confidence": "medium",
-      "notes_ko": "간독성 회피 rule 보강.",
-      "evidence_type": "verbatim_text",
-      "locator": {
-        "locator_type": "summary",
-        "locator_value": "PubMed case report summary"
-      },
-      "quote_original": "case of acute hepatitis",
-      "quote_language": "en",
-      "quote_translation_ko": "급성 간염 사례.",
-      "translation_status": "draft_review_needed",
-      "verification_status": "verified_against_source",
-      "extraction_method": "manual_from_source",
-      "quote_original_is_short_excerpt": true,
-      "quote_capture_status": "verified_short_excerpt",
-      "copyright_scope": "short_excerpt_only",
-      "source_access_note": "public_factsheet_or_pubmed_abstract",
-      "used_in_rule_ids": [
-        "RULE-GARCINIA-LIVER-AVOID",
-        "RULE-GARCINIA-HISTORY-DILI"
-      ],
-      "quote_original_word_count": 4,
-      "quote_full_sentence_available": false,
-      "verbatim_note_ko": "공개 팩트시트 또는 PubMed abstract에서 짧은 원문 발췌를 확인했다."
-    },
-    {
-      "chunk_id": "CHK-PMID-31772720",
-      "source_id": "SRC-PMID-31772720",
-      "ingredient_ids": [
-        "garcinia_cambogia"
-      ],
-      "locator_type": "summary",
-      "locator_value": "PubMed case report summary",
-      "excerpt_summary_ko": "가르시니아 관련 hepatotoxicity 추가 사례보고이다.",
-      "claim_type": "hepatotoxicity_signal",
-      "structured_claim": {
-        "finding": "additional_case_report"
-      },
-      "confidence": "medium",
-      "notes_ko": "case accumulation 목적.",
-      "evidence_type": "verbatim_text",
-      "locator": {
-        "locator_type": "summary",
-        "locator_value": "PubMed case report summary"
-      },
-      "quote_original": "hepatotoxicity can be associated",
-      "quote_language": "en",
-      "quote_translation_ko": "간독성이 연관될 수 있다.",
-      "translation_status": "draft_review_needed",
-      "verification_status": "verified_against_source",
-      "extraction_method": "manual_from_source",
-      "quote_original_is_short_excerpt": true,
-      "quote_capture_status": "verified_short_excerpt",
-      "copyright_scope": "short_excerpt_only",
-      "source_access_note": "public_factsheet_or_pubmed_abstract",
-      "used_in_rule_ids": [
-        "RULE-GARCINIA-LIVER-AVOID",
-        "RULE-GARCINIA-HISTORY-DILI"
-      ],
-      "quote_original_word_count": 4,
-      "quote_full_sentence_available": false,
-      "verbatim_note_ko": "공개 팩트시트 또는 PubMed abstract에서 짧은 원문 발췌를 확인했다."
-    },
-    {
-      "chunk_id": "CHK-PMID-26626648",
-      "source_id": "SRC-PMID-26626648",
-      "ingredient_ids": [
-        "garcinia_cambogia"
-      ],
-      "locator_type": "summary",
-      "locator_value": "PubMed case report summary",
-      "excerpt_summary_ko": "가르시니아 사용과 연관된 급성 간부전 및 간이식 사례가 보고되었다.",
-      "claim_type": "severe_safety_signal",
-      "structured_claim": {
-        "finding": "acute_liver_failure",
-        "severity": "transplant_required_case"
-      },
-      "confidence": "medium",
-      "notes_ko": "avoid severity 강화.",
-      "evidence_type": "verbatim_text",
-      "locator": {
-        "locator_type": "summary",
-        "locator_value": "PubMed case report summary"
-      },
-      "quote_original": "acute liver failure requiring liver transplantation",
-      "quote_language": "en",
-      "quote_translation_ko": "간이식이 필요할 정도의 급성 간부전.",
-      "translation_status": "draft_review_needed",
-      "verification_status": "verified_against_source",
-      "extraction_method": "manual_from_source",
-      "quote_original_is_short_excerpt": true,
-      "quote_capture_status": "verified_short_excerpt",
-      "copyright_scope": "short_excerpt_only",
-      "source_access_note": "public_factsheet_or_pubmed_abstract",
-      "used_in_rule_ids": [
-        "RULE-GARCINIA-LIVER-AVOID",
-        "RULE-GARCINIA-HISTORY-DILI"
-      ],
-      "quote_original_word_count": 6,
-      "quote_full_sentence_available": false,
-      "verbatim_note_ko": "공개 팩트시트 또는 PubMed abstract에서 짧은 원문 발췌를 확인했다."
     },
     {
       "chunk_id": "CHK-PMID-35727272",
@@ -13256,116 +12766,6 @@
       "schema_note": "applies_when is JSON for extension; engine may compile to rule predicates."
     },
     {
-      "rule_id": "RULE-GARCINIA-LIVER-AVOID",
-      "rule_group_id": "GROUP-GARCINIA-LIVER",
-      "ingredient_id": "garcinia_cambogia",
-      "rule_name_ko": "가르시니아 간독성 주의",
-      "rule_category": "adverse_effect_signal",
-      "severity": "avoid",
-      "priority": 84,
-      "jurisdiction": "US",
-      "applies_when": {
-        "diseases_any": [
-          "chronic liver disease",
-          "hepatitis",
-          "history_of_drug_induced_liver_injury"
-        ],
-        "or_use_general": true
-      },
-      "threshold_operator": null,
-      "threshold_value": null,
-      "threshold_unit": null,
-      "threshold_scope": null,
-      "action_text_ko": "가르시니아는 간독성 시그널이 있어 특히 간질환자는 회피하고, 일반 사용자도 강한 경고를 둔다.",
-      "rationale_ko": "가르시니아는 반복적인 간손상/간부전 사례가 있어 일반 사용에서도 회피 쪽으로 판단하고, 간질환 병력에서는 더 보수적으로 본다.",
-      "monitoring_ko": "황달, 피로, 진한 소변, AST/ALT 상승 시 즉시 중단 및 평가.",
-      "exception_ko": null,
-      "evidence_chunk_ids": [
-        "CHK-GARCINIA-LIVER",
-        "CHK-GARCINIA-LIVERTOX-SEVERE",
-        "CHK-GARCINIA-CASESERIES-4ALF",
-        "CHK-GARCINIA-REVIEW-2025",
-        "CHK-PMID-29721342",
-        "CHK-PMID-31772720",
-        "CHK-PMID-26626648"
-      ],
-      "source_ids": [
-        "SRC-US-NCCIH-GARCINIA",
-        "SRC-US-LIVERTOX-GARCINIA",
-        "SRC-PMID-29802521",
-        "SRC-PMID-41262061",
-        "SRC-PMID-29721342",
-        "SRC-PMID-31772720",
-        "SRC-PMID-26626648"
-      ],
-      "review_status": "starter_validated",
-      "schema_note": "applies_when is JSON for extension; engine may compile to rule predicates."
-    },
-    {
-      "rule_id": "RULE-GARCINIA-SEROTONIN-LIVER-DRUGS",
-      "rule_group_id": "GROUP-GARCINIA-DRUGS",
-      "ingredient_id": "garcinia_cambogia",
-      "rule_name_ko": "가르시니아 + serotonin/간영향 약물",
-      "rule_category": "interaction",
-      "severity": "warn",
-      "priority": 64,
-      "jurisdiction": "US",
-      "applies_when": {
-        "medications_any": [
-          "serotonergic_drug",
-          "liver_affecting_drug"
-        ]
-      },
-      "threshold_operator": null,
-      "threshold_value": null,
-      "threshold_unit": null,
-      "threshold_scope": null,
-      "action_text_ko": "serotonin 관련 약물 또는 간에 영향을 주는 약물 복용자는 가르시니아를 별도 검토한다.",
-      "rationale_ko": "NCCIH interaction caution.",
-      "monitoring_ko": null,
-      "exception_ko": null,
-      "evidence_chunk_ids": [
-        "CHK-GARCINIA-DRUGS-PREG"
-      ],
-      "source_ids": [
-        "SRC-US-NCCIH-GARCINIA"
-      ],
-      "review_status": "starter_validated",
-      "schema_note": "applies_when is JSON for extension; engine may compile to rule predicates."
-    },
-    {
-      "rule_id": "RULE-GARCINIA-PREGNANCY",
-      "rule_group_id": "GROUP-GARCINIA-PREG",
-      "ingredient_id": "garcinia_cambogia",
-      "rule_name_ko": "가르시니아 임신/수유 주의",
-      "rule_category": "pregnancy_lactation",
-      "severity": "warn",
-      "priority": 58,
-      "jurisdiction": "US",
-      "applies_when": {
-        "pregnancy_status_any": [
-          "pregnant"
-        ],
-        "or_lactating": true
-      },
-      "threshold_operator": null,
-      "threshold_value": null,
-      "threshold_unit": null,
-      "threshold_scope": null,
-      "action_text_ko": "임신·수유 중 가르시니아는 안전성 자료 부족으로 경고한다.",
-      "rationale_ko": "NCCIH notes limited safety data.",
-      "monitoring_ko": null,
-      "exception_ko": null,
-      "evidence_chunk_ids": [
-        "CHK-GARCINIA-DRUGS-PREG"
-      ],
-      "source_ids": [
-        "SRC-US-NCCIH-GARCINIA"
-      ],
-      "review_status": "starter_validated",
-      "schema_note": "applies_when is JSON for extension; engine may compile to rule predicates."
-    },
-    {
       "rule_id": "RULE-VITC-UL-US-ADULT",
       "rule_group_id": "GROUP-VITC-UL-ADULT",
       "ingredient_id": "vitamin_c",
@@ -14082,49 +13482,6 @@
       ],
       "source_ids": [
         "SRC-US-ODS-MAGNESIUM"
-      ],
-      "review_status": "starter_validated",
-      "schema_note": "applies_when is JSON for extension; engine may compile to rule predicates."
-    },
-    {
-      "rule_id": "RULE-GARCINIA-HISTORY-DILI",
-      "rule_group_id": "GROUP-GARCINIA-DILI-HISTORY",
-      "ingredient_id": "garcinia_cambogia",
-      "rule_name_ko": "가르시니아와 간질환/DILI 병력",
-      "rule_category": "disease_caution",
-      "severity": "avoid",
-      "priority": 88,
-      "jurisdiction": "US/INTL",
-      "applies_when": {
-        "diseases_any": [
-          "chronic liver disease",
-          "hepatitis",
-          "history_of_drug_induced_liver_injury"
-        ]
-      },
-      "threshold_operator": null,
-      "threshold_value": null,
-      "threshold_unit": null,
-      "threshold_scope": null,
-      "action_text_ko": "간질환 또는 DILI 병력이 있으면 가르시니아는 회피한다.",
-      "rationale_ko": "가르시니아 관련 acute liver injury는 case series와 LiverTox, 2025 review에서 반복적으로 보고된다.",
-      "monitoring_ko": null,
-      "exception_ko": null,
-      "evidence_chunk_ids": [
-        "CHK-GARCINIA-LIVERTOX-SEVERE",
-        "CHK-GARCINIA-CASESERIES-4ALF",
-        "CHK-GARCINIA-REVIEW-2025",
-        "CHK-PMID-29721342",
-        "CHK-PMID-31772720",
-        "CHK-PMID-26626648"
-      ],
-      "source_ids": [
-        "SRC-US-LIVERTOX-GARCINIA",
-        "SRC-PMID-29802521",
-        "SRC-PMID-41262061",
-        "SRC-PMID-29721342",
-        "SRC-PMID-31772720",
-        "SRC-PMID-26626648"
       ],
       "review_status": "starter_validated",
       "schema_note": "applies_when is JSON for extension; engine may compile to rule predicates."

@@ -353,6 +353,37 @@ export function getEvidenceSecondaryExcerpt(chunk: EvidenceChunk) {
   return null;
 }
 
+export function getEvidenceTranslationExcerpt(chunk: EvidenceChunk) {
+  const primary = normalizeExcerpt(getEvidencePrimaryExcerpt(chunk));
+
+  for (const candidate of [
+    normalizeExcerpt(chunk.quoteTranslationKo),
+    normalizeExcerpt(chunk.translatedQuote),
+  ]) {
+    if (candidate && candidate !== primary) {
+      return candidate;
+    }
+  }
+
+  return null;
+}
+
+export function getEvidenceContextSummary(chunk: EvidenceChunk) {
+  const primary = normalizeExcerpt(getEvidencePrimaryExcerpt(chunk));
+  const translation = normalizeExcerpt(getEvidenceTranslationExcerpt(chunk));
+
+  for (const candidate of [
+    normalizeExcerpt(chunk.summary),
+    normalizeExcerpt(chunk.chunkText),
+  ]) {
+    if (candidate && candidate !== primary && candidate !== translation) {
+      return candidate;
+    }
+  }
+
+  return null;
+}
+
 export function getEvidenceNote(chunk: EvidenceChunk) {
   const primary = normalizeExcerpt(getEvidencePrimaryExcerpt(chunk));
   const secondary = normalizeExcerpt(getEvidenceSecondaryExcerpt(chunk));
@@ -375,14 +406,30 @@ export function getEvidenceExcerptLabel(chunk: EvidenceChunk) {
   }
 
   if (chunk.verificationStatus === "supported_inference") {
-    return hasOriginalEvidenceExcerpt(chunk) ? "원문 기반 해석" : "해석 요약";
+    return hasOriginalEvidenceExcerpt(chunk)
+      ? isShortOriginalEvidenceExcerpt(chunk)
+        ? "짧은 원문 기반 해석"
+        : "원문 기반 해석"
+      : "해석 요약";
   }
 
-  return hasOriginalEvidenceExcerpt(chunk) ? "원문 발췌" : "등록된 발췌";
+  return hasOriginalEvidenceExcerpt(chunk)
+    ? isShortOriginalEvidenceExcerpt(chunk)
+      ? "짧은 원문 발췌"
+      : "원문 발췌"
+    : "등록된 발췌";
 }
 
 export function hasOriginalEvidenceExcerpt(chunk: EvidenceChunk) {
   return Boolean(chunk.quoteOriginal ?? chunk.verbatimQuote);
+}
+
+export function isShortOriginalEvidenceExcerpt(chunk: EvidenceChunk) {
+  if (!hasOriginalEvidenceExcerpt(chunk)) return false;
+  if (chunk.quoteOriginalIsShortExcerpt === true) return true;
+  if (chunk.quoteCaptureStatus === "verified_short_excerpt") return true;
+  if ((chunk.quoteOriginalWordCount ?? 0) > 0 && (chunk.quoteOriginalWordCount ?? 0) <= 12) return true;
+  return chunk.quoteFullSentenceAvailable === false;
 }
 
 export function getEvidenceCheckHint(chunk: EvidenceChunk, source?: KnowledgeSource | null) {

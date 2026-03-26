@@ -162,6 +162,9 @@ function buildInstructions() {
     "논문, 저자, 저널, chunk ID를 새로 만들지 마십시오.",
     "정보가 부족하면 무엇이 부족한지 명시하십시오.",
     "설명은 비진단적이어야 하며 AI 정리라는 점이 드러나야 합니다.",
+    "ruleCardActions에는 입력으로 받은 각 ruleId마다 recommendation을 하나씩 작성하십시오.",
+    "recommendation은 사용자가 지금 어떻게 하면 되는지 바로 알 수 있게, 1문장 한국어 권고 형태로 쓰십시오.",
+    "recommendation은 근거 문장을 쉬운 행동 지침으로 다시 말하되, 금지/주의/모니터링의 강도를 바꾸지 마십시오.",
   ].join(" ");
 }
 

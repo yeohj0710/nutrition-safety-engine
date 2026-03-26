@@ -14,9 +14,9 @@
   --warning: oklch(0.57 0.08 60);
   --danger: oklch(0.56 0.11 28);
   --success: oklch(0.56 0.07 160);
-  --shadow-soft: 0 8px 24px rgba(27, 25, 22, 0.06);
-  --shadow-panel: 0 10px 30px rgba(27, 25, 22, 0.06);
-  --shadow-float: 0 12px 28px rgba(27, 25, 22, 0.08);
+  --shadow-soft: 0 6px 18px rgba(27, 25, 22, 0.04), 0 1px 3px rgba(27, 25, 22, 0.03);
+  --shadow-panel: 0 10px 24px rgba(27, 25, 22, 0.045), 0 2px 8px rgba(27, 25, 22, 0.03);
+  --shadow-float: 0 12px 24px rgba(27, 25, 22, 0.055), 0 3px 10px rgba(27, 25, 22, 0.03);
   --ease-emphasized: cubic-bezier(0.22, 1, 0.36, 1);
   --font-app-sans: "IBM Plex Sans KR", "Noto Sans KR", "Apple SD Gothic Neo",
     "Malgun Gothic", "Segoe UI", sans-serif;
@@ -42,14 +42,13 @@
   --font-display: var(--font-app-display);
 }
 
-html {
+html,
+body {
   min-height: 100%;
-  background: linear-gradient(180deg, #fcfcfb 0%, #f7f7f5 100%);
+  background: var(--background);
 }
 
 body {
-  min-height: 100%;
-  background: transparent;
   color: var(--foreground);
   font-family: var(--font-app-sans), sans-serif;
   font-kerning: normal;
@@ -97,16 +96,20 @@ textarea:focus-visible {
 .app-page {
   position: relative;
   isolation: isolate;
-  background: transparent;
+  background:
+    radial-gradient(72rem 28rem at 50% -12rem, color-mix(in oklab, var(--accent-soft) 38%, white) 0%, transparent 72%),
+    linear-gradient(180deg, color-mix(in oklab, var(--background) 97%, white) 0%, var(--background) 42%, var(--background) 100%);
 }
 
 .page-shell {
-  width: min(100%, 62rem);
+  width: 100%;
+  max-width: 56rem;
   margin-inline: auto;
 }
 
 .page-shell-narrow {
-  width: min(100%, 56rem);
+  width: 100%;
+  max-width: 50rem;
   margin-inline: auto;
 }
 
@@ -120,13 +123,13 @@ textarea:focus-visible {
 
 .surface-card {
   border: 1px solid var(--border-subtle);
-  background: var(--surface);
+  background: color-mix(in oklab, var(--surface) 98%, var(--background));
   box-shadow: var(--shadow-soft);
 }
 
 .surface-card-strong {
   border: 1px solid var(--border-subtle);
-  background: var(--surface-elevated);
+  background: color-mix(in oklab, var(--surface-elevated) 98%, var(--background));
   box-shadow: var(--shadow-panel);
 }
 

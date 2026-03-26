@@ -4,6 +4,10 @@ import { zodTextFormat } from "openai/helpers/zod";
 import { engineResponseSchema, severitySchema } from "@/src/types/knowledge";
 
 const aiSeverityLabelSchema = z.enum(["금지/중단", "강한 주의", "일반 주의", "참고"]);
+const aiRuleCardActionSchema = z.object({
+  ruleId: z.string().min(1),
+  recommendation: z.string().min(1),
+});
 
 export const aiExplanationSchema = z.object({
   summaryTitle: z.string().min(1),
@@ -23,6 +27,7 @@ export const aiExplanationSchema = z.object({
   ),
   missingInformation: z.array(z.string().min(1)),
   userFriendlyNextSteps: z.array(z.string().min(1)),
+  ruleCardActions: z.array(aiRuleCardActionSchema),
   disclaimer: z.string().min(1),
 });
 

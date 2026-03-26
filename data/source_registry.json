@@ -540,24 +540,6 @@
     "notes_ko": null
   },
   {
-    "source_id": "SRC-US-NCCIH-GARCINIA",
-    "title": "Garcinia Cambogia",
-    "source_type": "government_fact_sheet",
-    "organization": "National Center for Complementary and Integrative Health",
-    "jurisdiction": "US",
-    "publication_year": null,
-    "publication_date": null,
-    "url": "https://www.nccih.nih.gov/health/garcinia-cambogia",
-    "doi": null,
-    "pmid": null,
-    "authors": null,
-    "journal": null,
-    "evidence_tier": "government_fact_sheet",
-    "access_model": "public",
-    "ingestion_status": "ingested_chunked",
-    "notes_ko": null
-  },
-  {
     "source_id": "SRC-US-NCCIH-HEADACHES-COQ10",
     "title": "Headaches: What You Need To Know",
     "source_type": "government_fact_sheet",
@@ -700,24 +682,6 @@
     "access_model": "public",
     "ingestion_status": "catalog_only",
     "notes_ko": "NCCIH green tea page reference로 확인된 핵심 논문. PMID/DOI 후속 보강 필요."
-  },
-  {
-    "source_id": "SRC-PMID-GARCINIA-CASE-2019",
-    "title": "Hepatoxicity associated with garcinia cambogia: a case report",
-    "source_type": "case_report",
-    "organization": "World Journal of Hepatology / PubMed",
-    "jurisdiction": "INTL",
-    "publication_year": 2019,
-    "publication_date": null,
-    "url": "https://pubmed.ncbi.nlm.nih.gov/31772720/",
-    "doi": "10.4254/wjh.v11.i11.735",
-    "pmid": "31772720",
-    "authors": null,
-    "journal": "World Journal of Hepatology",
-    "evidence_tier": "case_report",
-    "access_model": "public",
-    "ingestion_status": "catalog_only",
-    "notes_ko": "NCCIH garcinia page reference. PMID/DOI 후속 보강 필요."
   },
   {
     "source_id": "SRC-EU-EFSA-RED-YEAST-RICE-2018-OPINION",
