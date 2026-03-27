@@ -1,10 +1,10 @@
-export const siteName = "개인맞춤 영양 안전 가이드";
+export const siteName = "개인맞춤 영양소 안전성 기준 제공 시스템";
 export const siteTagline =
   "연령, 성별, 복용 약물, 질환 상태에 맞는 영양 안전 기준과 근거를 함께 보는 안내";
 export const siteDescription =
   "연령, 성별, 복용 약물, 질환 상태에 맞춰 영양소 섭취 기준, 주의사항, 참고할 내용을 확인하고 신뢰도 높은 논문과 공공 자료 레퍼런스를 함께 볼 수 있는 개인맞춤 영양 안전 안내 서비스입니다.";
 export const siteKeywords = [
-  "개인맞춤 영양 안전 가이드",
+  "개인맞춤 영양소 안전성 기준 제공 시스템",
   "영양소 안전성",
   "영양소 섭취 기준",
   "영양제 주의사항",

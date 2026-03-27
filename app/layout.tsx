@@ -1,22 +1,15 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans_KR, Nanum_Myeongjo } from "next/font/google";
+import { Geist } from "next/font/google";
 
+import { SiteFrame } from "@/src/components/site-frame";
 import { getSiteUrl, siteDescription, siteKeywords, siteName } from "@/src/lib/site";
 
 import "./globals.css";
 
-const bodyFont = IBM_Plex_Sans_KR({
+const appFont = Geist({
   variable: "--font-app-sans",
+  subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700"],
-  preload: false,
-});
-
-const displayFont = Nanum_Myeongjo({
-  variable: "--font-app-display",
-  display: "swap",
-  weight: ["400", "700", "800"],
-  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -32,8 +25,11 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   icons: {
-    icon: "/icon",
-    apple: "/apple-icon",
+    icon: [
+      { url: "/yonsei-logo.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/yonsei-logo.svg",
+    apple: "/yonsei-logo.svg",
   },
   manifest: "/manifest.webmanifest",
   openGraph: {
@@ -71,9 +67,11 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${bodyFont.variable} ${displayFont.variable} h-full antialiased`}
+      className={`${appFont.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-background text-foreground">{children}</body>
+      <body className="min-h-full bg-background text-foreground">
+        <SiteFrame>{children}</SiteFrame>
+      </body>
     </html>
   );
 }

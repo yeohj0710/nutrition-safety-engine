@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useEffectEvent, useRef, useState, useTransition } from "react";
 
 import { RuleCard } from "@/src/components/rule-card";
 import type { AiExplainResponse } from "@/src/lib/ai/schema";
@@ -97,6 +97,7 @@ const ghostButtonClass =
 const subtleActionButtonClass =
   "rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-stone-600 transition duration-150 hover:border-stone-300 hover:text-stone-900";
 const explorerStorageKey = "nutrition-safety-explorer-state-v2";
+const minimumQueryLoadingMs = 900;
 
 type PersistedExplorerState = {
   version: 1;
@@ -131,6 +132,51 @@ type PersistedExplorerState = {
     hasQueried: boolean;
     response: EngineResponse | null;
   };
+};
+
+type ExplorerProfileDraft = {
+  age: string;
+  sex: string;
+  pregnancyStatus: string;
+  lactationStatus: string;
+  smokerStatus: string;
+  medications: string;
+  conditions: string;
+  allergies: string;
+  selectedCompounds: string;
+  jurisdiction: string;
+  memo: string;
+};
+
+function delay(ms: number) {
+  return new Promise((resolve) => window.setTimeout(resolve, ms));
+}
+
+const blankExplorerProfile: ExplorerProfileDraft = {
+  age: "",
+  sex: "",
+  pregnancyStatus: "",
+  lactationStatus: "",
+  smokerStatus: "",
+  medications: "",
+  conditions: "",
+  allergies: "",
+  selectedCompounds: "",
+  jurisdiction: "KR",
+  memo: "",
+};
+
+const defaultExampleProfile: ExplorerProfileDraft = {
+  ...blankExplorerProfile,
+  age: "32",
+  sex: "female",
+  pregnancyStatus: "pregnant",
+  smokerStatus: "never",
+  medications: "warfarin",
+  conditions: "간질환",
+  allergies: "shellfish",
+  selectedCompounds: "비타민 A",
+  memo: "입덧 때문에 액상형 보충제를 간헐적으로 복용 중입니다.",
 };
 
 function normalizeExplorerInput(value: string) {
@@ -461,6 +507,53 @@ function SelectField({
   );
 }
 
+function CompactSelectChip({
+  label,
+  value,
+  onChange,
+  options,
+  minWidthClassName = "min-w-[8.5rem]",
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  options: Array<{ value: string; label: string }>;
+  minWidthClassName?: string;
+}) {
+  return (
+    <label
+      className={`relative inline-flex min-h-10 items-center gap-2 rounded-full border border-stone-200 bg-white px-3 pr-9 text-sm text-stone-700 transition duration-150 hover:border-stone-300 ${minWidthClassName}`}
+    >
+      <span className="shrink-0 text-xs font-semibold text-muted">{label}</span>
+      <select
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        className="w-full appearance-none bg-transparent text-sm font-medium text-stone-900 outline-none"
+      >
+        {options.map((option) => (
+          <option key={`${label}-${option.value}`} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+      <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-stone-400">
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 20 20"
+          className="h-4 w-4"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="m5 7.5 5 5 5-5" />
+        </svg>
+      </span>
+    </label>
+  );
+}
+
 function ToggleChip({
   checked,
   label,
@@ -497,6 +590,61 @@ function ToggleChip({
       />
       {label}
     </label>
+  );
+}
+
+function ExplorerLoadingSkeleton() {
+  return (
+    <section
+      aria-live="polite"
+      className="surface-card overflow-hidden rounded-[1.8rem] px-5 py-5 md:px-6"
+    >
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="inline-flex min-h-9 items-center rounded-full border border-emerald-200 bg-emerald-50 px-3 text-xs font-semibold text-emerald-900">
+          조회 중
+        </span>
+        <span className="text-sm font-medium text-muted">
+          입력 조건을 바탕으로 근거를 정리하고 있습니다.
+        </span>
+      </div>
+
+      <div className="mt-4 rounded-[1.25rem] border border-border-subtle bg-white/78 p-4">
+        <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+          <div className="min-w-0 flex-1">
+            <div className="loading-skeleton h-3 w-24 rounded-full" />
+            <div className="loading-skeleton mt-3 h-8 w-[min(24rem,80%)] rounded-full" />
+            <div className="loading-skeleton mt-4 h-4 w-full rounded-full" />
+            <div className="loading-skeleton mt-2 h-4 w-[88%] rounded-full" />
+          </div>
+          <div className="flex flex-wrap gap-2 md:justify-end">
+            <div className="loading-skeleton h-9 w-20 rounded-full" />
+            <div className="loading-skeleton h-9 w-24 rounded-full" />
+            <div className="loading-skeleton h-9 w-20 rounded-full" />
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-4 grid gap-3">
+        {[0, 1].map((item) => (
+          <div
+            key={`loading-card-${item}`}
+            className="rounded-[1.35rem] border border-border-subtle bg-white/82 p-4"
+          >
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="loading-skeleton h-7 w-20 rounded-full" />
+              <div className="loading-skeleton h-7 w-24 rounded-full" />
+              <div className="loading-skeleton h-7 w-[4.5rem] rounded-full" />
+            </div>
+            <div className="loading-skeleton mt-4 h-8 w-[min(20rem,72%)] rounded-full" />
+            <div className="loading-skeleton mt-4 h-24 w-full rounded-[1rem]" />
+            <div className="mt-4 grid gap-3 md:grid-cols-2">
+              <div className="loading-skeleton h-20 w-full rounded-[1rem]" />
+              <div className="loading-skeleton h-20 w-full rounded-[1rem]" />
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -650,17 +798,23 @@ export function RuleExplorerClient({
   metadata: ExplorerMetadata;
 }) {
   type SectionKey = keyof typeof sectionLabels;
-  const [age, setAge] = useState("");
-  const [sex, setSex] = useState("");
-  const [pregnancyStatus, setPregnancyStatus] = useState("");
-  const [lactationStatus, setLactationStatus] = useState("");
-  const [smokerStatus, setSmokerStatus] = useState("");
-  const [medications, setMedications] = useState("");
-  const [conditions, setConditions] = useState("");
-  const [allergies, setAllergies] = useState("");
-  const [selectedCompounds, setSelectedCompounds] = useState("");
-  const [jurisdiction, setJurisdiction] = useState("KR");
-  const [memo, setMemo] = useState("");
+  const [age, setAge] = useState(defaultExampleProfile.age);
+  const [sex, setSex] = useState(defaultExampleProfile.sex);
+  const [pregnancyStatus, setPregnancyStatus] = useState(
+    defaultExampleProfile.pregnancyStatus,
+  );
+  const [lactationStatus, setLactationStatus] = useState(
+    defaultExampleProfile.lactationStatus,
+  );
+  const [smokerStatus, setSmokerStatus] = useState(defaultExampleProfile.smokerStatus);
+  const [medications, setMedications] = useState(defaultExampleProfile.medications);
+  const [conditions, setConditions] = useState(defaultExampleProfile.conditions);
+  const [allergies, setAllergies] = useState(defaultExampleProfile.allergies);
+  const [selectedCompounds, setSelectedCompounds] = useState(
+    defaultExampleProfile.selectedCompounds,
+  );
+  const [jurisdiction, setJurisdiction] = useState(defaultExampleProfile.jurisdiction);
+  const [memo, setMemo] = useState(defaultExampleProfile.memo);
   const [severityFilter, setSeverityFilter] = useState("");
   const [pregnancyOnly, setPregnancyOnly] = useState(false);
   const [medicationOnly, setMedicationOnly] = useState(false);
@@ -671,12 +825,27 @@ export function RuleExplorerClient({
   const [aiRuleRecommendations, setAiRuleRecommendations] = useState<Record<string, string>>({});
   const [hasQueried, setHasQueried] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isQueryLoading, setIsQueryLoading] = useState(false);
   const [isAdvancedOpen, setIsAdvancedOpen] = useState(false);
   const [sectionVisibleCounts, setSectionVisibleCounts] = useState<
     Record<SectionKey, number>
   >(() => ({ ...sectionPreviewCounts }));
   const [hasRestoredState, setHasRestoredState] = useState(false);
+  const [restoredFromStorage, setRestoredFromStorage] = useState(false);
   const [isPending, startTransition] = useTransition();
+  const hasAutoSubmittedDefault = useRef(false);
+  const activeQueryIdRef = useRef(0);
+  const submitDefaultExample = useEffectEvent(() => {
+    startTransition(() => {
+      void submitQuery(defaultExampleProfile).catch((caught) =>
+        setError(
+          caught instanceof Error
+            ? caught.message
+            : "규칙을 불러오지 못했습니다.",
+        ),
+      );
+    });
+  });
 
   const isMale = sex === "male";
   const visible = getVisibleSections(response, {
@@ -707,12 +876,14 @@ export function RuleExplorerClient({
     try {
       const raw = window.localStorage.getItem(explorerStorageKey);
       if (!raw) {
+        setRestoredFromStorage(false);
         setHasRestoredState(true);
         return;
       }
 
       const snapshot = JSON.parse(raw) as PersistedExplorerState;
       if (snapshot.version !== 1) {
+        setRestoredFromStorage(false);
         setHasRestoredState(true);
         return;
       }
@@ -735,7 +906,7 @@ export function RuleExplorerClient({
       setDiseaseOnly(snapshot.filters.diseaseOnly ?? false);
       setSort(snapshot.filters.sort ?? "severity_desc");
 
-      setIsAdvancedOpen(snapshot.ui.isAdvancedOpen ?? false);
+      setIsAdvancedOpen(false);
       setSectionVisibleCounts(
         snapshot.ui.sectionVisibleCounts ?? { ...sectionPreviewCounts },
       );
@@ -743,12 +914,29 @@ export function RuleExplorerClient({
       setHasQueried(snapshot.query.hasQueried ?? false);
       setResponse(snapshot.query.response ?? null);
       setError(null);
+      setRestoredFromStorage(true);
     } catch {
       window.localStorage.removeItem(explorerStorageKey);
+      setRestoredFromStorage(false);
     } finally {
       setHasRestoredState(true);
     }
   }, []);
+
+  useEffect(() => {
+    if (
+      !hasRestoredState ||
+      restoredFromStorage ||
+      hasQueried ||
+      response ||
+      hasAutoSubmittedDefault.current
+    ) {
+      return;
+    }
+
+    hasAutoSubmittedDefault.current = true;
+    submitDefaultExample();
+  }, [hasQueried, hasRestoredState, response, restoredFromStorage]);
 
   useEffect(() => {
     if (!hasRestoredState) {
@@ -778,7 +966,7 @@ export function RuleExplorerClient({
         sort,
       },
       ui: {
-        isAdvancedOpen,
+        isAdvancedOpen: false,
         sectionVisibleCounts,
       },
       query: {
@@ -805,7 +993,6 @@ export function RuleExplorerClient({
     medicationOnly,
     diseaseOnly,
     sort,
-    isAdvancedOpen,
     sectionVisibleCounts,
     hasQueried,
     response,
@@ -892,47 +1079,90 @@ export function RuleExplorerClient({
     resetSectionPreviewCounts();
   }
 
-  async function submitQuery() {
+  function buildQueryPayload(profile: ExplorerProfileDraft): EngineQuery {
+    const isMaleProfile = profile.sex === "male";
+
+    return {
+      profile: {
+        age: profile.age ? Number(profile.age) : undefined,
+        sex: profile.sex || undefined,
+        pregnancyStatus: isMaleProfile ? undefined : profile.pregnancyStatus || undefined,
+        lactationStatus: isMaleProfile ? undefined : profile.lactationStatus || undefined,
+        smokerStatus: profile.smokerStatus || undefined,
+        medications: buildCanonicalEntries(
+          profile.medications,
+          metadata.medicationOptions,
+        ),
+        conditions: buildCanonicalEntries(
+          profile.conditions,
+          metadata.conditionOptions,
+        ),
+        allergies: splitMultiValue(profile.allergies),
+        selectedCompounds: buildCanonicalEntries(
+          profile.selectedCompounds,
+          metadata.ingredients,
+        ),
+        jurisdiction: profile.jurisdiction,
+        memo: profile.memo,
+      },
+      sort,
+    } satisfies EngineQuery;
+  }
+
+  async function submitQuery(profileOverride?: ExplorerProfileDraft) {
+    const queryId = activeQueryIdRef.current + 1;
+    activeQueryIdRef.current = queryId;
+    const profile = profileOverride ?? {
+      age,
+      sex,
+      pregnancyStatus,
+      lactationStatus,
+      smokerStatus,
+      medications,
+      conditions,
+      allergies,
+      selectedCompounds,
+      jurisdiction,
+      memo,
+    };
+
     setHasQueried(true);
     setError(null);
+    setAiRuleRecommendations({});
+    setResponse(null);
+    setIsQueryLoading(true);
+    const startedAt = performance.now();
 
-    const result = await fetch("/api/rules/query", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        profile: {
-          age: age ? Number(age) : undefined,
-          sex: sex || undefined,
-          pregnancyStatus: isMale ? undefined : pregnancyStatus || undefined,
-          lactationStatus: isMale ? undefined : lactationStatus || undefined,
-          smokerStatus: smokerStatus || undefined,
-          medications: buildCanonicalEntries(
-            medications,
-            metadata.medicationOptions,
-          ),
-          conditions: buildCanonicalEntries(
-            conditions,
-            metadata.conditionOptions,
-          ),
-          allergies: splitMultiValue(allergies),
-          selectedCompounds: buildCanonicalEntries(
-            selectedCompounds,
-            metadata.ingredients,
-          ),
-          jurisdiction,
-          memo,
-        },
-        sort,
-      } satisfies EngineQuery),
-    });
+    try {
+      const result = await fetch("/api/rules/query", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(buildQueryPayload(profile)),
+      });
 
-    if (!result.ok) {
-      const payload = (await result.json()) as { error?: string };
-      throw new Error(payload.error ?? "규칙을 불러오지 못했습니다.");
+      const payload = (await result.json()) as EngineResponse | { error?: string };
+      const elapsed = performance.now() - startedAt;
+      if (elapsed < minimumQueryLoadingMs) {
+        await delay(minimumQueryLoadingMs - elapsed);
+      }
+
+      if (activeQueryIdRef.current !== queryId) {
+        return;
+      }
+
+      if (!result.ok) {
+        throw new Error(
+          "error" in payload ? payload.error ?? "규칙을 불러오지 못했습니다." : "규칙을 불러오지 못했습니다.",
+        );
+      }
+
+      setResponse(payload as EngineResponse);
+      resetSectionPreviewCounts();
+    } finally {
+      if (activeQueryIdRef.current === queryId) {
+        setIsQueryLoading(false);
+      }
     }
-
-    setResponse((await result.json()) as EngineResponse);
-    resetSectionPreviewCounts();
   }
 
   function resetResultFilters() {
@@ -960,59 +1190,48 @@ export function RuleExplorerClient({
     setResponse(null);
     setHasQueried(false);
     setError(null);
+    setIsAdvancedOpen(false);
     resetSectionPreviewCounts();
     window.localStorage.removeItem(explorerStorageKey);
   }
 
-  function resetInputsOnly() {
-    setAge("");
-    setSex("");
-    setPregnancyStatus("");
-    setLactationStatus("");
-    setSmokerStatus("");
-    setMedications("");
-    setConditions("");
-    setAllergies("");
-    setSelectedCompounds("");
-    setJurisdiction("KR");
-    setMemo("");
-    setIsAdvancedOpen(false);
-    setError(null);
-  }
+  function applyStarterProfile(
+    profile: Partial<ExplorerProfileDraft>,
+    options?: { submit?: boolean },
+  ) {
+    const nextProfile: ExplorerProfileDraft = {
+      ...blankExplorerProfile,
+      ...profile,
+    };
 
-  function applyStarterProfile(profile: {
-    selectedCompounds: string;
-    medications?: string;
-    conditions?: string;
-    age?: string;
-    sex?: string;
-    pregnancyStatus?: string;
-    lactationStatus?: string;
-    smokerStatus?: string;
-  }) {
-    setSelectedCompounds(profile.selectedCompounds);
-    setMedications(profile.medications ?? "");
-    setConditions(profile.conditions ?? "");
-    setAge(profile.age ?? "");
-    setSex(profile.sex ?? "");
-    setPregnancyStatus(profile.pregnancyStatus ?? "");
-    setLactationStatus(profile.lactationStatus ?? "");
-    setSmokerStatus(profile.smokerStatus ?? "");
-    setAllergies("");
-    setMemo("");
+    setSelectedCompounds(nextProfile.selectedCompounds);
+    setMedications(nextProfile.medications);
+    setConditions(nextProfile.conditions);
+    setAge(nextProfile.age);
+    setSex(nextProfile.sex);
+    setPregnancyStatus(nextProfile.pregnancyStatus);
+    setLactationStatus(nextProfile.lactationStatus);
+    setSmokerStatus(nextProfile.smokerStatus);
+    setAllergies(nextProfile.allergies);
+    setJurisdiction(nextProfile.jurisdiction);
+    setMemo(nextProfile.memo);
     setError(null);
     setResponse(null);
     setHasQueried(false);
-    setIsAdvancedOpen(
-      Boolean(
-        profile.age ||
-          profile.sex ||
-          profile.pregnancyStatus ||
-          profile.lactationStatus ||
-          profile.smokerStatus,
-      ),
-    );
+    setIsAdvancedOpen(false);
     resetSectionPreviewCounts();
+
+    if (options?.submit) {
+      startTransition(() => {
+        void submitQuery(nextProfile).catch((caught) =>
+          setError(
+            caught instanceof Error
+              ? caught.message
+              : "규칙을 불러오지 못했습니다.",
+          ),
+        );
+      });
+    }
   }
 
   const sectionOrder: Array<keyof NonNullable<typeof visible>> = [
@@ -1106,14 +1325,6 @@ export function RuleExplorerClient({
     smokerStatus?: string;
   }> = [
     {
-      label: "임신 중 비타민 A",
-      description: "임신 관련 위험도를 빠르게 보는 예시",
-      selectedCompounds: "비타민 A",
-      age: "32",
-      sex: "female",
-      pregnancyStatus: "pregnant",
-    },
-    {
       label: "와파린 + 비타민 K",
       description: "약물 상호작용 확인용 조합",
       selectedCompounds: "비타민 K",
@@ -1132,11 +1343,11 @@ export function RuleExplorerClient({
   ] as const;
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-4">
       <section className="surface-card overflow-hidden rounded-[1.5rem]">
         <div>
-          <div className="border-b border-border-subtle px-6 py-5 md:px-7">
-            <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div className="border-b border-border-subtle px-4 py-4 md:px-5">
+            <div className="hidden flex-col gap-3 md:flex-row md:items-end md:justify-between">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">입력</p>
                 <h2 className="mt-2 text-[clamp(1.35rem,2.3vw,1.75rem)] font-semibold tracking-[-0.02em] text-foreground">
@@ -1149,14 +1360,47 @@ export function RuleExplorerClient({
 
               <button
                 type="button"
-                onClick={resetInputsOnly}
-                className={subtleActionButtonClass}
+                onClick={() => applyStarterProfile(defaultExampleProfile, { submit: true })}
+                className={`${subtleActionButtonClass} hidden`}
               >
                 입력만 초기화
               </button>
             </div>
 
-            <div className="mt-5 grid gap-3 sm:grid-cols-3">
+            <div className="rounded-[1rem] border border-emerald-200/70 bg-emerald-50/70 px-4 py-3">
+              <div className="space-y-3">
+                <div className="max-w-[46rem]">
+                  <p className="text-sm font-semibold text-foreground">
+                    첫 화면에는 예시 입력과 예시 결과가 바로 보이도록 구성했습니다.
+                  </p>
+                  <p className="mt-0.5 text-sm leading-5 text-muted">
+                    그대로 `규칙 조회`를 눌러도 되고, 필요한 칸만 내 상황에 맞게 바꿔서 다시
+                    조회해도 됩니다.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() => applyStarterProfile(defaultExampleProfile, { submit: true })}
+                    className={subtleActionButtonClass}
+                  >
+                    기본 예시로 되돌리기
+                  </button>
+                  {starterProfiles.map((profile) => (
+                    <button
+                      key={`starter-${profile.label}`}
+                      type="button"
+                      onClick={() => applyStarterProfile(profile, { submit: true })}
+                      className={ghostButtonClass}
+                    >
+                      {profile.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="hidden mt-5 grid gap-3 sm:grid-cols-3">
               {highlightedCounts.map((item) => (
                 <div key={item.label} className="rounded-[1rem] border border-stone-200 bg-white px-4 py-4">
                   <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted">
@@ -1170,18 +1414,24 @@ export function RuleExplorerClient({
             </div>
           </div>
 
-          <div className="px-6 py-6 md:px-7">
-            <div className="grid gap-4 2xl:grid-cols-3">
-              <label className={`${fieldGroupClass} rounded-[1rem] border border-stone-200 bg-white p-4`}>
+          <div className="px-4 py-4 md:px-5">
+            <div className="grid gap-3 lg:grid-cols-3">
+              <label className={`${fieldGroupClass} rounded-[1rem] border border-stone-200 bg-white p-3`}>
                 <div className="mb-3 flex items-center justify-between gap-3">
                   <span className={fieldLabelClass}>1. 선택 성분</span>
                   <span className="rounded-full bg-stone-100 px-2.5 py-1 text-[11px] font-medium text-stone-600">
                     필수
                   </span>
                 </div>
-                <textarea value={selectedCompounds} onChange={(event) => setSelectedCompounds(event.target.value)} rows={3} placeholder="예: 비타민 D, vitamin d, vit d, 비타민D" className={`${fieldControlClass} min-h-[8rem] resize-y`} />
-                <p className="mt-3 text-xs leading-5 text-muted">
-                  한글, 영문, 축약 표현을 최대한 같은 성분으로 맞춰 인식합니다.
+                <input
+                  value={selectedCompounds}
+                  onChange={(event) => setSelectedCompounds(event.target.value)}
+                  placeholder="예: 비타민 D, vitamin d, vit d"
+                  className={fieldControlClass}
+                  autoComplete="off"
+                />
+                <p className="hidden mt-2 text-xs leading-5 text-muted">
+                  쉼표로 이어 적으면 됩니다.
                 </p>
                 <FieldRecognitionAssist
                   recognized={compoundFieldAnalysis.recognized}
@@ -1195,16 +1445,22 @@ export function RuleExplorerClient({
                 />
               </label>
 
-              <label className={`${fieldGroupClass} rounded-[1rem] border border-stone-200 bg-white p-4`}>
+              <label className={`${fieldGroupClass} rounded-[1rem] border border-stone-200 bg-white p-3`}>
                 <div className="mb-3 flex items-center justify-between gap-3">
                   <span className={fieldLabelClass}>2. 복용 약물</span>
                   <span className="rounded-full bg-stone-100 px-2.5 py-1 text-[11px] font-medium text-stone-600">
                     정확도 상승
                   </span>
                 </div>
-                <textarea value={medications} onChange={(event) => setMedications(event.target.value)} rows={3} placeholder="예: 와파린, warfarin, 레보티록신, 피임약" className={`${fieldControlClass} min-h-[8rem] resize-y`} />
-                <p className="mt-3 text-xs leading-5 text-muted">
-                  같은 약물은 한글과 영문 별칭을 이어 하나의 입력으로 처리합니다.
+                <input
+                  value={medications}
+                  onChange={(event) => setMedications(event.target.value)}
+                  placeholder="예: 와파린, warfarin, 레보티록신"
+                  className={fieldControlClass}
+                  autoComplete="off"
+                />
+                <p className="hidden mt-2 text-xs leading-5 text-muted">
+                  복용 중인 약만 짧게 적어도 됩니다.
                 </p>
                 <FieldRecognitionAssist
                   recognized={medicationFieldAnalysis.recognized}
@@ -1218,16 +1474,22 @@ export function RuleExplorerClient({
                 />
               </label>
 
-              <label className={`${fieldGroupClass} rounded-[1rem] border border-stone-200 bg-white p-4`}>
+              <label className={`${fieldGroupClass} rounded-[1rem] border border-stone-200 bg-white p-3`}>
                 <div className="mb-3 flex items-center justify-between gap-3">
                   <span className={fieldLabelClass}>3. 질환 · 상태</span>
                   <span className="rounded-full bg-stone-100 px-2.5 py-1 text-[11px] font-medium text-stone-600">
                     선택
                   </span>
                 </div>
-                <textarea value={conditions} onChange={(event) => setConditions(event.target.value)} rows={3} placeholder="예: 당뇨병, diabetes, 간질환, chronic liver disease" className={`${fieldControlClass} min-h-[8rem] resize-y`} />
-                <p className="mt-3 text-xs leading-5 text-muted">
-                  질환과 상태도 같은 맥락으로 이어 판단할 수 있도록 정리합니다.
+                <input
+                  value={conditions}
+                  onChange={(event) => setConditions(event.target.value)}
+                  placeholder="예: 당뇨병, diabetes, 간질환"
+                  className={fieldControlClass}
+                  autoComplete="off"
+                />
+                <p className="hidden mt-2 text-xs leading-5 text-muted">
+                  질환, 상태를 함께 적어도 됩니다.
                 </p>
                 <FieldRecognitionAssist
                   recognized={conditionFieldAnalysis.recognized}
@@ -1242,7 +1504,7 @@ export function RuleExplorerClient({
               </label>
             </div>
 
-            <section className="mt-5 overflow-hidden rounded-[1rem] border border-stone-200 bg-stone-50/70">
+            <section className="mt-3 overflow-hidden rounded-[1rem] border border-stone-200 bg-stone-50/70">
               <button
                 type="button"
                 onClick={() => setIsAdvancedOpen((value) => !value)}
@@ -1253,7 +1515,7 @@ export function RuleExplorerClient({
                   <p className="text-[15px] font-semibold text-stone-900">
                     추가 정보 입력
                   </p>
-                  <p className="mt-1 text-sm leading-6 text-stone-600">
+                  <p className="hidden mt-1 text-sm leading-6 text-stone-600">
                     꼭 필요할 때만 더 열어 입력할 수 있습니다.
                   </p>
                 </div>
@@ -1380,14 +1642,38 @@ export function RuleExplorerClient({
               </div>
             </section>
 
-            <div className="mt-5 flex flex-col gap-3 border-t border-border-subtle pt-5 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-sm leading-6 text-muted">
+            <div className="mt-3 flex flex-col gap-2 border-t border-border-subtle pt-3 sm:flex-row sm:items-center sm:justify-between">
+              <p className="hidden text-sm leading-6 text-muted">
                 {hasAnyPrimaryInput
                   ? "직접 관련된 규칙을 먼저 정리하고, 일반 참고 항목은 뒤에서 보조적으로 이어 보여드립니다."
                   : "성분 하나만 먼저 넣고 시작해도 됩니다. 필요한 순간에만 추가 조건을 더해 보세요."}
               </p>
               <div className="flex flex-wrap gap-2 sm:flex-nowrap">
-                <button type="button" onClick={() => startTransition(() => void submitQuery().catch((caught) => setError(caught instanceof Error ? caught.message : "규칙을 불러오지 못했습니다.")))} className={primaryButtonClass}>규칙 조회</button>
+                <button
+                  type="button"
+                  disabled={isQueryLoading || isPending}
+                  onClick={() =>
+                    startTransition(() =>
+                      void submitQuery().catch((caught) =>
+                        setError(
+                          caught instanceof Error
+                            ? caught.message
+                            : "규칙을 불러오지 못했습니다.",
+                        ),
+                      ),
+                    )
+                  }
+                  className={`${primaryButtonClass} disabled:cursor-wait disabled:bg-stone-900 disabled:opacity-80`}
+                >
+                  {isQueryLoading ? (
+                    <span className="inline-flex items-center gap-2">
+                      <span className="inline-flex h-4 w-4 rounded-full border-2 border-white/35 border-t-white animate-spin" />
+                      근거 정리 중
+                    </span>
+                  ) : (
+                    "규칙 조회"
+                  )}
+                </button>
                 <button type="button" onClick={resetForm} className={secondaryButtonClass}>전체 초기화</button>
               </div>
             </div>
@@ -1397,7 +1683,72 @@ export function RuleExplorerClient({
       </section>
 
       {response ? (
-        <section className="surface-card rounded-[1.5rem] p-5 md:p-6">
+        <>
+          <section className="surface-card rounded-[1.25rem] p-3 md:p-4">
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="rounded-full bg-stone-950 px-3 py-1.5 text-xs font-semibold text-white">
+                  결과 {visibleCount}건
+                </span>
+                {resultOverview.map((item) => (
+                  <span
+                    key={`summary-${item.key}`}
+                    className="rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-stone-700"
+                  >
+                    {item.shortLabel} {item.count}
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2 xl:ml-auto">
+                <CompactSelectChip
+                  label="위험도"
+                  value={severityFilter}
+                  onChange={updateSeverityFilter}
+                  options={[
+                    { value: "", label: "전체" },
+                    { value: "contraindicated", label: "금지" },
+                    { value: "avoid", label: "중단/회피" },
+                    { value: "warn", label: "강한 주의" },
+                    { value: "monitor", label: "일반 주의" },
+                  ]}
+                />
+                <CompactSelectChip
+                  label="정렬"
+                  value={sort}
+                  onChange={(value) =>
+                    updateSort(value as NonNullable<EngineQuery["sort"]>)
+                  }
+                  options={metadata.sortOptions}
+                  minWidthClassName="min-w-[11rem]"
+                />
+                <ToggleChip
+                  checked={medicationOnly}
+                  onChange={updateMedicationOnly}
+                  label="약물 관련만"
+                />
+                <ToggleChip
+                  checked={diseaseOnly}
+                  onChange={updateDiseaseOnly}
+                  label="질환 관련만"
+                />
+                <ToggleChip
+                  checked={pregnancyOnly}
+                  onChange={updatePregnancyOnly}
+                  label="임신/수유만"
+                />
+                <button
+                  type="button"
+                  onClick={resetResultFilters}
+                  className={ghostButtonClass}
+                >
+                  필터 초기화
+                </button>
+              </div>
+            </div>
+          </section>
+
+        <section className="hidden surface-card rounded-[1.5rem] p-5 md:p-6">
           <div className="flex flex-col gap-3 border-b border-border-subtle pb-5 2xl:flex-row 2xl:items-end 2xl:justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">결과</p>
@@ -1453,30 +1804,34 @@ export function RuleExplorerClient({
                 </button>
               </div>
 
-              <div className="mt-4 space-y-4">
-                <SelectField
-                  label="위험도"
-                  value={severityFilter}
-                  onChange={updateSeverityFilter}
-                  options={[
-                    { value: "", label: "전체" },
-                    { value: "contraindicated", label: "금지" },
-                    { value: "avoid", label: "중단/회피" },
-                    { value: "warn", label: "강한 주의" },
-                    { value: "monitor", label: "일반 주의" },
-                  ]}
-                />
-
-                <SelectField
-                  label="정렬"
-                  value={sort}
-                  onChange={(value) =>
-                    updateSort(value as NonNullable<EngineQuery["sort"]>)
-                  }
-                  options={metadata.sortOptions}
-                />
+              <div className="mt-5 space-y-6">
+                <div>
+                  <SelectField
+                    label="위험도"
+                    value={severityFilter}
+                    onChange={updateSeverityFilter}
+                    options={[
+                      { value: "", label: "전체" },
+                      { value: "contraindicated", label: "금지" },
+                      { value: "avoid", label: "중단/회피" },
+                      { value: "warn", label: "강한 주의" },
+                      { value: "monitor", label: "일반 주의" },
+                    ]}
+                  />
+                </div>
 
                 <div>
+                  <SelectField
+                    label="정렬"
+                    value={sort}
+                    onChange={(value) =>
+                      updateSort(value as NonNullable<EngineQuery["sort"]>)
+                    }
+                    options={metadata.sortOptions}
+                  />
+                </div>
+
+                <div className="pt-1">
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
                     관련 조건
                   </p>
@@ -1502,17 +1857,11 @@ export function RuleExplorerClient({
             </div>
           </div>
         </section>
+        </>
       ) : null}
 
-      {isPending ? (
-        <div aria-live="polite" className="surface-card rounded-[1.8rem] px-5 py-6">
-          <p className="text-sm font-semibold text-foreground">
-            입력하신 조건에 맞는 안내를 정리하고 있어요.
-          </p>
-          <p className="mt-2 text-sm leading-6 text-muted">
-            직접 관련된 항목을 먼저 분류하고, 함께 참고할 근거를 이어 묶고 있습니다.
-          </p>
-        </div>
+      {isQueryLoading ? (
+        <ExplorerLoadingSkeleton />
       ) : null}
       {error ? (
         <div aria-live="polite" className="rounded-[1.5rem] border border-red-200 bg-red-50 px-5 py-4 text-sm text-red-800">
@@ -1539,18 +1888,18 @@ export function RuleExplorerClient({
             return (
               <section
                 key={sectionKey}
-                className="surface-card rounded-[1.5rem] p-5 motion-safe:animate-[rise-in_620ms_var(--ease-emphasized)_both]"
+                className="surface-card rounded-[1.25rem] p-4 motion-safe:animate-[rise-in_620ms_var(--ease-emphasized)_both]"
                 style={{ animationDelay: `${index * 90}ms` }}
               >
-                <div className="flex flex-col gap-3 border-b border-border-subtle pb-4 md:flex-row md:items-start md:justify-between">
+                <div className="flex flex-col gap-2 border-b border-border-subtle pb-3 md:flex-row md:items-center md:justify-between">
                   <div className="min-w-0">
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
+                    <p className="hidden text-xs font-semibold uppercase tracking-[0.18em] text-muted">
                       {presentation.kicker}
                     </p>
-                    <h2 className="mt-2 text-lg font-semibold tracking-[-0.02em] text-foreground">
+                    <h2 className="text-sm font-semibold tracking-[-0.02em] text-foreground md:text-base">
                       {presentation.title}
                     </h2>
-                    <p className="mt-2 text-sm leading-6 text-muted">
+                    <p className="hidden mt-2 text-sm leading-6 text-muted">
                       {presentation.summary}
                     </p>
                   </div>
@@ -1564,7 +1913,7 @@ export function RuleExplorerClient({
                   </div>
                 </div>
 
-                <div className="mt-4 space-y-3">
+                <div className="mt-3 space-y-3">
                   {visibleItems.map((match, matchIndex) => (
                     <div
                       key={`${sectionKey}-${match.ruleId}`}
@@ -1643,7 +1992,7 @@ export function RuleExplorerClient({
             </div>
           </section>
         )
-      ) : !isPending ? (
+      ) : !isQueryLoading && hasQueried ? (
         <section className="surface-card rounded-[1.5rem] px-6 py-6 md:px-7">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
             {hasQueried ? "결과 없음" : "입력 전"}
@@ -1662,7 +2011,7 @@ export function RuleExplorerClient({
                 <button
                   key={`empty-starter-${profile.label}`}
                   type="button"
-                  onClick={() => applyStarterProfile(profile)}
+                  onClick={() => applyStarterProfile(profile, { submit: true })}
                   className={ghostButtonClass}
                 >
                   {profile.label}

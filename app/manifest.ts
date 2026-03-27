@@ -14,14 +14,9 @@ export default function manifest(): MetadataRoute.Manifest {
     lang: "ko-KR",
     icons: [
       {
-        src: "/icon",
-        sizes: "64x64",
-        type: "image/png",
-      },
-      {
-        src: "/apple-icon",
-        sizes: "180x180",
-        type: "image/png",
+        src: "/yonsei-logo.svg",
+        sizes: "any",
+        type: "image/svg+xml",
       },
     ],
   };

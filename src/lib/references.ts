@@ -337,6 +337,15 @@ export function getEvidencePrimaryExcerpt(chunk: EvidenceChunk) {
   return chunk.quoteOriginal ?? chunk.verbatimQuote ?? chunk.quoteTranslationKo ?? chunk.translatedQuote ?? chunk.quote ?? chunk.chunkText ?? chunk.summary ?? null;
 }
 
+export function hasFullOriginalEvidenceExcerpt(chunk: EvidenceChunk) {
+  return hasOriginalEvidenceExcerpt(chunk) && !isShortOriginalEvidenceExcerpt(chunk);
+}
+
+export function getFullOriginalEvidenceExcerpt(chunk: EvidenceChunk) {
+  if (!hasFullOriginalEvidenceExcerpt(chunk)) return null;
+  return chunk.quoteOriginal ?? chunk.verbatimQuote ?? null;
+}
+
 export function getEvidenceSecondaryExcerpt(chunk: EvidenceChunk) {
   const primary = normalizeExcerpt(getEvidencePrimaryExcerpt(chunk));
   const quoteTranslationKo = normalizeExcerpt(chunk.quoteTranslationKo);
@@ -382,6 +391,59 @@ export function getEvidenceContextSummary(chunk: EvidenceChunk) {
   }
 
   return null;
+}
+
+export function getEvidenceRepresentativeExcerpt(chunk: EvidenceChunk) {
+  const fullOriginal = getFullOriginalEvidenceExcerpt(chunk);
+  if (fullOriginal) return fullOriginal;
+
+  const contextSummary = getEvidenceContextSummary(chunk);
+  if (contextSummary) return contextSummary;
+
+  const translation = getEvidenceTranslationExcerpt(chunk);
+  if (translation) return translation;
+
+  return hasOriginalEvidenceExcerpt(chunk) ? null : getEvidencePrimaryExcerpt(chunk);
+}
+
+export function getEvidenceRepresentativeExcerptLabel(chunk: EvidenceChunk) {
+  if (hasFullOriginalEvidenceExcerpt(chunk)) {
+    return "원문 문장";
+  }
+
+  if (getEvidenceContextSummary(chunk)) {
+    return "근거 요약";
+  }
+
+  if (getEvidenceTranslationExcerpt(chunk)) {
+    return hasOriginalEvidenceExcerpt(chunk) ? "원문 기반 요약" : "번역 문장";
+  }
+
+  return "근거 문장";
+}
+
+function getEvidenceRepresentativeRank(chunk: EvidenceChunk) {
+  if (hasFullOriginalEvidenceExcerpt(chunk)) return 4;
+  if (getEvidenceContextSummary(chunk)) return 3;
+  if (getEvidenceTranslationExcerpt(chunk)) return 2;
+  if (!hasOriginalEvidenceExcerpt(chunk) && getEvidencePrimaryExcerpt(chunk)) return 1;
+  return 0;
+}
+
+export function pickRepresentativeEvidenceChunk<T extends EvidenceChunk>(chunks: T[]) {
+  let bestChunk: T | null = null;
+  let bestRank = -1;
+
+  for (const chunk of chunks) {
+    const rank = getEvidenceRepresentativeRank(chunk);
+
+    if (rank > bestRank) {
+      bestChunk = chunk;
+      bestRank = rank;
+    }
+  }
+
+  return bestChunk;
 }
 
 export function getEvidenceNote(chunk: EvidenceChunk) {
