@@ -16,11 +16,36 @@ type SourceBrowseItem = {
 };
 
 const controlClassName =
-  "min-h-12 w-full rounded-[1.2rem] border border-border-subtle bg-white/80 px-4 py-3 text-sm text-foreground outline-none transition duration-200 placeholder:text-muted hover:border-stone-300 hover:bg-white focus:border-accent focus:bg-white";
+  "min-h-11 w-full rounded-[1rem] border border-border-subtle bg-white px-4 py-3 text-sm text-foreground outline-none transition duration-200 placeholder:text-muted hover:border-stone-300 focus:border-accent";
 
 function formatLabel(value: string | null) {
   if (!value) return null;
   return value.replace(/_/g, " ");
+}
+
+function formatCount(value: number) {
+  return value.toLocaleString("ko-KR");
+}
+
+function getSearchScore(source: SourceBrowseItem, normalizedSearch: string) {
+  if (!normalizedSearch) return 0;
+
+  const title = source.title.toLowerCase();
+  const id = source.id.toLowerCase();
+  const publisher = (source.journalOrPublisher ?? "").toLowerCase();
+  const sourceType = source.sourceType.toLowerCase();
+
+  let score = 0;
+
+  if (title.includes(normalizedSearch)) score += 5;
+  if (id.includes(normalizedSearch)) score += 4;
+  if (publisher.includes(normalizedSearch)) score += 2;
+  if (sourceType.includes(normalizedSearch)) score += 1;
+
+  if (title.startsWith(normalizedSearch)) score += 2;
+  if (id.startsWith(normalizedSearch)) score += 1;
+
+  return score;
 }
 
 export function SourceBrowserClient({
@@ -37,56 +62,87 @@ export function SourceBrowserClient({
   const [evidenceLevel, setEvidenceLevel] = useState("");
   const deferredSearch = useDeferredValue(search);
 
+  const normalizedSearch = deferredSearch.trim().toLowerCase();
+
   const filteredSources = useMemo(() => {
-    const normalized = deferredSearch.trim().toLowerCase();
+    return sources
+      .filter((source) => {
+        if (jurisdiction && source.jurisdiction !== jurisdiction) {
+          return false;
+        }
 
-    return sources.filter((source) => {
-      if (jurisdiction && source.jurisdiction !== jurisdiction) {
-        return false;
-      }
+        if (evidenceLevel && source.evidenceLevel !== evidenceLevel) {
+          return false;
+        }
 
-      if (evidenceLevel && source.evidenceLevel !== evidenceLevel) {
-        return false;
-      }
+        if (!normalizedSearch) {
+          return true;
+        }
 
-      if (!normalized) {
-        return true;
-      }
+        return [
+          source.title,
+          source.id,
+          source.sourceType,
+          source.journalOrPublisher ?? "",
+          source.evidenceLevel ?? "",
+          source.jurisdiction ?? "",
+        ]
+          .join(" ")
+          .toLowerCase()
+          .includes(normalizedSearch);
+      })
+      .sort((left, right) => {
+        const scoreDifference =
+          getSearchScore(right, normalizedSearch) -
+          getSearchScore(left, normalizedSearch);
 
-      return [
-        source.title,
-        source.id,
-        source.sourceType,
-        source.journalOrPublisher ?? "",
-      ]
-        .join(" ")
-        .toLowerCase()
-        .includes(normalized);
-    });
-  }, [deferredSearch, evidenceLevel, jurisdiction, sources]);
+        if (scoreDifference !== 0) return scoreDifference;
+        if (right.linkedRuleCount !== left.linkedRuleCount) {
+          return right.linkedRuleCount - left.linkedRuleCount;
+        }
+        if (right.linkedChunkCount !== left.linkedChunkCount) {
+          return right.linkedChunkCount - left.linkedChunkCount;
+        }
+        if ((right.year ?? 0) !== (left.year ?? 0)) {
+          return (right.year ?? 0) - (left.year ?? 0);
+        }
+
+        return left.title.localeCompare(right.title, "ko");
+      });
+  }, [evidenceLevel, jurisdiction, normalizedSearch, sources]);
 
   const hasFilters = Boolean(search || jurisdiction || evidenceLevel);
 
+  const visibleLinkedRuleCount = useMemo(
+    () =>
+      filteredSources.reduce((sum, source) => sum + source.linkedRuleCount, 0),
+    [filteredSources],
+  );
+
+  const visibleLinkedChunkCount = useMemo(
+    () =>
+      filteredSources.reduce((sum, source) => sum + source.linkedChunkCount, 0),
+    [filteredSources],
+  );
+
   return (
-    <div className="space-y-5">
-      <section className="surface-card rounded-[2rem] px-5 py-5 md:px-6 md:py-6">
-        <div className="flex flex-col gap-5">
-          <div className="flex flex-col gap-3 2xl:flex-row 2xl:items-end 2xl:justify-between">
-            <div className="max-w-2xl">
-              <p className="eyebrow">Browse and verify</p>
-              <h2 className="mt-4 font-display text-[clamp(1.9rem,3vw,2.9rem)] leading-[0.98] tracking-[-0.04em] text-foreground">
-                필요한 출처만 빠르게 좁혀 보세요
+    <div className="flex flex-col gap-4">
+      <section className="surface-card rounded-[1.15rem] px-4 py-4">
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+            <div className="min-w-0">
+              <h2 className="text-sm font-semibold tracking-[-0.02em] text-foreground">
+                출처 검색
               </h2>
-              <p className="measure-copy mt-3 text-sm leading-7 text-muted">
-                제목, 출처 ID, 발행 기관으로 검색하고 관할권과 근거 수준별로 걸러서
-                확인할 수 있습니다. 각 항목에는 연결된 규칙 수와 근거 청크 수가 함께
-                표시됩니다.
+              <p className="mt-1 text-sm leading-6 text-muted">
+                제목, 출처 ID, 발행 기관으로 바로 좁혀 보고 필요한 출처만
+                확인하세요.
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="rounded-full border border-border-subtle bg-white/82 px-4 py-2 text-sm text-foreground">
-                검색 결과 {filteredSources.length}건
+            <div className="flex flex-wrap gap-2">
+              <span className="rounded-full border border-border-subtle bg-white px-3 py-1.5 text-sm font-medium text-foreground">
+                결과 {formatCount(filteredSources.length)}건
               </span>
               <button
                 type="button"
@@ -95,18 +151,18 @@ export function SourceBrowserClient({
                   setJurisdiction("");
                   setEvidenceLevel("");
                 }}
-                className="inline-flex min-h-11 items-center justify-center rounded-full border border-border-subtle bg-white/82 px-4 py-2 text-sm font-medium text-foreground transition duration-200 hover:-translate-y-0.5 hover:border-stone-300 hover:bg-white disabled:opacity-50"
                 disabled={!hasFilters}
+                className="inline-flex min-h-10 items-center justify-center rounded-full border border-border-subtle bg-white px-4 py-2 text-sm font-medium text-foreground transition duration-200 hover:border-stone-300 disabled:opacity-50"
               >
                 필터 초기화
               </button>
             </div>
           </div>
 
-          <div className="grid gap-3 2xl:grid-cols-[minmax(0,1.2fr)_12rem_13rem]">
+          <div className="grid gap-3 lg:grid-cols-[minmax(0,1.5fr)_12rem_14rem]">
             <label className="space-y-2">
               <span className="text-sm font-semibold text-foreground">
-                출처 검색
+                출처 검색어
               </span>
               <input
                 value={search}
@@ -152,74 +208,122 @@ export function SourceBrowserClient({
               </select>
             </label>
           </div>
+
+          <div className="grid gap-2 sm:grid-cols-3">
+            <div className="rounded-[1rem] border border-border-subtle bg-white px-4 py-3">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">
+                현재 보이는 출처
+              </p>
+              <p className="mt-2 text-lg font-semibold tracking-[-0.02em] text-foreground">
+                {formatCount(filteredSources.length)}건
+              </p>
+            </div>
+
+            <div className="rounded-[1rem] border border-border-subtle bg-white px-4 py-3">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">
+                연결 규칙
+              </p>
+              <p className="mt-2 text-lg font-semibold tracking-[-0.02em] text-foreground">
+                {formatCount(visibleLinkedRuleCount)}건
+              </p>
+            </div>
+
+            <div className="rounded-[1rem] border border-border-subtle bg-white px-4 py-3">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">
+                근거 청크
+              </p>
+              <p className="mt-2 text-lg font-semibold tracking-[-0.02em] text-foreground">
+                {formatCount(visibleLinkedChunkCount)}건
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
       {filteredSources.length === 0 ? (
-        <section className="surface-card rounded-[2rem] px-6 py-10 text-center">
-          <p className="font-display text-3xl tracking-[-0.04em] text-foreground">
+        <section className="surface-card rounded-[1.15rem] px-6 py-8">
+          <h3 className="text-base font-semibold tracking-[-0.02em] text-foreground">
             조건에 맞는 출처가 없습니다
-          </p>
-          <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-muted">
-            검색어를 조금 더 넓게 입력하거나 관할권과 근거 수준 필터를 해제하면
-            더 많은 자료를 확인할 수 있습니다.
+          </h3>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-muted">
+            검색어를 더 짧게 입력하거나 관할권, 근거 수준 필터를 풀면 더 많은
+            출처를 확인할 수 있습니다.
           </p>
         </section>
       ) : (
-        <div className="grid gap-4">
+        <div className="grid gap-3">
           {filteredSources.map((source) => (
             <article
               key={source.id}
-              className="surface-card rounded-[1.8rem] px-5 py-5 transition duration-200 hover:-translate-y-0.5 hover:border-stone-300 hover:bg-white/92"
+              className="surface-card rounded-[1.15rem] px-4 py-4 transition duration-200 hover:border-stone-300 hover:bg-white/92"
             >
-              <div className="flex flex-col gap-4 2xl:flex-row 2xl:items-start 2xl:justify-between">
-                <div className="min-w-0 space-y-4">
+              <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap gap-2 text-[11px]">
+                    {source.evidenceLevel ? (
+                      <span className="rounded-full bg-accent-soft px-3 py-1 text-accent-strong">
+                        {formatLabel(source.evidenceLevel) ??
+                          source.evidenceLevel}
+                      </span>
+                    ) : null}
                     {source.year ? (
-                      <span className="rounded-full border border-border-subtle bg-white/82 px-3 py-1 text-muted">
+                      <span className="rounded-full border border-border-subtle bg-white px-3 py-1 text-muted">
                         {source.year}
                       </span>
                     ) : null}
                     {source.jurisdiction ? (
-                      <span className="rounded-full border border-border-subtle bg-white/82 px-3 py-1 text-muted">
+                      <span className="rounded-full border border-border-subtle bg-white px-3 py-1 text-muted">
                         {source.jurisdiction}
                       </span>
                     ) : null}
-                    {source.evidenceLevel ? (
-                      <span className="rounded-full bg-accent-soft px-3 py-1 text-accent-strong">
-                        {formatLabel(source.evidenceLevel) ?? source.evidenceLevel}
-                      </span>
-                    ) : null}
-                    <span className="rounded-full border border-border-subtle bg-white/82 px-3 py-1 text-muted">
+                    <span className="rounded-full border border-border-subtle bg-white px-3 py-1 text-muted">
                       {formatLabel(source.sourceType) ?? source.sourceType}
                     </span>
                   </div>
 
-                  <div>
-                    <h3 className="max-w-3xl font-display text-[clamp(1.6rem,2.4vw,2.3rem)] leading-[1.02] tracking-[-0.04em] text-foreground">
+                  <div className="mt-3">
+                    <Link
+                      href={`/sources/${source.id}`}
+                      className="block text-base font-semibold leading-7 tracking-[-0.02em] text-foreground underline decoration-border-subtle underline-offset-4 transition hover:text-stone-700"
+                    >
                       {source.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-muted">{source.id}</p>
+                    </Link>
+                    <p className="mt-1 text-sm leading-6 text-muted">
+                      {source.journalOrPublisher ??
+                        "발행 기관 정보가 아직 없습니다."}
+                    </p>
+                    <p className="mt-1 text-xs leading-5 text-muted">
+                      출처 ID: {source.id}
+                    </p>
                   </div>
 
-                  <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_13rem]">
-                    <div className="rounded-[1.25rem] border border-border-subtle bg-white/75 px-4 py-4">
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
-                        발행 기관
+                  <div className="mt-4 grid gap-2 sm:grid-cols-3">
+                    <div className="rounded-[0.95rem] border border-border-subtle bg-white px-3.5 py-3">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">
+                        연결 규칙
                       </p>
-                      <p className="mt-2 text-sm leading-6 text-foreground">
-                        {source.journalOrPublisher ?? "발행 기관 정보가 아직 없습니다."}
+                      <p className="mt-1 text-sm font-semibold text-foreground">
+                        {formatCount(source.linkedRuleCount)}건
                       </p>
                     </div>
 
-                    <div className="rounded-[1.25rem] border border-border-subtle bg-white/75 px-4 py-4">
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
-                        연결 범위
+                    <div className="rounded-[0.95rem] border border-border-subtle bg-white px-3.5 py-3">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">
+                        근거 청크
                       </p>
-                      <p className="mt-2 text-sm leading-6 text-foreground">
-                        규칙 {source.linkedRuleCount}건
-                        <br />
-                        근거 청크 {source.linkedChunkCount}건
+                      <p className="mt-1 text-sm font-semibold text-foreground">
+                        {formatCount(source.linkedChunkCount)}건
+                      </p>
+                    </div>
+
+                    <div className="rounded-[0.95rem] border border-border-subtle bg-white px-3.5 py-3">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">
+                        우선 확인
+                      </p>
+                      <p className="mt-1 text-sm text-foreground">
+                        {source.linkedRuleCount > 0
+                          ? "연결 규칙부터 확인"
+                          : "출처 상세에서 원문 확인"}
                       </p>
                     </div>
                   </div>
@@ -228,7 +332,7 @@ export function SourceBrowserClient({
                 <div className="flex shrink-0 items-start">
                   <Link
                     href={`/sources/${source.id}`}
-                    className="inline-flex min-h-11 items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-accent-strong"
+                    className="inline-flex min-h-10 items-center justify-center rounded-full border border-border-subtle bg-white px-4 py-2 text-sm font-semibold text-foreground transition duration-200 hover:border-stone-300"
                   >
                     출처 상세
                   </Link>

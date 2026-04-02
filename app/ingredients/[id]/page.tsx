@@ -7,9 +7,12 @@ import {
   getKnowledgeIndex,
 } from "@/src/lib/knowledge";
 import {
+  getEvidenceContextExcerpt,
   getEvidencePrimaryExcerpt,
   getEvidenceRepresentativeExcerpt,
   getEvidenceRepresentativeExcerptLabel,
+  getEvidenceSummaryExcerpt,
+  getEvidenceTranslationExcerpt,
   getSourceReferenceLinks,
   getSourceTrustSummary,
   hasOriginalEvidenceExcerpt,
@@ -95,6 +98,15 @@ export default async function IngredientReferenceDetailPage(props: {
     const primaryExcerptLabel = primaryChunk
       ? getEvidenceRepresentativeExcerptLabel(primaryChunk)
       : "근거 문장";
+    const translation = primaryChunk
+      ? getEvidenceTranslationExcerpt(primaryChunk)
+      : null;
+    const contextExcerpt = primaryChunk
+      ? getEvidenceContextExcerpt(primaryChunk)
+      : null;
+    const summaryExcerpt = primaryChunk
+      ? getEvidenceSummaryExcerpt(primaryChunk)
+      : null;
     const hasFullOriginalLine = primaryChunk
       ? hasOriginalEvidenceExcerpt(primaryChunk) &&
         !isShortOriginalEvidenceExcerpt(primaryChunk)
@@ -111,6 +123,9 @@ export default async function IngredientReferenceDetailPage(props: {
       primaryLink,
       primaryExcerpt,
       primaryExcerptLabel,
+      translation,
+      contextExcerpt,
+      summaryExcerpt,
       hasFullOriginalLine,
       originalFragment,
     };
@@ -121,11 +136,13 @@ export default async function IngredientReferenceDetailPage(props: {
       <div className="page-shell-narrow space-y-6">
         <section className="surface-card-strong rounded-[2rem] px-6 py-6">
           <p className="eyebrow">Ingredient Reference Detail</p>
-          <h1 className="mt-4 text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.04em] text-foreground">
+          <h1 className="mt-4 text-[clamp(1.62rem,2.8vw,2.18rem)] font-semibold tracking-[-0.03em] text-foreground">
             {detail.ingredient.nameKo}
           </h1>
           {detail.ingredient.nameEn ? (
-            <p className="mt-2 text-sm text-muted">{detail.ingredient.nameEn}</p>
+            <p className="mt-2 text-sm text-muted">
+              {detail.ingredient.nameEn}
+            </p>
           ) : null}
 
           <div className="mt-4 flex flex-wrap gap-2 text-[11px]">
@@ -154,13 +171,13 @@ export default async function IngredientReferenceDetailPage(props: {
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               href="/ingredients"
-              className="inline-flex min-h-11 items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-accent-strong"
+              className="inline-flex min-h-11 items-center justify-center rounded-full bg-accent px-5 py-[0.62rem] text-[0.84rem] font-medium text-white transition duration-200 hover:-translate-y-0.5 hover:bg-accent-strong"
             >
               영양소 목록으로
             </Link>
             <Link
               href="/sources"
-              className="inline-flex min-h-11 items-center justify-center rounded-full border border-border-subtle bg-white px-5 py-2.5 text-sm font-semibold text-foreground transition duration-200 hover:-translate-y-0.5 hover:border-stone-300"
+              className="inline-flex min-h-11 items-center justify-center rounded-full border border-border-subtle bg-white px-5 py-[0.62rem] text-[0.84rem] font-medium text-foreground transition duration-200 hover:-translate-y-0.5 hover:border-stone-300"
             >
               전체 출처 보기
             </Link>
@@ -196,6 +213,9 @@ export default async function IngredientReferenceDetailPage(props: {
                   primaryLink,
                   primaryExcerpt,
                   primaryExcerptLabel,
+                  translation,
+                  contextExcerpt,
+                  summaryExcerpt,
                   hasFullOriginalLine,
                   originalFragment,
                 }) => (
@@ -226,12 +246,12 @@ export default async function IngredientReferenceDetailPage(props: {
                             href={primaryLink.url}
                             target="_blank"
                             rel="noreferrer"
-                            className="block text-lg font-semibold leading-7 text-foreground underline decoration-border-subtle underline-offset-4 transition hover:text-stone-700"
+                            className="block text-[0.98rem] font-semibold leading-7 text-foreground underline decoration-border-subtle underline-offset-4 transition hover:text-stone-700"
                           >
                             {source.title}
                           </a>
                         ) : (
-                          <h2 className="text-lg font-semibold leading-7 text-foreground">
+                          <h2 className="text-[0.98rem] font-semibold leading-7 text-foreground">
                             {source.title}
                           </h2>
                         )}
@@ -272,14 +292,43 @@ export default async function IngredientReferenceDetailPage(props: {
                           )
                         ) : (
                           <p className="mt-2 text-sm leading-6 text-muted">
-                            아직 대표로 보여줄 근거 문장이 연결되지
-                            않았습니다.
+                            아직 대표로 보여줄 근거 문장이 연결되지 않았습니다.
                           </p>
                         )}
+                        {translation && translation !== primaryExcerpt ? (
+                          <div className="mt-3 border-t border-border-subtle pt-3">
+                            <p className="text-xs font-semibold text-muted">
+                              한국어 번역
+                            </p>
+                            <p className="mt-1 text-sm leading-6 text-muted">
+                              {translation}
+                            </p>
+                          </div>
+                        ) : null}
+                        {contextExcerpt ? (
+                          <div className="mt-3 border-t border-border-subtle pt-3">
+                            <p className="text-xs font-semibold text-muted">
+                              앞뒤 문맥
+                            </p>
+                            <p className="mt-1 text-sm leading-6 text-muted">
+                              {contextExcerpt}
+                            </p>
+                          </div>
+                        ) : null}
+                        {summaryExcerpt ? (
+                          <div className="mt-3 border-t border-border-subtle pt-3">
+                            <p className="text-xs font-semibold text-muted">
+                              핵심 해석
+                            </p>
+                            <p className="mt-1 text-sm leading-6 text-muted">
+                              {summaryExcerpt}
+                            </p>
+                          </div>
+                        ) : null}
                         {originalFragment ? (
                           <div className="mt-3 border-t border-border-subtle pt-3">
                             <p className="text-xs font-semibold text-muted">
-                              확인된 원문 조각
+                              레퍼런스 원문 해당 부분
                             </p>
                             <p className="mt-1 text-xs leading-6 text-muted">
                               &ldquo;{originalFragment}&rdquo;

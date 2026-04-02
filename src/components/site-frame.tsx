@@ -10,7 +10,7 @@ import {
 export function SiteFrame({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-full flex-col">
-      <header className="px-4 pt-3 sm:px-6 lg:px-8">
+      <header className="px-4 pt-3 sm:px-6 lg:px-6">
         <div className="page-shell">
           <div className="site-masthead rounded-[1.1rem] px-4 py-2.5">
             <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
@@ -29,7 +29,9 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
                   />
                 </span>
                 <span className="min-w-0">
-                  <span className="site-topbar-label">Research Attribution</span>
+                  <span className="site-topbar-label">
+                    Research Attribution
+                  </span>
                   <span className="block truncate">{projectAffiliation}</span>
                   <span className="mt-0.5 block text-sm font-normal leading-5 text-muted">
                     {projectSignature}
@@ -38,7 +40,9 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
               </Link>
 
               <div className="site-credit-pill md:max-w-[20rem] md:items-end">
-                <span className="site-topbar-label md:text-right">Researcher</span>
+                <span className="site-topbar-label md:text-right">
+                  Researcher
+                </span>
                 <span className="text-sm font-medium leading-5 text-foreground md:text-right">
                   {projectAuthor}
                 </span>
@@ -50,7 +54,7 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
 
       <div className="flex-1">{children}</div>
 
-      <footer className="px-4 pb-4 pt-2 sm:px-6 lg:px-8">
+      <footer className="px-4 pb-4 pt-2 sm:px-6 lg:px-6">
         <div className="page-shell">
           <div className="site-footer-panel rounded-[0.95rem] px-4 py-2.5 text-xs text-muted">
             <div className="flex flex-col gap-1.5 md:flex-row md:items-center md:justify-between">

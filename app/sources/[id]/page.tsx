@@ -7,12 +7,14 @@ import {
   getEvidenceCaptureLabel,
   getEvidenceCheckHint,
   getEvidenceClaimLabel,
+  getEvidenceContextExcerpt,
   getEvidenceExcerptLabel,
   getEvidenceLocatorText,
   getEvidenceNote,
   getEvidencePrimaryExcerpt,
   getEvidenceSearchKeywords,
-  getEvidenceSecondaryExcerpt,
+  getEvidenceSummaryExcerpt,
+  getEvidenceTranslationExcerpt,
   getEvidenceVerificationLabel,
   getEvidenceVerificationSummary,
   getSourceReferenceLinks,
@@ -27,9 +29,13 @@ function formatLabel(value: string | null | undefined) {
   return value.replace(/_/g, " ");
 }
 
-function sortRulesByPriority<T extends { severity: string; priority: number; nutrientOrIngredient: string }>(
-  rules: T[],
-) {
+function sortRulesByPriority<
+  T extends {
+    severity: string;
+    priority: number;
+    nutrientOrIngredient: string;
+  },
+>(rules: T[]) {
   const severityScore: Record<string, number> = {
     contraindicated: 4,
     avoid: 3,
@@ -39,7 +45,8 @@ function sortRulesByPriority<T extends { severity: string; priority: number; nut
 
   return [...rules].sort((left, right) => {
     const severityDifference =
-      (severityScore[right.severity] ?? 0) - (severityScore[left.severity] ?? 0);
+      (severityScore[right.severity] ?? 0) -
+      (severityScore[left.severity] ?? 0);
 
     if (severityDifference !== 0) {
       return severityDifference;
@@ -117,10 +124,8 @@ export default async function SourceDetailPage(props: {
         <section className="surface-card-strong rounded-[2rem] px-6 py-6">
           <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
             <div className="min-w-0">
-              <p className="eyebrow">
-                Source Detail
-              </p>
-              <h1 className="mt-4 font-display text-[clamp(2.2rem,4vw,3.7rem)] leading-[0.98] tracking-[-0.05em] text-foreground">
+              <p className="eyebrow">Source Detail</p>
+              <h1 className="mt-4 font-display text-[clamp(1.68rem,2.85vw,2.5rem)] leading-[1.05] tracking-[-0.04em] text-foreground">
                 {detail.source.title}
               </h1>
               <p className="mt-3 text-sm text-muted">{detail.source.id}</p>
@@ -145,7 +150,8 @@ export default async function SourceDetailPage(props: {
                   </span>
                 ) : null}
                 <span className="rounded-full bg-stone-100 px-3 py-1 text-stone-700">
-                  {formatLabel(detail.source.sourceType) ?? detail.source.sourceType}
+                  {formatLabel(detail.source.sourceType) ??
+                    detail.source.sourceType}
                 </span>
               </div>
             </div>
@@ -153,13 +159,13 @@ export default async function SourceDetailPage(props: {
             <div className="flex flex-wrap items-center gap-2 md:justify-end">
               <Link
                 href="/sources"
-                className="inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-border-subtle bg-white/82 px-5 py-2 text-sm font-semibold text-foreground transition duration-200 hover:-translate-y-0.5 hover:border-stone-300 hover:bg-white"
+                className="inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-border-subtle bg-white/82 px-5 py-[0.58rem] text-[0.84rem] font-medium text-foreground transition duration-200 hover:-translate-y-0.5 hover:border-stone-300 hover:bg-white"
               >
                 출처 목록
               </Link>
               <Link
                 href="/"
-                className="inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-border-subtle bg-white/82 px-5 py-2 text-sm font-semibold text-foreground transition duration-200 hover:-translate-y-0.5 hover:border-stone-300 hover:bg-white"
+                className="inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-border-subtle bg-white/82 px-5 py-[0.58rem] text-[0.84rem] font-medium text-foreground transition duration-200 hover:-translate-y-0.5 hover:border-stone-300 hover:bg-white"
               >
                 메인 안내
               </Link>
@@ -183,7 +189,7 @@ export default async function SourceDetailPage(props: {
                       href={link.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="rounded-full border border-stone-200 bg-white px-4 py-2 text-sm font-medium text-stone-700 transition hover:-translate-y-0.5 hover:border-stone-300 hover:text-stone-950"
+                      className="rounded-full border border-stone-200 bg-white px-4 py-[0.58rem] text-[0.84rem] font-medium text-stone-700 transition hover:-translate-y-0.5 hover:border-stone-300 hover:text-stone-950"
                     >
                       {link.label}
                     </a>
@@ -201,7 +207,8 @@ export default async function SourceDetailPage(props: {
                 <div className="grid grid-cols-[6.5rem_minmax(0,1fr)] gap-3">
                   <dt className="text-stone-500">발행기관</dt>
                   <dd className="font-medium text-stone-900">
-                    {detail.source.journalOrPublisher ?? "발행기관 정보가 없습니다."}
+                    {detail.source.journalOrPublisher ??
+                      "발행기관 정보가 없습니다."}
                   </dd>
                 </div>
                 <div className="grid grid-cols-[6.5rem_minmax(0,1fr)] gap-3">
@@ -216,12 +223,15 @@ export default async function SourceDetailPage(props: {
                 </div>
                 <div className="grid grid-cols-[6.5rem_minmax(0,1fr)] gap-3">
                   <dt className="text-stone-500">근거 발췌</dt>
-                  <dd className="text-stone-800">{sortedEvidenceChunks.length}건</dd>
+                  <dd className="text-stone-800">
+                    {sortedEvidenceChunks.length}건
+                  </dd>
                 </div>
                 <div className="grid grid-cols-[6.5rem_minmax(0,1fr)] gap-3">
                   <dt className="text-stone-500">원문 상태</dt>
                   <dd className="text-stone-800">
-                    확인 {verifiedChunkCount} / 해석 {supportedInferenceCount} / 대기 {pendingChunkCount}
+                    확인 {verifiedChunkCount} / 해석 {supportedInferenceCount} /
+                    대기 {pendingChunkCount}
                   </dd>
                 </div>
               </dl>
@@ -232,12 +242,12 @@ export default async function SourceDetailPage(props: {
         <section className="rounded-[2rem] border border-stone-200 bg-white p-6 shadow-[0_16px_34px_rgba(28,25,23,0.05)]">
           <div className="flex items-center justify-between gap-3">
             <div>
-              <h2 className="text-2xl font-semibold text-stone-950">
+              <h2 className="text-[1.18rem] font-semibold text-stone-950">
                 원문 발췌와 확인 포인트
               </h2>
               <p className="mt-1 text-sm leading-6 text-stone-600">
-                요약보다 원문 발췌를 우선 보여드립니다. 원문 그대로의 문장이 없는
-                항목은 등록된 발췌와 직접 확인 위치를 함께 안내합니다.
+                요약보다 원문 발췌를 우선 보여드립니다. 원문 그대로의 문장이
+                없는 항목은 등록된 발췌와 직접 확인 위치를 함께 안내합니다.
               </p>
             </div>
             <span className="rounded-full bg-stone-100 px-3 py-1 text-sm text-stone-700">
@@ -255,14 +265,17 @@ export default async function SourceDetailPage(props: {
             <div className="mt-5 space-y-4">
               {sortedEvidenceChunks.map((chunk) => {
                 const primaryExcerpt = getEvidencePrimaryExcerpt(chunk);
-                const secondaryExcerpt = getEvidenceSecondaryExcerpt(chunk);
+                const translationExcerpt = getEvidenceTranslationExcerpt(chunk);
+                const contextExcerpt = getEvidenceContextExcerpt(chunk);
+                const summaryExcerpt = getEvidenceSummaryExcerpt(chunk);
                 const searchKeywords = getEvidenceSearchKeywords(chunk);
                 const claimLabel = getEvidenceClaimLabel(chunk);
                 const locatorText = getEvidenceLocatorText(chunk);
                 const evidenceNote = getEvidenceNote(chunk);
                 const verificationLabel = getEvidenceVerificationLabel(chunk);
                 const captureLabel = getEvidenceCaptureLabel(chunk);
-                const verificationSummary = getEvidenceVerificationSummary(chunk);
+                const verificationSummary =
+                  getEvidenceVerificationSummary(chunk);
 
                 return (
                   <article
@@ -327,38 +340,69 @@ export default async function SourceDetailPage(props: {
                       <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">
                         {getEvidenceExcerptLabel(chunk)}
                       </p>
-                      <blockquote className="mt-3 text-base leading-7 text-stone-950 md:text-[1.04rem]">
+                      <blockquote className="mt-3 text-[0.97rem] leading-7 text-stone-950 md:text-[1rem]">
                         {primaryExcerpt ?? "등록된 발췌 문장이 아직 없습니다."}
                       </blockquote>
 
-                      {secondaryExcerpt ? (
+                      {translationExcerpt &&
+                      translationExcerpt !== primaryExcerpt ? (
                         <div className="mt-4 rounded-xl bg-stone-50 px-4 py-3">
                           <p className="text-xs font-semibold text-stone-500">
-                            함께 저장된 보조 설명
+                            한국어 번역
                           </p>
                           <p className="mt-2 text-sm leading-6 text-stone-700">
-                            {secondaryExcerpt}
+                            {translationExcerpt}
+                          </p>
+                        </div>
+                      ) : null}
+
+                      {contextExcerpt ? (
+                        <div className="mt-4 rounded-xl bg-stone-50 px-4 py-3">
+                          <p className="text-xs font-semibold text-stone-500">
+                            앞뒤 문맥
+                          </p>
+                          <p className="mt-2 text-sm leading-6 text-stone-700">
+                            {contextExcerpt}
+                          </p>
+                        </div>
+                      ) : null}
+
+                      {summaryExcerpt ? (
+                        <div className="mt-4 rounded-xl bg-stone-50 px-4 py-3">
+                          <p className="text-xs font-semibold text-stone-500">
+                            핵심 해석
+                          </p>
+                          <p className="mt-2 text-sm leading-6 text-stone-700">
+                            {summaryExcerpt}
                           </p>
                         </div>
                       ) : null}
 
                       <div className="mt-4 rounded-xl bg-stone-50 px-4 py-3">
-                        <p className="text-xs font-semibold text-stone-500">검증 상태</p>
-                        <p className="mt-2 text-sm leading-6 text-stone-700">{verificationSummary}</p>
+                        <p className="text-xs font-semibold text-stone-500">
+                          검증 상태
+                        </p>
+                        <p className="mt-2 text-sm leading-6 text-stone-700">
+                          {verificationSummary}
+                        </p>
                       </div>
 
                       {evidenceNote ? (
                         <div className="mt-4 rounded-xl bg-stone-50 px-4 py-3">
-                          <p className="text-xs font-semibold text-stone-500">메모</p>
-                          <p className="mt-2 text-sm leading-6 text-stone-700">{evidenceNote}</p>
+                          <p className="text-xs font-semibold text-stone-500">
+                            메모
+                          </p>
+                          <p className="mt-2 text-sm leading-6 text-stone-700">
+                            {evidenceNote}
+                          </p>
                         </div>
                       ) : null}
 
                       {!hasOriginalEvidenceExcerpt(chunk) ? (
                         <p className="mt-4 text-xs leading-5 text-stone-500">
-                          현재 이 항목은 원문 그대로의 문장 대신, 출처를 바탕으로
-                          등록된 발췌가 저장되어 있습니다. 아래 위치 안내와 원문
-                          링크를 함께 확인해 주세요.
+                          현재 이 항목은 원문 그대로의 문장 대신, 출처를
+                          바탕으로 등록된 발췌가 저장되어 있습니다. 아래 위치
+                          안내와 원문 링크를 함께 확인해 주세요.
                         </p>
                       ) : null}
                     </div>
@@ -405,7 +449,7 @@ export default async function SourceDetailPage(props: {
         <section className="rounded-[2rem] border border-stone-200 bg-white p-6 shadow-[0_16px_34px_rgba(28,25,23,0.05)]">
           <div className="flex items-center justify-between gap-3">
             <div>
-              <h2 className="text-2xl font-semibold text-stone-950">
+              <h2 className="text-[1.18rem] font-semibold text-stone-950">
                 이 출처와 연결된 규칙
               </h2>
               <p className="mt-1 text-sm leading-6 text-stone-600">
@@ -433,7 +477,7 @@ export default async function SourceDetailPage(props: {
                 >
                   <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                     <div className="min-w-0">
-                      <p className="text-lg font-semibold text-stone-950">
+                      <p className="text-[1rem] font-semibold text-stone-950">
                         {rule.nutrientOrIngredient}
                       </p>
                       <p className="mt-2 text-sm leading-6 text-stone-700">
@@ -444,7 +488,7 @@ export default async function SourceDetailPage(props: {
 
                     <Link
                       href={`/rules/${rule.id}`}
-                      className="rounded-full border border-stone-200 bg-white px-4 py-2 text-sm font-medium text-stone-700 transition hover:-translate-y-0.5 hover:border-stone-300 hover:text-stone-950"
+                      className="rounded-full border border-stone-200 bg-white px-4 py-[0.58rem] text-[0.84rem] font-medium text-stone-700 transition hover:-translate-y-0.5 hover:border-stone-300 hover:text-stone-950"
                     >
                       규칙 상세
                     </Link>

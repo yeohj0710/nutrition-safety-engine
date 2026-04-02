@@ -14,12 +14,23 @@
   --warning: oklch(0.57 0.08 60);
   --danger: oklch(0.56 0.11 28);
   --success: oklch(0.56 0.07 160);
-  --shadow-soft: 0 6px 18px rgba(27, 25, 22, 0.04), 0 1px 3px rgba(27, 25, 22, 0.03);
-  --shadow-panel: 0 10px 24px rgba(27, 25, 22, 0.045), 0 2px 8px rgba(27, 25, 22, 0.03);
-  --shadow-float: 0 12px 24px rgba(27, 25, 22, 0.055), 0 3px 10px rgba(27, 25, 22, 0.03);
+  --shadow-soft:
+    0 6px 18px rgba(27, 25, 22, 0.04), 0 1px 3px rgba(27, 25, 22, 0.03);
+  --shadow-panel:
+    0 10px 24px rgba(27, 25, 22, 0.045), 0 2px 8px rgba(27, 25, 22, 0.03);
+  --shadow-float:
+    0 12px 24px rgba(27, 25, 22, 0.055), 0 3px 10px rgba(27, 25, 22, 0.03);
   --ease-emphasized: cubic-bezier(0.22, 1, 0.36, 1);
-  --font-fallback-sans: "Apple SD Gothic Neo", "Malgun Gothic", "Segoe UI",
-    "Noto Sans KR", sans-serif;
+  --ease-soft: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-snappy: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-toggle-fast: 180ms;
+  --duration-toggle: 280ms;
+  --duration-expand: 380ms;
+  --page-shell-max: 54rem;
+  --page-shell-narrow-max: 48rem;
+  --font-fallback-sans:
+    "Apple SD Gothic Neo", "Malgun Gothic", "Segoe UI", "Noto Sans KR",
+    sans-serif;
   --font-fallback-display: var(--font-fallback-sans);
   color-scheme: light;
 }
@@ -75,10 +86,6 @@ summary,
   cursor: pointer;
 }
 
-details[open] > summary .details-chevron {
-  transform: rotate(180deg);
-}
-
 button:disabled {
   cursor: not-allowed;
 }
@@ -101,19 +108,28 @@ textarea:focus-visible {
   position: relative;
   isolation: isolate;
   background:
-    radial-gradient(72rem 28rem at 50% -12rem, color-mix(in oklab, var(--accent-soft) 38%, white) 0%, transparent 72%),
-    linear-gradient(180deg, color-mix(in oklab, var(--background) 97%, white) 0%, var(--background) 42%, var(--background) 100%);
+    radial-gradient(
+      72rem 28rem at 50% -12rem,
+      color-mix(in oklab, var(--accent-soft) 38%, white) 0%,
+      transparent 72%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--background) 97%, white) 0%,
+      var(--background) 42%,
+      var(--background) 100%
+    );
 }
 
 .page-shell {
   width: 100%;
-  max-width: 56rem;
+  max-width: var(--page-shell-max);
   margin-inline: auto;
 }
 
 .page-shell-narrow {
   width: 100%;
-  max-width: 50rem;
+  max-width: var(--page-shell-narrow-max);
   margin-inline: auto;
 }
 
@@ -133,14 +149,22 @@ textarea:focus-visible {
 
 .surface-card-strong {
   border: 1px solid var(--border-subtle);
-  background: color-mix(in oklab, var(--surface-elevated) 98%, var(--background));
+  background: color-mix(
+    in oklab,
+    var(--surface-elevated) 98%,
+    var(--background)
+  );
   box-shadow: var(--shadow-panel);
 }
 
 .site-masthead {
   border: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.82) 100%),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.94) 0%,
+      rgba(255, 255, 255, 0.82) 100%
+    ),
     color-mix(in oklab, var(--surface-elevated) 96%, var(--background));
   box-shadow: 0 4px 12px rgba(27, 25, 22, 0.03);
   backdrop-filter: blur(12px);
@@ -207,6 +231,74 @@ textarea:focus-visible {
 
 .measure-copy {
   max-width: 54ch;
+}
+
+.collapsible-chevron {
+  transition:
+    transform var(--duration-expand) var(--ease-emphasized),
+    color var(--duration-toggle) var(--ease-soft),
+    background-color var(--duration-toggle) var(--ease-soft),
+    border-color var(--duration-toggle) var(--ease-soft);
+  transform-origin: center;
+}
+
+[data-open="true"] .collapsible-chevron,
+details[open] .collapsible-chevron {
+  transform: rotate(180deg);
+}
+
+.collapsible-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows var(--duration-expand) var(--ease-emphasized),
+    opacity var(--duration-toggle) var(--ease-soft);
+}
+
+.collapsible-panel[data-open="true"],
+details[open] > .collapsible-panel {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.collapsible-panel-dense {
+  opacity: 1;
+  transition: grid-template-rows 240ms var(--ease-soft);
+  contain: layout;
+}
+
+.collapsible-panel-dense .collapsible-panel-inner {
+  overflow: hidden;
+  contain: layout paint;
+}
+
+.collapsible-panel-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.collapsible-panel-body {
+  transform: translate3d(0, -8px, 0);
+  opacity: 0;
+  transition:
+    transform var(--duration-expand) var(--ease-emphasized),
+    opacity 220ms var(--ease-soft);
+  will-change: transform, opacity;
+}
+
+.collapsible-panel[data-open="true"] .collapsible-panel-body,
+details[open] > .collapsible-panel .collapsible-panel-body {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+.collapsible-panel-dense .collapsible-panel-body {
+  transform: none;
+  opacity: 1;
+  transition: none;
+  will-change: auto;
+  contain: layout paint;
 }
 
 @keyframes rise-in {

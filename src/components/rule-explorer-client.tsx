@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useEffectEvent, useRef, useState, useTransition } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 
 import { RuleCard } from "@/src/components/rule-card";
 import type { AiExplainResponse } from "@/src/lib/ai/schema";
@@ -42,7 +42,11 @@ type ExplorerValueOption = {
 };
 
 function getExplorerSearchTerms(option: ExplorerValueOption) {
-  return [option.label, option.canonicalValue ?? option.label, ...(option.aliases ?? [])];
+  return [
+    option.label,
+    option.canonicalValue ?? option.label,
+    ...(option.aliases ?? []),
+  ];
 }
 
 const sectionLabels = {
@@ -51,11 +55,6 @@ const sectionLabels = {
   needs_more_info: "몇 가지 더 확인해 주세요",
 } as const;
 
-const sectionDescriptions = {
-  definitely_matched: "입력하신 조건과 직접 관련 있는 안내를 먼저 모아 보여드려요.",
-  possibly_relevant: "당장 단정하긴 어렵지만 함께 알아두시면 좋은 내용이에요.",
-  needs_more_info: "용량이나 상태 정보를 조금 더 알면 더 정확하게 안내해 드릴 수 있어요.",
-} as const;
 const sectionPreviewCounts = {
   definitely_matched: 6,
   possibly_relevant: 5,
@@ -81,26 +80,26 @@ const categoryRank: Record<string, number> = {
 };
 
 const fieldLabelClass =
-  "mb-2 block text-sm font-semibold tracking-[-0.01em] text-stone-950";
+  "mb-2 block text-[0.88rem] font-semibold tracking-[-0.01em] text-stone-950";
 const fieldControlClass =
   "w-full rounded-[1rem] border border-stone-200 bg-white px-4 py-3 text-[15px] leading-6 text-stone-900 outline-none transition duration-150 placeholder:text-stone-400 focus:border-stone-400 focus:shadow-[0_0_0_3px_rgba(226,232,240,0.9)]";
 const fieldGroupClass = "text-sm text-stone-700";
 const selectControlClass = `${fieldControlClass} appearance-none pr-12`;
 const toggleChipBaseClass =
-  "group inline-flex min-h-10 items-center gap-3 rounded-full border px-4 py-2 text-sm font-medium transition duration-150";
+  "group inline-flex min-h-10 items-center justify-between gap-3 rounded-[1rem] border px-3.5 py-2 text-[0.86rem] font-medium transition-[background-color,border-color,color,box-shadow] duration-250 [transition-timing-function:var(--ease-soft)]";
 const primaryButtonClass =
-  "whitespace-nowrap rounded-full bg-stone-950 px-5 py-3 text-sm font-semibold text-white transition duration-150 hover:bg-stone-800";
+  "whitespace-nowrap rounded-full bg-stone-950 px-5 py-[0.62rem] text-[0.86rem] font-medium text-white transition duration-150 hover:bg-stone-800";
 const secondaryButtonClass =
-  "whitespace-nowrap rounded-full border border-stone-200 bg-white px-5 py-3 text-sm font-semibold text-stone-700 transition duration-150 hover:border-stone-300 hover:bg-stone-50";
+  "whitespace-nowrap rounded-full border border-stone-200 bg-white px-5 py-[0.62rem] text-[0.86rem] font-medium text-stone-700 transition duration-150 hover:border-stone-300 hover:bg-stone-50";
 const ghostButtonClass =
-  "rounded-full border border-stone-200 bg-white px-4 py-2.5 text-sm font-medium text-stone-700 transition duration-150 hover:border-stone-300 hover:bg-stone-50";
+  "rounded-full border border-stone-200 bg-white px-4 py-[0.58rem] text-[0.84rem] font-medium text-stone-700 transition duration-150 hover:border-stone-300 hover:bg-stone-50";
 const subtleActionButtonClass =
-  "rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-stone-600 transition duration-150 hover:border-stone-300 hover:text-stone-900";
-const explorerStorageKey = "nutrition-safety-explorer-state-v2";
+  "rounded-full border border-stone-200 bg-white px-3 py-1.5 text-[0.76rem] font-medium text-stone-600 transition duration-150 hover:border-stone-300 hover:text-stone-900";
+const explorerStorageKey = "nutrition-safety-explorer-state-v3";
 const minimumQueryLoadingMs = 900;
 
 type PersistedExplorerState = {
-  version: 1;
+  version: 2;
   form: {
     age: string;
     sex: string;
@@ -116,17 +115,14 @@ type PersistedExplorerState = {
   };
   filters: {
     severityFilter: string;
-    pregnancyOnly: boolean;
     medicationOnly: boolean;
     diseaseOnly: boolean;
     sort: NonNullable<EngineQuery["sort"]>;
   };
   ui: {
     isAdvancedOpen: boolean;
-    sectionVisibleCounts: Record<
-      keyof typeof sectionPreviewCounts,
-      number
-    >;
+    isExamplesOpen: boolean;
+    sectionVisibleCounts: Record<keyof typeof sectionPreviewCounts, number>;
   };
   query: {
     hasQueried: boolean;
@@ -162,19 +158,65 @@ const blankExplorerProfile: ExplorerProfileDraft = {
   conditions: "",
   allergies: "",
   selectedCompounds: "",
-  jurisdiction: "KR",
+  jurisdiction: "",
   memo: "",
 };
 
+function buildStarterDraft(
+  profile: Partial<ExplorerProfileDraft>,
+): ExplorerProfileDraft {
+  return {
+    ...blankExplorerProfile,
+    selectedCompounds: profile.selectedCompounds ?? "",
+    medications: profile.medications ?? "",
+    conditions: profile.conditions ?? "",
+  };
+}
+
+function hasAdvancedProfileValues(profile: ExplorerProfileDraft) {
+  return Boolean(
+    profile.age ||
+    profile.sex ||
+    profile.pregnancyStatus ||
+    profile.lactationStatus ||
+    profile.smokerStatus ||
+    profile.allergies ||
+    profile.jurisdiction ||
+    profile.memo,
+  );
+}
+
+const pregnancyStatusLabels = {
+  not_pregnant: "해당 없음",
+  pregnant: "임신 중",
+} as const;
+
+function normalizePregnancyStatus(value: string) {
+  switch (value) {
+    case "pregnant":
+    case "not_pregnant":
+      return value;
+    case "trying_to_conceive":
+    case "unknown_possible":
+      return "pregnant";
+    default:
+      return "";
+  }
+}
+
+function getPregnancyStatusLabel(value: string) {
+  const normalized = normalizePregnancyStatus(value);
+  return normalized
+    ? (pregnancyStatusLabels[
+        normalized as keyof typeof pregnancyStatusLabels
+      ] ?? normalized)
+    : "";
+}
+
 const defaultExampleProfile: ExplorerProfileDraft = {
   ...blankExplorerProfile,
-  age: "32",
-  sex: "female",
-  pregnancyStatus: "pregnant",
-  smokerStatus: "never",
   medications: "warfarin",
   conditions: "간질환",
-  allergies: "shellfish",
   selectedCompounds: "비타민 A",
   memo: "입덧 때문에 액상형 보충제를 간헐적으로 복용 중입니다.",
 };
@@ -238,10 +280,7 @@ function matchesExplorerSearchTerm(query: string, candidate: string) {
   };
 }
 
-function resolveExplorerOption(
-  value: string,
-  options: ExplorerValueOption[],
-) {
+function resolveExplorerOption(value: string, options: ExplorerValueOption[]) {
   const queryKey = normalizeExplorerLookupKey(value);
   if (!queryKey) return null;
 
@@ -257,24 +296,22 @@ function resolveExplorerOption(
   }
 
   const prefixMatches = options.filter((option) =>
-    getExplorerSearchTerms(option).some((candidate) =>
-      matchesExplorerSearchTerm(value, candidate).startsWith,
+    getExplorerSearchTerms(option).some(
+      (candidate) => matchesExplorerSearchTerm(value, candidate).startsWith,
     ),
   );
 
   return prefixMatches.length === 1 ? prefixMatches[0] : null;
 }
 
-function buildCanonicalEntries(
-  value: string,
-  options: ExplorerValueOption[],
-) {
+function buildCanonicalEntries(value: string, options: ExplorerValueOption[]) {
   const seen = new Set<string>();
   const entries: string[] = [];
 
   for (const token of splitMultiValue(value)) {
     const resolved = resolveExplorerOption(token, options);
-    const canonical = resolved?.canonicalValue ?? resolved?.label ?? token.trim();
+    const canonical =
+      resolved?.canonicalValue ?? resolved?.label ?? token.trim();
     const key = normalizeExplorerLookupKey(canonical);
 
     if (!key || seen.has(key)) continue;
@@ -285,10 +322,7 @@ function buildCanonicalEntries(
   return entries;
 }
 
-function analyzeExplorerField(
-  value: string,
-  options: ExplorerValueOption[],
-) {
+function analyzeExplorerField(value: string, options: ExplorerValueOption[]) {
   const recognized: string[] = [];
   const unresolved: string[] = [];
   const seenRecognized = new Set<string>();
@@ -316,17 +350,22 @@ function analyzeExplorerField(
 
   const currentToken = /[,\n;]\s*$/.test(value)
     ? ""
-    : value.split(/[\n,;]+/).at(-1)?.trim() ?? "";
+    : (value
+        .split(/[\n,;]+/)
+        .at(-1)
+        ?.trim() ?? "");
   const currentTokenKey = normalizeExplorerLookupKey(currentToken);
 
   const suggestions =
     currentTokenKey.length > 0
       ? options
           .map((option) => {
-            const searchMatches = getExplorerSearchTerms(option).map((candidate) =>
-              matchesExplorerSearchTerm(currentToken, candidate),
+            const searchMatches = getExplorerSearchTerms(option).map(
+              (candidate) => matchesExplorerSearchTerm(currentToken, candidate),
             );
-            const startsWith = searchMatches.some((candidate) => candidate.startsWith);
+            const startsWith = searchMatches.some(
+              (candidate) => candidate.startsWith,
+            );
             const includes = startsWith
               ? true
               : searchMatches.some((candidate) => candidate.includes);
@@ -422,9 +461,7 @@ function FieldRecognitionAssist({
 
       {unresolved.length > 0 ? (
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-xs font-medium text-stone-500">
-            확인 필요
-          </span>
+          <span className="text-xs font-medium text-stone-500">확인 필요</span>
           {unresolved.map((item) => (
             <span
               key={`unresolved-${item}`}
@@ -438,9 +475,7 @@ function FieldRecognitionAssist({
 
       {suggestions.length > 0 ? (
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-xs font-medium text-stone-500">
-            추천 선택
-          </span>
+          <span className="text-xs font-medium text-stone-500">추천 선택</span>
           {suggestions.map((option) => (
             <button
               key={`suggestion-${option.label}`}
@@ -486,9 +521,7 @@ function SelectField({
             </option>
           ))}
         </select>
-        <span
-          className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-stone-400"
-        >
+        <span className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-stone-400">
           <svg
             aria-hidden="true"
             viewBox="0 0 20 20"
@@ -522,13 +555,15 @@ function CompactSelectChip({
 }) {
   return (
     <label
-      className={`relative inline-flex min-h-10 items-center gap-2 rounded-full border border-stone-200 bg-white px-3 pr-9 text-sm text-stone-700 transition duration-150 hover:border-stone-300 ${minWidthClassName}`}
+      className={`relative flex min-h-[3.15rem] flex-col justify-center rounded-[1rem] border border-stone-200 bg-white px-3.5 py-2 pr-10 text-sm text-stone-700 transition duration-150 hover:border-stone-300 hover:bg-stone-50/60 ${minWidthClassName}`}
     >
-      <span className="shrink-0 text-xs font-semibold text-muted">{label}</span>
+      <span className="shrink-0 text-[0.68rem] font-semibold tracking-[0.01em] text-stone-500">
+        {label}
+      </span>
       <select
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="w-full appearance-none bg-transparent text-sm font-medium text-stone-900 outline-none"
+        className="mt-0.5 w-full appearance-none bg-transparent text-sm font-semibold text-stone-900 outline-none"
       >
         {options.map((option) => (
           <option key={`${label}-${option.value}`} value={option.value}>
@@ -558,27 +593,33 @@ function ToggleChip({
   checked,
   label,
   onChange,
+  className = "",
 }: {
   checked: boolean;
   label: string;
   onChange: (checked: boolean) => void;
+  className?: string;
 }) {
   return (
     <label
-      className={`${toggleChipBaseClass} ${
+      className={`${toggleChipBaseClass} ${className} ${
         checked
-          ? "border-stone-900 bg-stone-950 text-white shadow-[0_10px_24px_rgba(28,25,23,0.16)]"
-          : "border-stone-200 bg-white text-stone-700 hover:border-stone-300 hover:bg-stone-50"
+          ? "border-stone-900 bg-stone-950 text-white shadow-[0_10px_24px_rgba(28,25,23,0.12)]"
+          : "border-stone-200 bg-white text-stone-700 hover:border-stone-300 hover:bg-stone-50/70"
       }`}
     >
+      <span>{label}</span>
       <span
-        className={`relative h-5 w-9 rounded-full transition duration-200 ${
-          checked ? "bg-white/30" : "bg-stone-200"
+        aria-hidden="true"
+        className={`inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border transition-[background-color,border-color,color,transform] duration-250 [transition-timing-function:var(--ease-snappy)] ${
+          checked
+            ? "border-white/40 bg-white/18 text-white"
+            : "border-stone-300 bg-stone-100 text-transparent"
         }`}
       >
         <span
-          className={`absolute top-0.5 h-4 w-4 rounded-full bg-white shadow-sm transition duration-200 ${
-            checked ? "left-[1.05rem]" : "left-0.5 bg-white"
+          className={`h-2.5 w-2.5 rounded-full transition-[background-color,transform] duration-250 [transition-timing-function:var(--ease-snappy)] ${
+            checked ? "bg-white scale-100" : "bg-stone-300/90 scale-90"
           }`}
         />
       </span>
@@ -588,7 +629,6 @@ function ToggleChip({
         onChange={(event) => onChange(event.target.checked)}
         className="sr-only"
       />
-      {label}
     </label>
   );
 }
@@ -659,20 +699,12 @@ function filterMatches(
   matches: RuleMatch[],
   filters: {
     severity: string;
-    pregnancyOnly: boolean;
     medicationOnly: boolean;
     diseaseOnly: boolean;
   },
 ) {
   return matches.filter((match) => {
     if (filters.severity && match.resolvedSeverity !== filters.severity) {
-      return false;
-    }
-    if (
-      filters.pregnancyOnly &&
-      !match.rule.pregnancyFlag &&
-      !match.rule.lactationFlag
-    ) {
       return false;
     }
     if (filters.medicationOnly && match.rule.interactionDrugs.length === 0) {
@@ -742,7 +774,6 @@ function getVisibleSections(
   response: EngineResponse | null,
   filters: {
     severity: string;
-    pregnancyOnly: boolean;
     medicationOnly: boolean;
     diseaseOnly: boolean;
     sort: NonNullable<EngineQuery["sort"]>;
@@ -784,7 +815,9 @@ function buildAiProfileSummary(response: EngineResponse) {
   if (selectedItems.length > 0) {
     parts.push(`선택 성분 ${selectedItems.join(", ")}`);
   }
-  if (profile.pregnancyStatus) parts.push(`임신 ${profile.pregnancyStatus}`);
+  if (profile.pregnancyStatus) {
+    parts.push(`임신 ${getPregnancyStatusLabel(profile.pregnancyStatus)}`);
+  }
   if (profile.lactationStatus) parts.push(`수유 ${profile.lactationStatus}`);
   if (profile.smokerStatus) parts.push(`흡연 ${profile.smokerStatus}`);
   if (profile.jurisdiction) parts.push(`관할권 ${profile.jurisdiction}`);
@@ -798,59 +831,53 @@ export function RuleExplorerClient({
   metadata: ExplorerMetadata;
 }) {
   type SectionKey = keyof typeof sectionLabels;
-  const [age, setAge] = useState(defaultExampleProfile.age);
-  const [sex, setSex] = useState(defaultExampleProfile.sex);
+  const [age, setAge] = useState(blankExplorerProfile.age);
+  const [sex, setSex] = useState(blankExplorerProfile.sex);
   const [pregnancyStatus, setPregnancyStatus] = useState(
-    defaultExampleProfile.pregnancyStatus,
+    blankExplorerProfile.pregnancyStatus,
   );
   const [lactationStatus, setLactationStatus] = useState(
-    defaultExampleProfile.lactationStatus,
+    blankExplorerProfile.lactationStatus,
   );
-  const [smokerStatus, setSmokerStatus] = useState(defaultExampleProfile.smokerStatus);
-  const [medications, setMedications] = useState(defaultExampleProfile.medications);
-  const [conditions, setConditions] = useState(defaultExampleProfile.conditions);
-  const [allergies, setAllergies] = useState(defaultExampleProfile.allergies);
+  const [smokerStatus, setSmokerStatus] = useState(
+    blankExplorerProfile.smokerStatus,
+  );
+  const [medications, setMedications] = useState(
+    blankExplorerProfile.medications,
+  );
+  const [conditions, setConditions] = useState(blankExplorerProfile.conditions);
+  const [allergies, setAllergies] = useState(blankExplorerProfile.allergies);
   const [selectedCompounds, setSelectedCompounds] = useState(
-    defaultExampleProfile.selectedCompounds,
+    blankExplorerProfile.selectedCompounds,
   );
-  const [jurisdiction, setJurisdiction] = useState(defaultExampleProfile.jurisdiction);
-  const [memo, setMemo] = useState(defaultExampleProfile.memo);
+  const [jurisdiction, setJurisdiction] = useState(
+    blankExplorerProfile.jurisdiction,
+  );
+  const [memo, setMemo] = useState(blankExplorerProfile.memo);
   const [severityFilter, setSeverityFilter] = useState("");
-  const [pregnancyOnly, setPregnancyOnly] = useState(false);
   const [medicationOnly, setMedicationOnly] = useState(false);
   const [diseaseOnly, setDiseaseOnly] = useState(false);
   const [sort, setSort] =
     useState<NonNullable<EngineQuery["sort"]>>("severity_desc");
   const [response, setResponse] = useState<EngineResponse | null>(null);
-  const [aiRuleRecommendations, setAiRuleRecommendations] = useState<Record<string, string>>({});
+  const [aiRuleRecommendations, setAiRuleRecommendations] = useState<
+    Record<string, string>
+  >({});
   const [hasQueried, setHasQueried] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isQueryLoading, setIsQueryLoading] = useState(false);
   const [isAdvancedOpen, setIsAdvancedOpen] = useState(false);
+  const [isExamplesOpen, setIsExamplesOpen] = useState(false);
   const [sectionVisibleCounts, setSectionVisibleCounts] = useState<
     Record<SectionKey, number>
   >(() => ({ ...sectionPreviewCounts }));
   const [hasRestoredState, setHasRestoredState] = useState(false);
-  const [restoredFromStorage, setRestoredFromStorage] = useState(false);
   const [isPending, startTransition] = useTransition();
-  const hasAutoSubmittedDefault = useRef(false);
   const activeQueryIdRef = useRef(0);
-  const submitDefaultExample = useEffectEvent(() => {
-    startTransition(() => {
-      void submitQuery(defaultExampleProfile).catch((caught) =>
-        setError(
-          caught instanceof Error
-            ? caught.message
-            : "규칙을 불러오지 못했습니다.",
-        ),
-      );
-    });
-  });
 
   const isMale = sex === "male";
   const visible = getVisibleSections(response, {
     severity: severityFilter,
-    pregnancyOnly,
     medicationOnly,
     diseaseOnly,
     sort,
@@ -876,37 +903,53 @@ export function RuleExplorerClient({
     try {
       const raw = window.localStorage.getItem(explorerStorageKey);
       if (!raw) {
-        setRestoredFromStorage(false);
         setHasRestoredState(true);
         return;
       }
 
       const snapshot = JSON.parse(raw) as PersistedExplorerState;
-      if (snapshot.version !== 1) {
-        setRestoredFromStorage(false);
+      if (snapshot.version !== 2) {
         setHasRestoredState(true);
         return;
       }
 
-      setAge(snapshot.form.age ?? "");
-      setSex(snapshot.form.sex ?? "");
-      setPregnancyStatus(snapshot.form.pregnancyStatus ?? "");
-      setLactationStatus(snapshot.form.lactationStatus ?? "");
-      setSmokerStatus(snapshot.form.smokerStatus ?? "");
-      setMedications(snapshot.form.medications ?? "");
-      setConditions(snapshot.form.conditions ?? "");
-      setAllergies(snapshot.form.allergies ?? "");
-      setSelectedCompounds(snapshot.form.selectedCompounds ?? "");
-      setJurisdiction(snapshot.form.jurisdiction ?? "KR");
-      setMemo(snapshot.form.memo ?? "");
+      const restoredProfile: ExplorerProfileDraft = {
+        age: snapshot.form.age ?? "",
+        sex: snapshot.form.sex ?? "",
+        pregnancyStatus: normalizePregnancyStatus(
+          snapshot.form.pregnancyStatus ?? "",
+        ),
+        lactationStatus: snapshot.form.lactationStatus ?? "",
+        smokerStatus: snapshot.form.smokerStatus ?? "",
+        medications: snapshot.form.medications ?? "",
+        conditions: snapshot.form.conditions ?? "",
+        allergies: snapshot.form.allergies ?? "",
+        selectedCompounds: snapshot.form.selectedCompounds ?? "",
+        jurisdiction: snapshot.form.jurisdiction ?? "",
+        memo: snapshot.form.memo ?? "",
+      };
+
+      setAge(restoredProfile.age);
+      setSex(restoredProfile.sex);
+      setPregnancyStatus(restoredProfile.pregnancyStatus);
+      setLactationStatus(restoredProfile.lactationStatus);
+      setSmokerStatus(restoredProfile.smokerStatus);
+      setMedications(restoredProfile.medications);
+      setConditions(restoredProfile.conditions);
+      setAllergies(restoredProfile.allergies);
+      setSelectedCompounds(restoredProfile.selectedCompounds);
+      setJurisdiction(restoredProfile.jurisdiction);
+      setMemo(restoredProfile.memo);
 
       setSeverityFilter(snapshot.filters.severityFilter ?? "");
-      setPregnancyOnly(snapshot.filters.pregnancyOnly ?? false);
       setMedicationOnly(snapshot.filters.medicationOnly ?? false);
       setDiseaseOnly(snapshot.filters.diseaseOnly ?? false);
       setSort(snapshot.filters.sort ?? "severity_desc");
 
-      setIsAdvancedOpen(false);
+      setIsAdvancedOpen(
+        snapshot.ui.isAdvancedOpen ?? hasAdvancedProfileValues(restoredProfile),
+      );
+      setIsExamplesOpen(snapshot.ui.isExamplesOpen ?? false);
       setSectionVisibleCounts(
         snapshot.ui.sectionVisibleCounts ?? { ...sectionPreviewCounts },
       );
@@ -914,29 +957,12 @@ export function RuleExplorerClient({
       setHasQueried(snapshot.query.hasQueried ?? false);
       setResponse(snapshot.query.response ?? null);
       setError(null);
-      setRestoredFromStorage(true);
     } catch {
       window.localStorage.removeItem(explorerStorageKey);
-      setRestoredFromStorage(false);
     } finally {
       setHasRestoredState(true);
     }
   }, []);
-
-  useEffect(() => {
-    if (
-      !hasRestoredState ||
-      restoredFromStorage ||
-      hasQueried ||
-      response ||
-      hasAutoSubmittedDefault.current
-    ) {
-      return;
-    }
-
-    hasAutoSubmittedDefault.current = true;
-    submitDefaultExample();
-  }, [hasQueried, hasRestoredState, response, restoredFromStorage]);
 
   useEffect(() => {
     if (!hasRestoredState) {
@@ -944,7 +970,7 @@ export function RuleExplorerClient({
     }
 
     const snapshot: PersistedExplorerState = {
-      version: 1,
+      version: 2,
       form: {
         age,
         sex,
@@ -960,13 +986,13 @@ export function RuleExplorerClient({
       },
       filters: {
         severityFilter,
-        pregnancyOnly,
         medicationOnly,
         diseaseOnly,
         sort,
       },
       ui: {
-        isAdvancedOpen: false,
+        isAdvancedOpen,
+        isExamplesOpen,
         sectionVisibleCounts,
       },
       query: {
@@ -989,10 +1015,11 @@ export function RuleExplorerClient({
     jurisdiction,
     memo,
     severityFilter,
-    pregnancyOnly,
     medicationOnly,
     diseaseOnly,
     sort,
+    isAdvancedOpen,
+    isExamplesOpen,
     sectionVisibleCounts,
     hasQueried,
     response,
@@ -1025,7 +1052,9 @@ export function RuleExplorerClient({
           return;
         }
 
-        const payload = (await result.json()) as AiExplainResponse | { error?: string };
+        const payload = (await result.json()) as
+          | AiExplainResponse
+          | { error?: string };
         if (!("ok" in payload) || !payload.ok) {
           setAiRuleRecommendations({});
           return;
@@ -1033,7 +1062,10 @@ export function RuleExplorerClient({
 
         setAiRuleRecommendations(
           Object.fromEntries(
-            payload.explanation.ruleCardActions.map((item) => [item.ruleId, item.recommendation]),
+            payload.explanation.ruleCardActions.map((item) => [
+              item.ruleId,
+              item.recommendation,
+            ]),
           ),
         );
       } catch (caught) {
@@ -1069,11 +1101,6 @@ export function RuleExplorerClient({
     resetSectionPreviewCounts();
   }
 
-  function updatePregnancyOnly(value: boolean) {
-    setPregnancyOnly(value);
-    resetSectionPreviewCounts();
-  }
-
   function updateSort(value: NonNullable<EngineQuery["sort"]>) {
     setSort(value);
     resetSectionPreviewCounts();
@@ -1081,13 +1108,20 @@ export function RuleExplorerClient({
 
   function buildQueryPayload(profile: ExplorerProfileDraft): EngineQuery {
     const isMaleProfile = profile.sex === "male";
+    const normalizedPregnancyStatus = normalizePregnancyStatus(
+      profile.pregnancyStatus,
+    );
 
     return {
       profile: {
         age: profile.age ? Number(profile.age) : undefined,
         sex: profile.sex || undefined,
-        pregnancyStatus: isMaleProfile ? undefined : profile.pregnancyStatus || undefined,
-        lactationStatus: isMaleProfile ? undefined : profile.lactationStatus || undefined,
+        pregnancyStatus: isMaleProfile
+          ? undefined
+          : normalizedPregnancyStatus || undefined,
+        lactationStatus: isMaleProfile
+          ? undefined
+          : profile.lactationStatus || undefined,
         smokerStatus: profile.smokerStatus || undefined,
         medications: buildCanonicalEntries(
           profile.medications,
@@ -1102,7 +1136,7 @@ export function RuleExplorerClient({
           profile.selectedCompounds,
           metadata.ingredients,
         ),
-        jurisdiction: profile.jurisdiction,
+        jurisdiction: profile.jurisdiction || undefined,
         memo: profile.memo,
       },
       sort,
@@ -1140,7 +1174,9 @@ export function RuleExplorerClient({
         body: JSON.stringify(buildQueryPayload(profile)),
       });
 
-      const payload = (await result.json()) as EngineResponse | { error?: string };
+      const payload = (await result.json()) as
+        | EngineResponse
+        | { error?: string };
       const elapsed = performance.now() - startedAt;
       if (elapsed < minimumQueryLoadingMs) {
         await delay(minimumQueryLoadingMs - elapsed);
@@ -1152,7 +1188,9 @@ export function RuleExplorerClient({
 
       if (!result.ok) {
         throw new Error(
-          "error" in payload ? payload.error ?? "규칙을 불러오지 못했습니다." : "규칙을 불러오지 못했습니다.",
+          "error" in payload
+            ? (payload.error ?? "규칙을 불러오지 못했습니다.")
+            : "규칙을 불러오지 못했습니다.",
         );
       }
 
@@ -1167,7 +1205,6 @@ export function RuleExplorerClient({
 
   function resetResultFilters() {
     setSeverityFilter("");
-    setPregnancyOnly(false);
     setMedicationOnly(false);
     setDiseaseOnly(false);
     setSort("severity_desc");
@@ -1184,13 +1221,14 @@ export function RuleExplorerClient({
     setConditions("");
     setAllergies("");
     setSelectedCompounds("");
-    setJurisdiction("KR");
+    setJurisdiction("");
     setMemo("");
     resetResultFilters();
     setResponse(null);
     setHasQueried(false);
     setError(null);
     setIsAdvancedOpen(false);
+    setIsExamplesOpen(false);
     resetSectionPreviewCounts();
     window.localStorage.removeItem(explorerStorageKey);
   }
@@ -1199,17 +1237,14 @@ export function RuleExplorerClient({
     profile: Partial<ExplorerProfileDraft>,
     options?: { submit?: boolean },
   ) {
-    const nextProfile: ExplorerProfileDraft = {
-      ...blankExplorerProfile,
-      ...profile,
-    };
+    const nextProfile = buildStarterDraft(profile);
 
     setSelectedCompounds(nextProfile.selectedCompounds);
     setMedications(nextProfile.medications);
     setConditions(nextProfile.conditions);
     setAge(nextProfile.age);
     setSex(nextProfile.sex);
-    setPregnancyStatus(nextProfile.pregnancyStatus);
+    setPregnancyStatus(normalizePregnancyStatus(nextProfile.pregnancyStatus));
     setLactationStatus(nextProfile.lactationStatus);
     setSmokerStatus(nextProfile.smokerStatus);
     setAllergies(nextProfile.allergies);
@@ -1219,6 +1254,7 @@ export function RuleExplorerClient({
     setResponse(null);
     setHasQueried(false);
     setIsAdvancedOpen(false);
+    setIsExamplesOpen(false);
     resetSectionPreviewCounts();
 
     if (options?.submit) {
@@ -1283,6 +1319,9 @@ export function RuleExplorerClient({
       tone: "border-amber-200 bg-amber-50/60",
     },
   ] as const;
+  const hasActiveResultFilters = Boolean(
+    severityFilter || medicationOnly || diseaseOnly || sort !== "severity_desc",
+  );
   const sectionPresentation = {
     definitely_matched: {
       kicker: "먼저 보기",
@@ -1346,42 +1385,52 @@ export function RuleExplorerClient({
     <div className="space-y-4">
       <section className="surface-card overflow-hidden rounded-[1.5rem]">
         <div>
-          <div className="border-b border-border-subtle px-4 py-4 md:px-5">
+          <div className="px-4 py-4 md:px-5">
             <div className="hidden flex-col gap-3 md:flex-row md:items-end md:justify-between">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">입력</p>
-                <h2 className="mt-2 text-[clamp(1.35rem,2.3vw,1.75rem)] font-semibold tracking-[-0.02em] text-foreground">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
+                  입력
+                </p>
+                <h2 className="mt-2 text-[clamp(1.1rem,1.7vw,1.38rem)] font-semibold tracking-[-0.02em] text-foreground">
                   필요한 정보만 입력하세요
                 </h2>
                 <p className="measure-copy mt-2 text-sm leading-6 text-muted">
-                  성분만으로도 시작할 수 있고, 약물이나 상태를 추가하면 결과가 더 정확해집니다.
+                  성분만으로도 시작할 수 있고, 약물이나 상태를 추가하면 결과가
+                  더 정확해집니다.
                 </p>
               </div>
 
               <button
                 type="button"
-                onClick={() => applyStarterProfile(defaultExampleProfile, { submit: true })}
+                onClick={() =>
+                  applyStarterProfile(defaultExampleProfile, { submit: true })
+                }
                 className={`${subtleActionButtonClass} hidden`}
               >
                 입력만 초기화
               </button>
             </div>
 
-            <div className="rounded-[1rem] border border-emerald-200/70 bg-emerald-50/70 px-4 py-3">
+            <div className="hidden rounded-[1rem] border border-emerald-200/70 bg-emerald-50/70 px-4 py-3">
               <div className="space-y-3">
                 <div className="max-w-[46rem]">
                   <p className="text-sm font-semibold text-foreground">
-                    첫 화면에는 예시 입력과 예시 결과가 바로 보이도록 구성했습니다.
+                    첫 화면에는 예시 입력과 예시 결과가 바로 보이도록
+                    구성했습니다.
                   </p>
                   <p className="mt-0.5 text-sm leading-5 text-muted">
-                    그대로 `규칙 조회`를 눌러도 되고, 필요한 칸만 내 상황에 맞게 바꿔서 다시
-                    조회해도 됩니다.
+                    그대로 `규칙 조회`를 눌러도 되고, 필요한 칸만 내 상황에 맞게
+                    바꿔서 다시 조회해도 됩니다.
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   <button
                     type="button"
-                    onClick={() => applyStarterProfile(defaultExampleProfile, { submit: true })}
+                    onClick={() =>
+                      applyStarterProfile(defaultExampleProfile, {
+                        submit: true,
+                      })
+                    }
                     className={subtleActionButtonClass}
                   >
                     기본 예시로 되돌리기
@@ -1390,7 +1439,9 @@ export function RuleExplorerClient({
                     <button
                       key={`starter-${profile.label}`}
                       type="button"
-                      onClick={() => applyStarterProfile(profile, { submit: true })}
+                      onClick={() =>
+                        applyStarterProfile(profile, { submit: true })
+                      }
                       className={ghostButtonClass}
                     >
                       {profile.label}
@@ -1402,11 +1453,14 @@ export function RuleExplorerClient({
 
             <div className="hidden mt-5 grid gap-3 sm:grid-cols-3">
               {highlightedCounts.map((item) => (
-                <div key={item.label} className="rounded-[1rem] border border-stone-200 bg-white px-4 py-4">
+                <div
+                  key={item.label}
+                  className="rounded-[1rem] border border-stone-200 bg-white px-4 py-4"
+                >
                   <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted">
                     {item.label}
                   </p>
-                  <p className="mt-2 text-2xl font-semibold leading-none text-foreground tabular-nums">
+                  <p className="mt-2 text-[1.42rem] font-semibold leading-none text-foreground tabular-nums">
                     {item.value.toLocaleString("ko-KR")}
                   </p>
                 </div>
@@ -1416,7 +1470,9 @@ export function RuleExplorerClient({
 
           <div className="px-4 py-4 md:px-5">
             <div className="grid gap-3 lg:grid-cols-3">
-              <label className={`${fieldGroupClass} rounded-[1rem] border border-stone-200 bg-white p-3`}>
+              <label
+                className={`${fieldGroupClass} rounded-[1rem] border border-stone-200 bg-white p-3`}
+              >
                 <div className="mb-3 flex items-center justify-between gap-3">
                   <span className={fieldLabelClass}>1. 선택 성분</span>
                   <span className="rounded-full bg-stone-100 px-2.5 py-1 text-[11px] font-medium text-stone-600">
@@ -1445,7 +1501,9 @@ export function RuleExplorerClient({
                 />
               </label>
 
-              <label className={`${fieldGroupClass} rounded-[1rem] border border-stone-200 bg-white p-3`}>
+              <label
+                className={`${fieldGroupClass} rounded-[1rem] border border-stone-200 bg-white p-3`}
+              >
                 <div className="mb-3 flex items-center justify-between gap-3">
                   <span className={fieldLabelClass}>2. 복용 약물</span>
                   <span className="rounded-full bg-stone-100 px-2.5 py-1 text-[11px] font-medium text-stone-600">
@@ -1474,7 +1532,9 @@ export function RuleExplorerClient({
                 />
               </label>
 
-              <label className={`${fieldGroupClass} rounded-[1rem] border border-stone-200 bg-white p-3`}>
+              <label
+                className={`${fieldGroupClass} rounded-[1rem] border border-stone-200 bg-white p-3`}
+              >
                 <div className="mb-3 flex items-center justify-between gap-3">
                   <span className={fieldLabelClass}>3. 질환 · 상태</span>
                   <span className="rounded-full bg-stone-100 px-2.5 py-1 text-[11px] font-medium text-stone-600">
@@ -1509,7 +1569,8 @@ export function RuleExplorerClient({
                 type="button"
                 onClick={() => setIsAdvancedOpen((value) => !value)}
                 aria-expanded={isAdvancedOpen}
-                className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition duration-200 hover:bg-white/40"
+                data-open={isAdvancedOpen}
+                className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition-[background-color] duration-300 [transition-timing-function:var(--ease-soft)] hover:bg-white/40"
               >
                 <div>
                   <p className="text-[15px] font-semibold text-stone-900">
@@ -1520,16 +1581,14 @@ export function RuleExplorerClient({
                   </p>
                 </div>
                 <span
-                  className={`flex h-10 w-10 items-center justify-center rounded-full border border-stone-200 bg-white shadow-sm transition duration-300 ${
+                  className={`flex h-10 w-10 items-center justify-center rounded-full border border-stone-200 bg-white shadow-sm transition-[background-color,border-color,box-shadow] duration-300 [transition-timing-function:var(--ease-soft)] ${
                     isAdvancedOpen ? "border-stone-300 bg-stone-50" : ""
                   }`}
                 >
                   <svg
                     aria-hidden="true"
                     viewBox="0 0 20 20"
-                    className={`h-4 w-4 text-stone-700 transition duration-300 ${
-                      isAdvancedOpen ? "rotate-180" : ""
-                    }`}
+                    className="collapsible-chevron h-4 w-4 text-stone-700"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="1.8"
@@ -1542,99 +1601,119 @@ export function RuleExplorerClient({
               </button>
 
               <div
-                className={`grid transition-all duration-300 ease-out ${
-                  isAdvancedOpen
-                    ? "grid-rows-[1fr] opacity-100"
-                    : "grid-rows-[0fr] opacity-0"
-                }`}
+                className="collapsible-panel collapsible-panel-dense"
+                data-open={isAdvancedOpen}
               >
-                <div className="overflow-hidden">
-                  <div className="border-t border-stone-200/80 px-5 pb-5 pt-5">
+                <div className="collapsible-panel-inner">
+                  <div className="collapsible-panel-body border-t border-stone-200/80 px-5 pb-5 pt-5">
                     <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-                  <label className={fieldGroupClass}>
-                    <span className={fieldLabelClass}>나이</span>
-                    <input value={age} onChange={(event) => setAge(event.target.value)} type="number" inputMode="numeric" className={fieldControlClass} />
-                  </label>
+                      <label className={fieldGroupClass}>
+                        <span className={fieldLabelClass}>나이</span>
+                        <input
+                          value={age}
+                          onChange={(event) => setAge(event.target.value)}
+                          type="number"
+                          inputMode="numeric"
+                          className={fieldControlClass}
+                        />
+                      </label>
 
-                  <SelectField
-                    label="성별"
-                    value={sex}
-                    onChange={(nextSex) => {
-                      setSex(nextSex);
-                      if (nextSex === "male") {
-                        setPregnancyStatus("");
-                        setLactationStatus("");
-                      }
-                    }}
-                    options={[
-                      { value: "", label: "미입력" },
-                      { value: "male", label: "남성" },
-                      { value: "female", label: "여성" },
-                    ]}
-                  />
+                      <SelectField
+                        label="성별"
+                        value={sex}
+                        onChange={(nextSex) => {
+                          setSex(nextSex);
+                          if (nextSex === "male") {
+                            setPregnancyStatus("");
+                            setLactationStatus("");
+                          }
+                        }}
+                        options={[
+                          { value: "", label: "미입력" },
+                          { value: "male", label: "남성" },
+                          { value: "female", label: "여성" },
+                        ]}
+                      />
 
-                  <SelectField
-                    label="흡연 상태"
-                    value={smokerStatus}
-                    onChange={setSmokerStatus}
-                    options={[
-                      { value: "", label: "미입력" },
-                      { value: "current", label: "현재 흡연" },
-                      { value: "former", label: "과거 흡연" },
-                      { value: "never", label: "비흡연" },
-                    ]}
-                  />
+                      <SelectField
+                        label="흡연 상태"
+                        value={smokerStatus}
+                        onChange={setSmokerStatus}
+                        options={[
+                          { value: "", label: "미입력" },
+                          { value: "current", label: "현재 흡연" },
+                          { value: "former", label: "과거 흡연" },
+                          { value: "never", label: "비흡연" },
+                        ]}
+                      />
 
-                  <SelectField
-                    label="관할권"
-                    value={jurisdiction}
-                    onChange={setJurisdiction}
-                    options={[
-                      { value: "KR", label: "KR" },
-                      ...metadata.jurisdictions
-                        .filter((item) => item !== "KR")
-                        .map((item) => ({ value: item, label: item })),
-                    ]}
-                  />
+                      <SelectField
+                        label="관할권"
+                        value={jurisdiction}
+                        onChange={setJurisdiction}
+                        options={[
+                          { value: "", label: "미입력" },
+                          { value: "KR", label: "KR" },
+                          ...metadata.jurisdictions
+                            .filter((item) => item !== "KR")
+                            .map((item) => ({ value: item, label: item })),
+                        ]}
+                      />
 
-                  <SelectField
-                    label="임신 상태"
-                    value={pregnancyStatus}
-                    onChange={setPregnancyStatus}
-                    disabled={isMale}
-                    options={[
-                      {
-                        value: "",
-                        label: isMale ? "남성 선택 시 비활성" : "미입력",
-                      },
-                      { value: "pregnant", label: "임신 중" },
-                      { value: "trying_to_conceive", label: "임신 준비 중" },
-                      { value: "unknown_possible", label: "가능성 있음" },
-                    ]}
-                  />
+                      <SelectField
+                        label="임신 상태"
+                        value={pregnancyStatus}
+                        onChange={(nextPregnancyStatus) =>
+                          setPregnancyStatus(
+                            normalizePregnancyStatus(nextPregnancyStatus),
+                          )
+                        }
+                        disabled={isMale}
+                        options={[
+                          {
+                            value: "",
+                            label: isMale ? "남성 선택 시 비활성" : "미입력",
+                          },
+                          { value: "not_pregnant", label: "해당 없음" },
+                          { value: "pregnant", label: "임신 중" },
+                        ]}
+                      />
 
-                  <SelectField
-                    label="수유 상태"
-                    value={lactationStatus}
-                    onChange={setLactationStatus}
-                    disabled={isMale}
-                    options={[
-                      {
-                        value: "",
-                        label: isMale ? "남성 선택 시 비활성" : "미입력",
-                      },
-                      { value: "lactating", label: "수유 중" },
-                    ]}
-                  />
+                      <SelectField
+                        label="수유 상태"
+                        value={lactationStatus}
+                        onChange={setLactationStatus}
+                        disabled={isMale}
+                        options={[
+                          {
+                            value: "",
+                            label: isMale ? "남성 선택 시 비활성" : "미입력",
+                          },
+                          { value: "lactating", label: "수유 중" },
+                        ]}
+                      />
 
                       <label className={`${fieldGroupClass} xl:col-span-2`}>
                         <span className={fieldLabelClass}>알레르기</span>
-                        <input value={allergies} onChange={(event) => setAllergies(event.target.value)} placeholder="예: shellfish" className={fieldControlClass} />
+                        <input
+                          value={allergies}
+                          onChange={(event) => setAllergies(event.target.value)}
+                          placeholder="예: shellfish"
+                          className={fieldControlClass}
+                        />
                       </label>
 
-                      <label className={`${fieldGroupClass} md:col-span-2 xl:col-span-4`}>
+                      <label
+                        className={`${fieldGroupClass} md:col-span-2 xl:col-span-4`}
+                      >
                         <span className={fieldLabelClass}>메모</span>
-                        <textarea value={memo} onChange={(event) => setMemo(event.target.value)} rows={2} placeholder="추가로 참고할 복용 방식, 생활 습관, 키워드를 적어둘 수 있습니다." className={`${fieldControlClass} min-h-[6.75rem] resize-y`} />
+                        <textarea
+                          value={memo}
+                          onChange={(event) => setMemo(event.target.value)}
+                          rows={2}
+                          placeholder="추가로 참고할 복용 방식, 생활 습관, 키워드를 적어둘 수 있습니다."
+                          className={`${fieldControlClass} min-h-[6.75rem] resize-y`}
+                        />
                       </label>
                     </div>
                   </div>
@@ -1642,25 +1721,98 @@ export function RuleExplorerClient({
               </div>
             </section>
 
-            <div className="mt-3 flex flex-col gap-2 border-t border-border-subtle pt-3 sm:flex-row sm:items-center sm:justify-between">
+            <section className="mt-3 overflow-hidden rounded-[1rem] border border-stone-200 bg-stone-50/70">
+              <button
+                type="button"
+                onClick={() => setIsExamplesOpen((value) => !value)}
+                aria-expanded={isExamplesOpen}
+                data-open={isExamplesOpen}
+                className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition-[background-color] duration-300 [transition-timing-function:var(--ease-soft)] hover:bg-white/40"
+              >
+                <div>
+                  <p className="text-[15px] font-semibold text-stone-900">
+                    예시 입력
+                  </p>
+                  <p className="hidden mt-1 text-sm leading-6 text-stone-600">
+                    자주 쓰는 조합을 바로 불러와 빠르게 조회할 수 있습니다.
+                  </p>
+                </div>
+                <span
+                  className={`flex h-10 w-10 items-center justify-center rounded-full border border-stone-200 bg-white shadow-sm transition-[background-color,border-color,box-shadow] duration-300 [transition-timing-function:var(--ease-soft)] ${
+                    isExamplesOpen ? "border-stone-300 bg-stone-50" : ""
+                  }`}
+                >
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 20 20"
+                    className="collapsible-chevron h-4 w-4 text-stone-700"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="m5 7.5 5 5 5-5" />
+                  </svg>
+                </span>
+              </button>
+
+              <div
+                className="collapsible-panel collapsible-panel-dense"
+                data-open={isExamplesOpen}
+              >
+                <div className="collapsible-panel-inner">
+                  <div className="collapsible-panel-body border-t border-stone-200/80 px-5 pb-5 pt-5">
+                    <div className="flex flex-wrap gap-2">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          applyStarterProfile(defaultExampleProfile, {
+                            submit: true,
+                          })
+                        }
+                        className={subtleActionButtonClass}
+                      >
+                        기본 예시로 되돌리기
+                      </button>
+                      {starterProfiles.map((profile) => (
+                        <button
+                          key={`starter-inline-${profile.label}`}
+                          type="button"
+                          onClick={() =>
+                            applyStarterProfile(profile, { submit: true })
+                          }
+                          className={ghostButtonClass}
+                        >
+                          {profile.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-end">
               <p className="hidden text-sm leading-6 text-muted">
                 {hasAnyPrimaryInput
                   ? "직접 관련된 규칙을 먼저 정리하고, 일반 참고 항목은 뒤에서 보조적으로 이어 보여드립니다."
                   : "성분 하나만 먼저 넣고 시작해도 됩니다. 필요한 순간에만 추가 조건을 더해 보세요."}
               </p>
-              <div className="flex flex-wrap gap-2 sm:flex-nowrap">
+              <div className="flex flex-wrap gap-2 sm:flex-nowrap sm:justify-end">
                 <button
                   type="button"
                   disabled={isQueryLoading || isPending}
                   onClick={() =>
-                    startTransition(() =>
-                      void submitQuery().catch((caught) =>
-                        setError(
-                          caught instanceof Error
-                            ? caught.message
-                            : "규칙을 불러오지 못했습니다.",
+                    startTransition(
+                      () =>
+                        void submitQuery().catch((caught) =>
+                          setError(
+                            caught instanceof Error
+                              ? caught.message
+                              : "규칙을 불러오지 못했습니다.",
+                          ),
                         ),
-                      ),
                     )
                   }
                   className={`${primaryButtonClass} disabled:cursor-wait disabled:bg-stone-900 disabled:opacity-80`}
@@ -1674,18 +1826,23 @@ export function RuleExplorerClient({
                     "규칙 조회"
                   )}
                 </button>
-                <button type="button" onClick={resetForm} className={secondaryButtonClass}>전체 초기화</button>
+                <button
+                  type="button"
+                  onClick={resetForm}
+                  className={secondaryButtonClass}
+                >
+                  전체 초기화
+                </button>
               </div>
             </div>
           </div>
         </div>
-
       </section>
 
       {response ? (
         <>
           <section className="surface-card rounded-[1.25rem] p-3 md:p-4">
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-col gap-3">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="rounded-full bg-stone-950 px-3 py-1.5 text-xs font-semibold text-white">
                   결과 {visibleCount}건
@@ -1700,171 +1857,193 @@ export function RuleExplorerClient({
                 ))}
               </div>
 
-              <div className="flex flex-wrap items-center gap-2 xl:ml-auto">
-                <CompactSelectChip
-                  label="위험도"
-                  value={severityFilter}
-                  onChange={updateSeverityFilter}
-                  options={[
-                    { value: "", label: "전체" },
-                    { value: "contraindicated", label: "금지" },
-                    { value: "avoid", label: "중단/회피" },
-                    { value: "warn", label: "강한 주의" },
-                    { value: "monitor", label: "일반 주의" },
-                  ]}
-                />
-                <CompactSelectChip
-                  label="정렬"
-                  value={sort}
-                  onChange={(value) =>
-                    updateSort(value as NonNullable<EngineQuery["sort"]>)
-                  }
-                  options={metadata.sortOptions}
-                  minWidthClassName="min-w-[11rem]"
-                />
-                <ToggleChip
-                  checked={medicationOnly}
-                  onChange={updateMedicationOnly}
-                  label="약물 관련만"
-                />
-                <ToggleChip
-                  checked={diseaseOnly}
-                  onChange={updateDiseaseOnly}
-                  label="질환 관련만"
-                />
-                <ToggleChip
-                  checked={pregnancyOnly}
-                  onChange={updatePregnancyOnly}
-                  label="임신/수유만"
-                />
-                <button
-                  type="button"
-                  onClick={resetResultFilters}
-                  className={ghostButtonClass}
-                >
-                  필터 초기화
-                </button>
-              </div>
-            </div>
-          </section>
-
-        <section className="hidden surface-card rounded-[1.5rem] p-5 md:p-6">
-          <div className="flex flex-col gap-3 border-b border-border-subtle pb-5 2xl:flex-row 2xl:items-end 2xl:justify-between">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">결과</p>
-              <h2 className="mt-2 text-[clamp(1.2rem,1.8vw,1.55rem)] font-semibold tracking-[-0.02em] text-foreground">
-                중요한 내용부터 바로 확인하세요
-              </h2>
-              <p className="mt-2 text-sm leading-6 text-muted">
-                먼저 봐야 할 내용과 추가 확인이 필요한 내용을 분리해 보여드립니다.
-              </p>
-            </div>
-            <p className="text-sm font-medium text-muted">
-              총 <span className="font-semibold text-foreground tabular-nums">{visibleCount}</span>건
-            </p>
-          </div>
-
-          <div className="mt-5 space-y-4">
-            <div className="space-y-2">
-              {resultOverview.map((item) => (
-                <div
-                  key={item.key}
-                  className={`rounded-[1rem] border px-4 py-3.5 ${item.tone}`}
-                >
-                  <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-                    <div className="min-w-0 md:flex md:items-center md:gap-3">
-                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted md:min-w-[4.5rem]">
-                        {item.shortLabel}
-                      </p>
-                      <p className="mt-1 text-sm font-medium leading-5 text-foreground md:mt-0">
-                        {item.label}
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-3 md:shrink-0">
-                      <p className="text-xs leading-5 text-muted">{item.description}</p>
-                      <p className="text-2xl font-semibold leading-none text-foreground tabular-nums">
-                        {item.count}
-                      </p>
-                    </div>
+              <div className="rounded-[1.1rem] border border-stone-200/90 bg-stone-50/75 p-2.5 md:p-3">
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="text-xs font-medium text-stone-500">
+                      결과 필터
+                    </p>
+                    {hasActiveResultFilters ? (
+                      <button
+                        type="button"
+                        onClick={resetResultFilters}
+                        className="text-sm font-medium text-stone-500 transition duration-150 hover:text-stone-900"
+                      >
+                        필터 초기화
+                      </button>
+                    ) : null}
                   </div>
-                </div>
-              ))}
-            </div>
 
-            <div className="rounded-[1rem] border border-stone-200 bg-white p-4 md:p-5">
-              <div className="flex flex-col gap-3 border-b border-border-subtle pb-4 lg:flex-row lg:items-start lg:justify-between">
-                <div>
-                  <p className="text-sm font-semibold text-foreground">결과 보기 설정</p>
-                  <p className="mt-1 text-xs leading-5 text-muted">
-                    필요한 범위만 남기도록 필터를 간단히 조절해 보세요.
-                  </p>
-                </div>
-                <button type="button" onClick={resetResultFilters} className={ghostButtonClass}>
-                  필터 초기화
-                </button>
-              </div>
-
-              <div className="mt-5 space-y-6">
-                <div>
-                  <SelectField
-                    label="위험도"
-                    value={severityFilter}
-                    onChange={updateSeverityFilter}
-                    options={[
-                      { value: "", label: "전체" },
-                      { value: "contraindicated", label: "금지" },
-                      { value: "avoid", label: "중단/회피" },
-                      { value: "warn", label: "강한 주의" },
-                      { value: "monitor", label: "일반 주의" },
-                    ]}
-                  />
-                </div>
-
-                <div>
-                  <SelectField
-                    label="정렬"
-                    value={sort}
-                    onChange={(value) =>
-                      updateSort(value as NonNullable<EngineQuery["sort"]>)
-                    }
-                    options={metadata.sortOptions}
-                  />
-                </div>
-
-                <div className="pt-1">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
-                    관련 조건
-                  </p>
-                  <div className="mt-3 flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2">
+                    <CompactSelectChip
+                      label="위험도"
+                      value={severityFilter}
+                      onChange={updateSeverityFilter}
+                      options={[
+                        { value: "", label: "전체" },
+                        { value: "contraindicated", label: "금지" },
+                        { value: "avoid", label: "중단/회피" },
+                        { value: "warn", label: "강한 주의" },
+                        { value: "monitor", label: "일반 주의" },
+                      ]}
+                      minWidthClassName="min-w-[9.5rem] flex-[1_1_10rem]"
+                    />
+                    <CompactSelectChip
+                      label="정렬"
+                      value={sort}
+                      onChange={(value) =>
+                        updateSort(value as NonNullable<EngineQuery["sort"]>)
+                      }
+                      options={metadata.sortOptions}
+                      minWidthClassName="min-w-[11rem] flex-[1.1_1_12rem]"
+                    />
                     <ToggleChip
                       checked={medicationOnly}
                       onChange={updateMedicationOnly}
                       label="약물 관련만"
+                      className="min-w-[10rem] flex-[1_1_10rem]"
                     />
                     <ToggleChip
                       checked={diseaseOnly}
                       onChange={updateDiseaseOnly}
                       label="질환 관련만"
-                    />
-                    <ToggleChip
-                      checked={pregnancyOnly}
-                      onChange={updatePregnancyOnly}
-                      label="임신/수유만"
+                      className="min-w-[10rem] flex-[1_1_10rem]"
                     />
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+
+          <section className="hidden surface-card rounded-[1.5rem] p-5 md:p-6">
+            <div className="flex flex-col gap-3 border-b border-border-subtle pb-5 2xl:flex-row 2xl:items-end 2xl:justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
+                  결과
+                </p>
+                <h2 className="mt-2 text-[clamp(1rem,1.38vw,1.22rem)] font-semibold tracking-[-0.02em] text-foreground">
+                  중요한 내용부터 바로 확인하세요
+                </h2>
+                <p className="mt-2 text-sm leading-6 text-muted">
+                  먼저 봐야 할 내용과 추가 확인이 필요한 내용을 분리해
+                  보여드립니다.
+                </p>
+              </div>
+              <p className="text-sm font-medium text-muted">
+                총{" "}
+                <span className="font-semibold text-foreground tabular-nums">
+                  {visibleCount}
+                </span>
+                건
+              </p>
+            </div>
+
+            <div className="mt-5 space-y-4">
+              <div className="space-y-2">
+                {resultOverview.map((item) => (
+                  <div
+                    key={item.key}
+                    className={`rounded-[1rem] border px-4 py-3.5 ${item.tone}`}
+                  >
+                    <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                      <div className="min-w-0 md:flex md:items-center md:gap-3">
+                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted md:min-w-[4.5rem]">
+                          {item.shortLabel}
+                        </p>
+                        <p className="mt-1 text-sm font-medium leading-5 text-foreground md:mt-0">
+                          {item.label}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-3 md:shrink-0">
+                        <p className="text-xs leading-5 text-muted">
+                          {item.description}
+                        </p>
+                        <p className="text-[1.36rem] font-semibold leading-none text-foreground tabular-nums">
+                          {item.count}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="rounded-[1rem] border border-stone-200 bg-white p-4 md:p-5">
+                <div className="flex flex-col gap-3 border-b border-border-subtle pb-4 lg:flex-row lg:items-start lg:justify-between">
+                  <div>
+                    <p className="text-sm font-semibold text-foreground">
+                      결과 보기 설정
+                    </p>
+                    <p className="mt-1 text-xs leading-5 text-muted">
+                      필요한 범위만 남기도록 필터를 간단히 조절해 보세요.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={resetResultFilters}
+                    className={ghostButtonClass}
+                    hidden={!hasActiveResultFilters}
+                  >
+                    필터 초기화
+                  </button>
+                </div>
+
+                <div className="mt-5 space-y-6">
+                  <div>
+                    <SelectField
+                      label="위험도"
+                      value={severityFilter}
+                      onChange={updateSeverityFilter}
+                      options={[
+                        { value: "", label: "전체" },
+                        { value: "contraindicated", label: "금지" },
+                        { value: "avoid", label: "중단/회피" },
+                        { value: "warn", label: "강한 주의" },
+                        { value: "monitor", label: "일반 주의" },
+                      ]}
+                    />
+                  </div>
+
+                  <div>
+                    <SelectField
+                      label="정렬"
+                      value={sort}
+                      onChange={(value) =>
+                        updateSort(value as NonNullable<EngineQuery["sort"]>)
+                      }
+                      options={metadata.sortOptions}
+                    />
+                  </div>
+
+                  <div className="pt-1">
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+                      관련 조건
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      <ToggleChip
+                        checked={medicationOnly}
+                        onChange={updateMedicationOnly}
+                        label="약물 관련만"
+                      />
+                      <ToggleChip
+                        checked={diseaseOnly}
+                        onChange={updateDiseaseOnly}
+                        label="질환 관련만"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
         </>
       ) : null}
 
-      {isQueryLoading ? (
-        <ExplorerLoadingSkeleton />
-      ) : null}
+      {isQueryLoading ? <ExplorerLoadingSkeleton /> : null}
       {error ? (
-        <div aria-live="polite" className="rounded-[1.5rem] border border-red-200 bg-red-50 px-5 py-4 text-sm text-red-800">
+        <div
+          aria-live="polite"
+          className="rounded-[1.5rem] border border-red-200 bg-red-50 px-5 py-4 text-sm text-red-800"
+        >
           {error}
         </div>
       ) : null}
@@ -1896,7 +2075,7 @@ export function RuleExplorerClient({
                     <p className="hidden text-xs font-semibold uppercase tracking-[0.18em] text-muted">
                       {presentation.kicker}
                     </p>
-                    <h2 className="text-sm font-semibold tracking-[-0.02em] text-foreground md:text-base">
+                    <h2 className="text-[0.88rem] font-semibold tracking-[-0.02em] text-foreground md:text-[0.94rem]">
                       {presentation.title}
                     </h2>
                     <p className="hidden mt-2 text-sm leading-6 text-muted">
@@ -1904,7 +2083,9 @@ export function RuleExplorerClient({
                     </p>
                   </div>
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className={`rounded-full px-3 py-1.5 text-xs font-semibold ${presentation.chipTone}`}>
+                    <span
+                      className={`rounded-full px-3 py-1.5 text-xs font-semibold ${presentation.chipTone}`}
+                    >
                       {sectionItems.length}건
                     </span>
                     <span className="rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-muted">
@@ -1918,11 +2099,15 @@ export function RuleExplorerClient({
                     <div
                       key={`${sectionKey}-${match.ruleId}`}
                       className="motion-safe:animate-[rise-in_540ms_var(--ease-emphasized)_both]"
-                      style={{ animationDelay: `${index * 90 + matchIndex * 45}ms` }}
+                      style={{
+                        animationDelay: `${index * 90 + matchIndex * 45}ms`,
+                      }}
                     >
                       <RuleCard
                         match={match}
-                        aiRecommendation={aiRuleRecommendations[match.ruleId] ?? null}
+                        aiRecommendation={
+                          aiRuleRecommendations[match.ruleId] ?? null
+                        }
                       />
                     </div>
                   ))}
@@ -1943,7 +2128,8 @@ export function RuleExplorerClient({
                                 setSectionVisibleCounts((current) => ({
                                   ...current,
                                   [sectionKey]: Math.min(
-                                    current[sectionKey] + sectionLoadMoreStep[sectionKey],
+                                    current[sectionKey] +
+                                      sectionLoadMoreStep[sectionKey],
                                     sectionItems.length,
                                   ),
                                 }))
@@ -1977,16 +2163,23 @@ export function RuleExplorerClient({
           })
         ) : (
           <section className="surface-card rounded-[1.5rem] px-6 py-6 md:px-7">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">필터 결과 없음</p>
-            <h3 className="mt-3 text-[clamp(1.2rem,1.8vw,1.5rem)] font-semibold tracking-[-0.02em] text-foreground">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
+              필터 결과 없음
+            </p>
+            <h3 className="mt-3 text-[clamp(1rem,1.35vw,1.2rem)] font-semibold tracking-[-0.02em] text-foreground">
               지금 적용된 필터 안에서는 보이는 항목이 없어요.
             </h3>
             <p className="measure-copy mt-3 text-sm leading-6 text-muted">
-              위험도나 관련 조건 필터가 좁게 걸려 있을 가능성이 큽니다. 필터를 조금만
-              느슨하게 바꾸면 같은 결과 안에서도 다른 판단 근거를 바로 확인할 수 있어요.
+              위험도나 관련 조건 필터가 좁게 걸려 있을 가능성이 큽니다. 필터를
+              조금만 느슨하게 바꾸면 같은 결과 안에서도 다른 판단 근거를 바로
+              확인할 수 있어요.
             </p>
             <div className="mt-5 flex flex-wrap gap-2">
-              <button type="button" onClick={resetResultFilters} className={primaryButtonClass}>
+              <button
+                type="button"
+                onClick={resetResultFilters}
+                className={primaryButtonClass}
+              >
                 필터 전체 초기화
               </button>
             </div>
@@ -1997,8 +2190,10 @@ export function RuleExplorerClient({
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
             {hasQueried ? "결과 없음" : "입력 전"}
           </p>
-          <h3 className="mt-3 text-[clamp(1.2rem,1.8vw,1.5rem)] font-semibold tracking-[-0.02em] text-foreground">
-            {hasQueried ? "현재 조건으로는 연결된 결과를 찾지 못했어요." : "첫 입력은 아주 간단해도 괜찮아요."}
+          <h3 className="mt-3 text-[clamp(1rem,1.35vw,1.2rem)] font-semibold tracking-[-0.02em] text-foreground">
+            {hasQueried
+              ? "현재 조건으로는 연결된 결과를 찾지 못했어요."
+              : "첫 입력은 아주 간단해도 괜찮아요."}
           </h3>
           <p className="measure-copy mt-3 text-sm leading-6 text-muted">
             {hasQueried

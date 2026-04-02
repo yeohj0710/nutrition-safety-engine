@@ -14,11 +14,13 @@ import {
   getMedicationDisplayLabel,
 } from "@/src/lib/knowledge/medication-aliases";
 import {
+  getEvidenceContextExcerpt,
   getEvidenceContextSummary,
   getEvidenceLocatorText,
   getEvidencePrimaryExcerpt,
   getEvidenceRepresentativeExcerpt,
   getEvidenceRepresentativeExcerptLabel,
+  getEvidenceSummaryExcerpt,
   getEvidenceTranslationExcerpt,
   getSourceReferenceLinks,
   getSourceTrustSummary,
@@ -36,7 +38,9 @@ import {
   type SafetyRule,
 } from "@/src/types/knowledge";
 
-const knowledgeIndex = knowledgeIndexSchema.parse(knowledgeIndexJson) as KnowledgeIndex;
+const knowledgeIndex = knowledgeIndexSchema.parse(
+  knowledgeIndexJson,
+) as KnowledgeIndex;
 const generatedKnowledgeIndexPath = path.join(
   process.cwd(),
   "src",
@@ -95,7 +99,9 @@ function humanizeExplorerValue(value: string) {
   return value.replace(/_/g, " ").replace(/\s+/g, " ").trim();
 }
 
-function getPreferredReferenceLink(links: Array<{ label: string; url: string }>) {
+function getPreferredReferenceLink(
+  links: Array<{ label: string; url: string }>,
+) {
   return (
     links.find((link) => link.label === "DOI") ??
     links.find((link) => link.label === "PDF 원문") ??
@@ -109,41 +115,70 @@ function getPreferredReferenceLink(links: Array<{ label: string; url: string }>)
 function buildMedicationExplorerOptions(values: string[]) {
   return [...new Set(values.map((value) => value.trim()).filter(Boolean))]
     .sort((left, right) =>
-      getMedicationDisplayLabel(left).localeCompare(getMedicationDisplayLabel(right), "ko"),
+      getMedicationDisplayLabel(left).localeCompare(
+        getMedicationDisplayLabel(right),
+        "ko",
+      ),
     )
     .map((value) => ({
       label: getMedicationDisplayLabel(value),
       canonicalValue: humanizeExplorerValue(value),
-      aliases: [...new Set([value, humanizeExplorerValue(value), ...getMedicationAliases(value)])],
+      aliases: [
+        ...new Set([
+          value,
+          humanizeExplorerValue(value),
+          ...getMedicationAliases(value),
+        ]),
+      ],
     }));
 }
 
 function buildConditionExplorerOptions(values: string[]) {
   return [...new Set(values.map((value) => value.trim()).filter(Boolean))]
     .sort((left, right) =>
-      getConditionDisplayLabel(left).localeCompare(getConditionDisplayLabel(right), "ko"),
+      getConditionDisplayLabel(left).localeCompare(
+        getConditionDisplayLabel(right),
+        "ko",
+      ),
     )
     .map((value) => ({
       label: getConditionDisplayLabel(value),
       canonicalValue: humanizeExplorerValue(value),
-      aliases: [...new Set([value, humanizeExplorerValue(value), ...getConditionAliases(value)])],
+      aliases: [
+        ...new Set([
+          value,
+          humanizeExplorerValue(value),
+          ...getConditionAliases(value),
+        ]),
+      ],
     }));
 }
 
 export function getSourceById(sourceId: string) {
-  return getKnowledgeIndex().sources.find((source) => source.id === sourceId) ?? null;
+  return (
+    getKnowledgeIndex().sources.find((source) => source.id === sourceId) ?? null
+  );
 }
 
 export function getRuleById(ruleId: string) {
-  return getKnowledgeIndex().safetyRules.find((rule) => rule.id === ruleId) ?? null;
+  return (
+    getKnowledgeIndex().safetyRules.find((rule) => rule.id === ruleId) ?? null
+  );
 }
 
 export function getIngredientById(ingredientId: string) {
-  return getKnowledgeIndex().ingredients.find((ingredient) => ingredient.id === ingredientId) ?? null;
+  return (
+    getKnowledgeIndex().ingredients.find(
+      (ingredient) => ingredient.id === ingredientId,
+    ) ?? null
+  );
 }
 
 export function getEvidenceChunkById(chunkId: string) {
-  return getKnowledgeIndex().evidenceChunks.find((chunk) => chunk.id === chunkId) ?? null;
+  return (
+    getKnowledgeIndex().evidenceChunks.find((chunk) => chunk.id === chunkId) ??
+    null
+  );
 }
 
 export function buildReferenceBundle(rule: SafetyRule) {
@@ -164,15 +199,21 @@ export function buildReferenceBundle(rule: SafetyRule) {
 }
 
 export function getRulesBySourceId(sourceId: string) {
-  return getKnowledgeIndex().safetyRules.filter((rule) => rule.sourceIds.includes(sourceId));
+  return getKnowledgeIndex().safetyRules.filter((rule) =>
+    rule.sourceIds.includes(sourceId),
+  );
 }
 
 export function getRulesByEvidenceChunkId(chunkId: string) {
-  return getKnowledgeIndex().safetyRules.filter((rule) => rule.evidenceChunkIds.includes(chunkId));
+  return getKnowledgeIndex().safetyRules.filter((rule) =>
+    rule.evidenceChunkIds.includes(chunkId),
+  );
 }
 
 export function getEvidenceChunksBySourceId(sourceId: string) {
-  return getKnowledgeIndex().evidenceChunks.filter((chunk) => chunk.sourceId === sourceId);
+  return getKnowledgeIndex().evidenceChunks.filter(
+    (chunk) => chunk.sourceId === sourceId,
+  );
 }
 
 export function getSourceDetail(sourceId: string) {
@@ -248,7 +289,9 @@ export function getIngredientReferenceDetail(ingredientId: string) {
   }
 
   const index = getKnowledgeIndex();
-  const linkedRules = index.safetyRules.filter((rule) => rule.ingredientId === ingredientId);
+  const linkedRules = index.safetyRules.filter(
+    (rule) => rule.ingredientId === ingredientId,
+  );
   const referencedChunkIds = new Set(
     linkedRules.flatMap((rule) => rule.evidenceChunkIds),
   );
@@ -289,8 +332,8 @@ export function getIngredientReferenceDetail(ingredientId: string) {
 }
 
 export function getIngredientReferenceBrowseData() {
-  return getKnowledgeIndex().ingredients
-    .map((ingredient) => {
+  return getKnowledgeIndex()
+    .ingredients.map((ingredient) => {
       const detail = getIngredientReferenceDetail(ingredient.id);
       const sourceLookup = new Map(
         (detail?.linkedSources ?? []).map((source) => [source.id, source]),
@@ -320,6 +363,12 @@ export function getIngredientReferenceBrowseData() {
         const contextSummary = primaryChunk
           ? getEvidenceContextSummary(primaryChunk)
           : null;
+        const contextExcerpt = primaryChunk
+          ? getEvidenceContextExcerpt(primaryChunk)
+          : null;
+        const summaryExcerpt = primaryChunk
+          ? getEvidenceSummaryExcerpt(primaryChunk)
+          : null;
         const translation = primaryChunk
           ? getEvidenceTranslationExcerpt(primaryChunk)
           : null;
@@ -344,6 +393,8 @@ export function getIngredientReferenceBrowseData() {
           representativeLabel,
           representativeText,
           contextSummary,
+          contextExcerpt,
+          summaryExcerpt,
           translation,
           locatorText,
           originalFragment,
@@ -367,7 +418,8 @@ export function getIngredientReferenceBrowseData() {
       const sourceDifference = right.sourceCount - left.sourceCount;
       if (sourceDifference !== 0) return sourceDifference;
 
-      const evidenceDifference = right.evidenceChunkCount - left.evidenceChunkCount;
+      const evidenceDifference =
+        right.evidenceChunkCount - left.evidenceChunkCount;
       if (evidenceDifference !== 0) return evidenceDifference;
 
       return left.nameKo.localeCompare(right.nameKo, "ko");
@@ -380,9 +432,13 @@ export function getExplorerMetadata() {
     ...index.safetyRules.flatMap((rule) => rule.interactionDrugs),
     ...index.safetyRules.flatMap((rule) =>
       rule.conditions
-        .filter((condition) => ["medications_any", "or_medications_any"].includes(condition.field))
+        .filter((condition) =>
+          ["medications_any", "or_medications_any"].includes(condition.field),
+        )
         .flatMap((condition) =>
-          Array.isArray(condition.value) ? condition.value.map((item) => String(item)) : [],
+          Array.isArray(condition.value)
+            ? condition.value.map((item) => String(item))
+            : [],
         ),
     ),
   ];
@@ -392,7 +448,9 @@ export function getExplorerMetadata() {
       rule.conditions
         .filter((condition) => condition.field === "diseases_any")
         .flatMap((condition) =>
-          Array.isArray(condition.value) ? condition.value.map((item) => String(item)) : [],
+          Array.isArray(condition.value)
+            ? condition.value.map((item) => String(item))
+            : [],
         ),
     ),
     ...getConditionPresetCanonicalValues(),

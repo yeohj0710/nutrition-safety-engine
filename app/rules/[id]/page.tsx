@@ -6,11 +6,13 @@ import { RuleCard } from "@/src/components/rule-card";
 import { getKnowledgeIndex, getRuleDetail } from "@/src/lib/knowledge";
 import {
   getEvidenceCaptureLabel,
+  getEvidenceContextExcerpt,
   getEvidenceExcerptLabel,
   getEvidenceLocatorText,
   getEvidenceNote,
   getEvidencePrimaryExcerpt,
-  getEvidenceSecondaryExcerpt,
+  getEvidenceSummaryExcerpt,
+  getEvidenceTranslationExcerpt,
   getEvidenceVerificationLabel,
   getEvidenceVerificationSummary,
   getSourceReferenceLinks,
@@ -48,7 +50,9 @@ export async function generateMetadata(props: {
   };
 }
 
-export default async function RuleDetailPage(props: { params: Promise<{ id: string }> }) {
+export default async function RuleDetailPage(props: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await props.params;
   const detail = getRuleDetail(id);
 
@@ -56,13 +60,17 @@ export default async function RuleDetailPage(props: { params: Promise<{ id: stri
     notFound();
   }
 
-  const sourceLookup = new Map(detail.supportingSources.map((source) => [source.id, source]));
+  const sourceLookup = new Map(
+    detail.supportingSources.map((source) => [source.id, source]),
+  );
   const mockMatch = {
     ruleId: detail.rule.id,
     classification: "possibly_relevant" as const,
     matched: false,
     matchScore: 0.6,
-    matchedBecause: ["규칙 상세 페이지에서 근거와 조건을 직접 검토할 수 있습니다."],
+    matchedBecause: [
+      "규칙 상세 페이지에서 근거와 조건을 직접 검토할 수 있습니다.",
+    ],
     notEvaluatedBecauseMissing: [],
     needsMoreInfo: [],
     resolvedSeverity: detail.rule.severity,
@@ -80,19 +88,19 @@ export default async function RuleDetailPage(props: { params: Promise<{ id: stri
   };
 
   return (
-    <main className="app-page min-h-screen px-4 py-8 md:px-6 lg:px-8">
+    <main className="app-page min-h-screen px-4 py-8 md:px-6 lg:px-6">
       <div className="page-shell-narrow space-y-6">
         <div className="surface-card-strong flex flex-col gap-5 rounded-[2rem] px-6 py-6 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="eyebrow">Rule Detail</p>
-            <h1 className="mt-4 font-display text-[clamp(2.3rem,4vw,3.6rem)] leading-[0.98] tracking-[-0.05em] text-foreground">
+            <h1 className="mt-4 font-display text-[clamp(1.68rem,2.9vw,2.45rem)] leading-[1.05] tracking-[-0.04em] text-foreground">
               {detail.rule.nutrientOrIngredient}
             </h1>
             <p className="mt-3 text-sm text-muted">{detail.rule.id}</p>
           </div>
           <Link
             href="/"
-            className="inline-flex min-h-11 items-center justify-center rounded-full border border-border-subtle bg-white/82 px-4 py-2 text-sm font-semibold text-foreground transition duration-200 hover:-translate-y-0.5 hover:border-stone-300 hover:bg-white"
+            className="inline-flex min-h-11 items-center justify-center rounded-full border border-border-subtle bg-white/82 px-4 py-[0.58rem] text-[0.84rem] font-medium text-foreground transition duration-200 hover:-translate-y-0.5 hover:border-stone-300 hover:bg-white"
           >
             메인 탐색으로 돌아가기
           </Link>
@@ -101,15 +109,26 @@ export default async function RuleDetailPage(props: { params: Promise<{ id: stri
         <RuleCard match={mockMatch} defaultExpandedEvidence />
 
         <section className="surface-card rounded-[2rem] p-6">
-          <h2 className="font-display text-2xl tracking-[-0.03em] text-foreground">규칙 조건</h2>
+          <h2 className="font-display text-[1.18rem] tracking-[-0.03em] text-foreground">
+            규칙 조건
+          </h2>
           {detail.rule.conditions.length === 0 ? (
-            <p className="mt-4 text-sm text-stone-600">명시적 조건이 없는 일반 참고 규칙입니다.</p>
+            <p className="mt-4 text-sm text-stone-600">
+              명시적 조건이 없는 일반 참고 규칙입니다.
+            </p>
           ) : (
             <ul className="mt-4 space-y-3 text-sm text-stone-700">
               {detail.rule.conditions.map((condition) => (
-                <li key={condition.id} className="rounded-2xl bg-stone-50 px-4 py-3">
-                  <span className="font-medium text-stone-900">{condition.labelKo ?? condition.field}</span>
-                  <span className="ml-2">{JSON.stringify(condition.value)}</span>
+                <li
+                  key={condition.id}
+                  className="rounded-2xl bg-stone-50 px-4 py-3"
+                >
+                  <span className="font-medium text-stone-900">
+                    {condition.labelKo ?? condition.field}
+                  </span>
+                  <span className="ml-2">
+                    {JSON.stringify(condition.value)}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -117,11 +136,15 @@ export default async function RuleDetailPage(props: { params: Promise<{ id: stri
         </section>
 
         <section className="surface-card rounded-[2rem] p-6">
-          <h2 className="font-display text-2xl tracking-[-0.03em] text-foreground">규칙 결과</h2>
+          <h2 className="font-display text-[1.18rem] tracking-[-0.03em] text-foreground">
+            규칙 결과
+          </h2>
           <dl className="mt-4 grid gap-4 text-sm md:grid-cols-2">
             <div>
               <dt className="font-semibold text-stone-900">짧은 안내</dt>
-              <dd className="mt-1 text-stone-700">{detail.rule.messageShort}</dd>
+              <dd className="mt-1 text-stone-700">
+                {detail.rule.messageShort}
+              </dd>
             </div>
             <div>
               <dt className="font-semibold text-stone-900">권장 조치</dt>
@@ -136,21 +159,32 @@ export default async function RuleDetailPage(props: { params: Promise<{ id: stri
 
         <section className="surface-card rounded-[2rem] p-6">
           <div className="flex items-center justify-between">
-            <h2 className="font-display text-2xl tracking-[-0.03em] text-foreground">지원 출처</h2>
+            <h2 className="font-display text-[1.18rem] tracking-[-0.03em] text-foreground">
+              지원 출처
+            </h2>
             <span className="rounded-full border border-border-subtle bg-white/82 px-3 py-1 text-sm text-muted">
               {detail.supportingSources.length}건
             </span>
           </div>
           {detail.supportingSources.length === 0 ? (
-            <p className="mt-4 text-sm text-stone-600">연결된 출처가 없습니다.</p>
+            <p className="mt-4 text-sm text-stone-600">
+              연결된 출처가 없습니다.
+            </p>
           ) : (
             <div className="mt-4 grid gap-3">
               {detail.supportingSources.map((source) => (
-                <article key={source.id} className="rounded-2xl border border-border-subtle bg-white/72 p-4">
+                <article
+                  key={source.id}
+                  className="rounded-2xl border border-border-subtle bg-white/72 p-4"
+                >
                   <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                     <div>
-                      <p className="font-semibold text-stone-950">{source.title}</p>
-                      <p className="mt-1 text-sm text-stone-700">{source.journalOrPublisher ?? "발행 정보 없음"}</p>
+                      <p className="font-semibold text-stone-950">
+                        {source.title}
+                      </p>
+                      <p className="mt-1 text-sm text-stone-700">
+                        {source.journalOrPublisher ?? "발행 정보 없음"}
+                      </p>
                       <p className="mt-2 text-xs text-stone-500">{source.id}</p>
                     </div>
                     <Link
@@ -168,27 +202,38 @@ export default async function RuleDetailPage(props: { params: Promise<{ id: stri
 
         <section className="surface-card rounded-[2rem] p-6">
           <div className="flex items-center justify-between">
-            <h2 className="font-display text-2xl tracking-[-0.03em] text-foreground">지원 근거</h2>
+            <h2 className="font-display text-[1.18rem] tracking-[-0.03em] text-foreground">
+              지원 근거
+            </h2>
             <span className="rounded-full border border-border-subtle bg-white/82 px-3 py-1 text-sm text-muted">
               {detail.supportingEvidenceChunks.length}건
             </span>
           </div>
           {detail.supportingEvidenceChunks.length === 0 ? (
-            <p className="mt-4 text-sm text-stone-600">연결된 근거가 없습니다.</p>
+            <p className="mt-4 text-sm text-stone-600">
+              연결된 근거가 없습니다.
+            </p>
           ) : (
             <div className="mt-4 space-y-3">
               {detail.supportingEvidenceChunks.map((chunk) => {
                 const source = sourceLookup.get(chunk.sourceId) ?? null;
-                const sourceLinks = source ? getSourceReferenceLinks(source) : [];
+                const sourceLinks = source
+                  ? getSourceReferenceLinks(source)
+                  : [];
                 const primaryExcerpt = getEvidencePrimaryExcerpt(chunk);
-                const secondaryExcerpt = getEvidenceSecondaryExcerpt(chunk);
+                const translationExcerpt = getEvidenceTranslationExcerpt(chunk);
+                const contextExcerpt = getEvidenceContextExcerpt(chunk);
+                const summaryExcerpt = getEvidenceSummaryExcerpt(chunk);
                 const evidenceNote = getEvidenceNote(chunk);
                 const verificationLabel = getEvidenceVerificationLabel(chunk);
                 const captureLabel = getEvidenceCaptureLabel(chunk);
                 const locatorText = getEvidenceLocatorText(chunk);
 
                 return (
-                  <article key={chunk.id} className="rounded-2xl border border-stone-200 p-4">
+                  <article
+                    key={chunk.id}
+                    className="rounded-2xl border border-stone-200 p-4"
+                  >
                     <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                       <div>
                         <div className="flex flex-wrap gap-2 text-[11px]">
@@ -208,9 +253,13 @@ export default async function RuleDetailPage(props: { params: Promise<{ id: stri
                             </span>
                           ) : null}
                         </div>
-                        <p className="mt-3 font-semibold text-stone-950">{chunk.id}</p>
+                        <p className="mt-3 font-semibold text-stone-950">
+                          {chunk.id}
+                        </p>
                         {source ? (
-                          <p className="mt-1 text-sm text-stone-600">{source.title}</p>
+                          <p className="mt-1 text-sm text-stone-600">
+                            {source.title}
+                          </p>
                         ) : null}
                       </div>
 
@@ -232,7 +281,9 @@ export default async function RuleDetailPage(props: { params: Promise<{ id: stri
                     </div>
 
                     <div className="mt-3 rounded-2xl bg-stone-50 px-4 py-3">
-                      <p className="text-xs font-semibold text-stone-500">{getEvidenceExcerptLabel(chunk)}</p>
+                      <p className="text-xs font-semibold text-stone-500">
+                        {getEvidenceExcerptLabel(chunk)}
+                      </p>
                       <p className="mt-2 text-sm leading-6 text-stone-700">
                         {primaryExcerpt
                           ? hasOriginalEvidenceExcerpt(chunk)
@@ -240,8 +291,36 @@ export default async function RuleDetailPage(props: { params: Promise<{ id: stri
                             : primaryExcerpt
                           : "발췌 내용이 아직 없습니다."}
                       </p>
-                      {secondaryExcerpt ? (
-                        <p className="mt-3 text-sm leading-6 text-stone-600">{secondaryExcerpt}</p>
+                      {translationExcerpt &&
+                      translationExcerpt !== primaryExcerpt ? (
+                        <div className="mt-3">
+                          <p className="text-xs font-semibold text-stone-500">
+                            한국어 번역
+                          </p>
+                          <p className="mt-1 text-sm leading-6 text-stone-600">
+                            {translationExcerpt}
+                          </p>
+                        </div>
+                      ) : null}
+                      {contextExcerpt ? (
+                        <div className="mt-3">
+                          <p className="text-xs font-semibold text-stone-500">
+                            앞뒤 문맥
+                          </p>
+                          <p className="mt-1 text-sm leading-6 text-stone-600">
+                            {contextExcerpt}
+                          </p>
+                        </div>
+                      ) : null}
+                      {summaryExcerpt ? (
+                        <div className="mt-3">
+                          <p className="text-xs font-semibold text-stone-500">
+                            핵심 해석
+                          </p>
+                          <p className="mt-1 text-sm leading-6 text-stone-600">
+                            {summaryExcerpt}
+                          </p>
+                        </div>
                       ) : null}
                     </div>
 
@@ -249,7 +328,9 @@ export default async function RuleDetailPage(props: { params: Promise<{ id: stri
                       {getEvidenceVerificationSummary(chunk)}
                     </p>
                     {evidenceNote ? (
-                      <p className="mt-2 text-sm leading-6 text-stone-600">{evidenceNote}</p>
+                      <p className="mt-2 text-sm leading-6 text-stone-600">
+                        {evidenceNote}
+                      </p>
                     ) : null}
                   </article>
                 );

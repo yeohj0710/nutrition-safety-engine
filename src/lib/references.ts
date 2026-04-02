@@ -1,4 +1,8 @@
-import type { EvidenceChunk, JsonValue, KnowledgeSource } from "@/src/types/knowledge";
+import type {
+  EvidenceChunk,
+  JsonValue,
+  KnowledgeSource,
+} from "@/src/types/knowledge";
 
 type ReferenceLink = {
   label: string;
@@ -179,7 +183,8 @@ function normalizeExcerpt(value: string | null | undefined) {
 
 export function getSourceIdentifiers(source: KnowledgeSource) {
   const rawUrl = getRecordString(source.raw, "url");
-  const sourceUrl = normalizeUrl(rawUrl) ?? normalizeUrl(source.urlOrIdentifier);
+  const sourceUrl =
+    normalizeUrl(rawUrl) ?? normalizeUrl(source.urlOrIdentifier);
   const pmid =
     normalizePmid(getRecordString(source.raw, "pmid")) ??
     normalizePmid(source.urlOrIdentifier) ??
@@ -237,7 +242,8 @@ export function getSourcePriority(source: KnowledgeSource) {
 
 export function sortSourcesByPriority<T extends KnowledgeSource>(sources: T[]) {
   return [...sources].sort((left, right) => {
-    const priorityDifference = getSourcePriority(right) - getSourcePriority(left);
+    const priorityDifference =
+      getSourcePriority(right) - getSourcePriority(left);
     if (priorityDifference !== 0) return priorityDifference;
 
     const yearDifference = (right.year ?? 0) - (left.year ?? 0);
@@ -247,24 +253,35 @@ export function sortSourcesByPriority<T extends KnowledgeSource>(sources: T[]) {
   });
 }
 
-export function sortEvidenceChunksByPriority<T extends EvidenceChunk>(chunks: T[], sourceLookup: Map<string, KnowledgeSource>) {
+export function sortEvidenceChunksByPriority<T extends EvidenceChunk>(
+  chunks: T[],
+  sourceLookup: Map<string, KnowledgeSource>,
+) {
   return [...chunks].sort((left, right) => {
     const verificationDifference =
       (evidenceVerificationScoreMap[right.verificationStatus ?? ""] ?? 0) -
       (evidenceVerificationScoreMap[left.verificationStatus ?? ""] ?? 0);
     if (verificationDifference !== 0) return verificationDifference;
 
-    const originalExcerptDifference = Number(hasOriginalEvidenceExcerpt(right)) - Number(hasOriginalEvidenceExcerpt(left));
+    const originalExcerptDifference =
+      Number(hasOriginalEvidenceExcerpt(right)) -
+      Number(hasOriginalEvidenceExcerpt(left));
     if (originalExcerptDifference !== 0) return originalExcerptDifference;
 
     const leftSource = sourceLookup.get(left.sourceId);
     const rightSource = sourceLookup.get(right.sourceId);
-    const priorityDifference = (rightSource ? getSourcePriority(rightSource) : 0) - (leftSource ? getSourcePriority(leftSource) : 0);
+    const priorityDifference =
+      (rightSource ? getSourcePriority(rightSource) : 0) -
+      (leftSource ? getSourcePriority(leftSource) : 0);
     if (priorityDifference !== 0) return priorityDifference;
 
     const confidenceDifference =
-      (chunkConfidenceScoreMap[getChunkMetadataString(right, "confidence") ?? ""] ?? 0) -
-      (chunkConfidenceScoreMap[getChunkMetadataString(left, "confidence") ?? ""] ?? 0);
+      (chunkConfidenceScoreMap[
+        getChunkMetadataString(right, "confidence") ?? ""
+      ] ?? 0) -
+      (chunkConfidenceScoreMap[
+        getChunkMetadataString(left, "confidence") ?? ""
+      ] ?? 0);
     if (confidenceDifference !== 0) return confidenceDifference;
 
     return left.id.localeCompare(right.id, "en");
@@ -274,22 +291,40 @@ export function sortEvidenceChunksByPriority<T extends EvidenceChunk>(chunks: T[
 export function getSourceTrustSummary(source: KnowledgeSource) {
   const identifiers = getSourceIdentifiers(source);
 
-  if (identifiers.pmid && source.sourceType === "systematic_review_meta_analysis") return "PubMed 메타분석";
-  if (identifiers.pmid && source.sourceType === "rct") return "PubMed 무작위시험";
+  if (
+    identifiers.pmid &&
+    source.sourceType === "systematic_review_meta_analysis"
+  )
+    return "PubMed 메타분석";
+  if (identifiers.pmid && source.sourceType === "rct")
+    return "PubMed 무작위시험";
   if (identifiers.pmid && source.sourceType === "review") return "PubMed 리뷰";
   if (identifiers.pmid) return "PubMed 색인 논문";
-  if (["national_reference", "government_guideline", "regional_guideline", "regulation"].includes(source.evidenceLevel ?? "")) {
+  if (
+    [
+      "national_reference",
+      "government_guideline",
+      "regional_guideline",
+      "regulation",
+    ].includes(source.evidenceLevel ?? "")
+  ) {
     return "공식 기준 문서";
   }
-  if ((source.evidenceLevel ?? "").startsWith("government_")) return "정부/공공 자료";
-  if (source.evidenceLevel === "post_marketing_signal") return "시판 후 안전성 신호";
-  if (source.sourceType === "case_report" || source.sourceType === "case_series") return "사례 보고";
+  if ((source.evidenceLevel ?? "").startsWith("government_"))
+    return "정부/공공 자료";
+  if (source.evidenceLevel === "post_marketing_signal")
+    return "시판 후 안전성 신호";
+  if (
+    source.sourceType === "case_report" ||
+    source.sourceType === "case_series"
+  )
+    return "사례 보고";
   return source.evidenceLevel ?? source.sourceType;
 }
 
 export function getEvidenceClaimLabel(chunk: EvidenceChunk) {
   const claimType = getChunkMetadataString(chunk, "claimType");
-  return claimType ? claimTypeLabelMap[claimType] ?? claimType : null;
+  return claimType ? (claimTypeLabelMap[claimType] ?? claimType) : null;
 }
 
 export function getEvidenceVerificationLabel(chunk: EvidenceChunk) {
@@ -301,18 +336,24 @@ export function getEvidenceVerificationLabel(chunk: EvidenceChunk) {
     case "pending_manual_extraction":
       return "수동 추출 대기";
     default:
-      return chunk.verificationStatus ? chunk.verificationStatus.replace(/_/g, " ") : null;
+      return chunk.verificationStatus
+        ? chunk.verificationStatus.replace(/_/g, " ")
+        : null;
   }
 }
 
 export function getEvidenceCaptureLabel(chunk: EvidenceChunk) {
   switch (chunk.quoteCaptureStatus) {
+    case "verified_full_sentence":
+      return "완전한 원문 문장";
     case "verified_short_excerpt":
       return "짧은 원문 발췌";
     case "pending":
       return "발췌 미첨부";
     default:
-      return chunk.quoteCaptureStatus ? chunk.quoteCaptureStatus.replace(/_/g, " ") : null;
+      return chunk.quoteCaptureStatus
+        ? chunk.quoteCaptureStatus.replace(/_/g, " ")
+        : null;
   }
 }
 
@@ -330,15 +371,28 @@ export function getEvidenceVerificationSummary(chunk: EvidenceChunk) {
 }
 
 export function getEvidenceLocatorText(chunk: EvidenceChunk) {
-  return [chunk.locatorType ?? null, chunk.locatorValue ?? null].filter(Boolean).join(" ");
+  return [chunk.locatorType ?? null, chunk.locatorValue ?? null]
+    .filter(Boolean)
+    .join(" ");
 }
 
 export function getEvidencePrimaryExcerpt(chunk: EvidenceChunk) {
-  return chunk.quoteOriginal ?? chunk.verbatimQuote ?? chunk.quoteTranslationKo ?? chunk.translatedQuote ?? chunk.quote ?? chunk.chunkText ?? chunk.summary ?? null;
+  return (
+    chunk.quoteOriginal ??
+    chunk.verbatimQuote ??
+    chunk.quoteTranslationKo ??
+    chunk.translatedQuote ??
+    chunk.quote ??
+    chunk.chunkText ??
+    chunk.summary ??
+    null
+  );
 }
 
 export function hasFullOriginalEvidenceExcerpt(chunk: EvidenceChunk) {
-  return hasOriginalEvidenceExcerpt(chunk) && !isShortOriginalEvidenceExcerpt(chunk);
+  return (
+    hasOriginalEvidenceExcerpt(chunk) && !isShortOriginalEvidenceExcerpt(chunk)
+  );
 }
 
 export function getFullOriginalEvidenceExcerpt(chunk: EvidenceChunk) {
@@ -353,7 +407,12 @@ export function getEvidenceSecondaryExcerpt(chunk: EvidenceChunk) {
   const summary = normalizeExcerpt(chunk.summary);
   const chunkText = normalizeExcerpt(chunk.chunkText);
 
-  for (const candidate of [quoteTranslationKo, translated, summary, chunkText]) {
+  for (const candidate of [
+    quoteTranslationKo,
+    translated,
+    summary,
+    chunkText,
+  ]) {
     if (candidate && candidate !== primary) {
       return candidate;
     }
@@ -377,20 +436,38 @@ export function getEvidenceTranslationExcerpt(chunk: EvidenceChunk) {
   return null;
 }
 
-export function getEvidenceContextSummary(chunk: EvidenceChunk) {
+export function getEvidenceContextExcerpt(chunk: EvidenceChunk) {
   const primary = normalizeExcerpt(getEvidencePrimaryExcerpt(chunk));
   const translation = normalizeExcerpt(getEvidenceTranslationExcerpt(chunk));
+  const context = normalizeExcerpt(chunk.chunkText);
 
-  for (const candidate of [
-    normalizeExcerpt(chunk.summary),
-    normalizeExcerpt(chunk.chunkText),
-  ]) {
-    if (candidate && candidate !== primary && candidate !== translation) {
-      return candidate;
-    }
+  if (!context || context === primary || context === translation) {
+    return null;
   }
 
-  return null;
+  return context;
+}
+
+export function getEvidenceSummaryExcerpt(chunk: EvidenceChunk) {
+  const primary = normalizeExcerpt(getEvidencePrimaryExcerpt(chunk));
+  const translation = normalizeExcerpt(getEvidenceTranslationExcerpt(chunk));
+  const context = normalizeExcerpt(getEvidenceContextExcerpt(chunk));
+  const summary = normalizeExcerpt(chunk.summary);
+
+  if (
+    !summary ||
+    summary === primary ||
+    summary === translation ||
+    summary === context
+  ) {
+    return null;
+  }
+
+  return summary;
+}
+
+export function getEvidenceContextSummary(chunk: EvidenceChunk) {
+  return getEvidenceSummaryExcerpt(chunk) ?? getEvidenceContextExcerpt(chunk);
 }
 
 export function getEvidenceRepresentativeExcerpt(chunk: EvidenceChunk) {
@@ -403,12 +480,14 @@ export function getEvidenceRepresentativeExcerpt(chunk: EvidenceChunk) {
   const translation = getEvidenceTranslationExcerpt(chunk);
   if (translation) return translation;
 
-  return hasOriginalEvidenceExcerpt(chunk) ? null : getEvidencePrimaryExcerpt(chunk);
+  return hasOriginalEvidenceExcerpt(chunk)
+    ? null
+    : getEvidencePrimaryExcerpt(chunk);
 }
 
 export function getEvidenceRepresentativeExcerptLabel(chunk: EvidenceChunk) {
   if (hasFullOriginalEvidenceExcerpt(chunk)) {
-    return "원문 문장";
+    return "검색 가능한 원문 문장";
   }
 
   if (getEvidenceContextSummary(chunk)) {
@@ -426,11 +505,14 @@ function getEvidenceRepresentativeRank(chunk: EvidenceChunk) {
   if (hasFullOriginalEvidenceExcerpt(chunk)) return 4;
   if (getEvidenceContextSummary(chunk)) return 3;
   if (getEvidenceTranslationExcerpt(chunk)) return 2;
-  if (!hasOriginalEvidenceExcerpt(chunk) && getEvidencePrimaryExcerpt(chunk)) return 1;
+  if (!hasOriginalEvidenceExcerpt(chunk) && getEvidencePrimaryExcerpt(chunk))
+    return 1;
   return 0;
 }
 
-export function pickRepresentativeEvidenceChunk<T extends EvidenceChunk>(chunks: T[]) {
+export function pickRepresentativeEvidenceChunk<T extends EvidenceChunk>(
+  chunks: T[],
+) {
   let bestChunk: T | null = null;
   let bestRank = -1;
 
@@ -478,7 +560,7 @@ export function getEvidenceExcerptLabel(chunk: EvidenceChunk) {
   return hasOriginalEvidenceExcerpt(chunk)
     ? isShortOriginalEvidenceExcerpt(chunk)
       ? "짧은 원문 발췌"
-      : "원문 발췌"
+      : "검색 가능한 원문 문장"
     : "등록된 발췌";
 }
 
@@ -490,11 +572,18 @@ export function isShortOriginalEvidenceExcerpt(chunk: EvidenceChunk) {
   if (!hasOriginalEvidenceExcerpt(chunk)) return false;
   if (chunk.quoteOriginalIsShortExcerpt === true) return true;
   if (chunk.quoteCaptureStatus === "verified_short_excerpt") return true;
-  if ((chunk.quoteOriginalWordCount ?? 0) > 0 && (chunk.quoteOriginalWordCount ?? 0) <= 12) return true;
+  if (
+    (chunk.quoteOriginalWordCount ?? 0) > 0 &&
+    (chunk.quoteOriginalWordCount ?? 0) <= 12
+  )
+    return true;
   return chunk.quoteFullSentenceAvailable === false;
 }
 
-export function getEvidenceCheckHint(chunk: EvidenceChunk, source?: KnowledgeSource | null) {
+export function getEvidenceCheckHint(
+  chunk: EvidenceChunk,
+  source?: KnowledgeSource | null,
+) {
   const locatorType = chunk.locatorType ?? "";
   const locatorValue = chunk.locatorValue ?? "저장된 locator";
   const hasPubMed = Boolean(source && getSourceIdentifiers(source).pmid);
@@ -505,14 +594,18 @@ export function getEvidenceCheckHint(chunk: EvidenceChunk, source?: KnowledgeSou
 
   if (locatorType === "abstract") {
     return (
-      hasPubMed
+      (hasPubMed
         ? `PubMed 페이지에서 Abstract 영역의 ${locatorValue} 부분을 먼저 확인하세요.`
-        : `원문 초록(Abstract)의 ${locatorValue} 부분을 먼저 확인하세요.`
-    ) + pendingSuffix;
+        : `원문 초록(Abstract)의 ${locatorValue} 부분을 먼저 확인하세요.`) +
+      pendingSuffix
+    );
   }
 
   if (locatorType === "conclusion") {
-    return "원문의 Conclusion 또는 마지막 요약 문단을 확인하면 해당 근거를 빠르게 찾을 수 있습니다." + pendingSuffix;
+    return (
+      "원문의 Conclusion 또는 마지막 요약 문단을 확인하면 해당 근거를 빠르게 찾을 수 있습니다." +
+      pendingSuffix
+    );
   }
 
   if (locatorType === "table") {
@@ -521,13 +614,17 @@ export function getEvidenceCheckHint(chunk: EvidenceChunk, source?: KnowledgeSou
 
   if (locatorType === "lines") {
     return (
-      hasPubMed
+      (hasPubMed
         ? `저장된 추출 위치는 ${locatorValue}입니다. PubMed에서 원문 링크를 연 뒤, 성분명과 위험 키워드를 함께 검색해 해당 문단을 확인하세요.`
-        : `저장된 추출 위치는 ${locatorValue}입니다. 원문 페이지를 연 뒤 브라우저 찾기(Ctrl/Cmd+F)로 성분명과 위험 키워드를 검색해 해당 문단을 확인하세요.`
-    ) + pendingSuffix;
+        : `저장된 추출 위치는 ${locatorValue}입니다. 원문 페이지를 연 뒤 브라우저 찾기(Ctrl/Cmd+F)로 성분명과 위험 키워드를 검색해 해당 문단을 확인하세요.`) +
+      pendingSuffix
+    );
   }
 
-  return "원문 링크를 열고 제목, 성분명, 위험 키워드로 해당 부분을 직접 찾아 확인하세요." + pendingSuffix;
+  return (
+    "원문 링크를 열고 제목, 성분명, 위험 키워드로 해당 부분을 직접 찾아 확인하세요." +
+    pendingSuffix
+  );
 }
 
 export function getEvidenceSearchKeywords(chunk: EvidenceChunk) {
@@ -549,7 +646,8 @@ export function getEvidenceSearchKeywords(chunk: EvidenceChunk) {
     const normalized = rawValue.replace(/_/g, " ").trim();
     const lowered = normalized.toLowerCase();
 
-    if (!normalized || noisyKeywordSet.has(lowered) || unique.has(lowered)) continue;
+    if (!normalized || noisyKeywordSet.has(lowered) || unique.has(lowered))
+      continue;
     if (normalized.length < 3 && !/\d/.test(normalized)) continue;
 
     unique.add(lowered);
