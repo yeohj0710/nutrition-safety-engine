@@ -23,6 +23,8 @@
 # misc
 .DS_Store
 *.pem
+__pycache__/
+.pytest_cache/
 
 # debug
 npm-debug.log*
@@ -41,3 +43,6 @@ tmp-next-dev.*.log
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# search pipeline local browser session
+data/systematic_search/.browser/

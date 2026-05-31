@@ -1,0 +1,35 @@
+{
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "3022",
+    "retmax": "20",
+    "retstart": "0",
+    "idlist": [
+      "42218370",
+      "42212267",
+      "42199063",
+      "42194937",
+      "42189825",
+      "42182979",
+      "42176144",
+      "42166177",
+      "42164543",
+      "42161334",
+      "42158881",
+      "42154023",
+      "42152638",
+      "42147788",
+      "42136917",
+      "42133563",
+      "42129239",
+      "42128230",
+      "42105121",
+      "42103208"
+    ],
+    "translationset": [],
+    "querytranslation": "(\"kidney stone*\"[Title/Abstract] OR \"nephrolithiasis\"[Title/Abstract] OR \"hypercalciuria\"[Title/Abstract]) AND (\"supplement*\"[Title/Abstract] OR \"calcium\"[Title/Abstract] OR \"vitamin d\"[Title/Abstract] OR \"vitamin c\"[Title/Abstract]) AND (\"risk\"[Title/Abstract] OR \"adverse\"[Title/Abstract] OR \"hypercalcemia\"[Title/Abstract] OR \"recurrence\"[Title/Abstract])"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "44",
+    "retmax": "20",
+    "retstart": "0",
+    "idlist": [
+      "38811233",
+      "36304597",
+      "35776157",
+      "35364298",
+      "34555978",
+      "34298589",
+      "32567446",
+      "32243872",
+      "30369592",
+      "29627068",
+      "29299477",
+      "29256925",
+      "28197979",
+      "28033135",
+      "27885969",
+      "27657121",
+      "27325362",
+      "27212967",
+      "26904189",
+      "26184395"
+    ],
+    "translationset": [],
+    "querytranslation": "((\"warfarin\"[Title/Abstract] OR \"anticoagulant*\"[Title/Abstract] OR \"anticoagulation\"[Title/Abstract]) AND (\"omega-3\"[Title/Abstract] OR \"fish oil\"[Title/Abstract] OR \"EPA\"[Title/Abstract] OR \"DHA\"[Title/Abstract]) AND (\"bleeding\"[Title/Abstract] OR \"hemorrhage\"[Title/Abstract] OR \"INR\"[Title/Abstract] OR \"international normalized ratio\"[Title/Abstract])) NOT \"rodenticide\"[Title/Abstract]"
+  }
+}
