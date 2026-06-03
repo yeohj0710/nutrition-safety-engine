@@ -1,0 +1,5170 @@
+{
+  "summary": {
+    "studyId": "yeohj_anticoag_renal",
+    "studyLabel": "여형준",
+    "generatedAt": "2026-06-03T12:35:45.570Z",
+    "primarySearchRuns": 2,
+    "latestPubMedHitCount": 8957,
+    "latestPubMedStoredRecords": 196,
+    "cumulativePubMedCandidates": 236,
+    "secondarySearchRuns": 4,
+    "secondaryHitTotal": 252502,
+    "secondaryStoredRecords": 80,
+    "includeCandidateCount": 196,
+    "manualReviewLowCount": 10,
+    "likelyExcludeCount": 21,
+    "duplicateExcludedCount": 1,
+    "highPriorityCount": 160,
+    "mediumPriorityCount": 44,
+    "lowPriorityCount": 10,
+    "priorityCandidateCount": 214
+  },
+  "candidates": [
+    {
+      "id": "yeohj_anticoag_renal-candidate-0001",
+      "pmid": "38811233",
+      "year": 2024,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "atrial fibrillation"
+      ],
+      "matchedIngredientTerms": [
+        "epa"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "A Novel Risk Score for Major Bleeding in Japanese Patients with Non-Valvular Atrial Fibrillation: The J-RISK AF Study.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38811233/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0002",
+      "pmid": "36304597",
+      "year": 2022,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "anticoagulant"
+      ],
+      "matchedIngredientTerms": [
+        "fish oil",
+        "cranberry",
+        "glucosamine",
+        "herbal",
+        "supplement"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Dietary supplements and bleeding.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36304597/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0003",
+      "pmid": "35776157",
+      "year": 2022,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "maybe_needs_manual_review",
+      "matchedPopulationTerms": [],
+      "matchedIngredientTerms": [
+        "fish oil"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "hemorrhage",
+        "adverse event"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Fatal adverse events of rivaroxaban combined with aspirin: an analysis using data from VigiBase.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35776157/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0004",
+      "pmid": "35364298",
+      "year": 2022,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "maybe_needs_manual_review",
+      "matchedPopulationTerms": [],
+      "matchedIngredientTerms": [
+        "fish oil"
+      ],
+      "matchedOutcomeTerms": [
+        "hemorrhage"
+      ],
+      "matchedStudyTerms": [
+        "cohort"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "The Influence of Select Medications on Prospective Hemorrhage Risk in Patients with Spinal or Cerebral Cavernous Malformations.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35364298/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0005",
+      "pmid": "34555978",
+      "year": 2021,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation"
+      ],
+      "matchedIngredientTerms": [
+        "epa"
+      ],
+      "matchedOutcomeTerms": [
+        "hemorrhage",
+        "platelet"
+      ],
+      "matchedStudyTerms": [
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Emerging agents for the treatment and prevention of stroke: progress in clinical trials.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34555978/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0006",
+      "pmid": "34298589",
+      "year": 2021,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin"
+      ],
+      "matchedIngredientTerms": [
+        "fish oil"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding"
+      ],
+      "matchedStudyTerms": [
+        "meta-analysis",
+        "randomised"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Medical adjuvant treatment to increase patency of arteriovenous fistulae and grafts.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34298589/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0007",
+      "pmid": "32567446",
+      "year": 2020,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin"
+      ],
+      "matchedIngredientTerms": [
+        "fish oil"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Complications in skin grafts when continuing antithrombotic therapy prior to cutaneous surgery requiring skin grafting: an observational study.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32567446/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0008",
+      "pmid": "32243872",
+      "year": 2020,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "anticoagulant"
+      ],
+      "matchedIngredientTerms": [
+        "omega-3",
+        "epa"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Catch of the Day: Icosapent Ethyl for Reducing Cardiovascular Risk.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32243872/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0009",
+      "pmid": "30369592",
+      "year": 2018,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "anticoagulation"
+      ],
+      "matchedIngredientTerms": [
+        "fish oil"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Therapeutic Strategy for Gastrointestinal Bleeding in Patients With Left Ventricular Assist Device.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30369592/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0010",
+      "pmid": "29299477",
+      "year": 2017,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "anticoagulation"
+      ],
+      "matchedIngredientTerms": [
+        "fish oil",
+        "supplement"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding"
+      ],
+      "matchedStudyTerms": [
+        "cohort"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Novel venous thromboembolic disease (VTED) prophylaxis for total knee arthroplasty-aspirin and fish oil.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29299477/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0011",
+      "pmid": "29256925",
+      "year": 2018,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "maybe_needs_manual_review",
+      "matchedPopulationTerms": [],
+      "matchedIngredientTerms": [
+        "fish oil",
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Dispelling myths about intravenous fish oil-based lipid emulsions: a clinical perspective.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29256925/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0012",
+      "pmid": "28197979",
+      "year": 2017,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "omega-3",
+        "epa"
+      ],
+      "matchedOutcomeTerms": [
+        "inr",
+        "platelet",
+        "interaction"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "No Effect of Omega-3 Carboxylic Acids on Pharmacokinetics/Pharmacodynamics of Warfarin or on Platelet Function When Co-administered with Acetylsalicylic Acid: Results of Two Phase I Studies in Healthy Volunteers.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28197979/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0013",
+      "pmid": "28033135",
+      "year": 2017,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant"
+      ],
+      "matchedIngredientTerms": [
+        "omega-3",
+        "fish oil"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "platelet"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Omega-3 Fatty Acid Supplementation and Warfarin: A Lethal Combination in Traumatic Brain Injury.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28033135/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0014",
+      "pmid": "27657121",
+      "year": 2016,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation",
+        "atrial fibrillation"
+      ],
+      "matchedIngredientTerms": [
+        "omega-3",
+        "fish oil",
+        "supplement"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "The Use of Fish Oil with Warfarin Does Not Significantly Affect either the International Normalised Ratio or Incidence of Adverse Events in Patients with Atrial Fibrillation and Deep Vein Thrombosis: A Retrospective Study.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27657121/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0015",
+      "pmid": "27325362",
+      "year": 2016,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_low",
+      "suggestedDecision": "manual_review_low",
+      "matchedPopulationTerms": [],
+      "matchedIngredientTerms": [],
+      "matchedOutcomeTerms": [
+        "hemorrhage"
+      ],
+      "matchedStudyTerms": [
+        "meta-analysis",
+        "cohort"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Novel Treatments in Neuroprotection for Aneurysmal Subarachnoid Hemorrhage.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27325362/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0016",
+      "pmid": "27212967",
+      "year": 2016,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin"
+      ],
+      "matchedIngredientTerms": [
+        "omega-3",
+        "polyunsaturated fatty acid"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding"
+      ],
+      "matchedStudyTerms": [
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Omega-3 polyunsaturated fatty acid supplementation in the prevention of cardiovascular disease.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27212967/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0017",
+      "pmid": "26904189",
+      "year": 2015,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "anticoagulant"
+      ],
+      "matchedIngredientTerms": [
+        "fish oil"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding"
+      ],
+      "matchedStudyTerms": [
+        "case report"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Intramural oesophageal dissection as an unusual presentation of chest pain: A case report.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26904189/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0018",
+      "pmid": "26184395",
+      "year": 2015,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin"
+      ],
+      "matchedIngredientTerms": [
+        "fish oil"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "platelet"
+      ],
+      "matchedStudyTerms": [
+        "meta-analysis",
+        "randomised"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Medical adjuvant treatment to increase patency of arteriovenous fistulae and grafts.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26184395/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0019",
+      "pmid": "42218370",
+      "year": 2026,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "maybe_needs_manual_review",
+      "matchedPopulationTerms": [],
+      "matchedIngredientTerms": [
+        "calcium"
+      ],
+      "matchedOutcomeTerms": [
+        "recurrence"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Association between triglyceride levels and upper urinary tract calcium stones recurrence.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42218370/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0020",
+      "pmid": "42199063",
+      "year": 2026,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "nephrolithiasis",
+        "recurrence"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Normocalcemic primary hyperparathyroidism: an update on diagnostic and management challenges.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42199063/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0021",
+      "pmid": "42194937",
+      "year": 2026,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [
+        "cohort"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Heterogeneous Phenotypes of Primary Hyperparathyroidism in Romania: Characterization of a Large Cohort.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42194937/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0022",
+      "pmid": "42189825",
+      "year": 2026,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "renal stone",
+        "nephrolithiasis"
+      ],
+      "matchedIngredientTerms": [
+        "calcium"
+      ],
+      "matchedOutcomeTerms": [
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Association between asymptomatic hyperuricemia and kidney stones.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42189825/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0023",
+      "pmid": "42182979",
+      "year": 2026,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "kidney stone"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "kidney stone",
+        "adverse"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Combined occurrence of cardiovascular and bone events in individuals with kidney stone disease.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42182979/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0024",
+      "pmid": "42176144",
+      "year": 2026,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "kidney stone",
+        "nephrolithiasis",
+        "urolithiasis"
+      ],
+      "matchedIngredientTerms": [
+        "calcium"
+      ],
+      "matchedOutcomeTerms": [
+        "kidney stone",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [
+        "systematic review",
+        "meta-analysis"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Association Between Ambient Temperature and Urolithiasis: A Systematic Review and Meta-analysis.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42176144/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0025",
+      "pmid": "42166177",
+      "year": 2026,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "nephrolithiasis",
+        "adverse"
+      ],
+      "matchedStudyTerms": [
+        "clinical trial"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Sustained Improvement in Renal Function with Palopegteriparatide in Adults with Chronic Hypoparathyroidism: 2-Year Results from the Phase 3 PaTHway-Trial.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42166177/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0026",
+      "pmid": "42164543",
+      "year": 2026,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Renal calcifications and primary hyperpara-thyroidism in a tertiary care hospital center of North Africa: a single-center experience.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42164543/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0027",
+      "pmid": "42161334",
+      "year": 2026,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "adverse"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Continuous subcutaneous recombinant PTH(1-34) infusion improves serum calcium and phosphate homeostasis in children with autosomal dominant hypocalcemia type 1 refractory to standard-of-care treatment.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42161334/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0028",
+      "pmid": "42158881",
+      "year": 2026,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "kidney stone",
+        "nephrolithiasis"
+      ],
+      "matchedIngredientTerms": [
+        "calcium"
+      ],
+      "matchedOutcomeTerms": [
+        "kidney stone",
+        "nephrolithiasis",
+        "recurrence"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "The gut-kidney axis in calcium oxalate nephrolithiasis: Nutritional and microbial insights.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42158881/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0029",
+      "pmid": "42154023",
+      "year": 2026,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "urolithiasis"
+      ],
+      "matchedIngredientTerms": [
+        "calcium"
+      ],
+      "matchedOutcomeTerms": [
+        "recurrence"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "[Management of recurrent urolithiasis: indications for therapy escalation and discontinuation].",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42154023/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0030",
+      "pmid": "42147788",
+      "year": 2026,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "kidney stone"
+      ],
+      "matchedIngredientTerms": [
+        "calcium"
+      ],
+      "matchedOutcomeTerms": [
+        "kidney stone",
+        "recurrence",
+        "adverse"
+      ],
+      "matchedStudyTerms": [
+        "cohort"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Long-term citrate treatment in high-risk kidney stone formers is not associated with metabolic adverse effects.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42147788/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0031",
+      "pmid": "42136917",
+      "year": 2026,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "kidney stone",
+        "nephrolithiasis"
+      ],
+      "matchedIngredientTerms": [
+        "calcium"
+      ],
+      "matchedOutcomeTerms": [
+        "kidney stone",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [
+        "cohort"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "When Stones Begin: Age of Onset Reveals the Systemic Metabolic Nature of Nephrolithiasis.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42136917/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0032",
+      "pmid": "42129239",
+      "year": 2026,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Chest radiographic findings suggestive of possible sarcoidosis in patients with nephrolithiasis.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42129239/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0033",
+      "pmid": "42128230",
+      "year": 2026,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [
+        "systematic review"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Microgravity-Related Changes in Urinary Calcium and Oxalate Excretion: A Systematic Review of Astronaut Data.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42128230/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0034",
+      "pmid": "42103208",
+      "year": 2026,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "maybe_needs_manual_review",
+      "matchedPopulationTerms": [],
+      "matchedIngredientTerms": [
+        "calcium"
+      ],
+      "matchedOutcomeTerms": [
+        "recurrence"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Gut Oxalate Transport and Gut Microbiome as Potential Therapeutic Targets for Hyperoxaluria and Hyperoxalemia: Implications for Related Human Disease.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42103208/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0035",
+      "pmid": "28317415",
+      "year": 2017,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation",
+        "atrial fibrillation"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding"
+      ],
+      "matchedStudyTerms": [
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Uninterrupted Dabigatran versus Warfarin for Ablation in Atrial Fibrillation.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28317415/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0036",
+      "pmid": "39644000",
+      "year": 2024,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr",
+        "interaction"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Warfarin and heparin monitoring in antiphospholipid syndrome.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39644000/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0037",
+      "pmid": "36244055",
+      "year": 2023,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "anticoagulation",
+        "atrial fibrillation"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "hemorrhage"
+      ],
+      "matchedStudyTerms": [
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Risk and Management of Bleeding Complications with Direct Oral Anticoagulants in Patients with Atrial Fibrillation and Venous Thromboembolism: a Narrative Review.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36244055/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0038",
+      "pmid": "39288907",
+      "year": 2025,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k",
+        "cranberry",
+        "herbal"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding"
+      ],
+      "matchedStudyTerms": [
+        "randomized",
+        "cohort",
+        "case series",
+        "pharmacokinetic"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Pharmacokinetic and Pharmacodynamic Interactions between Food or Herbal Products and Oral Anticoagulants: Evidence Review, Practical Recommendations, and Knowledge Gaps.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39288907/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0039",
+      "pmid": "27754958",
+      "year": 2017,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "atrial fibrillation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Point-of-care testing INR: an overview.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27754958/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0040",
+      "pmid": "21364039",
+      "year": 2011,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "cranberry",
+        "herbal"
+      ],
+      "matchedOutcomeTerms": [
+        "inr",
+        "interaction"
+      ],
+      "matchedStudyTerms": [
+        "case report"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Warfarin-cranberry juice interaction.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21364039/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0041",
+      "pmid": "33212808",
+      "year": 2020,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Management of Antiphospholipid Syndrome.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33212808/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0042",
+      "pmid": "18666848",
+      "year": 2008,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Self-management of anticoagulation.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18666848/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0043",
+      "pmid": "38795872",
+      "year": 2024,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "The historical origins of modern international normalized ratio targets.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38795872/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0044",
+      "pmid": "38958388",
+      "year": 2024,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "hemorrhage",
+        "inr"
+      ],
+      "matchedStudyTerms": [
+        "randomized",
+        "cohort"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Building evidence on safety of endovascular thrombectomy for patients under anticoagulation with vitamin K antagonists.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38958388/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0045",
+      "pmid": "35533748",
+      "year": 2022,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "atrial fibrillation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Over-anticoagulation by vitamin K antagonists and gender differences.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35533748/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0046",
+      "pmid": "24832594",
+      "year": 2014,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "haemorrhage",
+        "inr"
+      ],
+      "matchedStudyTerms": [
+        "randomised"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Vitamin K for improved anticoagulation control in patients receiving warfarin.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24832594/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0047",
+      "pmid": "35834523",
+      "year": 2022,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "inr"
+      ],
+      "matchedStudyTerms": [
+        "systematic review",
+        "meta-analysis"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Vitamin K antagonist reversal strategies: Systematic review and network meta-analysis from the AABB.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35834523/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0048",
+      "pmid": "14639058",
+      "year": 2003,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Intentional warfarin overdose.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14639058/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0049",
+      "pmid": "33614342",
+      "year": 2021,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Tongue Hematoma With Necrosis.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33614342/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0050",
+      "pmid": "17143047",
+      "year": 2007,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr",
+        "interaction"
+      ],
+      "matchedStudyTerms": [
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Dietary vitamin K intake and anticoagulation in elderly patients.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17143047/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0051",
+      "pmid": "16610971",
+      "year": 2006,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k",
+        "herbal",
+        "supplement"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding"
+      ],
+      "matchedStudyTerms": [
+        "pharmacokinetic"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Warfarin and its interactions with foods, herbs and other dietary supplements.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16610971/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0052",
+      "pmid": "27785043",
+      "year": 2016,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "anticoagulant",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "International normalized ratio self-testing and self-management: improving patient outcomes.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27785043/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0053",
+      "pmid": "34652608",
+      "year": 2022,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_low",
+      "suggestedDecision": "manual_review_low",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Semi-empirical anticoagulation model (SAM): INR monitoring during Warfarin therapy.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34652608/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0054",
+      "pmid": "7863972",
+      "year": 1995,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Optimal intensity and monitoring warfarin.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7863972/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0055",
+      "pmid": "22077529",
+      "year": 2011,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Treatment of warfarin-associated coagulopathy with vitamin K.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22077529/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0056",
+      "pmid": "31209952",
+      "year": 2019,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation",
+        "atrial fibrillation"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "hemorrhage"
+      ],
+      "matchedStudyTerms": [
+        "systematic review",
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Warfarin in nonvalvular atrial fibrillation-Time for a change?",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31209952/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0057",
+      "pmid": "27913535",
+      "year": 2016,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "anticoagulant",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "inr",
+        "interaction"
+      ],
+      "matchedStudyTerms": [
+        "pharmacokinetic"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Reversing vitamin K antagonists: making the old new again.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27913535/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0058",
+      "pmid": "36940171",
+      "year": 2023,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "atrial fibrillation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Converting patients from warfarin to non-vitamin K antagonist oral anticoagulants.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36940171/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0059",
+      "pmid": "33895864",
+      "year": 2021,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr",
+        "interaction"
+      ],
+      "matchedStudyTerms": [
+        "systematic review"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Drug-drug interactions between vitamin K antagonists and statins: a systematic review.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33895864/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0060",
+      "pmid": "35149398",
+      "year": 2022,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Warfarin monitoring and interference by lupus anticoagulant in patients with antiphospholipid syndrome.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35149398/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0061",
+      "pmid": "18636228",
+      "year": 2009,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Anticoagulation: where we are and where we need to go.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18636228/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0062",
+      "pmid": "15630483",
+      "year": 2005,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k",
+        "herbal"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "inr",
+        "platelet"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Herbal remedies and anticoagulant therapy.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15630483/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0063",
+      "pmid": "28249326",
+      "year": 2017,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding"
+      ],
+      "matchedStudyTerms": [
+        "pharmacokinetic"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Laboratory Assessment of Direct Oral Anticoagulants.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28249326/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0064",
+      "pmid": "33543639",
+      "year": 2021,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [
+        "cohort"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "INR Response to Low-Dose Vitamin K in Warfarin Patients.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33543639/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0065",
+      "pmid": "30850385",
+      "year": 2019,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "inr"
+      ],
+      "matchedStudyTerms": [
+        "systematic review",
+        "meta-analysis",
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Vitamin K for reversal of excessive vitamin K antagonist anticoagulation: a systematic review and meta-analysis.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30850385/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0066",
+      "pmid": "30157037",
+      "year": 2018,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "anticoagulant",
+        "anticoagulation"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "hemorrhage"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Prothrombin Complex Concentrates for Perioperative Vitamin K Antagonist and Non-vitamin K Anticoagulant Reversal.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30157037/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0067",
+      "pmid": "14967065",
+      "year": 2004,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "hemorrhage",
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "The use of vitamin K in patients on anticoagulant therapy: a practical guide.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14967065/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0068",
+      "pmid": "16505257",
+      "year": 2006,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "hemorrhage",
+        "inr"
+      ],
+      "matchedStudyTerms": [
+        "meta-analysis",
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Treatment of excessive anticoagulation with phytonadione (vitamin K): a meta-analysis.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16505257/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0069",
+      "pmid": "25033004",
+      "year": 2014,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "hemorrhage"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Anticoagulation: managing adverse events in patients receiving anticoagulation and perioperative care.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25033004/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0070",
+      "pmid": "26420063",
+      "year": 2015,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "[Direct oral anticoagulation and gastrointestinal bleeding: Interventional therapy management].",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26420063/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0071",
+      "pmid": "40460572",
+      "year": 2025,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Control of warfarin treatment in patients with antiphospholipid syndrome and falsely high INR at point-of-care-testing.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40460572/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0072",
+      "pmid": "38716521",
+      "year": 2023,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Critical Appraisal on the Role of Warfarin in the Current Era.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38716521/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0073",
+      "pmid": "22231999",
+      "year": 2012,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "atrial fibrillation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "cranberry"
+      ],
+      "matchedOutcomeTerms": [
+        "inr",
+        "interaction"
+      ],
+      "matchedStudyTerms": [
+        "case report",
+        "pharmacokinetic"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Cranberry and warfarin interaction: a case report and review of the literature.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22231999/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0074",
+      "pmid": "27052207",
+      "year": 2017,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr",
+        "interaction"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Ezetimibe enhances and stabilizes anticoagulant effect of warfarin.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27052207/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0075",
+      "pmid": "18549907",
+      "year": 2008,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "haemorrhage",
+        "inr"
+      ],
+      "matchedStudyTerms": [
+        "clinical trial"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Warfarin-induced bleeding complications - clinical presentation and therapeutic options.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18549907/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0076",
+      "pmid": "19882303",
+      "year": 2010,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Warfarin anticoagulation reversal: management of the asymptomatic and bleeding patient.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19882303/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0077",
+      "pmid": "31171018",
+      "year": 2019,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "anticoagulation"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "hemorrhage"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Reversal of oral anticoagulation in patients with acute intracerebral hemorrhage.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31171018/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0078",
+      "pmid": "30714620",
+      "year": 2019,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Effect of vitamin K administration on rate of warfarin reversal.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30714620/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0079",
+      "pmid": "32270628",
+      "year": 2020,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Impact of CYP2C9-Interacting Drugs on Warfarin Pharmacogenomics.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32270628/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0080",
+      "pmid": "17565042",
+      "year": 2007,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "hemorrhage",
+        "inr",
+        "interaction"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Probable warfarin-simvastatin interaction.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17565042/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0081",
+      "pmid": "16786467",
+      "year": 2006,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "atrial fibrillation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "inr"
+      ],
+      "matchedStudyTerms": [
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "[Anticoagulation with atrial fibrillation].",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16786467/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0082",
+      "pmid": "26573697",
+      "year": 2016,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "anticoagulant"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "hemorrhage"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "How to effectively manage the event of bleeding complications when using anticoagulants.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26573697/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0083",
+      "pmid": "35491419",
+      "year": 2022,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "anticoagulant",
+        "anticoagulation",
+        "atrial fibrillation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "hemorrhage",
+        "inr",
+        "adverse event"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Intracranial bleeding under vitamin K antagonists or direct oral anticoagulants: results of the RADOA registry.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35491419/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0084",
+      "pmid": "16492066",
+      "year": 2006,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation",
+        "atrial fibrillation"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "haemorrhage"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Haemorrhagic complications of vitamin k antagonists in the elderly: risk factors and management.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16492066/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0085",
+      "pmid": "22973107",
+      "year": 2012,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "atrial fibrillation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [
+        "randomized",
+        "pharmacokinetic"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Rivaroxaban in atrial fibrillation.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22973107/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0086",
+      "pmid": "32282500",
+      "year": 2020,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "LRP1 and APOA1 Polymorphisms: Impact on Warfarin International Normalized Ratio-Related Phenotypes.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32282500/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0087",
+      "pmid": "12523469",
+      "year": 2003,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation",
+        "atrial fibrillation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr",
+        "interaction"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Warfarin and acetaminophen interaction.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12523469/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0088",
+      "pmid": "22114781",
+      "year": 2011,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Current challenges in personalizing warfarin therapy.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22114781/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0089",
+      "pmid": "16945054",
+      "year": 2006,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation"
+      ],
+      "matchedIngredientTerms": [
+        "cranberry"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "interaction"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Interaction between warfarin and cranberry juice.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16945054/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0090",
+      "pmid": "10917378",
+      "year": 2000,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr",
+        "interaction"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Warfarin and celecoxib interaction.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10917378/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0091",
+      "pmid": "14742793",
+      "year": 2004,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "omega-3",
+        "fish oil",
+        "polyunsaturated fatty acid",
+        "vitamin k",
+        "herbal"
+      ],
+      "matchedOutcomeTerms": [
+        "inr",
+        "platelet",
+        "interaction"
+      ],
+      "matchedStudyTerms": [
+        "case report"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Fish oil interaction with warfarin.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14742793/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0092",
+      "pmid": "25112306",
+      "year": 2015,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "cranberry"
+      ],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "A Comprehensive Review of Potential Warfarin-Fruit Interactions.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25112306/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0093",
+      "pmid": "23790596",
+      "year": 2013,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Assessment of anticoagulation intensity and management of bleeding with old and new oral anticoagulants.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23790596/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0094",
+      "pmid": "22467528",
+      "year": 2012,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Intensity and duration of anticoagulation therapy in antiphospholipid syndrome.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22467528/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0095",
+      "pmid": "37892697",
+      "year": 2023,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "atrial fibrillation"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding"
+      ],
+      "matchedStudyTerms": [
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Relationships, Current Issues, Safety and Efficacy of Oral Anticoagulation in Cancer Patients with Atrial Fibrillation.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37892697/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0096",
+      "pmid": "35261442",
+      "year": 2022,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "atrial fibrillation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "hemorrhage",
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Time in therapeutic range of anticoagulation among patients with atrial fibrillation and cerebral amyloid angiopathy.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35261442/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0097",
+      "pmid": "19476425",
+      "year": 2009,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation",
+        "atrial fibrillation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k",
+        "herbal"
+      ],
+      "matchedOutcomeTerms": [
+        "inr",
+        "interaction"
+      ],
+      "matchedStudyTerms": [
+        "case report"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Interaction between gemfibrozil and warfarin: case report and review of the literature.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19476425/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0098",
+      "pmid": "37673103",
+      "year": 2024,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "anticoagulant",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Effect of Previous INR Control during VKA Therapy on Subsequent DOAC Adherence and Persistence, in Patients Switched from VKA to DOAC.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37673103/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0099",
+      "pmid": "16941417",
+      "year": 2006,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr",
+        "interaction"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Dietary vitamin K variability affects International Normalized Ratio (INR) coagulation indices.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16941417/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0100",
+      "pmid": "32522446",
+      "year": 2020,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation",
+        "atrial fibrillation"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "hemorrhage"
+      ],
+      "matchedStudyTerms": [
+        "cohort"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Anticoagulation resumption after intracranial hemorrhage in patients treated with VKA and DOACs.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32522446/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0101",
+      "pmid": "37313284",
+      "year": 2023,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "anticoagulant",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "A Case of Symptomatic Supratherapeutic International Normalized Ratio on Rivaroxaban.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37313284/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0102",
+      "pmid": "39491548",
+      "year": 2024,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "anticoagulant",
+        "anticoagulation"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding"
+      ],
+      "matchedStudyTerms": [
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Transitioning between therapeutic anticoagulants: a clinicians guide to switching patients to or from DOAC therapy.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39491548/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0103",
+      "pmid": "27354859",
+      "year": 2016,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Management of antithrombotic therapy during cardiac implantable device surgery.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27354859/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0104",
+      "pmid": "16305294",
+      "year": 2005,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Low-dose vitamin K to augment anticoagulation control.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16305294/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0105",
+      "pmid": "23545828",
+      "year": 2013,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [
+        "pharmacokinetic"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "[Diagnosis and treatment of warfarin resistance].",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23545828/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0106",
+      "pmid": "32750627",
+      "year": 2020,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "anticoagulant",
+        "anticoagulation"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "hemorrhage"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "A review of guidelines on anticoagulation reversal across different clinical scenarios - Is there a general consensus?",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32750627/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0107",
+      "pmid": "40188746",
+      "year": 2025,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Twenty years of the four-factor prothrombin complex concentrate Octaplex/Balfaxar: A narrative review.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40188746/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0108",
+      "pmid": "33070895",
+      "year": 2020,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "hemorrhage",
+        "inr"
+      ],
+      "matchedStudyTerms": [
+        "cohort"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Prothrombin complex concentrate for vitamin K antagonist reversal in traumatic intracranial hemorrhage.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33070895/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0109",
+      "pmid": "25213003",
+      "year": 2014,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "atrial fibrillation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Impact of non-vitamin k antagonist oral anticoagulants on intracranial bleeding in Asian patients with non-valvular atrial fibrillation.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25213003/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0110",
+      "pmid": "34277237",
+      "year": 2021,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "hemorrhage"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Management of Life-Threatening Bleeding in Patients With Mechanical Heart Valves.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34277237/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0111",
+      "pmid": "19052707",
+      "year": 2008,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "atrial fibrillation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "[Bleeding risk and perioperative management of patients anticoagulated with vitamin K antagnosists].",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19052707/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0112",
+      "pmid": "12659605",
+      "year": 2003,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "atrial fibrillation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k",
+        "herbal"
+      ],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Orlistat enhances warfarin effect.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12659605/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0113",
+      "pmid": "26666325",
+      "year": 2015,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation",
+        "atrial fibrillation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "The Use of Novel Oral Anticoagulants in Atrial Fibrillation.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26666325/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0114",
+      "pmid": "37601024",
+      "year": 2023,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "maybe_needs_manual_review",
+      "matchedPopulationTerms": [],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "hemorrhage"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Direct oral anticoagulants or vitamin K antagonists in emergencies: comparison of management in an observational study.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37601024/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0115",
+      "pmid": "27232386",
+      "year": 2016,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "inr"
+      ],
+      "matchedStudyTerms": [
+        "systematic review"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Effect of Vitamin K Intake on the Stability of Treatment with Vitamin K Antagonists: A Systematic Review of the Literature.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27232386/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0116",
+      "pmid": "10850575",
+      "year": 2000,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "NovoSeven in warfarin-treated patients.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10850575/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0117",
+      "pmid": "17322161",
+      "year": 2007,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "cranberry"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "inr",
+        "interaction"
+      ],
+      "matchedStudyTerms": [
+        "randomized",
+        "case report"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Interaction potential between cranberry juice and warfarin.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17322161/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0118",
+      "pmid": "24019755",
+      "year": 2013,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "atrial fibrillation"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "hemorrhage"
+      ],
+      "matchedStudyTerms": [
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Current strategies to minimize the bleeding risk of warfarin.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24019755/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0119",
+      "pmid": "38829189",
+      "year": 2024,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "atrial fibrillation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "inr"
+      ],
+      "matchedStudyTerms": [
+        "cohort"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Thromboembolic and bleeding complications after elective cardioversion of atrial fibrillation: a nationwide cohort study.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38829189/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0120",
+      "pmid": "28724836",
+      "year": 2017,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "hemorrhage",
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Prothrombin Complex Concentrate for Vitamin K Antagonist-Associated Intracranial Hemorrhage - Global Evidence and the Japanese Perspective.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28724836/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0121",
+      "pmid": "32029342",
+      "year": 2020,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "hemorrhage",
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Emergency medicine misconceptions: Utility of routine coagulation panels in the emergency department setting.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32029342/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0122",
+      "pmid": "23943978",
+      "year": 2013,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Treatment with vitamin K in hip fracture patients receiving warfarin.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23943978/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0123",
+      "pmid": "21274594",
+      "year": 2011,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Practical issues with vitamin K antagonists: elevated INRs, low time-in-therapeutic range, and warfarin failure.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21274594/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0124",
+      "pmid": "30808216",
+      "year": 2019,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [
+        "cohort"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Effects of Obesity on Warfarin Reversal With Vitamin K.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30808216/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0125",
+      "pmid": "37598356",
+      "year": 2023,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulant",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Exploring the complex relationship between vitamin K, gut microbiota, and warfarin variability in cardiac surgery patients.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37598356/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0126",
+      "pmid": "27303213",
+      "year": 2016,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding",
+        "inr"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Vitamin K antagonist use: evidence of the difficulty of achieving and maintaining target INR range and subsequent consequences.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27303213/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0127",
+      "pmid": "27838137",
+      "year": 2017,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_low",
+      "suggestedDecision": "manual_review_low",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [
+        "case report"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Warfarin Poisoning with Delayed Rebound Toxicity.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27838137/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0128",
+      "pmid": "27737407",
+      "year": 2016,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "anticoagulant",
+        "anticoagulation",
+        "atrial fibrillation"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "bleeding"
+      ],
+      "matchedStudyTerms": [
+        "cohort"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Anticoagulation Quality and Complications of using Vitamin K Antagonists in the Cardiac Surgery Outpatient Clinic.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27737407/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0129",
+      "pmid": "35347478",
+      "year": 2022,
+      "targetId": "anticoag_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "warfarin",
+        "anticoagulation",
+        "atrial fibrillation",
+        "inr"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin k"
+      ],
+      "matchedOutcomeTerms": [
+        "inr"
+      ],
+      "matchedStudyTerms": [
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Switching from warfarin to direct-acting oral anticoagulants: it is time to move forward!",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35347478/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0130",
+      "pmid": "36906146",
+      "year": 2023,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "kidney stone",
+        "nephrolithiasis",
+        "urolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d",
+        "vitamin c"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "kidney stone",
+        "nephrolithiasis",
+        "recurrence"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Kidney Stone Prevention.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36906146/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0131",
+      "pmid": "33668681",
+      "year": 2021,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_low",
+      "suggestedDecision": "manual_review_low",
+      "matchedPopulationTerms": [],
+      "matchedIngredientTerms": [
+        "vitamin c",
+        "ascorbic acid"
+      ],
+      "matchedOutcomeTerms": [],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Vitamin C-Sources, Physiological Role, Kinetics, Deficiency, Use, Toxicity, and Determination.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33668681/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0132",
+      "pmid": "27588937",
+      "year": 2016,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "renal stone",
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Vitamin D-Mediated Hypercalcemia: Mechanisms, Diagnosis, and Treatment.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27588937/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0133",
+      "pmid": "34508834",
+      "year": 2022,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_low",
+      "suggestedDecision": "manual_review_low",
+      "matchedPopulationTerms": [
+        "urolithiasis"
+      ],
+      "matchedIngredientTerms": [
+        "calcium"
+      ],
+      "matchedOutcomeTerms": [],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Pathophysiology and Management of Hyperoxaluria and Oxalate Nephropathy: A Review.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34508834/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0134",
+      "pmid": "36745886",
+      "year": 2023,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria",
+        "adverse"
+      ],
+      "matchedStudyTerms": [
+        "systematic review",
+        "meta-analysis",
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Vitamin D and Risk for Type 2 Diabetes in People With Prediabetes : A Systematic Review and Meta-analysis of Individual Participant Data From 3 Randomized Clinical Trials.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36745886/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0135",
+      "pmid": "39077939",
+      "year": 2024,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "adverse"
+      ],
+      "matchedStudyTerms": [
+        "randomised"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Vitamin D supplementation for women during pregnancy.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39077939/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0136",
+      "pmid": "34774244",
+      "year": 2021,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Vitamin D-dependent Hypercalcemia.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34774244/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0137",
+      "pmid": "29264783",
+      "year": 2018,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Drug-Induced Kidney Stones and Crystalline Nephropathy: Pathophysiology, Prevention and Treatment.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29264783/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0138",
+      "pmid": "34959915",
+      "year": 2021,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "kidney stone",
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "kidney stone",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Calcium and Vitamin D Supplementation and Their Association with Kidney Stone Disease: A Narrative Review.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34959915/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0139",
+      "pmid": "26463139",
+      "year": 2016,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_low",
+      "suggestedDecision": "manual_review_low",
+      "matchedPopulationTerms": [],
+      "matchedIngredientTerms": [
+        "vitamin c"
+      ],
+      "matchedOutcomeTerms": [],
+      "matchedStudyTerms": [
+        "cohort"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Total, Dietary, and Supplemental Vitamin C Intake and Risk of Incident Kidney Stones.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26463139/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0140",
+      "pmid": "26150027",
+      "year": 2015,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "renal stone",
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "nephrolithiasis",
+        "recurrence"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Dietary treatment of urinary risk factors for renal stone formation. A review of CLU Working Group.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26150027/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0141",
+      "pmid": "11195313",
+      "year": 2000,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Hypercalciuria.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11195313/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0142",
+      "pmid": "16357816",
+      "year": 2005,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "[Hypercalciuria].",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16357816/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0143",
+      "pmid": "15133327",
+      "year": 2004,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis",
+        "urolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Osteoporosis and urolithiasis.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15133327/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0144",
+      "pmid": "28879535",
+      "year": 2018,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Hypercalcemia: a consultant's approach.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28879535/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0145",
+      "pmid": "29562593",
+      "year": 2018,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "kidney stone",
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "kidney stone",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Vitamin D, Hypercalciuria and Kidney Stones.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29562593/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0146",
+      "pmid": "27539983",
+      "year": 2017,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "urolithiasis"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "recurrence"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Pathophysiology-based treatment of urolithiasis.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27539983/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0147",
+      "pmid": "33461896",
+      "year": 2021,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "urolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "[Nephrocalcinosis in children].",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33461896/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0148",
+      "pmid": "32533118",
+      "year": 2020,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "kidney stone",
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "kidney stone",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Genetics of kidney stone disease.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32533118/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0149",
+      "pmid": "38606357",
+      "year": 2024,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Review of childhood genetic nephrolithiasis and nephrocalcinosis.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38606357/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0150",
+      "pmid": "8620732",
+      "year": 1996,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Vitamin D, calcium, and sarcoidosis.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8620732/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0151",
+      "pmid": "37761859",
+      "year": 2023,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin c"
+      ],
+      "matchedOutcomeTerms": [
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Oxalate (dys)Metabolism: Person-to-Person Variability, Kidney and Cardiometabolic Toxicity.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37761859/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0152",
+      "pmid": "35598638",
+      "year": 2022,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Calcium homeostasis and hyperparathyroidism: Nephrologic and endocrinologic points of view.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35598638/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0153",
+      "pmid": "37049567",
+      "year": 2023,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "urolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Vitamin D and Calcium Supplementation and Urolithiasis: A Controversial and Multifaceted Relationship.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37049567/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0154",
+      "pmid": "26816771",
+      "year": 2014,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_low",
+      "suggestedDecision": "manual_review_low",
+      "matchedPopulationTerms": [],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Calcium intake and urinary stone disease.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26816771/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0155",
+      "pmid": "29664757",
+      "year": 2018,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Primary hyperparathyroidism: recent advances.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29664757/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0156",
+      "pmid": "29376607",
+      "year": 2017,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [
+        "systematic review"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "[Idiopathic hypercalciuria. Diagnosis and treatment].",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29376607/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0157",
+      "pmid": "40551736",
+      "year": 2025,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Cholecalciferol (vitamin D3): efficacy, safety, and implications in public health.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40551736/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0158",
+      "pmid": "41258546",
+      "year": 2025,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "kidney stone"
+      ],
+      "matchedIngredientTerms": [
+        "calcium"
+      ],
+      "matchedOutcomeTerms": [
+        "kidney stone",
+        "recurrence"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "The Role of Diet in Kidney Stone Pathogenesis and Prevention.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41258546/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0159",
+      "pmid": "34857184",
+      "year": 2021,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria",
+        "adverse"
+      ],
+      "matchedStudyTerms": [
+        "systematic review"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Safety and effectiveness of vitamin D mega-dose: A systematic review.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34857184/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0160",
+      "pmid": "223811",
+      "year": 1979,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "renal stone",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Cadmium nephropathy.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/223811/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0161",
+      "pmid": "35930049",
+      "year": 2023,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "adverse"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "The clinical relevance of native vitamin D in pediatric kidney disease.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35930049/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0162",
+      "pmid": "33659946",
+      "year": 2020,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria",
+        "adverse"
+      ],
+      "matchedStudyTerms": [
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "The role of vitamin D in sarcoidosis.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33659946/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0163",
+      "pmid": "33379176",
+      "year": 2020,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "kidney stone"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin c",
+        "ascorbic acid"
+      ],
+      "matchedOutcomeTerms": [
+        "kidney stone"
+      ],
+      "matchedStudyTerms": [
+        "cohort"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Contribution of Dietary Oxalate and Oxalate Precursors to Urinary Oxalate Excretion.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33379176/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0164",
+      "pmid": "32857334",
+      "year": 2021,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria",
+        "adverse"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Vitamin D supplementation: upper limit for safety revisited?",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32857334/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0165",
+      "pmid": "41348736",
+      "year": 2025,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "kidney stone",
+        "urolithiasis"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "supplement"
+      ],
+      "matchedOutcomeTerms": [
+        "kidney stone",
+        "recurrence",
+        "adverse"
+      ],
+      "matchedStudyTerms": [
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Lime-based supplement reduces calcium oxalate stone recurrence: A multicenter randomized controlled trial.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41348736/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0166",
+      "pmid": "33910705",
+      "year": 2021,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "kidney stone",
+        "nephrolithiasis"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "kidney stone",
+        "nephrolithiasis",
+        "recurrence"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Genetics of kidney stone disease-Polygenic meets monogenic.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33910705/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0167",
+      "pmid": "31718265",
+      "year": 2019,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "maybe_needs_manual_review",
+      "matchedPopulationTerms": [],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Sarcoidosis and calcium homeostasis disturbances-Do we know where we stand?",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31718265/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0168",
+      "pmid": "39346653",
+      "year": 2024,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "kidney stone"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "kidney stone"
+      ],
+      "matchedStudyTerms": [
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "The complex relationship between vitamin D and kidney stones: balance, risks, and prevention strategies.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39346653/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0169",
+      "pmid": "24910823",
+      "year": 2013,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_low",
+      "suggestedDecision": "manual_review_low",
+      "matchedPopulationTerms": [],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [],
+      "matchedStudyTerms": [
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Calcium and vitamin D in post menopausal women.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24910823/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0170",
+      "pmid": "6765068",
+      "year": 1982,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Vitamin D and bone health in the elderly.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/6765068/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0171",
+      "pmid": "32990535",
+      "year": 2021,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "urolithiasis"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "supplement"
+      ],
+      "matchedOutcomeTerms": [
+        "recurrence",
+        "adverse"
+      ],
+      "matchedStudyTerms": [
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Phytotherapy and Herbal Medicines for Kidney Stones.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32990535/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0172",
+      "pmid": "40353475",
+      "year": 2025,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "kidney stone",
+        "urolithiasis"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d",
+        "ascorbic acid"
+      ],
+      "matchedOutcomeTerms": [
+        "kidney stone"
+      ],
+      "matchedStudyTerms": [
+        "systematic review",
+        "clinical trial"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Recent Progression and Treatment Approaches for the Kidney Stone Management.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40353475/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0173",
+      "pmid": "23137489",
+      "year": 2012,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "kidney stone",
+        "nephrolithiasis",
+        "urolithiasis"
+      ],
+      "matchedIngredientTerms": [
+        "calcium"
+      ],
+      "matchedOutcomeTerms": [
+        "kidney stone",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [
+        "systematic review",
+        "randomised",
+        "cohort"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Calcium supplementation and kidney stone risk in osteoporosis: a systematic literature review.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23137489/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0174",
+      "pmid": "28734988",
+      "year": 2018,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria",
+        "adverse"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Can adverse effects of excessive vitamin D supplementation occur without developing hypervitaminosis D?",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28734988/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0175",
+      "pmid": "7984788",
+      "year": 1994,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Role of vitamin D, its metabolites, and analogs in the management of osteoporosis.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7984788/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0176",
+      "pmid": "10593318",
+      "year": 1999,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Prevention of recurrent nephrolithiasis.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10593318/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0177",
+      "pmid": "38911445",
+      "year": 2024,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_low",
+      "suggestedDecision": "manual_review_low",
+      "matchedPopulationTerms": [
+        "urolithiasis"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "ascorbic acid"
+      ],
+      "matchedOutcomeTerms": [],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Oxalates: Dietary Oxalates and Kidney Inflammation: A Literature Review.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38911445/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0178",
+      "pmid": "30632117",
+      "year": 2019,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "urolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Vitamin D and Calcium Homeostasis in Infants with Urolithiasis.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30632117/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0179",
+      "pmid": "35768889",
+      "year": 2022,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Beta-thalassaemia major: Prevalence, risk factors and clinical consequences of hypercalciuria.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35768889/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0180",
+      "pmid": "30529281",
+      "year": 2019,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria",
+        "adverse"
+      ],
+      "matchedStudyTerms": [
+        "systematic review",
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Adverse events from large dose vitamin D supplementation taken for one year or longer.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30529281/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0181",
+      "pmid": "26473773",
+      "year": 2015,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "maybe_needs_manual_review",
+      "matchedPopulationTerms": [],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "adverse"
+      ],
+      "matchedStudyTerms": [
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Should we prescribe calcium or vitamin D supplements to treat or prevent osteoporosis?",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26473773/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0182",
+      "pmid": "38682062",
+      "year": 2024,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "kidney stone",
+        "nephrolithiasis",
+        "urolithiasis"
+      ],
+      "matchedIngredientTerms": [
+        "calcium"
+      ],
+      "matchedOutcomeTerms": [
+        "kidney stone",
+        "nephrolithiasis",
+        "recurrence"
+      ],
+      "matchedStudyTerms": [
+        "systematic review"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Therapeutic effects of probiotics and herbal medications on oxalate nephrolithiasis: a mini systematic review.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38682062/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0183",
+      "pmid": "31122608",
+      "year": 2019,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "kidney stone",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "kidney stone"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Phosphaturia in kidney stone formers: Still an enigma.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31122608/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0184",
+      "pmid": "35663378",
+      "year": 2022,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Growth hormone therapy in HHRH.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35663378/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0185",
+      "pmid": "33316222",
+      "year": 2021,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Rare diseases of phosphate and calcium metabolism: Crossing glances between nephrology and endocrinology.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33316222/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0186",
+      "pmid": "7041638",
+      "year": 1982,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Calcium-oxalate-crystal-induced bone disease.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7041638/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0187",
+      "pmid": "28335477",
+      "year": 2017,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis",
+        "urolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [
+        "systematic review",
+        "meta-analysis"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Association between Circulating Vitamin D Level and Urolithiasis: A Systematic Review and Meta-Analysis.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28335477/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0188",
+      "pmid": "38015778",
+      "year": 2023,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "kidney stone",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "kidney stone"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Idiopathic Hypercalciuria - A Major Metabolic Risk for Calcium Kidney Stone Disease.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38015778/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0189",
+      "pmid": "25511115",
+      "year": 2015,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria",
+        "adverse"
+      ],
+      "matchedStudyTerms": [
+        "systematic review",
+        "meta-analysis"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Rapid normalization of vitamin D levels: a meta-analysis.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25511115/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0190",
+      "pmid": "15193974",
+      "year": 2004,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "kidney stone",
+        "urolithiasis"
+      ],
+      "matchedIngredientTerms": [
+        "calcium"
+      ],
+      "matchedOutcomeTerms": [
+        "kidney stone"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Idiopathic calcium oxalate urolithiasis: risk factors and conservative treatment.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15193974/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0191",
+      "pmid": "9387131",
+      "year": 1997,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Calciotropic hormones and nephrolithiasis.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9387131/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0192",
+      "pmid": "37768904",
+      "year": 2023,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Clinical heterogeneity and therapeutic options for idiopathic infantile hypercalcemia caused by CYP24A1 pathogenic variant.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37768904/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0193",
+      "pmid": "29939320",
+      "year": 2019,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "kidney stone",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "kidney stone"
+      ],
+      "matchedStudyTerms": [
+        "cohort"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Distinct phenotype of kidney stone formers with renal phosphate leak.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29939320/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0194",
+      "pmid": "14670550",
+      "year": 2003,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "kidney stone"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "kidney stone",
+        "recurrence"
+      ],
+      "matchedStudyTerms": [
+        "randomized"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "The potential benefits of dietary and/or supplemental calcium and vitamin D.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14670550/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0195",
+      "pmid": "38765596",
+      "year": 2024,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "kidney stone",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "kidney stone"
+      ],
+      "matchedStudyTerms": [
+        "cohort"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "The Vitamin D Metabolite Diagnostic Ratio Associates With Phenotypic Traits of Idiopathic Hypercalciuria.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38765596/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0196",
+      "pmid": "25290538",
+      "year": 2014,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Effects of vitamin D and calcium supplementation on hypercalcemia and hypercalciuria.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25290538/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0197",
+      "pmid": "40330359",
+      "year": 2025,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Idiopathic Hypercalciuria: A Comprehensive Review of Clinical Insights and Management Strategies.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40330359/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0198",
+      "pmid": "24423361",
+      "year": 2014,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [
+        "case report"
+      ],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "A lifetime of hypercalcemia and hypercalciuria, finally explained.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24423361/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0199",
+      "pmid": "23154110",
+      "year": 2013,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria",
+        "nephrolithiasis",
+        "recurrence"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "[Kidney involvement in sarcoidosis].",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23154110/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0200",
+      "pmid": "26707509",
+      "year": 2016,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis"
+      ],
+      "matchedIngredientTerms": [
+        "calcium"
+      ],
+      "matchedOutcomeTerms": [
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Nephrolithiasis and Risk of Incident Bone Fracture.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26707509/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0201",
+      "pmid": "24445125",
+      "year": 2013,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Use of parathyroid hormone in hypoparathyroidism.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24445125/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0202",
+      "pmid": "229736",
+      "year": 1979,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Physiological basis for absorptive and renal hypercalciurias.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/229736/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0203",
+      "pmid": "30851716",
+      "year": 2019,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d",
+        "supplement"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Vitamin D Supplementation and Risk of Hypercalciuria in Stone Formers.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30851716/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0204",
+      "pmid": "41499143",
+      "year": 2026,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Challenges and pitfalls in diagnosing and managing severe gestational hypercalcemia.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41499143/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0205",
+      "pmid": "36156733",
+      "year": 2023,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Idiopathic infantile hypercalcemia in children with chronic kidney disease due to kidney hypodysplasia.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36156733/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0206",
+      "pmid": "29926935",
+      "year": 2018,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Bacteria, Bones, and Stones: Managing Complications of Short Bowel Syndrome.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29926935/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0207",
+      "pmid": "31188746",
+      "year": 2019,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "renal stone",
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "CYP24A1 and SLC34A1 genetic defects associated with idiopathic infantile hypercalcemia: from genotype to phenotype.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31188746/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0208",
+      "pmid": "36118750",
+      "year": 2022,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "urolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "adverse"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Association of hypercalciuria with vitamin D supplementation in patients undergoing ketogenic dietary therapy.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36118750/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0209",
+      "pmid": "41149617",
+      "year": 2025,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "nephrolithiasis"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Vitamin D Metabolism and the Risk of Renal Stones: A Focus on PHPT.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41149617/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0210",
+      "pmid": "30109410",
+      "year": 2019,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_medium",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Hereditary hypophosphatemic rickets with hypercalciuria: pathophysiology, clinical presentation, diagnosis and therapy.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30109410/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0211",
+      "pmid": "15685503",
+      "year": 2005,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "kidney stone",
+        "nephrolithiasis",
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalciuria",
+        "kidney stone",
+        "nephrolithiasis"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Fatty acid intake and incident nephrolithiasis.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15685503/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0212",
+      "pmid": "32777848",
+      "year": 2020,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Balancing Altered Calcium Metabolism with Bone Health in Sarcoidosis.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32777848/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0213",
+      "pmid": "39818292",
+      "year": 2025,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_high",
+      "suggestedDecision": "include_candidate",
+      "matchedPopulationTerms": [
+        "hypercalciuria"
+      ],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [
+        "hypercalcemia",
+        "hypercalciuria"
+      ],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "Chapter 4: Differential diagnosis of primary hyperparathyroidism.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39818292/"
+    },
+    {
+      "id": "yeohj_anticoag_renal-candidate-0214",
+      "pmid": "24055557",
+      "year": 2013,
+      "targetId": "kidney_stone_refined",
+      "priority": "manual_review_low",
+      "suggestedDecision": "manual_review_low",
+      "matchedPopulationTerms": [],
+      "matchedIngredientTerms": [
+        "calcium",
+        "vitamin d"
+      ],
+      "matchedOutcomeTerms": [],
+      "matchedStudyTerms": [],
+      "reviewRole": "manual review candidate for final evidence mapping",
+      "title": "[Vitamin D and kidney diseases].",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24055557/"
+    }
+  ]
+}

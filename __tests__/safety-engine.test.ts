@@ -44,6 +44,33 @@ describe("runSafetyEngine", () => {
     expect(matchedIds.has("RULE-SJW-MAJOR-DRUG-INTERACTIONS")).toBe(true);
   });
 
+  it("returns the systematic search pool beside rule results", () => {
+    const response = runSafetyEngine(
+      {
+        profile: {
+          medications: ["warfarin"],
+          conditions: ["anticoagulant use"],
+          jurisdiction: "US",
+        },
+        candidateItems: [
+          {
+            ingredientId: "vitamin_k",
+            name: "vitamin K",
+            dailyIntakeValue: 120,
+            dailyIntakeUnit: "mcg/day",
+          },
+        ],
+        sort: "severity_desc",
+      },
+      knowledgeIndex,
+    );
+
+    expect(response.literature.summary.cumulativePubMedCandidates).toBe(236);
+    expect(response.literature.totalCandidateCount).toBe(214);
+    expect(response.literature.relatedCandidates.length).toBeGreaterThan(0);
+    expect(response.literature.relatedCandidates[0].url).toContain("pubmed");
+  });
+
   it("marks form-specific iodine interaction rules as needs_more_info when the form is missing", () => {
     const response = runSafetyEngine(
       {
