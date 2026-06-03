@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useTransition } from "react";
 
 import { RuleCard } from "@/src/components/rule-card";
 import type { AiExplainResponse } from "@/src/lib/ai/schema";
+import { cleanDisplayText } from "@/src/lib/display-text";
 import type {
   EngineQuery,
   EngineResponse,
@@ -1536,7 +1537,7 @@ export function RuleExplorerClient({
                 className={`${fieldGroupClass} rounded-[1rem] border border-stone-200 bg-white p-3`}
               >
                 <div className="mb-3 flex items-center justify-between gap-3">
-                  <span className={fieldLabelClass}>3. 질환 · 상태</span>
+                  <span className={fieldLabelClass}>3. 질환 및 상태</span>
                   <span className="rounded-full bg-stone-100 px-2.5 py-1 text-[11px] font-medium text-stone-600">
                     선택
                   </span>
@@ -2079,7 +2080,7 @@ export function RuleExplorerClient({
                       {presentation.title}
                     </h2>
                     <p className="hidden mt-2 text-sm leading-6 text-muted">
-                      {presentation.summary}
+                      {cleanDisplayText(presentation.summary)}
                     </p>
                   </div>
                   <div className="flex flex-wrap items-center gap-2">
@@ -2197,7 +2198,7 @@ export function RuleExplorerClient({
           </h3>
           <p className="measure-copy mt-3 text-sm leading-6 text-muted">
             {hasQueried
-              ? "성분 표기나 약물 이름을 조금 다르게 적어 보거나, 질환과 임신·수유 상태 같은 조건을 추가하면 더 정확하게 다시 좁혀볼 수 있습니다."
+              ? "성분 표기나 약물 이름을 조금 다르게 적어 보거나, 질환과 임신 및 수유 상태 같은 조건을 추가하면 더 정확하게 다시 좁혀볼 수 있습니다."
               : "성분만 먼저 넣고 시작해도 됩니다. 개인 조건이 아직 없으면 일반적인 참고 안내를 중심으로 차분하게 보여드립니다."}
           </p>
           {!hasQueried ? (
