@@ -1,0 +1,594 @@
+{
+  "status": "ok",
+  "message-type": "work-list",
+  "message-version": "1.0.0",
+  "message": {
+    "facets": {},
+    "total-results": 39046,
+    "items": [
+      {
+        "DOI": "10.2165/00128415-201113470-00051",
+        "title": [
+          "Cranberry/warfarin interaction"
+        ],
+        "container-title": [
+          "Reactions Weekly"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2011,
+              4
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2011,
+              4
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.2165/00128415-201113470-00051"
+      },
+      {
+        "DOI": "10.2165/00128415-201113610-00057",
+        "title": [
+          "Cranberry/warfarin/paracetamol"
+        ],
+        "container-title": [
+          "Reactions Weekly"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2011,
+              7
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2011,
+              7
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.2165/00128415-201113610-00057"
+      },
+      {
+        "DOI": "10.2165/00128415-200812290-00035",
+        "title": [
+          "Cranberry/warfarin interaction"
+        ],
+        "container-title": [
+          "Reactions Weekly"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2008,
+              11
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2008,
+              11
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.2165/00128415-200812290-00035"
+      },
+      {
+        "DOI": "10.2165/00128415-201214000-00150",
+        "title": [
+          "Warfarin/cranberry interaction"
+        ],
+        "container-title": [
+          "Reactions Weekly"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2012,
+              5
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2012,
+              5
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.2165/00128415-201214000-00150"
+      },
+      {
+        "DOI": "10.1300/j157v01n01_07",
+        "title": [
+          "Interaction Between Warfarin and a Vitamin K-Containing Nutritional Supplement"
+        ],
+        "container-title": [
+          "Journal Of Herbal Pharmacotherapy"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2000,
+              12,
+              11
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2000,
+              12,
+              11
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1300/j157v01n01_07"
+      },
+      {
+        "DOI": "10.2165/00128415-200811980-00067",
+        "title": [
+          "Glucosamine/chondroitin sulfate/warfarin interaction"
+        ],
+        "container-title": [
+          "Reactions Weekly"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2008,
+              4
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2008,
+              4
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.2165/00128415-200811980-00067"
+      },
+      {
+        "DOI": "10.2165/00128415-200711790-00036",
+        "title": [
+          "Cranberry juice interaction"
+        ],
+        "container-title": [
+          "Reactions Weekly"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2007,
+              11
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2007,
+              11
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.2165/00128415-200711790-00036"
+      },
+      {
+        "DOI": "10.2165/00128413-200716020-00055",
+        "title": [
+          "Patient self-management of oral anticoagulant therapy results in smaller variance in INR values, a higher median INR and a higher dose of warfarin,"
+        ],
+        "container-title": [
+          "Inpharma Weekly"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2007,
+              8
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2007,
+              8
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.2165/00128413-200716020-00055"
+      },
+      {
+        "DOI": "10.1007/s40278-021-07662-9",
+        "title": [
+          "Warfarin/herbal drink interaction"
+        ],
+        "container-title": [
+          "Reactions Weekly"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2021,
+              12
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2021,
+              12,
+              18
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2021,
+              12
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1007/s40278-021-07662-9"
+      },
+      {
+        "DOI": "10.1080/j157v01n01_07",
+        "title": [
+          "Interaction Between Warfarin and a Vitamin K-Containing Nutritional Supplement"
+        ],
+        "container-title": [
+          "Journal of Herbal Pharmacotherapy"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2001,
+              1
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2009,
+              8,
+              26
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2001,
+              1
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1080/j157v01n01_07"
+      },
+      {
+        "DOI": "10.2165/00128415-201214130-00061",
+        "title": [
+          "Cotrimoxazole/warfarin"
+        ],
+        "container-title": [
+          "Reactions Weekly"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2012,
+              8
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2012,
+              8
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.2165/00128415-201214130-00061"
+      },
+      {
+        "DOI": "10.1007/s40278-025-85412-y",
+        "title": [
+          "Turmeric/warfarin"
+        ],
+        "container-title": [
+          "Reactions Weekly"
+        ],
+        "published-online": {
+          "date-parts": [
+            [
+              2025,
+              7,
+              5
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2025,
+              7,
+              5
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1007/s40278-025-85412-y"
+      },
+      {
+        "DOI": "10.2165/00128415-200409980-00056",
+        "title": [
+          "Warfarin interaction"
+        ],
+        "container-title": [
+          "Reactions Weekly"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2004,
+              4
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2004,
+              4
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.2165/00128415-200409980-00056"
+      },
+      {
+        "DOI": "10.1007/s40278-018-53980-3",
+        "title": [
+          "Warfarin"
+        ],
+        "container-title": [
+          "Reactions Weekly"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2018,
+              11
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2018,
+              11,
+              3
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2018,
+              11
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1007/s40278-018-53980-3"
+      },
+      {
+        "DOI": "10.1007/s40278-020-79725-8",
+        "title": [
+          "Paracetamol/warfarin interaction"
+        ],
+        "container-title": [
+          "Reactions Weekly"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2020,
+              6
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2020,
+              6,
+              13
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2020,
+              6
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1007/s40278-020-79725-8"
+      },
+      {
+        "DOI": "10.2165/00128415-200912760-00094",
+        "title": [
+          "Warfarin/marijuana interaction"
+        ],
+        "container-title": [
+          "Reactions Weekly"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2009,
+              10
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2009,
+              10
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.2165/00128415-200912760-00094"
+      },
+      {
+        "DOI": "10.2165/00128415-200711540-00075",
+        "title": [
+          "Warfarin interaction"
+        ],
+        "container-title": [
+          "Reactions Weekly"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2007,
+              6
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2007,
+              6
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.2165/00128415-200711540-00075"
+      },
+      {
+        "DOI": "10.2165/00128415-201113460-00126",
+        "title": [
+          "Sulfasalazine/warfarin interaction"
+        ],
+        "container-title": [
+          "Reactions Weekly"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2011,
+              4
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2011,
+              4
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.2165/00128415-201113460-00126"
+      },
+      {
+        "DOI": "10.1007/s40278-019-56616-2",
+        "title": [
+          "Warfarin"
+        ],
+        "container-title": [
+          "Reactions Weekly"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2019,
+              1
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2019,
+              1,
+              5
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2019,
+              1
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1007/s40278-019-56616-2"
+      },
+      {
+        "DOI": "10.1007/s40278-021-89829-x",
+        "title": [
+          "Warfarin"
+        ],
+        "container-title": [
+          "Reactions Weekly"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2021,
+              1
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2021,
+              1,
+              16
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2021,
+              1
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1007/s40278-021-89829-x"
+      }
+    ],
+    "items-per-page": 20,
+    "query": {
+      "start-index": 0,
+      "search-terms": null
+    }
+  }
+}

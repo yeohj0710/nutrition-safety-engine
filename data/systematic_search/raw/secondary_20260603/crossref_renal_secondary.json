@@ -1,0 +1,567 @@
+{
+  "status": "ok",
+  "message-type": "work-list",
+  "message-version": "1.0.0",
+  "message": {
+    "facets": {},
+    "total-results": 208663,
+    "items": [
+      {
+        "DOI": "10.1053/j.ajkd.2011.02.150",
+        "title": [
+          "147 Vitamin D Status and Calciuiria in Calcium Oxalate Nephrolithiasis"
+        ],
+        "container-title": [
+          "American Journal of Kidney Diseases"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2011,
+              4
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2011,
+              4
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1053/j.ajkd.2011.02.150"
+      },
+      {
+        "DOI": "10.1097/gme.0000000000000336",
+        "title": [
+          "Effects of vitamin D and calcium supplementation on hypercalcemia and hypercalciuria"
+        ],
+        "container-title": [
+          "Menopause"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2014,
+              11
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2014,
+              11
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1097/gme.0000000000000336"
+      },
+      {
+        "DOI": "10.1016/b978-012252687-9/50080-2",
+        "title": [
+          "Idiopathic Hypercalciuria and Nephrolithiasis"
+        ],
+        "container-title": [
+          "Vitamin D"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2005
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2005
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1016/b978-012252687-9/50080-2"
+      },
+      {
+        "DOI": "10.1016/b978-0-12-381978-9.10071-x",
+        "title": [
+          "Idiopathic Hypercalciuria and Nephrolithiasis"
+        ],
+        "container-title": [
+          "Vitamin D"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2011
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2011
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1016/b978-0-12-381978-9.10071-x"
+      },
+      {
+        "DOI": "10.1038/ki.1991.162",
+        "title": [
+          "Calcium oxalate nephrolithiasis: Defective oxalate transport"
+        ],
+        "container-title": [
+          "Kidney International"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              1991,
+              6
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              1991,
+              6
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1038/ki.1991.162"
+      },
+      {
+        "DOI": "10.1016/b978-0-12-809963-6.00081-x",
+        "title": [
+          "Idiopathic Hypercalciuria and Nephrolithiasis"
+        ],
+        "container-title": [
+          "Vitamin D"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2018
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2018
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1016/b978-0-12-809963-6.00081-x"
+      },
+      {
+        "DOI": "10.1053/j.ajkd.2016.03.265",
+        "title": [
+          "Germline Variation in Genes Known to Cause Familial Calcium Oxalate Nephrolithiasis and Risk of Idiopathic, Non-Familial Calcium Oxalate Nephrolithiasis"
+        ],
+        "container-title": [
+          "American Journal of Kidney Diseases"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2016,
+              5
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2016,
+              5
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1053/j.ajkd.2016.03.265"
+      },
+      {
+        "DOI": "10.1097/gme.0000000000000270",
+        "title": [
+          "Incidence of hypercalciuria and hypercalcemia during vitamin D and calcium supplementation in older women"
+        ],
+        "container-title": [
+          "Menopause"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2014,
+              11
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2014,
+              11
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1097/gme.0000000000000270"
+      },
+      {
+        "DOI": "10.1046/j.1523-1755.2003.00815.x",
+        "title": [
+          "Effect of vitamin C supplements on urinary oxalate and pH in calcium stone-forming patients"
+        ],
+        "container-title": [
+          "Kidney International"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2003,
+              3
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2003,
+              3
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1046/j.1523-1755.2003.00815.x"
+      },
+      {
+        "DOI": "10.1038/ki.1978.60",
+        "title": [
+          "Hyperuricosuric calcium oxalate nephrolithiasis"
+        ],
+        "container-title": [
+          "Kidney International"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              1978,
+              5
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              1978,
+              5
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1038/ki.1978.60"
+      },
+      {
+        "DOI": "10.1016/j.juro.2014.08.023",
+        "title": [
+          "Re: Incidence of Hypercalciuria and Hypercalcemia during Vitamin D and Calcium Supplementation in Older Women"
+        ],
+        "container-title": [
+          "Journal of Urology"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2014,
+              11
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2014,
+              11
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1016/j.juro.2014.08.023"
+      },
+      {
+        "DOI": "10.1183/13993003.congress-2025.pa1894",
+        "title": [
+          "Iatrogenic hypercalcemia due to vitamin D and calcium supplement intoxication"
+        ],
+        "container-title": [
+          "Sarcoidosis and other granulomatous ILD/DPLD"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2025,
+              9,
+              27
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2025,
+              11,
+              18
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2025,
+              9,
+              27
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1183/13993003.congress-2025.pa1894"
+      },
+      {
+        "DOI": "10.1042/cs062015pa",
+        "title": [
+          "Vitamin D and the Hypercalciuria of Idiopathic Urinary Calcium Stone Disease"
+        ],
+        "container-title": [
+          "Clinical Science"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              1982,
+              2,
+              1
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              1982,
+              2,
+              1
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1042/cs062015pa"
+      },
+      {
+        "DOI": "10.1007/s40278-024-72178-3",
+        "title": [
+          "Calcium/vitamin-D/deferasirox/vitamin-D"
+        ],
+        "container-title": [
+          "Reactions Weekly"
+        ],
+        "published-online": {
+          "date-parts": [
+            [
+              2024,
+              12,
+              14
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2024,
+              12,
+              14
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1007/s40278-024-72178-3"
+      },
+      {
+        "DOI": "10.5489/cuaj.3332",
+        "title": [
+          "Combined vitamin D and calcium supplementation in vitamin D inadequate patients with urolithiasis: Impact on hypercalciuria and de novo stone formation"
+        ],
+        "container-title": [
+          "Canadian Urological Association Journal"
+        ],
+        "published-online": {
+          "date-parts": [
+            [
+              2015,
+              12,
+              14
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2015,
+              12,
+              14
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.5489/cuaj.3332"
+      },
+      {
+        "DOI": "10.1038/ki.1983.172",
+        "title": [
+          "Uric acid and calcium oxalate nephrolithiasis"
+        ],
+        "container-title": [
+          "Kidney International"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              1983,
+              9
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              1983,
+              9
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1038/ki.1983.172"
+      },
+      {
+        "DOI": "10.1053/j.ajkd.2017.02.351",
+        "title": [
+          "Relationship Between Serum Vitamin D Levels and Urinary Calcium Excretion in Hispanic Patients with Recurrent Nephrolithiasis"
+        ],
+        "container-title": [
+          "American Journal of Kidney Diseases"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2017,
+              4
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2017,
+              4
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1053/j.ajkd.2017.02.351"
+      },
+      {
+        "DOI": "10.1007/s40278-021-04904-5",
+        "title": [
+          "Ascorbic-acid/vitamin-d"
+        ],
+        "container-title": [
+          "Reactions Weekly"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2021,
+              11
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2021,
+              11,
+              6
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2021,
+              11
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1007/s40278-021-04904-5"
+      },
+      {
+        "DOI": "10.1007/s40278-020-77908-z",
+        "title": [
+          "Vitamin-d"
+        ],
+        "container-title": [
+          "Reactions Weekly"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2020,
+              4
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2020,
+              4,
+              25
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2020,
+              4
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.1007/s40278-020-77908-z"
+      },
+      {
+        "DOI": "10.3390/nu10030366",
+        "title": [
+          "Vitamin D, Hypercalciuria and Kidney Stones"
+        ],
+        "container-title": [
+          "Nutrients"
+        ],
+        "published-online": {
+          "date-parts": [
+            [
+              2018,
+              3,
+              17
+            ]
+          ]
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2018,
+              3,
+              17
+            ]
+          ]
+        },
+        "URL": "https://doi.org/10.3390/nu10030366"
+      }
+    ],
+    "items-per-page": 20,
+    "query": {
+      "start-index": 0,
+      "search-terms": null
+    }
+  }
+}
