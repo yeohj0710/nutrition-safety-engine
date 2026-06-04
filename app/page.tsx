@@ -47,15 +47,15 @@ export default function Home() {
     {
       label: "보조 검색원",
       value: formatCount(literatureSummary.secondaryHitTotal),
-      note: `대조 record ${formatCount(literatureSummary.secondaryStoredRecords)}건`,
+      note: `대조 문헌 ${formatCount(literatureSummary.secondaryStoredRecords)}건`,
     },
     {
-      label: "우선검토 후보",
+      label: "먼저 볼 문헌",
       value: formatCount(literatureSummary.priorityCandidateCount),
       note: `누적 후보 ${formatCount(literatureSummary.cumulativePubMedCandidates)}건`,
     },
     {
-      label: "직접 판정 규칙",
+      label: "바로 확인할 기준",
       value: formatCount(metadata.meta.safetyRuleCount),
       note: `근거 출처 ${formatCount(metadata.meta.sourceCount)}개`,
     },
@@ -68,8 +68,8 @@ export default function Home() {
           <div className="grid gap-5 lg:grid-cols-[minmax(0,1.05fr)_minmax(22rem,0.95fr)] lg:items-stretch">
             <div className="flex min-w-0 flex-col justify-between gap-5">
               <div>
-                <p className="text-[0.72rem] font-semibold uppercase text-muted">
-                  Clinical risk triage
+                <p className="text-[0.72rem] font-semibold text-muted">
+                  약물과 질환을 먼저 확인
                 </p>
                 <h1 className="mt-2 break-keep text-[1.28rem] font-semibold tracking-[-0.01em] text-foreground md:text-[1.55rem]">
                 {siteName}
@@ -130,7 +130,7 @@ export default function Home() {
               </h2>
               <p className="mt-2 text-sm leading-6 text-muted">
                 항응고제 복용자와 신장 관련 고위험군을 중심으로 검색 로그,
-                선별 결과, 화면용 후보문헌 수를 분리해 관리합니다.
+                선별 결과, 화면에 보여 줄 문헌 수를 분리해 관리합니다.
               </p>
             </div>
 
