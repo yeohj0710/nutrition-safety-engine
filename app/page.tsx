@@ -21,154 +21,120 @@ function formatCount(value: number) {
 export default function Home() {
   const metadata = getExplorerMetadata();
   const literatureSummary = literatureCandidateData.summary;
-  const triageSteps = [
+  const intakeFlow = [
     {
-      label: "1",
-      title: "복용 약물",
-      detail: "warfarin, quinolone, thiazide 등 상담 전 확인",
+      title: "상담 전 약물 확인",
+      detail: "와파린, 퀴놀론계, 이뇨제처럼 영양소와 부딪힐 수 있는 약을 먼저 봅니다.",
     },
     {
-      label: "2",
-      title: "질환 상태",
-      detail: "신장결석, 만성콩팥병, 임신·수유 등 위험군 확인",
+      title: "질환과 생활 상태 확인",
+      detail: "신장결석, 만성콩팥병, 임신·수유처럼 섭취 기준을 낮춰 봐야 하는 조건을 더합니다.",
     },
     {
-      label: "3",
-      title: "상담 우선순위",
-      detail: "먼저 볼 규칙, 함께 볼 근거, 추가 질문을 분리",
+      title: "상담 순서 정리",
+      detail: "바로 설명할 기준, 함께 보여 줄 근거, 추가 질문을 나눠 상담 순서를 만듭니다.",
     },
   ];
-  const scopeItems = [
-    {
-      label: "PubMed/MEDLINE",
-      value: formatCount(literatureSummary.latestPubMedHitCount),
-      note: `저장 ${formatCount(literatureSummary.latestPubMedStoredRecords)}건`,
-    },
-    {
-      label: "보조 검색원",
-      value: formatCount(literatureSummary.secondaryHitTotal),
-      note: `대조 문헌 ${formatCount(literatureSummary.secondaryStoredRecords)}건`,
-    },
-    {
-      label: "먼저 볼 문헌",
-      value: formatCount(literatureSummary.priorityCandidateCount),
-      note: `누적 후보 ${formatCount(literatureSummary.cumulativePubMedCandidates)}건`,
-    },
-    {
-      label: "바로 확인할 기준",
-      value: formatCount(metadata.meta.safetyRuleCount),
-      note: `근거 출처 ${formatCount(metadata.meta.sourceCount)}개`,
-    },
+  const clinicalStats = [
+    ["문헌 검색", formatCount(literatureSummary.latestPubMedHitCount), "PubMed/MEDLINE"],
+    ["저장 문헌", formatCount(literatureSummary.latestPubMedStoredRecords), "제목과 초록 확인"],
+    ["먼저 볼 문헌", formatCount(literatureSummary.priorityCandidateCount), "상담 전 우선 검토"],
+    ["바로 확인할 기준", formatCount(metadata.meta.safetyRuleCount), `근거 출처 ${formatCount(metadata.meta.sourceCount)}개`],
   ];
 
   return (
-    <main className="app-page min-h-screen px-4 py-4 sm:px-6 lg:px-8">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-4">
-        <section className="surface-card rounded-[0.95rem] px-4 py-4 md:px-5">
-          <div className="grid gap-5 lg:grid-cols-[minmax(0,1.05fr)_minmax(22rem,0.95fr)] lg:items-stretch">
-            <div className="flex min-w-0 flex-col justify-between gap-5">
+    <main className="app-page min-h-screen px-4 py-5 sm:px-6 lg:px-8">
+      <div className="mx-auto grid w-full max-w-7xl gap-5">
+        <section className="grid gap-5 lg:grid-cols-[18rem_minmax(0,1fr)]">
+          <aside className="rounded-[0.75rem] border border-emerald-900/15 bg-emerald-950 px-5 py-5 text-white shadow-sm">
+            <p className="text-[0.7rem] font-bold uppercase tracking-[0.2em] text-emerald-200">
+              상담 흐름
+            </p>
+            <ol className="mt-5 grid gap-4">
+              {intakeFlow.map((step, index) => (
+                <li
+                  key={step.title}
+                  className="grid grid-cols-[2rem_minmax(0,1fr)] gap-3 border-l border-emerald-300/35 pl-3"
+                >
+                  <span className="flex h-8 w-8 -translate-x-[1.65rem] items-center justify-center rounded-full bg-emerald-200 text-xs font-bold text-emerald-950">
+                    {index + 1}
+                  </span>
+                  <span className="-ml-6 min-w-0">
+                    <span className="block text-sm font-semibold">
+                      {step.title}
+                    </span>
+                    <span className="mt-1 block text-xs leading-5 text-emerald-100/85">
+                      {step.detail}
+                    </span>
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </aside>
+
+          <section className="rounded-[0.75rem] border border-emerald-900/15 bg-white px-5 py-5 shadow-sm md:px-7 md:py-7">
+            <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_20rem] xl:items-end">
               <div>
-                <p className="text-[0.72rem] font-semibold text-muted">
+                <p className="text-[0.76rem] font-bold text-emerald-800">
                   약물과 질환을 먼저 확인
                 </p>
-                <h1 className="mt-2 break-keep text-[1.28rem] font-semibold tracking-[-0.01em] text-foreground md:text-[1.55rem]">
-                {siteName}
-              </h1>
-                <p className="mt-3 max-w-2xl text-sm leading-6 text-muted">
-                {siteDescription}
-              </p>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                <Link
-                  href="#explorer"
-                  className="inline-flex min-h-10 items-center justify-center rounded-full bg-stone-950 px-4 py-[0.58rem] text-[0.84rem] font-medium text-white transition duration-200 hover:bg-stone-800"
-                >
-                  상담 조건 입력
-                </Link>
-                <Link
-                  href="/sources"
-                  className="inline-flex min-h-10 items-center justify-center rounded-full border border-border-subtle bg-white px-4 py-[0.58rem] text-[0.84rem] font-medium text-foreground transition duration-200 hover:border-stone-300"
-                >
-                  근거 출처
-                </Link>
-              </div>
-            </div>
-
-            <div className="rounded-[0.85rem] border border-border-subtle bg-white/82 p-3">
-              <div className="grid gap-2">
-                {triageSteps.map((step) => (
-                  <div
-                    key={step.label}
-                    className="grid grid-cols-[2.25rem_minmax(0,1fr)] gap-3 rounded-[0.75rem] border border-stone-200 bg-stone-50/70 px-3 py-3"
+                <h1 className="mt-2 break-keep text-[1.7rem] font-bold leading-tight text-emerald-950 md:text-[2.25rem]">
+                  {siteName}
+                </h1>
+                <p className="mt-4 max-w-3xl text-[0.96rem] leading-7 text-stone-700">
+                  {siteDescription}
+                </p>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  <Link
+                    href="#explorer"
+                    className="inline-flex min-h-11 items-center justify-center rounded-[0.55rem] bg-emerald-800 px-4 py-2 text-sm font-semibold text-white transition duration-200 hover:bg-emerald-700"
                   >
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-stone-950 text-xs font-semibold text-white">
-                      {step.label}
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-sm font-semibold text-foreground">
-                        {step.title}
-                      </p>
-                      <p className="mt-1 text-xs leading-5 text-muted">
-                        {step.detail}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+                    상담 조건 입력
+                  </Link>
+                  <Link
+                    href="/sources"
+                    className="inline-flex min-h-11 items-center justify-center rounded-[0.55rem] border border-emerald-900/20 bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-950 transition duration-200 hover:bg-emerald-100"
+                  >
+                    근거 출처 보기
+                  </Link>
+                </div>
+              </div>
+
+              <div className="rounded-[0.65rem] border border-emerald-900/15 bg-emerald-50/80 p-3">
+                <p className="text-xs font-semibold text-emerald-900">
+                  상담 전 확인표
+                </p>
+                <div className="mt-3 grid gap-2">
+                  {["복용 약물", "질환 상태", "섭취량", "복용 기간"].map(
+                    (item) => (
+                      <div
+                        key={item}
+                        className="grid grid-cols-[1rem_minmax(0,1fr)] items-center gap-2 text-sm text-emerald-950"
+                      >
+                        <span className="h-2.5 w-2.5 rounded-full bg-emerald-700" />
+                        <span>{item}</span>
+                      </div>
+                    ),
+                  )}
+                </div>
               </div>
             </div>
-          </div>
+          </section>
         </section>
 
-        <section className="surface-card rounded-[0.95rem] px-4 py-4 md:px-5">
-          <div className="grid gap-4 lg:grid-cols-[18rem_minmax(0,1fr)] lg:items-start">
-            <div>
-              <p className="text-[0.76rem] font-semibold uppercase text-muted">
-                상태 기반 연구 범위
+        <section className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+          {clinicalStats.map(([label, value, note]) => (
+            <div
+              key={label}
+              className="rounded-[0.55rem] border border-emerald-900/15 bg-white px-4 py-4 shadow-sm"
+            >
+              <p className="text-xs font-semibold text-emerald-800">{label}</p>
+              <p className="mt-2 text-2xl font-bold text-emerald-950">
+                {value}
               </p>
-              <h2 className="mt-1 text-[1.02rem] font-semibold text-foreground">
-                약물·질환 조건을 먼저 놓고 근거를 정렬합니다
-              </h2>
-              <p className="mt-2 text-sm leading-6 text-muted">
-                항응고제 복용자와 신장 관련 고위험군을 중심으로 검색 로그,
-                선별 결과, 화면에 보여 줄 문헌 수를 분리해 관리합니다.
-              </p>
+              <p className="mt-1 text-xs leading-5 text-stone-600">{note}</p>
             </div>
-
-            <dl className="grid grid-cols-2 gap-2 text-sm lg:grid-cols-4">
-              {scopeItems.map((item, index) => (
-                <div
-                  key={item.label}
-                  className={`min-w-0 rounded-[0.75rem] border px-3 py-3 ${
-                    index === 2
-                      ? "border-stone-300 bg-stone-950 text-white"
-                      : "border-stone-200 bg-white"
-                  }`}
-                >
-                  <dt
-                    className={`text-[0.74rem] font-medium ${
-                      index === 2 ? "text-stone-300" : "text-muted"
-                    }`}
-                  >
-                    {item.label}
-                  </dt>
-                  <dd
-                    className={`mt-1 text-[1.16rem] font-semibold ${
-                      index === 2 ? "text-white" : "text-foreground"
-                    }`}
-                  >
-                    {item.value}
-                  </dd>
-                  <dd
-                    className={`mt-1 text-[0.76rem] leading-5 ${
-                      index === 2 ? "text-stone-300" : "text-muted"
-                    }`}
-                  >
-                    {item.note}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </div>
+          ))}
         </section>
 
         <section id="explorer" className="scroll-mt-6">
