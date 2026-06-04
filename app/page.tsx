@@ -38,6 +38,7 @@ export default function Home() {
   const clinicalStats = [
     ["문헌 검색", formatCount(literatureSummary.latestPubMedHitCount), "PubMed/MEDLINE"],
     ["저장 문헌", formatCount(literatureSummary.latestPubMedStoredRecords), "제목과 초록 확인"],
+    ["보조 검색", formatCount(literatureSummary.secondaryHitTotal), `저장 ${formatCount(literatureSummary.secondaryStoredRecords)}건`],
     ["먼저 볼 문헌", formatCount(literatureSummary.priorityCandidateCount), "상담 전 우선 검토"],
     ["바로 확인할 기준", formatCount(metadata.meta.safetyRuleCount), `근거 출처 ${formatCount(metadata.meta.sourceCount)}개`],
   ];
@@ -122,7 +123,7 @@ export default function Home() {
           </section>
         </section>
 
-        <section className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+        <section className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
           {clinicalStats.map(([label, value, note]) => (
             <div
               key={label}
