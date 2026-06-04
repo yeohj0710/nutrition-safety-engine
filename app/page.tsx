@@ -71,7 +71,7 @@ export default function Home() {
                 <p className="text-[0.72rem] font-semibold uppercase text-muted">
                   Clinical risk triage
                 </p>
-                <h1 className="mt-2 text-[1.28rem] font-semibold tracking-[-0.01em] text-foreground md:text-[1.55rem]">
+                <h1 className="mt-2 break-keep text-[1.28rem] font-semibold tracking-[-0.01em] text-foreground md:text-[1.55rem]">
                 {siteName}
               </h1>
                 <p className="mt-3 max-w-2xl text-sm leading-6 text-muted">
