@@ -524,6 +524,7 @@ export function getIngredientReferenceBrowseData() {
 export function getExplorerMetadata() {
   const index = getKnowledgeIndex();
   const scopedRules = getStudySafetyRules(index);
+  const studySourceIds = getStudySourceIds(index);
   const medicationValues = [
     ...scopedRules.flatMap((rule) => rule.interactionDrugs),
     ...scopedRules.flatMap((rule) =>
@@ -554,7 +555,7 @@ export function getExplorerMetadata() {
 
   return {
     meta: {
-      sourceCount: getStudySourceIds(index).size,
+      sourceCount: studySourceIds.size,
       evidenceChunkCount: getStudyEvidenceChunkIds(index).size,
       safetyRuleCount: scopedRules.length,
     },
@@ -562,16 +563,18 @@ export function getExplorerMetadata() {
     ingredients: getIngredientOptions(),
     medicationOptions: buildMedicationExplorerOptions(medicationValues),
     conditionOptions: buildConditionExplorerOptions(conditionValues),
-    sources: index.sources.map((source) => ({
-      id: source.id,
-      title: source.title,
-      jurisdiction: source.jurisdiction,
-      evidenceLevel: source.evidenceLevel,
-    })),
+    sources: index.sources
+      .filter((source) => studySourceIds.has(source.id))
+      .map((source) => ({
+        id: source.id,
+        title: source.title,
+        jurisdiction: source.jurisdiction,
+        evidenceLevel: source.evidenceLevel,
+      })),
     sourceEvidenceLevels: [
       ...new Set(
         index.sources
-          .filter((source) => getStudySourceIds(index).has(source.id))
+          .filter((source) => studySourceIds.has(source.id))
           .map((source) => source.evidenceLevel)
           .filter((value): value is string => Boolean(value)),
       ),
