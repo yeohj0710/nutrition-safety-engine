@@ -5,13 +5,6 @@ import { useEffect, useRef, useState, useTransition } from "react";
 import { RuleCard } from "@/src/components/rule-card";
 import type { AiExplainResponse } from "@/src/lib/ai/schema";
 import { cleanDisplayText } from "@/src/lib/display-text";
-import {
-  normalizeDailyIntakeUnit,
-  parseDailyIntakeText,
-  parseLongTermUseDays,
-  removeDoseAndDurationText,
-  toNullableNumber,
-} from "@/src/lib/query-input";
 import type {
   EngineQuery,
   EngineResponse,
@@ -44,7 +37,6 @@ type ExplorerMetadata = {
 };
 
 type ExplorerValueOption = {
-  id?: string;
   label: string;
   canonicalValue?: string;
   aliases?: string[];
@@ -89,26 +81,26 @@ const categoryRank: Record<string, number> = {
 };
 
 const fieldLabelClass =
-  "mb-2 block text-[0.88rem] font-semibold text-emerald-950";
+  "mb-2 block text-[0.88rem] font-semibold tracking-[-0.01em] text-stone-950";
 const fieldControlClass =
-  "w-full rounded-[0.55rem] border border-emerald-900/20 bg-white px-4 py-3 text-[15px] leading-6 text-stone-900 outline-none transition duration-150 placeholder:text-stone-400 focus:border-emerald-700 focus:shadow-[0_0_0_3px_rgba(209,250,229,0.9)]";
-const fieldGroupClass = "text-sm text-emerald-950";
+  "w-full rounded-[1rem] border border-stone-200 bg-white px-4 py-3 text-[15px] leading-6 text-stone-900 outline-none transition duration-150 placeholder:text-stone-400 focus:border-stone-400 focus:shadow-[0_0_0_3px_rgba(226,232,240,0.9)]";
+const fieldGroupClass = "text-sm text-stone-700";
 const selectControlClass = `${fieldControlClass} appearance-none pr-12`;
 const toggleChipBaseClass =
-  "group inline-flex min-h-10 items-center justify-between gap-3 rounded-[0.55rem] border px-3.5 py-2 text-[0.86rem] font-medium transition-[background-color,border-color,color,box-shadow] duration-250 [transition-timing-function:var(--ease-soft)]";
+  "group inline-flex min-h-10 items-center justify-between gap-3 rounded-[1rem] border px-3.5 py-2 text-[0.86rem] font-medium transition-[background-color,border-color,color,box-shadow] duration-250 [transition-timing-function:var(--ease-soft)]";
 const primaryButtonClass =
-  "whitespace-nowrap rounded-[0.55rem] bg-emerald-800 px-5 py-[0.62rem] text-[0.86rem] font-semibold text-white transition duration-150 hover:bg-emerald-700";
+  "whitespace-nowrap rounded-full bg-stone-950 px-5 py-[0.62rem] text-[0.86rem] font-medium text-white transition duration-150 hover:bg-stone-800";
 const secondaryButtonClass =
-  "whitespace-nowrap rounded-[0.55rem] border border-emerald-900/20 bg-emerald-50 px-5 py-[0.62rem] text-[0.86rem] font-semibold text-emerald-950 transition duration-150 hover:bg-emerald-100";
+  "whitespace-nowrap rounded-full border border-stone-200 bg-white px-5 py-[0.62rem] text-[0.86rem] font-medium text-stone-700 transition duration-150 hover:border-stone-300 hover:bg-stone-50";
 const ghostButtonClass =
-  "rounded-[0.55rem] border border-emerald-900/20 bg-white px-4 py-[0.58rem] text-[0.84rem] font-medium text-emerald-950 transition duration-150 hover:bg-emerald-50";
+  "rounded-full border border-stone-200 bg-white px-4 py-[0.58rem] text-[0.84rem] font-medium text-stone-700 transition duration-150 hover:border-stone-300 hover:bg-stone-50";
 const subtleActionButtonClass =
-  "rounded-[0.45rem] border border-emerald-900/20 bg-white px-3 py-1.5 text-[0.76rem] font-medium text-emerald-800 transition duration-150 hover:bg-emerald-50";
+  "rounded-full border border-stone-200 bg-white px-3 py-1.5 text-[0.76rem] font-medium text-stone-600 transition duration-150 hover:border-stone-300 hover:text-stone-900";
 const explorerStorageKey = "nutrition-safety-explorer-state-v3";
 const minimumQueryLoadingMs = 900;
 
 type PersistedExplorerState = {
-  version: 3;
+  version: 2;
   form: {
     age: string;
     sex: string;
@@ -119,12 +111,6 @@ type PersistedExplorerState = {
     conditions: string;
     allergies: string;
     selectedCompounds: string;
-    dailyIntakeValue: string;
-    dailyIntakeUnit: string;
-    longTermUseDays: string;
-    ingredientForm: string;
-    productName: string;
-    coingredients: string;
     jurisdiction: string;
     memo: string;
   };
@@ -155,12 +141,6 @@ type ExplorerProfileDraft = {
   conditions: string;
   allergies: string;
   selectedCompounds: string;
-  dailyIntakeValue: string;
-  dailyIntakeUnit: string;
-  longTermUseDays: string;
-  ingredientForm: string;
-  productName: string;
-  coingredients: string;
   jurisdiction: string;
   memo: string;
 };
@@ -179,12 +159,6 @@ const blankExplorerProfile: ExplorerProfileDraft = {
   conditions: "",
   allergies: "",
   selectedCompounds: "",
-  dailyIntakeValue: "",
-  dailyIntakeUnit: "",
-  longTermUseDays: "",
-  ingredientForm: "",
-  productName: "",
-  coingredients: "",
   jurisdiction: "",
   memo: "",
 };
@@ -197,20 +171,6 @@ function buildStarterDraft(
     selectedCompounds: profile.selectedCompounds ?? "",
     medications: profile.medications ?? "",
     conditions: profile.conditions ?? "",
-    age: profile.age ?? "",
-    sex: profile.sex ?? "",
-    pregnancyStatus: profile.pregnancyStatus ?? "",
-    lactationStatus: profile.lactationStatus ?? "",
-    smokerStatus: profile.smokerStatus ?? "",
-    allergies: profile.allergies ?? "",
-    dailyIntakeValue: profile.dailyIntakeValue ?? "",
-    dailyIntakeUnit: profile.dailyIntakeUnit ?? "",
-    longTermUseDays: profile.longTermUseDays ?? "",
-    ingredientForm: profile.ingredientForm ?? "",
-    productName: profile.productName ?? "",
-    coingredients: profile.coingredients ?? "",
-    jurisdiction: profile.jurisdiction ?? "",
-    memo: profile.memo ?? "",
   };
 }
 
@@ -222,12 +182,6 @@ function hasAdvancedProfileValues(profile: ExplorerProfileDraft) {
     profile.lactationStatus ||
     profile.smokerStatus ||
     profile.allergies ||
-    profile.dailyIntakeValue ||
-    profile.dailyIntakeUnit ||
-    profile.longTermUseDays ||
-    profile.ingredientForm ||
-    profile.productName ||
-    profile.coingredients ||
     profile.jurisdiction ||
     profile.memo,
   );
@@ -263,14 +217,9 @@ function getPregnancyStatusLabel(value: string) {
 const defaultExampleProfile: ExplorerProfileDraft = {
   ...blankExplorerProfile,
   medications: "warfarin",
-  selectedCompounds: "비타민 K",
-  dailyIntakeValue: "120",
-  dailyIntakeUnit: "mcg/day",
-  longTermUseDays: "30",
-  age: "68",
-  sex: "male",
-  jurisdiction: "US",
-  memo: "와파린 복용 중이고 비타민 K 보충제를 매일 먹는 경우입니다.",
+  conditions: "간질환",
+  selectedCompounds: "비타민 A",
+  memo: "입덧 때문에 액상형 보충제를 간헐적으로 복용 중입니다.",
 };
 
 function normalizeExplorerInput(value: string) {
@@ -333,47 +282,32 @@ function matchesExplorerSearchTerm(query: string, candidate: string) {
 }
 
 function resolveExplorerOption(value: string, options: ExplorerValueOption[]) {
-  const searchValues = [
-    value,
-    removeDoseAndDurationText(value),
-  ].filter((item, index, array) => item && array.indexOf(item) === index);
+  const queryKey = normalizeExplorerLookupKey(value);
+  if (!queryKey) return null;
 
-  for (const searchValue of searchValues) {
-    const queryKey = normalizeExplorerLookupKey(searchValue);
-    if (!queryKey) continue;
-
-    const exactMatch =
-      options.find((option) =>
-        getExplorerSearchTerms(option).some(
-          (candidate) => matchesExplorerSearchTerm(searchValue, candidate).exact,
-        ),
-      ) ?? null;
-
-    if (exactMatch) {
-      return exactMatch;
-    }
-
-    const prefixMatches = options.filter((option) =>
+  const exactMatch =
+    options.find((option) =>
       getExplorerSearchTerms(option).some(
-        (candidate) =>
-          matchesExplorerSearchTerm(searchValue, candidate).startsWith,
+        (candidate) => matchesExplorerSearchTerm(value, candidate).exact,
       ),
-    );
+    ) ?? null;
 
-    if (prefixMatches.length === 1) {
-      return prefixMatches[0];
-    }
+  if (exactMatch) {
+    return exactMatch;
   }
 
-  return null;
+  const prefixMatches = options.filter((option) =>
+    getExplorerSearchTerms(option).some(
+      (candidate) => matchesExplorerSearchTerm(value, candidate).startsWith,
+    ),
+  );
+
+  return prefixMatches.length === 1 ? prefixMatches[0] : null;
 }
 
-function buildCanonicalEntryDetails(
-  value: string,
-  options: ExplorerValueOption[],
-) {
+function buildCanonicalEntries(value: string, options: ExplorerValueOption[]) {
   const seen = new Set<string>();
-  const entries: Array<{ label: string; id?: string; raw: string }> = [];
+  const entries: string[] = [];
 
   for (const token of splitMultiValue(value)) {
     const resolved = resolveExplorerOption(token, options);
@@ -383,14 +317,10 @@ function buildCanonicalEntryDetails(
 
     if (!key || seen.has(key)) continue;
     seen.add(key);
-    entries.push({ label: canonical, id: resolved?.id, raw: token });
+    entries.push(canonical);
   }
 
   return entries;
-}
-
-function buildCanonicalEntries(value: string, options: ExplorerValueOption[]) {
-  return buildCanonicalEntryDetails(value, options).map((entry) => entry.label);
 }
 
 function analyzeExplorerField(value: string, options: ExplorerValueOption[]) {
@@ -517,7 +447,7 @@ function FieldRecognitionAssist({
       {recognized.length > 0 ? (
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-xs font-medium text-stone-500">
-            입력값 반영
+            자동 인식됨
           </span>
           {recognized.map((item) => (
             <span
@@ -559,7 +489,6 @@ function FieldRecognitionAssist({
           ))}
         </div>
       ) : null}
-
     </div>
   );
 }
@@ -897,157 +826,6 @@ function buildAiProfileSummary(response: EngineResponse) {
   return parts.join(" / ") || "선택 성분과 개인 조건에 맞춘 영양 안전 결과";
 }
 
-function formatCount(value: number) {
-  return value.toLocaleString("ko-KR");
-}
-
-function formatPriorityLabel(value: string) {
-  if (value === "manual_review_high") return "우선검토 높음";
-  if (value === "manual_review_medium") return "우선검토 중간";
-  if (value === "manual_review_low") return "우선검토 낮음";
-  return cleanDisplayText(value.replace(/_/g, " "));
-}
-
-function formatDecisionLabel(value: string) {
-  if (value === "include_candidate") return "포함 후보";
-  if (value === "maybe_needs_manual_review") return "추가 검토";
-  if (value === "manual_review_low") return "낮은 검토";
-  return cleanDisplayText(value.replace(/_/g, " "));
-}
-
-function formatTargetLabel(value: string) {
-  return cleanDisplayText(value.replace(/_/g, " "));
-}
-
-function getCandidateTerms(
-  candidate: EngineResponse["literature"]["relatedCandidates"][number],
-) {
-  return [
-    ...candidate.matchedIngredientTerms,
-    ...candidate.matchedPopulationTerms,
-    ...candidate.matchedOutcomeTerms,
-  ].slice(0, 5);
-}
-
-function LiteratureContextPanel({
-  literature,
-}: {
-  literature: EngineResponse["literature"];
-}) {
-  const summary = literature.summary;
-  const summaryCards = [
-    {
-      label: "PubMed hit",
-      value: formatCount(summary.latestPubMedHitCount),
-      caption: `저장 ${formatCount(summary.latestPubMedStoredRecords)}건`,
-    },
-    {
-      label: "누적 후보",
-      value: formatCount(summary.cumulativePubMedCandidates),
-      caption: `포함 후보 ${formatCount(summary.includeCandidateCount)}건`,
-    },
-    {
-      label: "보조검색 hit",
-      value: formatCount(summary.secondaryHitTotal),
-      caption: `저장 ${formatCount(summary.secondaryStoredRecords)}건`,
-    },
-    {
-      label: "화면 rule",
-      value: formatCount(summary.visibleRuleCount),
-      caption: `우선검토 ${formatCount(summary.priorityCandidateCount)}건`,
-    },
-  ];
-
-  return (
-    <section className="surface-card rounded-[1.25rem] p-4 motion-safe:animate-[rise-in_620ms_var(--ease-emphasized)_both]">
-      <div className="flex flex-col gap-2 border-b border-border-subtle pb-3 md:flex-row md:items-center md:justify-between">
-        <div className="min-w-0">
-          <h2 className="text-[0.88rem] font-semibold tracking-[-0.02em] text-foreground md:text-[0.94rem]">
-            문헌 검색 풀과 관련 후보문헌
-          </h2>
-          <p className="mt-2 text-sm leading-6 text-muted">
-            {literature.matchExplanation}
-          </p>
-        </div>
-        <span className="rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-muted">
-          {formatCount(literature.totalCandidateCount)}건 중{" "}
-          {formatCount(literature.shownCandidateCount)}건 표시
-        </span>
-      </div>
-
-      <div className="mt-4 grid gap-2 sm:grid-cols-2 xl:grid-cols-4">
-        {summaryCards.map((item) => (
-          <div
-            key={item.label}
-            className="rounded-[0.85rem] border border-stone-200 bg-white px-3.5 py-3"
-          >
-            <p className="text-xs font-medium text-muted">{item.label}</p>
-            <p className="mt-1 text-[1.15rem] font-semibold leading-none text-foreground tabular-nums">
-              {item.value}
-            </p>
-            <p className="mt-1.5 text-xs leading-5 text-muted">{item.caption}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-4 grid gap-3 lg:grid-cols-2">
-        {literature.relatedCandidates.map((candidate) => {
-          const terms = getCandidateTerms(candidate);
-
-          return (
-            <article
-              key={candidate.id}
-              className="rounded-[0.95rem] border border-stone-200 bg-white p-4"
-            >
-              <div className="flex flex-wrap gap-2">
-                <span className="rounded-full bg-stone-100 px-2.5 py-1 text-[0.72rem] font-medium text-stone-700">
-                  {formatPriorityLabel(candidate.priority)}
-                </span>
-                <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[0.72rem] font-medium text-emerald-800">
-                  {formatDecisionLabel(candidate.suggestedDecision)}
-                </span>
-                {candidate.year ? (
-                  <span className="rounded-full bg-white px-2.5 py-1 text-[0.72rem] font-medium text-muted ring-1 ring-stone-200">
-                    {candidate.year}
-                  </span>
-                ) : null}
-              </div>
-              <h3 className="mt-3 text-sm font-semibold leading-6 text-foreground">
-                <a
-                  href={candidate.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="underline decoration-border-subtle underline-offset-4 transition hover:text-stone-600"
-                >
-                  {cleanDisplayText(candidate.title)}
-                </a>
-              </h3>
-              <div className="mt-3 flex flex-wrap gap-2 text-[0.74rem]">
-                <span className="rounded-full border border-stone-200 px-2.5 py-1 text-muted">
-                  {formatTargetLabel(candidate.targetId)}
-                </span>
-                {candidate.pmid ? (
-                  <span className="rounded-full border border-stone-200 px-2.5 py-1 text-muted">
-                    PMID {candidate.pmid}
-                  </span>
-                ) : null}
-              </div>
-              {terms.length > 0 ? (
-                <p className="mt-3 text-xs leading-5 text-muted">
-                  관련 단어: {terms.map(cleanDisplayText).join(", ")}
-                </p>
-              ) : null}
-              <p className="mt-2 text-xs leading-5 text-muted">
-                {candidate.relevanceReasons.map(cleanDisplayText).join(" / ")}
-              </p>
-            </article>
-          );
-        })}
-      </div>
-    </section>
-  );
-}
-
 export function RuleExplorerClient({
   metadata,
 }: {
@@ -1072,24 +850,6 @@ export function RuleExplorerClient({
   const [allergies, setAllergies] = useState(blankExplorerProfile.allergies);
   const [selectedCompounds, setSelectedCompounds] = useState(
     blankExplorerProfile.selectedCompounds,
-  );
-  const [dailyIntakeValue, setDailyIntakeValue] = useState(
-    blankExplorerProfile.dailyIntakeValue,
-  );
-  const [dailyIntakeUnit, setDailyIntakeUnit] = useState(
-    blankExplorerProfile.dailyIntakeUnit,
-  );
-  const [longTermUseDays, setLongTermUseDays] = useState(
-    blankExplorerProfile.longTermUseDays,
-  );
-  const [ingredientForm, setIngredientForm] = useState(
-    blankExplorerProfile.ingredientForm,
-  );
-  const [productName, setProductName] = useState(
-    blankExplorerProfile.productName,
-  );
-  const [coingredients, setCoingredients] = useState(
-    blankExplorerProfile.coingredients,
   );
   const [jurisdiction, setJurisdiction] = useState(
     blankExplorerProfile.jurisdiction,
@@ -1149,7 +909,7 @@ export function RuleExplorerClient({
       }
 
       const snapshot = JSON.parse(raw) as PersistedExplorerState;
-      if (snapshot.version !== 3) {
+      if (snapshot.version !== 2) {
         setHasRestoredState(true);
         return;
       }
@@ -1166,12 +926,6 @@ export function RuleExplorerClient({
         conditions: snapshot.form.conditions ?? "",
         allergies: snapshot.form.allergies ?? "",
         selectedCompounds: snapshot.form.selectedCompounds ?? "",
-        dailyIntakeValue: snapshot.form.dailyIntakeValue ?? "",
-        dailyIntakeUnit: snapshot.form.dailyIntakeUnit ?? "",
-        longTermUseDays: snapshot.form.longTermUseDays ?? "",
-        ingredientForm: snapshot.form.ingredientForm ?? "",
-        productName: snapshot.form.productName ?? "",
-        coingredients: snapshot.form.coingredients ?? "",
         jurisdiction: snapshot.form.jurisdiction ?? "",
         memo: snapshot.form.memo ?? "",
       };
@@ -1185,12 +939,6 @@ export function RuleExplorerClient({
       setConditions(restoredProfile.conditions);
       setAllergies(restoredProfile.allergies);
       setSelectedCompounds(restoredProfile.selectedCompounds);
-      setDailyIntakeValue(restoredProfile.dailyIntakeValue);
-      setDailyIntakeUnit(restoredProfile.dailyIntakeUnit);
-      setLongTermUseDays(restoredProfile.longTermUseDays);
-      setIngredientForm(restoredProfile.ingredientForm);
-      setProductName(restoredProfile.productName);
-      setCoingredients(restoredProfile.coingredients);
       setJurisdiction(restoredProfile.jurisdiction);
       setMemo(restoredProfile.memo);
 
@@ -1223,7 +971,7 @@ export function RuleExplorerClient({
     }
 
     const snapshot: PersistedExplorerState = {
-      version: 3,
+      version: 2,
       form: {
         age,
         sex,
@@ -1234,12 +982,6 @@ export function RuleExplorerClient({
         conditions,
         allergies,
         selectedCompounds,
-        dailyIntakeValue,
-        dailyIntakeUnit,
-        longTermUseDays,
-        ingredientForm,
-        productName,
-        coingredients,
         jurisdiction,
         memo,
       },
@@ -1271,12 +1013,6 @@ export function RuleExplorerClient({
     conditions,
     allergies,
     selectedCompounds,
-    dailyIntakeValue,
-    dailyIntakeUnit,
-    longTermUseDays,
-    ingredientForm,
-    productName,
-    coingredients,
     jurisdiction,
     memo,
     severityFilter,
@@ -1376,68 +1112,6 @@ export function RuleExplorerClient({
     const normalizedPregnancyStatus = normalizePregnancyStatus(
       profile.pregnancyStatus,
     );
-    const selectedCompoundDetails = buildCanonicalEntryDetails(
-      profile.selectedCompounds,
-      metadata.ingredients,
-    );
-    const selectedCompoundEntries = selectedCompoundDetails.map(
-      (entry) => entry.label,
-    );
-    const coingredientEntries = buildCanonicalEntries(
-      profile.coingredients,
-      metadata.ingredients,
-    );
-    const explicitDoseValue = toNullableNumber(profile.dailyIntakeValue);
-    const explicitDoseUnit = normalizeDailyIntakeUnit(profile.dailyIntakeUnit);
-    const globalDose = parseDailyIntakeText(
-      `${profile.dailyIntakeValue} ${profile.dailyIntakeUnit} ${profile.selectedCompounds} ${profile.memo}`,
-    );
-    const explicitLongTermUseDays = toNullableNumber(profile.longTermUseDays);
-    const globalLongTermUseDays = parseLongTermUseDays(
-      `${profile.longTermUseDays} ${profile.selectedCompounds} ${profile.memo}`,
-    );
-    const candidateItems = selectedCompoundDetails.map((entry) => {
-      const tokenDose = parseDailyIntakeText(`${entry.raw} ${profile.memo}`);
-      const dailyIntakeValue =
-        explicitDoseValue ?? tokenDose?.value ?? globalDose?.value;
-      const dailyIntakeUnit =
-        explicitDoseUnit ?? tokenDose?.unit ?? globalDose?.unit;
-      const longTermDays =
-        explicitLongTermUseDays ??
-        parseLongTermUseDays(`${entry.raw} ${profile.memo}`) ??
-        globalLongTermUseDays;
-      const otherSelectedCompounds = selectedCompoundEntries.filter(
-        (candidate) =>
-          normalizeExplorerLookupKey(candidate) !==
-          normalizeExplorerLookupKey(entry.label),
-      );
-      const combinedCoingredients = [
-        ...coingredientEntries,
-        ...otherSelectedCompounds,
-      ].filter(
-        (candidate, index, array) =>
-          normalizeExplorerLookupKey(candidate) &&
-          array.findIndex(
-            (item) =>
-              normalizeExplorerLookupKey(item) ===
-              normalizeExplorerLookupKey(candidate),
-          ) === index,
-      );
-
-      return {
-        ingredientId: entry.id,
-        name: entry.label,
-        form: profile.ingredientForm.trim() || undefined,
-        product: profile.productName.trim() || undefined,
-        dailyIntakeValue: dailyIntakeValue ?? undefined,
-        dailyIntakeUnit: dailyIntakeUnit ?? undefined,
-        longTermUseDays:
-          typeof longTermDays === "number" ? Math.round(longTermDays) : undefined,
-        sameDay: combinedCoingredients.length > 0 ? true : undefined,
-        coingredients:
-          combinedCoingredients.length > 0 ? combinedCoingredients : undefined,
-      };
-    });
 
     return {
       profile: {
@@ -1459,12 +1133,13 @@ export function RuleExplorerClient({
           metadata.conditionOptions,
         ),
         allergies: splitMultiValue(profile.allergies),
-        selectedCompounds: selectedCompoundEntries,
-        jurisdiction: profile.jurisdiction || "US",
+        selectedCompounds: buildCanonicalEntries(
+          profile.selectedCompounds,
+          metadata.ingredients,
+        ),
+        jurisdiction: profile.jurisdiction || undefined,
         memo: profile.memo,
-        strictestMode: true,
       },
-      candidateItems: candidateItems.length > 0 ? candidateItems : undefined,
       sort,
     } satisfies EngineQuery;
   }
@@ -1482,12 +1157,6 @@ export function RuleExplorerClient({
       conditions,
       allergies,
       selectedCompounds,
-      dailyIntakeValue,
-      dailyIntakeUnit,
-      longTermUseDays,
-      ingredientForm,
-      productName,
-      coingredients,
       jurisdiction,
       memo,
     };
@@ -1553,12 +1222,6 @@ export function RuleExplorerClient({
     setConditions("");
     setAllergies("");
     setSelectedCompounds("");
-    setDailyIntakeValue("");
-    setDailyIntakeUnit("");
-    setLongTermUseDays("");
-    setIngredientForm("");
-    setProductName("");
-    setCoingredients("");
     setJurisdiction("");
     setMemo("");
     resetResultFilters();
@@ -1586,12 +1249,6 @@ export function RuleExplorerClient({
     setLactationStatus(nextProfile.lactationStatus);
     setSmokerStatus(nextProfile.smokerStatus);
     setAllergies(nextProfile.allergies);
-    setDailyIntakeValue(nextProfile.dailyIntakeValue);
-    setDailyIntakeUnit(nextProfile.dailyIntakeUnit);
-    setLongTermUseDays(nextProfile.longTermUseDays);
-    setIngredientForm(nextProfile.ingredientForm);
-    setProductName(nextProfile.productName);
-    setCoingredients(nextProfile.coingredients);
     setJurisdiction(nextProfile.jurisdiction);
     setMemo(nextProfile.memo);
     setError(null);
@@ -1693,10 +1350,7 @@ export function RuleExplorerClient({
     },
   } as const;
   const hasAnyPrimaryInput = Boolean(
-    selectedCompounds.trim() ||
-      medications.trim() ||
-      conditions.trim() ||
-      dailyIntakeValue.trim(),
+    selectedCompounds.trim() || medications.trim() || conditions.trim(),
   );
   const starterProfiles: Array<{
     label: string;
@@ -1709,57 +1363,28 @@ export function RuleExplorerClient({
     pregnancyStatus?: string;
     lactationStatus?: string;
     smokerStatus?: string;
-    dailyIntakeValue?: string;
-    dailyIntakeUnit?: string;
-    longTermUseDays?: string;
-    ingredientForm?: string;
-    productName?: string;
-    coingredients?: string;
-    jurisdiction?: string;
-    memo?: string;
   }> = [
     {
       label: "와파린 + 비타민 K",
       description: "약물 상호작용 확인용 조합",
       selectedCompounds: "비타민 K",
       medications: "warfarin",
-      dailyIntakeValue: "120",
-      dailyIntakeUnit: "mcg/day",
-      longTermUseDays: "30",
       age: "68",
       sex: "male",
-      jurisdiction: "US",
     },
     {
-      label: "결석력 + 비타민 D",
-      description: "신장 관련 고위험군 확인용 조합",
-      selectedCompounds: "비타민 D",
-      conditions: "신장결석",
-      dailyIntakeValue: "5000",
-      dailyIntakeUnit: "iu/day",
-      longTermUseDays: "90",
-      coingredients: "calcium",
-      age: "55",
+      label: "퀴놀론 + 마그네슘",
+      description: "복용 간격 규칙을 보는 예시",
+      selectedCompounds: "magnesium",
+      medications: "quinolone antibiotic",
+      age: "47",
       sex: "male",
-      jurisdiction: "US",
-    },
-    {
-      label: "와파린 + 오메가3",
-      description: "출혈 위험 신호 확인용 조합",
-      selectedCompounds: "omega-3",
-      medications: "warfarin",
-      dailyIntakeValue: "4000",
-      dailyIntakeUnit: "mg/day",
-      ingredientForm: "fish oil",
-      age: "72",
-      sex: "male",
-      jurisdiction: "US",
     },
   ] as const;
 
   return (
-    <div className="clinical-explorer space-y-5">
-      <section className="surface-card overflow-hidden rounded-[0.75rem] border-l-4 border-emerald-700">
+    <div className="space-y-4">
+      <section className="surface-card overflow-hidden rounded-[1.5rem]">
         <div>
           <div className="px-4 py-4 md:px-5">
             <div className="hidden flex-col gap-3 md:flex-row md:items-end md:justify-between">
@@ -1791,11 +1416,11 @@ export function RuleExplorerClient({
               <div className="space-y-3">
                 <div className="max-w-[46rem]">
                   <p className="text-sm font-semibold text-foreground">
-                    첫 화면에는 상담 예시와 확인 결과가 바로 보이도록
+                    첫 화면에는 예시 입력과 예시 결과가 바로 보이도록
                     구성했습니다.
                   </p>
                   <p className="mt-0.5 text-sm leading-5 text-muted">
-                    그대로 `상담 기준 찾기`를 눌러도 되고, 필요한 칸만 내 상황에 맞게
+                    그대로 `규칙 조회`를 눌러도 되고, 필요한 칸만 내 상황에 맞게
                     바꿔서 다시 조회해도 됩니다.
                   </p>
                 </div>
@@ -1845,12 +1470,12 @@ export function RuleExplorerClient({
           </div>
 
           <div className="px-4 py-4 md:px-5">
-            <div className="grid gap-3 lg:grid-cols-[1.15fr_1fr_1fr]">
+            <div className="grid gap-3 lg:grid-cols-3">
               <label
-                className={`${fieldGroupClass} rounded-[0.55rem] border border-emerald-900/15 bg-emerald-50/35 p-3`}
+                className={`${fieldGroupClass} rounded-[1rem] border border-stone-200 bg-white p-3`}
               >
                 <div className="mb-3 flex items-center justify-between gap-3">
-                  <span className={fieldLabelClass}>상담 영양소</span>
+                  <span className={fieldLabelClass}>1. 선택 성분</span>
                   <span className="rounded-full bg-stone-100 px-2.5 py-1 text-[11px] font-medium text-stone-600">
                     필수
                   </span>
@@ -1881,9 +1506,9 @@ export function RuleExplorerClient({
                 className={`${fieldGroupClass} rounded-[1rem] border border-stone-200 bg-white p-3`}
               >
                 <div className="mb-3 flex items-center justify-between gap-3">
-                  <span className={fieldLabelClass}>현재 복용 약</span>
+                  <span className={fieldLabelClass}>2. 복용 약물</span>
                   <span className="rounded-full bg-stone-100 px-2.5 py-1 text-[11px] font-medium text-stone-600">
-                    조건 반영
+                    정확도 상승
                   </span>
                 </div>
                 <input
@@ -1912,7 +1537,7 @@ export function RuleExplorerClient({
                 className={`${fieldGroupClass} rounded-[1rem] border border-stone-200 bg-white p-3`}
               >
                 <div className="mb-3 flex items-center justify-between gap-3">
-                  <span className={fieldLabelClass}>확인할 질환</span>
+                  <span className={fieldLabelClass}>3. 질환 및 상태</span>
                   <span className="rounded-full bg-stone-100 px-2.5 py-1 text-[11px] font-medium text-stone-600">
                     선택
                   </span>
@@ -1940,88 +1565,7 @@ export function RuleExplorerClient({
               </label>
             </div>
 
-            <div className="mt-3 grid gap-3 md:grid-cols-2 xl:grid-cols-6">
-              <label
-                className={`${fieldGroupClass} rounded-[0.55rem] border border-emerald-900/15 bg-emerald-50/35 p-3`}
-              >
-                <span className={fieldLabelClass}>하루 섭취량</span>
-                <input
-                  value={dailyIntakeValue}
-                  onChange={(event) => setDailyIntakeValue(event.target.value)}
-                  type="number"
-                  inputMode="decimal"
-                  placeholder="예: 5000"
-                  className={fieldControlClass}
-                />
-              </label>
-
-              <div className="rounded-[0.55rem] border border-emerald-900/15 bg-white p-3">
-                <SelectField
-                  label="섭취 단위"
-                  value={dailyIntakeUnit}
-                  onChange={setDailyIntakeUnit}
-                  options={[
-                    { value: "", label: "자동" },
-                    { value: "iu/day", label: "IU/day" },
-                    { value: "mg/day", label: "mg/day" },
-                    { value: "mcg/day", label: "mcg/day" },
-                    { value: "mcg RAE/day", label: "mcg RAE/day" },
-                  ]}
-                />
-              </div>
-
-              <label
-                className={`${fieldGroupClass} rounded-[0.55rem] border border-emerald-900/15 bg-emerald-50/35 p-3`}
-              >
-                <span className={fieldLabelClass}>섭취 기간</span>
-                <input
-                  value={longTermUseDays}
-                  onChange={(event) => setLongTermUseDays(event.target.value)}
-                  type="number"
-                  inputMode="numeric"
-                  placeholder="일수"
-                  className={fieldControlClass}
-                />
-              </label>
-
-              <label
-                className={`${fieldGroupClass} rounded-[0.55rem] border border-emerald-900/15 bg-white p-3`}
-              >
-                <span className={fieldLabelClass}>섭취 형태</span>
-                <input
-                  value={ingredientForm}
-                  onChange={(event) => setIngredientForm(event.target.value)}
-                  placeholder="예: fish oil"
-                  className={fieldControlClass}
-                />
-              </label>
-
-              <label
-                className={`${fieldGroupClass} rounded-[0.55rem] border border-emerald-900/15 bg-white p-3`}
-              >
-                <span className={fieldLabelClass}>같이 먹는 성분</span>
-                <input
-                  value={coingredients}
-                  onChange={(event) => setCoingredients(event.target.value)}
-                  placeholder="예: calcium"
-                  className={fieldControlClass}
-                />
-              </label>
-
-              <label
-                className={`${fieldGroupClass} rounded-[0.55rem] border border-emerald-900/15 bg-white p-3`}
-              >
-                <span className={fieldLabelClass}>제품 이름</span>
-                <input
-                  value={productName}
-                  onChange={(event) => setProductName(event.target.value)}
-                  placeholder="선택"
-                  className={fieldControlClass}
-                />
-              </label>
-            </div>
-
-            <section className="mt-3 overflow-hidden rounded-[0.55rem] border border-emerald-900/15 bg-emerald-50/60">
+            <section className="mt-3 overflow-hidden rounded-[1rem] border border-stone-200 bg-stone-50/70">
               <button
                 type="button"
                 onClick={() => setIsAdvancedOpen((value) => !value)}
@@ -2031,7 +1575,7 @@ export function RuleExplorerClient({
               >
                 <div>
                   <p className="text-[15px] font-semibold text-stone-900">
-                    상담 정보 더 넣기
+                    추가 정보 입력
                   </p>
                   <p className="hidden mt-1 text-sm leading-6 text-stone-600">
                     꼭 필요할 때만 더 열어 입력할 수 있습니다.
@@ -2178,7 +1722,7 @@ export function RuleExplorerClient({
               </div>
             </section>
 
-            <section className="mt-3 overflow-hidden rounded-[0.55rem] border border-emerald-900/15 bg-emerald-50/60">
+            <section className="mt-3 overflow-hidden rounded-[1rem] border border-stone-200 bg-stone-50/70">
               <button
                 type="button"
                 onClick={() => setIsExamplesOpen((value) => !value)}
@@ -2188,7 +1732,7 @@ export function RuleExplorerClient({
               >
                 <div>
                   <p className="text-[15px] font-semibold text-stone-900">
-                    상담 예시
+                    예시 입력
                   </p>
                   <p className="hidden mt-1 text-sm leading-6 text-stone-600">
                     자주 쓰는 조합을 바로 불러와 빠르게 조회할 수 있습니다.
@@ -2277,10 +1821,10 @@ export function RuleExplorerClient({
                   {isQueryLoading ? (
                     <span className="inline-flex items-center gap-2">
                       <span className="inline-flex h-4 w-4 rounded-full border-2 border-white/35 border-t-white animate-spin" />
-                      상담 기준 정리 중
+                      근거 정리 중
                     </span>
                   ) : (
-                    "상담 기준 찾기"
+                    "규칙 조회"
                   )}
                 </button>
                 <button
@@ -2288,7 +1832,7 @@ export function RuleExplorerClient({
                   onClick={resetForm}
                   className={secondaryButtonClass}
                 >
-                  입력 다시 시작
+                  전체 초기화
                 </button>
               </div>
             </div>
@@ -2672,10 +2216,6 @@ export function RuleExplorerClient({
             </div>
           ) : null}
         </section>
-      ) : null}
-
-      {response?.literature ? (
-        <LiteratureContextPanel literature={response.literature} />
       ) : null}
     </div>
   );
