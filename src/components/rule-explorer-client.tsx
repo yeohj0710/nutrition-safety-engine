@@ -2,8 +2,12 @@
 
 import { useEffect, useRef, useState, useTransition } from "react";
 
+import {
+  EvidenceSummaryPanel,
+  type AiGuidanceStatus,
+} from "@/src/components/evidence-summary-panel";
 import { RuleCard } from "@/src/components/rule-card";
-import type { AiExplainResponse } from "@/src/lib/ai/schema";
+import type { AiExplanation, AiExplainResponse } from "@/src/lib/ai/schema";
 import { cleanDisplayText } from "@/src/lib/display-text";
 import {
   parseDailyIntakeText,
@@ -1030,6 +1034,11 @@ export function RuleExplorerClient({
   const [sort, setSort] =
     useState<NonNullable<EngineQuery["sort"]>>("severity_desc");
   const [response, setResponse] = useState<EngineResponse | null>(null);
+  const [aiExplanation, setAiExplanation] = useState<AiExplanation | null>(
+    null,
+  );
+  const [aiGuidanceStatus, setAiGuidanceStatus] =
+    useState<AiGuidanceStatus>("idle");
   const [aiRuleRecommendations, setAiRuleRecommendations] = useState<
     Record<string, string>
   >({});
@@ -1199,12 +1208,18 @@ export function RuleExplorerClient({
 
   useEffect(() => {
     if (!response) {
+      setAiExplanation(null);
+      setAiGuidanceStatus("idle");
       setAiRuleRecommendations({});
       return;
     }
 
     const currentResponse = response;
     const controller = new AbortController();
+
+    setAiExplanation(null);
+    setAiGuidanceStatus("loading");
+    setAiRuleRecommendations({});
 
     async function loadAiGuidance() {
       try {
@@ -1219,6 +1234,8 @@ export function RuleExplorerClient({
         });
 
         if (!result.ok) {
+          setAiExplanation(null);
+          setAiGuidanceStatus("fallback");
           setAiRuleRecommendations({});
           return;
         }
@@ -1227,10 +1244,14 @@ export function RuleExplorerClient({
           | AiExplainResponse
           | { error?: string };
         if (!("ok" in payload) || !payload.ok) {
+          setAiExplanation(null);
+          setAiGuidanceStatus("fallback");
           setAiRuleRecommendations({});
           return;
         }
 
+        setAiExplanation(payload.explanation);
+        setAiGuidanceStatus("ready");
         setAiRuleRecommendations(
           Object.fromEntries(
             payload.explanation.ruleCardActions.map((item) => [
@@ -1244,6 +1265,8 @@ export function RuleExplorerClient({
           return;
         }
 
+        setAiExplanation(null);
+        setAiGuidanceStatus("fallback");
         setAiRuleRecommendations({});
       }
     }
@@ -2203,197 +2226,63 @@ export function RuleExplorerClient({
 
       {response ? (
         <>
-          <section className="surface-card rounded-[1.25rem] p-3 md:p-4">
+          <EvidenceSummaryPanel
+            response={response}
+            explanation={aiExplanation}
+            status={aiGuidanceStatus}
+            resultOverview={resultOverview}
+          />
+
+          <section className="rounded-[0.75rem] border border-stone-200 bg-white px-4 py-4 md:px-5">
             <div className="flex flex-col gap-3">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="rounded-full bg-stone-950 px-3 py-1.5 text-xs font-semibold text-white">
-                  결과 {visibleCount}건
-                </span>
-                {resultOverview.map((item) => (
-                  <span
-                    key={`summary-${item.key}`}
-                    className="rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-stone-700"
-                  >
-                    {item.shortLabel} {item.count}
-                  </span>
-                ))}
-              </div>
-
-              <div className="rounded-[1.1rem] border border-stone-200/90 bg-stone-50/75 p-2.5 md:p-3">
-                <div className="flex flex-col gap-3">
-                  <div className="flex items-center justify-between gap-3">
-                    <p className="text-xs font-medium text-stone-500">
-                      결과 필터
-                    </p>
-                    {hasActiveResultFilters ? (
-                      <button
-                        type="button"
-                        onClick={resetResultFilters}
-                        className="text-sm font-medium text-stone-500 transition duration-150 hover:text-stone-900"
-                      >
-                        필터 초기화
-                      </button>
-                    ) : null}
-                  </div>
-
-                  <div className="flex flex-wrap gap-2">
-                    <CompactSelectChip
-                      label="위험도"
-                      value={severityFilter}
-                      onChange={updateSeverityFilter}
-                      options={[
-                        { value: "", label: "전체" },
-                        { value: "contraindicated", label: "금지" },
-                        { value: "avoid", label: "중단/회피" },
-                        { value: "warn", label: "강한 주의" },
-                        { value: "monitor", label: "일반 주의" },
-                      ]}
-                      minWidthClassName="min-w-[9.5rem] flex-[1_1_10rem]"
-                    />
-                    <CompactSelectChip
-                      label="정렬"
-                      value={sort}
-                      onChange={(value) =>
-                        updateSort(value as NonNullable<EngineQuery["sort"]>)
-                      }
-                      options={metadata.sortOptions}
-                      minWidthClassName="min-w-[11rem] flex-[1.1_1_12rem]"
-                    />
-                    <ToggleChip
-                      checked={medicationOnly}
-                      onChange={updateMedicationOnly}
-                      label="약물 관련만"
-                      className="min-w-[10rem] flex-[1_1_10rem]"
-                    />
-                    <ToggleChip
-                      checked={diseaseOnly}
-                      onChange={updateDiseaseOnly}
-                      label="질환 관련만"
-                      className="min-w-[10rem] flex-[1_1_10rem]"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="hidden surface-card rounded-[1.5rem] p-5 md:p-6">
-            <div className="flex flex-col gap-3 border-b border-border-subtle pb-5 2xl:flex-row 2xl:items-end 2xl:justify-between">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
-                  결과
-                </p>
-                <h2 className="mt-2 text-[clamp(1rem,1.38vw,1.22rem)] font-semibold tracking-[-0.02em] text-foreground">
-                  중요한 내용부터 바로 확인하세요
-                </h2>
-                <p className="mt-2 text-sm leading-6 text-muted">
-                  먼저 봐야 할 내용과 추가 확인이 필요한 내용을 분리해
-                  보여드립니다.
-                </p>
-              </div>
-              <p className="text-sm font-medium text-muted">
-                총{" "}
-                <span className="font-semibold text-foreground tabular-nums">
-                  {visibleCount}
-                </span>
-                건
-              </p>
-            </div>
-
-            <div className="mt-5 space-y-4">
-              <div className="space-y-2">
-                {resultOverview.map((item) => (
-                  <div
-                    key={item.key}
-                    className={`rounded-[1rem] border px-4 py-3.5 ${item.tone}`}
-                  >
-                    <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-                      <div className="min-w-0 md:flex md:items-center md:gap-3">
-                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted md:min-w-[4.5rem]">
-                          {item.shortLabel}
-                        </p>
-                        <p className="mt-1 text-sm font-medium leading-5 text-foreground md:mt-0">
-                          {item.label}
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-3 md:shrink-0">
-                        <p className="text-xs leading-5 text-muted">
-                          {item.description}
-                        </p>
-                        <p className="text-[1.36rem] font-semibold leading-none text-foreground tabular-nums">
-                          {item.count}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="rounded-[1rem] border border-stone-200 bg-white p-4 md:p-5">
-                <div className="flex flex-col gap-3 border-b border-border-subtle pb-4 lg:flex-row lg:items-start lg:justify-between">
-                  <div>
-                    <p className="text-sm font-semibold text-foreground">
-                      결과 보기 설정
-                    </p>
-                    <p className="mt-1 text-xs leading-5 text-muted">
-                      필요한 범위만 남기도록 필터를 간단히 조절해 보세요.
-                    </p>
-                  </div>
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-sm font-bold text-stone-950">결과 필터</p>
+                {hasActiveResultFilters ? (
                   <button
                     type="button"
                     onClick={resetResultFilters}
-                    className={ghostButtonClass}
-                    hidden={!hasActiveResultFilters}
+                    className="text-sm font-semibold text-stone-500 transition duration-150 hover:text-stone-900"
                   >
                     필터 초기화
                   </button>
-                </div>
+                ) : null}
+              </div>
 
-                <div className="mt-5 space-y-6">
-                  <div>
-                    <SelectField
-                      label="위험도"
-                      value={severityFilter}
-                      onChange={updateSeverityFilter}
-                      options={[
-                        { value: "", label: "전체" },
-                        { value: "contraindicated", label: "금지" },
-                        { value: "avoid", label: "중단/회피" },
-                        { value: "warn", label: "강한 주의" },
-                        { value: "monitor", label: "일반 주의" },
-                      ]}
-                    />
-                  </div>
-
-                  <div>
-                    <SelectField
-                      label="정렬"
-                      value={sort}
-                      onChange={(value) =>
-                        updateSort(value as NonNullable<EngineQuery["sort"]>)
-                      }
-                      options={metadata.sortOptions}
-                    />
-                  </div>
-
-                  <div className="pt-1">
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
-                      관련 조건
-                    </p>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      <ToggleChip
-                        checked={medicationOnly}
-                        onChange={updateMedicationOnly}
-                        label="약물 관련만"
-                      />
-                      <ToggleChip
-                        checked={diseaseOnly}
-                        onChange={updateDiseaseOnly}
-                        label="질환 관련만"
-                      />
-                    </div>
-                  </div>
-                </div>
+              <div className="flex flex-wrap gap-2">
+                <CompactSelectChip
+                  label="위험도"
+                  value={severityFilter}
+                  onChange={updateSeverityFilter}
+                  options={[
+                    { value: "", label: "전체" },
+                    { value: "contraindicated", label: "금지" },
+                    { value: "avoid", label: "중단/회피" },
+                    { value: "warn", label: "강한 주의" },
+                    { value: "monitor", label: "일반 주의" },
+                  ]}
+                  minWidthClassName="min-w-[9.5rem] flex-[1_1_10rem]"
+                />
+                <CompactSelectChip
+                  label="정렬"
+                  value={sort}
+                  onChange={(value) =>
+                    updateSort(value as NonNullable<EngineQuery["sort"]>)
+                  }
+                  options={metadata.sortOptions}
+                  minWidthClassName="min-w-[11rem] flex-[1.1_1_12rem]"
+                />
+                <ToggleChip
+                  checked={medicationOnly}
+                  onChange={updateMedicationOnly}
+                  label="약물 관련만"
+                  className="min-w-[10rem] flex-[1_1_10rem]"
+                />
+                <ToggleChip
+                  checked={diseaseOnly}
+                  onChange={updateDiseaseOnly}
+                  label="질환 관련만"
+                  className="min-w-[10rem] flex-[1_1_10rem]"
+                />
               </div>
             </div>
           </section>

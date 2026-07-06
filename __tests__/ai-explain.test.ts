@@ -118,11 +118,21 @@ describe("explainSafetyResults", () => {
             output_parsed: {
               summaryTitle: "AI 정리: 주요 주의사항",
               summaryParagraph: "비타민 D와 vitamin K 관련 경고가 우선적으로 보입니다.",
+              integratedSummary: {
+                title: "핵심 총정리",
+                segments: [
+                  {
+                    text: "와파린 복용 중에는 vitamin K 섭취 패턴을 갑자기 바꾸지 않는 것이 우선입니다.",
+                    citationNumbers: [1],
+                  },
+                ],
+              },
               topAlerts: [
                 {
                   title: "비타민 K와 warfarin 관련 경고",
                   severity: "금지/중단",
                   reason: "deterministic 결과에 warfarin 상호작용 규칙이 포함되어 있습니다. 출처: Vitamin K - Health Professional Fact Sheet",
+                  citationNumbers: [1],
                 },
               ],
               groupedFindings: [

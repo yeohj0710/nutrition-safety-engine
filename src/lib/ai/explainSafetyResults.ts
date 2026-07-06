@@ -15,6 +15,10 @@ import {
   getOpenAIApiKey,
 } from "@/src/lib/ai/config";
 import {
+  buildEvidenceCitationsFromResponse,
+  formatRuleThreshold,
+} from "@/src/lib/evidence-citations";
+import {
   aiExplainRequestSchema,
   aiExplainResponseSchema,
   aiExplanationSchema,
@@ -108,6 +112,9 @@ function pickRules(matches: RuleMatch[]) {
     ruleId: match.ruleId,
     nutrientOrIngredient: match.rule.nutrientOrIngredient,
     severity: severityToLabel(match.resolvedSeverity),
+    ruleCategory: match.rule.ruleCategory,
+    threshold: formatRuleThreshold(match),
+    confidence: match.rule.confidence,
     shortMessage: truncateText(match.resolvedMessage),
     matchedBecause: match.matchedBecause
       .slice(0, 2)
@@ -122,6 +129,28 @@ function pickRules(matches: RuleMatch[]) {
   }));
 }
 
+function buildCitationPayload(request: AiExplainRequest) {
+  return buildEvidenceCitationsFromResponse(request.engineResponse).map(
+    (citation) => ({
+      citationNumber: citation.citationNumber,
+      ruleId: citation.ruleId,
+      ingredient: citation.ingredient,
+      severity: citation.severity,
+      classification: citation.classification,
+      sourceTitle: truncateText(citation.sourceTitle, 220),
+      sourceYear: citation.sourceYear,
+      sourceTrust: citation.sourceTrust,
+      journalOrPublisher: citation.journalOrPublisher,
+      locator: citation.locator,
+      claimLabel: citation.claimLabel,
+      threshold: citation.threshold,
+      ruleMessage: truncateText(citation.ruleMessage, 260),
+      matchedReason: truncateText(citation.matchedReason, 180),
+      excerpt: truncateText(citation.excerpt, 300),
+    }),
+  );
+}
+
 function buildCompactPayload(input: AiExplainRequest) {
   const request = aiExplainRequestSchema.parse(input);
 
@@ -132,6 +161,7 @@ function buildCompactPayload(input: AiExplainRequest) {
     definitelyMatched: pickRules(request.engineResponse.definitely_matched),
     possiblyRelevant: pickRules(request.engineResponse.possibly_relevant),
     needsMoreInfo: pickRules(request.engineResponse.needs_more_info),
+    citationIndex: buildCitationPayload(request),
   };
 }
 
@@ -165,6 +195,15 @@ function buildInstructions() {
     "ruleCardActions에는 입력으로 받은 각 ruleId마다 recommendation을 하나씩 작성하십시오.",
     "recommendation은 사용자가 지금 어떻게 하면 되는지 바로 알 수 있게, 1문장 한국어 권고 형태로 쓰십시오.",
     "recommendation은 근거 문장을 쉬운 행동 지침으로 다시 말하되, 금지/주의/모니터링의 강도를 바꾸지 마십시오.",
+    "integratedSummary는 사용자가 가장 먼저 읽는 핵심 안내입니다.",
+    "integratedSummary.title은 짧게 쓰고, segments는 합치면 하나의 자연스러운 한국어 문단이 되게 작성하십시오.",
+    "integratedSummary.segments는 3~5개, 각 text는 1문장으로 제한하십시오.",
+    "segments 각 text에는 구체적인 성분명, 약물명, 질환/상태, 수치 threshold, 건수를 가능한 한 포함하십시오.",
+    "segments 각 citationNumbers에는 citationIndex에 실제 존재하는 번호만 넣으십시오.",
+    "수치, 연구/공공자료 근거, 원문 발췌, 특정 권고를 언급한 segment에는 반드시 1개 이상의 citationNumbers를 붙이십시오.",
+    "citationIndex 밖의 논문, DOI, PMID, 문장, 수치를 새로 만들지 마십시오.",
+    "topAlerts의 citationNumbers도 citationIndex에 실제 존재하는 번호만 사용하십시오.",
+    "topAlerts는 최대 4개, groupedFindings는 최대 4개, missingInformation은 최대 6개, userFriendlyNextSteps는 최대 5개만 작성하십시오.",
   ].join(" ");
 }
 

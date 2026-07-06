@@ -8,26 +8,36 @@ const aiRuleCardActionSchema = z.object({
   ruleId: z.string().min(1),
   recommendation: z.string().min(1),
 });
+const aiCitationNumberSchema = z.number().int().min(1).max(30);
+const aiCitedSummarySegmentSchema = z.object({
+  text: z.string().min(1),
+  citationNumbers: z.array(aiCitationNumberSchema),
+});
 
 export const aiExplanationSchema = z.object({
   summaryTitle: z.string().min(1),
   summaryParagraph: z.string().min(1),
+  integratedSummary: z.object({
+    title: z.string().min(1),
+    segments: z.array(aiCitedSummarySegmentSchema).min(1).max(5),
+  }),
   topAlerts: z.array(
     z.object({
       title: z.string().min(1),
       severity: aiSeverityLabelSchema,
       reason: z.string().min(1),
+      citationNumbers: z.array(aiCitationNumberSchema),
     }),
-  ),
+  ).max(4),
   groupedFindings: z.array(
     z.object({
       sectionTitle: z.string().min(1),
-      items: z.array(z.string().min(1)),
+      items: z.array(z.string().min(1)).max(5),
     }),
-  ),
-  missingInformation: z.array(z.string().min(1)),
-  userFriendlyNextSteps: z.array(z.string().min(1)),
-  ruleCardActions: z.array(aiRuleCardActionSchema),
+  ).max(4),
+  missingInformation: z.array(z.string().min(1)).max(6),
+  userFriendlyNextSteps: z.array(z.string().min(1)).max(5),
+  ruleCardActions: z.array(aiRuleCardActionSchema).max(12),
   disclaimer: z.string().min(1),
 });
 

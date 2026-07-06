@@ -251,15 +251,20 @@ details[open] .collapsible-chevron {
   display: grid;
   grid-template-rows: 0fr;
   opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
   transition:
     grid-template-rows var(--duration-expand) var(--ease-emphasized),
-    opacity var(--duration-toggle) var(--ease-soft);
+    opacity var(--duration-toggle) var(--ease-soft),
+    visibility var(--duration-toggle) var(--ease-soft);
 }
 
 .collapsible-panel[data-open="true"],
 details[open] > .collapsible-panel {
   grid-template-rows: 1fr;
   opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
 }
 
 .collapsible-panel-dense {
