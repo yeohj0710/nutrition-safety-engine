@@ -119,6 +119,7 @@ function getConditionLabel(field: string) {
     population_any: "대상 집단",
     pregnancy_status_any: "임신 상태",
     same_day: "동일 날짜 복용",
+    sex_any: "성별",
     smoking_status_any: "흡연 상태",
   };
 
@@ -291,6 +292,7 @@ function normalizeQuery(query: EngineQuery, knowledgeIndex: KnowledgeIndex) {
   const medicationAliasMap = buildMedicationAliasMap(knowledgeIndex);
   const conditionAliasMap = buildConditionAliasMap(knowledgeIndex);
   const memoTokens = tokenizeMemo(parsed.profile.memo);
+  const allergyTokens = normalizeTextArray(parsed.profile.allergies);
   const selectedCompounds = normalizeTextArray([...(parsed.profile.selectedCompounds ?? []), ...memoTokens]);
   const candidateItems = normalizeCandidateItems(parsed.candidateItems, selectedCompounds, aliasMap);
   const selectedIngredientIds = [...new Set(candidateItems.map((candidate) => candidate.ingredientId).filter(Boolean))] as string[];
@@ -303,7 +305,7 @@ function normalizeQuery(query: EngineQuery, knowledgeIndex: KnowledgeIndex) {
   if (parsed.profile.smokerStatus) providedFields.add("smokerStatus");
   if ((parsed.profile.medications ?? []).length > 0) providedFields.add("medications");
   if ((parsed.profile.conditions ?? []).length > 0) providedFields.add("conditions");
-  if ((parsed.profile.allergies ?? []).length > 0) providedFields.add("allergies");
+  if (allergyTokens.length > 0) providedFields.add("allergies");
   if ((parsed.profile.exposures ?? []).length > 0) providedFields.add("exposures");
   if ((parsed.profile.devices ?? []).length > 0) providedFields.add("devices");
   if (parsed.profile.immuneStatus) providedFields.add("immuneStatus");
@@ -323,11 +325,11 @@ function normalizeQuery(query: EngineQuery, knowledgeIndex: KnowledgeIndex) {
     smokerStatus: parsed.profile.smokerStatus ? normalizeText(parsed.profile.smokerStatus) : undefined,
     medications: normalizeProfileEntries([...(parsed.profile.medications ?? []), ...memoTokens], medicationAliasMap),
     conditions: normalizeProfileEntries([...(parsed.profile.conditions ?? []), ...memoTokens], conditionAliasMap),
-    allergies: normalizeTextArray([...(parsed.profile.allergies ?? []), ...memoTokens]),
+    allergies: normalizeTextArray([...allergyTokens, ...memoTokens]),
     selectedCompounds,
     jurisdiction: parsed.profile.jurisdiction ? normalizeText(parsed.profile.jurisdiction) : "kr",
     memoTokens,
-    exposures: normalizeTextArray([...(parsed.profile.exposures ?? []), ...memoTokens]),
+    exposures: normalizeTextArray([...(parsed.profile.exposures ?? []), ...allergyTokens, ...memoTokens]),
     devices: normalizeTextArray([...(parsed.profile.devices ?? []), ...memoTokens]),
     immuneStatus: parsed.profile.immuneStatus ? normalizeText(parsed.profile.immuneStatus) : undefined,
     populationTags: normalizeTextArray(parsed.profile.populationTags),
@@ -410,6 +412,20 @@ function evaluateCondition(
         reason: matched
           ? `임신 상태가 ${allowed.join(", ")} 조건과 일치`
           : `임신 상태가 ${allowed.join(", ")} 조건과 일치하지 않음`,
+      };
+    }
+    case "sex_any": {
+      if (!profile.sex) return missingCondition(condition, `${valueLabel} 정보가 없어 판정 보류`);
+
+      const allowed = (condition.value as unknown[]).map((item) => normalizeText(String(item)));
+      const matched = allowed.includes(profile.sex);
+
+      return {
+        conditionId: condition.id,
+        field: condition.field,
+        requirementGroup: condition.requirementGroup,
+        status: matched ? "matched" : "not_matched",
+        reason: matched ? "성별 조건이 충족됨" : "성별 조건이 충족되지 않음",
       };
     }
     case "or_lactating": {

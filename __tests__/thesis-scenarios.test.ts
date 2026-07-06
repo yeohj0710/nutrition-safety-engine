@@ -111,6 +111,7 @@ describe("Ye thesis scenario evidence checks", () => {
     const { response, active } = matchedRuleIds({
       profile: {
         age: 45,
+        sex: "male",
         conditions: ["hyperoxaluria", "history_of_kidney_stones"],
         jurisdiction: "US",
         strictestMode: true,
@@ -124,5 +125,23 @@ describe("Ye thesis scenario evidence checks", () => {
     expect(active.has("RULE-VITC-STONE-HISTORY")).toBe(true);
     expect(active.has("RULE-VITC-MALE-HIGHDose-STONE")).toBe(true);
     expect(response.totalCounts.definitely_matched).toBeGreaterThanOrEqual(2);
+  });
+
+  it("does not match the male-only vitamin C kidney stone rule for female users", () => {
+    const { definite, active } = matchedRuleIds({
+      profile: {
+        age: 45,
+        sex: "female",
+        jurisdiction: "US",
+        strictestMode: true,
+      },
+      candidateItems: [
+        { ingredientId: "vitamin_c", name: "vitamin C", dailyIntakeValue: 2500, dailyIntakeUnit: "mg/day" },
+      ],
+      sort: "severity_desc",
+    });
+
+    expect(definite.has("RULE-VITC-UL-US-ADULT")).toBe(true);
+    expect(active.has("RULE-VITC-MALE-HIGHDose-STONE")).toBe(false);
   });
 });

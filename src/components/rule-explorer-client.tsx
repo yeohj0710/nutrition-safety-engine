@@ -5,6 +5,11 @@ import { useEffect, useRef, useState, useTransition } from "react";
 import { RuleCard } from "@/src/components/rule-card";
 import type { AiExplainResponse } from "@/src/lib/ai/schema";
 import { cleanDisplayText } from "@/src/lib/display-text";
+import {
+  parseDailyIntakeText,
+  parseLongTermUseDays,
+  removeDoseAndDurationText,
+} from "@/src/lib/query-input";
 import type {
   EngineQuery,
   EngineResponse,
@@ -37,6 +42,7 @@ type ExplorerMetadata = {
 };
 
 type ExplorerValueOption = {
+  id?: string;
   label: string;
   canonicalValue?: string;
   aliases?: string[];
@@ -96,11 +102,11 @@ const ghostButtonClass =
   "rounded-full border border-stone-200 bg-white px-4 py-[0.58rem] text-[0.84rem] font-medium text-stone-700 transition duration-150 hover:border-stone-300 hover:bg-stone-50";
 const subtleActionButtonClass =
   "rounded-full border border-stone-200 bg-white px-3 py-1.5 text-[0.76rem] font-medium text-stone-600 transition duration-150 hover:border-stone-300 hover:text-stone-900";
-const explorerStorageKey = "nutrition-safety-explorer-state-v3";
+const explorerStorageKey = "nutrition-safety-explorer-state-v4";
 const minimumQueryLoadingMs = 900;
 
 type PersistedExplorerState = {
-  version: 2;
+  version: 3;
   form: {
     age: string;
     sex: string;
@@ -168,9 +174,17 @@ function buildStarterDraft(
 ): ExplorerProfileDraft {
   return {
     ...blankExplorerProfile,
+    age: profile.age ?? "",
+    sex: profile.sex ?? "",
+    pregnancyStatus: profile.pregnancyStatus ?? "",
+    lactationStatus: profile.lactationStatus ?? "",
+    smokerStatus: profile.smokerStatus ?? "",
     selectedCompounds: profile.selectedCompounds ?? "",
     medications: profile.medications ?? "",
     conditions: profile.conditions ?? "",
+    allergies: profile.allergies ?? "",
+    jurisdiction: profile.jurisdiction ?? "",
+    memo: profile.memo ?? "",
   };
 }
 
@@ -217,9 +231,8 @@ function getPregnancyStatusLabel(value: string) {
 const defaultExampleProfile: ExplorerProfileDraft = {
   ...blankExplorerProfile,
   medications: "warfarin",
-  conditions: "간질환",
-  selectedCompounds: "비타민 A",
-  memo: "입덧 때문에 액상형 보충제를 간헐적으로 복용 중입니다.",
+  selectedCompounds: "비타민 K",
+  memo: "최근 멀티비타민 제품을 바꾸면서 비타민 K 섭취량이 달라졌습니다.",
 };
 
 function normalizeExplorerInput(value: string) {
@@ -305,14 +318,26 @@ function resolveExplorerOption(value: string, options: ExplorerValueOption[]) {
   return prefixMatches.length === 1 ? prefixMatches[0] : null;
 }
 
-function buildCanonicalEntries(value: string, options: ExplorerValueOption[]) {
+function prepareExplorerLookupValue(value: string, stripDoseAndDuration = false) {
+  return stripDoseAndDuration ? removeDoseAndDurationText(value) : value;
+}
+
+function buildCanonicalEntries(
+  value: string,
+  options: ExplorerValueOption[],
+  config?: { stripDoseAndDuration?: boolean },
+) {
   const seen = new Set<string>();
   const entries: string[] = [];
 
   for (const token of splitMultiValue(value)) {
-    const resolved = resolveExplorerOption(token, options);
+    const lookupToken = prepareExplorerLookupValue(
+      token,
+      config?.stripDoseAndDuration,
+    );
+    const resolved = resolveExplorerOption(lookupToken, options);
     const canonical =
-      resolved?.canonicalValue ?? resolved?.label ?? token.trim();
+      resolved?.canonicalValue ?? resolved?.label ?? lookupToken.trim();
     const key = normalizeExplorerLookupKey(canonical);
 
     if (!key || seen.has(key)) continue;
@@ -323,14 +348,22 @@ function buildCanonicalEntries(value: string, options: ExplorerValueOption[]) {
   return entries;
 }
 
-function analyzeExplorerField(value: string, options: ExplorerValueOption[]) {
+function analyzeExplorerField(
+  value: string,
+  options: ExplorerValueOption[],
+  config?: { stripDoseAndDuration?: boolean },
+) {
   const recognized: string[] = [];
   const unresolved: string[] = [];
   const seenRecognized = new Set<string>();
   const seenUnresolved = new Set<string>();
 
   for (const token of splitMultiValue(value)) {
-    const resolved = resolveExplorerOption(token, options);
+    const lookupToken = prepareExplorerLookupValue(
+      token,
+      config?.stripDoseAndDuration,
+    );
+    const resolved = resolveExplorerOption(lookupToken, options);
 
     if (resolved) {
       const key = normalizeExplorerLookupKey(resolved.label);
@@ -355,6 +388,10 @@ function analyzeExplorerField(value: string, options: ExplorerValueOption[]) {
         .split(/[\n,;]+/)
         .at(-1)
         ?.trim() ?? "");
+  const currentLookupToken = prepareExplorerLookupValue(
+    currentToken,
+    config?.stripDoseAndDuration,
+  );
   const currentTokenKey = normalizeExplorerLookupKey(currentToken);
 
   const suggestions =
@@ -362,7 +399,8 @@ function analyzeExplorerField(value: string, options: ExplorerValueOption[]) {
       ? options
           .map((option) => {
             const searchMatches = getExplorerSearchTerms(option).map(
-              (candidate) => matchesExplorerSearchTerm(currentToken, candidate),
+              (candidate) =>
+                matchesExplorerSearchTerm(currentLookupToken, candidate),
             );
             const startsWith = searchMatches.some(
               (candidate) => candidate.startsWith,
@@ -402,6 +440,137 @@ function analyzeExplorerField(value: string, options: ExplorerValueOption[]) {
     unresolved,
     suggestions,
   };
+}
+
+const coingredientKeywordMap = [
+  {
+    id: "vitamin_k",
+    terms: ["비타민 k", "비타민k", "vitamin k", "vit k"],
+  },
+  {
+    id: "vitamin_d",
+    terms: ["비타민 d", "비타민d", "vitamin d", "vit d"],
+  },
+  {
+    id: "folic_acid",
+    terms: ["엽산", "folic acid", "folate"],
+  },
+  {
+    id: "vitamin_a_preformed",
+    terms: [
+      "프리폼드 비타민 a",
+      "프리폼드 비타민a",
+      "preformed vitamin a",
+      "retinol",
+    ],
+  },
+  {
+    id: "calcium",
+    terms: ["칼슘", "calcium"],
+  },
+] as const;
+
+function inferMentionedCoingredientIds(text: string) {
+  const normalizedText = normalizeExplorerInput(text);
+  const lookupText = normalizeExplorerLookupKey(text);
+  const ids = new Set<string>();
+
+  for (const entry of coingredientKeywordMap) {
+    if (
+      entry.terms.some(
+        (term) =>
+          normalizedText.includes(normalizeExplorerInput(term)) ||
+          lookupText.includes(normalizeExplorerLookupKey(term)),
+      )
+    ) {
+      ids.add(entry.id);
+    }
+  }
+
+  return ids;
+}
+
+function inferCandidateForm(
+  ingredientId: string | undefined,
+  sourceText: string,
+) {
+  const normalizedText = normalizeExplorerInput(sourceText);
+  const lookupText = normalizeExplorerLookupKey(sourceText);
+
+  if (
+    ingredientId === "omega3_epa_dha" &&
+    (normalizedText.includes("purified epa") ||
+      normalizedText.includes("icosapent ethyl") ||
+      lookupText.includes("이코사펜트에틸"))
+  ) {
+    return "purified epa";
+  }
+
+  if (
+    ingredientId === "glucosamine_chondroitin" &&
+    (normalizedText.includes("chondroitin") ||
+      lookupText.includes("콘드로이틴"))
+  ) {
+    return "chondroitin sulfate";
+  }
+
+  return null;
+}
+
+function inferSameDayUse(text: string) {
+  return /(같은\s*날|동시|같이|함께|same\s*day|together)/i.test(text);
+}
+
+function buildCandidateItemsFromCompoundInput(
+  selectedCompounds: string,
+  ingredientOptions: ExplorerValueOption[],
+  memo: string,
+): NonNullable<EngineQuery["candidateItems"]> {
+  const sourceTokens = splitMultiValue(selectedCompounds);
+  const wholeProfileText = `${selectedCompounds}\n${memo}`;
+  const mentionedCoingredientIds =
+    inferMentionedCoingredientIds(wholeProfileText);
+  const resolvedItems = sourceTokens
+    .map((token) => {
+      const lookupToken = removeDoseAndDurationText(token);
+      const resolved = resolveExplorerOption(lookupToken, ingredientOptions);
+      const ingredientId = resolved?.id;
+      const name = resolved?.canonicalValue ?? resolved?.label ?? lookupToken;
+
+      return {
+        token,
+        lookupToken,
+        resolved,
+        ingredientId,
+        name: name.trim(),
+      };
+    })
+    .filter((item) => item.name);
+
+  for (const item of resolvedItems) {
+    if (item.ingredientId) {
+      mentionedCoingredientIds.add(item.ingredientId);
+    }
+  }
+
+  return resolvedItems.map((item) => {
+    const intake = parseDailyIntakeText(item.token);
+    const longTermUseDays = parseLongTermUseDays(item.token);
+    const coingredients = [...mentionedCoingredientIds].filter(
+      (id) => id !== item.ingredientId,
+    );
+
+    return {
+      ingredientId: item.ingredientId,
+      name: item.name,
+      form: inferCandidateForm(item.ingredientId, item.token),
+      dailyIntakeValue: intake?.value ?? undefined,
+      dailyIntakeUnit: intake?.unit ?? undefined,
+      longTermUseDays: longTermUseDays ?? undefined,
+      sameDay: inferSameDayUse(wholeProfileText) || undefined,
+      coingredients,
+    };
+  });
 }
 
 function applySuggestionToField(currentValue: string, suggestion: string) {
@@ -868,7 +1037,7 @@ export function RuleExplorerClient({
   const [error, setError] = useState<string | null>(null);
   const [isQueryLoading, setIsQueryLoading] = useState(false);
   const [isAdvancedOpen, setIsAdvancedOpen] = useState(false);
-  const [isExamplesOpen, setIsExamplesOpen] = useState(false);
+  const [isExamplesOpen, setIsExamplesOpen] = useState(true);
   const [sectionVisibleCounts, setSectionVisibleCounts] = useState<
     Record<SectionKey, number>
   >(() => ({ ...sectionPreviewCounts }));
@@ -886,6 +1055,7 @@ export function RuleExplorerClient({
   const compoundFieldAnalysis = analyzeExplorerField(
     selectedCompounds,
     metadata.ingredients,
+    { stripDoseAndDuration: true },
   );
   const medicationFieldAnalysis = analyzeExplorerField(
     medications,
@@ -909,7 +1079,7 @@ export function RuleExplorerClient({
       }
 
       const snapshot = JSON.parse(raw) as PersistedExplorerState;
-      if (snapshot.version !== 2) {
+      if (snapshot.version !== 3) {
         setHasRestoredState(true);
         return;
       }
@@ -971,7 +1141,7 @@ export function RuleExplorerClient({
     }
 
     const snapshot: PersistedExplorerState = {
-      version: 2,
+      version: 3,
       form: {
         age,
         sex,
@@ -1136,10 +1306,16 @@ export function RuleExplorerClient({
         selectedCompounds: buildCanonicalEntries(
           profile.selectedCompounds,
           metadata.ingredients,
+          { stripDoseAndDuration: true },
         ),
         jurisdiction: profile.jurisdiction || undefined,
         memo: profile.memo,
       },
+      candidateItems: buildCandidateItemsFromCompoundInput(
+        profile.selectedCompounds,
+        metadata.ingredients,
+        profile.memo,
+      ),
       sort,
     } satisfies EngineQuery;
   }
@@ -1229,7 +1405,7 @@ export function RuleExplorerClient({
     setHasQueried(false);
     setError(null);
     setIsAdvancedOpen(false);
-    setIsExamplesOpen(false);
+    setIsExamplesOpen(true);
     resetSectionPreviewCounts();
     window.localStorage.removeItem(explorerStorageKey);
   }
@@ -1363,22 +1539,205 @@ export function RuleExplorerClient({
     pregnancyStatus?: string;
     lactationStatus?: string;
     smokerStatus?: string;
+    allergies?: string;
+    jurisdiction?: string;
+    memo?: string;
   }> = [
     {
       label: "와파린 + 비타민 K",
-      description: "약물 상호작용 확인용 조합",
+      description: "INR과 비타민 K 섭취량 변화 확인",
       selectedCompounds: "비타민 K",
       medications: "warfarin",
       age: "68",
       sex: "male",
+      memo: "최근 멀티비타민 제품을 바꾸면서 비타민 K 섭취량이 달라졌습니다.",
     },
     {
-      label: "퀴놀론 + 마그네슘",
-      description: "복용 간격 규칙을 보는 예시",
-      selectedCompounds: "magnesium",
-      medications: "quinolone antibiotic",
-      age: "47",
+      label: "와파린 + 오메가3 4 g",
+      description: "항응고제 복용자의 고용량 오메가3 출혈 모니터링",
+      selectedCompounds: "오메가3 4 g",
+      medications: "warfarin",
+      age: "72",
+      sex: "female",
+      memo: "EPA/DHA 합산 4 g 수준으로 장기 복용 중입니다.",
+    },
+    {
+      label: "고위험 심혈관 + EPA 4 g",
+      description: "고용량 purified EPA의 심방세동/출혈 신호",
+      selectedCompounds: "이코사펜트에틸 4 g",
+      conditions: "cardiovascular disease",
+      age: "66",
       sex: "male",
+      memo: "심혈관질환 병력이 있고 purified EPA 제품을 복용 중입니다.",
+    },
+    {
+      label: "와파린 + 글루코사민",
+      description: "관절 보충제와 와파린 병용",
+      selectedCompounds: "글루코사민",
+      medications: "warfarin",
+      age: "70",
+      sex: "female",
+      memo: "무릎 통증 때문에 새로 시작하려고 합니다.",
+    },
+    {
+      label: "콘드로이틴 1,500 mg",
+      description: "콘드로이틴 고용량 수동검토",
+      selectedCompounds: "콘드로이틴 1,500 mg",
+      age: "58",
+      sex: "female",
+      memo: "제품 표시량 기준으로 1일 1,500 mg 복용 예정입니다.",
+    },
+    {
+      label: "와파린 + CoQ10",
+      description: "CoQ10 시작/중단 시 INR 확인",
+      selectedCompounds: "CoQ10",
+      medications: "warfarin",
+      age: "64",
+      sex: "male",
+      memo: "최근 CoQ10을 새로 시작했습니다.",
+    },
+    {
+      label: "인슐린 + CoQ10",
+      description: "혈당 조절 중 CoQ10 병용",
+      selectedCompounds: "CoQ10",
+      medications: "insulin",
+      conditions: "diabetes",
+      age: "61",
+      sex: "female",
+      memo: "당뇨 치료 중 피로감 때문에 복용하려고 합니다.",
+    },
+    {
+      label: "레보티록신 + 칼슘",
+      description: "같은 날 복용 시 4시간 분리 안내",
+      selectedCompounds: "칼슘",
+      medications: "levothyroxine",
+      age: "55",
+      sex: "female",
+      memo: "아침 공복 약과 칼슘제를 같은 날 같이 복용합니다.",
+    },
+    {
+      label: "퀴놀론 + 칼슘",
+      description: "항생제 흡수 저하와 복용 간격",
+      selectedCompounds: "칼슘",
+      medications: "quinolone antibiotic",
+      age: "46",
+      sex: "male",
+      memo: "항생제 복용 기간에 칼슘제를 같이 먹고 있습니다.",
+    },
+    {
+      label: "결석 병력 + 칼슘",
+      description: "칼슘 보충제와 신장결석/고칼슘뇨 병력",
+      selectedCompounds: "칼슘 1,200 mg",
+      conditions: "history_of_kidney_stones",
+      age: "62",
+      sex: "male",
+      memo: "과거 요로결석으로 치료받은 적이 있습니다.",
+    },
+    {
+      label: "폐경 후 + 칼슘/D",
+      description: "폐경 후 여성의 칼슘+비타민 D 결석 신호",
+      selectedCompounds: "칼슘 1,200 mg, 비타민 D 800 IU",
+      age: "64",
+      sex: "female",
+      memo: "골건강 목적으로 칼슘과 비타민 D를 함께 복용 중입니다.",
+    },
+    {
+      label: "결석 병력 + 비타민 D",
+      description: "비타민 D 보충과 고칼슘뇨/결석 병력",
+      selectedCompounds: "비타민 D 2,000 IU",
+      conditions: "history_of_kidney_stones, hypercalciuria",
+      age: "59",
+      sex: "female",
+      memo: "최근 혈중 비타민 D가 낮다고 들어 보충 중입니다.",
+    },
+    {
+      label: "비타민 D 4,000 IU 장기",
+      description: "고용량 비타민 D 장기복용 주의",
+      selectedCompounds: "비타민 D 4,000 IU 6개월",
+      age: "71",
+      sex: "female",
+      memo: "6개월 이상 매일 복용 중입니다.",
+    },
+    {
+      label: "티아지드 + 비타민 D",
+      description: "thiazide 이뇨제와 고칼슘혈증 모니터링",
+      selectedCompounds: "비타민 D 2,000 IU",
+      medications: "thiazide diuretic",
+      age: "74",
+      sex: "female",
+      memo: "혈압약으로 이뇨제를 복용 중입니다.",
+    },
+    {
+      label: "남성 + 비타민 C 1,000 mg",
+      description: "남성 고용량 비타민 C와 신장결석 신호",
+      selectedCompounds: "비타민 C 1,000 mg",
+      conditions: "history_of_kidney_stones",
+      age: "52",
+      sex: "male",
+      memo: "감기 예방 목적으로 매일 복용 중입니다.",
+    },
+    {
+      label: "비타민 C 2,500 mg",
+      description: "성인 UL 초과 확인",
+      selectedCompounds: "비타민 C 2,500 mg",
+      age: "45",
+      sex: "female",
+      memo: "피로감 때문에 고함량 제품을 복용 중입니다.",
+    },
+    {
+      label: "항암치료 + 비타민 C",
+      description: "항암/방사선 치료 중 항산화 보충제 검토",
+      selectedCompounds: "비타민 C 1,000 mg",
+      medications: "chemotherapy",
+      conditions: "cancer therapy",
+      age: "57",
+      sex: "female",
+      memo: "항암치료 중 고함량 비타민 C 보충제를 같이 먹고 있습니다.",
+    },
+    {
+      label: "와파린 + 멀티비타민",
+      description: "비타민 K 포함 멀티비타민 제품 변경",
+      selectedCompounds: "멀티비타민/멀티미네랄, 비타민 K",
+      medications: "warfarin",
+      age: "69",
+      sex: "male",
+      memo: "비타민 K가 포함된 종합비타민으로 바꾸려고 합니다.",
+    },
+    {
+      label: "임신 + prenatal MVMS",
+      description: "엽산 총량과 프리폼드 비타민 A 확인",
+      selectedCompounds: "prenatal vitamin",
+      age: "32",
+      sex: "female",
+      pregnancyStatus: "pregnant",
+      memo: "folic acid와 preformed vitamin A가 포함된 제품입니다.",
+    },
+    {
+      label: "밀크씨슬 + 국화과 알레르기",
+      description: "ragweed/국화과 알레르기 병력",
+      selectedCompounds: "밀크씨슬",
+      allergies: "ragweed allergy",
+      age: "41",
+      sex: "female",
+      memo: "ragweed allergy와 국화과 알레르기 병력이 있습니다.",
+    },
+    {
+      label: "밀크씨슬 + tacrolimus",
+      description: "협소치료역 약물 병용 수동검토",
+      selectedCompounds: "밀크씨슬",
+      medications: "tacrolimus",
+      age: "50",
+      sex: "male",
+      memo: "이식 후 면역억제제를 복용 중입니다.",
+    },
+    {
+      label: "당뇨 + 글루코사민",
+      description: "당뇨 환자의 혈당 모니터링",
+      selectedCompounds: "글루코사민",
+      conditions: "diabetes",
+      age: "60",
+      sex: "male",
+      memo: "혈당 조절 중 관절 보충제를 시작하려고 합니다.",
     },
   ] as const;
 
@@ -1440,6 +1799,7 @@ export function RuleExplorerClient({
                     <button
                       key={`starter-${profile.label}`}
                       type="button"
+                      title={profile.description}
                       onClick={() =>
                         applyStarterProfile(profile, { submit: true })
                       }
@@ -1780,6 +2140,7 @@ export function RuleExplorerClient({
                         <button
                           key={`starter-inline-${profile.label}`}
                           type="button"
+                          title={profile.description}
                           onClick={() =>
                             applyStarterProfile(profile, { submit: true })
                           }
@@ -2207,6 +2568,7 @@ export function RuleExplorerClient({
                 <button
                   key={`empty-starter-${profile.label}`}
                   type="button"
+                  title={profile.description}
                   onClick={() => applyStarterProfile(profile, { submit: true })}
                   className={ghostButtonClass}
                 >
