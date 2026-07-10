@@ -30,6 +30,8 @@
     "validate:claim-rule-contract": "python tools/validate_claim_rule_contract.py",
     "build:phase07-review-queues": "python tools/build_phase07_review_queues.py",
     "validate:phase07-review-queues": "python tools/validate_phase07_review_queues.py",
+    "build:phase02:evidence-manifest": "python tools/build_phase02_evidence_manifest.py",
+    "validate:phase02:evidence-manifest": "python tools/validate_phase02_evidence_manifest.py",
     "typecheck": "npm run prepare:knowledge && tsc --noEmit"
   },
   "dependencies": {

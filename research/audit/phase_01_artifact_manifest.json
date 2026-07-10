@@ -107,7 +107,7 @@
     {
       "path": "research/audit/live_source_reconciliation.json",
       "size_bytes": 121514,
-      "sha256": "8d2210edc2c7c1f38a0cf8e67063f089ed2f95a289b114544c3a91fb8bf47bf0"
+      "sha256": "3809f028f343097f1276a432b1db8a6d88e1007fb1476f554ee222e22d9b051b"
     },
     {
       "path": "research/audit/phase_01_exit_criteria.md",
@@ -146,8 +146,8 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 10542,
-      "sha256": "3ef445715971dcd9793277e90ed96c021610ec0e26e60bb602697e30b76bb1bf"
+      "size_bytes": 11085,
+      "sha256": "7976c3a4cec817af31977a4fff4324cd2ad4235a6993bf6eb7f992d2396bf487"
     },
     {
       "path": "research/logs/RISKS.md",
@@ -156,8 +156,8 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 32378,
-      "sha256": "087151d55b1ff51cf192024644efdf799179b0f07a57b8391e1ff3b3231acbac"
+      "size_bytes": 32960,
+      "sha256": "1a8aa37d3586f8b1b92ef04dd909d054410f4286fb3a15374160db624cfa0dea"
     },
     {
       "path": "research/review_queue/korean_db_PRESS_review.csv",

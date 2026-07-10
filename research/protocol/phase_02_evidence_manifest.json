@@ -1,0 +1,117 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "02_protocol_and_search_design",
+  "status": "local_evidence_verified_external_gates_open",
+  "final_search_allowed": false,
+  "protocol_human_approved": false,
+  "independent_press_complete": false,
+  "registered": false,
+  "artifact_count": 21,
+  "artifacts": [
+    {
+      "path": "research/protocol/access_matrix.csv",
+      "size_bytes": 4640,
+      "sha256": "bb952179821ff45e924bdf11378c622afea202c0b65fcd6016556bec0e9aa491"
+    },
+    {
+      "path": "research/protocol/amendments.csv",
+      "size_bytes": 603,
+      "sha256": "796b1c6bc3848887888c0283a454b37e1356d49cb432c62a22f26d4f91536924"
+    },
+    {
+      "path": "research/protocol/human_ai_role_matrix.md",
+      "size_bytes": 1388,
+      "sha256": "64ce3664b9fb337cffe49355db8653cd1c2269b32626aa8985eeac7e2c6ddd23"
+    },
+    {
+      "path": "research/protocol/outcome_priority.csv",
+      "size_bytes": 2240,
+      "sha256": "39fcbca48bf478ff2850c804bf4054f3ff7cfc45b247296c30de7f74eaf4ec5d"
+    },
+    {
+      "path": "research/protocol/protocol-v1.0.md",
+      "size_bytes": 10964,
+      "sha256": "d50152d0d0b079722c216a749a0abc55020e30667e84343689d8a31d275cc233"
+    },
+    {
+      "path": "research/protocol/registration_status.md",
+      "size_bytes": 572,
+      "sha256": "44e522243e2916ba119ec895cafc77a6c2ba260b22803763db77d0b3616e0626"
+    },
+    {
+      "path": "research/protocol/workload_forecast.csv",
+      "size_bytes": 679,
+      "sha256": "5c11b268ef017f5b0e03af4afefde7527bdd09592ebebbf513039364d04aeff9"
+    },
+    {
+      "path": "research/review_queue/PRESS_review.csv",
+      "size_bytes": 2939,
+      "sha256": "b56713e936abe6e21d77ce961f458b005db85b61474cb88cecadaf1f17a5d501"
+    },
+    {
+      "path": "research/review_queue/korean_db_PRESS_review.csv",
+      "size_bytes": 17904,
+      "sha256": "b561d62d7f7eee7e5c18211558db3ac4692d9a0827d0a2914783679784534e4b"
+    },
+    {
+      "path": "research/review_queue/phase_02_external_review.csv",
+      "size_bytes": 1339,
+      "sha256": "b10752c4d3f65795723f8c3101c2ab42974e26792ab15196c59d677cb310a1c4"
+    },
+    {
+      "path": "research/searches/central_hitcount_log.csv",
+      "size_bytes": 1629,
+      "sha256": "6ca79a63a0d2abe9564f549d1b4fc32329817d4b7c966215a74f4fb48d538615"
+    },
+    {
+      "path": "research/searches/clinicaltrials_search_log.csv",
+      "size_bytes": 2881,
+      "sha256": "22aab44aa3d69fcf9af7ae1d5a54370db04b90dace7aa0efdb13d683f280a9b9"
+    },
+    {
+      "path": "research/searches/koreamed_designpilot_20260710/summary.json",
+      "size_bytes": 584,
+      "sha256": "ea87a669bee8b798e02d094b07f4cc3d24bef0037eae0a98ca1d5293c20d54eb"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/summary.json",
+      "size_bytes": 23739,
+      "sha256": "70c968dc1f4b8bae14882c68417f22925a4451fa067f1350166da8b300eede16"
+    },
+    {
+      "path": "research/searches/pubmed_pilot_20260710.json",
+      "size_bytes": 7317,
+      "sha256": "43459edf000e4d26eef356400e3e13e3668a5d7022a0c0a1d00d4d84ca31c4d4"
+    },
+    {
+      "path": "research/searches/search_strategy_drafts/A1_pubmed.txt",
+      "size_bytes": 486,
+      "sha256": "1c8cf631d80cafe6979690e2e346d0b713ec4ede510d68ecd675c3d7f02e6d66"
+    },
+    {
+      "path": "research/searches/search_strategy_drafts/A2_pubmed.txt",
+      "size_bytes": 586,
+      "sha256": "6c12f61d0e6964b0057611a1cbb6525dcb48077139b8808e08666b44122654d4"
+    },
+    {
+      "path": "research/searches/search_strategy_drafts/B1_pubmed.txt",
+      "size_bytes": 604,
+      "sha256": "2500922a5460a60d1a38ca8113bd02e24a5a4ed0e69d11d2099b765d283d13e9"
+    },
+    {
+      "path": "research/searches/search_strategy_drafts/B2_pubmed.txt",
+      "size_bytes": 553,
+      "sha256": "c78f241a84c6cfa84d710490b821c6ebf41692493d9b0906e386832924f62c22"
+    },
+    {
+      "path": "research/searches/search_strategy_drafts/B3_pubmed.txt",
+      "size_bytes": 524,
+      "sha256": "1cd3f203baa8a45c45fa5e33fd965a566097e7bd1e726ff47ec238824ed1e3f9"
+    },
+    {
+      "path": "research/searches/sentinel_set.csv",
+      "size_bytes": 1712,
+      "sha256": "d51a0bc05518ae1e5aeb8eaa82c5e5585bfe7ae0bb193436b81bbe0f51a934b3"
+    }
+  ]
+}

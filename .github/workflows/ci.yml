@@ -29,6 +29,7 @@ jobs:
       - run: npm run build
       - run: python tools/validate_phase01.py
       - run: python tools/validate_phase02.py
+      - run: python tools/validate_phase02_evidence_manifest.py
       # Phase 03 full raw-PubMed rehash is local-only because 266 MB XML is not distributed in Git.
       - run: python tools/validate_clinicaltrials_proxy.py
       - run: python tools/validate_pmc_fulltext_candidates.py

@@ -341,3 +341,10 @@
 - Generated a Korean A4 DOCX and Word-exported PDF marked `비최종본`; no proxy count is presented as an effectiveness or safety result.
 - Rendered all eight PDF pages and visually inspected 8/8: clipping 0, overlap 0, Korean glyph errors 0.
 - Bound Markdown, DOCX, and PDF bytes to SHA-256 in a machine-readable QA record and added a standard-library validator.
+
+## 2026-07-10 — Live source recheck and Phase 02 evidence manifest
+
+- Re-opened the authoritative G: `여형준` source root and rehashed all 513 files: missing 0, added 0, content mismatch 0.
+- Distinguished the 126-file GPT handoff package from the original 513-file research source; the handoff package was not substituted for source reconciliation.
+- Bound 21 Phase 02 protocol, query, pilot, and review-queue artifacts to SHA-256.
+- Validator confirms external-gate flags remain false, main PRESS rows 8, Korean PRESS rows 40, and no verified human decisions were inferred.

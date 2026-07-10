@@ -17,6 +17,7 @@ Project status: `in_progress`
 | Dated protocol approval | blocked_external | no supervisor decision |
 | Authenticated database/full-text access | blocked_external | CENTRAL public hit counts available but full content/export authentication-blocked; Embase/Scopus unavailable |
 | Registration/public URL | blocked_external | protocol intentionally not represented as registered |
+| Phase 02 evidence byte integrity | complete_verified | 21 protocol/search/review artifacts SHA-256-bound; external-gate flags false; validator errors 0 |
 
 Do not label Phase 02 complete and do not label any search final. Public-source retrieval may continue as `synthetic_proxy`/`design_pilot` so later tooling can be verified without replacing human approvals.
 

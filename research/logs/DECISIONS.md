@@ -151,3 +151,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: permit a visibly non-final methods-only DOCX/PDF before results freeze, while mechanically rejecting results-dependent sections and any final-thesis claim
 - rationale: document generation, Korean typography, and source-method correspondence can be tested without fabricating results
 - impact: the eight-page checkpoint may support format review only; final thesis generation remains blocked until upstream human gates and department-format confirmation close
+
+## D-019 — Bind Phase 02 evidence without freezing final searches
+
+- date: 2026-07-10
+- decision: hash-bind the current protocol/search/PRESS evidence while keeping protocol approval, PRESS completion, registration, and final-search permission explicitly false
+- rationale: byte integrity is locally provable, whereas methodological approval and licensed database execution require independent people or access
+- impact: later edits to any of 21 core artifacts fail validation, but a passing manifest cannot be cited as Phase 02 completion

@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "03a6fc8cae866233cfa4e3b1bc4e8f0fd03ecc3c",
+  "implementation_head": "bc20f7b9fd68e4e503a35ac84a376271e7964acd",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,13 +10,13 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 775,
+  "file_count": 778,
   "local_required_file_count": 104,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "size_bytes": 1622,
-      "sha256": "6e3569e1df3e44871266e0bd4176ca95081a42c9a1ab0e8fc18491d44d0eee15",
+      "size_bytes": 1686,
+      "sha256": "64318bcbedefe89a7d61b68a2af47b7a91f136a353de0bbfac5d0145c4b80bef",
       "distribution": "tracked"
     },
     {
@@ -801,8 +801,8 @@
     },
     {
       "path": "package.json",
-      "size_bytes": 3039,
-      "sha256": "916b7e2d8095776ab04333eaab637746a06bb61d10b626127150c01db1240d3b",
+      "size_bytes": 3225,
+      "sha256": "5e0f8548c0986ba7337b6759e2aae6c6a97312288652de3d4e52f2d710a07a84",
       "distribution": "tracked"
     },
     {
@@ -928,13 +928,13 @@
     {
       "path": "research/audit/live_source_reconciliation.json",
       "size_bytes": 121514,
-      "sha256": "8d2210edc2c7c1f38a0cf8e67063f089ed2f95a289b114544c3a91fb8bf47bf0",
+      "sha256": "3809f028f343097f1276a432b1db8a6d88e1007fb1476f554ee222e22d9b051b",
       "distribution": "tracked"
     },
     {
       "path": "research/audit/phase_01_artifact_manifest.json",
       "size_bytes": 8547,
-      "sha256": "fb61256412e8120db20e7cd8e5ec64ed67a1556b3f38c348cc1bd6e48fe18758",
+      "sha256": "28d645eca0dc414e3663b7ef0e51f6b95717073be55e012fc8a023039d79cf2b",
       "distribution": "tracked"
     },
     {
@@ -2421,8 +2421,8 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 10542,
-      "sha256": "3ef445715971dcd9793277e90ed96c021610ec0e26e60bb602697e30b76bb1bf",
+      "size_bytes": 11085,
+      "sha256": "7976c3a4cec817af31977a4fff4324cd2ad4235a6993bf6eb7f992d2396bf487",
       "distribution": "tracked"
     },
     {
@@ -2433,14 +2433,14 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 32378,
-      "sha256": "087151d55b1ff51cf192024644efdf799179b0f07a57b8391e1ff3b3231acbac",
+      "size_bytes": 32960,
+      "sha256": "1a8aa37d3586f8b1b92ef04dd909d054410f4286fb3a15374160db624cfa0dea",
       "distribution": "tracked"
     },
     {
       "path": "research/PROGRESS_LEDGER.md",
-      "size_bytes": 2545,
-      "sha256": "c4b0389af7d706219b91a80b4d05906dfcaa663727afb1988437a0986ae435d5",
+      "size_bytes": 2546,
+      "sha256": "5d6880d728858259e21d270a2d9bb7d8e08c4483a667554e5b05c58b8e874968",
       "distribution": "tracked"
     },
     {
@@ -2468,9 +2468,15 @@
       "distribution": "tracked"
     },
     {
+      "path": "research/protocol/phase_02_evidence_manifest.json",
+      "size_bytes": 4321,
+      "sha256": "5ab19a8a1b28fecb5501707281341e74cac5d07c211e0e36da2ad92a3ea40bf5",
+      "distribution": "tracked"
+    },
+    {
       "path": "research/protocol/phase_02_exit_criteria.md",
-      "size_bytes": 2266,
-      "sha256": "a2b45ddf2a93a8b974da46c35b3fe6f94ac0d738c1bbc844daf8912eefdca597",
+      "size_bytes": 2422,
+      "sha256": "179e3b6a0f062e4102ac400a6c1a35b6b70b32bffab2ccf69b589d84b9ef1a81",
       "distribution": "tracked"
     },
     {
@@ -4388,6 +4394,12 @@
       "distribution": "tracked"
     },
     {
+      "path": "tools/build_phase02_evidence_manifest.py",
+      "size_bytes": 2331,
+      "sha256": "b96064378a7e96b04650fb0193d1c58311f68ded8d666f9663ddc3dccaa857d8",
+      "distribution": "tracked"
+    },
+    {
       "path": "tools/build_phase07_review_queues.py",
       "size_bytes": 4477,
       "sha256": "0f0c13a66107ea135d79f773a4afecbec2a5aa50690e05e8195083dc61a71c21",
@@ -4595,6 +4607,12 @@
       "path": "tools/validate_phase02.py",
       "size_bytes": 5554,
       "sha256": "6647e4c88243e8f44c4986d3fc8f23f7a74d9e29c401c6c4f02d974e3f4db2f8",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/validate_phase02_evidence_manifest.py",
+      "size_bytes": 2749,
+      "sha256": "60d94f656c1d8b2fe6b43132a4bb26c8296fbe6d3880bbf335e2598347b53bc0",
       "distribution": "tracked"
     },
     {
