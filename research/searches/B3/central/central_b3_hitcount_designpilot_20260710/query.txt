@@ -1,0 +1,1 @@
+("kidney stone" OR "renal stone" OR nephrolithiasis OR urolithiasis OR hyperoxaluria) AND ("vitamin C" OR "ascorbic acid" OR ascorbate)

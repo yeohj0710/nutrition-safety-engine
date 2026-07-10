@@ -31,6 +31,7 @@ jobs:
       # Phase 03 full raw-PubMed rehash is local-only because 266 MB XML is not distributed in Git.
       - run: python tools/validate_clinicaltrials_proxy.py
       - run: python tools/validate_pmc_fulltext_candidates.py
+      - run: python tools/validate_central_hitcount_observations.py
       - run: python tools/validate_phase04_proxy.py
       - run: python tools/validate_phase05_proxy.py
       - run: python tools/validate_phase06_gate.py

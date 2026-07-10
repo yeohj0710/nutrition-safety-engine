@@ -7,6 +7,7 @@ Proxy pipeline status: `complete_verified`
 | Criterion | Proxy evidence | Final-gate status |
 |---|---|---|
 | Total hits and export counts reconcile | five PubMed pilots, 19,961/19,961; five ClinicalTrials.gov pilots, 207/207 | pass_proxy_only |
+| CENTRAL live hit-count syntax | five runs, 2,264 hits observed; 0 records exported | pass_hitcount_only_export_blocked |
 | No top-N truncation | A1 split into 14 publication-date partitions; all unique IDs equal reported hits | pass_proxy_only |
 | Raw hashes | PubMed payload/metadata manifest plus 20 ClinicalTrials.gov files checksum-verified | pass_proxy_only |
 | Sentinel recall | 9/9 | pass_proxy_only |
@@ -18,3 +19,5 @@ Proxy pipeline status: `complete_verified`
 | Approved final searches across planned sources | none | blocked_external |
 
 ClinicalTrials.gov A1 has a known lexical risk: `vitamin K` also retrieves vitamin-K-antagonist studies. All 139 A1 registry retrievals are flagged for human review. These artifacts test complete-export, checksum, normalization, and queue generation. They are not final searches, included-study counts, PRISMA data, or human deduplication results.
+
+CENTRAL displayed the platform message `Authenticate to get access to full CENTRAL content`. No first-page/top-N records were imported. Complete CENTRAL retrieval remains blocked by licensed authentication and final protocol/PRESS approval.

@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "befd1a471bf2fe88fa3265fd0c73bf2b3d217580",
+  "implementation_head": "5ffabfb137e4b3f09af389c27cfe472c99f90121",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,13 +10,13 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 668,
+  "file_count": 687,
   "local_required_file_count": 104,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "size_bytes": 1140,
-      "sha256": "e08db6eec1dd7cdee2f3054303b293265e994f0f4511228b31d3e6869a5c8ace",
+      "size_bytes": 1208,
+      "sha256": "669414eb9974c6ea1647372e8ad17a4213f8427adbaa853407812eaf09f14ba7",
       "distribution": "tracked"
     },
     {
@@ -771,8 +771,8 @@
     },
     {
       "path": "package.json",
-      "size_bytes": 1973,
-      "sha256": "42343afd86917206d88fe4c52893e8547c4ec8098c623234675cd8de0781168b",
+      "size_bytes": 2065,
+      "sha256": "14fcb7d9c3fd6bf9726321865731e1c983e403ab6e3c5ec30af698be4428f7d3",
       "distribution": "tracked"
     },
     {
@@ -2349,8 +2349,8 @@
     },
     {
       "path": "research/logs/BLOCKERS.md",
-      "size_bytes": 7494,
-      "sha256": "0717511ee7ccfa05982d82c0f1f3a8c17c30642ba9c7aef9c77f0ced1dc4291a",
+      "size_bytes": 7588,
+      "sha256": "6e0bbb2bbd22535390e7b4014bb44aaefff02498e4e4b568fb49eebd2707e418",
       "distribution": "tracked"
     },
     {
@@ -2367,20 +2367,20 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 24305,
-      "sha256": "097be79268eb28191434e0ef667e563ec18c6cab0d855359662e2484752a785f",
+      "size_bytes": 25017,
+      "sha256": "867df32bf451871cd4e8bd95ec8006e398a0b3054fe5d16a1770bc627219c819",
       "distribution": "tracked"
     },
     {
       "path": "research/PROGRESS_LEDGER.md",
-      "size_bytes": 2156,
-      "sha256": "cf98cb8a2d0c1f88a5d42f5daf96a363cbd945df5675ecd0a5d34093ef1fe9bf",
+      "size_bytes": 2202,
+      "sha256": "121e40b55cf70a1aa29c46847c25391af57054fe04f13ffd85cf22da9b5f93df",
       "distribution": "tracked"
     },
     {
       "path": "research/protocol/access_matrix.csv",
-      "size_bytes": 3495,
-      "sha256": "13844930b82d30578667b02b5a1aeabb42153f4e7c96765f3fb01045096e445f",
+      "size_bytes": 3608,
+      "sha256": "e46f4eb159f66f601541ce37f7bc2115f53187714e2e2342bb05e10d3fca0633",
       "distribution": "tracked"
     },
     {
@@ -2403,8 +2403,8 @@
     },
     {
       "path": "research/protocol/phase_02_exit_criteria.md",
-      "size_bytes": 1495,
-      "sha256": "b24f5fb818ddd048d1781e3a900cbb1d4b1425530f268f8d02ee8559e015521f",
+      "size_bytes": 1767,
+      "sha256": "49e86849e92b4a88404232755c8517c6a99823dac41f68589b8b34e78bc1ea00",
       "distribution": "tracked"
     },
     {
@@ -2501,6 +2501,24 @@
       "path": "research/screening/proxy_run_metadata.json",
       "size_bytes": 2298,
       "sha256": "ddcfe8dad6cdfa68bfd9d65322d2cbd7031f2936620ec502192289d664a2db6c",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/A1/central/central_a1_hitcount_designpilot_20260710/checksum.sha256",
+      "size_bytes": 167,
+      "sha256": "464462683870f1c0d9f86ab3761a39343b50b12a669e63e83328f73017e37009",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/A1/central/central_a1_hitcount_designpilot_20260710/query.txt",
+      "size_bytes": 130,
+      "sha256": "3e6c7d6e9973f46875e1886817ba8e10d03053e8f9db46b456afec4bc7310c6b",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/A1/central/central_a1_hitcount_designpilot_20260710/response_metadata.json",
+      "size_bytes": 1473,
+      "sha256": "0c69535fecbf43f84836d4427a198378afad769a3e1b50d30095b879b490ca1d",
       "distribution": "tracked"
     },
     {
@@ -2936,6 +2954,24 @@
       "distribution": "tracked"
     },
     {
+      "path": "research/searches/A2/central/central_a2_hitcount_designpilot_20260710/checksum.sha256",
+      "size_bytes": 167,
+      "sha256": "2b86eb92a08994577e434ef23b37721d0e858ed106ffbfb8b23f32e0a996bd6e",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/A2/central/central_a2_hitcount_designpilot_20260710/query.txt",
+      "size_bytes": 158,
+      "sha256": "3b93e71ed06f06cf80b26e04ffbcbc946f89e24e17e8aeedaf48f257e0f19586",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/A2/central/central_a2_hitcount_designpilot_20260710/response_metadata.json",
+      "size_bytes": 1500,
+      "sha256": "b190b33fc13d459958412be8dc2f9d002e91b3ac86a9ac780d175455542e4108",
+      "distribution": "tracked"
+    },
+    {
       "path": "research/searches/A2/clinicaltrials/ctgov_a2_designpilot_20260710/checksum.sha256",
       "size_bytes": 319,
       "sha256": "eeec01dff4d6c0036418fd93c4963cd28cf358af1cb20c3c065766ea09844ea9",
@@ -3023,6 +3059,24 @@
       "path": "research/searches/A2/pubmed/pubmed_a2_designpilot_20260710/response_metadata.json",
       "size_bytes": 712,
       "sha256": "09432df91134b950e0cff4fa21848e2f051e351834ee59fa640e16eaf15f6d4a",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/B1/central/central_b1_hitcount_designpilot_20260710/checksum.sha256",
+      "size_bytes": 167,
+      "sha256": "4ffe1f97d11afb1aa4876c5d5eb1ed2ca7a9d3265031767221d50bba9d99b43d",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/B1/central/central_b1_hitcount_designpilot_20260710/query.txt",
+      "size_bytes": 185,
+      "sha256": "82d14b9304b1c767453df3af9dacaf259860185914ea9efb6cb5625afc34f525",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/B1/central/central_b1_hitcount_designpilot_20260710/response_metadata.json",
+      "size_bytes": 1543,
+      "sha256": "1e7df27f8326b7d2f6e1dc831df34a5346d7484207ccf6bbf4607c81bda570dc",
       "distribution": "tracked"
     },
     {
@@ -3125,6 +3179,24 @@
       "path": "research/searches/B1/pubmed/pubmed_b1_designpilot_20260710/response_metadata.json",
       "size_bytes": 714,
       "sha256": "184ca552ba1fb9198313d7f16bad30ff98d9841b9ad81849e7ab9b5dd282963f",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/B2/central/central_b2_hitcount_designpilot_20260710/checksum.sha256",
+      "size_bytes": 167,
+      "sha256": "59d102cb7797b4306cd64a07d82eaa1fb63770215ffa85e9ad29f5430a336316",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/B2/central/central_b2_hitcount_designpilot_20260710/query.txt",
+      "size_bytes": 158,
+      "sha256": "e8aecdcab7b84c5cd49207260856c938509189a665cac2aad237122d1698f7ae",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/B2/central/central_b2_hitcount_designpilot_20260710/response_metadata.json",
+      "size_bytes": 1504,
+      "sha256": "8fca0d648ef41471cc146c61999f9ffe43e274460af0dd31cf1c0281873f0a4a",
       "distribution": "tracked"
     },
     {
@@ -3338,6 +3410,24 @@
       "distribution": "tracked"
     },
     {
+      "path": "research/searches/B3/central/central_b3_hitcount_designpilot_20260710/checksum.sha256",
+      "size_bytes": 167,
+      "sha256": "513f0d37458715b1346bc903cfc0dea1ee570cfacc5e03f70043e203d770183b",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/B3/central/central_b3_hitcount_designpilot_20260710/query.txt",
+      "size_bytes": 137,
+      "sha256": "e8398443e674f9a6c570165063c80860c05fd0fe873c1906866d3232a8a70f4f",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/B3/central/central_b3_hitcount_designpilot_20260710/response_metadata.json",
+      "size_bytes": 1486,
+      "sha256": "ea26ac93f15c858ca67aaa60f2d3b167f0f9cd1afa07c5cdde03d06e9567acbb",
+      "distribution": "tracked"
+    },
+    {
       "path": "research/searches/B3/clinicaltrials/ctgov_b3_designpilot_20260710/checksum.sha256",
       "size_bytes": 319,
       "sha256": "60929afa7cab1497a0fe18be3a85c28febdedf5a1af213bd6b11b2f2c22d0ed0",
@@ -3422,6 +3512,18 @@
       "distribution": "tracked"
     },
     {
+      "path": "research/searches/central_hitcount_log.csv",
+      "size_bytes": 1629,
+      "sha256": "6ca79a63a0d2abe9564f549d1b4fc32329817d4b7c966215a74f4fb48d538615",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/central_hitcount_validation.json",
+      "size_bytes": 183,
+      "sha256": "fac1f302625a66cb492316fbc21bdabe483a12f203301472d7712ec7ef4f1992",
+      "distribution": "tracked"
+    },
+    {
       "path": "research/searches/clinicaltrials_search_log.csv",
       "size_bytes": 2881,
       "sha256": "22aab44aa3d69fcf9af7ae1d5a54370db04b90dace7aa0efdb13d683f280a9b9",
@@ -3435,8 +3537,8 @@
     },
     {
       "path": "research/searches/phase_03_exit_criteria.md",
-      "size_bytes": 1552,
-      "sha256": "c3ed0db77d4f48b48f2752b18b84c8a09e076af53afbc8016b0a5fa89f42f89c",
+      "size_bytes": 1917,
+      "sha256": "dec8069afe62683f717527ae3f0eb3222857c7e00f8315141e9d6d0c726898e5",
       "distribution": "tracked"
     },
     {
@@ -3812,6 +3914,12 @@
       "distribution": "tracked"
     },
     {
+      "path": "tools/build_central_hitcount_observations.py",
+      "size_bytes": 5074,
+      "sha256": "147641ed0f639e81d61c30f1ba2a106316f63d69bfcc59d0af21695a8b8d5606",
+      "distribution": "tracked"
+    },
+    {
       "path": "tools/build_clinicaltrials_review_queue.py",
       "size_bytes": 1261,
       "sha256": "dbe95c63e80d92b1bd93324d63d76a3257dd3e731856f1e351d3d03bf101ed34",
@@ -3947,6 +4055,12 @@
       "path": "tools/search_pipeline/storage.py",
       "size_bytes": 3753,
       "sha256": "1ae0536b7e91cee30854a85bd14fce3035a3fb8e6e3213db921431d6d2663f2f",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/validate_central_hitcount_observations.py",
+      "size_bytes": 2834,
+      "sha256": "aa44464d0e7bbd1ac2b6f8dd252857ca7bf0390ad40dc9aea6826871f1287ecd",
       "distribution": "tracked"
     },
     {

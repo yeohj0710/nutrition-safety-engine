@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "central_a1_hitcount_designpilot_20260710",
+  "question_id": "A1",
+  "database": "CENTRAL",
+  "platform": "Cochrane Library",
+  "observed_at": "2026-07-10",
+  "query_sha256": "3e6c7d6e9973f46875e1886817ba8e10d03053e8f9db46b456afec4bc7310c6b",
+  "trials_hits_observed": 1664,
+  "records_exported": 0,
+  "full_export_complete": false,
+  "status": "design_pilot_hit_count_only_export_blocked_authentication",
+  "result_url": "https://www.cochranelibrary.com/en/search?searchBy=6&searchText=%28warfarin+OR+%22vitamin+K+antagonist%22+OR+acenocoumarol+OR+phenprocoumon%29+AND+%28%22vitamin+K%22+OR+phylloquinone+OR+menaquinone+OR+MK-7%29&isWordVariations=&resultPerPage=25&searchType=basic&forceTypeSelection=true&selectedType=central&displayText=&orderBy=relevancy&p_p_id=scolarissearchresultsportlet_WAR_scolarissearchresults&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_count=1",
+  "browser_evidence": {
+    "public_search_box": true,
+    "trial_count_link_observed": true,
+    "representative_trial_page_question": "B3",
+    "representative_authentication_message": "Authenticate to get access to full CENTRAL content",
+    "representative_issue": "Issue 6 of 12, June 2026"
+  },
+  "limitation": "Hit count only. No top-N sample is treated as an export, screening set, or final search.",
+  "peer_review_status": "pending_external_PRESS",
+  "final_search_claim_allowed": false
+}

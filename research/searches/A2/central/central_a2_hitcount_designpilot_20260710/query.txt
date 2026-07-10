@@ -1,0 +1,1 @@
+(anticoagulant OR anticoagulation OR warfarin OR apixaban OR rivaroxaban OR edoxaban OR dabigatran) AND ("omega-3" OR "fish oil" OR EPA OR DHA OR icosapent)

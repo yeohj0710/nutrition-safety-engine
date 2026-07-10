@@ -101,7 +101,7 @@ Status: `resolved_2026-07-10`.
 
 - exact block point: reproducible Embase and Scopus final searches/exports
 - live check: existing Chrome session reached Embase `landing?status=grey` and Scopus Preview; both exposed `Sign in`/`Check access`, with no authenticated search entitlement
-- partial access: CENTRAL public search/filter interface is reachable without sign-in; final query/export remains protocol-gated
+- partial access: CENTRAL public search/filter interface executed five question queries and exposed 2,264 trial hits; trial page states authentication is required for full content; records exported 0
 - minimum input needed: institutional or personal licensed access for Embase and Scopus/WoS, then complete native exports and search histories
-- work that can continue: PubMed, CENTRAL public design-pilot, registries, Korean databases, citation chasing, queue/test tooling
+- work that can continue: CENTRAL query refinement/hit-count reproducibility; PubMed, registries, Korean databases, citation chasing, queue/test tooling
 - status: `blocked_external`

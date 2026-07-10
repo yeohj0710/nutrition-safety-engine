@@ -1,5 +1,13 @@
 # WORKLOG
 
+## 2026-07-10 — CENTRAL live hit-count design pilot
+
+- Executed five public Cochrane Library basic searches and selected the CENTRAL trial-count link for each question.
+- Observed trial hits: A1 1,664; A2 111; B1 111; B2 333; B3 45; total 2,264.
+- B3 trial results page displayed `Authenticate to get access to full CENTRAL content`, issue 6/12 June 2026. Public records exported: 0.
+- Persisted query text, query SHA-256, result URL, hit count, response metadata, and per-run checksums. Validator errors 0.
+- Did not scrape or import the visible first 25 records and did not represent a top-N sample as a complete export. Status remains hit-count-only, pending licensed access, PRESS, and protocol approval.
+
 ## 2026-07-10 — Public PMC locator resolution
 
 - Used the official PMC ID Converter API in 99 batches of at most 200 IDs to resolve all 19,609 normalized PMIDs.
