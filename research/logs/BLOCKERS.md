@@ -69,3 +69,17 @@ Detailed decision questions: `research/review_queue/phase_01_external_review.csv
 - minimum input needed: independent reviewer IDs/training decisions, adjudication route, full-text access, and completed decisions
 - work that can continue: extraction schema validation with synthetic fixtures, metric code, error taxonomy
 - status: `blocked_external`
+
+## B-009 — Verified extraction, RoB, and AI gold
+
+- exact block point: evidence values, RoB judgments, AI extraction performance, synthesis inputs
+- available preparation: schema invariant tests, locator rejection, Wilson metric harness, empty human/RoB tables
+- minimum input needed: frozen included reports, lawful full texts, independent human extraction/RoB and consensus gold
+- status: `blocked_external`
+
+## B-010 — Isolated Python dependency download
+
+- exact block point: installing `jsonschema==4.25.1` into `.venv`
+- attempted: two pip installs with bounded retries/timeouts; both timed out
+- workaround: standard-library critical invariant validator; design package still reports schema meta-validation warning
+- status: `blocked_external`

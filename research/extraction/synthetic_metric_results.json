@@ -1,0 +1,42 @@
+{
+  "status": "synthetic_metric_fixture_not_ai_performance",
+  "shared_fields": 3,
+  "exact_value": {
+    "n": 2,
+    "N": 3,
+    "rate": 0.6666666666666666,
+    "wilson95": [
+      0.2076596008020477,
+      0.9385080552796037
+    ]
+  },
+  "unit": {
+    "n": 2,
+    "N": 3,
+    "rate": 0.6666666666666666,
+    "wilson95": [
+      0.2076596008020477,
+      0.9385080552796037
+    ]
+  },
+  "locator": {
+    "n": 2,
+    "N": 3,
+    "rate": 0.6666666666666666,
+    "wilson95": [
+      0.2076596008020477,
+      0.9385080552796037
+    ]
+  },
+  "unsupported_claims": {
+    "n": 1,
+    "N": 4,
+    "rate": 0.25
+  },
+  "valid_fixture_accepted": true,
+  "missing_locator_rejected": true,
+  "human_extraction_rows": 0,
+  "risk_of_bias_rows": 0,
+  "ai_runs": 0,
+  "fixture_sha256": "3d961b9dc68971f297d29fb449c9daec60625e9c7aa10b0128eb490f1f95814b"
+}

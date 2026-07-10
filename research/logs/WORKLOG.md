@@ -101,3 +101,11 @@
 - result: 19,961 units in each proxy and human queue; sensitivity-first high/medium/low 15,862/3,117/982; structured-conservative 12,330/5,957/1,674; 4,224 proxy disagreements; deterministic hashes stable; validator errors 0
 - limitation: human decisions 0, full-text assessments 0, final reports/studies unavailable, PRISMA prohibited
 - decision: proxy queue `complete_verified`, Phase 04 `blocked_external`; no proxy recommendation has decision authority and AI-only exclusions remain 0
+
+## 2026-07-10 16:05:00 +09:00
+
+- phase / task ID: Phase 05 / extraction-metric synthetic harness
+- procedure: retried isolated `jsonschema` install twice; both timed out; created standard-library invariant/metric harness, blank human extraction and RoB tables, valid and missing-locator fixtures
+- result: extracted value with quote+locator accepted; missing locator rejected; Wilson/unsupported-claim metric fixture reproduced; human extraction 0, RoB 0, AI runs 0
+- limitation: G: still access denied; package download unavailable; synthetic metric values are not AI performance
+- decision: Phase 05 remains `blocked_external`; continue only schema/engine work with thesis claims/rules at zero

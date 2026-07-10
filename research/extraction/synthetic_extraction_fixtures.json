@@ -1,0 +1,72 @@
+[
+  {
+    "name": "valid",
+    "candidate": {
+      "run_id": "SYNTH-EXTRACT-001",
+      "report_id": "SYNTH-REPORT-001",
+      "question_id": "A1",
+      "model": {
+        "name": "synthetic_fixture_generator",
+        "version_or_access_date": "2026-07-10",
+        "temperature": null,
+        "prompt_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "fields": [
+        {
+          "field_name": "synthetic_event_count",
+          "value": 4,
+          "normalized_value": 4,
+          "unit": "events",
+          "status": "extracted",
+          "supporting_quote": "Synthetic fixture: four events.",
+          "locator": {
+            "page": 7,
+            "section": "Synthetic results",
+            "table_or_figure": "Table S1"
+          },
+          "confidence": 1.0,
+          "reasoning_note": "Synthetic fixture only."
+        }
+      ],
+      "warnings": [
+        "not a research document or AI performance run"
+      ]
+    },
+    "expected_valid": true
+  },
+  {
+    "name": "invalid_missing_locator",
+    "candidate": {
+      "run_id": "SYNTH-INVALID-NO-LOCATOR",
+      "report_id": "SYNTH-REPORT-001",
+      "question_id": "A1",
+      "model": {
+        "name": "synthetic_fixture_generator",
+        "version_or_access_date": "2026-07-10",
+        "temperature": null,
+        "prompt_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "fields": [
+        {
+          "field_name": "synthetic_event_count",
+          "value": 4,
+          "normalized_value": 4,
+          "unit": "events",
+          "status": "extracted",
+          "supporting_quote": null,
+          "locator": {
+            "page": null,
+            "section": null,
+            "table_or_figure": null
+          },
+          "confidence": 1.0,
+          "reasoning_note": "Synthetic fixture only."
+        }
+      ],
+      "warnings": [
+        "not a research document or AI performance run"
+      ]
+    },
+    "expected_valid": false
+  }
+]
