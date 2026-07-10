@@ -171,8 +171,8 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 30959,
-      "sha256": "fc2f455a385256352c1987aa0c372612e9de619de0da8f32b041a0dd548d1302"
+      "size_bytes": 32045,
+      "sha256": "3f0c2d0743772a74ee4acf66eadc1fe2c28d2365a3948a5238c1d080c9177e31"
     },
     {
       "path": "research/logs/RISKS.md",
@@ -181,8 +181,8 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 52527,
-      "sha256": "1925350b047342f43ffc7f8e72f3eb4711b1257e5650c279c9395e83b40aa975"
+      "size_bytes": 53119,
+      "sha256": "a88ee4895396ee76be02497d6463939ab2af386cec25130822da145260636672"
     },
     {
       "path": "research/review_queue/HUMAN_HANDOFF.md",

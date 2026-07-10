@@ -33,6 +33,31 @@ def write(fields: list[str], rows: list[dict[str, str]]) -> None:
         writer.writeheader(); writer.writerows(rows)
 
 
+def human_started(row: dict[str, str]) -> bool:
+    fields = ("source_file_path", "source_file_sha256", "study_id", "study_link_verified_by", "design_family",
+              "design_verified_by", "reviewer_1_id", "reviewer_1_decision", "reviewer_1_reason", "reviewer_1_at",
+              "reviewer_2_id", "reviewer_2_decision", "reviewer_2_reason", "reviewer_2_at", "adjudicator_id",
+              "final_decision", "final_reason")
+    return row.get("fulltext_access_status") != "not_started" or any(row.get(field, "") for field in fields)
+
+
+def write_or_preserve(fields: list[str], generated: list[dict[str, str]]) -> str:
+    if QUEUE.exists():
+        with QUEUE.open(encoding="utf-8-sig", newline="") as handle:
+            reader = csv.DictReader(handle); existing = list(reader)
+            if reader.fieldnames != fields:
+                if any(human_started(row) for row in existing):
+                    raise ValueError("full-text queue header changed after human review")
+            elif any(human_started(row) for row in existing):
+                old = {row["fulltext_queue_id"]: row for row in existing}; new = {row["fulltext_queue_id"]: row for row in generated}
+                static = ("report_id", "record_id", "question_id", "title", "pmid", "lineage_sha256")
+                if set(old) != set(new) or any(any(old[key][field] != new[key][field] for field in static) for key in old):
+                    raise ValueError("full-text routing lineage changed after human review")
+                return "preserved_existing_human_data"
+    write(fields, generated)
+    return "generated_no_human_data"
+
+
 def main() -> int:
     with (DATA / "secondary_screening_review_queue.csv").open(encoding="utf-8-sig", newline="") as handle:
         secondary = list(csv.DictReader(handle))
@@ -58,7 +83,9 @@ def main() -> int:
               "design_family", "design_verified_by", "reviewer_1_id", "reviewer_1_decision",
               "reviewer_1_reason", "reviewer_1_at", "reviewer_2_id", "reviewer_2_decision", "reviewer_2_reason",
               "reviewer_2_at", "adjudicator_id", "final_decision", "final_reason", "status"]
-    write(fields, queue_rows)
+    queue_write_status = write_or_preserve(fields, queue_rows)
+    with QUEUE.open(encoding="utf-8-sig", newline="") as handle:
+        actual_queue = list(csv.DictReader(handle))
     fixtures = [{"secondary_id": "S1", "record_id": "R1", "question_id": "A1", "final_decision": "include",
                  "reviewer_2_id": "H2", "reviewer_2_decision": "include", "reviewed_at": "2026-07-10"},
                 {"secondary_id": "S2", "record_id": "R2", "question_id": "A1", "final_decision": "uncertain",
@@ -75,7 +102,8 @@ def main() -> int:
              "study_design_gate_present": all(field in fields for field in ("study_id", "study_link_verified_by", "design_family", "design_verified_by"))}
     contract = {"schema_version": "1.0.0", "status": "awaiting_secondary_screening_completion",
                 "secondary_final_rows": sum(bool(row["final_decision"].strip()) for row in secondary),
-                "fulltext_queue_rows": len(queue_rows), "fulltext_human_reviews": 0,
+                "fulltext_queue_rows": len(actual_queue), "fulltext_human_reviews": sum(human_started(row) for row in actual_queue),
+                "queue_write_status": queue_write_status,
                 "contract_tests": tests, "all_passed": all(tests.values())}
     REPORT.write_text(json.dumps(contract, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(contract, ensure_ascii=False))

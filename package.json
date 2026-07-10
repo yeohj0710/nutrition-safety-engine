@@ -30,6 +30,7 @@
     "validate:secondary-preservation": "python tools/validate_secondary_queue_preservation.py",
     "build:fulltext-review": "python tools/build_fulltext_review_queue.py",
     "validate:fulltext-review": "python tools/validate_fulltext_review_queue.py",
+    "validate:fulltext-preservation": "python tools/validate_fulltext_queue_preservation.py",
     "build:extraction-rob-work": "python tools/build_extraction_rob_work_queues.py",
     "validate:extraction-rob-work": "python tools/validate_extraction_rob_work_queues.py",
     "validate:phase05:preservation": "python tools/validate_phase05_preservation.py",

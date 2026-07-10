@@ -4,6 +4,7 @@
   "secondary_final_rows": 0,
   "fulltext_queue_rows": 0,
   "fulltext_human_reviews": 0,
+  "queue_write_status": "generated_no_human_data",
   "contract_tests": {
     "include_routed": true,
     "uncertain_routed": true,

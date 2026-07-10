@@ -410,3 +410,17 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: accept not-started, in-progress, and complete-candidate rows; disagreements with the primary decision require an adjudicator before completion
 - rationale: blank-only validation prevents double screening, while accepting an unadjudicated disagreement would bypass the protocol
 - impact: reviewer-2 work can advance without being called final; complete candidates still require downstream phase validation
+
+## D-056 — Full-text routing may not erase access or double-review work
+
+- date: 2026-07-10
+- decision: preserve a populated full-text queue byte-for-byte and refuse regeneration when secondary routing keys or lineage hashes change
+- rationale: rerouting after lawful file acquisition, study/design verification, or reviewer decisions would destroy the audit trail
+- impact: only blank queues regenerate; changed upstream selection requires explicit migration/review rather than silent overwrite
+
+## D-057 — Full-text completion requires verified bytes and two independent reviewers
+
+- date: 2026-07-10
+- decision: require obtained-verified access, repository-local non-legacy source with reproduced SHA, verified study/design, two distinct reviewers, adjudication on disagreement, and final exclusion reason when excluded
+- rationale: a final decision without the actual source, correct study/design unit, or independent review cannot support extraction and RoB
+- impact: partial access/review remains in progress; only complete candidates route downstream after phase validation

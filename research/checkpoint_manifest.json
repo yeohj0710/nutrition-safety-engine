@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "6fe0361912339bc5a5a049c736652bc287a1b798",
+  "implementation_head": "ce3ca0c45c8b10ee262ee9bd56b07aca5bf4ac4d",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,13 +10,13 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 833,
+  "file_count": 834,
   "local_required_file_count": 104,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "size_bytes": 2587,
-      "sha256": "0a5d3f87721983c578ffc0b5b5c2525cc9016e407f5727d4e648473d79d0689d",
+      "size_bytes": 2653,
+      "sha256": "0bd881e197ceec177bee65eba7fcb3f3b06c1ce3dc58900274cd8d287ebed73e",
       "distribution": "tracked"
     },
     {
@@ -891,8 +891,8 @@
     },
     {
       "path": "package.json",
-      "size_bytes": 5229,
-      "sha256": "cce1884c94bd8d1e9e9213edb6724cb04949abb5018e0e6d68d7a321defe79d2",
+      "size_bytes": 5323,
+      "sha256": "f90d5d804dcf87f4f5c111845b6c57b2b50c8844631182d90cf4f1311d19e133",
       "distribution": "tracked"
     },
     {
@@ -1024,7 +1024,7 @@
     {
       "path": "research/audit/phase_01_artifact_manifest.json",
       "size_bytes": 9845,
-      "sha256": "ac4b1f588c727e45bd8f44438c982101f5a19369aca650cfa69f11a25243543f",
+      "sha256": "510d1007d600783133d977a4935c9a01d0c3f19ad88dd5d6ddc6a7edbb79d480",
       "distribution": "tracked"
     },
     {
@@ -2523,8 +2523,8 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 30959,
-      "sha256": "fc2f455a385256352c1987aa0c372612e9de619de0da8f32b041a0dd548d1302",
+      "size_bytes": 32045,
+      "sha256": "3f0c2d0743772a74ee4acf66eadc1fe2c28d2365a3948a5238c1d080c9177e31",
       "distribution": "tracked"
     },
     {
@@ -2535,14 +2535,14 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 52527,
-      "sha256": "1925350b047342f43ffc7f8e72f3eb4711b1257e5650c279c9395e83b40aa975",
+      "size_bytes": 53119,
+      "sha256": "a88ee4895396ee76be02497d6463939ab2af386cec25130822da145260636672",
       "distribution": "tracked"
     },
     {
       "path": "research/PROGRESS_LEDGER.md",
-      "size_bytes": 3278,
-      "sha256": "0f17e61dfb434648ed80556a069dd6ab9298b8869c744be4bd68f1df148a1d47",
+      "size_bytes": 3273,
+      "sha256": "6644eeaac0955d1131832c3d772a799950eeeb898873a4a6f52c6800a21ac8e8",
       "distribution": "tracked"
     },
     {
@@ -2679,8 +2679,8 @@
     },
     {
       "path": "research/screening/full_text_queue_contract.json",
-      "size_bytes": 471,
-      "sha256": "4cb56b9a41fe875bab5362a6cecce9813b0a17002f30c4a3f65018f37ac3e101",
+      "size_bytes": 523,
+      "sha256": "751ec5ed2abbb6108a23bacbb19b6052195e96b8b051c8135796b62b73bc8467",
       "distribution": "tracked"
     },
     {
@@ -2691,8 +2691,8 @@
     },
     {
       "path": "research/screening/phase_04_exit_criteria.md",
-      "size_bytes": 3556,
-      "sha256": "d69acfbcce7abfa8c9221427b712b78ce778c6e95cb434771061f393d10c216a",
+      "size_bytes": 3767,
+      "sha256": "d418b81b3ab67dd4978812087be8738460dd5f73465c02a3e9cf56618f75eb19",
       "distribution": "tracked"
     },
     {
@@ -4216,7 +4216,7 @@
     {
       "path": "research/thesis/finalization_readiness.json",
       "size_bytes": 5665,
-      "sha256": "9ff596a9a55324ea99ce98bd14fda8c0763972bfbb854db20d44af2860eeca54",
+      "sha256": "a794f61843a76fde99fa8df3e639b03593121d84372b0e47cda6c3820ff8c8b8",
       "distribution": "tracked"
     },
     {
@@ -4587,8 +4587,8 @@
     },
     {
       "path": "tools/build_fulltext_review_queue.py",
-      "size_bytes": 5698,
-      "sha256": "57761cd17b4d153a48001d5e0e3217c990696cc3aa868b45ad447bebdd14841d",
+      "size_bytes": 7575,
+      "sha256": "a927c7a79e10d5bbea83e12532f11bc126a135d33b96cf5c79d5726339ef7de8",
       "distribution": "tracked"
     },
     {
@@ -4832,9 +4832,15 @@
       "distribution": "tracked"
     },
     {
+      "path": "tools/validate_fulltext_queue_preservation.py",
+      "size_bytes": 2282,
+      "sha256": "b9f47646e8b059eb23f4597be681d8bfa6e22bb39b7e227b12b962a15dca7fac",
+      "distribution": "tracked"
+    },
+    {
       "path": "tools/validate_fulltext_review_queue.py",
-      "size_bytes": 2096,
-      "sha256": "2a2913cddf902a262a034d654031c6f0b9de80840f5707000fe32964a3eb72bd",
+      "size_bytes": 3645,
+      "sha256": "5464275e9693907ff5219d2b4beb68997c8288fc1034509d7d091fd67ce14038",
       "distribution": "tracked"
     },
     {

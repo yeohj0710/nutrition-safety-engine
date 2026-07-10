@@ -571,3 +571,10 @@
 - Added byte preservation with exact selected-key/title/year/source-hash checks and write-before-fail behavior for changed selection lineage.
 - Added not-started/in-progress/complete-candidate semantics; reviewer-2 disagreement requires adjudicator identity before completion.
 - Preservation contracts pass 3/3 and existing five selection/blinding contracts pass. Current primary/secondary human decisions remain 0/0.
+
+## 2026-07-10 — Future-safe full-text double review
+
+- Found unconditional full-text queue rewriting and blank-only validation.
+- Added byte preservation with exact report/record/question/title/PMID/lineage checks; changed routing fails before write. Preservation contracts pass 3/3.
+- Added semantic access, real source SHA, study/design verification, distinct reviewer, disagreement adjudication, final decision, and exclusion-reason gates.
+- Existing routing contracts pass 7/7; downstream extraction/RoB routing contracts pass 6/6. Current full-text and downstream work rows remain 0.
