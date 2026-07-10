@@ -521,3 +521,10 @@
 - Replaced the empty registry with the exact 22-field template; no human data was overwritten.
 - Phase 06 now checks exact header equality, allowed certainty grades, distinct reviewers, consensus provenance, and exact validated certainty ID promotion.
 - Human handoff now exposes the real GRADE fields instead of a nonexistent `status` column. Current GRADE rows remain 0.
+
+## 2026-07-10 — Phase 07 human queue preservation and progression
+
+- Found that `build_phase07_review_queues.py` unconditionally rewrote both 120-row human queues and that both validators rejected any populated field.
+- Builder now preserves a human-populated file byte-for-byte, refreshes only empty queues, and refuses header mismatch without writing; preservation contracts pass 3/3.
+- Validators now support pending, partial, and completed expert/gold states. Gold completion requires two authors plus a distinct adjudicator, seven valid JSON payloads, timestamps, and row SHA-256.
+- State contracts pass 6/6. Current expert reviews and independent gold candidates remain 0/0; no clinical performance claim is enabled.

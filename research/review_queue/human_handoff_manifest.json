@@ -528,7 +528,7 @@
     {
       "queue_id": "P7_blind_expert",
       "path": "research/validation/synthetic_scenario_blind_expert_review.csv",
-      "sha256": "f5521fba3546f2a869ec8db1ecf429cfacddbd0440c444647689433ba86c3bfa",
+      "sha256": "7cfbc5b727188d3f5e5b95346cf68c380b656b29394c6d7d24ebaa4ed6b721ad",
       "size_bytes": 46923,
       "row_count": 120,
       "human_entry_fields": [
@@ -552,7 +552,7 @@
     {
       "queue_id": "P7_independent_gold",
       "path": "research/validation/independent_gold_scenario_authoring_queue.csv",
-      "sha256": "461fdd81e575401d54dc4935991891f7182255dfaf02609fae2b460e487b542a",
+      "sha256": "b97dcf4039f32ffcabddff94cb90550fdaf392a7d7039dbc1e935faf9702a5d2",
       "size_bytes": 23983,
       "row_count": 120,
       "human_entry_fields": [

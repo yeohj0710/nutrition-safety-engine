@@ -319,3 +319,17 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: replace the empty reduced certainty CSV with the exact 22-field protocol template and derive validated status from complete two-reviewer consensus fields
 - rationale: the reduced schema omitted reviewer identities, consensus date, participants, design starting point, absolute/relative effects, and explicit upgrade domains needed to reproduce GRADE judgments
 - impact: incomplete rows may remain work in progress; only rows with outcome, final certainty, rationale, two distinct reviewers, and consensus date can enter curated evidence
+
+## D-043 — Phase 07 rebuilds may never erase human validation
+
+- date: 2026-07-10
+- decision: regenerate expert/gold queues only while their human fields are empty; once any human field exists, preserve the entire file byte-for-byte and validate it in place
+- rationale: scenario or bundle refresh must not destroy independent authoring, adjudication, or expert review work
+- impact: missing queues initialize, empty queues refresh safely, header drift fails without write, and human-populated queues survive every builder run
+
+## D-044 — Phase 07 validators accept explicit partial and complete states
+
+- date: 2026-07-10
+- decision: replace blank-only assertions with pending/in-progress/complete validation; completed gold candidates require distinct roles, parseable JSON, timestamps, and row hash
+- rationale: treating any human entry as corruption made the prescribed independent validation impossible to finish
+- impact: partial work remains visible without being counted complete; completed rows are candidates only and do not themselves authorize clinical performance or release

@@ -20,6 +20,22 @@ def sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def write_or_preserve(path: Path, fields: list[str], generated: list[dict], human_fields: list[str]) -> str:
+    if path.exists():
+        with path.open(encoding="utf-8-sig", newline="") as handle:
+            reader = csv.DictReader(handle)
+            existing = list(reader)
+            if reader.fieldnames != fields:
+                raise ValueError(f"existing queue header mismatch; refusing overwrite: {path}")
+        if any(any(row.get(field, "").strip() for field in human_fields) for row in existing):
+            return "preserved_existing_human_data"
+    with path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(generated)
+    return "generated_no_human_data"
+
+
 def main() -> int:
     report = json.loads(REPORT.read_text(encoding="utf-8"))
     inputs = [json.loads(line) for line in INPUTS.read_text(encoding="utf-8").splitlines() if line.strip()]
@@ -56,10 +72,8 @@ def main() -> int:
             "reviewed_at": "",
             "status": "pending_external_human_review_synthetic_not_gold",
         })
-    with BLIND.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=blind_fields, lineterminator="\n")
-        writer.writeheader()
-        writer.writerows(blind_rows)
+    blind_human_fields = ["reviewer_id", "clinical_plausibility", "risk_coverage", "missing_information", "comments", "reviewed_at"]
+    blind_write_status = write_or_preserve(BLIND, blind_fields, blind_rows, blind_human_fields)
 
     gold_fields = [
         "gold_scenario_id", "question_id", "protocol_sha256", "thesis_bundle_sha256",
@@ -83,11 +97,10 @@ def main() -> int:
             "critical_failure_labels_json": "", "authored_at": "", "adjudicated_at": "",
             "gold_row_sha256": "", "status": "pending_independent_human_authoring",
         })
-    with GOLD.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=gold_fields, lineterminator="\n")
-        writer.writeheader()
-        writer.writerows(gold_rows)
-    print(json.dumps({"blind_review_rows": len(blind_rows), "gold_authoring_rows": len(gold_rows), "human_reviews": 0, "independent_gold": 0}))
+    gold_human_fields = [field for field in gold_fields if field not in {"gold_scenario_id", "question_id", "protocol_sha256", "thesis_bundle_sha256", "status"}]
+    gold_write_status = write_or_preserve(GOLD, gold_fields, gold_rows, gold_human_fields)
+    print(json.dumps({"blind_review_rows": len(blind_rows), "gold_authoring_rows": len(gold_rows),
+                      "blind_write_status": blind_write_status, "gold_write_status": gold_write_status}))
     return 0
 
 

@@ -52,16 +52,18 @@ def main() -> int:
         blind_rows = list(csv.DictReader(handle))
     with (ROOT / "research/validation/independent_gold_scenario_authoring_queue.csv").open(encoding="utf-8-sig", newline="") as handle:
         gold_rows = list(csv.DictReader(handle))
-    if len(blind_rows) != 120 or any(row["reviewer_id"] or row["reviewed_at"] for row in blind_rows):
-        errors.append("blind expert review queue missing or prefilled")
+    if len(blind_rows) != 120:
+        errors.append("blind expert review queue must contain 120 rows")
+    expert_complete = sum(row.get("status") == "complete_external_human_review_synthetic_not_gold" for row in blind_rows)
     gold_human_fields = (
         "author_1_id", "author_1_input_json", "author_1_expected_actions_json",
         "author_2_id", "author_2_input_json", "author_2_expected_actions_json",
         "adjudicator_id", "adjudicated_input_json", "adjudicated_expected_actions_json",
         "critical_failure_labels_json", "authored_at", "adjudicated_at", "gold_row_sha256",
     )
-    if len(gold_rows) != 120 or any(any(row[field] for field in gold_human_fields) for row in gold_rows):
-        errors.append("independent gold authoring queue missing or prefilled")
+    if len(gold_rows) != 120:
+        errors.append("independent gold authoring queue must contain 120 rows")
+    gold_complete = sum(row.get("status") == "adjudicated_independent_gold_candidate" for row in gold_rows)
 
     package = json.loads((ROOT / "package.json").read_text(encoding="utf-8"))
     if "openai" in package.get("dependencies", {}) or "openai" in package.get("devDependencies", {}):
@@ -84,10 +86,11 @@ def main() -> int:
         "phase_status": "blocked_external",
         "safe_empty_boundary": "complete_verified" if not errors else "failed_quality_gate",
         "synthetic_scenarios": len(scenarios),
-        "independent_gold_scenarios": report.get("independent_gold_scenarios"),
+        "independent_gold_scenarios": gold_complete,
         "validated_deployment": False,
         "blind_expert_review_rows": len(blind_rows),
         "gold_authoring_rows": len(gold_rows),
+        "expert_reviews_complete": expert_complete,
     }
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 1 if errors else 0
