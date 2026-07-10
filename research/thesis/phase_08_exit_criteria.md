@@ -18,6 +18,7 @@ Phase status: `blocked_external`
 | Checkpoint hash/coverage validator | complete_verified after regeneration |
 | A-K finalization readiness audit | complete_verified as not-ready: 11/11 gates open; finalization false |
 | Results-freeze input | exact one-row contract prepared; current 0 rows; commit, data/analysis manifests, department format, protocol approval, approver and hashes required |
+| Freeze/release commit identity | pass_local | approved commit may be an ancestor of the approval-record commit; data/analysis manifests and thesis bundle are re-read from that historical commit and SHA-matched, avoiding self-reference |
 | Future finalization progression | human handoff and A-K readiness are evidence-derived rather than hardcoded false; state contracts 5/5 across freeze/readiness |
 
 Project must not be labeled complete. The methods checkpoint is visibly named `nonfinal`, excludes every results-dependent section, records that department formatting is unconfirmed, and is hash-bound by `methods_checkpoint_qa.json`.

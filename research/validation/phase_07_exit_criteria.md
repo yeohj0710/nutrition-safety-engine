@@ -35,3 +35,5 @@ The evaluator executes every accepted scenario three times, scores `(rule_id, ac
 The current public Vercel deployment is the legacy baseline at commit `33658e3`; it is not a validated thesis release. Phase 07 remains blocked until a release commit, immutable manifest, deployment identity, and post-deploy smoke evidence all match.
 
 `deployment_verification.csv` is intentionally empty. A populated but mismatched row fails QA; absence remains a transparent external blocker. No release commit is assigned while predeployment evidence is incomplete.
+
+The release commit is allowed to be an ancestor of the later verification-record commit. Validation reads `src/generated/thesis-bundle.json` directly from that historical commit and requires its bytes to match the deployed bundle SHA, so recording verification does not invalidate the release identity.

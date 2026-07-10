@@ -119,13 +119,13 @@
     },
     {
       "path": "research/validation/phase_07_exit_criteria.md",
-      "size_bytes": 3767,
-      "sha256": "b72ccf4674096b66768142d02e788e7780ebe29ff26592a6b0ad41e0559a6cfa"
+      "size_bytes": 4071,
+      "sha256": "2ffab7d303c41e38aedb42f05a5c4183935f97f61aeb719fc559fb44c7688d97"
     },
     {
       "path": "research/thesis/phase_08_exit_criteria.md",
-      "size_bytes": 2294,
-      "sha256": "1fa7d9e42eb8ccbc2c7a37c2db4e0003498660f52cd70f77cdc3bf9fd32cdd0c"
+      "size_bytes": 2533,
+      "sha256": "9e817d463cb478bd7df2e2e40a949bac5e51d90e5a4e245706b77e8993786579"
     },
     {
       "path": "research/audit/deployment_baseline.json",
@@ -159,8 +159,8 @@
     },
     {
       "path": "research/validation/release_readiness.json",
-      "size_bytes": 722,
-      "sha256": "03f8a93ee656435293bc33c448ba802bf051c53635736492af8dc88b669a9fe3"
+      "size_bytes": 790,
+      "sha256": "6c8f13bdf283b720d6da7579f52930effbb24a115d9a350a251e6c450d857ad9"
     },
     {
       "path": "research/thesis/results_freeze_review.csv",

@@ -18,7 +18,9 @@
   "state_contract_tests": {
     "empty_blocked": true,
     "missing_human_blocked": true,
-    "all_predeploy_required": true
+    "all_predeploy_required": true,
+    "head_is_ancestor": true,
+    "head_bundle_reproduced": true
   },
   "final_release_manifest": null
 }

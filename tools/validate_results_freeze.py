@@ -15,6 +15,16 @@ def sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def ancestor(commit: str, head: str) -> bool:
+    return subprocess.run(["git", "merge-base", "--is-ancestor", commit, head], cwd=ROOT,
+                          stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0
+
+
+def committed_sha(commit: str, relative: str) -> str | None:
+    result = subprocess.run(["git", "show", f"{commit}:{Path(relative).as_posix()}"], cwd=ROOT, capture_output=True)
+    return hashlib.sha256(result.stdout).hexdigest() if result.returncode == 0 else None
+
+
 def main() -> int:
     errors = []
     with FREEZE.open(encoding="utf-8-sig", newline="") as handle:
@@ -25,7 +35,7 @@ def main() -> int:
     if rows:
         row = rows[0]
         head = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
-        if row["status"] != "frozen_validated" or row["frozen_commit"] != head or not row["approved_by"] or not row["approved_at"] or not row["protocol_approval_reference"]:
+        if row["status"] != "frozen_validated" or not ancestor(row["frozen_commit"], head) or not row["approved_by"] or not row["approved_at"] or not row["protocol_approval_reference"]:
             errors.append("results freeze identity/approval mismatch")
         for path_field, hash_field in (("data_manifest_path", "data_manifest_sha256"),
                                        ("analysis_manifest_path", "analysis_manifest_sha256"),
@@ -34,9 +44,13 @@ def main() -> int:
             path = (ROOT / relative).resolve()
             if relative.is_absolute() or not path.is_relative_to(ROOT) or not path.is_file() or sha(path) != row[hash_field]:
                 errors.append(f"results freeze invalid {path_field}")
+            if path_field in {"data_manifest_path", "analysis_manifest_path"} and committed_sha(row["frozen_commit"], row[path_field]) != row[hash_field]:
+                errors.append(f"results freeze {path_field} does not match frozen commit bytes")
         frozen = not errors
+    head = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
     tests = {"empty_not_frozen": not bool([]), "one_valid_shape_supported": len([1]) == 1,
-             "multiple_rejected": len([1, 2]) > 1}
+             "multiple_rejected": len([1, 2]) > 1, "head_is_ancestor": ancestor(head, head),
+             "unknown_commit_rejected": not ancestor("0" * 40, head)}
     result = {"errors": errors, "status": "frozen_validated" if frozen else "blocked_external_no_results_freeze",
               "rows": len(rows), "results_frozen": frozen, "contract_tests": tests}
     print(json.dumps(result, ensure_ascii=False, indent=2))

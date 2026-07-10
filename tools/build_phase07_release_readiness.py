@@ -24,6 +24,16 @@ def current_head() -> str:
     return subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
 
 
+def ancestor(commit: str, head: str) -> bool:
+    return subprocess.run(["git", "merge-base", "--is-ancestor", commit, head], cwd=ROOT,
+                          stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0
+
+
+def committed_bundle_sha(commit: str) -> str | None:
+    result = subprocess.run(["git", "show", f"{commit}:src/generated/thesis-bundle.json"], cwd=ROOT, capture_output=True)
+    return hashlib.sha256(result.stdout).hexdigest() if result.returncode == 0 else None
+
+
 def main() -> int:
     errors = []
     head = current_head()
@@ -52,7 +62,8 @@ def main() -> int:
         path_ok = report_path.is_relative_to(ROOT) and report_path.is_file()
         deployment_valid = all((row["deployment_id"], row["deployment_url"], row["provider"], row["deployed_at"],
                                 row["verified_by"], row["verified_at"])) and row["status"] == "validated" and \
-            row["release_commit"] == head and row["thesis_bundle_sha256"] == sha(bundle_path) and path_ok and \
+            ancestor(row["release_commit"], head) and row["thesis_bundle_sha256"] == sha(bundle_path) and \
+            committed_bundle_sha(row["release_commit"]) == row["thesis_bundle_sha256"] and path_ok and \
             row["postdeploy_report_sha256"] == (sha(report_path) if path_ok else "")
         if not deployment_valid:
             errors.append("deployment verification row does not match commit/bundle/postdeploy evidence")
@@ -60,8 +71,9 @@ def main() -> int:
     ready = all(predeploy.values()) and deployment_valid and not errors
     state_tests = {"empty_blocked": not (all(predeploy.values()) and False),
                    "missing_human_blocked": not all({**predeploy, "expert_reviews_120": False}.values()),
-                   "all_predeploy_required": all({name: True for name in predeploy}.values())}
-    release_commit = head if all(predeploy.values()) or deployments else None
+                   "all_predeploy_required": all({name: True for name in predeploy}.values()),
+                   "head_is_ancestor": ancestor(head, head), "head_bundle_reproduced": committed_bundle_sha(head) == sha(bundle_path)}
+    release_commit = deployments[0]["release_commit"] if deployments else None
     payload = {"schema_version": "1.0.0", "status": "complete_candidate_requires_release_acceptance" if ready else "blocked_external",
                "release_ready": ready, "release_commit": release_commit, "thesis_bundle_sha256": sha(bundle_path),
                "predeploy_gates": predeploy, "deployment_verified": deployment_valid,

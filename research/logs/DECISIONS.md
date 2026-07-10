@@ -375,3 +375,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: require one row binding frozen commit, data manifest, analysis manifest, department format, protocol approval reference, approver, and timestamps before thesis results can be written
 - rationale: a prose claim that results are frozen cannot prove which data, analysis, format, or commit the thesis uses
 - impact: absent/multiple/stale rows remain blocked; valid paths are reopened and SHA-256 reproduced before `results_frozen` becomes true
+
+## D-051 — Approval records may follow the immutable commit they approve
+
+- date: 2026-07-10
+- decision: require frozen/release commits to be ancestors of current HEAD, not equal to the commit containing their later approval or deployment-verification records
+- rationale: `approved_commit == HEAD` becomes false as soon as the approval row itself is committed and therefore has no attainable stable state
+- impact: validators reproduce data/analysis manifests and thesis-bundle bytes from the historical approved commit while allowing audit records to be committed afterward

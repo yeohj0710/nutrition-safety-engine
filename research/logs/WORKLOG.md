@@ -549,3 +549,10 @@
 - Added a hash-bound results-freeze/department-format approval queue and validator; empty/multiple/one-row state contracts pass 3/3, current rows 0.
 - Human handoff completion is now derived from all actionable queues rather than fixed false; current 30 queues remain incomplete.
 - Replaced permanent-false A-K construction/validation with evidence-derived gates. Open/all-closed/project-completion separation contracts pass 3/3; current open gates 11, final writing/artifacts false.
+
+## 2026-07-10 — Freeze/release commit fixed-point repair
+
+- Audited commit equality and found that requiring an approval row's target to equal current HEAD invalidates the row when it is committed.
+- Results freeze and deployment verification now accept an immutable ancestor commit and prove ancestry against current HEAD.
+- Data and analysis manifests are re-read from the frozen commit; the thesis bundle is re-read from the release commit. Historical bytes must reproduce declared SHA-256 values.
+- Ancestor/unknown-commit/bundle reproduction contracts pass. Current freeze and deployment rows remain absent.
