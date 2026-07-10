@@ -1,6 +1,9 @@
 import { createHash } from "node:crypto";
+import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { assertValidatedThesisProvenance } from "@/src/evidence/validate-thesis-provenance";
+import { assertSourceFileIntegrity, assertValidatedThesisProvenance } from "@/src/evidence/validate-thesis-provenance";
 
 const quote = "Synthetic unit-test quote only.";
 const quoteSha = createHash("sha256").update(quote).digest("hex");
@@ -44,5 +47,24 @@ describe("validated thesis provenance contract", () => {
     const value = fixture();
     mutate(value);
     expect(() => assertValidatedThesisProvenance(value)).toThrow();
+  });
+
+  it("reproduces source bytes and rejects a stale declared hash", () => {
+    const root = mkdtempSync(path.join(tmpdir(), "thesis-source-"));
+    try {
+      mkdirSync(path.join(root, "evidence"));
+      const sourcePath = "evidence/source.xml";
+      const bytes = Buffer.from("verified source bytes", "utf8");
+      writeFileSync(path.join(root, sourcePath), bytes);
+      const sourceSha = createHash("sha256").update(bytes).digest("hex");
+      expect(() => assertSourceFileIntegrity([{ source_id: "SRC-1", source_path: sourcePath,
+        source_file_sha256: sourceSha }], root)).not.toThrow();
+      expect(() => assertSourceFileIntegrity([{ source_id: "SRC-1", source_path: sourcePath,
+        source_file_sha256: "f".repeat(64) }], root)).toThrow(/SHA-256 mismatch/);
+      expect(() => assertSourceFileIntegrity([{ source_id: "SRC-1", source_path: "../outside.xml",
+        source_file_sha256: sourceSha }], root)).toThrow(/escapes project root/);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });

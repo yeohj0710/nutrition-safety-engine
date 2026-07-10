@@ -494,3 +494,10 @@
 - Validation rejects missing run lineage, duplicate pairs, negative durations, empty denominators, corrected fields above reviewed fields, and invalid order labels.
 - Outputs are mean/median human-only and AI-assisted time, paired net minutes saved, total savings, corrected-field rate with Wilson interval, and workflow-order counts.
 - Paired synthetic contract passes; total evaluator contracts 7/7. Current timing pairs 0, therefore `efficiency: null`.
+
+## 2026-07-10 — Phase 06 source-byte provenance boundary
+
+- Audited the claim-rule validator and found that source SHA values were compared across rows but not reproduced from actual files.
+- Added repository-root containment, namespace, existence, duplicate-ID, and byte-level SHA-256 checks to deterministic thesis-bundle construction.
+- Targeted provenance suite passes 9/9, including valid bytes, stale declared SHA rejection, and `../` root-escape rejection. TypeScript typecheck and empty safe-state bundle build pass.
+- Production certainty/claims/rules remain 0/0/0; no evidence or rule was promoted.

@@ -291,3 +291,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: measure human-only and AI-assisted minutes for the same reviewer/report pair, preserve workflow order, and report time savings and correction burden separately from accuracy
 - rationale: unpaired timing confounds reviewer and report complexity, while faster processing cannot compensate for worse extraction safety
 - impact: absent paired timing yields `efficiency: null`; completed rows report mean/median paired savings, total minutes, correction rate with denominator/CI, and order counts without an invented significance test
+
+## D-039 — Declared source hashes must be reproduced from bytes at bundle time
+
+- date: 2026-07-10
+- decision: reopen every curated source file during deterministic thesis-bundle construction and reject missing files, path escape, legacy/synthetic namespaces, duplicate source IDs, or SHA-256 mismatch
+- rationale: agreement between a claim support row and a source registry row only proves that two declarations match; it does not prove either declaration matches the preserved source bytes
+- impact: a changed or relocated source cannot silently retain validated claims/rules; bundle generation stops before runtime artifacts are written

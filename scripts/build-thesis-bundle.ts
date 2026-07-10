@@ -1,7 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import { assertValidatedThesisProvenance } from "../src/evidence/validate-thesis-provenance";
+import { assertSourceFileIntegrity, assertValidatedThesisProvenance } from "../src/evidence/validate-thesis-provenance";
 
 type JsonRecord = Record<string, unknown>;
 
@@ -161,6 +161,7 @@ function buildThesisBundle() {
       );
     }
   }
+  assertSourceFileIntegrity(sources, projectRoot);
   assertValidatedThesisProvenance({
     sources,
     reports,

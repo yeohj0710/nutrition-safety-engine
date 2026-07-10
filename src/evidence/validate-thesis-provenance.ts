@@ -1,4 +1,6 @@
 import { createHash } from "node:crypto";
+import { readFileSync, statSync } from "node:fs";
+import path from "node:path";
 
 type Row = Record<string, unknown>;
 
@@ -32,6 +34,33 @@ function index(rows: Row[], idField: string, label: string) {
 
 function requireSha(value: string, location: string) {
   if (!SHA256.test(value)) throw new Error(`${location}: invalid SHA-256`);
+}
+
+export function assertSourceFileIntegrity(sources: Row[], projectRoot: string) {
+  const root = path.resolve(projectRoot);
+  const seen = new Set<string>();
+  sources.forEach((source, position) => {
+    const location = `source[${position}]`;
+    const sourceId = text(source, "source_id", location);
+    if (seen.has(sourceId)) throw new Error(`duplicate source_id: ${sourceId}`);
+    seen.add(sourceId);
+    const sourcePath = text(source, "source_path", location);
+    const declaredSha = text(source, "source_file_sha256", location);
+    requireSha(declaredSha, location);
+    if (path.isAbsolute(sourcePath) || sourcePath.includes("legacy_unverified") || sourcePath.includes("synthetic_fixture")) {
+      throw new Error(`${location}: forbidden source path`);
+    }
+    const resolved = path.resolve(root, sourcePath);
+    const relative = path.relative(root, resolved);
+    if (relative === "" || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative)) {
+      throw new Error(`${location}: source path escapes project root`);
+    }
+    if (!statSync(resolved, { throwIfNoEntry: false })?.isFile()) {
+      throw new Error(`${location}: source file missing`);
+    }
+    const actualSha = createHash("sha256").update(readFileSync(resolved)).digest("hex");
+    if (actualSha !== declaredSha) throw new Error(`${location}: source file SHA-256 mismatch`);
+  });
 }
 
 export function assertValidatedThesisProvenance(input: {

@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "cc7c25bab274c8d9437dce00b737427b498c5d16",
+  "implementation_head": "4c428954aa2e11c801299e61aa52881f00d9a281",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -141,8 +141,8 @@
     },
     {
       "path": "__tests__/thesis-provenance-contract.test.ts",
-      "size_bytes": 3076,
-      "sha256": "a1dfc5aa12f095e83ee5225e824001ee1fff68645d9ce093ff8bc79152b450eb",
+      "size_bytes": 4281,
+      "sha256": "1b75e17d4097ecdec93ba5e1569ca1ceadad79f75ddc9474953fc7692b17f9b0",
       "distribution": "tracked"
     },
     {
@@ -1012,7 +1012,7 @@
     {
       "path": "research/audit/phase_01_artifact_manifest.json",
       "size_bytes": 9658,
-      "sha256": "8a1dfdf242e8ce3d11efe829631313b6a78e83e5b6761985d8aef7484c875e94",
+      "sha256": "9d27815e677bc11b9c79c40685b6a7558b34bac1d449afbccd44f2b57af5e131",
       "distribution": "tracked"
     },
     {
@@ -2511,8 +2511,8 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 21326,
-      "sha256": "8a86915b1778c5afa4f0d3e5415dcb38672c7f9801d825e25a91827709706b82",
+      "size_bytes": 21969,
+      "sha256": "383518f65b949892e75dc9cda695550a2687ab42f8d90afb39af247feb55b8dd",
       "distribution": "tracked"
     },
     {
@@ -2523,14 +2523,14 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 45496,
-      "sha256": "d7be6d4224fce24f8e71d2ed9e70931f64f1377dd2e3cef8ff4310810264a8e9",
+      "size_bytes": 46108,
+      "sha256": "1ebbea42c49801e207ab8cb65d4cf61ddfe25361983f2e2167248841bdca6434",
       "distribution": "tracked"
     },
     {
       "path": "research/PROGRESS_LEDGER.md",
-      "size_bytes": 2914,
-      "sha256": "2a0442e509f1efc3b99a4bb5fb9b0e8fc765cbcac34c3f33a6bc2181ea5a6fc4",
+      "size_bytes": 2972,
+      "sha256": "5f3e84d619344a2481fd635f1f92d65f602652250e56edd6bad8ec4f3c5adf92",
       "distribution": "tracked"
     },
     {
@@ -4167,8 +4167,8 @@
     },
     {
       "path": "research/synthesis/phase_06_exit_criteria.md",
-      "size_bytes": 1945,
-      "sha256": "021d307057db058f1cfb3b217bb85a13f1abbb9b9a6d8d45b08d9784887ac6fd",
+      "size_bytes": 2288,
+      "sha256": "2b9241c38f6c65c84e4d02a4155784791c5226d7a49c8bb56d7042a897f10cca",
       "distribution": "tracked"
     },
     {
@@ -4204,7 +4204,7 @@
     {
       "path": "research/thesis/finalization_readiness.json",
       "size_bytes": 4999,
-      "sha256": "14a947207c549b0d27b13ea82ccabd713daffd696ca2f40ce3e818c3f58a2a1b",
+      "sha256": "7d8d87239b1c108611835dfb78eddbd9dc326ed8394086316193db1a109fa165",
       "distribution": "tracked"
     },
     {
@@ -4311,8 +4311,8 @@
     },
     {
       "path": "scripts/build-thesis-bundle.ts",
-      "size_bytes": 6498,
-      "sha256": "9b0f591984923132c7d9d580a5727f9ca08f1911a8e76a841db3659f323ef65e",
+      "size_bytes": 6576,
+      "sha256": "9e2e58502e98115cd1e86d2862d0e94c2aa076fd4e506f8ebb2f56e38e4572dc",
       "distribution": "tracked"
     },
     {
@@ -4389,8 +4389,8 @@
     },
     {
       "path": "src/evidence/validate-thesis-provenance.ts",
-      "size_bytes": 6442,
-      "sha256": "ba910422d4a819a02f4cb708799ef7d0ce04da2d003dbe2e2a51e75eec092ec7",
+      "size_bytes": 7900,
+      "sha256": "bbfbc53efc2c37eeb8ae60d0ad6f193e85b038f2dc726fa3a242273aff27d3a9",
       "distribution": "tracked"
     },
     {
@@ -4408,7 +4408,7 @@
     {
       "path": "src/generated/thesis-bundle.json",
       "size_bytes": 620,
-      "sha256": "1a7b13e4cc2cba0b3f78d947127ca19b6d74f4e9f2c0e7f4e9046a071861a9b9",
+      "sha256": "3d9192acbc0ec7468dc280e52cf876de7711fa8e02433f42a58f7a77aca9a480",
       "distribution": "tracked"
     },
     {
