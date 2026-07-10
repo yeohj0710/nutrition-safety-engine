@@ -11,6 +11,7 @@
     "critical_fn": true,
     "unsupported": true,
     "raw_manifest_valid": true,
-    "raw_manifest_wrong_hash_rejected": true
+    "raw_manifest_wrong_hash_rejected": true,
+    "repeat_run_denominator": true
   }
 }

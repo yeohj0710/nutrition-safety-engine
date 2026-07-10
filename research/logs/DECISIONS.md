@@ -277,3 +277,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: require one manifest row per parsed run, binding repository-local input, full prompt, and raw model output bytes to their SHA-256 values and execution/model metadata
 - rationale: a parsed JSON candidate alone cannot reproduce the prompt context, provider output, retry history, or exact evaluated bytes
 - impact: missing, extra, legacy, out-of-root, stale-hash, or model-mismatched manifests invalidate inputs and suppress all performance metrics
+
+## D-037 — AI detection denominators are run-field instances
+
+- date: 2026-07-10
+- decision: replicate each applicable human-gold field across every preserved run for its report/question and calculate TP/FP/FN at `(run_id, report_id, question_id, field_name)` resolution
+- rationale: collapsing repeated runs to unique fields lets one successful repeat hide another repeat's false negative and overstates recall and stability
+- impact: a field found in two of three repeats now contributes TP=2 and FN=1; critical false negatives retain the failing run ID

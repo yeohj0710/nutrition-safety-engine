@@ -164,33 +164,48 @@ def evaluate(gold: list[dict], runs: list[dict], reviews: list[dict] | None = No
         if run["run_id"] in run_ids:
             raise ValueError("duplicate run_id")
         run_ids.add(run["run_id"])
+        field_names = [field["field_name"] for field in run["fields"]]
+        if len(field_names) != len(set(field_names)):
+            raise ValueError(f"duplicate field_name within run: {run['run_id']}")
         for field in run["fields"]:
             predictions.append((run, field))
-    pred_keys = {(run["report_id"], run["question_id"], f["field_name"]) for run, f in predictions
-                 if f["status"] == "extracted"}
+    pred_instances = {(run["run_id"], run["report_id"], run["question_id"], f["field_name"])
+                      for run, f in predictions if f["status"] == "extracted"}
     gold_keys = set(gold_by)
-    tp_keys = pred_keys & gold_keys
+    runs_by_report_question: dict[tuple[str, str], list[str]] = defaultdict(list)
+    for run in runs:
+        runs_by_report_question[(run["report_id"], run["question_id"])].append(run["run_id"])
+    expected_instances = set()
+    for report_id, question_id, field_name in gold_keys:
+        matching_runs = runs_by_report_question[(report_id, question_id)]
+        if matching_runs:
+            expected_instances.update((run_id, report_id, question_id, field_name) for run_id in matching_runs)
+        else:
+            expected_instances.add(("NO_RUN", report_id, question_id, field_name))
+    tp_instances = pred_instances & expected_instances
     exact = unit = locator = numeric = numeric_N = 0
     critical_fn = []
-    for key in tp_keys:
+    for instance in tp_instances:
+        run_id, *key_parts = instance
+        key = tuple(key_parts)
         gold_row = gold_by[key]
-        matching = [(run, f) for run, f in predictions if (run["report_id"], run["question_id"], f["field_name"]) == key and f["status"] == "extracted"]
-        # Primary accuracy uses every preserved repeat, while detection uses unique fields.
-        for _, field in matching:
-            expected = json.loads(gold_row["value_json"])
-            exact += canonical(field.get("value")) == canonical(expected)
-            unit += (field.get("unit") or "") == gold_row["unit"]
-            loc = field.get("locator") or {}
-            locator += bool(field.get("supporting_quote")) and bool(loc.get("page") is not None or loc.get("xml_locator"))
-            if isinstance(expected, (int, float)) and not isinstance(expected, bool):
-                numeric_N += 1
-                numeric += isinstance(field.get("value"), (int, float)) and not isinstance(field.get("value"), bool) and field["value"] == expected
-    for key in gold_keys - pred_keys:
+        field = next(f for run, f in predictions if run["run_id"] == run_id and
+                     (run["report_id"], run["question_id"], f["field_name"]) == key and f["status"] == "extracted")
+        expected = json.loads(gold_row["value_json"])
+        exact += canonical(field.get("value")) == canonical(expected)
+        unit += (field.get("unit") or "") == gold_row["unit"]
+        loc = field.get("locator") or {}
+        locator += bool(field.get("supporting_quote")) and bool(loc.get("page") is not None or loc.get("xml_locator"))
+        if isinstance(expected, (int, float)) and not isinstance(expected, bool):
+            numeric_N += 1
+            numeric += isinstance(field.get("value"), (int, float)) and not isinstance(field.get("value"), bool) and field["value"] == expected
+    for instance in expected_instances - pred_instances:
+        run_id, report_id, question_id, field_name = instance
+        key = (report_id, question_id, field_name)
         if gold_by[key]["critical"].lower() == "true":
-            critical_fn.append("|".join(key))
-    comparisons = sum(1 for run, field in predictions if field["status"] == "extracted" and
-                      (run["report_id"], run["question_id"], field["field_name"]) in gold_by)
-    tp, fp, fn = len(tp_keys), len(pred_keys - gold_keys), len(gold_keys - pred_keys)
+            critical_fn.append("|".join((run_id, report_id, question_id, field_name)))
+    comparisons = len(tp_instances)
+    tp, fp, fn = len(tp_instances), len(pred_instances - expected_instances), len(expected_instances - pred_instances)
     precision = tp / (tp + fp) if tp + fp else None
     recall = tp / (tp + fn) if tp + fn else None
     f1 = 2 * precision * recall / (precision + recall) if precision is not None and recall is not None and precision + recall else None
@@ -204,11 +219,12 @@ def evaluate(gold: list[dict], runs: list[dict], reviews: list[dict] | None = No
     stable = sum(len(repeat_values[key]) == 1 for key in eligible_repeats)
     result = {
         "status": "complete_human_gold_ai_runs_evaluated",
-        "human_gold_fields": len(gold), "ai_runs": len(runs), "predicted_fields": len(pred_keys),
+        "human_gold_fields": len(gold), "ai_runs": len(runs), "predicted_field_instances": len(pred_instances),
+        "expected_gold_field_instances": len(expected_instances),
         "detection": {"tp": tp, "fp": fp, "fn": fn, "precision": precision, "recall": recall, "f1": f1},
         "exact_value": proportion(exact, comparisons), "numeric_value": proportion(numeric, numeric_N),
         "unit": proportion(unit, comparisons), "locator_present_contract": proportion(locator, comparisons),
-        "unsupported_claims": proportion(fp, len(pred_keys)),
+        "unsupported_claims": proportion(fp, len(pred_instances)),
         "critical_false_negative_count": len(critical_fn), "critical_false_negative_keys": critical_fn,
         "repeat_stability": proportion(stable, len(eligible_repeats)),
     }
@@ -238,6 +254,7 @@ def contract_tests() -> dict:
     good = evaluate(gold, [run])
     missed = evaluate(gold, [dict(run, run_id="T2", fields=[])])
     unsupported = evaluate(gold, [dict(run, run_id="T3", fields=[dict(run["fields"][0], field_name="invented")])])
+    repeated = evaluate(gold, [run, dict(run, run_id="T4"), dict(run, run_id="T5", fields=[])])
     with tempfile.TemporaryDirectory() as temp:
         root = Path(temp)
         for name, value in (("input.txt", b"input"), ("prompt.txt", b"prompt"), ("output.txt", b"output")):
@@ -257,7 +274,8 @@ def contract_tests() -> dict:
         wrong_hash_rejected = bool(validate_run_manifests([raw_run], [bad_hash], root))
     return {"exact_match": good["exact_value"]["rate"] == 1, "critical_fn": missed["critical_false_negative_count"] == 1,
             "unsupported": unsupported["unsupported_claims"]["n"] == 1, "raw_manifest_valid": valid_manifest,
-            "raw_manifest_wrong_hash_rejected": wrong_hash_rejected}
+            "raw_manifest_wrong_hash_rejected": wrong_hash_rejected,
+            "repeat_run_denominator": repeated["detection"]["tp"] == 2 and repeated["detection"]["fn"] == 1 and repeated["detection"]["recall"] == 2 / 3}
 
 
 def main() -> int:

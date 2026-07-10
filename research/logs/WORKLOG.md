@@ -481,3 +481,9 @@
 - Validator reproduces all three SHA-256 values and cross-checks model identity, version/access date, JSON temperature, API/app route, attempt count, execution time, and parsed-run hash fields.
 - Paths outside the repository or under `legacy_unverified` are rejected. Valid-manifest and wrong-byte-hash contracts pass, bringing the evaluator contract suite to 5/5.
 - Current parsed runs/raw manifests remain 0/0; metrics remain null.
+
+## 2026-07-10 — Repeated-run AI metric denominator correction
+
+- Replaced unique-field detection denominators with run-field instances and explicitly reject duplicate field names inside one run.
+- Gold fields are replicated across every run of the corresponding report/question; gold reports with no run remain visible as `NO_RUN` false negatives.
+- Added a three-repeat mutation contract: two detections and one omission reproduce TP 2, FN 1, recall 2/3. Evaluator contracts now pass 6/6.
