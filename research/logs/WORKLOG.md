@@ -334,3 +334,10 @@
 - Generated a 120-row blind expert queue bound to each input, runner, engine, and thesis-bundle SHA; outputs are not exposed and all reviewer fields are blank.
 - Generated a separate 120-row independent-gold authoring queue balanced 24 per question. Both author drafts, adjudication, critical-failure labels, and gold hashes remain blank.
 - Validator confirms synthetic inputs/reviews/gold-authoring rows 120/120/120; expert reviews and independent gold remain 0/0.
+
+## 2026-07-10 — Non-final methods document checkpoint
+
+- Drafted only protocol- and implementation-supported methods; results, discussion, conclusion, and both abstracts remain absent before freeze.
+- Generated a Korean A4 DOCX and Word-exported PDF marked `비최종본`; no proxy count is presented as an effectiveness or safety result.
+- Rendered all eight PDF pages and visually inspected 8/8: clipping 0, overlap 0, Korean glyph errors 0.
+- Bound Markdown, DOCX, and PDF bytes to SHA-256 in a machine-readable QA record and added a standard-library validator.

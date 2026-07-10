@@ -55,3 +55,8 @@
 - KMbase search transport is reachable, but a positive one-word control and failing/zero protocol translations show that PubMed-style Boolean syntax cannot be assumed.
 - Zero-hit responses are not evidence of absence until platform syntax is independently reviewed and split-query recall is checked.
 - RISS short-query counts overlap heavily and must never be summed. Only exported unique identifiers after approved final searches may enter deduplication or PRISMA totals.
+
+## 2026-07-10 document checkpoint risk
+
+- A polished checkpoint could be mistaken for a completed thesis. Filename, cover, running header, terminal hold notice, QA flags, and validators all mark it non-final.
+- Department formatting remains unconfirmed. The current A4 Korean academic layout validates rendering only and must not be treated as school approval.

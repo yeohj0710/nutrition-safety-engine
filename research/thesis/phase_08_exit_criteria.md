@@ -8,13 +8,15 @@ Phase status: `blocked_external`
 | Data/analysis/rule/scenario freeze | blocked_external |
 | Release tag and validated deployment | blocked_external |
 | Latest department format confirmed | blocked_external |
+| Verified methods-only checkpoint | complete_verified |
+| Checkpoint DOCX/PDF visual QA | complete_verified: 8/8 pages; errors 0 |
 | Results, discussion, conclusion | prohibited before freeze |
 | Korean/English abstracts | prohibited before freeze |
 | Final DOCX/PDF | not created |
-| Page-by-page visual QA | not applicable until document exists |
-| Checkpoint reproducibility manifest | complete_verified |
-| Checkpoint hash/coverage validator | complete_verified: 563 files; 459 tracked + 104 local required; errors 0 |
+| Final page-by-page visual QA | not applicable until final document exists |
+| Checkpoint reproducibility manifest | complete_verified after regeneration |
+| Checkpoint hash/coverage validator | complete_verified after regeneration |
 
-Project must not be labeled complete. Final thesis artifacts require the human/external queue to close and all upstream validators to be rerun on frozen results.
+Project must not be labeled complete. The methods checkpoint is visibly named `nonfinal`, excludes every results-dependent section, records that department formatting is unconfirmed, and is hash-bound by `methods_checkpoint_qa.json`.
 
-`research/checkpoint_manifest.json` is explicitly non-final. Its validator requires every tracked file plus 104 locally required PubMed/normalized payloads to be present and hash-matched. It also rejects a final DOCX/PDF path before the results freeze.
+`research/checkpoint_manifest.json` is explicitly non-final. Its validator requires every tracked file plus 104 locally required PubMed/normalized payloads to be present and hash-matched. It rejects final DOCX/PDF paths before the results freeze.

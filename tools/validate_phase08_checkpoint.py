@@ -8,6 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "research/checkpoint_manifest.json"
+METHODS_QA = ROOT / "research/thesis/checkpoints/methods_checkpoint_qa.json"
 
 
 def sha256(path: Path) -> str:
@@ -80,6 +81,13 @@ def main() -> int:
     forbidden = [ROOT / "output/final/thesis.docx", ROOT / "output/final/thesis.pdf"]
     if any(path.exists() for path in forbidden):
         errors.append("unverified final thesis artifact exists before results freeze")
+    methods_qa = json.loads(METHODS_QA.read_text(encoding="utf-8"))
+    if methods_qa.get("final_thesis_claim_allowed") is not False:
+        errors.append("methods checkpoint incorrectly permits a final-thesis claim")
+    if methods_qa.get("department_format_confirmed") is not False:
+        errors.append("department format cannot be confirmed before external review")
+    if methods_qa.get("results_included") is not False:
+        errors.append("methods checkpoint contains pre-freeze results")
 
     result = {
         "errors": errors,
@@ -90,6 +98,7 @@ def main() -> int:
         "local_required_files": local_count,
         "final_docx": manifest.get("final_docx"),
         "final_pdf": manifest.get("final_pdf"),
+        "methods_checkpoint_pages_checked": len(methods_qa.get("inspected_pages", [])),
     }
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 1 if errors else 0

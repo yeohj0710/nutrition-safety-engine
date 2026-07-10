@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "d23596a3e51c48b06430ff7195233dc00f21bab4",
+  "implementation_head": "e6b9f9e74c2abbb802613d8ae2863a5cda2b6228",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,13 +10,13 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 769,
+  "file_count": 775,
   "local_required_file_count": 104,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "size_bytes": 1565,
-      "sha256": "b5db5bc532f2239024eb68ea952ccfbf4ba0ece3203b64414b6e7d3d7a46c9a6",
+      "size_bytes": 1622,
+      "sha256": "6e3569e1df3e44871266e0bd4176ca95081a42c9a1ab0e8fc18491d44d0eee15",
       "distribution": "tracked"
     },
     {
@@ -801,8 +801,8 @@
     },
     {
       "path": "package.json",
-      "size_bytes": 2910,
-      "sha256": "77a8be3d80689fc98835e1d9a9aa67a9188d71023af9b2387171a8afd3dd53e0",
+      "size_bytes": 3039,
+      "sha256": "916b7e2d8095776ab04333eaab637746a06bb61d10b626127150c01db1240d3b",
       "distribution": "tracked"
     },
     {
@@ -2421,26 +2421,26 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 9986,
-      "sha256": "a1c449c34eb917ded822cee4731a9e25039488f68c8604cd59d0b2bb705f5c4f",
+      "size_bytes": 10542,
+      "sha256": "3ef445715971dcd9793277e90ed96c021610ec0e26e60bb602697e30b76bb1bf",
       "distribution": "tracked"
     },
     {
       "path": "research/logs/RISKS.md",
-      "size_bytes": 6946,
-      "sha256": "1330b758aef4609e33c31024f78ce88920fdb88312bad24f6ac6f254c94e3caf",
+      "size_bytes": 7308,
+      "sha256": "37189f69c9f3196b30a0ba53fa2eaf2d4b72fbc85ec6620181e552e473748ca0",
       "distribution": "tracked"
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 31810,
-      "sha256": "1b1678d8ae0592df7fb2dfed698b2cb260cb6b6a5c3bdcd8cdb9338fc57e9ac8",
+      "size_bytes": 32378,
+      "sha256": "087151d55b1ff51cf192024644efdf799179b0f07a57b8391e1ff3b3231acbac",
       "distribution": "tracked"
     },
     {
       "path": "research/PROGRESS_LEDGER.md",
-      "size_bytes": 2529,
-      "sha256": "057ddc2e1cede4754ee00f37211600f68c2428beec10e3f1cb4a4e64252cdde4",
+      "size_bytes": 2545,
+      "sha256": "c4b0389af7d706219b91a80b4d05906dfcaa663727afb1988437a0986ae435d5",
       "distribution": "tracked"
     },
     {
@@ -4046,15 +4046,39 @@
       "distribution": "tracked"
     },
     {
-      "path": "research/thesis/phase_08_exit_criteria.md",
+      "path": "research/thesis/checkpoints/methods_checkpoint_nonfinal.docx",
+      "size_bytes": 45377,
+      "sha256": "d719a6edc898a542e27d9e5c408eca8a64b0f1dd976c694e447770a5f8f58a91",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/thesis/checkpoints/methods_checkpoint_nonfinal.md",
+      "size_bytes": 16001,
+      "sha256": "64bd3862484090539d6195a10c2c02ed9c0e9b50e02af42b847937a1d4fff9b1",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/thesis/checkpoints/methods_checkpoint_nonfinal.pdf",
+      "size_bytes": 501374,
+      "sha256": "62ff5f81ef84c0035e5146a40059460391621590793edc4008cf65c7a2db8f74",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/thesis/checkpoints/methods_checkpoint_qa.json",
       "size_bytes": 1095,
-      "sha256": "3bd8091dd2bb29448b2144d72b4f410232b84194b69433934d1be7024707dcb2",
+      "sha256": "6255b8b8cae45029b43927105bc6d8c69af27bc075159c0170f726f2a0fc229f",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/thesis/phase_08_exit_criteria.md",
+      "size_bytes": 1288,
+      "sha256": "e1101cf39ac361eb14925a078e1f755b9fd51898ed6f03251ce939775ce09431",
       "distribution": "tracked"
     },
     {
       "path": "research/thesis/thesis_draft_status.md",
-      "size_bytes": 836,
-      "sha256": "fa6f5dec1026bd372eb3ea737d49db621ac4bdc5dc16dcafb9863facc1c58a22",
+      "size_bytes": 1085,
+      "sha256": "74d6c948a24dc2364ae123c6867cc26a034c2f454096f1c03bd8961c46365b3f",
       "distribution": "tracked"
     },
     {
@@ -4358,6 +4382,12 @@
       "distribution": "tracked"
     },
     {
+      "path": "tools/build_methods_checkpoint_docx.py",
+      "size_bytes": 8134,
+      "sha256": "e6b2bad3462efa4a095d87faf475b33f934caf2e467bf6ec1bf582f4c4ed2b2d",
+      "distribution": "tracked"
+    },
+    {
       "path": "tools/build_phase07_review_queues.py",
       "size_bytes": 4477,
       "sha256": "0f0c13a66107ea135d79f773a4afecbec2a5aa50690e05e8195083dc61a71c21",
@@ -4550,6 +4580,12 @@
       "distribution": "tracked"
     },
     {
+      "path": "tools/validate_methods_checkpoint.py",
+      "size_bytes": 3282,
+      "sha256": "a84d6b698925b43eec84e11581953c9b4f9aa4adc75c6ab2e379e2eaa7e79d43",
+      "distribution": "tracked"
+    },
+    {
       "path": "tools/validate_phase01.py",
       "size_bytes": 11435,
       "sha256": "0afa69a2d891f1535da00c622641a04697b05fd17c880240b2d9075bff102e90",
@@ -4599,8 +4635,8 @@
     },
     {
       "path": "tools/validate_phase08_checkpoint.py",
-      "size_bytes": 3960,
-      "sha256": "57f415d3b9605537201f5367ec752aba1964e3b292d67f753ee1a3acb1535d86",
+      "size_bytes": 4625,
+      "sha256": "b3e2174b7ab2d0d8b20fe720e7a6c91329149bb096a76aea8057a8e7c1865531",
       "distribution": "tracked"
     },
     {

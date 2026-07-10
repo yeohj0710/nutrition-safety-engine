@@ -9,6 +9,6 @@
 | 05 extraction quality and AI | blocked_external_proxy_verified | Draft 2020-12 source-bound locator schema; real PMC paragraph contract plus 4 invalid mutations rejected; Wilson synthetic harness; human/RoB/AI 0/0/0 | included reports, human-verified locators/extraction/RoB/gold, actual AI runs |
 | 06 synthesis claims and rules | blocked_external_safe_empty | five no-analysis decisions; 9/9 contract tests plus bundle-builder semantic gate; certainty/claim/rule registries 0; legacy promotion 0 | accepted extraction/RoB, human synthesis/GRADE, expert and independent-scenario validation |
 | 07 engine validation and release | blocked_external_safe_empty_verified | runtime AI removed; SHA-bound 120×3 proxy; 120 blind-review + 120 independent-authoring rows; human/gold 0/0; legacy leakage 0; validated deployment false | validated rules, independent authored/adjudicated gold, expert review, release manifest and verified deployment |
-| 08 thesis and finalization | blocked_external_checkpoint_manifested | truthful thesis status; 501-file checkpoint manifest including 104 local payloads | frozen results, department format, final DOCX/PDF, visual QA |
+| 08 thesis and finalization | blocked_external_checkpoint_manifested | methods-only nonfinal DOCX/PDF; 8/8-page visual QA; hash-bound truthful checkpoint manifest | frozen results, department format, final DOCX/PDF, final visual QA |
 
 No later phase is complete. Synthetic-proxy artifacts are dry-run evidence only.
