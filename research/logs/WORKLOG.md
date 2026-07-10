@@ -290,3 +290,10 @@
 - KMbase: all 20 short pairs returned HTTP 200/0 hits; prior `warfarin` positive control remains 5, so recall/syntax is unresolved rather than negative evidence.
 - RISS: 19/20 nonzero; query-level counts retained. Overlap prevents summing and no record export was attempted.
 - Final-search, PRISMA, records-exported, PRESS, and human-decision flags remain false/zero.
+
+## 2026-07-10 — Korean-database PRESS handoff package
+
+- Generated 40 review rows directly from the checksum-bound KMbase/RISS split-pilot summary.
+- Bound every row to platform, question, exact query, observed count, raw-response path, and SHA-256.
+- Left reviewer identity, date, decision, comments, and revision fields blank; validator reports human decisions 0 and errors 0.
+- Added an umbrella critical row to the main PRESS queue and explicit zero-recall/overlap safeguards to the reviewer instructions.

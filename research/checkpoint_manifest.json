@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "154741cf965737702d3d21df1c38fa820de47d18",
+  "implementation_head": "6a27a5b9bbcefeffdc89da2addfc6296b734bb66",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,13 +10,13 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 748,
+  "file_count": 752,
   "local_required_file_count": 104,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "size_bytes": 1327,
-      "sha256": "6b4729be16e29cf673d51f9d0c894be8139fb10f18da7656ba60ad716fe52683",
+      "size_bytes": 1387,
+      "sha256": "a352036f7a8d789d2fea262e0885048da3dce19899418e019fc493c7218ac3fa",
       "distribution": "tracked"
     },
     {
@@ -795,8 +795,8 @@
     },
     {
       "path": "package.json",
-      "size_bytes": 2312,
-      "sha256": "44ed23736e70efd440cec656fe435d133467f56e64894f95fed4b18d5026cfb7",
+      "size_bytes": 2482,
+      "sha256": "2f092de715c39f3677266e4b723738c2831998d3f17f47ae3edaab08baee7d38",
       "distribution": "tracked"
     },
     {
@@ -2373,8 +2373,8 @@
     },
     {
       "path": "research/logs/BLOCKERS.md",
-      "size_bytes": 10000,
-      "sha256": "d2f10148633ce0514c00c784f1e0bfad3b20f79a7aa3c2d4e49b9b30781a4553",
+      "size_bytes": 10089,
+      "sha256": "53d96b97647230c00ad038c16b2300ac37a01c381faf9c48adc47ea5b64c3a7e",
       "distribution": "tracked"
     },
     {
@@ -2391,14 +2391,14 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 27893,
-      "sha256": "6080ef9dd11f8f217277a7033039d034c32662d1ae8d0469ee3e5c15aa999425",
+      "size_bytes": 28406,
+      "sha256": "0592b65bb41a03e1e838423ca957ef56ad9b33fd2e458f1be8812e7a55815989",
       "distribution": "tracked"
     },
     {
       "path": "research/PROGRESS_LEDGER.md",
-      "size_bytes": 2242,
-      "sha256": "4c3a25216dea4a3eda8dffe4ca2606928101600e9f5f26890f4694c6299d1ade",
+      "size_bytes": 2247,
+      "sha256": "baf99d02fdd95ab1b68eac932361c82ebdde84bb646179af1a7f05e52bebe675",
       "distribution": "tracked"
     },
     {
@@ -2427,8 +2427,8 @@
     },
     {
       "path": "research/protocol/phase_02_exit_criteria.md",
-      "size_bytes": 2209,
-      "sha256": "2a122fde8cac9061ac457955b413bd567897501ab921ef6d514ab7c0db68b163",
+      "size_bytes": 2266,
+      "sha256": "a2b45ddf2a93a8b974da46c35b3fe6f94ac0d738c1bbc844daf8912eefdca597",
       "distribution": "tracked"
     },
     {
@@ -2450,6 +2450,18 @@
       "distribution": "tracked"
     },
     {
+      "path": "research/review_queue/korean_db_PRESS_review.csv",
+      "size_bytes": 17904,
+      "sha256": "b561d62d7f7eee7e5c18211558db3ac4692d9a0827d0a2914783679784534e4b",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/review_queue/korean_db_PRESS_review.md",
+      "size_bytes": 1274,
+      "sha256": "28682d38d5b8de65b90d54727faa8cfc2ef7b901f520446c1c5a3bafcdf9f296",
+      "distribution": "tracked"
+    },
+    {
       "path": "research/review_queue/phase_01_external_review.csv",
       "size_bytes": 2876,
       "sha256": "6a409c46df05a4ea63ce9406d943a7112a45a6fd6c8993d919c1c7592add7713",
@@ -2457,8 +2469,8 @@
     },
     {
       "path": "research/review_queue/phase_02_external_review.csv",
-      "size_bytes": 1250,
-      "sha256": "a4acc471603a6ac89a2939a8457a6e0dac4d5a03c05c215d3cf03e6914a2df5b",
+      "size_bytes": 1339,
+      "sha256": "b10752c4d3f65795723f8c3101c2ab42974e26792ab15196c59d677cb310a1c4",
       "distribution": "tracked"
     },
     {
@@ -2493,8 +2505,8 @@
     },
     {
       "path": "research/review_queue/PRESS_review.csv",
-      "size_bytes": 2523,
-      "sha256": "91e8ddd6181448e5099046b849c37995543434070d3c1d24ad6ef73502b25860",
+      "size_bytes": 2939,
+      "sha256": "b56713e936abe6e21d77ce961f458b005db85b61474cb88cecadaf1f17a5d501",
       "distribution": "tracked"
     },
     {
@@ -4268,6 +4280,12 @@
       "distribution": "tracked"
     },
     {
+      "path": "tools/build_korean_db_press_queue.py",
+      "size_bytes": 2696,
+      "sha256": "3b97e001d1460b2a6217302da285124dbe81b61433aa8025f97693a0b14a9dce",
+      "distribution": "tracked"
+    },
+    {
       "path": "tools/capture_korean_db_split_pilot.mjs",
       "size_bytes": 5002,
       "sha256": "3e87e92d145b0589f23e4c706c8fe88fe5d09b5822cf72ab0a0078fa4efbc7b3",
@@ -4430,6 +4448,12 @@
       "distribution": "tracked"
     },
     {
+      "path": "tools/validate_korean_db_press_queue.py",
+      "size_bytes": 2673,
+      "sha256": "aa9c69e3f8a0bf63bff6aedf7c4bf82a0dfe984d841fa70e12e352da346fc243",
+      "distribution": "tracked"
+    },
+    {
       "path": "tools/validate_korean_db_split_pilot.py",
       "size_bytes": 4541,
       "sha256": "55575f59404dbb25b3aedcd99ae87be8166dc90c85e56f33bbe12e84dade2b79",
@@ -4443,8 +4467,8 @@
     },
     {
       "path": "tools/validate_phase02.py",
-      "size_bytes": 5443,
-      "sha256": "221bec03b91d43c0b161a4b4ce95e71255d40706735a7f3526d3efb88cec82c8",
+      "size_bytes": 5554,
+      "sha256": "6647e4c88243e8f44c4986d3fc8f23f7a74d9e29c401c6c4f02d974e3f4db2f8",
       "distribution": "tracked"
     },
     {

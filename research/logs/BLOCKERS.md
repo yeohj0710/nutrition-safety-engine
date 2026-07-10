@@ -66,8 +66,8 @@ Status: `resolved_2026-07-10`.
 ## B-005 — Independent PRESS review
 
 - exact block point: final search-string freeze and final multi-database execution
-- already attempted: five PubMed drafts, live counts, 9-sentinel recall test, B1 recall correction, platform translation drafts, seven-row PRESS queue
-- minimum input needed: independent information specialist/systematic-reviewer decision for each queue row, including A1/B2 workload refinements
+- already attempted: five PubMed drafts, live counts, 9-sentinel recall test, B1 recall correction, platform translation drafts, eight-row main PRESS queue, 40-row checksum-bound KMbase/RISS detail queue
+- minimum input needed: independent information specialist/systematic-reviewer decision for each applicable queue row, including A1/B2 workload and all Korean-database translations
 - work that can continue: public API pilot exports, pipeline and dedup tests, review-package preparation
 - status: `blocked_external`
 

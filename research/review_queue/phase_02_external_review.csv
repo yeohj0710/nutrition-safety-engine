@@ -1,6 +1,6 @@
 queue_id,area,artifact,blocking_point,minimum_human_input,allowed_work_while_blocked,status
 P2-RQ-001,protocol,research/protocol/protocol-v1.0.md,final protocol freeze,"dated supervisor approve/approve-with-amendment decision",public-source pilots; syntax checks; proxy pipelines,blocked_external
-P2-RQ-002,PRESS,research/review_queue/PRESS_review.csv,final database searches,"independent reviewer decisions for all critical/major rows",sentinel tests; workload forecast; translation drafts,blocked_external
+P2-RQ-002,PRESS,research/review_queue/PRESS_review.csv,final database searches,"independent reviewer decisions for all critical/major rows and all 40 rows in korean_db_PRESS_review.csv",sentinel tests; workload forecast; translation drafts; checksum-bound review-package preparation,blocked_external
 P2-RQ-003,database_access,research/protocol/access_matrix.csv,Embase and Scopus-or-WoS final searches,"licensed authenticated search access and native export limits; current live check reached sign-in/check-access only",PubMed/ClinicalTrials.gov public retrieval; CENTRAL public design-pilot; blocked-source alternatives,blocked_external
 P2-RQ-004,full_text,research/protocol/access_matrix.csv,full-text verification,"institutional library route or documented unavailable process",open-access locator preparation,blocked_external
 P2-RQ-005,ethics,research/design/20260710/06_VALIDATION/usability_plan.md,human expert/user data collection,"written institutional determination",non-human software tests and synthetic scenarios,blocked_external

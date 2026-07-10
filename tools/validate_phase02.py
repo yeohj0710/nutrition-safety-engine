@@ -25,6 +25,8 @@ REQUIRED = [
     "research/searches/search_strategy_drafts/platform_translation_drafts.md",
     "research/review_queue/PRESS_review.csv",
     "research/review_queue/PRESS_review.md",
+    "research/review_queue/korean_db_PRESS_review.csv",
+    "research/review_queue/korean_db_PRESS_review.md",
     "research/review_queue/phase_02_external_review.csv",
 ]
 
