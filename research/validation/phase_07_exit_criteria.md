@@ -5,6 +5,8 @@ Phase status: `blocked_external`
 Safe-empty software boundary: `complete_verified`
 
 - Runtime LLM route/module/dependency: removed
+- Deterministic validated-rule matcher: implemented; exact normalized matching, strict condition schema, action-class priority, claim resolution
+- Matcher contract tests: 3/3; matched action ordering, byte determinism, partial-string rejection, unknown-condition rejection
 - Synthetic boundary scenarios: 120 × 3 repeats
 - Executable proxy report: `research/validation/safe_empty_proxy_report.json`; runner/engine/bundle SHA-256 bound
 - Safe-empty determinism: 100%

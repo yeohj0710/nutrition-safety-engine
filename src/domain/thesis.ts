@@ -56,6 +56,7 @@ export const thesisBundleSchema = z.object({
     studyCount: z.number().int().nonnegative(),
     extractionCount: z.number().int().nonnegative(),
     riskOfBiasCount: z.number().int().nonnegative(),
+    certaintyAssessmentCount: z.number().int().nonnegative(),
     claimCount: z.number().int().nonnegative(),
     ruleCount: z.number().int().nonnegative(),
   }),
@@ -64,6 +65,7 @@ export const thesisBundleSchema = z.object({
   studies: z.array(bundleRecordSchema),
   extractions: z.array(bundleRecordSchema),
   riskOfBias: z.array(bundleRecordSchema),
+  certaintyAssessments: z.array(bundleRecordSchema),
   claims: z.array(bundleRecordSchema),
   rules: z.array(bundleRecordSchema),
 });
@@ -84,3 +86,12 @@ export const thesisEngineResponseSchema = z.object({
 export type ThesisQuery = z.infer<typeof thesisQuerySchema>;
 export type ThesisBundle = z.infer<typeof thesisBundleSchema>;
 export type ThesisEngineResponse = z.infer<typeof thesisEngineResponseSchema>;
+
+export const thesisRuleConditionsSchema = z.object({
+  candidate_item_names_any: z.array(z.string().trim().min(1)).min(1).optional(),
+  medications_any: z.array(z.string().trim().min(1)).min(1).optional(),
+  conditions_any: z.array(z.string().trim().min(1)).min(1).optional(),
+  jurisdictions_any: z.array(z.string().trim().min(1)).min(1).optional(),
+  min_age: z.number().int().nonnegative().optional(),
+  max_age: z.number().int().nonnegative().optional(),
+}).strict().refine((value) => Object.keys(value).length > 0, "at least one condition is required");

@@ -186,3 +186,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: replace free-standing certainty labels with a mandatory certainty-assessment reference whose question, grade, and validation state must match the claim
 - rationale: a claim-level string cannot prove that GRADE was performed, independently checked, or applied to the same outcome question
 - impact: thesis claims cannot enter the deterministic bundle until a human-validated GRADE registry row exists and all upstream extraction provenance matches
+
+## D-024 — Implement the matcher before validated rules exist
+
+- date: 2026-07-10
+- decision: implement and contract-test deterministic matching with synthetic in-memory bundles while production curated rules remain empty
+- rationale: an engine that throws when the first validated rule arrives cannot satisfy Phase 07; synthetic matcher tests prove software behavior without claiming clinical performance
+- impact: validated rules can later execute only through a strict condition vocabulary, exact matching, deterministic priority, and claim-linked output; release remains externally blocked

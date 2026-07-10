@@ -380,3 +380,12 @@
 - Strengthened production provenance so report and extraction source IDs, extraction locator/hash, quote, and quote hash must equal claim support.
 - Expanded synthetic claim-rule mutations from 9 to 11 with missing and mismatched GRADE rejection.
 - TypeScript provenance tests pass 9/9; production certainty/claim/rule rows and legacy promotions remain 0/0/0/0.
+
+## 2026-07-10 — Phase 07 deterministic matcher implementation
+
+- Removed the placeholder failure that rejected every nonempty validated-rule bundle.
+- Implemented strict exact matching for candidate item, medication, condition, jurisdiction, and age constraints.
+- Added deterministic action-class priority ordering, rule identifiers, and linked evidence-claim resolution.
+- Added three synthetic contract tests covering matching/order/provenance output, byte determinism, partial-string rejection, and unknown-condition rejection.
+- Regenerated the 120×3 safe-empty report and both 120-row human queues against the new engine/bundle SHA; legacy leakage and nonempty empty-state outputs remain 0.
+- Independent gold, expert review, clinical performance metrics, and validated deployment remain absent.

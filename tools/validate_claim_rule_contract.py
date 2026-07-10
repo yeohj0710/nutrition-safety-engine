@@ -103,7 +103,7 @@ def main() -> int:
             "rule_id": "RUL-SYNTH-001",
             "question_id": "A1",
             "scope_status": "validated_thesis_scope",
-            "conditions": {"synthetic": True},
+            "conditions": {"candidate_item_names_any": ["synthetic ingredient"]},
             "action_class": "information_only",
             "message_template": "Synthetic contract message only.",
             "claim_ids": ["CLM-SYNTH-001"],
