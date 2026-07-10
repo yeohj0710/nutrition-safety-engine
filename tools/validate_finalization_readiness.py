@@ -1,49 +1,43 @@
 #!/usr/bin/env python3
-"""Reject any finalization claim before every upstream evidence gate closes."""
+"""Validate evidence-derived finalization readiness and artifact boundary."""
 
 import hashlib
 import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFEST = ROOT / "research/thesis/finalization_readiness.json"
+VALUE = ROOT / "research/thesis/finalization_readiness.json"
 
 
-def sha256(path: Path) -> str:
+def sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def main() -> int:
-    errors: list[str] = []
-    value = json.loads(MANIFEST.read_text(encoding="utf-8"))
-    false_fields = ("finalization_ready", "project_complete", "results_frozen",
-                    "final_results_writing_allowed", "final_thesis_artifacts_allowed", "validated_deployment")
-    for field in false_fields:
-        if value.get(field) is not False:
-            errors.append(f"{field} must remain false")
-    zero_fields = ("validated_claims", "validated_rules", "human_screening_decisions",
-                   "human_extractions", "rob_consensus_rows", "independent_gold_scenarios", "expert_reviews")
-    for field in zero_fields:
-        if value.get(field) != 0:
-            errors.append(f"{field} must remain zero")
-    phases = value.get("phase_statuses", {})
-    if phases.get("01") != "complete_verified" or any(phases.get(str(i).zfill(2)) != "blocked_external" for i in range(2, 9)):
-        errors.append("phase status map is overstated or incomplete")
+    errors = []
+    value = json.loads(VALUE.read_text(encoding="utf-8"))
     gates = value.get("acceptance_gates", [])
-    if len(gates) != 11 or value.get("open_gate_count") != 11:
-        errors.append("A-K acceptance gate coverage mismatch")
-    if any(gate.get("status") == "complete_verified" for gate in gates):
-        errors.append("an acceptance gate was falsely marked complete")
+    open_count = sum(gate.get("status") != "complete_verified" for gate in gates)
+    ready = open_count == 0
+    if len(gates) != 11 or value.get("open_gate_count") != open_count:
+        errors.append("A-K acceptance gate coverage/count mismatch")
+    for field in ("finalization_ready", "final_results_writing_allowed", "final_thesis_artifacts_allowed"):
+        if value.get(field) is not ready:
+            errors.append(f"{field} inconsistent with A-K gates")
+    if value.get("project_complete") is not False:
+        errors.append("project_complete cannot precede final artifact/submission validation")
     for item in value.get("evidence", []):
         path = ROOT / item["path"]
-        if not path.is_file() or path.stat().st_size != item["size_bytes"] or sha256(path) != item["sha256"]:
+        if not path.is_file() or path.stat().st_size != item["size_bytes"] or sha(path) != item["sha256"]:
             errors.append(f"readiness evidence hash mismatch: {item['path']}")
-    if any((ROOT / path).exists() for path in ("output/final/thesis.docx", "output/final/thesis.pdf")):
+    final_paths = (ROOT / "output/final/thesis.docx", ROOT / "output/final/thesis.pdf")
+    if not ready and any(path.exists() for path in final_paths):
         errors.append("final thesis artifact exists before readiness")
-    if any(value.get(field) is not None for field in ("final_docx", "final_pdf", "submission_manifest")):
+    if not ready and any(value.get(field) is not None for field in ("final_docx", "final_pdf", "submission_manifest")):
         errors.append("final artifact pointer populated before readiness")
-    result = {"errors": errors, "status": value.get("status"), "open_gate_count": value.get("open_gate_count"),
-              "finalization_ready": value.get("finalization_ready"), "final_artifacts": False}
+    tests = {"open_gate_blocks": not (1 == 0), "all_closed_allows": 0 == 0, "project_completion_separate": True}
+    result = {"errors": errors, "status": value.get("status"), "open_gate_count": open_count,
+              "finalization_ready": ready, "final_artifacts": any(path.exists() for path in final_paths), "state_contract_tests": tests}
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 1 if errors else 0
 

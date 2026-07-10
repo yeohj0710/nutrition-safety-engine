@@ -44,12 +44,15 @@ def main() -> int:
             errors.append(f"handoff progress state mismatch: {item['path']}")
         any_total += any_count
         complete_total += complete
-    if value.get("queue_count") != len(queues) or len(queues) != 29:
-        errors.append("expected 29 handoff queues")
+    if value.get("queue_count") != len(queues) or len(queues) != 30:
+        errors.append("expected 30 handoff queues")
     if value.get("rows_with_any_human_data") != any_total or value.get("rows_complete_candidate") != complete_total:
         errors.append("handoff aggregate progress mismatch")
-    if value.get("human_work_complete") is not False or value.get("status") != "ready_for_external_review_not_completed":
-        errors.append("human handoff completion overstated")
+    actionable = [item for item in queues if item["minimum_completion_fields"]]
+    expected_complete = bool(actionable) and all(item["progress_state"] == "complete_candidate_requires_validation" for item in actionable)
+    expected_status = "complete_candidate_requires_phase_validation" if expected_complete else "ready_for_external_review_not_completed"
+    if value.get("human_work_complete") is not expected_complete or value.get("all_actionable_queues_complete_candidate") is not expected_complete or value.get("status") != expected_status:
+        errors.append("human handoff aggregate completion mismatch")
     state_contract_tests = {
         "instruction": expected_state(5, 0, 0, []) == "blocker_instruction",
         "awaiting_upstream": expected_state(0, 0, 0, ["reviewer"]) == "awaiting_upstream_rows",
@@ -62,7 +65,7 @@ def main() -> int:
     result = {"errors": errors, "queues": len(queues), "rows": value.get("total_rows"),
               "rows_with_any_human_data": any_total, "rows_complete_candidate": complete_total,
               "state_contract_tests": state_contract_tests,
-              "human_work_complete": False}
+              "human_work_complete": expected_complete}
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 1 if errors else 0
 

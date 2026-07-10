@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.1.0",
+  "schema_version": "1.2.0",
   "status": "ready_for_external_review_not_completed",
   "dependency_order": [
     "protocol_PRESS",
@@ -10,7 +10,7 @@
     "independent_validation",
     "finalization"
   ],
-  "queue_count": 29,
+  "queue_count": 30,
   "total_rows": 20900,
   "rows_with_any_human_data": 0,
   "rows_complete_candidate": 0,
@@ -619,6 +619,45 @@
         "postdeploy_report_sha256",
         "verified_by",
         "verified_at",
+        "status"
+      ],
+      "rows_with_any_human_data": 0,
+      "rows_complete_candidate": 0,
+      "progress_state": "awaiting_upstream_rows"
+    },
+    {
+      "queue_id": "P8_results_freeze",
+      "path": "research/thesis/results_freeze_review.csv",
+      "sha256": "0d783699b2d3541e08a053163407adb191a54d9a541990f781af7118d31efc8f",
+      "size_bytes": 228,
+      "row_count": 0,
+      "human_entry_fields": [
+        "freeze_id",
+        "frozen_commit",
+        "data_manifest_path",
+        "data_manifest_sha256",
+        "analysis_manifest_path",
+        "analysis_manifest_sha256",
+        "department_format_path",
+        "department_format_sha256",
+        "protocol_approval_reference",
+        "approved_by",
+        "approved_at",
+        "status",
+        "notes"
+      ],
+      "minimum_completion_fields": [
+        "freeze_id",
+        "frozen_commit",
+        "data_manifest_path",
+        "data_manifest_sha256",
+        "analysis_manifest_path",
+        "analysis_manifest_sha256",
+        "department_format_path",
+        "department_format_sha256",
+        "protocol_approval_reference",
+        "approved_by",
+        "approved_at",
         "status"
       ],
       "rows_with_any_human_data": 0,

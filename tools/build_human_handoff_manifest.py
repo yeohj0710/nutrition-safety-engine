@@ -37,6 +37,7 @@ SPECS = [
     spec("P7_blind_expert", "research/validation/synthetic_scenario_blind_expert_review.csv", ["reviewer_id", "clinical_plausibility", "risk_coverage", "missing_information", "comments", "reviewed_at"], ["reviewer_id", "clinical_plausibility", "risk_coverage", "reviewed_at"]),
     spec("P7_independent_gold", "research/validation/independent_gold_scenario_authoring_queue.csv", ["author_1_id", "author_1_input_json", "author_1_expected_actions_json", "author_2_id", "author_2_input_json", "author_2_expected_actions_json", "adjudicator_id", "adjudicated_input_json", "adjudicated_expected_actions_json", "critical_failure_labels_json", "authored_at", "adjudicated_at", "gold_row_sha256"], ["author_1_id", "author_1_input_json", "author_1_expected_actions_json", "author_2_id", "author_2_input_json", "author_2_expected_actions_json", "adjudicator_id", "adjudicated_input_json", "adjudicated_expected_actions_json", "critical_failure_labels_json", "authored_at", "adjudicated_at", "gold_row_sha256"]),
     spec("P7_deployment_verification", "research/validation/deployment_verification.csv", ["deployment_id", "deployment_url", "provider", "release_commit", "thesis_bundle_sha256", "deployed_at", "postdeploy_report_path", "postdeploy_report_sha256", "verified_by", "verified_at", "status"], ["deployment_id", "deployment_url", "provider", "release_commit", "thesis_bundle_sha256", "deployed_at", "postdeploy_report_path", "postdeploy_report_sha256", "verified_by", "verified_at", "status"]),
+    spec("P8_results_freeze", "research/thesis/results_freeze_review.csv", ["freeze_id", "frozen_commit", "data_manifest_path", "data_manifest_sha256", "analysis_manifest_path", "analysis_manifest_sha256", "department_format_path", "department_format_sha256", "protocol_approval_reference", "approved_by", "approved_at", "status", "notes"], ["freeze_id", "frozen_commit", "data_manifest_path", "data_manifest_sha256", "analysis_manifest_path", "analysis_manifest_sha256", "department_format_path", "department_format_sha256", "protocol_approval_reference", "approved_by", "approved_at", "status"]),
 ] + [spec(f"P{phase}_external", f"research/review_queue/phase_{phase:02d}_external_review.csv", [], []) for phase in (1, 2, 3, 5, 6, 7, 8)]
 
 
@@ -73,14 +74,15 @@ def main() -> int:
                        "rows_with_any_human_data": any_count, "rows_complete_candidate": complete_count,
                        "progress_state": state(len(rows), any_count, complete_count, required)})
     actionable = [q for q in queues if q["minimum_completion_fields"]]
-    payload = {"schema_version": "1.1.0", "status": "ready_for_external_review_not_completed",
+    human_complete = bool(actionable) and all(q["progress_state"] == "complete_candidate_requires_validation" for q in actionable)
+    payload = {"schema_version": "1.2.0", "status": "complete_candidate_requires_phase_validation" if human_complete else "ready_for_external_review_not_completed",
                "dependency_order": ["protocol_PRESS", "retrieval_dedup", "screening_fulltext", "extraction_RoB",
                                     "synthesis_GRADE_claim_rule", "independent_validation", "finalization"],
                "queue_count": len(queues), "total_rows": sum(q["row_count"] for q in queues),
                "rows_with_any_human_data": sum(q["rows_with_any_human_data"] for q in queues),
                "rows_complete_candidate": sum(q["rows_complete_candidate"] for q in queues),
-               "all_actionable_queues_complete_candidate": bool(actionable) and all(q["progress_state"] == "complete_candidate_requires_validation" for q in actionable),
-               "human_work_complete": False, "queues": queues}
+               "all_actionable_queues_complete_candidate": human_complete,
+               "human_work_complete": human_complete, "queues": queues}
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"queues": len(queues), "rows": payload["total_rows"],
                       "rows_with_any_human_data": payload["rows_with_any_human_data"],

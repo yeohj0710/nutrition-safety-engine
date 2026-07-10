@@ -47,6 +47,7 @@ jobs:
       - run: python tools/validate_phase06_gate.py
       - run: python tools/validate_methods_checkpoint.py
       - run: python tools/validate_finalization_readiness.py
+      - run: python tools/validate_results_freeze.py
       - run: python tools/validate_local_production_smoke.py
       - run: python tools/validate_human_handoff_manifest.py
       - run: python tools/validate_secondary_screening_queue.py

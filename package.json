@@ -20,6 +20,7 @@
     "validate:phase08:checkpoint": "python tools/generate_checkpoint_manifest.py && python tools/validate_methods_checkpoint.py && python tools/validate_phase08_checkpoint.py",
     "build:finalization-readiness": "python tools/build_finalization_readiness.py",
     "validate:finalization-readiness": "python tools/validate_finalization_readiness.py",
+    "validate:results-freeze": "python tools/validate_results_freeze.py",
     "capture:local-production-smoke": "python tools/capture_local_production_smoke.py",
     "validate:local-production-smoke": "python tools/validate_local_production_smoke.py",
     "build:human-handoff": "python tools/build_human_handoff_manifest.py",

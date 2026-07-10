@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "status": "not_ready_external_human_gates",
   "finalization_ready": false,
   "project_complete": false,
@@ -28,57 +28,57 @@
     {
       "id": "A_protocol",
       "status": "blocked_external",
-      "reason": "dated protocol approval and registration absent"
+      "reason": "human handoff aggregate including protocol/PRESS"
     },
     {
       "id": "B_search",
       "status": "blocked_external",
-      "reason": "PRESS and licensed final searches absent"
+      "reason": "human handoff aggregate including final searches"
     },
     {
       "id": "C_screening",
       "status": "blocked_external",
-      "reason": "human screening and deduplication decisions absent"
+      "reason": "human handoff aggregate including dedup/screening"
     },
     {
       "id": "D_extraction_rob",
       "status": "blocked_external",
-      "reason": "included reports, verified extraction, and RoB absent"
+      "reason": "human handoff aggregate including extraction/RoB"
     },
     {
       "id": "E_synthesis_grade",
       "status": "blocked_external",
-      "reason": "verified synthesis and GRADE rows absent"
+      "reason": "human handoff aggregate including GRADE"
     },
     {
       "id": "F_ai_evaluation",
       "status": "blocked_external",
-      "reason": "frozen human gold and actual AI runs absent"
+      "reason": "production AI evaluation status"
     },
     {
       "id": "G_claim_rule",
       "status": "blocked_external",
-      "reason": "production validated claims and rules absent"
+      "reason": "validated thesis bundle counts"
     },
     {
       "id": "H_engine",
-      "status": "pass_software_only",
-      "reason": "deterministic matcher/build pass; clinical validation absent"
+      "status": "blocked_external",
+      "reason": "120-scenario independent metrics and determinism"
     },
     {
       "id": "I_independent_validation",
       "status": "blocked_external",
-      "reason": "independently authored/adjudicated gold and experts absent"
+      "reason": "independent gold plus expert review"
     },
     {
       "id": "J_thesis",
       "status": "blocked_external",
-      "reason": "results freeze and department format absent; final document prohibited"
+      "reason": "results/analysis freeze and department format approval"
     },
     {
       "id": "K_release_reproducibility",
       "status": "blocked_external",
-      "reason": "validated deployment, release tag, and final manifest absent"
+      "reason": "validated deployment and release readiness"
     }
   ],
   "open_gate_count": 11,
@@ -124,8 +124,8 @@
     },
     {
       "path": "research/thesis/phase_08_exit_criteria.md",
-      "size_bytes": 1609,
-      "sha256": "65c2b889eb26db1bf8325cee6273840efb9b5587641f3db7620095db6050a320"
+      "size_bytes": 2294,
+      "sha256": "1fa7d9e42eb8ccbc2c7a37c2db4e0003498660f52cd70f77cdc3bf9fd32cdd0c"
     },
     {
       "path": "research/audit/deployment_baseline.json",
@@ -144,8 +144,28 @@
     },
     {
       "path": "research/review_queue/human_handoff_manifest.json",
-      "size_bytes": 21854,
-      "sha256": "e8dda51c648255cdfc68ebd0e596431f0f67b6acfa278e0038689cc25176c244"
+      "size_bytes": 23059,
+      "sha256": "b65a4802c3e80d921ca2a39658353297de15380ec97ef940292e78e54fa4b0cf"
+    },
+    {
+      "path": "research/extraction/ai_extraction_evaluation.json",
+      "size_bytes": 500,
+      "sha256": "d0dc789678d64390ef5a3d70d450ae7a2eb943834f836668b33f11c3f63df861"
+    },
+    {
+      "path": "research/validation/independent_gold_performance.json",
+      "size_bytes": 594,
+      "sha256": "0071d01b36c25f8cb0b6bc6436a252191b5fc098de0775341cbc5bd94e447426"
+    },
+    {
+      "path": "research/validation/release_readiness.json",
+      "size_bytes": 722,
+      "sha256": "03f8a93ee656435293bc33c448ba802bf051c53635736492af8dc88b669a9fe3"
+    },
+    {
+      "path": "research/thesis/results_freeze_review.csv",
+      "size_bytes": 228,
+      "sha256": "0d783699b2d3541e08a053163407adb191a54d9a541990f781af7118d31efc8f"
     }
   ]
 }

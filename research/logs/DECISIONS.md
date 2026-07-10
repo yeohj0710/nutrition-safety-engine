@@ -361,3 +361,17 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: keep `release_commit` null while validated claims/rules, 120 gold metrics, zero critical FN, full determinism, or 120 expert reviews are incomplete
 - rationale: embedding ordinary moving HEAD values in a tracked blocked-state report creates noise and can imply a release candidate exists
 - impact: current readiness remains stable and explicitly non-release; commit identity appears only when a genuine candidate or deployment row exists
+
+## D-049 — Finalization readiness is evidence-derived, not permanently false
+
+- date: 2026-07-10
+- decision: calculate A-K gates from aggregate human handoff, production AI evaluation, validated bundle counts, independent metrics/expert review, results freeze, and release/deployment readiness
+- rationale: hardcoded false values prevent false completion now but also make legitimate future completion impossible
+- impact: current 11 open gates still prohibit results writing and final artifacts; closing every authoritative dependency can advance the state to a final-document build candidate without manual code edits
+
+## D-050 — Results freeze is a hash-bound approval event
+
+- date: 2026-07-10
+- decision: require one row binding frozen commit, data manifest, analysis manifest, department format, protocol approval reference, approver, and timestamps before thesis results can be written
+- rationale: a prose claim that results are frozen cannot prove which data, analysis, format, or commit the thesis uses
+- impact: absent/multiple/stale rows remain blocked; valid paths are reopened and SHA-256 reproduced before `results_frozen` becomes true
