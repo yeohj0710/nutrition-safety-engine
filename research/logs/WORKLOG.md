@@ -93,3 +93,11 @@
 - result: 19,961/19,961 retrieval instances exported; 19,609 unique PMIDs; 352 cross-question duplicate instances; 342 exact duplicate candidate pairs; 9/9 sentinels; 123 raw files checksum-verified; full proxy manifest 137 files; validator errors 0
 - limitation: 0/342 human dedup decisions and 0/19,609 human study links; 33/235 legacy PMIDs not retrieved because legacy search scope differs; no omission inference made
 - decision: proxy pipeline `complete_verified`, Phase 03 remains `blocked_external`; raw XML and abstract-rich records remain local/ignored with tracked hashes to avoid oversized/copyright-sensitive Git history
+
+## 2026-07-10 15:55:00 +09:00
+
+- phase / task ID: Phase 04 / screening queue proxy
+- procedure: generated two independent deterministic priority profiles from title/abstract terms; retained every record-question unit in human review queue; generated blank human decision/full-text schemas and 50-row seeded training queue; reran generation and compared hashes
+- result: 19,961 units in each proxy and human queue; sensitivity-first high/medium/low 15,862/3,117/982; structured-conservative 12,330/5,957/1,674; 4,224 proxy disagreements; deterministic hashes stable; validator errors 0
+- limitation: human decisions 0, full-text assessments 0, final reports/studies unavailable, PRISMA prohibited
+- decision: proxy queue `complete_verified`, Phase 04 `blocked_external`; no proxy recommendation has decision authority and AI-only exclusions remain 0

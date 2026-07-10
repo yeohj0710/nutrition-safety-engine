@@ -38,3 +38,9 @@
 - Large local raw corpus risk controlled with per-file SHA-256 and tracked manifest; local loss would still prevent raw reproduction, so final bundle backup is required.
 - 342 exact duplicate candidates and 19,609 report candidates await human decisions. Automated closure would bias screening/PRISMA denominators.
 - 33 legacy PMIDs did not match current question drafts. They require scoped human review after protocol freeze, not automatic query expansion.
+
+## 2026-07-10 Phase 04 proxy note
+
+- Proxy A/B disagree on 4,224 units, confirming term heuristics are unsuitable as final screeners.
+- A1 proxy-high volume remains very large; priority ordering does not reduce required human coverage.
+- Human reviewer fatigue and training consistency remain major risks; 50-row blinded pilot queue is ready but unreviewed.

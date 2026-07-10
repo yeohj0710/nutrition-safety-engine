@@ -100,3 +100,10 @@ Status: superseded by D-007 after the reproducible baseline was captured.
 - decision: generate exact DOI/title candidate pairs but leave all canonical/cluster decisions blank pending human review
 - rationale: record duplication and same-study linkage are human methodological judgments
 - impact: deduplication and PRISMA counts remain blocked; synthetic screening may use unique PMID records only as a dry run
+
+## D-013 — Screening proxy semantics
+
+- date: 2026-07-10
+- decision: proxy outputs use `include_candidate`, `uncertain`, and `low_priority_review`; never `exclude`
+- rationale: AI/heuristic-only exclusion is prohibited and no human gold exists
+- impact: every one of 19,961 record-question units remains in the human queue; proxy metrics are plumbing diagnostics only

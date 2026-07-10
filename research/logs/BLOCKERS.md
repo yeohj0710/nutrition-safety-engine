@@ -61,3 +61,11 @@ Detailed decision questions: `research/review_queue/phase_01_external_review.csv
 - minimum input needed: human decisions for all candidate duplicates, 10% audit sample, and study linkage for potentially included reports
 - work that can continue: blinded/synthetic screening dry runs, queue tooling, metric code
 - status: `blocked_external`
+
+## B-008 — Human screening and full-text adjudication
+
+- exact block point: final include/exclude decisions, full-text exclusions, reports/studies, PRISMA, and AI gold
+- already attempted: all-unit human queue, two non-decisional proxies, disagreement flags, 50-row training pilot, blank decision/full-text schemas
+- minimum input needed: independent reviewer IDs/training decisions, adjudication route, full-text access, and completed decisions
+- work that can continue: extraction schema validation with synthetic fixtures, metric code, error taxonomy
+- status: `blocked_external`
