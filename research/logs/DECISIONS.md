@@ -158,3 +158,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: hash-bind the current protocol/search/PRESS evidence while keeping protocol approval, PRESS completion, registration, and final-search permission explicitly false
 - rationale: byte integrity is locally provable, whereas methodological approval and licensed database execution require independent people or access
 - impact: later edits to any of 21 core artifacts fail validation, but a passing manifest cannot be cited as Phase 02 completion
+
+## D-020 — Reparse raw XML to prove Phase 03 lineage
+
+- date: 2026-07-10
+- decision: validate every normalized PubMed record/retrieval against its referenced raw XML and independently regenerate the complete exact-duplicate candidate set
+- rationale: output hashes and aggregate counts cannot prove that individual rows point to the correct source bytes or that candidate generation is complete
+- impact: raw PMID/title/DOI drift, missing candidate pairs, and premature human decisions fail before any deduplication output can support screening

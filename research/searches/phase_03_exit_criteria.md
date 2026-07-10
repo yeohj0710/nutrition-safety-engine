@@ -12,9 +12,11 @@ Proxy pipeline status: `complete_verified`
 | KMbase/RISS split-query pilot | 20 short queries per platform; 40 checksum-verified raw responses; KMbase records 0; RISS records/export 0 | pass_hitcount_design_only_export_blocked |
 | No top-N truncation | A1 split into 14 publication-date partitions; all unique IDs equal reported hits | pass_proxy_only |
 | Raw hashes | PubMed payload/metadata manifest plus 20 ClinicalTrials.gov files checksum-verified | pass_proxy_only |
+| Raw XML → record → retrieval lineage | 103 XML files independently reparsed; 19,609 records and 19,961 retrievals matched PMID/title/DOI/raw path | pass_proxy_only |
 | Sentinel recall | 9/9 | pass_proxy_only |
 | Normalized records | PubMed: 19,961 retrieval instances/19,609 unique PMIDs; registry: 207 retrieval instances/201 unique NCT IDs | pass_proxy_only |
 | Duplicate candidate generation | 342 exact DOI/title pairs | pass_proxy_only |
+| Duplicate candidate independent recomputation | 342/342 pairs and reasons exact; 5/5 corruption mutations rejected | pass_proxy_only |
 | Human duplicate decisions | 0/342 | blocked_external |
 | Report→study linkage | 19,609 report candidates; 0 human study links | blocked_external |
 | Registry screening/linkage | 207 undecided rows; 500 registry→PubMed candidate links; 0 human decisions | blocked_external |

@@ -146,8 +146,8 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 11085,
-      "sha256": "7976c3a4cec817af31977a4fff4324cd2ad4235a6993bf6eb7f992d2396bf487"
+      "size_bytes": 11633,
+      "sha256": "dc55cc2a78c46a015d1e06011775ce4efda15f38d910a5894ee414eee2ffa29e"
     },
     {
       "path": "research/logs/RISKS.md",
@@ -156,8 +156,8 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 32960,
-      "sha256": "1a8aa37d3586f8b1b92ef04dd909d054410f4286fb3a15374160db624cfa0dea"
+      "size_bytes": 33561,
+      "sha256": "1cee20a52b98362da1eb5c96ead5e298f4d18aec812f013c348b61a4474f6811"
     },
     {
       "path": "research/review_queue/korean_db_PRESS_review.csv",

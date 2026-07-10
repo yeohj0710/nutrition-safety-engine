@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "bc20f7b9fd68e4e503a35ac84a376271e7964acd",
+  "implementation_head": "0d89e1cf68428ea8f630705dc8124ac8377afe37",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,7 +10,7 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 778,
+  "file_count": 780,
   "local_required_file_count": 104,
   "files": [
     {
@@ -801,8 +801,8 @@
     },
     {
       "path": "package.json",
-      "size_bytes": 3225,
-      "sha256": "5e0f8548c0986ba7337b6759e2aae6c6a97312288652de3d4e52f2d710a07a84",
+      "size_bytes": 3301,
+      "sha256": "c66d11d3485a645b8dc50bf25d5e4d671e8b207c7c341cbe5ea1a9be312df00c",
       "distribution": "tracked"
     },
     {
@@ -934,7 +934,7 @@
     {
       "path": "research/audit/phase_01_artifact_manifest.json",
       "size_bytes": 8547,
-      "sha256": "28d645eca0dc414e3663b7ef0e51f6b95717073be55e012fc8a023039d79cf2b",
+      "sha256": "4e699589baac17f2b55dc0dd95977a73227c44f9224b61f76451543c0c9652da",
       "distribution": "tracked"
     },
     {
@@ -2421,8 +2421,8 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 11085,
-      "sha256": "7976c3a4cec817af31977a4fff4324cd2ad4235a6993bf6eb7f992d2396bf487",
+      "size_bytes": 11633,
+      "sha256": "dc55cc2a78c46a015d1e06011775ce4efda15f38d910a5894ee414eee2ffa29e",
       "distribution": "tracked"
     },
     {
@@ -2433,14 +2433,14 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 32960,
-      "sha256": "1a8aa37d3586f8b1b92ef04dd909d054410f4286fb3a15374160db624cfa0dea",
+      "size_bytes": 33561,
+      "sha256": "1cee20a52b98362da1eb5c96ead5e298f4d18aec812f013c348b61a4474f6811",
       "distribution": "tracked"
     },
     {
       "path": "research/PROGRESS_LEDGER.md",
-      "size_bytes": 2546,
-      "sha256": "5d6880d728858259e21d270a2d9bb7d8e08c4483a667554e5b05c58b8e874968",
+      "size_bytes": 2582,
+      "sha256": "67461eb37a24088e72869b4ed004b313383a433e8f4a4ef377a4f25d66b044fb",
       "distribution": "tracked"
     },
     {
@@ -3932,15 +3932,21 @@
       "distribution": "tracked"
     },
     {
+      "path": "research/searches/phase03_lineage_validation.json",
+      "size_bytes": 1524,
+      "sha256": "649859e357fe2308674efe32db62fa9f099a2d5582fc0decd13f27e1f46522fc",
+      "distribution": "tracked"
+    },
+    {
       "path": "research/searches/phase_03_exit_criteria.md",
-      "size_bytes": 2921,
-      "sha256": "941e04bd276c524d860f419fab4d0fca1c2b1ea7ef4dee84e7626a89111ee582",
+      "size_bytes": 3230,
+      "sha256": "a44115456912961dcaf60214bb374e25f37f4b34a6f7199c1a8c23a643f92abc",
       "distribution": "tracked"
     },
     {
       "path": "research/searches/proxy_manifest.json",
       "size_bytes": 35190,
-      "sha256": "5c329d6fac786256f4b8b1bb2e1a8bd066997951216ca3de775fdd4b2476f7e5",
+      "sha256": "c598081e59b29235d07aa58406fc41dcf17fe45ab6243c9ba3ee93824b4409b0",
       "distribution": "tracked"
     },
     {
@@ -4613,6 +4619,12 @@
       "path": "tools/validate_phase02_evidence_manifest.py",
       "size_bytes": 2749,
       "sha256": "60d94f656c1d8b2fe6b43132a4bb26c8296fbe6d3880bbf335e2598347b53bc0",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/validate_phase03_lineage.py",
+      "size_bytes": 7353,
+      "sha256": "653ea06f02253675add3c982722ef5a5bffaccebeafbd8cc6040e070352c48a7",
       "distribution": "tracked"
     },
     {

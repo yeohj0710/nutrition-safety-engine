@@ -348,3 +348,11 @@
 - Distinguished the 126-file GPT handoff package from the original 513-file research source; the handoff package was not substituted for source reconciliation.
 - Bound 21 Phase 02 protocol, query, pilot, and review-queue artifacts to SHA-256.
 - Validator confirms external-gate flags remain false, main PRESS rows 8, Korean PRESS rows 40, and no verified human decisions were inferred.
+
+## 2026-07-10 — Phase 03 record/dedup lineage recomputation
+
+- Independently reparsed 103 checksum-preserved PubMed XML batches rather than trusting normalized CSV row counts.
+- Matched 19,609 records and 19,961 retrieval instances to their exact raw-file PMID, normalized title, and DOI.
+- Independently recomputed all 342 exact DOI/title duplicate candidate pairs and their reasons.
+- Rejected 5/5 mutations: wrong raw PMID, wrong title, missing duplicate candidate, filled human decision, and filled study link.
+- Human dedup decisions and human study links remain 0; no proxy row was promoted.
