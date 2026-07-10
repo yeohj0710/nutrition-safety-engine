@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "status": "design_pilot_complete_display_native_export_server_error_not_final_search",
+  "runs": 5,
+  "hits_observed": 62,
+  "records_captured": 62,
+  "unique_kmids": 62,
+  "native_records_exported": 0,
+  "exact_title_link_candidates": 35,
+  "human_eligibility_decisions": 0,
+  "human_link_decisions": 0,
+  "final_search_claim_allowed": false,
+  "export_error": "temp_file permission denied; fopen/fwrite/fclose/readfile/unlink failed",
+  "checksum_manifest_sha256": "c8f27047f89ad207ca5430ea2ff6995e9294884e95df62e17e43fc62ea898053"
+}

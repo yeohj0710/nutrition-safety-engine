@@ -8,9 +8,9 @@ Proxy queue status: `complete_verified`
 |---|---|---|
 | Screening storage and manual | pass_local | empty human-decision schema, full-text schemas, copied design manual |
 | Priority dry run | pass_proxy_only | two deterministic proxy outputs; 19,961 units; 4,224 disagreements |
-| All retrieval units retained for people | pass_proxy_only | PubMed queue 19,961 plus ClinicalTrials.gov queue 207; no prefilled decision |
+| All retrieval units retained for people | pass_proxy_only | PubMed 19,961 + ClinicalTrials.gov 207 + KoreaMed 62 queues; no prefilled decision |
 | AI-only exclusions | pass | 0 |
-| Human title/abstract or registry decisions | blocked_external | 0/20,168 database-question retrieval units |
+| Human title/abstract or registry decisions | blocked_external | 0/20,230 database-question retrieval units |
 | Human pilot training | blocked_external | 0/50 |
 | Full-text double review | blocked_external | 0 reports assessed |
 | Public PMC locator resolution | pass_proxy_only | 19,609 PMID input; 99 checksum-verified responses; 5,563 unique PMCID candidates; human verification 0 |
@@ -20,6 +20,6 @@ Proxy queue status: `complete_verified`
 
 Phase 04 is not complete. Proxy bands must not appear as inclusion decisions or thesis results.
 
-The 20,168 total is a retrieval-unit workload count (19,961 PubMed plus 207 ClinicalTrials.gov), not a deduplicated-record, included-report, study, or final PRISMA count. All 139 A1 registry units carry the known vitamin-K-antagonist lexical-risk flag.
+The 20,230 total is a retrieval-unit workload count (19,961 PubMed + 207 ClinicalTrials.gov + 62 KoreaMed), not a deduplicated-record, included-report, study, or final PRISMA count. All 139 A1 registry units carry the known vitamin-K-antagonist lexical-risk flag. KoreaMed native export failed at the server; 62 A1 KMIDs/titles were captured only after the page proved complete display `1-62`.
 
 PMC identifiers are access locators only. The 5,563 candidates exactly reproduce the PMCID set parsed from PubMed XML, but none is an eligibility decision, verified extraction source, or completed full-text review.

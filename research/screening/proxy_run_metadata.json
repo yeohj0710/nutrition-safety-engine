@@ -4,7 +4,7 @@
   "seed": 20260710,
   "input_records_sha256": "a904c9c2a333a30e33898ba46a8099b75f8284d7e97b9f568e30e773a1bdd1ae",
   "input_retrievals_sha256": "2efce65f50fe5bcce939320c7c330df8f0b9522901af5dc3ee383ef667f57892",
-  "script_sha256": "adf9d92cc11b872aa47ba1efc171baefe158af2d9e954fb50457de744ee66f4a",
+  "script_sha256": "76069bc10bd3b902659fa19a9a6da3145b98833670f8a6da5101b298518d9690",
   "record_question_units": 19961,
   "all_units_require_human_review": true,
   "proxy_counts": {

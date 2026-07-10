@@ -1,0 +1,1 @@
+(warfarin OR anticoagulant) AND ("omega-3" OR "fish oil" OR EPA OR DHA)

@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "5ffabfb137e4b3f09af389c27cfe472c99f90121",
+  "implementation_head": "9d0e0e0a5871d770f7c6041fac07b7a498ec7a0f",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,13 +10,13 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 687,
+  "file_count": 703,
   "local_required_file_count": 104,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "size_bytes": 1208,
-      "sha256": "669414eb9974c6ea1647372e8ad17a4213f8427adbaa853407812eaf09f14ba7",
+      "size_bytes": 1267,
+      "sha256": "1afa8c7dd6b143c0aa5725e7f021b14225a4dfa6f93741a00d9daad888b92aa4",
       "distribution": "tracked"
     },
     {
@@ -383,6 +383,30 @@
       "path": "data/interim/full_text_log.csv",
       "size_bytes": 133,
       "sha256": "79c68bf9d48271c34f97132273994b62d2454bda0cf4c22a47e0e2b0ee58e01a",
+      "distribution": "tracked"
+    },
+    {
+      "path": "data/interim/koreamed_pubmed_link_candidates.csv",
+      "size_bytes": 4114,
+      "sha256": "fb9c234f625d78c503702c7508287a1ba4fda215cff983b1b6ecd4a97161bc86",
+      "distribution": "tracked"
+    },
+    {
+      "path": "data/interim/koreamed_records.csv",
+      "size_bytes": 23481,
+      "sha256": "3fc7f7313e0d934d94c131a85fd49b835f81a662117bffcd129f261d9dd4eb86",
+      "distribution": "tracked"
+    },
+    {
+      "path": "data/interim/koreamed_retrievals.csv",
+      "size_bytes": 10807,
+      "sha256": "25fcf581117c152dd28e103acc96cda5acfde82b4e0cbe74c08fa5bdeebb65fb",
+      "distribution": "tracked"
+    },
+    {
+      "path": "data/interim/koreamed_review_queue.csv",
+      "size_bytes": 18583,
+      "sha256": "ff44fe788dd382dd41fb88569bc027b1b424988726c759f01d6e1e03f32cf909",
       "distribution": "tracked"
     },
     {
@@ -771,8 +795,8 @@
     },
     {
       "path": "package.json",
-      "size_bytes": 2065,
-      "sha256": "14fcb7d9c3fd6bf9726321865731e1c983e403ab6e3c5ec30af698be4428f7d3",
+      "size_bytes": 2139,
+      "sha256": "33c5a6e20f35977fa133e79c66ecd97f9eaf916e37ea212ee40e2175edbcb7a5",
       "distribution": "tracked"
     },
     {
@@ -2349,8 +2373,8 @@
     },
     {
       "path": "research/logs/BLOCKERS.md",
-      "size_bytes": 7588,
-      "sha256": "6e0bbb2bbd22535390e7b4014bb44aaefff02498e4e4b568fb49eebd2707e418",
+      "size_bytes": 8355,
+      "sha256": "ae90c85c59c62d459ed08cb19f685f65bf184c1b0114c2e17deaf8ffb863474b",
       "distribution": "tracked"
     },
     {
@@ -2361,26 +2385,26 @@
     },
     {
       "path": "research/logs/RISKS.md",
-      "size_bytes": 5386,
-      "sha256": "eac6dff0abf9e60a6ada6e0c70d46975abf86104ba7910f297c5d10b1fa5e8d1",
+      "size_bytes": 5710,
+      "sha256": "b69b424873a9ae82679e1405d1243f994093abc6ce1b95d0db77fc69cbc3c7d8",
       "distribution": "tracked"
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 25017,
-      "sha256": "867df32bf451871cd4e8bd95ec8006e398a0b3054fe5d16a1770bc627219c819",
+      "size_bytes": 25978,
+      "sha256": "efaa57ffabaee7017f128b7daa63cebfaa93bd4b7482221908798536590ad347",
       "distribution": "tracked"
     },
     {
       "path": "research/PROGRESS_LEDGER.md",
-      "size_bytes": 2202,
-      "sha256": "121e40b55cf70a1aa29c46847c25391af57054fe04f13ffd85cf22da9b5f93df",
+      "size_bytes": 2181,
+      "sha256": "58c0fd23878c7053a53187e33b386759d1243dc36db53ec8c00b132fce1261d0",
       "distribution": "tracked"
     },
     {
       "path": "research/protocol/access_matrix.csv",
-      "size_bytes": 3608,
-      "sha256": "e46f4eb159f66f601541ce37f7bc2115f53187714e2e2342bb05e10d3fca0633",
+      "size_bytes": 4028,
+      "sha256": "4f5eae8fce3c12b221ebc117683669900181fa72d3d57f184bfd3b9160bcf3ed",
       "distribution": "tracked"
     },
     {
@@ -2403,8 +2427,8 @@
     },
     {
       "path": "research/protocol/phase_02_exit_criteria.md",
-      "size_bytes": 1767,
-      "sha256": "49e86849e92b4a88404232755c8517c6a99823dac41f68589b8b34e78bc1ea00",
+      "size_bytes": 1797,
+      "sha256": "2aeced49dd4b6a581f705e7bbc9f0fc17b2a6b37cb200339ae869c4c64c11824",
       "distribution": "tracked"
     },
     {
@@ -2439,8 +2463,8 @@
     },
     {
       "path": "research/review_queue/phase_03_external_review.csv",
-      "size_bytes": 1447,
-      "sha256": "c01316dc248bfb3889b6ae57db88b4892fa43c14e8ad5f2463e33d27743a9660",
+      "size_bytes": 2024,
+      "sha256": "f4311899d7a56b67020f95382baed6092fa53d8e0c6d6ff603622619d493790e",
       "distribution": "tracked"
     },
     {
@@ -2481,26 +2505,26 @@
     },
     {
       "path": "research/screening/phase_04_exit_criteria.md",
-      "size_bytes": 1720,
-      "sha256": "a80b4e4bad10cf58ccaef0e1e3e79b8b98d02c2cc3367f9ca8d63a4288ca48db",
+      "size_bytes": 1867,
+      "sha256": "e4648b8d098cc432bedf8185a4535e7a892658b81940a4060c2515d1fd30e5ed",
       "distribution": "tracked"
     },
     {
       "path": "research/screening/prisma_status.json",
-      "size_bytes": 451,
-      "sha256": "2ab61882b00cadce87e5f2decd983dcf8bfef0c7cd626419bb78b299f0c15261",
+      "size_bytes": 492,
+      "sha256": "1be73b862af2d49b9fa95e640be567ab52d584d3f3ef3987461ec75f35599858",
       "distribution": "tracked"
     },
     {
       "path": "research/screening/proxy_dry_run_report.md",
-      "size_bytes": 1334,
-      "sha256": "6b4ab88a92bd0386a01477d69002b3710207055e46ee18a7fd2a44f20bec128e",
+      "size_bytes": 1443,
+      "sha256": "f4f65c0a681090864902fa6b84f7b162d9a188084af78cdfd477bc1907083379",
       "distribution": "tracked"
     },
     {
       "path": "research/screening/proxy_run_metadata.json",
       "size_bytes": 2298,
-      "sha256": "ddcfe8dad6cdfa68bfd9d65322d2cbd7031f2936620ec502192289d664a2db6c",
+      "sha256": "ef58bba02fe90833c7199a131d6168b91948fe16135c5b1d475289fffc63656f",
       "distribution": "tracked"
     },
     {
@@ -3536,9 +3560,69 @@
       "distribution": "tracked"
     },
     {
+      "path": "research/searches/koreamed_designpilot_20260710/browser_observation.json",
+      "size_bytes": 15437,
+      "sha256": "ac8cb187176dd95486099e1029a970b0b248880fa50aa928a9e12d1a12f564bf",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/koreamed_designpilot_20260710/checksum.sha256",
+      "size_bytes": 1347,
+      "sha256": "c8f27047f89ad207ca5430ea2ff6995e9294884e95df62e17e43fc62ea898053",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/koreamed_designpilot_20260710/queries/A1.txt",
+      "size_bytes": 22,
+      "sha256": "eafa4479be730f5f3909656b8bf1f877c9b277ddce0f4c181de45ecc95764a00",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/koreamed_designpilot_20260710/queries/A2.txt",
+      "size_bytes": 73,
+      "sha256": "56db6bab633dc0d65b073a27eeaa65bc284d3ad86b09ca97a6306b83142b015f",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/koreamed_designpilot_20260710/queries/B1.txt",
+      "size_bytes": 124,
+      "sha256": "76df836d9be666d394af195e91cbd46daeca965fdea6d7d69d41ce81a1af1334",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/koreamed_designpilot_20260710/queries/B2.txt",
+      "size_bytes": 108,
+      "sha256": "89031208633bb0c94f246451c9d425467718c2f57977fbae7fd1b76015796afd",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/koreamed_designpilot_20260710/queries/B3.txt",
+      "size_bytes": 103,
+      "sha256": "22e87482c6cec5ce98fc9fc5156325cd848a540acb0adda720192466b1430bca",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/koreamed_designpilot_20260710/search_log.csv",
+      "size_bytes": 1464,
+      "sha256": "75d0c544ce8950fb140e7412ef113852059724ad7eca969c3d24f45cfa1e9778",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/koreamed_designpilot_20260710/summary.json",
+      "size_bytes": 584,
+      "sha256": "ea87a669bee8b798e02d094b07f4cc3d24bef0037eae0a98ca1d5293c20d54eb",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/koreamed_designpilot_20260710/validation.json",
+      "size_bytes": 292,
+      "sha256": "b9f15efa2cccada36f65de1f8a9987219c2062be5bbbccb363ae0729b67830cc",
+      "distribution": "tracked"
+    },
+    {
       "path": "research/searches/phase_03_exit_criteria.md",
-      "size_bytes": 1917,
-      "sha256": "dec8069afe62683f717527ae3f0eb3222857c7e00f8315141e9d6d0c726898e5",
+      "size_bytes": 2510,
+      "sha256": "0bb5a1dc4bf6677d07381dbaa36756e7c32dd7cdacfd67cb017e7ed7b34f625d",
       "distribution": "tracked"
     },
     {
@@ -3939,14 +4023,20 @@
     },
     {
       "path": "tools/generate_screening_proxy.py",
-      "size_bytes": 13564,
-      "sha256": "adf9d92cc11b872aa47ba1efc171baefe158af2d9e954fb50457de744ee66f4a",
+      "size_bytes": 13927,
+      "sha256": "76069bc10bd3b902659fa19a9a6da3145b98833670f8a6da5101b298518d9690",
       "distribution": "tracked"
     },
     {
       "path": "tools/normalize_clinicaltrials_exports.py",
       "size_bytes": 8126,
       "sha256": "34a8d1dabbb7c8ab7f32d1ac98e3a189c41309f7cd1537be7898fc4f5112c72c",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/normalize_koreamed_observation.py",
+      "size_bytes": 6117,
+      "sha256": "7cf9371cc89d78ae2d75fc1922fe241630387f78bc9404a326a05bab7c15f4b1",
       "distribution": "tracked"
     },
     {
@@ -4070,6 +4160,12 @@
       "distribution": "tracked"
     },
     {
+      "path": "tools/validate_koreamed_designpilot.py",
+      "size_bytes": 3373,
+      "sha256": "2bd5bafc29ffe9654c9c57aa6ae8535c4fcaf8c559a876e910cf17e1ef6f321c",
+      "distribution": "tracked"
+    },
+    {
       "path": "tools/validate_phase01.py",
       "size_bytes": 11435,
       "sha256": "0afa69a2d891f1535da00c622641a04697b05fd17c880240b2d9075bff102e90",
@@ -4089,8 +4185,8 @@
     },
     {
       "path": "tools/validate_phase04_proxy.py",
-      "size_bytes": 5990,
-      "sha256": "72e207b5873785c2d284d1b2ea7610d770bbb71081599f9f2a0c12d3afb697a5",
+      "size_bytes": 6740,
+      "sha256": "64f24e4b1b832b4bb6a7418d1b30bce333871a85725ed7f6b4b338756a9fda6a",
       "distribution": "tracked"
     },
     {

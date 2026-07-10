@@ -105,3 +105,12 @@ Status: `resolved_2026-07-10`.
 - minimum input needed: institutional or personal licensed access for Embase and Scopus/WoS, then complete native exports and search histories
 - work that can continue: CENTRAL query refinement/hit-count reproducibility; PubMed, registries, Korean databases, citation chasing, queue/test tooling
 - status: `blocked_external`
+
+## B-013 — KoreaMed native export server failure
+
+- exact block point: reproducible native citation/XML export for the 62-result A1 design-pilot set
+- live evidence: all 62 results displayed (`1-62`) and selected; Download returned server-side temp-file permission and fopen/fwrite/fclose/readfile/unlink failures; downloaded files 0
+- preserved workaround: complete displayed KMID/title capture with 62 unique IDs and checksums; never labeled native export or final search
+- minimum external change: KoreaMed repairs export service, then rerun native export and compare all identifiers/hashes
+- work that can continue: human screening queue, exact-title PubMed linkage review, query PRESS/synonym expansion, KMbase/RISS access checks
+- status: `blocked_external`

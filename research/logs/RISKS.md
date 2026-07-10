@@ -13,6 +13,7 @@
 | R-009 | provenance | Structurally linked source may not support the displayed rule message | high | high | CoQ10-warfarin result displays CoQ10 fatigue meta-analysis | claim-level support mapping and semantic human review | evidence lead | active |
 | R-010 | deployment | Public production can be mistaken for validated thesis output | high | high | legacy counts and out-of-scope rules are live | no validated-release claim; migrate and redeploy only after all release gates | software/research lead | active |
 | R-011 | determinism | Legacy generated outputs and engine responses contain current timestamps | high | medium | identical prepare inputs changed literature-candidates hash | freeze time in release metadata; canonical response test | software lead | active |
+| R-012 | retrieval | KoreaMed native export service fails server-side after complete selection | medium | high | live 62-result A1 Download returned temp-file permission/fopen/fwrite failures | preserve complete displayed IDs; rerun native export after repair; compare exact identifiers | information specialist | active |
 | R-012 | environment | Shared/unlocked Python environment can change analysis behavior | high | medium | Python 3.14 global environment with unrelated editable installs | create isolated lockfile-based environment before retrieval/analysis | software lead | open |
 
 ## 2026-07-10 status note

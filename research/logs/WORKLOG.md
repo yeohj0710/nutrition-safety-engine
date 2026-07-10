@@ -1,5 +1,14 @@
 # WORKLOG
 
+## 2026-07-10 — KoreaMed live design pilot and complete-display capture
+
+- Read official KoreaMed Search Guidelines: default field `ALL`, implicit `AND`, quoted phrase syntax, and individual-word field tags.
+- Live runs: A1 `warfarin "vitamin K"` = 62; A2/B1/B2/B3 = 0 each. A field-tag/quoted-phrase probe produced `DB Error: syntax error` and was excluded from the run log.
+- Set results per page to 100; verified `1-62`, 62 KMID elements, 62 unique values. Captured all 62 KMID/title pairs in one bounded page read.
+- Selected all 62 and invoked native Download. KoreaMed returned temp-file permission/fopen/fwrite/fclose/readfile/unlink server errors; downloaded files 0.
+- Normalized 62 records/retrievals and generated 35 exact-normalized-title PubMed linkage candidates. Human eligibility/linkage decisions 0.
+- Added a 62-row human review queue and integrated it into Phase 04 workload: 20,230 database-question units, final PRISMA still prohibited.
+
 ## 2026-07-10 — CENTRAL live hit-count design pilot
 
 - Executed five public Cochrane Library basic searches and selected the CENTRAL trial-count link for each question.

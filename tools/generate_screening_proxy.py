@@ -296,17 +296,23 @@ def main() -> int:
         json.dumps(run_metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     registry_queue_path = interim / "clinicaltrials_review_queue.csv"
+    koreamed_queue_path = interim / "koreamed_review_queue.csv"
     registry_units = 0
     if registry_queue_path.exists():
         with registry_queue_path.open("r", encoding="utf-8-sig", newline="") as handle:
             registry_units = sum(1 for _ in csv.DictReader(handle))
+    koreamed_units = 0
+    if koreamed_queue_path.exists():
+        with koreamed_queue_path.open("r", encoding="utf-8-sig", newline="") as handle:
+            koreamed_units = sum(1 for _ in csv.DictReader(handle))
     (REPO / "research/screening/prisma_status.json").write_text(
         json.dumps(
             {
                 "status": "unavailable_pending_human_screening",
                 "pubmed_record_question_units": len(queue),
                 "clinicaltrials_record_question_units": registry_units,
-                "identified_record_question_units_total": len(queue) + registry_units,
+                "koreamed_record_question_units": koreamed_units,
+                "identified_record_question_units_total": len(queue) + registry_units + koreamed_units,
                 "counting_note": "Database-question retrieval units; not deduplicated studies or PRISMA final records.",
                 "human_screened": 0,
                 "full_text_assessed": 0,

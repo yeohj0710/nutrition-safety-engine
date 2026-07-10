@@ -19,6 +19,7 @@
     "validate:phase08:checkpoint": "python tools/generate_checkpoint_manifest.py && python tools/validate_phase08_checkpoint.py",
     "validate:pmc-locators": "python tools/validate_pmc_fulltext_candidates.py",
     "validate:central-hitcounts": "python tools/validate_central_hitcount_observations.py",
+    "validate:koreamed": "python tools/validate_koreamed_designpilot.py",
     "typecheck": "npm run prepare:knowledge && tsc --noEmit"
   },
   "dependencies": {

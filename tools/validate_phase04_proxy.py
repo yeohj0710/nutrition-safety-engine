@@ -35,6 +35,7 @@ def main() -> int:
         INTERIM / "screening_decisions.csv",
         INTERIM / "screening_pilot_queue.csv",
         INTERIM / "clinicaltrials_review_queue.csv",
+        INTERIM / "koreamed_review_queue.csv",
         INTERIM / "full_text_log.csv",
         INTERIM / "excluded_full_text.csv",
         REPO / "research/screening/proxy_run_metadata.json",
@@ -55,6 +56,7 @@ def main() -> int:
     decisions = rows("screening_decisions.csv")
     pilot = rows("screening_pilot_queue.csv")
     registry_queue = rows("clinicaltrials_review_queue.csv")
+    koreamed_queue = rows("koreamed_review_queue.csv")
     full_text = rows("full_text_log.csv")
     excluded_full_text = rows("excluded_full_text.csv")
     metadata = json.loads(
@@ -71,6 +73,8 @@ def main() -> int:
         errors.append("human training pilot queue must contain 50 rows")
     if len(registry_queue) != 207:
         errors.append("ClinicalTrials.gov human review queue must contain 207 rows")
+    if len(koreamed_queue) != 62:
+        errors.append("KoreaMed human review queue must contain 62 rows")
     allowed_recommendations = {"include_candidate", "uncertain", "low_priority_review"}
     for label, proxy in (("A", proxy_a), ("B", proxy_b)):
         if any(row["recommendation"] not in allowed_recommendations for row in proxy):
@@ -90,6 +94,12 @@ def main() -> int:
         errors.append("registry queue contains unverified human/final values")
     if sum(bool(row["known_query_risk"]) for row in registry_queue) != 139:
         errors.append("registry A1 lexical-risk flags must cover 139 rows")
+    koreamed_decision_fields = (
+        "reviewer_1_id", "reviewer_1_decision", "reviewer_2_id",
+        "reviewer_2_decision", "adjudicator_id", "final_decision",
+    )
+    if any(any(row[field] for field in koreamed_decision_fields) for row in koreamed_queue):
+        errors.append("KoreaMed queue contains unverified human/final values")
     if full_text or excluded_full_text:
         errors.append("full-text outputs are populated without human review")
     if metadata.get("ai_only_exclusions") != 0 or metadata.get("human_decisions") != 0:
@@ -106,7 +116,9 @@ def main() -> int:
         errors.append("PRISMA PubMed proxy-unit count mismatch")
     if prisma.get("clinicaltrials_record_question_units") != 207:
         errors.append("PRISMA registry proxy-unit count mismatch")
-    if prisma.get("identified_record_question_units_total") != 20168:
+    if prisma.get("koreamed_record_question_units") != 62:
+        errors.append("PRISMA KoreaMed proxy-unit count mismatch")
+    if prisma.get("identified_record_question_units_total") != 20230:
         errors.append("PRISMA total retrieval-unit count mismatch")
 
     print(
@@ -117,6 +129,7 @@ def main() -> int:
                 "proxy_queue_status": "complete_verified" if not errors else "failed_quality_gate",
                 "record_question_units": len(queue),
                 "registry_record_question_units": len(registry_queue),
+                "koreamed_record_question_units": len(koreamed_queue),
                 "proxy_disagreements": metadata.get("proxy_disagreements"),
                 "human_decisions": metadata.get("human_decisions"),
                 "ai_only_exclusions": metadata.get("ai_only_exclusions"),
