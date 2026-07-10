@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "72ee1379da696fa290b36922a73f456f5e5b4460",
+  "implementation_head": "e899a1864fe8989b5bbf95963550d203c5e579c4",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,7 +10,7 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 758,
+  "file_count": 760,
   "local_required_file_count": 104,
   "files": [
     {
@@ -2349,14 +2349,26 @@
     },
     {
       "path": "research/fulltext/pmc_sentinel_fulltext_designpilot_20260710/manifest.json",
-      "size_bytes": 983,
-      "sha256": "5b0a3aea0d937f564ff3b23343bc7793e2f94c5e414affc813b60ef3bb50e75f",
+      "size_bytes": 1046,
+      "sha256": "d9f53802fa6d2cd9a715bf981e432fead483c601620b6871fe2ff30d547766b3",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_sentinel_fulltext_designpilot_20260710/non_oa_access_queue.csv",
+      "size_bytes": 544,
+      "sha256": "4f2486a6927b2436800350b9030f8aeb168f1caf08fefbbc84a267895e64ed8f",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_sentinel_fulltext_designpilot_20260710/paragraph_locators.csv",
+      "size_bytes": 3305,
+      "sha256": "7765c6b0666d5cca76ebb21cd2f769bfa218cc1c5e22c344e0423ed9cd0120e2",
       "distribution": "tracked"
     },
     {
       "path": "research/fulltext/pmc_sentinel_fulltext_designpilot_20260710/pmc_sentinel_batch.xml.gz",
-      "size_bytes": 22579,
-      "sha256": "4b4f32d0cb61300cfc05cc7d4333118eb211726e68a1afd048b5d5780883694b",
+      "size_bytes": 22508,
+      "sha256": "e5792b137cb98b36b3cca13a923653816b607c12c8a7590b98af73407229f772",
       "distribution": "tracked"
     },
     {
@@ -2397,8 +2409,8 @@
     },
     {
       "path": "research/logs/BLOCKERS.md",
-      "size_bytes": 10173,
-      "sha256": "24e7f6c1e38b307abb289a8d721f09747c6498fb173915b968fd100f48c613f2",
+      "size_bytes": 10320,
+      "sha256": "ec971ffbfc18ccac1946ac5482b23d945d22f9938732f4d99102ac16a863bee2",
       "distribution": "tracked"
     },
     {
@@ -2415,14 +2427,14 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 29023,
-      "sha256": "0e475b36caa70fddda32c20f406fa7d9d7dcfbc52590cd7776dddcdafae5eaab",
+      "size_bytes": 29644,
+      "sha256": "9ff65471870ab8b28805df5fd53a3177ccbe12c7ac45e9fc916c163673dc78ec",
       "distribution": "tracked"
     },
     {
       "path": "research/PROGRESS_LEDGER.md",
-      "size_bytes": 2310,
-      "sha256": "78c3138bbd832d61d88c851704ebf6a71d61c72190420259df8360a278909f53",
+      "size_bytes": 2362,
+      "sha256": "e6930895e87f9cfcbcd866bcc0e68e142494250fed651e90212081cf2e445c85",
       "distribution": "tracked"
     },
     {
@@ -2541,8 +2553,8 @@
     },
     {
       "path": "research/screening/phase_04_exit_criteria.md",
-      "size_bytes": 2354,
-      "sha256": "264074451931a93054caa234b98bc585e1a74bdd3cab6ed3b318b7bedbcdde6f",
+      "size_bytes": 2632,
+      "sha256": "365b94327eb105d42fdbc145192ef4ffcf2812fd21edc135c8b277a16010f74b",
       "distribution": "tracked"
     },
     {
@@ -4317,8 +4329,8 @@
     },
     {
       "path": "tools/capture_pmc_sentinel_fulltext.py",
-      "size_bytes": 7997,
-      "sha256": "1466d54b5711bcf8e56a0ab4e051644b0774970e91e7291d243fffd6cb032e9e",
+      "size_bytes": 10875,
+      "sha256": "a52f86679d0b8376a702e429e439178cb505ed8de97aa2775d7d2a7aee010fb1",
       "distribution": "tracked"
     },
     {
@@ -4509,8 +4521,8 @@
     },
     {
       "path": "tools/validate_phase04_proxy.py",
-      "size_bytes": 8057,
-      "sha256": "72cf0b4e214e7216bf9b3398ac4574c82bf481acd336c6c5a612fd5d43bdd4f8",
+      "size_bytes": 9227,
+      "sha256": "445c0d0236186e05aa0c95afc744864fa15c491f561652e08d4d4bcdeee9384d",
       "distribution": "tracked"
     },
     {
@@ -4545,8 +4557,8 @@
     },
     {
       "path": "tools/validate_pmc_sentinel_fulltext.py",
-      "size_bytes": 4391,
-      "sha256": "c9ea2c42cb31cad62a877ed6361eda8e653f4e13ce5af5a8b7c7ef1abaa3c7b4",
+      "size_bytes": 6753,
+      "sha256": "af402935fba443c1911bcdc1046395ac8af0b76d0d3269396b0dc1a373cf5cee",
       "distribution": "tracked"
     },
     {

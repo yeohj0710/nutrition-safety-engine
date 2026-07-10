@@ -28,6 +28,10 @@ def main() -> int:
         articles = list(csv.DictReader(handle))
     with (ROOT / "section_locators.csv").open(encoding="utf-8-sig", newline="") as handle:
         locators = list(csv.DictReader(handle))
+    with (ROOT / "paragraph_locators.csv").open(encoding="utf-8-sig", newline="") as handle:
+        paragraphs = list(csv.DictReader(handle))
+    with (ROOT / "non_oa_access_queue.csv").open(encoding="utf-8-sig", newline="") as handle:
+        non_oa_queue = list(csv.DictReader(handle))
     if manifest.get("status") != "sentinel_fulltext_retrieval_design_pilot_not_eligibility_assessment":
         errors.append("unsafe status")
     if len(stored) != manifest.get("raw_stored_bytes") or digest(stored) != manifest.get("raw_gzip_sha256"):
@@ -58,10 +62,33 @@ def main() -> int:
         errors.append("human locator field was prefilled")
     if any(row["pmcid"] not in expected_pmcids or not row["xml_locator"].startswith("article[pmcid=") for row in locators):
         errors.append("invalid locator provenance")
+    xml_fulltext = next((article for article in xml_articles if any((node.text or "").strip() == "5037562" for node in article.findall(".//article-id"))), None)
+    xml_paragraphs = xml_fulltext.findall("body//p") if xml_fulltext is not None else []
+    if len(paragraphs) != len(xml_paragraphs) or len(paragraphs) != 19 or manifest.get("paragraph_locators") != 19:
+        errors.append("paragraph locator coverage mismatch")
+    for position, (row, paragraph) in enumerate(zip(paragraphs, xml_paragraphs), start=1):
+        normalized = " ".join("".join(paragraph.itertext()).split())
+        if row["pmcid"] != "PMC5037562" or row["paragraph_position"] != str(position):
+            errors.append(f"paragraph {position}: identity/position mismatch")
+        if row["xml_locator"] != f"article[pmcid='PMC5037562']/body//p[{position}]":
+            errors.append(f"paragraph {position}: locator mismatch")
+        if int(row["normalized_text_chars"]) != len(normalized) or row["normalized_text_sha256"] != digest(normalized.encode("utf-8")):
+            errors.append(f"paragraph {position}: text hash mismatch")
+        if row["human_locator_verified"] or row["human_claim_linked"]:
+            errors.append(f"paragraph {position}: human-only field was prefilled")
+    if len(non_oa_queue) != 2 or {row["pmcid"] for row in non_oa_queue} != {"PMC3069236", "PMC3127502"}:
+        errors.append("non-OA access queue coverage mismatch")
+    access_human_fields = ("requester_id", "requested_at", "access_outcome", "obtained_file_sha256")
+    if any(any(row[field] for field in access_human_fields) for row in non_oa_queue):
+        errors.append("non-OA access queue human fields were prefilled")
+    if any(row["status"] != "pending_external_access_after_human_screening" for row in non_oa_queue):
+        errors.append("non-OA access status overstated")
     if manifest.get("human_fulltext_verified") != 0 or manifest.get("human_eligibility_decisions") != 0 or manifest.get("final_inclusion_claim_allowed") is not False:
         errors.append("human/final safety boundary violated")
     if manifest.get("open_access_fulltext_xml") != 1 or manifest.get("metadata_only_non_open_access") != 2:
         errors.append("manifest access classification mismatch")
+    if manifest.get("non_oa_access_queue_rows") != 2:
+        errors.append("manifest non-OA queue count mismatch")
     result = {
         "errors": errors,
         "status": "complete_verified" if not errors else "failed_quality_gate",
@@ -69,6 +96,8 @@ def main() -> int:
         "open_access_fulltext_xml": len(fulltext),
         "metadata_only_non_open_access": len(metadata_only),
         "section_locators": len(locators),
+        "paragraph_locators": len(paragraphs),
+        "non_oa_access_queue_rows": len(non_oa_queue),
         "human_fulltext_verified": 0,
         "human_eligibility_decisions": 0,
     }

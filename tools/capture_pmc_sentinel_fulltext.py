@@ -59,6 +59,7 @@ def main() -> int:
     expected = {row["pmcid"]: row for row in candidate_rows}
     article_rows = []
     locator_rows = []
+    paragraph_rows = []
     for article in articles:
         ids = {node.get("pub-id-type", ""): text(node) for node in article.findall(".//article-id")}
         pmcid = ids.get("pmcid") or ids.get("pmc") or ids.get("pmcaid")
@@ -122,6 +123,27 @@ def main() -> int:
                         "human_locator_verified": "",
                     }
                 )
+            parent = {child: node for node in article.iter() for child in node}
+            for paragraph_position, paragraph in enumerate(body.findall(".//p"), start=1):
+                normalized = text(paragraph)
+                ancestor = parent.get(paragraph)
+                while ancestor is not None and ancestor.tag not in {"sec", "body"}:
+                    ancestor = parent.get(ancestor)
+                section_id = ancestor.get("id", "") if ancestor is not None and ancestor.tag == "sec" else ""
+                section_title = text(ancestor.find("title")) if ancestor is not None and ancestor.tag == "sec" else ""
+                paragraph_rows.append(
+                    {
+                        "pmcid": pmcid,
+                        "paragraph_position": paragraph_position,
+                        "section_id": section_id,
+                        "section_title": section_title,
+                        "xml_locator": f"article[pmcid='{pmcid}']/body//p[{paragraph_position}]",
+                        "normalized_text_chars": len(normalized),
+                        "normalized_text_sha256": sha256(normalized.encode("utf-8")),
+                        "human_locator_verified": "",
+                        "human_claim_linked": "",
+                    }
+                )
 
     article_fields = list(article_rows[0])
     with (OUT / "articles.csv").open("w", encoding="utf-8", newline="") as handle:
@@ -133,6 +155,36 @@ def main() -> int:
         writer = csv.DictWriter(handle, fieldnames=locator_fields, lineterminator="\n")
         writer.writeheader()
         writer.writerows(locator_rows)
+    paragraph_fields = list(paragraph_rows[0]) if paragraph_rows else [
+        "pmcid", "paragraph_position", "section_id", "section_title", "xml_locator",
+        "normalized_text_chars", "normalized_text_sha256", "human_locator_verified", "human_claim_linked",
+    ]
+    with (OUT / "paragraph_locators.csv").open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=paragraph_fields, lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(paragraph_rows)
+    non_oa_rows = [
+        {
+            "record_id": row["record_id"],
+            "pmid": row["pmid"],
+            "pmcid": row["pmcid"],
+            "doi": row["doi"],
+            "access_reason": "pmc_efetch_metadata_only_non_open_access",
+            "next_route": "institutional_library_or_publisher_then_author_contact",
+            "requester_id": "",
+            "requested_at": "",
+            "access_outcome": "",
+            "obtained_file_sha256": "",
+            "status": "pending_external_access_after_human_screening",
+        }
+        for row in article_rows
+        if "metadata_only" in row["retrieval_status"]
+    ]
+    non_oa_fields = list(non_oa_rows[0])
+    with (OUT / "non_oa_access_queue.csv").open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=non_oa_fields, lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(non_oa_rows)
     manifest = {
         "schema_version": "1.0.0",
         "status": "sentinel_fulltext_retrieval_design_pilot_not_eligibility_assessment",
@@ -151,6 +203,8 @@ def main() -> int:
         "open_access_fulltext_xml": sum(row["retrieval_status"].startswith("retrieved_open_access") for row in article_rows),
         "metadata_only_non_open_access": sum("metadata_only" in row["retrieval_status"] for row in article_rows),
         "section_locators": len(locator_rows),
+        "paragraph_locators": len(paragraph_rows),
+        "non_oa_access_queue_rows": len(non_oa_rows),
         "human_fulltext_verified": 0,
         "human_eligibility_decisions": 0,
         "final_inclusion_claim_allowed": False,

@@ -1,0 +1,3 @@
+record_id,pmid,pmcid,doi,access_reason,next_route,requester_id,requested_at,access_outcome,obtained_file_sha256,status
+REC-PUBMED-21525191,21525191,PMC3127502,10.3945/ajcn.110.003350,pmc_efetch_metadata_only_non_open_access,institutional_library_or_publisher_then_author_contact,,,,,pending_external_access_after_human_screening
+REC-PUBMED-21193422,21193422,PMC3069236,10.3324/haematol.2010.035162,pmc_efetch_metadata_only_non_open_access,institutional_library_or_publisher_then_author_contact,,,,,pending_external_access_after_human_screening

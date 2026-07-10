@@ -11,6 +11,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
 INTERIM = REPO / "data" / "interim"
+PMC_SENTINEL = REPO / "research/fulltext/pmc_sentinel_fulltext_designpilot_20260710"
 
 
 def rows(name: str) -> list[dict[str, str]]:
@@ -45,6 +46,8 @@ def main() -> int:
         REPO / "research/fulltext/pmc_sentinel_fulltext_designpilot_20260710/manifest.json",
         REPO / "research/fulltext/pmc_sentinel_fulltext_designpilot_20260710/articles.csv",
         REPO / "research/fulltext/pmc_sentinel_fulltext_designpilot_20260710/section_locators.csv",
+        REPO / "research/fulltext/pmc_sentinel_fulltext_designpilot_20260710/paragraph_locators.csv",
+        REPO / "research/fulltext/pmc_sentinel_fulltext_designpilot_20260710/non_oa_access_queue.csv",
     ]
     for path in required:
         if not path.is_file():
@@ -68,11 +71,15 @@ def main() -> int:
     prisma = json.loads(
         (REPO / "research/screening/prisma_status.json").read_text(encoding="utf-8-sig")
     )
-    pmc_manifest = json.loads(required[-3].read_text(encoding="utf-8-sig"))
-    with required[-2].open(encoding="utf-8-sig", newline="") as handle:
+    pmc_manifest = json.loads((PMC_SENTINEL / "manifest.json").read_text(encoding="utf-8-sig"))
+    with (PMC_SENTINEL / "articles.csv").open(encoding="utf-8-sig", newline="") as handle:
         pmc_articles = list(csv.DictReader(handle))
-    with required[-1].open(encoding="utf-8-sig", newline="") as handle:
+    with (PMC_SENTINEL / "section_locators.csv").open(encoding="utf-8-sig", newline="") as handle:
         pmc_locators = list(csv.DictReader(handle))
+    with (PMC_SENTINEL / "paragraph_locators.csv").open(encoding="utf-8-sig", newline="") as handle:
+        pmc_paragraphs = list(csv.DictReader(handle))
+    with (PMC_SENTINEL / "non_oa_access_queue.csv").open(encoding="utf-8-sig", newline="") as handle:
+        non_oa_queue = list(csv.DictReader(handle))
 
     expected = 19961
     if not all(len(value) == expected for value in (proxy_a, proxy_b, queue, decisions)):
@@ -134,6 +141,10 @@ def main() -> int:
         errors.append("PMC sentinel pilot article boundary mismatch")
     if len(pmc_locators) != 10 or any(row["human_locator_verified"] for row in pmc_locators):
         errors.append("PMC sentinel locator boundary mismatch")
+    if len(pmc_paragraphs) != 19 or any(row["human_locator_verified"] or row["human_claim_linked"] for row in pmc_paragraphs):
+        errors.append("PMC paragraph locator boundary mismatch")
+    if len(non_oa_queue) != 2 or any(row["access_outcome"] or row["obtained_file_sha256"] for row in non_oa_queue):
+        errors.append("PMC non-OA access queue boundary mismatch")
 
     print(
         json.dumps(
@@ -149,6 +160,8 @@ def main() -> int:
                 "ai_only_exclusions": metadata.get("ai_only_exclusions"),
                 "pmc_sentinel_articles_retrieved": len(pmc_articles),
                 "pmc_open_access_fulltext_xml": pmc_manifest.get("open_access_fulltext_xml"),
+                "pmc_paragraph_locators": len(pmc_paragraphs),
+                "pmc_non_oa_access_queue_rows": len(non_oa_queue),
             },
             ensure_ascii=False,
             indent=2,

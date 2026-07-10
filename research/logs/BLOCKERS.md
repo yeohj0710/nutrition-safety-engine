@@ -93,6 +93,7 @@ Status: `resolved_2026-07-10`.
 - already attempted: all-unit human queue, two non-decisional proxies, disagreement flags, 50-row training pilot, blank decision/full-text schemas; resolved 5,563 PMC locator candidates; EFetch sentinel pilot proved 1 OA full-text XML and 2 metadata-only non-OA records
 - minimum input needed: independent reviewer IDs/training decisions, adjudication route, full-text access, and completed decisions
 - work that can continue: OA PMC payload acquisition after human advancement; non-OA access queue preparation; extraction schema validation with synthetic fixtures, metric code, error taxonomy
+- prepared continuation: two metadata-only sentinels are now in a blank non-OA access queue; no request is sent before human screening advancement
 - status: `blocked_external`
 
 ## B-009 — Verified extraction, RoB, and AI gold

@@ -14,7 +14,7 @@ Proxy queue status: `complete_verified`
 | Human pilot training | blocked_external | 0/50 |
 | Full-text double review | blocked_external | 0 reports assessed |
 | Public PMC locator resolution | pass_proxy_only | 19,609 PMID input; 99 checksum-verified responses; 5,563 unique PMCID candidates; human verification 0 |
-| PMC full-text retrieval path | pass_design_pilot_only | 3 PMC-located sentinels fetched in one official EFetch batch; 1 OA full-text XML, 2 metadata-only non-OA; 10 section locators; human decisions 0 |
+| PMC full-text retrieval path | pass_design_pilot_only | 3 PMC-located sentinels fetched in one official EFetch batch; 1 OA full-text XML, 2 metadata-only non-OA; 10 section + 19 paragraph-hash locators; 2-row non-OA access queue; human decisions 0 |
 | Final reports/studies | blocked_external | not created |
 | PRISMA final flow | blocked_external | explicitly unavailable |
 | Human gold hash and AI performance | blocked_external | no human gold |
@@ -26,3 +26,5 @@ The 20,230 total is a retrieval-unit workload count (19,961 PubMed + 207 Clinica
 PMC identifiers are access locators only. The 5,563 candidates exactly reproduce the PMCID set parsed from PubMed XML, but none is an eligibility decision, verified extraction source, or completed full-text review.
 
 The sentinel retrieval pilot proves the lawful XML/hash/locator path, not screening completion. PMC presence does not imply reusable full-text XML: two of three sentinel PMC records returned front metadata only and require a library/publisher route if advanced by human screening.
+
+Paragraph rows store locator, normalized character count, and SHA-256 only; they do not assert a claim or human-verified source location. Non-OA access requests remain pending until a human screening decision advances the report.

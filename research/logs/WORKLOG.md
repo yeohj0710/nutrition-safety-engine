@@ -304,3 +304,10 @@
 - Retrieved the three records in one official NCBI EFetch PMC XML request and preserved deterministic gzip plus compressed/uncompressed SHA-256.
 - Parsed access properties instead of equating PMCID with full text: PMC5037562 supplied OA body XML (19 paragraphs, CC BY locator); PMC3069236 and PMC3127502 supplied front metadata only and are non-OA.
 - Generated 10 section locators for the one OA article. Human full-text verification and eligibility decisions remain 0.
+
+## 2026-07-10 — PMC paragraph provenance and non-OA queue
+
+- Indexed all 19 body paragraphs in the OA sentinel XML with stable global paragraph positions, nearest section identifiers, normalized character counts, and text SHA-256.
+- Validator re-parses the compressed raw XML and recomputes every paragraph hash; stored paragraph text is not duplicated in the index.
+- Routed PMC3069236 and PMC3127502 to a two-row non-OA access queue. Requester/date/outcome/file-hash fields remain blank until human screening advancement.
+- Phase 04 validator confirms 19 paragraph locators, 2 access rows, and zero human decisions.
