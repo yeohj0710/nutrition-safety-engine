@@ -14,6 +14,7 @@ Synthetic metric harness: `complete_verified`
 | Human/AI boundary mutations | pass_contract_only: 6/6 missing quote, unknown report, premature study link, populated extraction, populated RoB, and nonzero AI-run mutations rejected |
 | Wilson metric implementation | pass_synthetic_fixture |
 | Independent Phase 05 validator | pass_proxy_only: errors 0; fixture count 3; real fixture has no value/quote/extracted status; human/RoB/AI rows 0/0/0 |
+| Included full-text→extraction/RoB routing | pass_local | source/study/design/two-reviewer gate; RCT→RoB 2 only; nonrandomized tool pending human freeze; 6/6 contracts |
 | Verified human extraction | blocked_external: 0 rows |
 | Independent RoB and consensus | blocked_external: 0 rows |
 | Frozen human gold | blocked_external |

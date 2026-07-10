@@ -10,7 +10,7 @@
     "independent_validation",
     "finalization"
   ],
-  "queue_count": 23,
+  "queue_count": 25,
   "total_rows": 20900,
   "rows_with_any_human_data": 0,
   "rows_complete_candidate": 0,
@@ -207,13 +207,17 @@
     {
       "queue_id": "P4_fulltext_double_review",
       "path": "data/interim/full_text_review_queue.csv",
-      "sha256": "e0a26b65fd1583288b62a3ff4c10a07dde115daaad85b56fcdf0205531173520",
-      "size_bytes": 321,
+      "sha256": "d8e7028a6ce778efbdb58a1a1b12bdee021fa099ae58462bc7f5ab2bed8a4220",
+      "size_bytes": 386,
       "row_count": 0,
       "human_entry_fields": [
         "fulltext_access_status",
         "source_file_path",
         "source_file_sha256",
+        "study_id",
+        "study_link_verified_by",
+        "design_family",
+        "design_verified_by",
         "reviewer_1_id",
         "reviewer_1_decision",
         "reviewer_1_reason",
@@ -229,6 +233,10 @@
       "minimum_completion_fields": [
         "source_file_path",
         "source_file_sha256",
+        "study_id",
+        "study_link_verified_by",
+        "design_family",
+        "design_verified_by",
         "reviewer_1_id",
         "reviewer_1_decision",
         "reviewer_1_at",
@@ -262,6 +270,27 @@
       "progress_state": "awaiting_upstream_rows"
     },
     {
+      "queue_id": "P5_extraction_work",
+      "path": "data/interim/extraction_work_queue.csv",
+      "sha256": "254ca8433cb01fe9782e109423765d34b3b19a73304bd677707c8c37e8f956bb",
+      "size_bytes": 170,
+      "row_count": 0,
+      "human_entry_fields": [
+        "extractor_id",
+        "verifier_id",
+        "started_at",
+        "completed_at"
+      ],
+      "minimum_completion_fields": [
+        "extractor_id",
+        "verifier_id",
+        "completed_at"
+      ],
+      "rows_with_any_human_data": 0,
+      "rows_complete_candidate": 0,
+      "progress_state": "awaiting_upstream_rows"
+    },
+    {
       "queue_id": "P5_risk_of_bias",
       "path": "data/interim/risk_of_bias.csv",
       "sha256": "46931c6c5912d02efe15465310ecb607952cd083ea201e8756e8ba68e8729ae0",
@@ -277,6 +306,31 @@
         "reviewer_id",
         "reviewed_at",
         "consensus_judgment"
+      ],
+      "rows_with_any_human_data": 0,
+      "rows_complete_candidate": 0,
+      "progress_state": "awaiting_upstream_rows"
+    },
+    {
+      "queue_id": "P5_rob_work",
+      "path": "data/interim/rob_work_queue.csv",
+      "sha256": "a63160a7b00dbd0e8f2f107e7336708983c0f521dd2a6836eb7e92a2204c2412",
+      "size_bytes": 222,
+      "row_count": 0,
+      "human_entry_fields": [
+        "tool_version",
+        "reviewer_1_id",
+        "reviewer_2_id",
+        "adjudicator_id",
+        "started_at",
+        "completed_at"
+      ],
+      "minimum_completion_fields": [
+        "tool_name",
+        "tool_version",
+        "reviewer_1_id",
+        "reviewer_2_id",
+        "completed_at"
       ],
       "rows_with_any_human_data": 0,
       "rows_complete_candidate": 0,

@@ -242,3 +242,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: route only secondary-final include/uncertain units into a separate two-reviewer full-text queue with source hashes
 - rationale: using primary decisions or priority proxies would bypass the planned double-screening gate and contaminate the included-report frame
 - impact: extraction cannot receive reports until lawful full text and two-person eligibility review are recorded and validated
+
+## D-032 — Extraction and RoB require verified source, study link, and design
+
+- date: 2026-07-10
+- decision: create downstream tasks only from final-included full texts whose bytes, study link, design family, and two reviewer decisions are verified
+- rationale: report inclusion alone cannot identify the study unit or select a design-specific RoB tool, and an unverified file cannot support extraction
+- impact: RCTs route to protocol-fixed RoB 2; all other tools remain a documented human selection until the protocol records the appropriate current instrument

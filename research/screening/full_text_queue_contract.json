@@ -10,7 +10,8 @@
     "exclude_not_routed": true,
     "deterministic": true,
     "proxy_fields_absent": true,
-    "double_review_fields_present": true
+    "double_review_fields_present": true,
+    "study_design_gate_present": true
   },
   "all_passed": true
 }

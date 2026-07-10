@@ -444,3 +444,11 @@
 - Added lawful source path/hash fields, two independent full-text reviewer decisions, adjudication, and final-decision fields.
 - Proxy fields are absent from the full-text queue. Six routing/schema contracts pass.
 - Secondary final rows and full-text queue rows remain 0/0, correctly awaiting upstream human screening.
+
+## 2026-07-10 — Included full-text to extraction/RoB routing
+
+- Added study-link and verified design-family fields to the full-text double-review gate.
+- Extraction/RoB tasks require final inclusion, two completed full-text reviews, a repository-relative non-legacy source, and a reproduced source SHA-256.
+- Randomized trials route to RoB 2. Other design families remain `pending_human_tool_selection_before_assessment` rather than receiving an inferred ROBINS tool.
+- Six routing contracts reject exclusion, legacy paths, and missing hashes while confirming included routing and conservative RoB selection.
+- Included full texts, extraction tasks, and RoB tasks remain 0/0/0.

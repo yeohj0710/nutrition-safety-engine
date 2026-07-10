@@ -49,11 +49,13 @@ def main() -> int:
                            "question_id": row["question_id"], "title": record["title"], "pmid": record["pmid"],
                            "lineage_sha256": lineage, "fulltext_access_status": "not_started",
                            "source_file_path": "", "source_file_sha256": "",
+                           "study_id": "", "study_link_verified_by": "", "design_family": "", "design_verified_by": "",
                            "reviewer_1_id": "", "reviewer_1_decision": "", "reviewer_1_reason": "", "reviewer_1_at": "",
                            "reviewer_2_id": "", "reviewer_2_decision": "", "reviewer_2_reason": "", "reviewer_2_at": "",
                            "adjudicator_id": "", "final_decision": "", "final_reason": "", "status": "awaiting_fulltext_access_and_double_review"})
     fields = ["fulltext_queue_id", "report_id", "record_id", "question_id", "title", "pmid", "lineage_sha256",
-              "fulltext_access_status", "source_file_path", "source_file_sha256", "reviewer_1_id", "reviewer_1_decision",
+              "fulltext_access_status", "source_file_path", "source_file_sha256", "study_id", "study_link_verified_by",
+              "design_family", "design_verified_by", "reviewer_1_id", "reviewer_1_decision",
               "reviewer_1_reason", "reviewer_1_at", "reviewer_2_id", "reviewer_2_decision", "reviewer_2_reason",
               "reviewer_2_at", "adjudicator_id", "final_decision", "final_reason", "status"]
     write(fields, queue_rows)
@@ -69,7 +71,8 @@ def main() -> int:
              "exclude_not_routed": all(row["record_id"] != "R3" for row in picked),
              "deterministic": [row["record_id"] for row in picked] == [row["record_id"] for row in selected(fixtures)],
              "proxy_fields_absent": all("proxy" not in field for field in fields),
-             "double_review_fields_present": all(field in fields for field in ("reviewer_1_id", "reviewer_1_decision", "reviewer_2_id", "reviewer_2_decision", "final_decision"))}
+             "double_review_fields_present": all(field in fields for field in ("reviewer_1_id", "reviewer_1_decision", "reviewer_2_id", "reviewer_2_decision", "final_decision")),
+             "study_design_gate_present": all(field in fields for field in ("study_id", "study_link_verified_by", "design_family", "design_verified_by"))}
     contract = {"schema_version": "1.0.0", "status": "awaiting_secondary_screening_completion",
                 "secondary_final_rows": sum(bool(row["final_decision"].strip()) for row in secondary),
                 "fulltext_queue_rows": len(queue_rows), "fulltext_human_reviews": 0,
