@@ -424,3 +424,17 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: require obtained-verified access, repository-local non-legacy source with reproduced SHA, verified study/design, two distinct reviewers, adjudication on disagreement, and final exclusion reason when excluded
 - rationale: a final decision without the actual source, correct study/design unit, or independent review cannot support extraction and RoB
 - impact: partial access/review remains in progress; only complete candidates route downstream after phase validation
+
+## D-058 — Extraction and RoB task regeneration preserves assignments
+
+- date: 2026-07-10
+- decision: once extractor/verifier, RoB reviewers, tool selection, or timing exists, preserve each work queue byte-for-byte and reject changed included-report lineage
+- rationale: deterministic routing may be rerun, but it must not erase human workload, tool judgments, or completion history
+- impact: blank queues regenerate; populated queues survive only against identical report/question/design/source hashes
+
+## D-059 — Nonrandomized RoB tools require explicit human selection and version
+
+- date: 2026-07-10
+- decision: retain protocol-fixed RoB 2 for randomized trials and allow other designs only through `human_selected_verified` with a named, versioned tool
+- rationale: inferring ROBINS or another instrument from a coarse design label would exceed the protocol and may apply the wrong current instrument
+- impact: human tool choice can progress without code edits; unversioned or silently inferred tools remain blocked

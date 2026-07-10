@@ -578,3 +578,11 @@
 - Added byte preservation with exact report/record/question/title/PMID/lineage checks; changed routing fails before write. Preservation contracts pass 3/3.
 - Added semantic access, real source SHA, study/design verification, distinct reviewer, disagreement adjudication, final decision, and exclusion-reason gates.
 - Existing routing contracts pass 7/7; downstream extraction/RoB routing contracts pass 6/6. Current full-text and downstream work rows remain 0.
+
+## 2026-07-10 — Future-safe extraction and RoB work assignment
+
+- Found unconditional task-queue rewriting and blank-only assignment validation.
+- Added byte preservation with exact study/report/record/question/design/source lineage checks; changed routing fails before write. Preservation contracts pass 3/3.
+- Added awaiting/in-progress/complete-candidate states with distinct extractor/verifier and distinct RoB reviewers.
+- Randomized trials retain protocol-fixed RoB 2; nonrandomized designs accept only an explicit `human_selected_verified` named/versioned tool.
+- Routing contracts remain 6/6 and populated-row semantic contracts remain 3/3. Current task and human data rows remain 0.

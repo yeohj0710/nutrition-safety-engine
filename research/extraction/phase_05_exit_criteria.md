@@ -22,6 +22,7 @@ Synthetic metric harness: `complete_verified`
 | Independent RoB and consensus | blocked_external: 0 rows |
 | Frozen human gold | blocked_external |
 | Production AI evaluation path | pass_local | fail-closed evaluator requires frozen hash-bound gold, schema-valid parsed runs, one-to-one SHA-verified input/prompt/raw-output manifests, and one-to-one human field review; paired efficiency is separate and null when absent; detection uses run-field denominators; 7/7 contracts pass |
+| Extraction/RoB work-queue preservation | pass_local | human assignments/tool choices preserved byte-for-byte; routing drift rejected before write; nonrandomized human-selected tools allowed only with version; preservation 3/3 |
 | Actual AI extraction runs/metrics | blocked_external: 0 runs |
 
 Synthetic metric values are test fixtures, not thesis or AI performance results.

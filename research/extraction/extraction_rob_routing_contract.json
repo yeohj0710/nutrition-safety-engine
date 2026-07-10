@@ -6,6 +6,8 @@
   "rob_work_rows": 0,
   "human_extractions": 0,
   "human_rob_assessments": 0,
+  "extraction_write_status": "generated_no_human_data",
+  "rob_write_status": "generated_no_human_data",
   "contract_tests": {
     "included_routed": true,
     "excluded_not_routed": true,
