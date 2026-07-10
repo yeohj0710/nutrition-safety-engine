@@ -34,6 +34,7 @@ All seven required audit outputs exist. Additional evidence includes `legacy_mov
 - Legacy data is available only under `/legacy` and `/api/legacy/**` with warnings/noindex.
 - Runtime AI is removed from the build and hash-preserved as legacy evidence.
 - Phase 01 thesis bundle correctly contains 0 claims and 0 rules.
+- The Phase 01 regression gate is future-safe: later validated curated rows are allowed when all bundle counts match, claim/rule scope and validation statuses are correct, and no legacy or synthetic namespace appears.
 
 ## Global QA status
 

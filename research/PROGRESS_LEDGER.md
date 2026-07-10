@@ -2,7 +2,7 @@
 
 | Phase | Status | Verified evidence | Open dependency |
 |---|---|---|---|
-| 01 audit and normalization | complete_verified | audit validator errors 0; 36-file legacy quarantine; AI archive; full software chain pass | public release remains legacy baseline |
+| 01 audit and normalization | complete_verified | audit validator errors 0; 36-file legacy quarantine; AI archive; future-safe curated bundle isolation/count gate; full software chain pass | public release remains legacy baseline |
 | 02 protocol and search design | blocked_external | 21-artifact SHA-bound evidence manifest; PubMed drafts/19,961 hits; CENTRAL 2,264 hit-count-only; KMbase/RISS 40 raw responses; 40-row PRESS handoff; 9/9 sentinels | dated supervisor approval, independent PRESS decisions 0, authenticated subscriptions/exports |
 | 03 retrieval and deduplication | blocked_external_proxy_verified | 103 raw XML reparsed; 19,609 records/19,961 retrievals source-matched; 342 duplicate pairs independently reproduced; 5/5 mutations rejected; dedup/linkage preservation 3/3 and future-safe states; human decisions 0 | approved final searches; CENTRAL/KoreaMed/other exports; human dedup/registry decisions; study linkage |
 | 04 screening and full text | blocked_external_proxy_verified | primary→secondary 5/5; secondary/full-text preservation 3/3 each and future-safe states; full-text routing 7/7; PMC sentinel 1 OA XML/19 paragraph hashes + 2 non-OA rows; human decisions 0 | human primary/secondary/registry/full-text review, non-OA requests, adjudication, final reports/studies/PRISMA |

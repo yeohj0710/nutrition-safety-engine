@@ -6,8 +6,8 @@
   "files": [
     {
       "path": "__tests__/thesis-bundle-isolation.test.ts",
-      "size_bytes": 1253,
-      "sha256": "c3cd5a8579a99a0f710fdbc53a3b482068359edbe3f5d666e34dcfca35ff1591"
+      "size_bytes": 1868,
+      "sha256": "27c9942dd6ec549e4d25bf0766b0218dcb85bfca820192c0444e01f8e4e56101"
     },
     {
       "path": "data/curated/ai_extraction_efficiency.csv",
@@ -136,8 +136,8 @@
     },
     {
       "path": "research/audit/phase_01_exit_criteria.md",
-      "size_bytes": 2438,
-      "sha256": "b8d3ca41558518396b7c9adca9b215a15a013f77c202d934d0b24c4a51698db5"
+      "size_bytes": 2656,
+      "sha256": "e72ff5cee7b2f7e59abc57f8819d778823e7d99ac9adf4346e77f3d340b36e20"
     },
     {
       "path": "research/audit/phase_01_issue_register.csv",
@@ -171,8 +171,8 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 33071,
-      "sha256": "bc3c636add55069511694f8d9077dedf43bdc7d2731e47006f01baf51af4c961"
+      "size_bytes": 33680,
+      "sha256": "24443af6f4d50f5404573d641d0c40a1b829af6548ea551208523182ba0a9b9e"
     },
     {
       "path": "research/logs/RISKS.md",
@@ -181,8 +181,8 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 53814,
-      "sha256": "a936c11b20ef0302e4a400af52a959b91fee07d38134a674de03d6c84d0a96a4"
+      "size_bytes": 54434,
+      "sha256": "c35755274342e027986aa1d1f1646220527162937a47ecc9c73523bdc0c110d3"
     },
     {
       "path": "research/review_queue/HUMAN_HANDOFF.md",
@@ -266,8 +266,8 @@
     },
     {
       "path": "tools/validate_phase01.py",
-      "size_bytes": 11435,
-      "sha256": "0afa69a2d891f1535da00c622641a04697b05fd17c880240b2d9075bff102e90"
+      "size_bytes": 12080,
+      "sha256": "1a9da5aa858d481bbfb6e2e2ca8f4e3bf8afd9deaeb1e20c6c0d3d30b8b3745e"
     }
   ]
 }

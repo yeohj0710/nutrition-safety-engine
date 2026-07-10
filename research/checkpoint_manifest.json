@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "00d426528fca2894c15869868571a7bd762762f3",
+  "implementation_head": "64e0d3ff2d7027326d90b1137f20cc28cc8aff0e",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -123,8 +123,8 @@
     },
     {
       "path": "__tests__/thesis-bundle-isolation.test.ts",
-      "size_bytes": 1253,
-      "sha256": "c3cd5a8579a99a0f710fdbc53a3b482068359edbe3f5d666e34dcfca35ff1591",
+      "size_bytes": 1868,
+      "sha256": "27c9942dd6ec549e4d25bf0766b0218dcb85bfca820192c0444e01f8e4e56101",
       "distribution": "tracked"
     },
     {
@@ -1024,13 +1024,13 @@
     {
       "path": "research/audit/phase_01_artifact_manifest.json",
       "size_bytes": 9845,
-      "sha256": "ca5da3ace3412a0e8e92b35d5213a87ca35c5239bffa6eb65faec828d0305c1d",
+      "sha256": "e925d197178cd88b25a20e56eddf40e421689aa3cc78adc1d4dbd789efe188d7",
       "distribution": "tracked"
     },
     {
       "path": "research/audit/phase_01_exit_criteria.md",
-      "size_bytes": 2438,
-      "sha256": "b8d3ca41558518396b7c9adca9b215a15a013f77c202d934d0b24c4a51698db5",
+      "size_bytes": 2656,
+      "sha256": "e72ff5cee7b2f7e59abc57f8819d778823e7d99ac9adf4346e77f3d340b36e20",
       "distribution": "tracked"
     },
     {
@@ -2523,8 +2523,8 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 33071,
-      "sha256": "bc3c636add55069511694f8d9077dedf43bdc7d2731e47006f01baf51af4c961",
+      "size_bytes": 33680,
+      "sha256": "24443af6f4d50f5404573d641d0c40a1b829af6548ea551208523182ba0a9b9e",
       "distribution": "tracked"
     },
     {
@@ -2535,14 +2535,14 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 53814,
-      "sha256": "a936c11b20ef0302e4a400af52a959b91fee07d38134a674de03d6c84d0a96a4",
+      "size_bytes": 54434,
+      "sha256": "c35755274342e027986aa1d1f1646220527162937a47ecc9c73523bdc0c110d3",
       "distribution": "tracked"
     },
     {
       "path": "research/PROGRESS_LEDGER.md",
-      "size_bytes": 3230,
-      "sha256": "423d21624c5a829fe0477d8c1b7dc8cd032180165641a966f848aadfc89fc479",
+      "size_bytes": 3279,
+      "sha256": "f8de0514359e9fcb19b6b88ce97d59da82250f76b61df84d194cdc9b593795c5",
       "distribution": "tracked"
     },
     {
@@ -4216,7 +4216,7 @@
     {
       "path": "research/thesis/finalization_readiness.json",
       "size_bytes": 5665,
-      "sha256": "e35c43738611b618a93b3966b7fa57fce5f59804b16853f22f2f088882a5b21f",
+      "sha256": "fe59885b07307eb0169c61997d698ba6a43833ce2aab185ecb12ecb9e45a98e1",
       "distribution": "tracked"
     },
     {
@@ -4893,8 +4893,8 @@
     },
     {
       "path": "tools/validate_phase01.py",
-      "size_bytes": 11435,
-      "sha256": "0afa69a2d891f1535da00c622641a04697b05fd17c880240b2d9075bff102e90",
+      "size_bytes": 12080,
+      "sha256": "1a9da5aa858d481bbfb6e2e2ca8f4e3bf8afd9deaeb1e20c6c0d3d30b8b3745e",
       "distribution": "tracked"
     },
     {

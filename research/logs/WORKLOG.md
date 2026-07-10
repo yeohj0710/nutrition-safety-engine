@@ -586,3 +586,9 @@
 - Added awaiting/in-progress/complete-candidate states with distinct extractor/verifier and distinct RoB reviewers.
 - Randomized trials retain protocol-fixed RoB 2; nonrandomized designs accept only an explicit `human_selected_verified` named/versioned tool.
 - Routing contracts remain 6/6 and populated-row semantic contracts remain 3/3. Current task and human data rows remain 0.
+
+## 2026-07-10 — Future-safe Phase 01 bundle isolation regression
+
+- Found that the foundational validator and isolation unit test required claims, rules, sources, reports, studies, extractions, and RoB to remain empty forever.
+- Replaced permanent-zero checks with exact meta/array count consistency, validated thesis claim/rule statuses, curated namespace, and recursive legacy/synthetic exclusion.
+- Current empty bundle still passes, as do the updated unit test and TypeScript typecheck. Future production rows remain subject to source-byte, extraction, GRADE, claim, rule, expert, and independent-scenario gates.

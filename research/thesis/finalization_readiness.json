@@ -89,8 +89,8 @@
   "evidence": [
     {
       "path": "research/audit/phase_01_exit_criteria.md",
-      "size_bytes": 2438,
-      "sha256": "b8d3ca41558518396b7c9adca9b215a15a013f77c202d934d0b24c4a51698db5"
+      "size_bytes": 2656,
+      "sha256": "e72ff5cee7b2f7e59abc57f8819d778823e7d99ac9adf4346e77f3d340b36e20"
     },
     {
       "path": "research/protocol/phase_02_exit_criteria.md",

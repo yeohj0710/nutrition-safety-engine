@@ -224,18 +224,19 @@ def main() -> int:
         )
     check(thesis_bundle["meta"]["sourceNamespace"] == "data/curated", "thesis source namespace invalid", errors)
     check(thesis_bundle["meta"]["scope"] == "validated_thesis_scope", "thesis scope invalid", errors)
-    check(thesis_bundle["meta"]["claimCount"] == 0, "Phase 01 thesis claims must be zero", errors)
-    check(thesis_bundle["meta"]["ruleCount"] == 0, "Phase 01 thesis rules must be zero", errors)
-    check(thesis_bundle["claims"] == [], "Phase 01 thesis claim array must be empty", errors)
-    check(thesis_bundle["rules"] == [], "Phase 01 thesis rule array must be empty", errors)
-    for collection in (
-        "sources",
-        "reports",
-        "studies",
-        "extractions",
-        "riskOfBias",
-    ):
-        check(thesis_bundle[collection] == [], f"Phase 01 {collection} must be empty", errors)
+    count_fields = {"sources": "sourceCount", "reports": "reportCount", "studies": "studyCount",
+                    "extractions": "extractionCount", "riskOfBias": "riskOfBiasCount",
+                    "certaintyAssessments": "certaintyAssessmentCount", "claims": "claimCount", "rules": "ruleCount"}
+    for collection, count_field in count_fields.items():
+        check(thesis_bundle["meta"].get(count_field) == len(thesis_bundle.get(collection, [])),
+              f"thesis {collection} count mismatch", errors)
+    serialized_bundle = json.dumps(thesis_bundle, ensure_ascii=False)
+    check("legacy_unverified" not in serialized_bundle, "legacy namespace entered thesis bundle", errors)
+    check("synthetic_fixture" not in serialized_bundle, "synthetic fixture entered thesis bundle", errors)
+    check(all(item.get("verification_status") == "validated" and item.get("scope_status") == "validated_thesis_scope"
+              for item in thesis_bundle.get("claims", [])), "nonvalidated claim entered thesis bundle", errors)
+    check(all(item.get("validation_status") == "validated" and item.get("scope_status") == "validated_thesis_scope"
+              for item in thesis_bundle.get("rules", [])), "nonvalidated rule entered thesis bundle", errors)
 
     default_page = (REPO / "app" / "page.tsx").read_text(encoding="utf-8")
     default_route = (REPO / "app" / "api" / "rules" / "query" / "route.ts").read_text(

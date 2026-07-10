@@ -438,3 +438,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: retain protocol-fixed RoB 2 for randomized trials and allow other designs only through `human_selected_verified` with a named, versioned tool
 - rationale: inferring ROBINS or another instrument from a coarse design label would exceed the protocol and may apply the wrong current instrument
 - impact: human tool choice can progress without code edits; unversioned or silently inferred tools remain blocked
+
+## D-060 — Phase 01 regression validates isolation, not permanent emptiness
+
+- date: 2026-07-10
+- decision: replace later-phase zero/empty assertions with collection-count consistency, validated thesis scope/status, and forbidden legacy/synthetic namespace checks
+- rationale: Phase 01 began with an intentionally empty bundle, but requiring it to remain empty makes any legitimate claim/rule progression fail the foundational audit
+- impact: current 0/0 state still passes; future curated evidence can pass only through the deterministic builder and production provenance gates, never by legacy promotion

@@ -23,13 +23,18 @@ describe("thesis bundle isolation", () => {
     const legacyManifest = JSON.parse(
       readFileSync(manifestPath, "utf8"),
     ) as LegacyManifest;
+    const claims = thesisBundle.claims as Array<Record<string, unknown>>;
+    const rules = thesisBundle.rules as Array<Record<string, unknown>>;
 
     expect(thesisBundle.meta.sourceNamespace).toBe("data/curated");
     expect(thesisBundle.meta.scope).toBe("validated_thesis_scope");
-    expect(thesisBundle.meta.ruleCount).toBe(0);
-    expect(thesisBundle.meta.claimCount).toBe(0);
-    expect(thesisBundle.rules).toEqual([]);
-    expect(thesisBundle.claims).toEqual([]);
+    expect(thesisBundle.meta.ruleCount).toBe(thesisBundle.rules.length);
+    expect(thesisBundle.meta.claimCount).toBe(thesisBundle.claims.length);
+    expect(thesisBundle.meta.sourceCount).toBe(thesisBundle.sources.length);
+    expect(claims.every((claim) => claim.verification_status === "validated" && claim.scope_status === "validated_thesis_scope")).toBe(true);
+    expect(rules.every((rule) => rule.validation_status === "validated" && rule.scope_status === "validated_thesis_scope")).toBe(true);
+    expect(JSON.stringify(thesisBundle)).not.toContain("legacy_unverified");
+    expect(JSON.stringify(thesisBundle)).not.toContain("synthetic_fixture");
     expect(legacyManifest.status).toBe("legacy_unverified");
     expect(legacyManifest.policy.thesis_bundle_default_include).toBe(false);
     expect(legacyManifest.policy.automatic_validation_promotion).toBe(false);
