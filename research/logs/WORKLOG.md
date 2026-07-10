@@ -1,5 +1,14 @@
 # WORKLOG
 
+## 2026-07-10 — Public PMC locator resolution
+
+- Used the official PMC ID Converter API in 99 batches of at most 200 IDs to resolve all 19,609 normalized PMIDs.
+- Preserved every raw JSON response and SHA-256 manifest; raw files 99, checksum errors 0, total raw directory 2.4 MB.
+- Resolved 5,563 unique PMID→PMCID candidates. Live resolution exactly matched the 5,563 PMCID values independently parsed from PubMed XML; mismatches 0.
+- Question retrieval units with a PMC locator: A1 3,871; A2 205; B1 219; B2 1,215; B3 143. These overlap by question and are not study counts.
+- Human full-text verification 0 and eligibility decisions 0. No article was included, extracted, appraised, or promoted.
+- API email parameter was intentionally omitted to avoid persisting personal data; the official warning is retained and requests were throttled to at most two per second.
+
 ## 2026-07-10 — Phase 08 checkpoint verification
 
 - Initial coverage gate found six Korean-path tracked files missing. Root cause: `git ls-files` quoted non-ASCII paths, which were interpreted as literal quoted filenames and skipped.

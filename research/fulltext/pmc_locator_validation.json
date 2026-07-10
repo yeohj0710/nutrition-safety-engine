@@ -1,0 +1,17 @@
+{
+  "errors": [],
+  "status": "complete_verified",
+  "input_pmids": 19609,
+  "raw_files": 99,
+  "pmc_identifier_candidates": 5563,
+  "human_fulltext_verified": 0,
+  "human_eligibility_decisions": 0,
+  "normalized_pmcid_exact_match": true,
+  "question_retrieval_units_with_pmc": {
+    "A1": 3871,
+    "A2": 205,
+    "B1": 219,
+    "B2": 1215,
+    "B3": 143
+  }
+}

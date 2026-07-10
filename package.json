@@ -17,6 +17,7 @@
     "test:scenarios:smoke": "npm run prepare:knowledge && vitest run __tests__/thesis-empty-scenario-proxy.test.ts",
     "validate:phase07:proxy": "npm run prepare:thesis && tsx scripts/run-phase07-safe-empty-proxy.ts && python tools/validate_phase07_gate.py",
     "validate:phase08:checkpoint": "python tools/generate_checkpoint_manifest.py && python tools/validate_phase08_checkpoint.py",
+    "validate:pmc-locators": "python tools/validate_pmc_fulltext_candidates.py",
     "typecheck": "npm run prepare:knowledge && tsc --noEmit"
   },
   "dependencies": {

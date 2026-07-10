@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "status": "public_locator_proxy_not_human_fulltext_assessment",
+  "api": "https://pmc.ncbi.nlm.nih.gov/tools/idconv/api/v1/articles/",
+  "official_documentation": "https://pmc.ncbi.nlm.nih.gov/tools/id-converter-api/",
+  "input_records_sha256": "a904c9c2a333a30e33898ba46a8099b75f8284d7e97b9f568e30e773a1bdd1ae",
+  "input_pmids": 19609,
+  "batch_size": 200,
+  "batches": 99,
+  "raw_files": 99,
+  "raw_checksum_manifest_sha256": "9482318a81414d51bd9ef057f1cef78fcae1e332def01af29c50ca812f3f9cc0",
+  "pmc_identifier_candidates": 5563,
+  "human_fulltext_verified": 0,
+  "human_eligibility_decisions": 0,
+  "request_warnings": [
+    "query param `email` is missing."
+  ],
+  "privacy_note": "Maintainer email omitted to avoid persisting personal data; API warning retained; requests throttled to <=2/second.",
+  "output_path": "data/interim/pmc_fulltext_candidates.csv",
+  "output_sha256": "3fb64a84f3bb08a6281f82259e2f6c180a9b09e8dbf37e14e8d23c09dcb39b34"
+}

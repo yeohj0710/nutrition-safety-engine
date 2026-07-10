@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "40ffc937fd4f27e6b76ceee818d6b114f83e6f44",
+  "implementation_head": "befd1a471bf2fe88fa3265fd0c73bf2b3d217580",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,13 +10,13 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 563,
+  "file_count": 668,
   "local_required_file_count": 104,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "size_bytes": 1078,
-      "sha256": "bfca25100ea08f5f61a116383931b3a0274315f15fca89a7878237263c31bf47",
+      "size_bytes": 1140,
+      "sha256": "e08db6eec1dd7cdee2f3054303b293265e994f0f4511228b31d3e6869a5c8ace",
       "distribution": "tracked"
     },
     {
@@ -383,6 +383,12 @@
       "path": "data/interim/full_text_log.csv",
       "size_bytes": 133,
       "sha256": "79c68bf9d48271c34f97132273994b62d2454bda0cf4c22a47e0e2b0ee58e01a",
+      "distribution": "tracked"
+    },
+    {
+      "path": "data/interim/pmc_fulltext_candidates.csv",
+      "size_bytes": 1192963,
+      "sha256": "3fb64a84f3bb08a6281f82259e2f6c180a9b09e8dbf37e14e8d23c09dcb39b34",
       "distribution": "tracked"
     },
     {
@@ -765,8 +771,8 @@
     },
     {
       "path": "package.json",
-      "size_bytes": 1892,
-      "sha256": "892d35c0cc82b4bceea1f1684b3cfe184fa712536a71f92ff605b4adc6495b2a",
+      "size_bytes": 1973,
+      "sha256": "42343afd86917206d88fe4c52893e8547c4ec8098c623234675cd8de0781168b",
       "distribution": "tracked"
     },
     {
@@ -1700,6 +1706,618 @@
       "distribution": "tracked"
     },
     {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_001.json",
+      "size_bytes": 22821,
+      "sha256": "1339325eaf3f7ab03438f997c4d642bda19c0e85f4762cfeffda88374d0fb589",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_002.json",
+      "size_bytes": 23393,
+      "sha256": "bca4bf598006ea201dcb43a8c232854bd658175b4576d6de1ea29b7799ce1cc1",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_003.json",
+      "size_bytes": 23882,
+      "sha256": "7f9b9264594dc9427062311063318a8cb7148aa1da9cbedb935d166e1b56b10f",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_004.json",
+      "size_bytes": 23802,
+      "sha256": "4a3163465d7f74e49c12be39ced690c730a92dc72cd5f71ce8a0ac726e9d89f6",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_005.json",
+      "size_bytes": 23849,
+      "sha256": "f76580a7aecf7a2c6d579fb7397baa787dab6cafbd63c475dbcda02f4c1d04f3",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_006.json",
+      "size_bytes": 23753,
+      "sha256": "d4e59646a82a9f7e2e77b0d0b1747c0e8a9812a65c9cc2191958a4ce1d7ad5b6",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_007.json",
+      "size_bytes": 23820,
+      "sha256": "6029ced0d101072625f0056230894b367b9e0ee9fff94deac820e1c7063f6035",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_008.json",
+      "size_bytes": 23707,
+      "sha256": "9cb4b275d5a686917d8b8bf16be9f0f526256e5e361edf32f0db4b1bca86fee6",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_009.json",
+      "size_bytes": 23636,
+      "sha256": "75cc6c91af198da4ee740f4c1d5428e90d783eef0d5445d695d7dac5dc3d33a7",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_010.json",
+      "size_bytes": 23731,
+      "sha256": "a2b50a629810877102530ef19a1a4e9a3b44afe047e976e0f35c8c4786fb0eb1",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_011.json",
+      "size_bytes": 23704,
+      "sha256": "1d43d28fbdb8feb1c096e5b688e105b892e319bb21d28efbf01585f60db19d43",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_012.json",
+      "size_bytes": 23781,
+      "sha256": "3472b23bc7b5b1a0615237f69991a0d565cc38924ca949d607d54148e73406be",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_013.json",
+      "size_bytes": 23849,
+      "sha256": "0a490b39731b86f7c5851c3db7089aee8693ef47e4eb971f6469956e87144e81",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_014.json",
+      "size_bytes": 23766,
+      "sha256": "8c06142c2d8414e7ba7a28b253d2839c4932f54cac3dc569089364ae54f168da",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_015.json",
+      "size_bytes": 23740,
+      "sha256": "2171be735c5d0d222a6acc126281fa5c8b15293bd1e84bee2cd0cdab29ba6973",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_016.json",
+      "size_bytes": 23828,
+      "sha256": "73dc0c18f4ead87c8af1ceb7f5eac88e5c359674f35d22fb8a092e729f05f013",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_017.json",
+      "size_bytes": 24683,
+      "sha256": "be34918aebbbffca89e0378b3ac0975c7a3438b4747dce43cad035d3411160dc",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_018.json",
+      "size_bytes": 24660,
+      "sha256": "529dce203e533de4dddaae33d9e6893a8f11790f451c83dfa14c6a5570fd0a1b",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_019.json",
+      "size_bytes": 24700,
+      "sha256": "3276cff0c87c99567dcc3bb100503bdf5dc684456269a693789504251630b034",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_020.json",
+      "size_bytes": 24691,
+      "sha256": "9adeaf73eb6f27b982c8aaf8b4a18cde1301b71e7be6b9a7e96411a0c5dd8182",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_021.json",
+      "size_bytes": 24581,
+      "sha256": "0b2a1afb9c98eb0c162e3f205a5e85fdd293dbee8694c52ecb68da284416034b",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_022.json",
+      "size_bytes": 24407,
+      "sha256": "1c0a2fb45f15b35ca6f5c2192b14c37955eb5ea37a60abdd314a1528129e47f8",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_023.json",
+      "size_bytes": 24669,
+      "sha256": "df6940134e5247e021ef9a7e2d2083da54f38710dda21901e7fd99de8d471615",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_024.json",
+      "size_bytes": 24645,
+      "sha256": "5ec218bef32e84863cc80b1af1e8d0ac3cdf8957f8e0c3151b549a8bde0b2ee4",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_025.json",
+      "size_bytes": 24702,
+      "sha256": "1cd41ef1f46788130c419864d80d333ea0962b980fe0df11c134f8af4bbbd5b9",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_026.json",
+      "size_bytes": 24560,
+      "sha256": "c3f51832fcd054f175a3eb3c52143d9074bae053c11f95745468886d130b3464",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_027.json",
+      "size_bytes": 24608,
+      "sha256": "a291bf3ef73c27f53badc3e24b4645912891bc72b58acad51997dd912b5e38e7",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_028.json",
+      "size_bytes": 24586,
+      "sha256": "e5cb03107886408f1c08f5be58d5835602a7c16ab7762a21484f7416c008ce55",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_029.json",
+      "size_bytes": 24590,
+      "sha256": "255f7b7b495e0252830a4232a1b158ea6e22bcb46423ec24fe737f496ef2b544",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_030.json",
+      "size_bytes": 24474,
+      "sha256": "1daa409f51f106b726a34a877187f1f727851be53aaca8c95dc0b5ff99bc022d",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_031.json",
+      "size_bytes": 24630,
+      "sha256": "2dec415a4113e60a183f981dff1181d70257b7fcc893a78f233a761a64deb9e3",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_032.json",
+      "size_bytes": 24583,
+      "sha256": "48b871566245571120fe7e0cce9dd84c1c52cd2e937f32411fe41dc1c9449ad4",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_033.json",
+      "size_bytes": 24565,
+      "sha256": "611ca3069c7f337a4b0a8195e47fad12dc65f1504728f14318f966dd92d9ee08",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_034.json",
+      "size_bytes": 24634,
+      "sha256": "ce4d3e9201b2242172e2c133c28b0dc0318f819d5af270babca6890b4010eba8",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_035.json",
+      "size_bytes": 24514,
+      "sha256": "6689c3e3acf2e869e68258952b28ede8cec235d36d823ede6b8b2b02c463fd9a",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_036.json",
+      "size_bytes": 24563,
+      "sha256": "91efa2436bc3452d72d5ae15a25a3c6f5db7cdf3502414a03b35774445a623ff",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_037.json",
+      "size_bytes": 24280,
+      "sha256": "52ea1c34313e4c75c5cd93737479be6c407c58a4f615d4fef57b67ccac8de008",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_038.json",
+      "size_bytes": 24627,
+      "sha256": "1e695177504ae589b07ca9f118cdef33515a05b0ea0918b95357a6a564205cc8",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_039.json",
+      "size_bytes": 24452,
+      "sha256": "0d1389a34db4c9e2fc0a0d355826832a2670c67da1a2c30023d90c415b584a2b",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_040.json",
+      "size_bytes": 24506,
+      "sha256": "d26183d1ad32945f593499020ba8ffcd04f81f22c032a172a35848684734bf79",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_041.json",
+      "size_bytes": 24456,
+      "sha256": "67421babc27bbfc78a14c013e2623979f1dc42fa9efb16b2e5c1ae66b55f3ccf",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_042.json",
+      "size_bytes": 24509,
+      "sha256": "70e09b266ab4ad8175a68b0c539f25e45db50947294ba0976163352cb4a5fa04",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_043.json",
+      "size_bytes": 24509,
+      "sha256": "fd342b05b8f3499493fff36e9757214f9ad7afbe24bf1982b1036f38a53c9d1d",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_044.json",
+      "size_bytes": 24492,
+      "sha256": "99e7f081644ff948d21b467da800e5a73d17510e73b51875380317845c3f844e",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_045.json",
+      "size_bytes": 24498,
+      "sha256": "d5ad9e19062ab64c3b1d06806afcf9cd33b00c75d32e67a1a8b315ecc4e49d68",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_046.json",
+      "size_bytes": 24567,
+      "sha256": "1de3564092ba5f15fd3a187d691ec6083fe8a28eaba7487a7302fea99651f49f",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_047.json",
+      "size_bytes": 24604,
+      "sha256": "36492929c0f33ea9b8e9301c9ce8608b2eb97fbe36a88969fd7523da0a835fa9",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_048.json",
+      "size_bytes": 24588,
+      "sha256": "52b554bd652c27bb5e92e33be40a3cb1ed553f1d1650b5ffa52de62a0848b5f1",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_049.json",
+      "size_bytes": 24556,
+      "sha256": "1291faa2f108a716c45e66fa92fd522ae99b166c20d1ca977446dbf33858abc3",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_050.json",
+      "size_bytes": 24524,
+      "sha256": "61e7eda7203acfcd70bfad15ac5b854fcef255b193c34bb1c96751a66f6ae2df",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_051.json",
+      "size_bytes": 24503,
+      "sha256": "2eabf59823ca0160157438660ccde409e9837d7257669d3772ef610c0696a88d",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_052.json",
+      "size_bytes": 24558,
+      "sha256": "d65caea334b8725939fe4f1ec18c25c9a165eaf8e7f3fefddd76b827f4ffefad",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_053.json",
+      "size_bytes": 24592,
+      "sha256": "220bac78dbfbeed099ccdebd134f8618cfe95267938013a891508a958138e5e2",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_054.json",
+      "size_bytes": 24523,
+      "sha256": "7f031a6c1a4cad7489298245d47ab15795f0292826d6d65c82c6de6e3985ed24",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_055.json",
+      "size_bytes": 24569,
+      "sha256": "1e4e2f24a8de9b3cef273dc57f55a4810a57e8c3cfeb620d57551e47ce202a3b",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_056.json",
+      "size_bytes": 24461,
+      "sha256": "2952a9cfbecb3742d0de903bfd69f0b450027bf1438dee498dac1a9993ebaaf1",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_057.json",
+      "size_bytes": 24498,
+      "sha256": "40558fcf97ae84aa4335a447355edacad9d9af447917b959ef1102c6aa27a570",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_058.json",
+      "size_bytes": 24506,
+      "sha256": "10f549bef1ac1465f75d846639b67beb28aeb860f9355e11dce15fb358c621af",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_059.json",
+      "size_bytes": 24527,
+      "sha256": "b174d34f5ef98010a320cdc1a20bbd1180713b7dec25d752ecee42d9c1589f8e",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_060.json",
+      "size_bytes": 24580,
+      "sha256": "bc38bc090c9269fa0e52b9beeaed3ad9650120f89b05efc1be9710fad27988d2",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_061.json",
+      "size_bytes": 24559,
+      "sha256": "a0060477c04188d9e25ec092657ad7a88adfe2b21a878f0b2fcfb428c8d2a810",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_062.json",
+      "size_bytes": 24463,
+      "sha256": "7038e1566c55d0a03ec675e1c29fd82c6f0a95b8e9a3b41ff1a552ec32a84219",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_063.json",
+      "size_bytes": 24594,
+      "sha256": "92250955b1619261788a382537df3b9126bbab7f30de9716a8ff0c732dbfd243",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_064.json",
+      "size_bytes": 24472,
+      "sha256": "4dae71529aaea8b679aef0904a83aff5d1c601b01e22b23875bdb2852f1cb9ee",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_065.json",
+      "size_bytes": 24551,
+      "sha256": "b2cb4b7bf28aba5f32018d155bff67a5fa5b03f1b22c0bf8c7408180b9576970",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_066.json",
+      "size_bytes": 24615,
+      "sha256": "25a7ec3a098fcc40170fce08df64eae86db12837fe5c11e891818c1bddefa00d",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_067.json",
+      "size_bytes": 24484,
+      "sha256": "fc49498bd9cf105181a4f5bd720de187f1636e149da5b63cab64bac384a8f998",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_068.json",
+      "size_bytes": 24366,
+      "sha256": "81401d38ff2fc5e490c6fe958c12fbc2636264a742b74b2685e8c520a8d6ab5f",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_069.json",
+      "size_bytes": 24403,
+      "sha256": "d6cf659a43ce047d727f43e527596fd917eb153911e779510c6a36fcb309b950",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_070.json",
+      "size_bytes": 24512,
+      "sha256": "271052aa95df60762d84b8c235cb4d693a48dc85980843771a69fac499b8b7a6",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_071.json",
+      "size_bytes": 24542,
+      "sha256": "e9f6e1fc070eafeed0e91e3543d557ac9f9a68bcbf361f54c81ad588d0ec8fd1",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_072.json",
+      "size_bytes": 24394,
+      "sha256": "43dedd83162757f747a34e1423b1eab6de7fbd500acc512e48f306275a1618c6",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_073.json",
+      "size_bytes": 24475,
+      "sha256": "9016519ef9cf16c1a559bef3eabb0cb0c683fdd19699357145e78ad1173bb88b",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_074.json",
+      "size_bytes": 24476,
+      "sha256": "c600efb663bd3bc9e9b730407e62ae16546bd8befbe8fcf1958befdddb2dde09",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_075.json",
+      "size_bytes": 24405,
+      "sha256": "3187c536cc507e4eafd1be61eb21ab46424529daa9f1f8fd2791ef9aef20105f",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_076.json",
+      "size_bytes": 24446,
+      "sha256": "7f58f73a71848f1d73d25ac26fe374e295dc86f7e64b3616dbcf74d9206b8c8b",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_077.json",
+      "size_bytes": 24347,
+      "sha256": "305c58bfdae74253ae29e0549bf47980069cc318f82e6fd1921b7825d365d1ad",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_078.json",
+      "size_bytes": 24370,
+      "sha256": "cdd6f7f30b6b57ce7c2fcfad24250a19af9af63bedbf38432c6d3271382b91de",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_079.json",
+      "size_bytes": 24434,
+      "sha256": "1aa17ba0d344c73042ab3c39fec4e577d69f1a4c06e030c99db89d9c0a489fbd",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_080.json",
+      "size_bytes": 24424,
+      "sha256": "860c3c21051cb0180bb60bebb7aa4b7b9f0e350cd7a6a4b680d787c254ff923e",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_081.json",
+      "size_bytes": 24393,
+      "sha256": "3fafa1d09b2825e821700182c954235daf7ed02d300d984b8a9fba520083af2a",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_082.json",
+      "size_bytes": 24385,
+      "sha256": "5d03e7406f1c5872082541280bd2cdb4cd7336263249f8ca1975988ee71fa1dd",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_083.json",
+      "size_bytes": 24344,
+      "sha256": "9bfbd95b51a87cea07961c50add9c5f3a227dfc76217a061ca1817c1dd5711e8",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_084.json",
+      "size_bytes": 24388,
+      "sha256": "a14ae4750eee8b0b16c6e2d005f6bb1e5c3d029e8a96ff96d3473e163a24d5d6",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_085.json",
+      "size_bytes": 24488,
+      "sha256": "1552e8ae35b009aa8c29a46b54c68a785015f7010b90226ce0900b9b7fc800b7",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_086.json",
+      "size_bytes": 24427,
+      "sha256": "a4c247888ad68d89fe3c3dcd50b47072c4917b3a64605db9eab7460bae0e0510",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_087.json",
+      "size_bytes": 24589,
+      "sha256": "761d0feb642cbf6781e04a777284d6ccde66cfd5e9ffc2c3442b375b82a23229",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_088.json",
+      "size_bytes": 24544,
+      "sha256": "6a856d9648b60feb75c6d249f233c5c9acfcb13af7eff4cdb5694a60cf13c1bf",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_089.json",
+      "size_bytes": 24525,
+      "sha256": "12f25fb631622c6a9b011c54abb3a119c2f79441f1be2f08b7c6a350d5380f35",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_090.json",
+      "size_bytes": 24581,
+      "sha256": "48cd44111b393beea542ba63f23d7c3969ba5aac6df999168ba444371bbc023b",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_091.json",
+      "size_bytes": 24458,
+      "sha256": "0a9efb95a6ee3363c0a96442bd2e3e923e45e0e6d5dc901421a39fb5c5a27002",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_092.json",
+      "size_bytes": 24531,
+      "sha256": "3e1e8fb591bd6602132a74baebec6c79d316b0a5f93bd92521cfb104bdfe1c3b",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_093.json",
+      "size_bytes": 24487,
+      "sha256": "87c2837a0ec8933bc72ea2d422ccc8d15f5da31a6dd6fd31ef189fe7892ed9e3",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_094.json",
+      "size_bytes": 24395,
+      "sha256": "40d06c4ba05e390d3cefeb9f7f842c11b861d225cfb9f1cf6f55a412a807baae",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_095.json",
+      "size_bytes": 24531,
+      "sha256": "9047af512e65361ab75ef05062acefed49adff207176f48d9c306aba1eeff7e0",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_096.json",
+      "size_bytes": 24678,
+      "sha256": "4755d68cf9202ad318bc5bdcad6c3aba96b5fdd03881316e114ed894bf5de45b",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_097.json",
+      "size_bytes": 24668,
+      "sha256": "181204279d453fea3d5f44c6b012ef4edc57e89e9a6fbd5eb1a4ef6ab6e6ec34",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_098.json",
+      "size_bytes": 24549,
+      "sha256": "5d039ccf8d3f4471d544d6991a96d72cced21386ae2770b1a11e69c6c5417ebc",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/batch_099.json",
+      "size_bytes": 1384,
+      "sha256": "073ab2aeba788d0d89888c0a9f0bc7e6f811a682686551722b1a99b14e364e3b",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/checksum.sha256",
+      "size_bytes": 8118,
+      "sha256": "9482318a81414d51bd9ef057f1cef78fcae1e332def01af29c50ca812f3f9cc0",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_idconv_designpilot_20260710/manifest.json",
+      "size_bytes": 1008,
+      "sha256": "c9a95d05d5cdb9a9e2f13388bbe7752b160d1cbd9203b5b2d9f74b1e280c896e",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_locator_validation.json",
+      "size_bytes": 379,
+      "sha256": "96952e4e81b031761e2afefeb1742fe31977d81e94da06071ffcc88d878f579d",
+      "distribution": "tracked"
+    },
+    {
       "path": "research/legacy_unverified/runtime_ai/app-api-ai-explain-route.ts.txt",
       "size_bytes": 694,
       "sha256": "877af6f640534adf19bf0da08d37185e3013a6675cfb463781bbf75ee4a1e4d5",
@@ -1731,8 +2349,8 @@
     },
     {
       "path": "research/logs/BLOCKERS.md",
-      "size_bytes": 7370,
-      "sha256": "789e5e3c3a79f3e32fd902f440619b7242ee8c3b09ea47f067f49707f24519bf",
+      "size_bytes": 7494,
+      "sha256": "0717511ee7ccfa05982d82c0f1f3a8c17c30642ba9c7aef9c77f0ced1dc4291a",
       "distribution": "tracked"
     },
     {
@@ -1749,20 +2367,20 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 23430,
-      "sha256": "6875526f24773fd27986fa174187a121dbb12f0481685353d6c63731f6a22eb8",
+      "size_bytes": 24305,
+      "sha256": "097be79268eb28191434e0ef667e563ec18c6cab0d855359662e2484752a785f",
       "distribution": "tracked"
     },
     {
       "path": "research/PROGRESS_LEDGER.md",
-      "size_bytes": 2155,
-      "sha256": "15145942575313b838a03d37bb58e45657535cb3561e806f3127832f59f1612f",
+      "size_bytes": 2156,
+      "sha256": "cf98cb8a2d0c1f88a5d42f5daf96a363cbd945df5675ecd0a5d34093ef1fe9bf",
       "distribution": "tracked"
     },
     {
       "path": "research/protocol/access_matrix.csv",
-      "size_bytes": 3231,
-      "sha256": "2e73441e619ee03b153870b63754e564f7475f849de22967dd36116012d1e428",
+      "size_bytes": 3495,
+      "sha256": "13844930b82d30578667b02b5a1aeabb42153f4e7c96765f3fb01045096e445f",
       "distribution": "tracked"
     },
     {
@@ -1863,8 +2481,8 @@
     },
     {
       "path": "research/screening/phase_04_exit_criteria.md",
-      "size_bytes": 1347,
-      "sha256": "6667fd0884c0420f49d7a091cfd092e4f87357e7057b42677959835409d18934",
+      "size_bytes": 1720,
+      "sha256": "a80b4e4bad10cf58ccaef0e1e3e79b8b98d02c2cc3367f9ca8d63a4288ca48db",
       "distribution": "tracked"
     },
     {
@@ -3266,6 +3884,12 @@
       "distribution": "tracked"
     },
     {
+      "path": "tools/resolve_pmc_fulltext_candidates.py",
+      "size_bytes": 5088,
+      "sha256": "db18d6f5fb7e93c647c85eba1a9c678737270890a6bcca5ab40a688fe360b0ab",
+      "distribution": "tracked"
+    },
+    {
       "path": "tools/search_pipeline/__init__.py",
       "size_bytes": 280,
       "sha256": "75e17cc1767d0ea3d68883222cf38c1224f4ac27096d4d40757a685f0a17b6da",
@@ -3377,6 +4001,12 @@
       "path": "tools/validate_phase08_checkpoint.py",
       "size_bytes": 3960,
       "sha256": "57f415d3b9605537201f5367ec752aba1964e3b292d67f753ee1a3acb1535d86",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/validate_pmc_fulltext_candidates.py",
+      "size_bytes": 3704,
+      "sha256": "2b239a90789381afd5a23c188f223a452e578a77a9dd8627128ddee44b179fd2",
       "distribution": "tracked"
     },
     {
