@@ -35,8 +35,16 @@
   },
   "valid_fixture_accepted": true,
   "missing_locator_rejected": true,
+  "real_source_contract_fixture_present": true,
+  "source_contract_tests": {
+    "valid_reference_accepted": true,
+    "wrong_source_hash_rejected": true,
+    "wrong_paragraph_hash_rejected": true,
+    "wrong_xml_locator_rejected": true,
+    "legacy_source_rejected": true
+  },
   "human_extraction_rows": 0,
   "risk_of_bias_rows": 0,
   "ai_runs": 0,
-  "fixture_sha256": "3d961b9dc68971f297d29fb449c9daec60625e9c7aa10b0128eb490f1f95814b"
+  "fixture_sha256": "2dd3913f12f360f8cc5a7bc81f2ccb5646414bf15f1e5370b3e575395a1ebabb"
 }

@@ -50,17 +50,19 @@ def main() -> int:
         errors.append("human extraction table is populated before included reports and verification")
     if rob:
         errors.append("risk-of-bias table is populated before independent human assessment")
-    if len(fixtures) != 2:
-        errors.append("expected exactly two synthetic extraction fixtures")
+    if len(fixtures) != 3:
+        errors.append("expected two synthetic fixtures plus one real-source contract fixture")
     for fixture in fixtures:
         schema_errors = list(validator.iter_errors(fixture["candidate"]))
-        if schema_errors:
-            errors.append(f"schema-invalid synthetic fixture: {fixture['name']}")
+        actual_valid = not schema_errors
+        if actual_valid is not fixture["expected_valid"]:
+            errors.append(f"schema expectation mismatch: {fixture['name']}")
 
     expected = {
         "status": "synthetic_metric_fixture_not_ai_performance",
         "valid_fixture_accepted": True,
         "missing_locator_rejected": True,
+        "real_source_contract_fixture_present": True,
         "human_extraction_rows": 0,
         "risk_of_bias_rows": 0,
         "ai_runs": 0,
@@ -68,6 +70,37 @@ def main() -> int:
     for key, value in expected.items():
         if metrics.get(key) != value:
             errors.append(f"metric field {key}: expected {value!r}, got {metrics.get(key)!r}")
+    contract = next((fixture for fixture in fixtures if fixture["name"] == "real_pmc_locator_contract_no_extraction"), None)
+    if contract is None:
+        errors.append("real PMC locator contract fixture missing")
+    else:
+        candidate = contract["candidate"]
+        field = candidate["fields"][0]
+        locator = field["locator"]
+        pmc_root = ROOT / "research/fulltext/pmc_sentinel_fulltext_designpilot_20260710"
+        pmc_manifest = json.loads((pmc_root / "manifest.json").read_text(encoding="utf-8"))
+        with (pmc_root / "paragraph_locators.csv").open(encoding="utf-8-sig", newline="") as handle:
+            paragraph_index = {row["xml_locator"]: row for row in csv.DictReader(handle)}
+        paragraph = paragraph_index.get(locator["xml_locator"])
+        if locator["source_file_sha256"] != pmc_manifest["raw_gzip_sha256"] or candidate.get("input_sha256") != pmc_manifest["raw_gzip_sha256"]:
+            errors.append("real contract source hash mismatch")
+        expected_source_path = "research/fulltext/pmc_sentinel_fulltext_designpilot_20260710/pmc_sentinel_batch.xml.gz"
+        if locator.get("source_path") != expected_source_path or "legacy_unverified" in locator.get("source_path", ""):
+            errors.append("real contract source path mismatch")
+        if paragraph is None or locator["paragraph_text_sha256"] != paragraph["normalized_text_sha256"]:
+            errors.append("real contract paragraph locator/hash mismatch")
+        if field["status"] == "extracted" or field["value"] is not None or field["supporting_quote"] is not None:
+            errors.append("real contract fixture contains an extraction-like value")
+    contract_tests = metrics.get("source_contract_tests", {})
+    expected_contract_tests = {
+        "valid_reference_accepted": True,
+        "wrong_source_hash_rejected": True,
+        "wrong_paragraph_hash_rejected": True,
+        "wrong_xml_locator_rejected": True,
+        "legacy_source_rejected": True,
+    }
+    if contract_tests != expected_contract_tests:
+        errors.append("source contract mutation tests failed or are incomplete")
     for metric in ("exact_value", "unit", "locator"):
         item = metrics.get(metric, {})
         interval = item.get("wilson95")
@@ -84,6 +117,7 @@ def main() -> int:
         "risk_of_bias_rows": len(rob),
         "ai_runs": metrics.get("ai_runs"),
         "fixtures": len(fixtures),
+        "real_source_contract_fixture": contract is not None,
     }
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 1 if errors else 0

@@ -311,3 +311,11 @@
 - Validator re-parses the compressed raw XML and recomputes every paragraph hash; stored paragraph text is not duplicated in the index.
 - Routed PMC3069236 and PMC3127502 to a two-row non-OA access queue. Requester/date/outcome/file-hash fields remain blank until human screening advancement.
 - Phase 04 validator confirms 19 paragraph locators, 2 access rows, and zero human decisions.
+
+## 2026-07-10 — Extraction source-contract integration
+
+- Strengthened the Draft 2020-12 extraction schema so an extracted field requires a nonempty quote plus page or XML locator, non-legacy source path, and source SHA-256.
+- Added a no-extraction contract fixture bound to the actual PMC5037562 gzip and first paragraph locator/hash.
+- Mutation tests reject wrong source hash, wrong paragraph hash, nonexistent XML locator, and `legacy_unverified` source path.
+- Corrected the Phase 05 validator to require the intentionally invalid missing-locator fixture to fail schema validation rather than incorrectly expecting every fixture to be schema-valid.
+- Human extraction/RoB/AI rows remain 0/0/0.

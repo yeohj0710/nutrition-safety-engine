@@ -123,3 +123,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: classify each PMC EFetch response as OA full-text XML or metadata-only/non-OA before creating any extraction source
 - rationale: the three-sentinel pilot returned one OA body and two front-only records despite all having PMC IDs and PDF indicators
 - impact: no PMCID candidate is treated as retrieved full text; non-OA reports require documented library/publisher access after human screening advancement
+
+## D-015 — Extraction locators are source-bound contracts
+
+- date: 2026-07-10
+- decision: every future extracted field must carry a non-legacy source path, exact source SHA-256, and either page or XML locator; XML paragraph support also carries its text SHA-256
+- rationale: a human-readable section label alone cannot prove which immutable source bytes support a value
+- impact: wrong hashes, missing locations, nonexistent paragraphs, and legacy sources fail before any candidate can enter human verification

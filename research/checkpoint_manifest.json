@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "e899a1864fe8989b5bbf95963550d203c5e579c4",
+  "implementation_head": "f0c84efe2ad75cd69a9e536d70a7a76e4316dc16",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -1275,8 +1275,8 @@
     },
     {
       "path": "research/design/20260710/04_EXTRACTION/llm_extraction_schema.json",
-      "size_bytes": 3338,
-      "sha256": "243e1f3e1e65766c223f14ea9c48e4f1925ce09cf199b47bd681ed0226ae6f6f",
+      "size_bytes": 4870,
+      "sha256": "c6568def2425e5175ac6df2f3cebd82f74daacc52b466b89542506d6d0920bf0",
       "distribution": "tracked"
     },
     {
@@ -1623,8 +1623,8 @@
     },
     {
       "path": "research/design/20260710/manifest.json",
-      "size_bytes": 19478,
-      "sha256": "702f9e8f17a9ba0405320b0adedf6589180456927a71b5156ee76ac6590bb138",
+      "size_bytes": 22521,
+      "sha256": "1b1e0a5922ea35f79c87fb911785d0b1ade6495f579195bd5c6c15a6fe1768ae",
       "distribution": "tracked"
     },
     {
@@ -1713,20 +1713,20 @@
     },
     {
       "path": "research/extraction/phase_05_exit_criteria.md",
-      "size_bytes": 1061,
-      "sha256": "805e600e60e216ecd9d956b9fdfd4f493c7ca6f0d623225b10975e3cbf8a4e8b",
+      "size_bytes": 1622,
+      "sha256": "3e92f72e0db475489fc09422c5922da6ba53840754e324336999ebfe807af2a3",
       "distribution": "tracked"
     },
     {
       "path": "research/extraction/synthetic_extraction_fixtures.json",
-      "size_bytes": 2088,
-      "sha256": "3d961b9dc68971f297d29fb449c9daec60625e9c7aa10b0128eb490f1f95814b",
+      "size_bytes": 4234,
+      "sha256": "2dd3913f12f360f8cc5a7bc81f2ccb5646414bf15f1e5370b3e575395a1ebabb",
       "distribution": "tracked"
     },
     {
       "path": "research/extraction/synthetic_metric_results.json",
-      "size_bytes": 882,
-      "sha256": "23e66af17b95f7d9ba42b88470dfbb213a6cd74848ccfdcb89453c2d0aebc077",
+      "size_bytes": 1168,
+      "sha256": "2e6f83e884c0fb68fc8d2595af2d0c6cd2118a7d94d3f7e3d9c738f3d1395f26",
       "distribution": "tracked"
     },
     {
@@ -2415,26 +2415,26 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 8427,
-      "sha256": "4b175810339bfb8536779647f2ee9770905ceedd74e9b3eac9d96c94124c0a5a",
+      "size_bytes": 8941,
+      "sha256": "76a9508c8f13529b8951d397ba260968f007af86f56663f198cc576d9df16ec1",
       "distribution": "tracked"
     },
     {
       "path": "research/logs/RISKS.md",
-      "size_bytes": 6409,
-      "sha256": "5eb06a246a02192ea23f3ea1f3f5a11270ad87821cb4c80dcba29e05581cfbec",
+      "size_bytes": 6580,
+      "sha256": "6e87d5fb55b58b9b5aed6de71ccf7ca8833b90a2aca00a77c1fabf7ceca0a24b",
       "distribution": "tracked"
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 29644,
-      "sha256": "9ff65471870ab8b28805df5fd53a3177ccbe12c7ac45e9fc916c163673dc78ec",
+      "size_bytes": 30345,
+      "sha256": "5d2b1a243d73f6a042ee656ca54891e9ce47a73b351b1a6e24182d12361778f0",
       "distribution": "tracked"
     },
     {
       "path": "research/PROGRESS_LEDGER.md",
-      "size_bytes": 2362,
-      "sha256": "e6930895e87f9cfcbcd866bcc0e68e142494250fed651e90212081cf2e445c85",
+      "size_bytes": 2392,
+      "sha256": "a6ab1578a893432209ef1ac0bacd62eafa6a44f207c1faa3e237383e1a3b32a6",
       "distribution": "tracked"
     },
     {
@@ -4383,8 +4383,8 @@
     },
     {
       "path": "tools/phase05_proxy_metrics.py",
-      "size_bytes": 6363,
-      "sha256": "b01a46f685c9dfdebdca755e53b3b2a80d2b8b97497bcbec4338d2d82b8de386",
+      "size_bytes": 10396,
+      "sha256": "a829e942ba4af85b4c14f9b73dc40db547237848165ed311de20eb7360eb7d2b",
       "distribution": "tracked"
     },
     {
@@ -4527,8 +4527,8 @@
     },
     {
       "path": "tools/validate_phase05_proxy.py",
-      "size_bytes": 3417,
-      "sha256": "fcf8bdb16902acb9a039b66fbe4389fbd49a920372cac34142ffcc03ecf06401",
+      "size_bytes": 5739,
+      "sha256": "98fe02361111ba45311948d463bbc006575e3770fc5dd88645124a21cb576caa",
       "distribution": "tracked"
     },
     {

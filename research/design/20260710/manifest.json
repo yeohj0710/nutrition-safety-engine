@@ -1,7 +1,7 @@
 {
-  "root_name": "yeohj_thesis_reboot_pack_20260710",
-  "generated_at": "2026-07-10T01:16:49.295208+00:00",
-  "file_count": 110,
+  "root_name": "20260710",
+  "generated_at": "2026-07-10T11:49:39.153086+00:00",
+  "file_count": 125,
   "files": [
     {
       "path": "00_AUDIT/critical_decisions.md",
@@ -22,6 +22,11 @@
       "path": "00_AUDIT/current_thesis_style_scan_console.txt",
       "size_bytes": 1067,
       "sha256": "9dc561be010b10283a41dc5329a3506d1d7284adec7882fe43875fb7635f3487"
+    },
+    {
+      "path": "00_AUDIT/desktop.ini",
+      "size_bytes": 246,
+      "sha256": "b9629f88fcf26d1acc8c27e7118ed9b0ae9cb56c6294dcac7aacb0532aa200c0"
     },
     {
       "path": "00_AUDIT/existing_metrics_reconciliation.csv",
@@ -57,6 +62,11 @@
       "path": "00_AUDIT/reference_inputs/260413 피드백.txt",
       "size_bytes": 430,
       "sha256": "d554b93b8d3f6a8705607f7522d69b7540112a905e454b37604c1157ac8ce853"
+    },
+    {
+      "path": "00_AUDIT/reference_inputs/desktop.ini",
+      "size_bytes": 246,
+      "sha256": "b9629f88fcf26d1acc8c27e7118ed9b0ae9cb56c6294dcac7aacb0532aa200c0"
     },
     {
       "path": "00_AUDIT/reference_inputs/README.md",
@@ -114,6 +124,16 @@
       "sha256": "8a201d2435640e22bd323fa209ecfde50ed4213b0a7658113b003b3f69011575"
     },
     {
+      "path": "00_AUDIT/reproduced_legacy_audit/desktop.ini",
+      "size_bytes": 246,
+      "sha256": "b9629f88fcf26d1acc8c27e7118ed9b0ae9cb56c6294dcac7aacb0532aa200c0"
+    },
+    {
+      "path": "01_PROTOCOL/desktop.ini",
+      "size_bytes": 246,
+      "sha256": "b9629f88fcf26d1acc8c27e7118ed9b0ae9cb56c6294dcac7aacb0532aa200c0"
+    },
+    {
       "path": "01_PROTOCOL/eligibility_criteria.yaml",
       "size_bytes": 2137,
       "sha256": "466400311eafbc2a459a153e819fb1a11a58e5c52d0f20cce68b39ef4b64ceb8"
@@ -154,6 +174,11 @@
       "sha256": "80ee0a6ec8e323d7aea92f89f9394d5ef2a3c0aa3e27efa9dce78d6799fea2ff"
     },
     {
+      "path": "02_RETRIEVAL/desktop.ini",
+      "size_bytes": 246,
+      "sha256": "b9629f88fcf26d1acc8c27e7118ed9b0ae9cb56c6294dcac7aacb0532aa200c0"
+    },
+    {
       "path": "02_RETRIEVAL/press_review_form.md",
       "size_bytes": 1167,
       "sha256": "3ed91675c87d687990cfdaa808c7f49ad939c3293951a8d0f2fdc9ca87457fc3"
@@ -182,6 +207,11 @@
       "path": "03_SCREENING/ai_screening_evaluation.md",
       "size_bytes": 2988,
       "sha256": "f46f1a6de8b04156e0cb918be3bab1478e449f96098e7bc90be6337604fed052"
+    },
+    {
+      "path": "03_SCREENING/desktop.ini",
+      "size_bytes": 246,
+      "sha256": "b9629f88fcf26d1acc8c27e7118ed9b0ae9cb56c6294dcac7aacb0532aa200c0"
     },
     {
       "path": "03_SCREENING/dual_review_sampling_plan.md",
@@ -214,6 +244,11 @@
       "sha256": "66440dcf58386b5120b902081d95e23ba93119e9c1fcffbdf1dc84825d949bbe"
     },
     {
+      "path": "04_EXTRACTION/desktop.ini",
+      "size_bytes": 246,
+      "sha256": "b9629f88fcf26d1acc8c27e7118ed9b0ae9cb56c6294dcac7aacb0532aa200c0"
+    },
+    {
       "path": "04_EXTRACTION/evidence_extraction_template.csv",
       "size_bytes": 763,
       "sha256": "29254e810bb60131f51bd4201c0f82f4db880f0e5a6c06162f024fff41a049f4"
@@ -235,8 +270,8 @@
     },
     {
       "path": "04_EXTRACTION/llm_extraction_schema.json",
-      "size_bytes": 3338,
-      "sha256": "243e1f3e1e65766c223f14ea9c48e4f1925ce09cf199b47bd681ed0226ae6f6f"
+      "size_bytes": 4870,
+      "sha256": "c6568def2425e5175ac6df2f3cebd82f74daacc52b466b89542506d6d0920bf0"
     },
     {
       "path": "04_EXTRACTION/risk_of_bias_template.csv",
@@ -269,6 +304,11 @@
       "sha256": "2a556f8f9a24907c77f8c547c0f938e03b3e5cc5bdcc27b7d67700c984f8abeb"
     },
     {
+      "path": "05_SYNTHESIS/desktop.ini",
+      "size_bytes": 246,
+      "sha256": "b9629f88fcf26d1acc8c27e7118ed9b0ae9cb56c6294dcac7aacb0532aa200c0"
+    },
+    {
       "path": "05_SYNTHESIS/evidence_to_rule_schema.json",
       "size_bytes": 6735,
       "sha256": "2a19ed9281c7d0797b50c8975b9b7fcd547ffb119150c508ec06c9174ce04da3"
@@ -292,6 +332,11 @@
       "path": "06_VALIDATION/adversarial_scenario_catalog.md",
       "size_bytes": 1000,
       "sha256": "24b0eb026f2fbb9964bfab1d8d37a409a522aef01769dff9b4bac150acaa3fb4"
+    },
+    {
+      "path": "06_VALIDATION/desktop.ini",
+      "size_bytes": 246,
+      "sha256": "b9629f88fcf26d1acc8c27e7118ed9b0ae9cb56c6294dcac7aacb0532aa200c0"
     },
     {
       "path": "06_VALIDATION/expert_review_form.csv",
@@ -334,6 +379,11 @@
       "sha256": "b6bc51e7a5c33196d5ee72da71b41a0ea9d86752187f27eb77601521ba60cc32"
     },
     {
+      "path": "07_REPO/desktop.ini",
+      "size_bytes": 246,
+      "sha256": "b9629f88fcf26d1acc8c27e7118ed9b0ae9cb56c6294dcac7aacb0532aa200c0"
+    },
+    {
       "path": "07_REPO/migration_plan.md",
       "size_bytes": 1855,
       "sha256": "7258f3ea089a7c353286ac7c930562aa18e6427fec563bbc5e9a1e8834c4bb74"
@@ -362,6 +412,11 @@
       "path": "08_THESIS/chapter_acceptance_checklists.md",
       "size_bytes": 1679,
       "sha256": "4781b93c9350041bb8383d9e0543baee3480fb774e4372cce2fa8ebc12ad5bb2"
+    },
+    {
+      "path": "08_THESIS/desktop.ini",
+      "size_bytes": 246,
+      "sha256": "b9629f88fcf26d1acc8c27e7118ed9b0ae9cb56c6294dcac7aacb0532aa200c0"
     },
     {
       "path": "08_THESIS/human_style_guide.md",
@@ -394,9 +449,9 @@
       "sha256": "3b1e8c05127a38748b904974aece56a5dcc44328b6be42b94c1fc396f057ae36"
     },
     {
-      "path": "09_CODEX/PROMPT_TO_START.txt",
-      "size_bytes": 1638,
-      "sha256": "3e1c27963a81598697c3c40ecea4f1e5b3784677ff31cc17832a10aa1f3ed334"
+      "path": "09_CODEX/desktop.ini",
+      "size_bytes": 246,
+      "sha256": "b9629f88fcf26d1acc8c27e7118ed9b0ae9cb56c6294dcac7aacb0532aa200c0"
     },
     {
       "path": "09_CODEX/phase_01_audit_and_normalization.md",
@@ -439,6 +494,11 @@
       "sha256": "6ffeb9e0bab5dcbaa3cbd759dc24144a8f48bb9e377b0c3c218a28a3afa33bf2"
     },
     {
+      "path": "09_CODEX/PROMPT_TO_START.txt",
+      "size_bytes": 1638,
+      "sha256": "3e1c27963a81598697c3c40ecea4f1e5b3784677ff31cc17832a10aa1f3ed334"
+    },
+    {
       "path": "10_QA/acceptance_criteria.md",
       "size_bytes": 4519,
       "sha256": "c31f0fb8907849d8128f9f9cbefdc82a447e539448f9c54bc0a7f2362ddca9bd"
@@ -452,6 +512,11 @@
       "path": "10_QA/completion_report_template.md",
       "size_bytes": 913,
       "sha256": "c9e76acd504ec6018cb6fce35ef4e46f21eea63913d970d5828fa0e7ace7f95d"
+    },
+    {
+      "path": "10_QA/desktop.ini",
+      "size_bytes": 246,
+      "sha256": "b9629f88fcf26d1acc8c27e7118ed9b0ae9cb56c6294dcac7aacb0532aa200c0"
     },
     {
       "path": "10_QA/final_bundle_validation.txt",
@@ -489,6 +554,11 @@
       "sha256": "aee578aef12f81ebefc4c9e2b647d7bf136500c41bd22f06da20043c35e47b53"
     },
     {
+      "path": "desktop.ini",
+      "size_bytes": 246,
+      "sha256": "b9629f88fcf26d1acc8c27e7118ed9b0ae9cb56c6294dcac7aacb0532aa200c0"
+    },
+    {
       "path": "MANIFEST.md",
       "size_bytes": 818,
       "sha256": "81f9c8ddf0d638e8086b96fe304cc291340012d61154727242439677e4ee7871"
@@ -524,11 +594,6 @@
       "sha256": "f8eab6b1eeddcd36a056601dd125ba6296f5038799e41264675ed041121cff3f"
     },
     {
-      "path": "tools/README.md",
-      "size_bytes": 476,
-      "sha256": "cdbbe293ca877cab6356c90f8d8fb58a083c42a4a06fd27b6ae7689b9c504d4a"
-    },
-    {
       "path": "tools/audit_existing_artifacts.py",
       "size_bytes": 4447,
       "sha256": "596d2a18a7459b72f780491c1dbd409cbe0d2076f7d82d307f25bc58f6a56f59"
@@ -539,9 +604,19 @@
       "sha256": "bcd3ad825373a12a3d9bd8e0f494340149eb0855dbef6274d64df6af5acc5ae3"
     },
     {
+      "path": "tools/desktop.ini",
+      "size_bytes": 246,
+      "sha256": "b9629f88fcf26d1acc8c27e7118ed9b0ae9cb56c6294dcac7aacb0532aa200c0"
+    },
+    {
       "path": "tools/generate_manifest.py",
       "size_bytes": 1394,
       "sha256": "aa184c76be958112e0487d77529c64e3b8226a200dda1d9885b2be8f16777268"
+    },
+    {
+      "path": "tools/README.md",
+      "size_bytes": 476,
+      "sha256": "cdbbe293ca877cab6356c90f8d8fb58a083c42a4a06fd27b6ae7689b9c504d4a"
     },
     {
       "path": "tools/validate_provenance.py",
