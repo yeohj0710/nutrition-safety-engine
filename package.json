@@ -52,6 +52,7 @@
     "build:phase02:evidence-manifest": "python tools/build_phase02_evidence_manifest.py",
     "validate:phase02:evidence-manifest": "python tools/validate_phase02_evidence_manifest.py",
     "validate:phase03:lineage": "python tools/validate_phase03_lineage.py",
+    "validate:phase03:preservation": "python tools/validate_phase03_queue_preservation.py",
     "validate:phase04:screening-lineage": "python tools/validate_phase04_screening_lineage.py",
     "typecheck": "npm run prepare:knowledge && tsc --noEmit"
   },

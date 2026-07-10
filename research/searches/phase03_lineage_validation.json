@@ -13,7 +13,7 @@
     "wrong_raw_pmid_rejected": true,
     "wrong_normalized_title_rejected": true,
     "missing_duplicate_candidate_rejected": true,
-    "filled_human_decision_rejected": true,
+    "partial_decision_status_mismatch_rejected": true,
     "filled_study_link_rejected": true
   },
   "artifacts": [
@@ -39,8 +39,8 @@
     },
     {
       "path": "data/interim/report_candidates.csv",
-      "sha256": "e55b516b28d2c1af77b01caf2d6926df4bdae57aa0b95c6987ad65bfa17cfe57",
-      "size_bytes": 1953971
+      "sha256": "f23b367b14c08808a41d78e5b5e5659169218de69574a9380c0e7418738a0067",
+      "size_bytes": 2581494
     }
   ]
 }

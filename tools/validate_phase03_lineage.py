@@ -105,10 +105,26 @@ def main() -> int:
     if {row["candidate_id"] for row in decisions} != candidate_ids:
         errors.append("dedup decision queue does not cover candidate IDs exactly")
     protected = ("decision", "canonical_record_id", "duplicate_cluster_id", "duplicate_reason", "verified_by", "verified_at")
-    if any(any(row[field].strip() for field in protected) or row["status"] != "pending_external_human_review" for row in decisions):
-        errors.append("dedup queue contains an unverified human decision")
-    if {row["record_id"] for row in reports} != set(records) or any(row["study_id"].strip() for row in reports):
+    decision_complete = 0
+    for row in decisions:
+        any_human = any(row[field].strip() for field in protected)
+        base_complete = all(row[field].strip() for field in ("decision", "verified_by", "verified_at"))
+        duplicate_complete = row["decision"] != "duplicate" or all(row[field].strip() for field in ("canonical_record_id", "duplicate_cluster_id", "duplicate_reason"))
+        complete = base_complete and duplicate_complete and row["decision"] in {"duplicate", "not_duplicate", "uncertain"}
+        expected_status = "complete_candidate_requires_validation" if complete else "in_progress_external_human_review" if any_human else "pending_external_human_review"
+        if row["status"] != expected_status:
+            errors.append(f"dedup decision progress mismatch: {row['candidate_id']}")
+        decision_complete += int(complete)
+    if {row["record_id"] for row in reports} != set(records):
         errors.append("report queue coverage/linkage boundary failed")
+    link_complete = 0
+    for row in reports:
+        any_human = any(row[field].strip() for field in ("study_id", "linked_by", "linked_at"))
+        complete = all(row[field].strip() for field in ("study_id", "linked_by", "linked_at"))
+        expected_linkage_status = "complete_candidate_requires_validation" if complete else "in_progress_external_human_review" if any_human else "pending_external_human_review"
+        if row.get("linkage_status") != expected_linkage_status:
+            errors.append(f"report linkage progress mismatch: {row['report_id']}")
+        link_complete += int(complete)
 
     # Contract mutations prove the same boundary rejects plausible corruptions.
     sample_record = records_list[0]
@@ -121,7 +137,7 @@ def main() -> int:
         "wrong_raw_pmid_rejected": "PMID-NOT-IN-RAW" not in raw_index[sample_record["raw_file"]],
         "wrong_normalized_title_rejected": sample_source != ("mutated title", sample_record["doi"]),
         "missing_duplicate_candidate_rejected": mutated_candidate_map != expected,
-        "filled_human_decision_rejected": any(mutated_decision[field].strip() for field in protected),
+        "partial_decision_status_mismatch_rejected": any(mutated_decision[field].strip() for field in protected) and mutated_decision["status"] == "pending_external_human_review",
         "filled_study_link_rejected": bool(mutated_report["study_id"].strip()),
     }
     if not all(mutation_tests.values()):
@@ -136,8 +152,8 @@ def main() -> int:
     result = {"schema_version": "1.0.0", "status": "proxy_lineage_verified_human_gates_open",
               "errors": errors, "raw_xml_files_reparsed": len(raw_paths),
               "records_verified": len(records_list), "retrievals_verified": len(retrievals),
-              "duplicate_candidates_recomputed": len(expected), "human_dedup_decisions": 0,
-              "human_study_links": 0, "final_search_claim_allowed": False,
+              "duplicate_candidates_recomputed": len(expected), "human_dedup_decisions": decision_complete,
+              "human_study_links": link_complete, "final_search_claim_allowed": False,
               "mutation_tests": mutation_tests,
               "artifacts": artifacts}
     OUTPUT.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

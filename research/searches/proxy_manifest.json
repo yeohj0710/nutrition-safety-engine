@@ -36,8 +36,8 @@
     },
     {
       "path": "data/interim/report_candidates.csv",
-      "size_bytes": 1953971,
-      "sha256": "e55b516b28d2c1af77b01caf2d6926df4bdae57aa0b95c6987ad65bfa17cfe57",
+      "size_bytes": 2581494,
+      "sha256": "f23b367b14c08808a41d78e5b5e5659169218de69574a9380c0e7418738a0067",
       "distribution": "tracked_generated"
     },
     {
@@ -810,8 +810,8 @@
     },
     {
       "path": "research/searches/phase_03_exit_criteria.md",
-      "size_bytes": 3230,
-      "sha256": "a44115456912961dcaf60214bb374e25f37f4b34a6f7199c1a8c23a643f92abc",
+      "size_bytes": 3823,
+      "sha256": "1705878ef54c20749360fe629f0c40ff40c986896099ee01c753dfcc72a421b6",
       "distribution": "tracked_generated"
     },
     {

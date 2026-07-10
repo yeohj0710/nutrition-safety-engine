@@ -19,6 +19,7 @@ Proxy pipeline status: `complete_verified`
 | Duplicate candidate independent recomputation | 342/342 pairs and reasons exact; 5/5 corruption mutations rejected | pass_proxy_only |
 | Human duplicate decisions | 0/342 | blocked_external |
 | Report→study linkage | 19,609 report candidates; 0 human study links | blocked_external |
+| Human queue preservation/progression | normalizer preserves populated dedup/linkage files byte-for-byte; lineage changes fail without write; pending/partial/complete-candidate states validated; preservation 3/3 | pass_local |
 | Registry screening/linkage | 207 undecided rows; 500 registry→PubMed candidate links; 0 human decisions | blocked_external |
 | Approved final searches across planned sources | none | blocked_external |
 
@@ -29,3 +30,5 @@ CENTRAL displayed the platform message `Authenticate to get access to full CENTR
 KoreaMed displayed all 62 A1 results after setting 100 per page (`1-62`). Native Download failed with a server temp-file permission error. The complete displayed KMID/title set was captured, 35 exact-title PubMed linkage candidates were queued, and all human linkage/eligibility fields remain blank. The four zero-hit queries require PRESS review and broader Korean/English synonym testing before any final-search interpretation.
 
 KMbase/RISS short-query counts are deliberately excluded from retrieval totals. No identifiers were exported, split-query result sets overlap, KMbase zero recall remains unresolved, and no independent PRESS decision exists.
+
+Human decisions are no longer required to remain blank for proxy validation. A completed duplicate decision requires decision, verifier and time; duplicate calls additionally require canonical record, cluster and reason. A completed study link requires study ID, linker and time. Neither complete-candidate state is treated as final until phase validation passes.

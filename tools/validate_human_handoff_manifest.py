@@ -44,8 +44,8 @@ def main() -> int:
             errors.append(f"handoff progress state mismatch: {item['path']}")
         any_total += any_count
         complete_total += complete
-    if value.get("queue_count") != len(queues) or len(queues) != 30:
-        errors.append("expected 30 handoff queues")
+    if value.get("queue_count") != len(queues) or len(queues) != 31:
+        errors.append("expected 31 handoff queues")
     if value.get("rows_with_any_human_data") != any_total or value.get("rows_complete_candidate") != complete_total:
         errors.append("handoff aggregate progress mismatch")
     actionable = [item for item in queues if item["minimum_completion_fields"]]

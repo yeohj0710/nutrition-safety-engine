@@ -382,3 +382,17 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: require frozen/release commits to be ancestors of current HEAD, not equal to the commit containing their later approval or deployment-verification records
 - rationale: `approved_commit == HEAD` becomes false as soon as the approval row itself is committed and therefore has no attainable stable state
 - impact: validators reproduce data/analysis manifests and thesis-bundle bytes from the historical approved commit while allowing audit records to be committed afterward
+
+## D-052 — PubMed normalization may not overwrite dedup or study-linkage work
+
+- date: 2026-07-10
+- decision: regenerate Phase 03 human queues only while human fields are empty; once populated, require identical keys/static lineage and preserve the file byte-for-byte
+- rationale: rerunning raw normalization is a reproducibility step, not authorization to erase human review
+- impact: missing/blank queues initialize, stable populated queues survive, and changed candidate/report lineage fails before write
+
+## D-053 — Phase 03 supports pending, partial, and complete-candidate decisions
+
+- date: 2026-07-10
+- decision: validate explicit progress states for duplicate decisions and report-study links rather than requiring every field to stay blank
+- rationale: blank-only lineage gates made human deduplication and study linkage impossible to complete
+- impact: partial rows remain visible; complete duplicate calls require verifier/time and duplicate-specific canonical/cluster/reason fields; complete links require study ID/linker/time

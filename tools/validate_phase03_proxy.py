@@ -126,10 +126,10 @@ def main() -> int:
             errors.append("normalized record/report count mismatch")
         if len(candidates) != 342 or len(decisions) != len(candidates):
             errors.append("duplicate candidate/decision queue count mismatch")
-        if any(row["status"] != "pending_external_human_review" for row in decisions):
-            errors.append("human dedup queue contains an unverified decision")
-        if any(row["study_id"] for row in reports):
-            errors.append("report candidates contain unverified study links")
+        if any(row["status"] not in {"pending_external_human_review", "in_progress_external_human_review", "complete_candidate_requires_validation"} for row in decisions):
+            errors.append("human dedup queue contains an invalid progress state")
+        if any(row.get("linkage_status") not in {"pending_external_human_review", "in_progress_external_human_review", "complete_candidate_requires_validation"} for row in reports):
+            errors.append("report candidates contain an invalid linkage state")
         if len(search_log) != 5 or any(
             row["status"] != "design_pilot_full_export_not_final_search" for row in search_log
         ):

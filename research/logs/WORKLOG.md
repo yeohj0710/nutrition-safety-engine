@@ -556,3 +556,11 @@
 - Results freeze and deployment verification now accept an immutable ancestor commit and prove ancestry against current HEAD.
 - Data and analysis manifests are re-read from the frozen commit; the thesis bundle is re-read from the release commit. Historical bytes must reproduce declared SHA-256 values.
 - Ancestor/unknown-commit/bundle reproduction contracts pass. Current freeze and deployment rows remain absent.
+
+## 2026-07-10 — Future-safe Phase 03 deduplication and study linkage
+
+- Found that PubMed normalization overwrote both human queues and both Phase 03 validators rejected any populated row.
+- Added byte-preserving queue writes with exact key/static-lineage checks; preservation contracts pass 3/3.
+- Added explicit pending/partial/complete-candidate semantics for duplicate decisions and report-study linkage, plus linker identity/time fields.
+- Reparsed 103 raw XML files and reproduced 19,609 records, 19,961 retrievals, and 342/342 duplicate pairs with errors 0. A variable-shadowing count bug briefly reported 29; it was corrected and revalidated at 342.
+- Current human duplicate decisions/study links remain 0/0; no final-search, inclusion, or PRISMA claim was created.

@@ -166,6 +166,25 @@ def write_csv(path: Path, rows: list[dict[str, Any]], fields: list[str]) -> None
         writer.writerows(rows)
 
 
+def write_or_preserve_human_queue(path: Path, generated: list[dict[str, Any]], fields: list[str],
+                                  key: str, human_fields: list[str], static_fields: list[str]) -> str:
+    if path.exists():
+        with path.open(encoding="utf-8-sig", newline="") as handle:
+            reader = csv.DictReader(handle)
+            existing = list(reader)
+            if reader.fieldnames != fields:
+                # Header migration is allowed only while every existing human field is blank or absent.
+                if any(any(row.get(field, "").strip() for field in human_fields) for row in existing):
+                    raise ValueError(f"human queue header mismatch; refusing overwrite: {path}")
+            elif any(any(row.get(field, "").strip() for field in human_fields) for row in existing):
+                old, new = {row[key]: row for row in existing}, {str(row[key]): row for row in generated}
+                if set(old) != set(new) or any(any(old[item][field] != str(new[item][field]) for field in static_fields) for item in old):
+                    raise ValueError(f"human queue lineage changed; refusing overwrite: {path}")
+                return "preserved_existing_human_data"
+    write_csv(path, generated, fields)
+    return "generated_no_human_data"
+
+
 def verify_checksum_file(run_dir: Path) -> int:
     checked = 0
     for line in (run_dir / "checksum.sha256").read_text(encoding="utf-8").splitlines():
@@ -313,6 +332,9 @@ def main() -> int:
             "report_type": "bibliographic_record",
             "linkage_evidence": "PMID exact",
             "status": "needs_human_study_linkage",
+            "linked_by": "",
+            "linked_at": "",
+            "linkage_status": "pending_external_human_review",
         }
         for row in records
     ]
@@ -325,7 +347,7 @@ def main() -> int:
         duplicate_candidates,
         ["candidate_id", "record_id_a", "record_id_b", "candidate_reasons", "generator", "status"],
     )
-    write_csv(
+    write_or_preserve_human_queue(
         interim / "deduplication_decisions.csv",
         decisions,
         [
@@ -337,9 +359,11 @@ def main() -> int:
             "verified_by",
             "verified_at",
             "status",
-        ],
+        ], "candidate_id", ["decision", "canonical_record_id", "duplicate_cluster_id", "duplicate_reason", "verified_by", "verified_at"], ["candidate_id"],
     )
-    write_csv(interim / "report_candidates.csv", reports, list(reports[0].keys()))
+    write_or_preserve_human_queue(interim / "report_candidates.csv", reports, list(reports[0].keys()), "report_id",
+                                  ["study_id", "linked_by", "linked_at"],
+                                  ["report_id", "record_id", "report_type", "linkage_evidence"])
     write_csv(
         REPO / "research" / "searches" / "search_log.csv",
         search_log,
