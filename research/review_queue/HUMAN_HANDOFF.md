@@ -12,4 +12,4 @@ Complete work in dependency order. Do not enter later-phase judgments before the
 6. Independent validation: independently author twice and adjudicate all 120 gold scenarios; expert review remains separate from gold authoring.
 7. Finalization: confirm institutional/department requirements, freeze results, validate deployment, then create final DOCX/PDF and submission manifest.
 
-`human_handoff_manifest.json` records exact file hashes, row counts, protected human fields, and current completion counts. Synthetic proxy values, blank shells, and legacy files cannot be used as human decisions.
+`human_handoff_manifest.json` records exact file hashes, row counts, human-entry fields, minimum completion fields, and `not_started/in_progress/complete_candidate/awaiting_upstream` states. A complete candidate still requires phase-specific validation; it is not automatic approval. Synthetic proxy values, blank shells, and legacy files cannot be used as human decisions.

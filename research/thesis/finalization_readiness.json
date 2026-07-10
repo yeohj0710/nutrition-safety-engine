@@ -144,8 +144,8 @@
     },
     {
       "path": "research/review_queue/human_handoff_manifest.json",
-      "size_bytes": 9077,
-      "sha256": "f55d156befb9cd72488d8c30719ae0d23525c02a74773c57b18fea1bc983c820"
+      "size_bytes": 13305,
+      "sha256": "d3e67fdb282bdf08a5385d717098d754eb7406088350af4f0425de5873c64f1a"
     }
   ]
 }

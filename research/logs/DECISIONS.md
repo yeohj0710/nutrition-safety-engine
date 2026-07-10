@@ -214,3 +214,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: hash-bind every active human queue/template in one manifest while preserving each phase's original file and protected fields
 - rationale: scattered queues make it easy to skip upstream freezes, enter judgments in the wrong artifact, or mistake blocker instructions for completed review
 - impact: any queue edit invalidates the handoff/readiness chain until counts and hashes are regenerated; protected fields remain zero until real reviewers act
+
+## D-028 — Human-data presence is progress, not automatic failure or approval
+
+- date: 2026-07-10
+- decision: derive queue progress from minimum completion fields and accept partial/complete-candidate states without setting `human_work_complete`
+- rationale: requiring human fields to stay permanently blank blocks legitimate review, while treating any populated field as completion accepts partial work
+- impact: reviewers can progress safely; only phase-specific semantic validation can convert complete candidates into accepted research decisions

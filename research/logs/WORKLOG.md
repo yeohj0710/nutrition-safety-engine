@@ -413,3 +413,11 @@
 - Verified protected human fields populated 0; phase-level blocker rows are instructions, not completed judgments.
 - Added a dependency-ordered handoff guide so later judgments cannot be entered before their sampling frames are frozen.
 - Linked the handoff manifest into finalization readiness; no synthetic or legacy value was converted to a human decision.
+
+## 2026-07-10 — Future-safe human-review progress states
+
+- Corrected the handoff validator so legitimate future reviewer entries no longer fail merely for being nonzero.
+- Added queue-specific human-entry and minimum-completion fields with four actionable states plus blocker instructions.
+- Current distribution is 8 blocker instructions, 8 not started, and 5 awaiting upstream rows; in-progress and complete-candidate rows remain 0.
+- Five state-contract tests cover instruction, upstream-empty, untouched, partial, and complete-candidate transitions.
+- `human_work_complete` remains false even for complete candidates until phase-specific validators accept the decisions.
