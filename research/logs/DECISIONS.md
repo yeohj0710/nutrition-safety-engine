@@ -193,3 +193,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: implement and contract-test deterministic matching with synthetic in-memory bundles while production curated rules remain empty
 - rationale: an engine that throws when the first validated rule arrives cannot satisfy Phase 07; synthetic matcher tests prove software behavior without claiming clinical performance
 - impact: validated rules can later execute only through a strict condition vocabulary, exact matching, deterministic priority, and claim-linked output; release remains externally blocked
+
+## D-025 — Finalization readiness is an explicit negative gate
+
+- date: 2026-07-10
+- decision: represent all A-K acceptance areas in one hash-bound readiness manifest and require every finalization flag to remain false while any gate is open
+- rationale: separate passing software checks can otherwise be mistaken for a completed study or submission-ready thesis
+- impact: final writing, artifacts, deployment, and manifest pointers cannot appear until the full upstream evidence state is regenerated and independently validated

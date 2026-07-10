@@ -9,6 +9,6 @@
 | 05 extraction quality and AI | blocked_external_proxy_verified | report→record→PMCID→gzip→paragraph contract reproduced; 4 source + 6 human/AI boundary mutations rejected; human/RoB/AI 0/0/0 | included reports, human-verified locators/extraction/RoB/gold, actual AI runs |
 | 06 synthesis claims and rules | blocked_external_safe_empty | five no-analysis decisions; 11/11 contract tests; extraction→GRADE→claim→rule production gate; certainty/claim/rule registries 0; legacy promotion 0 | accepted extraction/RoB, human synthesis/GRADE, expert and independent-scenario validation |
 | 07 engine validation and release | blocked_external_safe_empty_verified | deterministic strict-condition matcher; 3 matcher contracts; SHA-bound 120×3 proxy; human/gold 0/0; legacy leakage 0; validated deployment false | validated rules, independent authored/adjudicated gold, expert review, release manifest and verified deployment |
-| 08 thesis and finalization | blocked_external_checkpoint_manifested | methods-only nonfinal DOCX/PDF; 8/8-page visual QA; hash-bound truthful checkpoint manifest | frozen results, department format, final DOCX/PDF, final visual QA |
+| 08 thesis and finalization | blocked_external_checkpoint_manifested | A-K readiness manifest: 11 gates open, finalization false; methods-only nonfinal DOCX/PDF with 8/8-page QA | frozen results, department format, final DOCX/PDF, validated deployment, final manifest |
 
 No later phase is complete. Synthetic-proxy artifacts are dry-run evidence only.

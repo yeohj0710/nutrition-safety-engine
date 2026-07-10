@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.0.0",
+  "status": "not_ready_external_human_gates",
+  "finalization_ready": false,
+  "project_complete": false,
+  "results_frozen": false,
+  "final_results_writing_allowed": false,
+  "final_thesis_artifacts_allowed": false,
+  "validated_deployment": false,
+  "validated_claims": 0,
+  "validated_rules": 0,
+  "human_screening_decisions": 0,
+  "human_extractions": 0,
+  "rob_consensus_rows": 0,
+  "independent_gold_scenarios": 0,
+  "expert_reviews": 0,
+  "phase_statuses": {
+    "01": "complete_verified",
+    "02": "blocked_external",
+    "03": "blocked_external",
+    "04": "blocked_external",
+    "05": "blocked_external",
+    "06": "blocked_external",
+    "07": "blocked_external",
+    "08": "blocked_external"
+  },
+  "acceptance_gates": [
+    {
+      "id": "A_protocol",
+      "status": "blocked_external",
+      "reason": "dated protocol approval and registration absent"
+    },
+    {
+      "id": "B_search",
+      "status": "blocked_external",
+      "reason": "PRESS and licensed final searches absent"
+    },
+    {
+      "id": "C_screening",
+      "status": "blocked_external",
+      "reason": "human screening and deduplication decisions absent"
+    },
+    {
+      "id": "D_extraction_rob",
+      "status": "blocked_external",
+      "reason": "included reports, verified extraction, and RoB absent"
+    },
+    {
+      "id": "E_synthesis_grade",
+      "status": "blocked_external",
+      "reason": "verified synthesis and GRADE rows absent"
+    },
+    {
+      "id": "F_ai_evaluation",
+      "status": "blocked_external",
+      "reason": "frozen human gold and actual AI runs absent"
+    },
+    {
+      "id": "G_claim_rule",
+      "status": "blocked_external",
+      "reason": "production validated claims and rules absent"
+    },
+    {
+      "id": "H_engine",
+      "status": "pass_software_only",
+      "reason": "deterministic matcher/build pass; clinical validation absent"
+    },
+    {
+      "id": "I_independent_validation",
+      "status": "blocked_external",
+      "reason": "independently authored/adjudicated gold and experts absent"
+    },
+    {
+      "id": "J_thesis",
+      "status": "blocked_external",
+      "reason": "results freeze and department format absent; final document prohibited"
+    },
+    {
+      "id": "K_release_reproducibility",
+      "status": "blocked_external",
+      "reason": "validated deployment, release tag, and final manifest absent"
+    }
+  ],
+  "open_gate_count": 11,
+  "final_docx": null,
+  "final_pdf": null,
+  "submission_manifest": null,
+  "nonfinal_methods_checkpoint": "research/thesis/checkpoints/methods_checkpoint_nonfinal.docx",
+  "evidence": [
+    {
+      "path": "research/audit/phase_01_exit_criteria.md",
+      "size_bytes": 2438,
+      "sha256": "b8d3ca41558518396b7c9adca9b215a15a013f77c202d934d0b24c4a51698db5"
+    },
+    {
+      "path": "research/protocol/phase_02_exit_criteria.md",
+      "size_bytes": 2422,
+      "sha256": "179e3b6a0f062e4102ac400a6c1a35b6b70b32bffab2ccf69b589d84b9ef1a81"
+    },
+    {
+      "path": "research/searches/phase_03_exit_criteria.md",
+      "size_bytes": 3230,
+      "sha256": "a44115456912961dcaf60214bb374e25f37f4b34a6f7199c1a8c23a643f92abc"
+    },
+    {
+      "path": "research/screening/phase_04_exit_criteria.md",
+      "size_bytes": 3007,
+      "sha256": "6ead6e7456dfde4c54d03be1744465f31bf13c2617c66a3dcd24163383c5ad61"
+    },
+    {
+      "path": "research/extraction/phase_05_exit_criteria.md",
+      "size_bytes": 2007,
+      "sha256": "ec09763ad67b072321abee05f15b69a0dc57178e33db8b0f7185155a016763a7"
+    },
+    {
+      "path": "research/synthesis/phase_06_exit_criteria.md",
+      "size_bytes": 1945,
+      "sha256": "021d307057db058f1cfb3b217bb85a13f1abbb9b9a6d8d45b08d9784887ac6fd"
+    },
+    {
+      "path": "research/validation/phase_07_exit_criteria.md",
+      "size_bytes": 2073,
+      "sha256": "5c51d6f491291b2585b45529a614ed8fbbff58d2c5c3a4d87e14981f71049398"
+    },
+    {
+      "path": "research/thesis/phase_08_exit_criteria.md",
+      "size_bytes": 1609,
+      "sha256": "65c2b889eb26db1bf8325cee6273840efb9b5587641f3db7620095db6050a320"
+    },
+    {
+      "path": "research/audit/deployment_baseline.json",
+      "size_bytes": 3970,
+      "sha256": "087303968175025e4d322a6f48e6f714b860d01210ee0948de238f964edeb569"
+    },
+    {
+      "path": "research/thesis/checkpoints/methods_checkpoint_qa.json",
+      "size_bytes": 1095,
+      "sha256": "6255b8b8cae45029b43927105bc6d8c69af27bc075159c0170f726f2a0fc229f"
+    }
+  ]
+}

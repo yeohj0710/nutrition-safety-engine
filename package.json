@@ -18,6 +18,8 @@
     "validate:phase07:proxy": "npm run prepare:thesis && tsx scripts/run-phase07-safe-empty-proxy.ts && python tools/validate_phase07_gate.py",
     "validate:methods-checkpoint": "python tools/validate_methods_checkpoint.py",
     "validate:phase08:checkpoint": "python tools/generate_checkpoint_manifest.py && python tools/validate_methods_checkpoint.py && python tools/validate_phase08_checkpoint.py",
+    "build:finalization-readiness": "python tools/build_finalization_readiness.py",
+    "validate:finalization-readiness": "python tools/validate_finalization_readiness.py",
     "validate:pmc-locators": "python tools/validate_pmc_fulltext_candidates.py",
     "capture:pmc-sentinel-fulltext": "python tools/capture_pmc_sentinel_fulltext.py",
     "validate:pmc-sentinel-fulltext": "python tools/validate_pmc_sentinel_fulltext.py",

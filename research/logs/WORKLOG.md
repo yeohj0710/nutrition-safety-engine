@@ -389,3 +389,11 @@
 - Added three synthetic contract tests covering matching/order/provenance output, byte determinism, partial-string rejection, and unknown-condition rejection.
 - Regenerated the 120×3 safe-empty report and both 120-row human queues against the new engine/bundle SHA; legacy leakage and nonempty empty-state outputs remain 0.
 - Independent gold, expert review, clinical performance metrics, and validated deployment remain absent.
+
+## 2026-07-10 — Phase 08 finalization-readiness audit
+
+- Added a machine-readable A-K acceptance-gate assessment bound to ten phase/deployment/document evidence files.
+- Recorded Phase 01 as complete and Phases 02-08 as externally blocked; all 11 final acceptance areas remain open.
+- Mechanically fixed results freeze, results writing, final DOCX/PDF, project completion, validated deployment, and submission manifest to false/null.
+- Validator rejects evidence hash drift, premature final artifacts, nonzero unverified human/research outputs, or any false completion flag.
+- The nonfinal methods checkpoint remains available; no final results section or final thesis artifact was created.
