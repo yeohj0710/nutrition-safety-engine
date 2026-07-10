@@ -1,0 +1,11 @@
+pmcid,section_position,section_id,section_title,paragraph_count,xml_locator,human_locator_verified
+PMC5037562,1,sec1-nutrients-08-00578,1. Introduction,4,article[pmcid='PMC5037562']/body//sec[1][@id='sec1-nutrients-08-00578'],
+PMC5037562,2,sec2-nutrients-08-00578,2. Materials and Methods,0,article[pmcid='PMC5037562']/body//sec[2][@id='sec2-nutrients-08-00578'],
+PMC5037562,3,sec2dot1-nutrients-08-00578,2.1. Study Design and Setting,1,article[pmcid='PMC5037562']/body//sec[3][@id='sec2dot1-nutrients-08-00578'],
+PMC5037562,4,sec2dot2-nutrients-08-00578,2.2. Study Population,1,article[pmcid='PMC5037562']/body//sec[4][@id='sec2dot2-nutrients-08-00578'],
+PMC5037562,5,sec2dot3-nutrients-08-00578,2.3. Study Variables,1,article[pmcid='PMC5037562']/body//sec[5][@id='sec2dot3-nutrients-08-00578'],
+PMC5037562,6,sec2dot4-nutrients-08-00578,2.4. Statistical Methods,1,article[pmcid='PMC5037562']/body//sec[6][@id='sec2dot4-nutrients-08-00578'],
+PMC5037562,7,sec2dot5-nutrients-08-00578,2.5. Ethical Approval,1,article[pmcid='PMC5037562']/body//sec[7][@id='sec2dot5-nutrients-08-00578'],
+PMC5037562,8,sec3-nutrients-08-00578,3. Results,4,article[pmcid='PMC5037562']/body//sec[8][@id='sec3-nutrients-08-00578'],
+PMC5037562,9,sec4-nutrients-08-00578,4. Discussion,5,article[pmcid='PMC5037562']/body//sec[9][@id='sec4-nutrients-08-00578'],
+PMC5037562,10,sec5-nutrients-08-00578,5. Conclusions,1,article[pmcid='PMC5037562']/body//sec[10][@id='sec5-nutrients-08-00578'],

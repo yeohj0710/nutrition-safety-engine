@@ -297,3 +297,10 @@
 - Bound every row to platform, question, exact query, observed count, raw-response path, and SHA-256.
 - Left reviewer identity, date, decision, comments, and revision fields blank; validator reports human decisions 0 and errors 0.
 - Added an umbrella critical row to the main PRESS queue and explicit zero-recall/overlap safeguards to the reviewer instructions.
+
+## 2026-07-10 — PMC sentinel full-text retrieval pilot
+
+- Intersected 9 verified PubMed sentinels with 5,563 PMC locator candidates; 3 matched.
+- Retrieved the three records in one official NCBI EFetch PMC XML request and preserved deterministic gzip plus compressed/uncompressed SHA-256.
+- Parsed access properties instead of equating PMCID with full text: PMC5037562 supplied OA body XML (19 paragraphs, CC BY locator); PMC3069236 and PMC3127502 supplied front metadata only and are non-OA.
+- Generated 10 section locators for the one OA article. Human full-text verification and eligibility decisions remain 0.

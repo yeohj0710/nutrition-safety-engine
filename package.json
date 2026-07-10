@@ -18,6 +18,8 @@
     "validate:phase07:proxy": "npm run prepare:thesis && tsx scripts/run-phase07-safe-empty-proxy.ts && python tools/validate_phase07_gate.py",
     "validate:phase08:checkpoint": "python tools/generate_checkpoint_manifest.py && python tools/validate_phase08_checkpoint.py",
     "validate:pmc-locators": "python tools/validate_pmc_fulltext_candidates.py",
+    "capture:pmc-sentinel-fulltext": "python tools/capture_pmc_sentinel_fulltext.py",
+    "validate:pmc-sentinel-fulltext": "python tools/validate_pmc_sentinel_fulltext.py",
     "validate:central-hitcounts": "python tools/validate_central_hitcount_observations.py",
     "validate:koreamed": "python tools/validate_koreamed_designpilot.py",
     "capture:korean-db-split-pilot": "node tools/capture_korean_db_split_pilot.mjs",

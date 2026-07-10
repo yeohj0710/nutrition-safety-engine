@@ -116,3 +116,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: proxy outputs use `include_candidate`, `uncertain`, and `low_priority_review`; never `exclude`
 - rationale: AI/heuristic-only exclusion is prohibited and no human gold exists
 - impact: every one of 19,961 record-question units remains in the human queue; proxy metrics are plumbing diagnostics only
+
+## D-014 — PMCID is a locator, not proof of full-text availability
+
+- date: 2026-07-10
+- decision: classify each PMC EFetch response as OA full-text XML or metadata-only/non-OA before creating any extraction source
+- rationale: the three-sentinel pilot returned one OA body and two front-only records despite all having PMC IDs and PDF indicators
+- impact: no PMCID candidate is treated as retrieved full text; non-OA reports require documented library/publisher access after human screening advancement

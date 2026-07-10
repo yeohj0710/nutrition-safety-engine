@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "6a27a5b9bbcefeffdc89da2addfc6296b734bb66",
+  "implementation_head": "72ee1379da696fa290b36922a73f456f5e5b4460",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,13 +10,13 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 752,
+  "file_count": 758,
   "local_required_file_count": 104,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "size_bytes": 1387,
-      "sha256": "a352036f7a8d789d2fea262e0885048da3dce19899418e019fc493c7218ac3fa",
+      "size_bytes": 1447,
+      "sha256": "efd44d57bc3fec09dc9e09ce1172d710d54b7fb9249309e74b10ce0629af4db3",
       "distribution": "tracked"
     },
     {
@@ -795,8 +795,8 @@
     },
     {
       "path": "package.json",
-      "size_bytes": 2482,
-      "sha256": "2f092de715c39f3677266e4b723738c2831998d3f17f47ae3edaab08baee7d38",
+      "size_bytes": 2656,
+      "sha256": "e840b0d41348838b7ae97dec44fa061b24480d40475f53259a9a7c0d1cb647cc",
       "distribution": "tracked"
     },
     {
@@ -2342,6 +2342,30 @@
       "distribution": "tracked"
     },
     {
+      "path": "research/fulltext/pmc_sentinel_fulltext_designpilot_20260710/articles.csv",
+      "size_bytes": 1430,
+      "sha256": "0636c39477bcea473520a65e7ebb1266e4ae9e212e9b4af2bd1cf4c150db7ad6",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_sentinel_fulltext_designpilot_20260710/manifest.json",
+      "size_bytes": 983,
+      "sha256": "5b0a3aea0d937f564ff3b23343bc7793e2f94c5e414affc813b60ef3bb50e75f",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_sentinel_fulltext_designpilot_20260710/pmc_sentinel_batch.xml.gz",
+      "size_bytes": 22579,
+      "sha256": "4b4f32d0cb61300cfc05cc7d4333118eb211726e68a1afd048b5d5780883694b",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/fulltext/pmc_sentinel_fulltext_designpilot_20260710/section_locators.csv",
+      "size_bytes": 1462,
+      "sha256": "b8fa67c67c587421f0a5fe385e233d278a20e974deeaed5f9134d23a7e1ac7dd",
+      "distribution": "tracked"
+    },
+    {
       "path": "research/legacy_unverified/runtime_ai/app-api-ai-explain-route.ts.txt",
       "size_bytes": 694,
       "sha256": "877af6f640534adf19bf0da08d37185e3013a6675cfb463781bbf75ee4a1e4d5",
@@ -2373,38 +2397,38 @@
     },
     {
       "path": "research/logs/BLOCKERS.md",
-      "size_bytes": 10089,
-      "sha256": "53d96b97647230c00ad038c16b2300ac37a01c381faf9c48adc47ea5b64c3a7e",
+      "size_bytes": 10173,
+      "sha256": "24e7f6c1e38b307abb289a8d721f09747c6498fb173915b968fd100f48c613f2",
       "distribution": "tracked"
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 7920,
-      "sha256": "f5c497d9530c96762067b8d759ae30b6070fcd13aad4da6260f70523e21d03d5",
+      "size_bytes": 8427,
+      "sha256": "4b175810339bfb8536779647f2ee9770905ceedd74e9b3eac9d96c94124c0a5a",
       "distribution": "tracked"
     },
     {
       "path": "research/logs/RISKS.md",
-      "size_bytes": 6224,
-      "sha256": "5b4d1bbe24fbff778d69607467c807b18de7ddd8065a6a80530db940ce8a19e5",
+      "size_bytes": 6409,
+      "sha256": "5eb06a246a02192ea23f3ea1f3f5a11270ad87821cb4c80dcba29e05581cfbec",
       "distribution": "tracked"
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 28406,
-      "sha256": "0592b65bb41a03e1e838423ca957ef56ad9b33fd2e458f1be8812e7a55815989",
+      "size_bytes": 29023,
+      "sha256": "0e475b36caa70fddda32c20f406fa7d9d7dcfbc52590cd7776dddcdafae5eaab",
       "distribution": "tracked"
     },
     {
       "path": "research/PROGRESS_LEDGER.md",
-      "size_bytes": 2247,
-      "sha256": "baf99d02fdd95ab1b68eac932361c82ebdde84bb646179af1a7f05e52bebe675",
+      "size_bytes": 2310,
+      "sha256": "78c3138bbd832d61d88c851704ebf6a71d61c72190420259df8360a278909f53",
       "distribution": "tracked"
     },
     {
       "path": "research/protocol/access_matrix.csv",
-      "size_bytes": 4520,
-      "sha256": "e1e8c8481e4f6db8ed8284767f2af974f8a3dfa106869803cb96f504fb724a0e",
+      "size_bytes": 4640,
+      "sha256": "bb952179821ff45e924bdf11378c622afea202c0b65fcd6016556bec0e9aa491",
       "distribution": "tracked"
     },
     {
@@ -2517,8 +2541,8 @@
     },
     {
       "path": "research/screening/phase_04_exit_criteria.md",
-      "size_bytes": 1867,
-      "sha256": "e4648b8d098cc432bedf8185a4535e7a892658b81940a4060c2515d1fd30e5ed",
+      "size_bytes": 2354,
+      "sha256": "264074451931a93054caa234b98bc585e1a74bdd3cab6ed3b318b7bedbcdde6f",
       "distribution": "tracked"
     },
     {
@@ -4292,6 +4316,12 @@
       "distribution": "tracked"
     },
     {
+      "path": "tools/capture_pmc_sentinel_fulltext.py",
+      "size_bytes": 7997,
+      "sha256": "1466d54b5711bcf8e56a0ab4e051644b0774970e91e7291d243fffd6cb032e9e",
+      "distribution": "tracked"
+    },
+    {
       "path": "tools/clinicaltrials_export.mjs",
       "size_bytes": 4437,
       "sha256": "131bedf8a9a9e5cd625268728584f763f90940dd91e314bb4036c283c4e6af43",
@@ -4479,8 +4509,8 @@
     },
     {
       "path": "tools/validate_phase04_proxy.py",
-      "size_bytes": 6740,
-      "sha256": "64f24e4b1b832b4bb6a7418d1b30bce333871a85725ed7f6b4b338756a9fda6a",
+      "size_bytes": 8057,
+      "sha256": "72cf0b4e214e7216bf9b3398ac4574c82bf481acd336c6c5a612fd5d43bdd4f8",
       "distribution": "tracked"
     },
     {
@@ -4511,6 +4541,12 @@
       "path": "tools/validate_pmc_fulltext_candidates.py",
       "size_bytes": 3704,
       "sha256": "2b239a90789381afd5a23c188f223a452e578a77a9dd8627128ddee44b179fd2",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/validate_pmc_sentinel_fulltext.py",
+      "size_bytes": 4391,
+      "sha256": "c9ea2c42cb31cad62a877ed6361eda8e653f4e13ce5af5a8b7c7ef1abaa3c7b4",
       "distribution": "tracked"
     },
     {

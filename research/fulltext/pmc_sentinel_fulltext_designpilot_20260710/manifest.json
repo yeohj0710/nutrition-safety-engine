@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "status": "sentinel_fulltext_retrieval_design_pilot_not_eligibility_assessment",
+  "observed_at": "2026-07-10",
+  "endpoint": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi",
+  "official_documentation": "https://www.ncbi.nlm.nih.gov/books/NBK25499/#chapter4.EFetch",
+  "request_ids": [
+    "3069236",
+    "3127502",
+    "5037562"
+  ],
+  "http_status": 200,
+  "content_type": "text/xml; charset=UTF-8",
+  "raw_file": "pmc_sentinel_batch.xml.gz",
+  "raw_stored_bytes": 22579,
+  "raw_gzip_sha256": "4b4f32d0cb61300cfc05cc7d4333118eb211726e68a1afd048b5d5780883694b",
+  "raw_uncompressed_bytes": 107393,
+  "raw_xml_sha256": "909b88d8881428dab9394665bd444e5d5bdaf92066d6d35e93877d0f7ddfcf2d",
+  "articles": 3,
+  "open_access_fulltext_xml": 1,
+  "metadata_only_non_open_access": 2,
+  "section_locators": 10,
+  "human_fulltext_verified": 0,
+  "human_eligibility_decisions": 0,
+  "final_inclusion_claim_allowed": false
+}

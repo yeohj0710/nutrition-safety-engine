@@ -45,6 +45,7 @@
 - Proxy A/B disagree on 4,224 units, confirming term heuristics are unsuitable as final screeners.
 - A1 proxy-high volume remains very large; priority ordering does not reduce required human coverage.
 - Human reviewer fatigue and training consistency remain major risks; 50-row blinded pilot queue is ready but unreviewed.
+- PMCID presence is not equivalent to reusable full-text XML. Sentinel testing found 2/3 PMC records metadata-only/non-OA, so access status must be parsed per report before extraction.
 
 ## 2026-07-10 KMbase design-pilot risk
 

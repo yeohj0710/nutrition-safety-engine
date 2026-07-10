@@ -90,9 +90,9 @@ Status: `resolved_2026-07-10`.
 ## B-008 — Human screening and full-text adjudication
 
 - exact block point: final include/exclude decisions, full-text exclusions, reports/studies, PRISMA, and AI gold
-- already attempted: all-unit human queue, two non-decisional proxies, disagreement flags, 50-row training pilot, blank decision/full-text schemas; resolved 5,563 public PMC locator candidates from all 19,609 PMIDs
+- already attempted: all-unit human queue, two non-decisional proxies, disagreement flags, 50-row training pilot, blank decision/full-text schemas; resolved 5,563 PMC locator candidates; EFetch sentinel pilot proved 1 OA full-text XML and 2 metadata-only non-OA records
 - minimum input needed: independent reviewer IDs/training decisions, adjudication route, full-text access, and completed decisions
-- work that can continue: lawful PMC payload acquisition and locator manifesting; extraction schema validation with synthetic fixtures, metric code, error taxonomy
+- work that can continue: OA PMC payload acquisition after human advancement; non-OA access queue preparation; extraction schema validation with synthetic fixtures, metric code, error taxonomy
 - status: `blocked_external`
 
 ## B-009 — Verified extraction, RoB, and AI gold

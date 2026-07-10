@@ -14,6 +14,7 @@ Proxy queue status: `complete_verified`
 | Human pilot training | blocked_external | 0/50 |
 | Full-text double review | blocked_external | 0 reports assessed |
 | Public PMC locator resolution | pass_proxy_only | 19,609 PMID input; 99 checksum-verified responses; 5,563 unique PMCID candidates; human verification 0 |
+| PMC full-text retrieval path | pass_design_pilot_only | 3 PMC-located sentinels fetched in one official EFetch batch; 1 OA full-text XML, 2 metadata-only non-OA; 10 section locators; human decisions 0 |
 | Final reports/studies | blocked_external | not created |
 | PRISMA final flow | blocked_external | explicitly unavailable |
 | Human gold hash and AI performance | blocked_external | no human gold |
@@ -23,3 +24,5 @@ Phase 04 is not complete. Proxy bands must not appear as inclusion decisions or 
 The 20,230 total is a retrieval-unit workload count (19,961 PubMed + 207 ClinicalTrials.gov + 62 KoreaMed), not a deduplicated-record, included-report, study, or final PRISMA count. All 139 A1 registry units carry the known vitamin-K-antagonist lexical-risk flag. KoreaMed native export failed at the server; 62 A1 KMIDs/titles were captured only after the page proved complete display `1-62`.
 
 PMC identifiers are access locators only. The 5,563 candidates exactly reproduce the PMCID set parsed from PubMed XML, but none is an eligibility decision, verified extraction source, or completed full-text review.
+
+The sentinel retrieval pilot proves the lawful XML/hash/locator path, not screening completion. PMC presence does not imply reusable full-text XML: two of three sentinel PMC records returned front metadata only and require a library/publisher route if advanced by human screening.

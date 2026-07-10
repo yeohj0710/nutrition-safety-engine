@@ -42,6 +42,9 @@ def main() -> int:
         REPO / "research/screening/prisma_status.json",
         REPO / "research/screening/proxy_dry_run_report.md",
         REPO / "research/screening/phase_04_exit_criteria.md",
+        REPO / "research/fulltext/pmc_sentinel_fulltext_designpilot_20260710/manifest.json",
+        REPO / "research/fulltext/pmc_sentinel_fulltext_designpilot_20260710/articles.csv",
+        REPO / "research/fulltext/pmc_sentinel_fulltext_designpilot_20260710/section_locators.csv",
     ]
     for path in required:
         if not path.is_file():
@@ -65,6 +68,11 @@ def main() -> int:
     prisma = json.loads(
         (REPO / "research/screening/prisma_status.json").read_text(encoding="utf-8-sig")
     )
+    pmc_manifest = json.loads(required[-3].read_text(encoding="utf-8-sig"))
+    with required[-2].open(encoding="utf-8-sig", newline="") as handle:
+        pmc_articles = list(csv.DictReader(handle))
+    with required[-1].open(encoding="utf-8-sig", newline="") as handle:
+        pmc_locators = list(csv.DictReader(handle))
 
     expected = 19961
     if not all(len(value) == expected for value in (proxy_a, proxy_b, queue, decisions)):
@@ -120,6 +128,12 @@ def main() -> int:
         errors.append("PRISMA KoreaMed proxy-unit count mismatch")
     if prisma.get("identified_record_question_units_total") != 20230:
         errors.append("PRISMA total retrieval-unit count mismatch")
+    if pmc_manifest.get("open_access_fulltext_xml") != 1 or pmc_manifest.get("metadata_only_non_open_access") != 2:
+        errors.append("PMC sentinel access classification mismatch")
+    if len(pmc_articles) != 3 or any(row["human_fulltext_verified"] or row["human_eligibility_decision"] for row in pmc_articles):
+        errors.append("PMC sentinel pilot article boundary mismatch")
+    if len(pmc_locators) != 10 or any(row["human_locator_verified"] for row in pmc_locators):
+        errors.append("PMC sentinel locator boundary mismatch")
 
     print(
         json.dumps(
@@ -133,6 +147,8 @@ def main() -> int:
                 "proxy_disagreements": metadata.get("proxy_disagreements"),
                 "human_decisions": metadata.get("human_decisions"),
                 "ai_only_exclusions": metadata.get("ai_only_exclusions"),
+                "pmc_sentinel_articles_retrieved": len(pmc_articles),
+                "pmc_open_access_fulltext_xml": pmc_manifest.get("open_access_fulltext_xml"),
             },
             ensure_ascii=False,
             indent=2,
