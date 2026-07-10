@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "pubmed_b2_designpilot_20260710",
+  "question_id": "B2",
+  "database": "PubMed",
+  "platform": "NCBI E-utilities",
+  "search_datetime_iso": "2026-07-10T06:33:40.503Z",
+  "timezone": "UTC",
+  "status": "design_pilot_full_export_not_final_search",
+  "peer_review_status": "pending_external_human_review",
+  "protocol_status": "pending_human_approval",
+  "query_sha256": "c78f241a84c6cfa84d710490b821c6ebf41692493d9b0906e386832924f62c22",
+  "total_hits_reported": 4879,
+  "records_exported": 4879,
+  "top_n_truncation": false,
+  "partition_count": 0,
+  "efetch_batch_count": 25,
+  "notes": "Full public-source design-pilot export; prohibited from PRISMA/final-result use."
+}

@@ -53,3 +53,11 @@ Detailed decision questions: `research/review_queue/phase_01_external_review.csv
 - minimum input needed: institution/session-specific access outcome and export limits
 - work that can continue: PubMed, ClinicalTrials.gov, public registry pilots; open-access locator work
 - status: `blocked_external`
+
+## B-007 — Human deduplication and study linkage
+
+- exact block point: final unique-record denominator, record→report→study graph, and PRISMA flow
+- already attempted: checksum-verified normalization; cross-question PMID collapse; 342 exact DOI/title candidate pairs and 19,609 report-linkage rows generated
+- minimum input needed: human decisions for all candidate duplicates, 10% audit sample, and study linkage for potentially included reports
+- work that can continue: blinded/synthetic screening dry runs, queue tooling, metric code
+- status: `blocked_external`

@@ -85,3 +85,11 @@
 - result: five queries returned 19,961 combined design-pilot hits; B1 initially missed PMID 21525191, record inspection found `Urinary Calculi`/`urinary tract stone`, query corrected; final sentinel check 9/9; Phase 02 validator errors 0
 - limitation: A1 12,229 and B2 4,879 predict high workload; independent PRESS, supervisor approval, subscription access, and full-text route remain external
 - decision: Phase 02 remains `blocked_external`, not complete; public retrieval/tooling may continue only as design pilot or synthetic proxy
+
+## 2026-07-10 15:45:00 +09:00
+
+- phase / task ID: Phase 03 / public-source full-export proxy
+- procedure: implemented resumable PubMed ESearch/EFetch exporter; partitioned A1 by publication-date ranges to bypass the 9,999 retrieval cap without relevance truncation; stored XML in 200-record batches; generated and rechecked SHA-256 files; normalized PubmedArticle and PubmedBookArticle records; generated exact DOI/title duplicate and report-linkage queues
+- result: 19,961/19,961 retrieval instances exported; 19,609 unique PMIDs; 352 cross-question duplicate instances; 342 exact duplicate candidate pairs; 9/9 sentinels; 123 raw files checksum-verified; full proxy manifest 137 files; validator errors 0
+- limitation: 0/342 human dedup decisions and 0/19,609 human study links; 33/235 legacy PMIDs not retrieved because legacy search scope differs; no omission inference made
+- decision: proxy pipeline `complete_verified`, Phase 03 remains `blocked_external`; raw XML and abstract-rich records remain local/ignored with tracked hashes to avoid oversized/copyright-sensitive Git history

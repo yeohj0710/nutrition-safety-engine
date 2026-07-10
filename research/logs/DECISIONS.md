@@ -86,3 +86,17 @@ Status: superseded by D-007 after the reproducible baseline was captured.
 - decision: add `Urinary Calculi` and urinary/urinary-tract stone terms to B1–B3 PubMed disease blocks
 - rationale: initial B1 draft missed sentinel PMID 21525191 because its indexing/title used urinary rather than kidney terminology
 - impact: B1 pilot increased from 1,200 to 1,353 and sentinel recall became 9/9 overall; change occurred before final search approval
+
+## D-011 — Public search payload distribution
+
+- date: 2026-07-10
+- decision: keep 266 MB raw PubMed XML and 39 MB abstract-rich normalized records local; track query, IDs, metadata, checksums, queues, code, and manifest in Git
+- rationale: preserves originals and reproducibility without publishing a large copyright-sensitive abstract corpus
+- impact: final/submission manifest must include local files and verify them; repository alone is insufficient for raw-data reproduction
+
+## D-012 — No automated dedup finalization
+
+- date: 2026-07-10
+- decision: generate exact DOI/title candidate pairs but leave all canonical/cluster decisions blank pending human review
+- rationale: record duplication and same-study linkage are human methodological judgments
+- impact: deduplication and PRISMA counts remain blocked; synthetic screening may use unique PMID records only as a dry run

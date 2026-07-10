@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "status": "synthetic_proxy_unreviewed",
+  "raw_files_checksum_verified": 123,
+  "retrieval_instances": 19961,
+  "unique_pubmed_records": 19609,
+  "cross_question_duplicate_instances": 352,
+  "exact_duplicate_candidate_pairs": 342,
+  "human_dedup_decisions_completed": 0,
+  "report_candidates": 19609,
+  "human_study_links_completed": 0,
+  "sentinel_checks": [
+    {
+      "question_id": "A1",
+      "pmid": "27346552",
+      "retrieved": true
+    },
+    {
+      "question_id": "A1",
+      "pmid": "23953594",
+      "retrieved": true
+    },
+    {
+      "question_id": "A1",
+      "pmid": "21193422",
+      "retrieved": true
+    },
+    {
+      "question_id": "A2",
+      "pmid": "7795149",
+      "retrieved": true
+    },
+    {
+      "question_id": "A2",
+      "pmid": "27657121",
+      "retrieved": true
+    },
+    {
+      "question_id": "B1",
+      "pmid": "21525191",
+      "retrieved": true
+    },
+    {
+      "question_id": "B2",
+      "pmid": "27604776",
+      "retrieved": true
+    },
+    {
+      "question_id": "B2",
+      "pmid": "27765695",
+      "retrieved": true
+    },
+    {
+      "question_id": "B3",
+      "pmid": "23381591",
+      "retrieved": true
+    }
+  ],
+  "legacy_unique_pmids": 235,
+  "legacy_pmids_retrieved_by_current_drafts": 202,
+  "legacy_pmids_not_retrieved_by_current_drafts": 33,
+  "limitation": "No human duplicate or study-linkage decision has been made; pilot scope differs from legacy searches."
+}

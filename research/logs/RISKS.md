@@ -32,3 +32,9 @@
 - R-001 likelihood increased: PubMed-only design pilot yields 19,961 records and about 266 title/abstract reviewer-hours before dedup/full-text work.
 - A1 and B2 require PRESS-guided precision review or an explicitly approved workload/scope decision; no results-driven narrowing allowed.
 - Subscription and full-text access remain high-impact risks. Public PubMed and ClinicalTrials.gov access is verified; WHO ICTRP export has constraints.
+
+## 2026-07-10 Phase 03 proxy note
+
+- Large local raw corpus risk controlled with per-file SHA-256 and tracked manifest; local loss would still prevent raw reproduction, so final bundle backup is required.
+- 342 exact duplicate candidates and 19,609 report candidates await human decisions. Automated closure would bias screening/PRISMA denominators.
+- 33 legacy PMIDs did not match current question drafts. They require scoped human review after protocol freeze, not automatic query expansion.
