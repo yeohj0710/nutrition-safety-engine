@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "phase": "01_audit_and_normalization",
   "manifest_self_excluded": true,
-  "file_count": 39,
+  "file_count": 40,
   "files": [
     {
       "path": "__tests__/thesis-bundle-isolation.test.ts",
@@ -156,8 +156,8 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 17696,
-      "sha256": "5728c126ab98cb4af49cd7795232c898a9d2cd16e5ec88c1cce9170edbb33a1e"
+      "size_bytes": 18813,
+      "sha256": "eb430129f2e537c511b0b133563b461c8e0e8576d372bdb8a711d3a425cf794c"
     },
     {
       "path": "research/review_queue/phase_01_external_review.csv",
@@ -166,8 +166,13 @@
     },
     {
       "path": "research/review_queue/phase_02_external_review.csv",
-      "size_bytes": 1155,
-      "sha256": "f3f55aeed1c8d9df4035a0de3c7a9a3265733ef7866c63817631d5bb38ad102a"
+      "size_bytes": 1250,
+      "sha256": "a4acc471603a6ac89a2939a8457a6e0dac4d5a03c05c215d3cf03e6914a2df5b"
+    },
+    {
+      "path": "research/review_queue/phase_03_external_review.csv",
+      "size_bytes": 1447,
+      "sha256": "c01316dc248bfb3889b6ae57db88b4892fa43c14e8ad5f2463e33d27743a9660"
     },
     {
       "path": "research/review_queue/PRESS_review.csv",
