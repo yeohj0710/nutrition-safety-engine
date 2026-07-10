@@ -436,3 +436,11 @@
 - Reviewer 2 receives title/year and source hashes but not primary decision, reason, or selection basis; those stay in a separate audit file.
 - Five contracts pass for complete include/uncertain coverage, 20% ceiling, determinism, and primary-decision blinding.
 - Primary completed rows and secondary queue rows remain 0/0, correctly marked awaiting upstream review.
+
+## 2026-07-10 — Full-text double-review routing
+
+- Added a builder that accepts only completed secondary final `include` or `uncertain` units; secondary excludes cannot enter full-text review.
+- Linked each queued unit to the normalized record and report candidate through a deterministic lineage hash.
+- Added lawful source path/hash fields, two independent full-text reviewer decisions, adjudication, and final-decision fields.
+- Proxy fields are absent from the full-text queue. Six routing/schema contracts pass.
+- Secondary final rows and full-text queue rows remain 0/0, correctly awaiting upstream human screening.

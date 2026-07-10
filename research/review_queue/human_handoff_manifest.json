@@ -10,7 +10,7 @@
     "independent_validation",
     "finalization"
   ],
-  "queue_count": 22,
+  "queue_count": 23,
   "total_rows": 20900,
   "rows_with_any_human_data": 0,
   "rows_complete_candidate": 0,
@@ -203,6 +203,43 @@
       "rows_with_any_human_data": 0,
       "rows_complete_candidate": 0,
       "progress_state": "not_started"
+    },
+    {
+      "queue_id": "P4_fulltext_double_review",
+      "path": "data/interim/full_text_review_queue.csv",
+      "sha256": "e0a26b65fd1583288b62a3ff4c10a07dde115daaad85b56fcdf0205531173520",
+      "size_bytes": 321,
+      "row_count": 0,
+      "human_entry_fields": [
+        "fulltext_access_status",
+        "source_file_path",
+        "source_file_sha256",
+        "reviewer_1_id",
+        "reviewer_1_decision",
+        "reviewer_1_reason",
+        "reviewer_1_at",
+        "reviewer_2_id",
+        "reviewer_2_decision",
+        "reviewer_2_reason",
+        "reviewer_2_at",
+        "adjudicator_id",
+        "final_decision",
+        "final_reason"
+      ],
+      "minimum_completion_fields": [
+        "source_file_path",
+        "source_file_sha256",
+        "reviewer_1_id",
+        "reviewer_1_decision",
+        "reviewer_1_at",
+        "reviewer_2_id",
+        "reviewer_2_decision",
+        "reviewer_2_at",
+        "final_decision"
+      ],
+      "rows_with_any_human_data": 0,
+      "rows_complete_candidate": 0,
+      "progress_state": "awaiting_upstream_rows"
     },
     {
       "queue_id": "P5_extraction",

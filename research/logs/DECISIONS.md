@@ -235,3 +235,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: route all primary include/uncertain decisions and a stable ceil-20% excluded stratum sample to a reviewer-2 queue that hides primary judgments
 - rationale: the protocol requires double review while avoiding both convenience sampling and anchoring on reviewer 1
 - impact: selection is reproducible and auditable; secondary review cannot start until complete primary rows exist and cannot inherit proxy or primary decisions
+
+## D-031 — Full-text review begins only after secondary final inclusion
+
+- date: 2026-07-10
+- decision: route only secondary-final include/uncertain units into a separate two-reviewer full-text queue with source hashes
+- rationale: using primary decisions or priority proxies would bypass the planned double-screening gate and contaminate the included-report frame
+- impact: extraction cannot receive reports until lawful full text and two-person eligibility review are recorded and validated

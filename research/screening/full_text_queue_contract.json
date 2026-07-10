@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "status": "awaiting_secondary_screening_completion",
+  "secondary_final_rows": 0,
+  "fulltext_queue_rows": 0,
+  "fulltext_human_reviews": 0,
+  "contract_tests": {
+    "include_routed": true,
+    "uncertain_routed": true,
+    "exclude_not_routed": true,
+    "deterministic": true,
+    "proxy_fields_absent": true,
+    "double_review_fields_present": true
+  },
+  "all_passed": true
+}
