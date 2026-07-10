@@ -249,3 +249,17 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: create downstream tasks only from final-included full texts whose bytes, study link, design family, and two reviewer decisions are verified
 - rationale: report inclusion alone cannot identify the study unit or select a design-specific RoB tool, and an unverified file cannot support extraction
 - impact: RCTs route to protocol-fixed RoB 2; all other tools remain a documented human selection until the protocol records the appropriate current instrument
+
+## D-033 — The protocol extraction template is the only human CSV schema
+
+- date: 2026-07-10
+- decision: generate `extractions_human.csv` directly from the 55-field protocol template instead of a reduced field-name/value table
+- rationale: the reduced table could not represent outcome denominators, effect estimates, confidence intervals, or adjustment needed for synthesis and GRADE
+- impact: downstream analysis can consume a stable predeclared schema; any header drift fails Phase 05 before human extraction starts
+
+## D-034 — Fixture generation must never overwrite human research data
+
+- date: 2026-07-10
+- decision: initialize human CSVs only when absent; otherwise validate headers and preserve bytes, then validate populated rows semantically
+- rationale: rerunning a synthetic harness must not erase review work, while blanket rejection of populated tables prevents legitimate progression
+- impact: human extraction/RoB can advance safely; invalid lineage or statistics fail without destructive rewriting

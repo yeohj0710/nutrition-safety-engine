@@ -370,7 +370,7 @@
 - Replaced the contract-only fake report identifier with the real unassessed candidate `RPT-PUBMED-27657121` without promoting it to inclusion.
 - Verified report→record→PMCID→stored gzip SHA→decompressed XML→paragraph 1 text SHA and A2 question membership.
 - Confirmed the report still has no study link and remains `needs_human_study_linkage`.
-- Rejected 6/6 Phase 05 boundary mutations: extracted value without quote, unknown report, premature study link, populated human extraction, populated RoB, and nonzero AI run.
+- Rejected the then-current 6/6 Phase 05 boundary mutations. The later future-safe validator supersedes blanket rejection of populated human rows with semantic validation.
 - Human extraction, RoB, frozen gold, and AI performance rows remain 0.
 
 ## 2026-07-10 — Phase 06 GRADE-to-claim provenance
@@ -452,3 +452,17 @@
 - Randomized trials route to RoB 2. Other design families remain `pending_human_tool_selection_before_assessment` rather than receiving an inferred ROBINS tool.
 - Six routing contracts reject exclusion, legacy paths, and missing hashes while confirming included routing and conservative RoB selection.
 - Included full texts, extraction tasks, and RoB tasks remain 0/0/0.
+
+## 2026-07-10 — Full human extraction data dictionary
+
+- Replaced the reduced generic human extraction header with the authoritative 55-field protocol template.
+- Added explicit population/exposure/comparator/outcome fields, event denominators, continuous results, effect estimates, confidence intervals, adjustment, source locators, and verification fields.
+- Phase 05 regeneration now reads the template header rather than duplicating a second hardcoded schema.
+- Validator requires exact header equality and all synthesis/locator/verification fields; human extraction rows remain 0.
+
+## 2026-07-10 — Preserve and validate future human extraction/RoB data
+
+- Fixed the synthetic fixture generator so it initializes missing CSVs but never truncates existing human rows.
+- Byte-preservation, missing-file initialization, and mismatch-without-write contracts pass 3/3.
+- Replaced blanket rejection of nonempty human/RoB tables with routed-task, source, locator, denominator/CI, verifier, RoB support, and JSON semantic checks.
+- Semantic mutation contracts pass 3/3; current human extraction/RoB rows remain 0/0.

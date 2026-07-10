@@ -44,26 +44,30 @@ def valid_candidate(candidate: dict) -> bool:
     return True
 
 
+def initialize_or_validate_csv(path: Path, fields: list[str]) -> None:
+    if not path.exists():
+        with path.open("w", encoding="utf-8-sig", newline="") as handle:
+            csv.writer(handle).writerow(fields)
+        return
+    with path.open(encoding="utf-8-sig", newline="") as handle:
+        existing = next(csv.reader(handle))
+    if existing != fields:
+        raise ValueError(f"existing human-data header mismatch; refusing overwrite: {path}")
+
+
 def main() -> int:
     extraction_dir = REPO / "research" / "extraction"
     extraction_dir.mkdir(parents=True, exist_ok=True)
     interim = REPO / "data" / "interim"
-    with (interim / "extractions_human.csv").open("w", encoding="utf-8-sig", newline="") as handle:
-        csv.writer(handle).writerow(
-            [
-                "extraction_id", "study_id", "report_id", "question_id", "field_name", "value_reported",
-                "normalized_value", "unit", "supporting_quote", "page_number", "section_heading",
-                "table_or_figure", "source_file_sha256", "extracted_by", "verified_by", "verification_status",
-            ]
-        )
-    with (interim / "risk_of_bias.csv").open("w", encoding="utf-8-sig", newline="") as handle:
-        csv.writer(handle).writerow(
-            [
-                "rob_id", "study_id", "report_id", "question_id", "design_family", "tool_name", "tool_version",
-                "domain", "signalling_answers_json", "support_for_judgment", "domain_judgment", "reviewer_id",
-                "reviewed_at", "consensus_judgment", "adjudicator_id", "notes",
-            ]
-        )
+    with (REPO / "research/design/20260710/04_EXTRACTION/evidence_extraction_template.csv").open(
+        encoding="utf-8-sig", newline=""
+    ) as handle:
+        extraction_fields = next(csv.reader(handle))
+    initialize_or_validate_csv(interim / "extractions_human.csv", extraction_fields)
+    rob_fields = ["rob_id", "study_id", "report_id", "question_id", "design_family", "tool_name", "tool_version",
+                  "domain", "signalling_answers_json", "support_for_judgment", "domain_judgment", "reviewer_id",
+                  "reviewed_at", "consensus_judgment", "adjudicator_id", "notes"]
+    initialize_or_validate_csv(interim / "risk_of_bias.csv", rob_fields)
 
     base_field = {
         "field_name": "synthetic_event_count",

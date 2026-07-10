@@ -252,8 +252,8 @@
     {
       "queue_id": "P5_extraction",
       "path": "data/interim/extractions_human.csv",
-      "sha256": "fdd23d8b44d5631e7cf3b28ea6b18a5189aa6952c2a791783d454f693858002d",
-      "size_bytes": 222,
+      "sha256": "29254e810bb60131f51bd4201c0f82f4db880f0e5a6c06162f024fff41a049f4",
+      "size_bytes": 763,
       "row_count": 0,
       "human_entry_fields": [
         "extracted_by",
