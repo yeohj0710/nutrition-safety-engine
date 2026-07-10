@@ -1,6 +1,6 @@
 {
   "root_name": "20260710",
-  "generated_at": "2026-07-10T11:49:39.153086+00:00",
+  "generated_at": "2026-07-10T11:55:59.406088+00:00",
   "file_count": 125,
   "files": [
     {
@@ -310,8 +310,8 @@
     },
     {
       "path": "05_SYNTHESIS/evidence_to_rule_schema.json",
-      "size_bytes": 6735,
-      "sha256": "2a19ed9281c7d0797b50c8975b9b7fcd547ffb119150c508ec06c9174ce04da3"
+      "size_bytes": 9140,
+      "sha256": "3871f8a32a7288f17cdca1e714bd0b58eb405332859800a4a7471d018d3fa651"
     },
     {
       "path": "05_SYNTHESIS/rule_authoring_manual.md",

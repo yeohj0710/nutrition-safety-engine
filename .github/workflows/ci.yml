@@ -38,4 +38,5 @@ jobs:
       - run: python tools/validate_korean_db_press_queue.py
       - run: python tools/validate_phase04_proxy.py
       - run: python tools/validate_phase05_proxy.py
+      - run: python tools/validate_claim_rule_contract.py
       - run: python tools/validate_phase06_gate.py

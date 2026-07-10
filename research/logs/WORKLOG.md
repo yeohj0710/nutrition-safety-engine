@@ -319,3 +319,11 @@
 - Mutation tests reject wrong source hash, wrong paragraph hash, nonexistent XML locator, and `legacy_unverified` source path.
 - Corrected the Phase 05 validator to require the intentionally invalid missing-locator fixture to fail schema validation rather than incorrectly expecting every fixture to be schema-valid.
 - Human extraction/RoB/AI rows remain 0/0/0.
+
+## 2026-07-10 — Claim-rule-source contract gate
+
+- Strengthened the evidence-to-rule schema with production/synthetic contract mode, extraction/source identifiers, non-legacy source path, source/locator/quote hashes, and human verifier IDs.
+- `validated_thesis_scope` now requires `validation_status=validated` and at least two validation-evidence entries at schema level.
+- Independent semantic checks require every linked claim to exist, match the rule question, and be validated; expert-review and independent-scenario evidence prefixes are mandatory.
+- Nine synthetic-only tests pass. Production claims/rules and legacy promotions remain 0/0/0.
+- Integrated the same semantic boundary into `build-thesis-bundle.ts`; targeted Vitest contract/isolation suite passes 7/7 and TypeScript checking passes.

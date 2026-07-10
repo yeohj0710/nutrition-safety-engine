@@ -26,6 +26,7 @@
     "validate:korean-db-split-pilot": "python tools/validate_korean_db_split_pilot.py",
     "build:korean-db-press-queue": "python tools/build_korean_db_press_queue.py",
     "validate:korean-db-press-queue": "python tools/validate_korean_db_press_queue.py",
+    "validate:claim-rule-contract": "python tools/validate_claim_rule_contract.py",
     "typecheck": "npm run prepare:knowledge && tsc --noEmit"
   },
   "dependencies": {

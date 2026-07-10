@@ -35,6 +35,8 @@ def main() -> int:
     }
     bundle = json.loads((REPO / "src/generated/thesis-bundle.json").read_text(encoding="utf-8-sig"))
     errors = []
+    contract_path = REPO / "research/synthesis/claim_rule_contract_results.json"
+    contract = json.loads(contract_path.read_text(encoding="utf-8-sig"))
     if any(counts.values()):
         errors.append("unverified Phase 06 registry unexpectedly populated")
     if any(curated_counts.values()):
@@ -49,7 +51,17 @@ def main() -> int:
         errors.append("meta-analysis decision log must cover all five questions")
     if any(row["decision"] != "not_assessed" or row["status"] != "blocked_external" for row in decision_rows):
         errors.append("meta-analysis decision log overstates analysis readiness")
-    print(json.dumps({"errors": errors, "phase_status": "blocked_external", "counts": counts, "curated_jsonl_counts": curated_counts, "meta_analysis_decisions": decisions, "legacy_promotions": 0}, ensure_ascii=False, indent=2))
+    expected_contract_tests = {
+        "valid_synthetic_contract_accepted", "legacy_source_rejected", "wrong_quote_hash_rejected",
+        "missing_claim_rejected", "draft_claim_rejected", "question_mismatch_rejected",
+        "unvalidated_rule_rejected", "missing_expert_review_rejected", "missing_scenario_validation_rejected",
+    }
+    tests = contract.get("tests", {})
+    if contract.get("status") != "synthetic_contract_test_not_research_evidence" or set(tests) != expected_contract_tests or not all(tests.values()):
+        errors.append("claim-rule contract tests missing or failed")
+    if contract.get("production_claims_created") != 0 or contract.get("production_rules_created") != 0 or contract.get("legacy_promotions") != 0:
+        errors.append("contract fixture overstated production outputs")
+    print(json.dumps({"errors": errors, "phase_status": "blocked_external", "counts": counts, "curated_jsonl_counts": curated_counts, "meta_analysis_decisions": decisions, "claim_rule_contract_tests": len(tests), "legacy_promotions": 0}, ensure_ascii=False, indent=2))
     return 1 if errors else 0
 
 

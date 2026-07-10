@@ -6,12 +6,17 @@
   "additionalProperties": false,
   "required": [
     "bundle_version",
+    "contract_mode",
     "claims",
     "rules"
   ],
   "properties": {
     "bundle_version": {
       "type": "string"
+    },
+    "contract_mode": {
+      "type": "string",
+      "enum": ["production", "synthetic_contract_fixture"]
     },
     "claims": {
       "type": "array",
@@ -22,6 +27,7 @@
           "claim_id",
           "question_id",
           "claim_text",
+          "scope_status",
           "population",
           "exposure",
           "outcome",
@@ -48,6 +54,10 @@
           "claim_text": {
             "type": "string",
             "minLength": 10
+          },
+          "scope_status": {
+            "type": "string",
+            "enum": ["validated_thesis_scope", "exploratory_demo", "legacy_unverified", "retired"]
           },
           "population": {
             "type": "object"
@@ -107,8 +117,14 @@
               "required": [
                 "source_id",
                 "report_id",
+                "extraction_id",
+                "source_path",
+                "source_file_sha256",
                 "locator",
-                "supporting_quote"
+                "locator_text_sha256",
+                "supporting_quote",
+                "supporting_quote_sha256",
+                "human_verified_by"
               ],
               "properties": {
                 "source_id": {
@@ -116,6 +132,19 @@
                 },
                 "report_id": {
                   "type": "string"
+                },
+                "extraction_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source_path": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^(?!.*legacy_unverified).+$"
+                },
+                "source_file_sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
                 },
                 "study_id": {
                   "type": [
@@ -127,9 +156,23 @@
                   "type": "string",
                   "minLength": 1
                 },
+                "locator_text_sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
                 "supporting_quote": {
                   "type": "string",
                   "minLength": 1
+                },
+                "supporting_quote_sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "human_verified_by": {
+                  "type": "array",
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "items": {"type": "string", "minLength": 1}
                 }
               }
             }
@@ -152,7 +195,21 @@
           "version": {
             "type": "string"
           }
-        }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {"verification_status": {"const": "validated"}},
+              "required": ["verification_status"]
+            },
+            "then": {
+              "required": ["verified_by"],
+              "properties": {
+                "verified_by": {"minItems": 1, "uniqueItems": true}
+              }
+            }
+          }
+        ]
       }
     },
     "rules": {
@@ -278,7 +335,22 @@
               "null"
             ]
           }
-        }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {"scope_status": {"const": "validated_thesis_scope"}},
+              "required": ["scope_status"]
+            },
+            "then": {
+              "properties": {
+                "validation_status": {"const": "validated"},
+                "validation_evidence": {"minItems": 2, "uniqueItems": true}
+              },
+              "required": ["validation_evidence"]
+            }
+          }
+        ]
       }
     }
   }

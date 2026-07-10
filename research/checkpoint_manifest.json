@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "f0c84efe2ad75cd69a9e536d70a7a76e4316dc16",
+  "implementation_head": "86adeae1b9e23bfd04be214c2626ae5e5de8af25",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,13 +10,13 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 760,
+  "file_count": 764,
   "local_required_file_count": 104,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "size_bytes": 1447,
-      "sha256": "efd44d57bc3fec09dc9e09ce1172d710d54b7fb9249309e74b10ce0629af4db3",
+      "size_bytes": 1505,
+      "sha256": "8159f629c8c835b0ef32bad04571977147b4d4f970e488c6c16d6b45d971dbab",
       "distribution": "tracked"
     },
     {
@@ -125,6 +125,12 @@
       "path": "__tests__/thesis-mode-boundary.test.ts",
       "size_bytes": 1833,
       "sha256": "2a924e8351cca1c63684293765c49757db26ba3a856026670fcff0dd4fec8bbd",
+      "distribution": "tracked"
+    },
+    {
+      "path": "__tests__/thesis-provenance-contract.test.ts",
+      "size_bytes": 2481,
+      "sha256": "97886a255555f48ddc1ee6f8f0410ce47455cad85f34e92a1afd95d0e779c398",
       "distribution": "tracked"
     },
     {
@@ -795,8 +801,8 @@
     },
     {
       "path": "package.json",
-      "size_bytes": 2656,
-      "sha256": "e840b0d41348838b7ae97dec44fa061b24480d40475f53259a9a7c0d1cb647cc",
+      "size_bytes": 2740,
+      "sha256": "f7d439ec8dcd3ce1789a509fae4116f66b26662f526b42b4523f668d4cd88434",
       "distribution": "tracked"
     },
     {
@@ -1323,8 +1329,8 @@
     },
     {
       "path": "research/design/20260710/05_SYNTHESIS/evidence_to_rule_schema.json",
-      "size_bytes": 6735,
-      "sha256": "2a19ed9281c7d0797b50c8975b9b7fcd547ffb119150c508ec06c9174ce04da3",
+      "size_bytes": 9140,
+      "sha256": "3871f8a32a7288f17cdca1e714bd0b58eb405332859800a4a7471d018d3fa651",
       "distribution": "tracked"
     },
     {
@@ -1624,7 +1630,7 @@
     {
       "path": "research/design/20260710/manifest.json",
       "size_bytes": 22521,
-      "sha256": "1b1e0a5922ea35f79c87fb911785d0b1ade6495f579195bd5c6c15a6fe1768ae",
+      "sha256": "d1cc64c2a3af382542ce00f469fc7f48673fcdcc088fb55b0e1d7361e84f1392",
       "distribution": "tracked"
     },
     {
@@ -2415,26 +2421,26 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 8941,
-      "sha256": "76a9508c8f13529b8951d397ba260968f007af86f56663f198cc576d9df16ec1",
+      "size_bytes": 9467,
+      "sha256": "fe3b81a9d3a94272274e0722f0083194e9667d42588b73af0db317d87bb5b4ed",
       "distribution": "tracked"
     },
     {
       "path": "research/logs/RISKS.md",
-      "size_bytes": 6580,
-      "sha256": "6e87d5fb55b58b9b5aed6de71ccf7ca8833b90a2aca00a77c1fabf7ceca0a24b",
+      "size_bytes": 6768,
+      "sha256": "5a5bc328dfcd469454998ba2f3592603e860764e14bfbc5322230a54f57c55fd",
       "distribution": "tracked"
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 30345,
-      "sha256": "5d2b1a243d73f6a042ee656ca54891e9ce47a73b351b1a6e24182d12361778f0",
+      "size_bytes": 31152,
+      "sha256": "c5b14c09b6511ea3eeafe01f372cb6610e141f78f0c185b2c1816c63c7fca717",
       "distribution": "tracked"
     },
     {
       "path": "research/PROGRESS_LEDGER.md",
-      "size_bytes": 2392,
-      "sha256": "a6ab1578a893432209ef1ac0bacd62eafa6a44f207c1faa3e237383e1a3b32a6",
+      "size_bytes": 2487,
+      "sha256": "c1d040de154a97d94e7ede6771e4b988d9f5adc5ee62b364d6d531125dcabf33",
       "distribution": "tracked"
     },
     {
@@ -4016,6 +4022,12 @@
       "distribution": "tracked"
     },
     {
+      "path": "research/synthesis/claim_rule_contract_results.json",
+      "size_bytes": 609,
+      "sha256": "1a3a351d697ed76eea3a1506c5ed12b889946b98dae706ac9e081bdce8523f84",
+      "distribution": "tracked"
+    },
+    {
       "path": "research/synthesis/meta_analysis_decisions.csv",
       "size_bytes": 501,
       "sha256": "af1d02dd285ea7467d29b694dba81abedda3f3e6946fc2efbc36b9451d8d1a56",
@@ -4023,8 +4035,8 @@
     },
     {
       "path": "research/synthesis/phase_06_exit_criteria.md",
-      "size_bytes": 943,
-      "sha256": "ec092e6b72cf1ab30012d6367057e41e6b44b1f0eb7f7f5f97028d5f8d034b1d",
+      "size_bytes": 1618,
+      "sha256": "e3899ae718070b0d7daa70c608385154eb9969f4c01ff447bec5c69587f984e9",
       "distribution": "tracked"
     },
     {
@@ -4054,7 +4066,7 @@
     {
       "path": "research/validation/safe_empty_proxy_report.json",
       "size_bytes": 34684,
-      "sha256": "540c56939364db381e28b8b2661dfd06fc8ba8f110bc33cc194e6d78c76d04ba",
+      "sha256": "40cfb13908d49726303f6b97790ee784fa81dd1f957f5671d0b5b366a29cdc5d",
       "distribution": "tracked"
     },
     {
@@ -4113,8 +4125,8 @@
     },
     {
       "path": "scripts/build-thesis-bundle.ts",
-      "size_bytes": 6073,
-      "sha256": "fa77491350d80baa6660b4a039579ec88015a89a9650359fe44e4d2b10b0a8d5",
+      "size_bytes": 6308,
+      "sha256": "620dc33878c03af247fc3d37a86a42e595c09357d78176f4750623397b1adb3b",
       "distribution": "tracked"
     },
     {
@@ -4184,6 +4196,12 @@
       "distribution": "tracked"
     },
     {
+      "path": "src/evidence/validate-thesis-provenance.ts",
+      "size_bytes": 5414,
+      "sha256": "27290070f61fcbbd933008d676e21012c3cf324c4e821511248603266d155609",
+      "distribution": "tracked"
+    },
+    {
       "path": "src/generated/legacy/knowledge-index.json",
       "size_bytes": 1007681,
       "sha256": "d303f42e263d51adc58ae03429b948b2521eda289de9390501102cae7263c150",
@@ -4198,7 +4216,7 @@
     {
       "path": "src/generated/thesis-bundle.json",
       "size_bytes": 555,
-      "sha256": "f0fb2c52d1875978ed39ff298999bd31bdd1820ba6451896f861908212a5d530",
+      "sha256": "cde1120538cc199f9501396f755b067663b2341d1f83acf14ddc6250ce6ac9dd",
       "distribution": "tracked"
     },
     {
@@ -4478,6 +4496,12 @@
       "distribution": "tracked"
     },
     {
+      "path": "tools/validate_claim_rule_contract.py",
+      "size_bytes": 6037,
+      "sha256": "53ad6fed44c4b8568836318ad4caec5d601407b38af69f379e303ed03b8860d2",
+      "distribution": "tracked"
+    },
+    {
       "path": "tools/validate_clinicaltrials_proxy.py",
       "size_bytes": 2583,
       "sha256": "a7697500cf658abfbffeee1bd65bf27867c392bd17a94a3c1f12c8aebd560f41",
@@ -4533,8 +4557,8 @@
     },
     {
       "path": "tools/validate_phase06_gate.py",
-      "size_bytes": 2680,
-      "sha256": "01be8a9077cbfb2f66bc771c625224469d46037a6e9bb24703772bf5c9499381",
+      "size_bytes": 3687,
+      "sha256": "b81d821ae0ae857648192fda7dde73a114386b3bec53091cf752f19082b3866b",
       "distribution": "tracked"
     },
     {
