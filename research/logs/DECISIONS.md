@@ -305,3 +305,17 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: derive `engineCommit` from the latest commit touching the engine/provenance/bundle-builder inputs rather than unconditional repository HEAD
 - rationale: embedding HEAD in a tracked generated file creates an impossible fixed point where committing the file immediately makes its embedded commit stale and every build dirties the tree
 - impact: unrelated research/log commits no longer rewrite the bundle; changing engine inputs still advances the identity and requires one deliberate regenerated artifact commit
+
+## D-041 — Phase gates must permit valid forward progress
+
+- date: 2026-07-10
+- decision: replace the Phase 06 blanket “all production tables must be empty” assertion with progressive semantic validation and explicit blocked/complete-candidate states
+- rationale: a safe-empty assertion is useful before human work starts but becomes a destructive process lock when valid extraction, RoB, GRADE, claims, or rules arrive
+- impact: upstream-only rows no longer fail QA; validated registry IDs must exactly match curated IDs and bundle IDs/counts, while premature claims/rules and invalid statuses still fail closed
+
+## D-042 — The protocol GRADE template is the only certainty schema
+
+- date: 2026-07-10
+- decision: replace the empty reduced certainty CSV with the exact 22-field protocol template and derive validated status from complete two-reviewer consensus fields
+- rationale: the reduced schema omitted reviewer identities, consensus date, participants, design starting point, absolute/relative effects, and explicit upgrade domains needed to reproduce GRADE judgments
+- impact: incomplete rows may remain work in progress; only rows with outcome, final certainty, rationale, two distinct reviewers, and consensus date can enter curated evidence

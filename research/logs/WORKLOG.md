@@ -507,3 +507,17 @@
 - Post-commit rebuild exposed a self-referential artifact: `engineCommit = HEAD` made the tracked bundle stale immediately after every commit.
 - Changed identity derivation to the latest commit touching `src/evidence`, `src/domain`, or the bundle builder itself.
 - This preserves implementation traceability while allowing unrelated commits and repeated builds to remain byte-stable.
+
+## 2026-07-10 — Future-safe Phase 06 gate
+
+- Removed assertions that treated every nonempty human or curated table as corruption.
+- Added status vocabularies, five-question synthesis-decision coverage, unique IDs, validated-registry→curated exact ID equality, curated→bundle exact ID/count equality, forbidden namespace scanning, and prerequisite checks.
+- Progress states now distinguish empty/upstream-only `blocked_external` from `complete_candidate_requires_acceptance_review`; contracts pass 3/3.
+- Current state remains safely empty and blocked; this change creates no evidence, claim, rule, pooling result, or completion mark.
+
+## 2026-07-10 — Full protocol GRADE schema restored
+
+- Compared the active certainty registry with the authoritative design template and found a reduced incompatible header.
+- Replaced the empty registry with the exact 22-field template; no human data was overwritten.
+- Phase 06 now checks exact header equality, allowed certainty grades, distinct reviewers, consensus provenance, and exact validated certainty ID promotion.
+- Human handoff now exposes the real GRADE fields instead of a nonexistent `status` column. Current GRADE rows remain 0.
