@@ -263,3 +263,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: initialize human CSVs only when absent; otherwise validate headers and preserve bytes, then validate populated rows semantically
 - rationale: rerunning a synthetic harness must not erase review work, while blanket rejection of populated tables prevents legitimate progression
 - impact: human extraction/RoB can advance safely; invalid lineage or statistics fail without destructive rewriting
+
+## D-035 — AI performance remains null until all three evidence layers exist
+
+- date: 2026-07-10
+- decision: compute production AI metrics only when frozen hash-bound human gold, schema-valid preserved AI runs, and one-to-one independent human field reviews are all present
+- rationale: locator presence is not locator correctness, and synthetic fixtures or unreviewed outputs cannot establish extraction accuracy or safety
+- impact: the empty state emits `metrics: null`; completed inputs yield detection, value/unit, human-judged quote/locator, safety-error, critical-FN, and repeat-stability outputs with explicit denominators

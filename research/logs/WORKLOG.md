@@ -467,3 +467,10 @@
 - Byte-preservation, missing-file initialization, and mismatch-without-write contracts pass 3/3.
 - Replaced blanket rejection of nonempty human/RoB tables with routed-task, source, locator, denominator/CI, verifier, RoB support, and JSON semantic checks.
 - Semantic mutation contracts pass 3/3; current human extraction/RoB rows remain 0/0.
+
+## 2026-07-10 — Fail-closed production AI extraction evaluator
+
+- Added empty, separately curated human-gold and human-field-review tables plus an interim schema-valid AI run stream; none is populated by fixtures.
+- Evaluator validates gold/review row hashes, consensus/reviewer provenance, JSON Schema output, unique run IDs, and exact one-to-one field-review coverage.
+- Predeclared outputs cover precision/recall/F1, exact/numeric/unit accuracy, quote entailment, locator accuracy, unsupported claims, wrong arm/timepoint, report mixing, critical numeric errors/FNs, and three-run stability.
+- Internal metric contracts pass 3/3. Current gold/runs/reviews are 0/0/0, so the research output is `blocked_external_no_performance_metrics` with `metrics: null`.

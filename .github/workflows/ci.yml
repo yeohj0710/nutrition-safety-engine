@@ -51,3 +51,4 @@ jobs:
       - run: python tools/validate_extraction_rob_work_queues.py
       - run: python tools/validate_phase05_preservation.py
       - run: python tools/validate_human_extraction_rob_rows.py
+      - run: python tools/evaluate_ai_extraction.py

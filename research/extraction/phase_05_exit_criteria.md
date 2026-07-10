@@ -21,6 +21,7 @@ Synthetic metric harness: `complete_verified`
 | Verified human extraction | blocked_external: 0 rows |
 | Independent RoB and consensus | blocked_external: 0 rows |
 | Frozen human gold | blocked_external |
+| Production AI evaluation path | pass_local | fail-closed evaluator requires frozen hash-bound gold, schema-valid preserved runs, and one-to-one human field review; empty state emits `metrics: null`; 3/3 metric contract tests pass |
 | Actual AI extraction runs/metrics | blocked_external: 0 runs |
 
 Synthetic metric values are test fixtures, not thesis or AI performance results.

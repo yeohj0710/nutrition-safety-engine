@@ -32,6 +32,7 @@
     "validate:extraction-rob-work": "python tools/validate_extraction_rob_work_queues.py",
     "validate:phase05:preservation": "python tools/validate_phase05_preservation.py",
     "validate:human-extraction-rob": "python tools/validate_human_extraction_rob_rows.py",
+    "evaluate:ai-extraction": "python tools/evaluate_ai_extraction.py",
     "validate:pmc-locators": "python tools/validate_pmc_fulltext_candidates.py",
     "capture:pmc-sentinel-fulltext": "python tools/capture_pmc_sentinel_fulltext.py",
     "validate:pmc-sentinel-fulltext": "python tools/validate_pmc_sentinel_fulltext.py",

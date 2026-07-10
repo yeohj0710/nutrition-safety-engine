@@ -2,12 +2,22 @@
   "schema_version": "1.0.0",
   "phase": "01_audit_and_normalization",
   "manifest_self_excluded": true,
-  "file_count": 49,
+  "file_count": 51,
   "files": [
     {
       "path": "__tests__/thesis-bundle-isolation.test.ts",
       "size_bytes": 1253,
       "sha256": "c3cd5a8579a99a0f710fdbc53a3b482068359edbe3f5d666e34dcfca35ff1591"
+    },
+    {
+      "path": "data/curated/ai_extraction_gold.csv",
+      "size_bytes": 134,
+      "sha256": "ed31827f88a0ece887130c56b0b0c3ddfb63329f8d2ec62ad5eb0d966e96b0a3"
+    },
+    {
+      "path": "data/curated/ai_extraction_human_review.csv",
+      "size_bytes": 162,
+      "sha256": "f52ab6af71891f443a8d7c531c85644fb893b7f04f48cbaea21834ffbf6174f7"
     },
     {
       "path": "data/curated/certainty_assessments.jsonl",
@@ -151,8 +161,8 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 18967,
-      "sha256": "1a6aa0aca02d841bfad251c6f9df2419bf329d3bc276b04deb6c3b07a3f6f4a0"
+      "size_bytes": 19600,
+      "sha256": "103d688889c86c4e1b1cee59cc1d605d2960117378ec20178278ca029e07440c"
     },
     {
       "path": "research/logs/RISKS.md",
@@ -161,8 +171,8 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 42961,
-      "sha256": "703405b31f724f6155b1d942fd39aee1392733f7e361e2ded71897eb1d146212"
+      "size_bytes": 43724,
+      "sha256": "26d0ad67645a21edfbc01c3e3ccbd2433d592537e7685bbc41df07f1e97cafc3"
     },
     {
       "path": "research/review_queue/HUMAN_HANDOFF.md",
@@ -171,8 +181,8 @@
     },
     {
       "path": "research/review_queue/human_handoff_manifest.json",
-      "size_bytes": 16947,
-      "sha256": "610a66a03dbddbdd54fd12e111d3f1806e5dd348c29fbfada03db43dc4e95c48"
+      "size_bytes": 18927,
+      "sha256": "82d1d90672127a2fb8dc9e777bd2f93bcd6ab3de1e4208f4cac53432242a92ea"
     },
     {
       "path": "research/review_queue/korean_db_PRESS_review.csv",

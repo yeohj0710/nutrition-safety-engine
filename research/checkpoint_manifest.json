@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "e91bec0ddd7549d2dff3896e72adaee7b933723f",
+  "implementation_head": "81ca6fbe17f289003860d9afd4259da1a773d539",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,13 +10,13 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 812,
+  "file_count": 817,
   "local_required_file_count": 104,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "size_bytes": 2181,
-      "sha256": "10d48687c62a1aa51a95134d53058fe0ca58b53a21780377309e9391d37a7b27",
+      "size_bytes": 2233,
+      "sha256": "e0688338aa2c153b00370b13e82db7f2dbdd7cf2557c71fc397ef6fde7c25b56",
       "distribution": "tracked"
     },
     {
@@ -296,6 +296,18 @@
       "distribution": "tracked"
     },
     {
+      "path": "data/curated/ai_extraction_gold.csv",
+      "size_bytes": 134,
+      "sha256": "ed31827f88a0ece887130c56b0b0c3ddfb63329f8d2ec62ad5eb0d966e96b0a3",
+      "distribution": "tracked"
+    },
+    {
+      "path": "data/curated/ai_extraction_human_review.csv",
+      "size_bytes": 162,
+      "sha256": "f52ab6af71891f443a8d7c531c85644fb893b7f04f48cbaea21834ffbf6174f7",
+      "distribution": "tracked"
+    },
+    {
       "path": "data/curated/certainty_assessments.jsonl",
       "size_bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -345,6 +357,12 @@
     },
     {
       "path": "data/curated/studies.jsonl",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "distribution": "tracked"
+    },
+    {
+      "path": "data/interim/ai_extraction_runs.jsonl",
       "size_bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "distribution": "tracked"
@@ -849,8 +867,8 @@
     },
     {
       "path": "package.json",
-      "size_bytes": 4590,
-      "sha256": "7eeacae5a0da540a3eb2179413644f42a57266e9d4b820571ced906e86c2439a",
+      "size_bytes": 4662,
+      "sha256": "3a4d9d6cd7ad8df67107d4d761f426590c8bf99add90206f8588280eb7d2a317",
       "distribution": "tracked"
     },
     {
@@ -981,8 +999,8 @@
     },
     {
       "path": "research/audit/phase_01_artifact_manifest.json",
-      "size_bytes": 9107,
-      "sha256": "c50041b734c39688d28dbb8901a66a2bb8b5bf0cba637b8523851caa5138d186",
+      "size_bytes": 9473,
+      "sha256": "7be1392720c4cfb9b2599c75e4053c6f65f2d260912653e39e67fab0f526eefc",
       "distribution": "tracked"
     },
     {
@@ -1766,6 +1784,12 @@
       "distribution": "tracked"
     },
     {
+      "path": "research/extraction/ai_extraction_evaluation.json",
+      "size_bytes": 275,
+      "sha256": "fa43e655d637cd4ef22c863554d52e3dafb8e78b424bbf9af5f89a6f917a9cbf",
+      "distribution": "tracked"
+    },
+    {
       "path": "research/extraction/extraction_rob_routing_contract.json",
       "size_bytes": 502,
       "sha256": "68d23c02f210ecf2e3d6acd03d4f7e57a7d7482c15dde0b285dacdce0dbd9504",
@@ -1773,8 +1797,8 @@
     },
     {
       "path": "research/extraction/phase_05_exit_criteria.md",
-      "size_bytes": 2668,
-      "sha256": "7b765c5ab36a5f2627ba272ee797070080199a7dff0a82a405e069fe222a1daf",
+      "size_bytes": 2902,
+      "sha256": "feb97da1a76a097d700a6cd4c743faca96b68fac01045f8ab16e4596ce960eb6",
       "distribution": "tracked"
     },
     {
@@ -2475,8 +2499,8 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 18967,
-      "sha256": "1a6aa0aca02d841bfad251c6f9df2419bf329d3bc276b04deb6c3b07a3f6f4a0",
+      "size_bytes": 19600,
+      "sha256": "103d688889c86c4e1b1cee59cc1d605d2960117378ec20178278ca029e07440c",
       "distribution": "tracked"
     },
     {
@@ -2487,14 +2511,14 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 42961,
-      "sha256": "703405b31f724f6155b1d942fd39aee1392733f7e361e2ded71897eb1d146212",
+      "size_bytes": 43724,
+      "sha256": "26d0ad67645a21edfbc01c3e3ccbd2433d592537e7685bbc41df07f1e97cafc3",
       "distribution": "tracked"
     },
     {
       "path": "research/PROGRESS_LEDGER.md",
-      "size_bytes": 2733,
-      "sha256": "e09af6d12732e147e732685e30ebebd0382239e6ed878c6048f9251b09a8b325",
+      "size_bytes": 2844,
+      "sha256": "5fd6250b564775bc91094be5932c54f78177a2e50d842afe85ea63821c39c6c6",
       "distribution": "tracked"
     },
     {
@@ -2559,8 +2583,8 @@
     },
     {
       "path": "research/review_queue/human_handoff_manifest.json",
-      "size_bytes": 16947,
-      "sha256": "610a66a03dbddbdd54fd12e111d3f1806e5dd348c29fbfada03db43dc4e95c48",
+      "size_bytes": 18927,
+      "sha256": "82d1d90672127a2fb8dc9e777bd2f93bcd6ab3de1e4208f4cac53432242a92ea",
       "distribution": "tracked"
     },
     {
@@ -4168,7 +4192,7 @@
     {
       "path": "research/thesis/finalization_readiness.json",
       "size_bytes": 4999,
-      "sha256": "1534a67d85b0c39eea10aa77bc48ea1a5dc563896b6ebcc03dde6a552244583b",
+      "sha256": "7a88ec2a6a646617350a91aa8693e23531931fba8d0c4ad6f7325bcf3b85db35",
       "distribution": "tracked"
     },
     {
@@ -4509,8 +4533,8 @@
     },
     {
       "path": "tools/build_human_handoff_manifest.py",
-      "size_bytes": 8378,
-      "sha256": "e0d3ecddd1eb70af84143bfe74dbe43058abe23fcab101781cb295c623e3ef4e",
+      "size_bytes": 9209,
+      "sha256": "7c8ae3a305f236d13b658e1159e5ca37708ba8d9cd03b7762f6e824c08ac657b",
       "distribution": "tracked"
     },
     {
@@ -4565,6 +4589,12 @@
       "path": "tools/clinicaltrials_export.mjs",
       "size_bytes": 4437,
       "sha256": "131bedf8a9a9e5cd625268728584f763f90940dd91e314bb4036c283c4e6af43",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/evaluate_ai_extraction.py",
+      "size_bytes": 11388,
+      "sha256": "dd8edc87f58c1de7a6497503cfea09b3b7419566b0618893f04f6e37de685a6c",
       "distribution": "tracked"
     },
     {
@@ -4744,7 +4774,7 @@
     {
       "path": "tools/validate_human_handoff_manifest.py",
       "size_bytes": 3551,
-      "sha256": "2fc5bbe4766538e2077455b3f157f2ca525beeb041d5f5c5e6c07b155ce85a2e",
+      "sha256": "2045ccf3d26476b07f6eef4d83cd77b33488504ab9d7088a3a55f0f45c60f430",
       "distribution": "tracked"
     },
     {
