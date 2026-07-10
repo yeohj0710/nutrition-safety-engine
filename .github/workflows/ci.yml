@@ -27,6 +27,7 @@ jobs:
       - run: npm run validate:phase07:proxy
       - run: python tools/validate_phase07_review_queues.py
       - run: python tools/validate_phase07_queue_preservation.py
+      - run: npm run evaluate:phase07:gold
       - run: npm run build
       - run: python tools/validate_phase01.py
       - run: python tools/validate_phase02.py

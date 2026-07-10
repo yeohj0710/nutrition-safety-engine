@@ -333,3 +333,17 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: replace blank-only assertions with pending/in-progress/complete validation; completed gold candidates require distinct roles, parseable JSON, timestamps, and row hash
 - rationale: treating any human entry as corruption made the prescribed independent validation impossible to finish
 - impact: partial work remains visible without being counted complete; completed rows are candidates only and do not themselves authorize clinical performance or release
+
+## D-045 — Independent engine metrics require all 120 adjudicated scenarios
+
+- date: 2026-07-10
+- decision: promote only bundle-matched, hash-valid, independently adjudicated candidates and suppress all clinical metrics until exactly 120 are available
+- rationale: partial convenience subsets would change the prespecified distribution and could overstate sensitivity or precision
+- impact: 0–119 scenarios produce `metrics: null`; 120 scenarios execute three repeats and report action-level sensitivity/precision, scenario exact match, determinism, Wilson intervals, and critical FN details
+
+## D-046 — Critical engine failures are expected rule IDs
+
+- date: 2026-07-10
+- decision: encode critical-failure labels as a subset of adjudicated expected `rule_id` values and treat any missing labeled rule as a critical false negative
+- rationale: free-text severity labels cannot be joined deterministically to engine outputs
+- impact: critical misses are traceable to scenario and rule; any nonzero critical FN produces explicit release-prohibited status

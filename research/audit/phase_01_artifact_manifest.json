@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "phase": "01_audit_and_normalization",
   "manifest_self_excluded": true,
-  "file_count": 52,
+  "file_count": 53,
   "files": [
     {
       "path": "__tests__/thesis-bundle-isolation.test.ts",
@@ -36,6 +36,11 @@
     },
     {
       "path": "data/curated/extractions.jsonl",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/curated/independent_gold_scenarios.jsonl",
       "size_bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
@@ -166,8 +171,8 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 24952,
-      "sha256": "b1f49a8ae932cfb846d365cadfa584773a8131e57c15eb5091d9c5143e0a376f"
+      "size_bytes": 26012,
+      "sha256": "cacdb208dc2b5f1db276ca5919aa19cfaba10ceb54822820bc74747b6f20f732"
     },
     {
       "path": "research/logs/RISKS.md",
@@ -176,8 +181,8 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 48473,
-      "sha256": "568cff4b4e0603f052b1619b1b91a67c9c320324032a443c89370021a230d251"
+      "size_bytes": 49194,
+      "sha256": "bde2849157b1990e6ffb63530fc748955f85e9e1b3f30a9b7898dae5b9230e84"
     },
     {
       "path": "research/review_queue/HUMAN_HANDOFF.md",

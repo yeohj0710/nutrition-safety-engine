@@ -64,6 +64,19 @@ def main() -> int:
     if len(gold_rows) != 120:
         errors.append("independent gold authoring queue must contain 120 rows")
     gold_complete = sum(row.get("status") == "adjudicated_independent_gold_candidate" for row in gold_rows)
+    performance_path = ROOT / "research/validation/independent_gold_performance.json"
+    performance = json.loads(performance_path.read_text(encoding="utf-8"))
+    performance_sources = {"evaluator": ROOT / "scripts/evaluate-phase07-independent-gold.ts",
+                           "engine": ROOT / "src/engine/run-thesis-engine.ts",
+                           "gold": ROOT / "data/curated/independent_gold_scenarios.jsonl",
+                           "thesis_bundle": ROOT / "src/generated/thesis-bundle.json"}
+    if any(performance.get("source_hashes", {}).get(name) != sha256(path) for name, path in performance_sources.items()):
+        errors.append("independent gold performance source hash mismatch")
+    if gold_complete < 120:
+        if performance.get("status") != "blocked_external_incomplete_independent_gold" or performance.get("metrics") is not None:
+            errors.append("incomplete gold must not emit clinical performance metrics")
+    elif performance.get("gold_scenarios") != 120 or performance.get("metrics") is None:
+        errors.append("complete gold requires a 120-scenario performance report")
 
     package = json.loads((ROOT / "package.json").read_text(encoding="utf-8"))
     if "openai" in package.get("dependencies", {}) or "openai" in package.get("devDependencies", {}):
@@ -91,6 +104,7 @@ def main() -> int:
         "blind_expert_review_rows": len(blind_rows),
         "gold_authoring_rows": len(gold_rows),
         "expert_reviews_complete": expert_complete,
+        "independent_performance_metrics": performance.get("metrics") is not None,
     }
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 1 if errors else 0

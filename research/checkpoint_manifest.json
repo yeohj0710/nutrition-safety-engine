@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "50799c30ba7b2a12a623439f2b21dfb0ba2cddb4",
+  "implementation_head": "3e711d41d893e799ea22fa83cd666325e943fab3",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,13 +10,13 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 820,
+  "file_count": 826,
   "local_required_file_count": 104,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "size_bytes": 2298,
-      "sha256": "02e7095a4c90036453a38d04709d9dbceb559bcc5c24150a8c2997ee4bf899a9",
+      "size_bytes": 2341,
+      "sha256": "37a60b13d63e5b7a80e2fc0a6451ebb078115a5dfb884e4c032363ab144d786a",
       "distribution": "tracked"
     },
     {
@@ -95,6 +95,12 @@
       "path": "__tests__/legacy-mode-boundary.test.ts",
       "size_bytes": 1033,
       "sha256": "beb7448832a682a8507d3ef37d36cdacba209af96bf85b7365cecc0e87a1e586",
+      "distribution": "tracked"
+    },
+    {
+      "path": "__tests__/phase07-gold-scoring.test.ts",
+      "size_bytes": 920,
+      "sha256": "112bc34566c052d41411b47540b742ed17b252ef7f234bfc1a09977c2a366e23",
       "distribution": "tracked"
     },
     {
@@ -327,6 +333,12 @@
     },
     {
       "path": "data/curated/extractions.jsonl",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "distribution": "tracked"
+    },
+    {
+      "path": "data/curated/independent_gold_scenarios.jsonl",
       "size_bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "distribution": "tracked"
@@ -879,8 +891,8 @@
     },
     {
       "path": "package.json",
-      "size_bytes": 4754,
-      "sha256": "57da6db66bc9bb0a6e21b5e754fe74ed218bf7c330c1b5abf2e20d89c87bfa53",
+      "size_bytes": 4877,
+      "sha256": "66602a850b59629379575f743170b8b01f7a039263bd5b45d42f040f180aef96",
       "distribution": "tracked"
     },
     {
@@ -1011,8 +1023,8 @@
     },
     {
       "path": "research/audit/phase_01_artifact_manifest.json",
-      "size_bytes": 9658,
-      "sha256": "f71402fdd317ad4cc3694e96f8c3c59e02ed691ffc1fc0805be6457cd0d33242",
+      "size_bytes": 9845,
+      "sha256": "2fd5fcb635113affd2d77ed11c261aaf683064d474189959fcc351781bea41c6",
       "distribution": "tracked"
     },
     {
@@ -2511,8 +2523,8 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 24952,
-      "sha256": "b1f49a8ae932cfb846d365cadfa584773a8131e57c15eb5091d9c5143e0a376f",
+      "size_bytes": 26012,
+      "sha256": "cacdb208dc2b5f1db276ca5919aa19cfaba10ceb54822820bc74747b6f20f732",
       "distribution": "tracked"
     },
     {
@@ -2523,14 +2535,14 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 48473,
-      "sha256": "568cff4b4e0603f052b1619b1b91a67c9c320324032a443c89370021a230d251",
+      "size_bytes": 49194,
+      "sha256": "bde2849157b1990e6ffb63530fc748955f85e9e1b3f30a9b7898dae5b9230e84",
       "distribution": "tracked"
     },
     {
       "path": "research/PROGRESS_LEDGER.md",
-      "size_bytes": 3092,
-      "sha256": "d05e890152093f2cda269641094aad1ce4412d0e9466191374e3a09569840742",
+      "size_bytes": 3140,
+      "sha256": "53a4e999861fcd61a4c61aad6f3aacdf79fb55328bf45f60c5f6683f7e20286a",
       "distribution": "tracked"
     },
     {
@@ -4204,7 +4216,7 @@
     {
       "path": "research/thesis/finalization_readiness.json",
       "size_bytes": 4999,
-      "sha256": "6e83a87fb0fb6e264129cf578dfc45e9c606f6b98e02781bf0ebaf21d5eb5931",
+      "sha256": "94aaae08133d2cbf40e6af32393f9cc010f89eb9e8bdc4ea09bf69e9650e3eef",
       "distribution": "tracked"
     },
     {
@@ -4217,6 +4229,12 @@
       "path": "research/thesis/thesis_draft_status.md",
       "size_bytes": 1085,
       "sha256": "74d6c948a24dc2364ae123c6867cc26a034c2f454096f1c03bd8961c46365b3f",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/validation/independent_gold_performance.json",
+      "size_bytes": 594,
+      "sha256": "0071d01b36c25f8cb0b6bc6436a252191b5fc098de0775341cbc5bd94e447426",
       "distribution": "tracked"
     },
     {
@@ -4233,8 +4251,8 @@
     },
     {
       "path": "research/validation/phase_07_exit_criteria.md",
-      "size_bytes": 2711,
-      "sha256": "6954ba45d339593ad969da178ef2f93a05d5fef7e6f61e0db318e40d24367d5e",
+      "size_bytes": 3304,
+      "sha256": "e2dc79c27a393cf1636baf02950b52977ad96e664e2bff193848495fef0e9482",
       "distribution": "tracked"
     },
     {
@@ -4319,6 +4337,12 @@
       "path": "scripts/dev-with-knowledge-watch.ts",
       "size_bytes": 3039,
       "sha256": "63154a41502d1802fe5323219a0216a6e869eab8b150d4c0582979c7d18e74bb",
+      "distribution": "tracked"
+    },
+    {
+      "path": "scripts/evaluate-phase07-independent-gold.ts",
+      "size_bytes": 4242,
+      "sha256": "e5ce1a9a8a1b7547f2e97f840b7994cb07d3d46688fd5f4fef09841c62a14a5b",
       "distribution": "tracked"
     },
     {
@@ -4502,6 +4526,12 @@
       "distribution": "tracked"
     },
     {
+      "path": "src/validation/score-engine-gold.ts",
+      "size_bytes": 1356,
+      "sha256": "79e216acb41fdde22a67a9bc05954433d86883741f36e08413d921997b9ea4b9",
+      "distribution": "tracked"
+    },
+    {
       "path": "tests/test_search_pipeline.py",
       "size_bytes": 3903,
       "sha256": "9780b568531609161704706ea8de00cabe6349bfc9983ba26d562dadd2ce0282",
@@ -4547,6 +4577,12 @@
       "path": "tools/build_human_handoff_manifest.py",
       "size_bytes": 10217,
       "sha256": "06d637a278c017abac5d5b45c94120e1b3f689fabe41cf652590b2ddc610822a",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/build_independent_gold.py",
+      "size_bytes": 3845,
+      "sha256": "65f195730e1fea6efe01462fa7f3c325a411ff0893954581a78eec9f239834e1",
       "distribution": "tracked"
     },
     {
@@ -4881,8 +4917,8 @@
     },
     {
       "path": "tools/validate_phase07_gate.py",
-      "size_bytes": 4632,
-      "sha256": "41d88dbca0d0a5e41cf13b602893dc9aa32b28aabcabf06028a2446e1e3c91c1",
+      "size_bytes": 5842,
+      "sha256": "9c2f59a6a345d8ea82eeef174a8e75a33f5a80f10860ce4bcba02848d429428c",
       "distribution": "tracked"
     },
     {

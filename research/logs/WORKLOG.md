@@ -528,3 +528,10 @@
 - Builder now preserves a human-populated file byte-for-byte, refreshes only empty queues, and refuses header mismatch without writing; preservation contracts pass 3/3.
 - Validators now support pending, partial, and completed expert/gold states. Gold completion requires two authors plus a distinct adjudicator, seven valid JSON payloads, timestamps, and row SHA-256.
 - State contracts pass 6/6. Current expert reviews and independent gold candidates remain 0/0; no clinical performance claim is enabled.
+
+## 2026-07-10 — Independent gold promotion and engine evaluator
+
+- Added deterministic promotion from adjudicated queue rows to a separate curated gold JSONL, requiring role independence, full-row hash, current thesis-bundle hash, input object, expected action array, and critical rule-ID subset.
+- Added a three-repeat engine evaluator with action-level TP/FP/FN, sensitivity, precision, scenario exact match, determinism, Wilson intervals, and critical-FN detail.
+- Evaluator/engine/gold/bundle hashes are reproduced by the Phase 07 gate. Scoring unit tests pass 3/3.
+- Current curated gold is 0/120; report status is `blocked_external_incomplete_independent_gold`, metrics are null, and release remains prohibited.
