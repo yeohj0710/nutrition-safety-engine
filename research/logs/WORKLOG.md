@@ -109,3 +109,10 @@
 - result: extracted value with quote+locator accepted; missing locator rejected; Wilson/unsupported-claim metric fixture reproduced; human extraction 0, RoB 0, AI runs 0
 - limitation: G: still access denied; package download unavailable; synthetic metric values are not AI performance
 - decision: Phase 05 remains `blocked_external`; continue only schema/engine work with thesis claims/rules at zero
+
+## 2026-07-10 16:10:00 +09:00
+
+- phase / task ID: Phase 06 / safe-empty synthesis gate
+- procedure: created five-question analysis-decision log and empty certainty/claim/rule registries; validated against empty human extraction/RoB and rebuilt thesis bundle
+- result: meta-analysis 0, certainty 0, claims 0, rules 0, legacy promotions 0; validator errors 0; thesis builder 0/0
+- decision: Phase 06 `blocked_external`; safe-empty state prevents invented synthesis or rules
