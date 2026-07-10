@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "df5576c23945eb3020375bc4d2b46cdbce6c1fdb",
+  "implementation_head": "eb14f8592cbfbac47e72f5ea5c4867801d8634f6",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -1012,7 +1012,7 @@
     {
       "path": "research/audit/phase_01_artifact_manifest.json",
       "size_bytes": 9658,
-      "sha256": "bd5c2b3749873303254c927cb3aece37f738668744a13c263621b99e09310ba6",
+      "sha256": "21cd3681acd34e546dff377590e4961f1bc56cbc5fca237520936e857090b05f",
       "distribution": "tracked"
     },
     {
@@ -4408,7 +4408,7 @@
     {
       "path": "src/generated/thesis-bundle.json",
       "size_bytes": 620,
-      "sha256": "40cc2fb0c08a1ef02863ac7d2ac47b15aba6dda5f9af05814d27c84ff6b2eece",
+      "sha256": "1860a5cec4be36ef9e6b870ea3fca46e357fd0cf2c2ec842b15c82f7847bcf26",
       "distribution": "tracked"
     },
     {

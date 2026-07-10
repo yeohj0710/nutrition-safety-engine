@@ -252,7 +252,7 @@
     {
       "path": "src/generated/thesis-bundle.json",
       "size_bytes": 620,
-      "sha256": "40cc2fb0c08a1ef02863ac7d2ac47b15aba6dda5f9af05814d27c84ff6b2eece"
+      "sha256": "1860a5cec4be36ef9e6b870ea3fca46e357fd0cf2c2ec842b15c82f7847bcf26"
     },
     {
       "path": "tools/phase01_audit.py",
