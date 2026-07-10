@@ -1,0 +1,6 @@
+queue_id,area,artifact,blocking_point,minimum_human_input,allowed_work_while_blocked,status
+P5-RQ-001,included_reports,data/interim/report_candidates.csv,extraction sampling frame,"Phase 04 frozen included reports and report-study linkage",synthetic schema and invariant tests,blocked_external
+P5-RQ-002,human_extraction,data/interim/extractions_human.csv,verified evidence values,"independent extraction and verification with quote page/section/table locator and source SHA for every critical field",blank-schema validation and synthetic locator rejection,blocked_external
+P5-RQ-003,risk_of_bias,data/interim/risk_of_bias.csv,design-specific RoB judgments,"two independent reviewers signalling answers support and consensus/adjudication",blank-schema and tool-routing preparation,blocked_external
+P5-RQ-004,ai_gold,research/design/20260710/04_EXTRACTION/llm_extraction_protocol.md,AI extraction evaluation,"frozen human gold plus development/evaluation split and locked prompt/model manifest",synthetic metric/Wilson tests only,blocked_external
+P5-RQ-005,full_text,data/interim/full_text_log.csv,source-locator verification,"lawfully obtained full texts with SHA-256 and stable page/section locators",open-access retrieval planning and unavailable-reason logging,blocked_external

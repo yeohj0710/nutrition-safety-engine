@@ -1,5 +1,13 @@
 # WORKLOG
 
+## 2026-07-10 — Phase 05 independent proxy gate
+
+- Added `tools/validate_phase05_proxy.py` using the installed Draft 2020-12 JSON Schema validator.
+- Verified two synthetic candidates against the LLM extraction schema, accepted the supported locator fixture, and rejected the missing-quote/locator fixture through the research invariant.
+- Rechecked Wilson intervals for exact value, unit, and locator fixture metrics; bounds valid.
+- Confirmed human extraction rows 0, RoB rows 0, actual AI runs 0. Added five concrete Phase 05 external review routes.
+- Synthetic values remain test-only and are not thesis results or AI performance estimates.
+
 ## 2026-07-10 — Phase 04 integrated verification
 
 - Phase validators 01/02/03/04/06 and ClinicalTrials.gov validator all returned errors 0.
