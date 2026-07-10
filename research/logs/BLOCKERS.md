@@ -24,6 +24,13 @@
 - minimum next work: PRESS-review and split queries, then native selected-record export with identifiers and checksums
 - status: `blocked_method_review`; no final-search or absence claim allowed
 
+## B-016 — Korean database split-query sets lack PRESS/export
+
+- exact block point: 20-pair raw pilot establishes transport/count behavior but not validated recall; KMbase is zero for every pair and RISS sets overlap
+- evidence: 40 raw responses with SHA-256; validator errors 0; records exported 0
+- minimum external action: independent PRESS/known-item review; then rerun approved queries and native full export
+- status: `blocked_external`; design-pilot tooling is complete, final retrieval is not
+
 ## B-002 — Independent reviewers for screening/extraction/scenario gold
 
 - exact block point: human gold cannot be frozen and tool performance cannot be estimated independently

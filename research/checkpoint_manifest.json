@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "97ad4d873a886749aba30373297fb0f92ae8d354",
+  "implementation_head": "154741cf965737702d3d21df1c38fa820de47d18",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,13 +10,13 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 705,
+  "file_count": 748,
   "local_required_file_count": 104,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "size_bytes": 1267,
-      "sha256": "1afa8c7dd6b143c0aa5725e7f021b14225a4dfa6f93741a00d9daad888b92aa4",
+      "size_bytes": 1327,
+      "sha256": "6b4729be16e29cf673d51f9d0c894be8139fb10f18da7656ba60ad716fe52683",
       "distribution": "tracked"
     },
     {
@@ -795,8 +795,8 @@
     },
     {
       "path": "package.json",
-      "size_bytes": 2139,
-      "sha256": "33c5a6e20f35977fa133e79c66ecd97f9eaf916e37ea212ee40e2175edbcb7a5",
+      "size_bytes": 2312,
+      "sha256": "44ed23736e70efd440cec656fe435d133467f56e64894f95fed4b18d5026cfb7",
       "distribution": "tracked"
     },
     {
@@ -2373,8 +2373,8 @@
     },
     {
       "path": "research/logs/BLOCKERS.md",
-      "size_bytes": 9496,
-      "sha256": "5663d56b44e93084873d2efb137936af6004e73cee881afb39a97b6d32c094b6",
+      "size_bytes": 10000,
+      "sha256": "d2f10148633ce0514c00c784f1e0bfad3b20f79a7aa3c2d4e49b9b30781a4553",
       "distribution": "tracked"
     },
     {
@@ -2385,26 +2385,26 @@
     },
     {
       "path": "research/logs/RISKS.md",
-      "size_bytes": 6051,
-      "sha256": "64b0a1a63f2c89a8433a1ad7d59e83879406d4a90c43395b3335d7dfa11e12c7",
+      "size_bytes": 6224,
+      "sha256": "5b4d1bbe24fbff778d69607467c807b18de7ddd8065a6a80530db940ce8a19e5",
       "distribution": "tracked"
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 27214,
-      "sha256": "702cccd0769d7b9e3c5bc5ccf5399977cbd74de1514400baeaaeb3c1bd17f686",
+      "size_bytes": 27893,
+      "sha256": "6080ef9dd11f8f217277a7033039d034c32662d1ae8d0469ee3e5c15aa999425",
       "distribution": "tracked"
     },
     {
       "path": "research/PROGRESS_LEDGER.md",
-      "size_bytes": 2306,
-      "sha256": "dbf8c216291d969bef5559d0e143ef399929dd86740fcf996a2d4a0c956fbefb",
+      "size_bytes": 2242,
+      "sha256": "4c3a25216dea4a3eda8dffe4ca2606928101600e9f5f26890f4694c6299d1ade",
       "distribution": "tracked"
     },
     {
       "path": "research/protocol/access_matrix.csv",
-      "size_bytes": 4459,
-      "sha256": "58ce0ba25929d99285be0b3b364b78fe82bcbc44e35db54ad3bf336ece0f2e14",
+      "size_bytes": 4520,
+      "sha256": "e1e8c8481e4f6db8ed8284767f2af974f8a3dfa106869803cb96f504fb724a0e",
       "distribution": "tracked"
     },
     {
@@ -2427,8 +2427,8 @@
     },
     {
       "path": "research/protocol/phase_02_exit_criteria.md",
-      "size_bytes": 1797,
-      "sha256": "2aeced49dd4b6a581f705e7bbc9f0fc17b2a6b37cb200339ae869c4c64c11824",
+      "size_bytes": 2209,
+      "sha256": "2a122fde8cac9061ac457955b413bd567897501ab921ef6d514ab7c0db68b163",
       "distribution": "tracked"
     },
     {
@@ -3626,15 +3626,261 @@
       "distribution": "tracked"
     },
     {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/kmbase/01_A1_warfarin_vitamin_K.json",
+      "size_bytes": 103,
+      "sha256": "87f88f1dffd973e45a788c22b4c2f1587868392d16c0548b7434ad4f5d80d950",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/kmbase/02_A1_와파린_비타민_K.json",
+      "size_bytes": 103,
+      "sha256": "9a29f697c75681f3cf7e7ed1c7873d7b06cc2f112e99ed426586ebe11a629deb",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/kmbase/03_A1_warfarin_phylloquinone.json",
+      "size_bytes": 103,
+      "sha256": "80bf36472dab7afb1ca56857fc29ec10000da6292bfe510b27e2d40d76aa31e4",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/kmbase/04_A1_warfarin_menaquinone.json",
+      "size_bytes": 103,
+      "sha256": "47b73bca20bf45ae8dbf0b15ab895c11cf49870dc5a2c06fe272b218555df33d",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/kmbase/05_A2_warfarin_omega_3.json",
+      "size_bytes": 103,
+      "sha256": "845a28eb9a4122e38f04a6de03b0ce5dccf051e2a82e35952f63b161830d8fa2",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/kmbase/06_A2_warfarin_fish_oil.json",
+      "size_bytes": 103,
+      "sha256": "3c985164b4f86554f5a680a2b4617db6ad78758cd5347c92768b9891b4cc8e5b",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/kmbase/07_A2_anticoagulant_omega_3.json",
+      "size_bytes": 103,
+      "sha256": "67e2c4a82de7d9cc85aff0ff134c414993b0fe51a8f34bee9cec5ca6af537957",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/kmbase/08_A2_항응고제_오메가_3.json",
+      "size_bytes": 103,
+      "sha256": "b0aa833ff64a062ddd8ba18013c17f4976755e88543f07e6a25899d985551871",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/kmbase/09_B1_kidney_stone_calcium_supplement.json",
+      "size_bytes": 103,
+      "sha256": "790cc40389b6257061ebe130467f87c43dff4b67ff150db58f43b557f5c8308b",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/kmbase/10_B1_nephrolithiasis_calcium_supplement.json",
+      "size_bytes": 103,
+      "sha256": "619b1f137b2d82badaa3ef44d5b1ff643907adcd728a518230d954c71023a54b",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/kmbase/11_B1_요로결석_칼슘_보충제.json",
+      "size_bytes": 103,
+      "sha256": "13534e5aa988d38f505aaae8ff97caa2e08f1783f6327defaaea6f3132ea7fd5",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/kmbase/12_B1_신결석_칼슘_보충제.json",
+      "size_bytes": 103,
+      "sha256": "7958a339fd08355a53f506d49d9d095d3eeccc5d4498f8ef0c20f0e6a7b377eb",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/kmbase/13_B2_kidney_stone_vitamin_D.json",
+      "size_bytes": 103,
+      "sha256": "1b3021837500cca248f1cde0d672ea8050c0542cbf0ec49596ab84f8fce1f3cb",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/kmbase/14_B2_nephrolithiasis_cholecalciferol.json",
+      "size_bytes": 103,
+      "sha256": "6999b0e4418734bde71888a674b706d8f3ad57d60f6697f84f7cc24a5328fd2c",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/kmbase/15_B2_요로결석_비타민_D.json",
+      "size_bytes": 103,
+      "sha256": "d50c74394a7921406a7745cbef3f7c424cbf093c5787d058f3bae35f9507ecea",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/kmbase/16_B2_신결석_비타민_D.json",
+      "size_bytes": 103,
+      "sha256": "6c7e2f7044cd84a8b9c751116f40810873207ce7376e390eb922a5e1fa6a9f41",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/kmbase/17_B3_kidney_stone_vitamin_C.json",
+      "size_bytes": 103,
+      "sha256": "cf445fb03c39dd201d61fa41ccc4188280ec735c3da1e5758de81d2b941936ed",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/kmbase/18_B3_nephrolithiasis_ascorbic_acid.json",
+      "size_bytes": 103,
+      "sha256": "74c9f5f7dbb281951cf6a6e3ff367d61ed260c3f33237e7df2b5ab07bf608697",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/kmbase/19_B3_요로결석_비타민_C.json",
+      "size_bytes": 103,
+      "sha256": "c2aea0a5ec7c6bdf8715cdbfabd62cf9d09fb394037aa3038b3a5c0e9312e5f7",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/kmbase/20_B3_신결석_비타민_C.json",
+      "size_bytes": 103,
+      "sha256": "6624d93b42f473ca6e147a45474bc9eab25b1a0ee1d9fbce86e9f86164f8ede9",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/riss/01_A1_warfarin_vitamin_K.html.gz",
+      "size_bytes": 32887,
+      "sha256": "1ed18311f5a6a9385a5b6ce7cf2fd5cd73e0d0a030749d3069b28704697f1eac",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/riss/02_A1_와파린_비타민_K.html.gz",
+      "size_bytes": 33822,
+      "sha256": "9cd1dcf9c5b614fdd9662926ab3786022cd16b97ef46223cdc1154733c3d0da2",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/riss/03_A1_warfarin_phylloquinone.html.gz",
+      "size_bytes": 32270,
+      "sha256": "1c8a6ed3446ff13bbb7aef6ac44ea234fa710627fa15cd4b47017c32ec3c57b7",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/riss/04_A1_warfarin_menaquinone.html.gz",
+      "size_bytes": 32530,
+      "sha256": "76074d3f8f40d2bc5a6fd5bc5f3e4276ce45a3b9e7cd2b9a8250e421d7adc836",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/riss/05_A2_warfarin_omega_3.html.gz",
+      "size_bytes": 32018,
+      "sha256": "f6c7c6b46d01f6f496ab751773d5e127ca685aaeadec2b03cb538bdb3b867b36",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/riss/06_A2_warfarin_fish_oil.html.gz",
+      "size_bytes": 31579,
+      "sha256": "ec96293b932aa1251ca727cb2bec384915687de85ccdf947f637edb7504fc1a5",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/riss/07_A2_anticoagulant_omega_3.html.gz",
+      "size_bytes": 32222,
+      "sha256": "05bc6ea0c6a2dcffb8bf7e1855ea95d8b958b22492ec098a14063b917f9f9461",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/riss/08_A2_항응고제_오메가_3.html.gz",
+      "size_bytes": 30699,
+      "sha256": "50ecbdb43634c3f4745ddaea5bf32d2dd5a99a67a81a6c1b767fa9e5ee3004cd",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/riss/09_B1_kidney_stone_calcium_supplement.html.gz",
+      "size_bytes": 34002,
+      "sha256": "bb64f2ac336b36030d2e2c0fb502b0705860081feac97c7fff4afa74647b66c7",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/riss/10_B1_nephrolithiasis_calcium_supplement.html.gz",
+      "size_bytes": 32879,
+      "sha256": "1ba9cccba0ef50caf0b24d5ccb1b956edce2ea65c6d89a0f5340719d75aa2b8b",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/riss/11_B1_요로결석_칼슘_보충제.html.gz",
+      "size_bytes": 31078,
+      "sha256": "64528812e750e6cc229fadb5f9f0df7246ce5091f12a4958a00d2cd254fe9fbe",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/riss/12_B1_신결석_칼슘_보충제.html.gz",
+      "size_bytes": 30702,
+      "sha256": "e563253ba23ce6e4b5994c746767673d8fde83b0f2b545f3cf91310dc7f10ee9",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/riss/13_B2_kidney_stone_vitamin_D.html.gz",
+      "size_bytes": 33519,
+      "sha256": "fa2989ab251ca2d67c63e95b1d13210ffea9708421b062288a9668c0568d6042",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/riss/14_B2_nephrolithiasis_cholecalciferol.html.gz",
+      "size_bytes": 30077,
+      "sha256": "de23c30eb25f52f2b30d0e3ad9fc6438b3dbf254cc48ad18c53c7521d9a3f51d",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/riss/15_B2_요로결석_비타민_D.html.gz",
+      "size_bytes": 32012,
+      "sha256": "92367c74ed8171fa850950a1d75c4d891a8f95b73172f5b177c054d7b524594c",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/riss/16_B2_신결석_비타민_D.html.gz",
+      "size_bytes": 31027,
+      "sha256": "ef9af1529d394d07db1a735cf5a7d8cab039e902e06d0894e53391018a0a68fe",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/riss/17_B3_kidney_stone_vitamin_C.html.gz",
+      "size_bytes": 33498,
+      "sha256": "8d3a1a3e62ed1e404774ca2cae2157b5b3dd3028f416c80e75147f74e9f32a33",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/riss/18_B3_nephrolithiasis_ascorbic_acid.html.gz",
+      "size_bytes": 32005,
+      "sha256": "fbf0dc698966f64a7a7678092b49cbe68e9947f58ae2aebf72ead3124b297199",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/riss/19_B3_요로결석_비타민_C.html.gz",
+      "size_bytes": 32016,
+      "sha256": "6af553b39fed42aec8a82575fc4e9974a5d170a7db841d943805d39113c4a5fb",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/raw/riss/20_B3_신결석_비타민_C.html.gz",
+      "size_bytes": 31032,
+      "sha256": "a7f0d67998a1571da9efc1092ca83a44c94c5aac9b5490ff520de980b6e0b3ca",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/korean_db_split_designpilot_20260710/summary.json",
+      "size_bytes": 23739,
+      "sha256": "70c968dc1f4b8bae14882c68417f22925a4451fa067f1350166da8b300eede16",
+      "distribution": "tracked"
+    },
+    {
       "path": "research/searches/phase_03_exit_criteria.md",
-      "size_bytes": 2510,
-      "sha256": "0bb5a1dc4bf6677d07381dbaa36756e7c32dd7cdacfd67cb017e7ed7b34f625d",
+      "size_bytes": 2921,
+      "sha256": "941e04bd276c524d860f419fab4d0fca1c2b1ea7ef4dee84e7626a89111ee582",
       "distribution": "tracked"
     },
     {
       "path": "research/searches/proxy_manifest.json",
       "size_bytes": 35190,
-      "sha256": "ccdd5b603083ded72eb94d2ab6af982bb4cffa1be09d6771311e9a2dce4f28ec",
+      "sha256": "5c329d6fac786256f4b8b1bb2e1a8bd066997951216ca3de775fdd4b2476f7e5",
       "distribution": "tracked"
     },
     {
@@ -3760,7 +4006,7 @@
     {
       "path": "research/validation/safe_empty_proxy_report.json",
       "size_bytes": 34684,
-      "sha256": "424fa99325e32ea31262baa1c1eab098375aec420a1a8f3cd441d8cb97f89b6f",
+      "sha256": "540c56939364db381e28b8b2661dfd06fc8ba8f110bc33cc194e6d78c76d04ba",
       "distribution": "tracked"
     },
     {
@@ -3904,7 +4150,7 @@
     {
       "path": "src/generated/thesis-bundle.json",
       "size_bytes": 555,
-      "sha256": "2bc0021362cd62e5c80acea88ec4209239164c70ed68a28a21a6ee5aca608a72",
+      "sha256": "f0fb2c52d1875978ed39ff298999bd31bdd1820ba6451896f861908212a5d530",
       "distribution": "tracked"
     },
     {
@@ -4019,6 +4265,12 @@
       "path": "tools/build_clinicaltrials_review_queue.py",
       "size_bytes": 1261,
       "sha256": "dbe95c63e80d92b1bd93324d63d76a3257dd3e731856f1e351d3d03bf101ed34",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/capture_korean_db_split_pilot.mjs",
+      "size_bytes": 5002,
+      "sha256": "3e87e92d145b0589f23e4c706c8fe88fe5d09b5822cf72ab0a0078fa4efbc7b3",
       "distribution": "tracked"
     },
     {
@@ -4175,6 +4427,12 @@
       "path": "tools/validate_koreamed_designpilot.py",
       "size_bytes": 3373,
       "sha256": "2bd5bafc29ffe9654c9c57aa6ae8535c4fcaf8c559a876e910cf17e1ef6f321c",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/validate_korean_db_split_pilot.py",
+      "size_bytes": 4541,
+      "sha256": "55575f59404dbb25b3aedcd99ae87be8166dc90c85e56f33bbe12e84dade2b79",
       "distribution": "tracked"
     },
     {

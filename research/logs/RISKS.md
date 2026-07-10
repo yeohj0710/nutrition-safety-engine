@@ -50,3 +50,4 @@
 
 - KMbase search transport is reachable, but a positive one-word control and failing/zero protocol translations show that PubMed-style Boolean syntax cannot be assumed.
 - Zero-hit responses are not evidence of absence until platform syntax is independently reviewed and split-query recall is checked.
+- RISS short-query counts overlap heavily and must never be summed. Only exported unique identifiers after approved final searches may enter deduplication or PRISMA totals.

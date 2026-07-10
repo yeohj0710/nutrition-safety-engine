@@ -282,3 +282,11 @@
 - Positive control `warfarin` returned 10,859 integrated hits; A1 `warfarin vitamin K` returned 555.
 - A2/B1/B2/B3 draft Boolean strings returned explicit zero-result pages. These are translation warnings, not absence claims.
 - Records/export/human decisions remain 0; captured the count-only observation under `research/searches/riss_designpilot_20260710/`.
+
+## 2026-07-10 — KMbase/RISS split-query raw-response pilot
+
+- Replaced five long Boolean translations with 20 short population/exposure pairs covering A1/A2/B1/B2/B3.
+- Captured 20 KMbase JSON responses and 20 post-render RISS DOM responses; validator recomputed every byte length and SHA-256 with errors 0.
+- KMbase: all 20 short pairs returned HTTP 200/0 hits; prior `warfarin` positive control remains 5, so recall/syntax is unresolved rather than negative evidence.
+- RISS: 19/20 nonzero; query-level counts retained. Overlap prevents summing and no record export was attempted.
+- Final-search, PRISMA, records-exported, PRESS, and human-decision flags remain false/zero.
