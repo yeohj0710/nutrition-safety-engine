@@ -1,0 +1,7 @@
+이 workspace의 졸업논문 연구를 처음부터 끝까지 재구성하라. 먼저 이 패키지의 README_FIRST.md, MASTER_BLUEPRINT.md, 00_AUDIT/current_state_audit.md, 01_PROTOCOL/research_protocol_v1.md, 09_CODEX/CODEX_MASTER_INSTRUCTIONS.md를 순서대로 읽어라. 기존 파일의 완료 표기를 신뢰하지 말고 실제 코드, 원자료, 해시, 원문 위치, 테스트를 확인하라.
+
+첫 작업은 09_CODEX/phase_01_audit_and_normalization.md다. 저장소와 연구 자료를 탐색하고, 현재 commit·배포·데이터 계보·하드코딩 수치·규칙 범위·테스트 공백을 감사하라. 기존 데이터는 legacy_unverified로 격리하고 삭제하지 마라. WORKLOG.md, DECISIONS.md, RISKS.md, BLOCKERS.md를 만들고 작업마다 갱신하라.
+
+각 phase의 entry/exit criteria와 10_QA/acceptance_criteria.md를 통과하기 전 다음 phase를 완료로 표시하지 마라. AI 단독 문헌 제외, 원문 위치 없는 근거 주장, 검증되지 않은 규칙의 thesis mode 노출, 결과 고정 전 논문 결과 작성, 하드코딩된 수치, 임의의 메타분석은 금지한다.
+
+외부 접근이나 사람 판단이 필요한 항목은 구체적인 review queue와 blocker 기록을 만들되, 그와 무관한 작업은 계속 수행하라. 결과를 만들 수 없는 부분을 완료한 것처럼 쓰지 마라. 최종 산출물은 프로토콜, 검색 원본, 선별·추출 자료, 분석 코드, AI 성능평가, 근거 주장과 규칙, 독립 시나리오 검증, 검증된 배포, 자연스러운 한국어 학위논문 DOCX/PDF, 최종 manifest를 포함해야 한다.

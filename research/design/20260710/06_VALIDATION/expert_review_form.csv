@@ -1,0 +1,1 @@
+﻿review_id,expert_id,expert_role,years_experience,rule_id,claim_ids,scope_relevance_1to4,evidence_accuracy_1to4,action_appropriateness_1to4,wording_clarity_1to4,overstatement_risk_1to4,missing_exception,suggested_revision,critical_safety_concern,reviewed_at,resolution,resolved_by,notes

@@ -5,12 +5,12 @@ import { siteDescription, siteName } from "@/src/lib/site";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: siteName,
-    short_name: "영양 안전 가이드",
+    short_name: "영양 안전성 연구",
     description: siteDescription,
     start_url: "/",
     display: "standalone",
-    background_color: "#f7f4ee",
-    theme_color: "#dae6d4",
+    background_color: "#ffffff",
+    theme_color: "#3182f6",
     lang: "ko-KR",
     icons: [
       {

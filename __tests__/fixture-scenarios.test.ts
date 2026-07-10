@@ -5,7 +5,7 @@ import warfarinVitaminK from "@/__tests__/fixtures/warfarin-vitamin-k.json";
 import thiazideVitaminDCalcium from "@/__tests__/fixtures/thiazide-vitamin-d-calcium.json";
 import quinoloneSpacing from "@/__tests__/fixtures/quinolone-spacing.json";
 import missingAgeSex from "@/__tests__/fixtures/missing-age-sex.json";
-import knowledgeIndexJson from "@/src/generated/knowledge-index.json";
+import knowledgeIndexJson from "@/src/generated/legacy/knowledge-index.json";
 import { runSafetyEngine } from "@/src/lib/safety-engine";
 import { knowledgeIndexSchema, type EngineQuery } from "@/src/types/knowledge";
 import { describe, expect, it } from "vitest";

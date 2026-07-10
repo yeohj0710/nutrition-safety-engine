@@ -1,0 +1,557 @@
+{
+  "root_name": "yeohj_thesis_reboot_pack_20260710",
+  "generated_at": "2026-07-10T01:16:49.295208+00:00",
+  "file_count": 110,
+  "files": [
+    {
+      "path": "00_AUDIT/critical_decisions.md",
+      "size_bytes": 2049,
+      "sha256": "67fbbbc479a6bd3e54fb014a96d1e76be499729931da42eca239193e780ec4bb"
+    },
+    {
+      "path": "00_AUDIT/current_state_audit.md",
+      "size_bytes": 8178,
+      "sha256": "03659eb93ab7e2c29d0df22512ee5ca114e5b1b54625cd104c2043ebf5526da2"
+    },
+    {
+      "path": "00_AUDIT/current_thesis_style_scan.json",
+      "size_bytes": 1066,
+      "sha256": "17f62032c68a1b3a62bae8723b5c8d3c846640dab63ee85c24811b94cb183f4d"
+    },
+    {
+      "path": "00_AUDIT/current_thesis_style_scan_console.txt",
+      "size_bytes": 1067,
+      "sha256": "9dc561be010b10283a41dc5329a3506d1d7284adec7882fe43875fb7635f3487"
+    },
+    {
+      "path": "00_AUDIT/existing_metrics_reconciliation.csv",
+      "size_bytes": 1036,
+      "sha256": "660e7faf631c81fdfd0ab267965ac5a0d691407fea18a4b8281b0d916bfcbf75"
+    },
+    {
+      "path": "00_AUDIT/file_inventory.csv",
+      "size_bytes": 78562,
+      "sha256": "88c762dc88af1075442e555d3613cfa81ee057db7e96a5ac3f8738f6174e85e6"
+    },
+    {
+      "path": "00_AUDIT/input_inventory.md",
+      "size_bytes": 911,
+      "sha256": "03667b49bc10a96b7198bb221aa1233cca6fd0e8e9d7680c63d0a3e635ef54c9"
+    },
+    {
+      "path": "00_AUDIT/legacy_csv_profile.csv",
+      "size_bytes": 4780,
+      "sha256": "7c4b37f07cb0359b2717c6beaeaaf05879fc7533081039082cec2ce1d6825677"
+    },
+    {
+      "path": "00_AUDIT/legacy_data_disposition.md",
+      "size_bytes": 1976,
+      "sha256": "d3ef32fcbbea990f782ea6a51825d0dc68a761434831675e73e476d77cd6efe9"
+    },
+    {
+      "path": "00_AUDIT/reference_inputs/260406_피드백.txt",
+      "size_bytes": 1301,
+      "sha256": "1ce6f9fa1649aa39a75e0f821d8f96639a0c178a125bc00ecd1ae574c4dac0e0"
+    },
+    {
+      "path": "00_AUDIT/reference_inputs/260413 피드백.txt",
+      "size_bytes": 430,
+      "sha256": "d554b93b8d3f6a8705607f7522d69b7540112a905e454b37604c1157ac8ce853"
+    },
+    {
+      "path": "00_AUDIT/reference_inputs/README.md",
+      "size_bytes": 1172,
+      "sha256": "c02be088321a2b4561a392646de7d1064884da7fd660d3e22e0c340c803ddd52"
+    },
+    {
+      "path": "00_AUDIT/reference_inputs/기존_AGENTS.md",
+      "size_bytes": 30620,
+      "sha256": "5a85fed09a81f83cbb70244daedf673a066fd537af7d21c12aaac2955f533110"
+    },
+    {
+      "path": "00_AUDIT/reference_inputs/기존_정리_기준.txt",
+      "size_bytes": 2160,
+      "sha256": "796f54ef3a0eae8ea62bc09ca44ba7a9aec2c5c91e08c2ab6d292fe2629215f0"
+    },
+    {
+      "path": "00_AUDIT/reference_inputs/기존졸업논문_텍스트추출_감사용.txt",
+      "size_bytes": 44400,
+      "sha256": "a0add625e4c307c1e797208c067de2a0058dc7cd97c6a63000503760763c6afd"
+    },
+    {
+      "path": "00_AUDIT/reference_inputs/연구계획서_여형준_260618_서명본.pdf",
+      "size_bytes": 207555,
+      "sha256": "bd63ca8041d242eb76c32dcca0b55e4e00a5cdad1ed2d718d0563b042c3cd07b"
+    },
+    {
+      "path": "00_AUDIT/reference_inputs/연구계획서_텍스트추출_감사용.txt",
+      "size_bytes": 22146,
+      "sha256": "736c2ff93f0443c6595583cd0b19d0a130c81b4ed250152adeec3ab03ab3346d"
+    },
+    {
+      "path": "00_AUDIT/reference_inputs/졸업논문_여형준_260618.pdf",
+      "size_bytes": 355195,
+      "sha256": "ea70e110347651fc772ddb8955778cda6da4f311f482960561991996d57f592d"
+    },
+    {
+      "path": "00_AUDIT/repo_audit_scope.md",
+      "size_bytes": 1657,
+      "sha256": "a71162daca5f1b597c81f389bb09853d756a88ffd08f5ecbe20bd52bb2e46d27"
+    },
+    {
+      "path": "00_AUDIT/reproduced_audit_summary.md",
+      "size_bytes": 2405,
+      "sha256": "e927a4ec9fe842b131442bffc443d6b9e6ed41eb86f7d1809e7eb37b0b7305f5"
+    },
+    {
+      "path": "00_AUDIT/reproduced_legacy_audit/audit_report.json",
+      "size_bytes": 208369,
+      "sha256": "e46d413257e8eebad28bf1615b7e942ac036c4fb0ffeb9e3f9da97c0477b95f6"
+    },
+    {
+      "path": "00_AUDIT/reproduced_legacy_audit/audit_report.md",
+      "size_bytes": 45836,
+      "sha256": "8a201d2435640e22bd323fa209ecfde50ed4213b0a7658113b003b3f69011575"
+    },
+    {
+      "path": "01_PROTOCOL/eligibility_criteria.yaml",
+      "size_bytes": 2137,
+      "sha256": "466400311eafbc2a459a153e819fb1a11a58e5c52d0f20cce68b39ef4b64ceb8"
+    },
+    {
+      "path": "01_PROTOCOL/outcome_definitions.md",
+      "size_bytes": 1805,
+      "sha256": "b5c32264574122ac7f579342b31199ad7e288163a7ee683978687a24c7137f2d"
+    },
+    {
+      "path": "01_PROTOCOL/protocol_amendment_log.csv",
+      "size_bytes": 298,
+      "sha256": "b3e1ce8b64ca1229406933855902316256429e7a434a6d0e5bb9d2ec76f21f23"
+    },
+    {
+      "path": "01_PROTOCOL/registration_plan.md",
+      "size_bytes": 956,
+      "sha256": "033ccb2a99b830d9887240132aff5bf3cb28327c56696746919ad6393dc6ea23"
+    },
+    {
+      "path": "01_PROTOCOL/research_protocol_v1.md",
+      "size_bytes": 10642,
+      "sha256": "d3f865a6ffda7a6d97d89e0a310925c9074f895a50ab531e98d224082ee39232"
+    },
+    {
+      "path": "01_PROTOCOL/scope_decision_tree.md",
+      "size_bytes": 1319,
+      "sha256": "60b40cb1a88e482f4dd4399444163e3ab37923ba13abd50904ad4c832847d6a0"
+    },
+    {
+      "path": "02_RETRIEVAL/access_matrix_template.csv",
+      "size_bytes": 777,
+      "sha256": "1825e592894117d8e104b6993c9614584409e1da71ce40c434760b746513b2a5"
+    },
+    {
+      "path": "02_RETRIEVAL/deduplication_protocol.md",
+      "size_bytes": 1799,
+      "sha256": "80ee0a6ec8e323d7aea92f89f9394d5ef2a3c0aa3e27efa9dce78d6799fea2ff"
+    },
+    {
+      "path": "02_RETRIEVAL/press_review_form.md",
+      "size_bytes": 1167,
+      "sha256": "3ed91675c87d687990cfdaa808c7f49ad939c3293951a8d0f2fdc9ca87457fc3"
+    },
+    {
+      "path": "02_RETRIEVAL/search_log_template.csv",
+      "size_bytes": 257,
+      "sha256": "c02283d59be1c660abcc7989fb335d38b7bdd66c45421f6c9de82d280b253090"
+    },
+    {
+      "path": "02_RETRIEVAL/search_question_blocks.yaml",
+      "size_bytes": 2088,
+      "sha256": "c4f0aaeff621d3fc6f56c38021972d9852786cc87ad66323bb1a428f4c879b18"
+    },
+    {
+      "path": "02_RETRIEVAL/search_strategy_spec.md",
+      "size_bytes": 6234,
+      "sha256": "258b427ae5074c27e96163770e48b73f9cf40d990a48cbad5560ec2e2fc7643c"
+    },
+    {
+      "path": "02_RETRIEVAL/source_registry_template.csv",
+      "size_bytes": 197,
+      "sha256": "c75570318bb909ff515e967b299272892cf046f0eef1b4b29e4004fc867a071b"
+    },
+    {
+      "path": "03_SCREENING/ai_screening_evaluation.md",
+      "size_bytes": 2988,
+      "sha256": "f46f1a6de8b04156e0cb918be3bab1478e449f96098e7bc90be6337604fed052"
+    },
+    {
+      "path": "03_SCREENING/dual_review_sampling_plan.md",
+      "size_bytes": 1001,
+      "sha256": "9a83537cb42d391fe03f4692f9ab0304a658bcc04b967de32ab9aa4168321e2d"
+    },
+    {
+      "path": "03_SCREENING/exclusion_codes.csv",
+      "size_bytes": 1799,
+      "sha256": "7de14a2323d5d36db51c546b4fd3d05f8af3e8fcf215619b58b567e3f55c4167"
+    },
+    {
+      "path": "03_SCREENING/screening_form_template.csv",
+      "size_bytes": 274,
+      "sha256": "4bfec110c5252664a2de0298f1caf981f2f8997794e8d0b5076acf1010de10c8"
+    },
+    {
+      "path": "03_SCREENING/screening_manual.md",
+      "size_bytes": 4342,
+      "sha256": "dc3a6c03c4bfc54c508d40c3129478941ccdfd34431fcd3ada84ca1eace9cbb1"
+    },
+    {
+      "path": "03_SCREENING/screening_prompt_template.md",
+      "size_bytes": 1199,
+      "sha256": "da1cf2d4e91ba461c554d522ecbbd98f0317d9eb6856211a5400047f144a59fe"
+    },
+    {
+      "path": "04_EXTRACTION/data_dictionary.md",
+      "size_bytes": 2701,
+      "sha256": "66440dcf58386b5120b902081d95e23ba93119e9c1fcffbdf1dc84825d949bbe"
+    },
+    {
+      "path": "04_EXTRACTION/evidence_extraction_template.csv",
+      "size_bytes": 763,
+      "sha256": "29254e810bb60131f51bd4201c0f82f4db880f0e5a6c06162f024fff41a049f4"
+    },
+    {
+      "path": "04_EXTRACTION/extraction_prompt_template.md",
+      "size_bytes": 996,
+      "sha256": "a2241127453e354af227c7e03b061c439b50c2bce2c79e687acbaaa8f4a36540"
+    },
+    {
+      "path": "04_EXTRACTION/human_extraction_workflow.md",
+      "size_bytes": 917,
+      "sha256": "5e38d99269fd571f0c527c0a09f171e8459c13b87ed1fd7cb97143fb4ee2df11"
+    },
+    {
+      "path": "04_EXTRACTION/llm_extraction_protocol.md",
+      "size_bytes": 4212,
+      "sha256": "7c1f9fe5cba923f9e544206490533febd406abca23f2eea66b4292e1d0b2599d"
+    },
+    {
+      "path": "04_EXTRACTION/llm_extraction_schema.json",
+      "size_bytes": 3338,
+      "sha256": "243e1f3e1e65766c223f14ea9c48e4f1925ce09cf199b47bd681ed0226ae6f6f"
+    },
+    {
+      "path": "04_EXTRACTION/risk_of_bias_template.csv",
+      "size_bytes": 211,
+      "sha256": "46931c6c5912d02efe15465310ecb607952cd083ea201e8756e8ba68e8729ae0"
+    },
+    {
+      "path": "04_EXTRACTION/study_report_linkage_template.csv",
+      "size_bytes": 154,
+      "sha256": "d61daf3f47e80874639dddaaf719e2b815f531e4194492eeeb466cadac74b63b"
+    },
+    {
+      "path": "05_SYNTHESIS/analysis_plan_by_question.md",
+      "size_bytes": 1325,
+      "sha256": "1a19cfc61a2310c1533e65298b727073aa49c2a50ab41c7bb0501e8ebcbacd96"
+    },
+    {
+      "path": "05_SYNTHESIS/certainty_assessment_template.csv",
+      "size_bytes": 345,
+      "sha256": "7ebe38607a099f25ff6362e68ebd5dd835b97784da8777ed06c2fe7ba33c4ab8"
+    },
+    {
+      "path": "05_SYNTHESIS/claim_registry_template.csv",
+      "size_bytes": 244,
+      "sha256": "a44e4f336036be3fcee54bd30eb24e429371a5f986f0956d50e870d33e0c3f60"
+    },
+    {
+      "path": "05_SYNTHESIS/claim_writing_checklist.md",
+      "size_bytes": 768,
+      "sha256": "2a556f8f9a24907c77f8c547c0f938e03b3e5cc5bdcc27b7d67700c984f8abeb"
+    },
+    {
+      "path": "05_SYNTHESIS/evidence_to_rule_schema.json",
+      "size_bytes": 6735,
+      "sha256": "2a19ed9281c7d0797b50c8975b9b7fcd547ffb119150c508ec06c9174ce04da3"
+    },
+    {
+      "path": "05_SYNTHESIS/rule_authoring_manual.md",
+      "size_bytes": 4482,
+      "sha256": "bcd5ddff3f05b2dc2e084b3f6c0cbad83c0e77720b10bfcc43c58c79d8e09431"
+    },
+    {
+      "path": "05_SYNTHESIS/rule_registry_template.csv",
+      "size_bytes": 268,
+      "sha256": "a99c1d611b645969d865e7004de1a9d45dfa01a6bde85bcb6fa1bc5953c4af4a"
+    },
+    {
+      "path": "05_SYNTHESIS/synthesis_plan.md",
+      "size_bytes": 5885,
+      "sha256": "670e60947e1393cc1df4980720e3fb891408b80a6c87d8bafba0e02169d3db37"
+    },
+    {
+      "path": "06_VALIDATION/adversarial_scenario_catalog.md",
+      "size_bytes": 1000,
+      "sha256": "24b0eb026f2fbb9964bfab1d8d37a409a522aef01769dff9b4bac150acaa3fb4"
+    },
+    {
+      "path": "06_VALIDATION/expert_review_form.csv",
+      "size_bytes": 290,
+      "sha256": "6b5d14ecbd3d3fc1b9bbf9592dacbbb94f3584a190f11311a68595ccb125c1a6"
+    },
+    {
+      "path": "06_VALIDATION/gold_set_blinding.md",
+      "size_bytes": 924,
+      "sha256": "62a73f713c65f2baed50ade761493a6ad0a07172dfd5938a69c1925deb207306"
+    },
+    {
+      "path": "06_VALIDATION/metrics_spec.md",
+      "size_bytes": 2183,
+      "sha256": "337a3ca82425b8671cec4a9f5eeb2f8fb04fed1f98a654ef800083e67f9573b1"
+    },
+    {
+      "path": "06_VALIDATION/scenario_template.csv",
+      "size_bytes": 561,
+      "sha256": "816ba4023360f8e29ca1ca0877ce5b09a1d04f4337263a4f77ffc48db7609239"
+    },
+    {
+      "path": "06_VALIDATION/usability_plan.md",
+      "size_bytes": 1153,
+      "sha256": "9bb3073bd811c35ef67509358cf677470b57a34270cf6940f56e1e582ba0e95b"
+    },
+    {
+      "path": "06_VALIDATION/validation_protocol.md",
+      "size_bytes": 4379,
+      "sha256": "91ff8cd94a0e01d48335426d01665200ac409c7a9a0d7e8dbc26b839d6198a3a"
+    },
+    {
+      "path": "07_REPO/ci_acceptance.md",
+      "size_bytes": 1157,
+      "sha256": "94c569d7268d0ee45df9694db16b4f23eef43307a1ecd838f00410fc781ed866"
+    },
+    {
+      "path": "07_REPO/data_contracts.md",
+      "size_bytes": 2580,
+      "sha256": "b6bc51e7a5c33196d5ee72da71b41a0ea9d86752187f27eb77601521ba60cc32"
+    },
+    {
+      "path": "07_REPO/migration_plan.md",
+      "size_bytes": 1855,
+      "sha256": "7258f3ea089a7c353286ac7c930562aa18e6427fec563bbc5e9a1e8834c4bb74"
+    },
+    {
+      "path": "07_REPO/repo_redesign_spec.md",
+      "size_bytes": 5615,
+      "sha256": "e5da8054d96b71ef3821ffc46c059b5fb63ca46cd6f0ecb0b41c90f3ffec830d"
+    },
+    {
+      "path": "07_REPO/test_matrix.md",
+      "size_bytes": 1855,
+      "sha256": "e3e9b2faccae9e3ef5f9cc5585f4e10c364f81448cfaa2832b42201a12877529"
+    },
+    {
+      "path": "07_REPO/ui_product_spec.md",
+      "size_bytes": 1209,
+      "sha256": "841e2dc5e869f328c1612e07f1c4c0d64cca27d7f77bf4ce107f73b8cd378ad5"
+    },
+    {
+      "path": "08_THESIS/abstract_result_template.md",
+      "size_bytes": 1375,
+      "sha256": "ce5e1ab2568c80b7bdaadc40f9e8442e7688348e0a9807e483ecfada5dff027a"
+    },
+    {
+      "path": "08_THESIS/chapter_acceptance_checklists.md",
+      "size_bytes": 1679,
+      "sha256": "4781b93c9350041bb8383d9e0543baee3480fb774e4372cce2fa8ebc12ad5bb2"
+    },
+    {
+      "path": "08_THESIS/human_style_guide.md",
+      "size_bytes": 4517,
+      "sha256": "326425ef6e3f7e7f9883b3007563eebe02f4d966ce3f506e6a38a869805507ea"
+    },
+    {
+      "path": "08_THESIS/source_to_section_map.md",
+      "size_bytes": 909,
+      "sha256": "fe1b8866feeb636bbb630e3641cc899458b8e4160fa6a48a7679f994a6b0e476"
+    },
+    {
+      "path": "08_THESIS/table_figure_plan.md",
+      "size_bytes": 1273,
+      "sha256": "84aa0a5d71fe5c440f1f441898e76c5c9962c318d4e478fa92afa7c565a1d1f5"
+    },
+    {
+      "path": "08_THESIS/thesis_claim_rules.md",
+      "size_bytes": 1470,
+      "sha256": "12c3b95a4cf709226b6d87bebfe0c888a4d51e14b4a06c0439845caaa5779f67"
+    },
+    {
+      "path": "08_THESIS/thesis_outline.md",
+      "size_bytes": 5497,
+      "sha256": "ef5739731e97c43254de22ed009ef268dd4a3efa288aa4cb37e0152728c5a397"
+    },
+    {
+      "path": "09_CODEX/CODEX_MASTER_INSTRUCTIONS.md",
+      "size_bytes": 9616,
+      "sha256": "3b1e8c05127a38748b904974aece56a5dcc44328b6be42b94c1fc396f057ae36"
+    },
+    {
+      "path": "09_CODEX/PROMPT_TO_START.txt",
+      "size_bytes": 1638,
+      "sha256": "3e1c27963a81598697c3c40ecea4f1e5b3784677ff31cc17832a10aa1f3ed334"
+    },
+    {
+      "path": "09_CODEX/phase_01_audit_and_normalization.md",
+      "size_bytes": 1494,
+      "sha256": "df39101fede576c929132f335fa9389f77ea3d695d3016c8a85530d67051cf5f"
+    },
+    {
+      "path": "09_CODEX/phase_02_protocol_and_search_design.md",
+      "size_bytes": 1347,
+      "sha256": "3874826dd96d47fadb589c60769fbb15bbbf6f3de30c6dca9577fcad35373528"
+    },
+    {
+      "path": "09_CODEX/phase_03_retrieval_and_deduplication.md",
+      "size_bytes": 1073,
+      "sha256": "a3bd26cfc2e82bf2a1fe7e61c62c16f1789b24b129854247cdffc3c30b8e41d0"
+    },
+    {
+      "path": "09_CODEX/phase_04_screening_and_full_text.md",
+      "size_bytes": 1097,
+      "sha256": "a0073d8e3c522c7bde706d93f950c8e3a36fe8e3de6c9eb9f52c3d11265f64ea"
+    },
+    {
+      "path": "09_CODEX/phase_05_extraction_quality_and_ai.md",
+      "size_bytes": 1110,
+      "sha256": "74cc11bc92a253d7b90a5de938197b6779235572940d1780553fb2d15b725039"
+    },
+    {
+      "path": "09_CODEX/phase_06_synthesis_claims_and_rules.md",
+      "size_bytes": 1045,
+      "sha256": "b623da359f424e8a08f9f9a4a1123cffd80d58beba42abd64b5e48cc6898535b"
+    },
+    {
+      "path": "09_CODEX/phase_07_engine_validation_and_release.md",
+      "size_bytes": 1194,
+      "sha256": "b12f0f2910bdb1b6b8f6434c27667219bf4fadf447fafacd11c40edf7b5dc68e"
+    },
+    {
+      "path": "09_CODEX/phase_08_thesis_and_finalization.md",
+      "size_bytes": 1238,
+      "sha256": "6ffeb9e0bab5dcbaa3cbd759dc24144a8f48bb9e377b0c3c218a28a3afa33bf2"
+    },
+    {
+      "path": "10_QA/acceptance_criteria.md",
+      "size_bytes": 4519,
+      "sha256": "c31f0fb8907849d8128f9f9cbefdc82a447e539448f9c54bc0a7f2362ddca9bd"
+    },
+    {
+      "path": "10_QA/artifact_naming_convention.md",
+      "size_bytes": 706,
+      "sha256": "34953cf18f63dce0e9e3948f70871d0bef7416a81e38b3744c64e290cce10de7"
+    },
+    {
+      "path": "10_QA/completion_report_template.md",
+      "size_bytes": 913,
+      "sha256": "c9e76acd504ec6018cb6fce35ef4e46f21eea63913d970d5828fa0e7ace7f95d"
+    },
+    {
+      "path": "10_QA/final_bundle_validation.txt",
+      "size_bytes": 74,
+      "sha256": "7ddb67ea8251f3e15cf6084a9472997832fbcc620f593d29170be893d82babd7"
+    },
+    {
+      "path": "10_QA/final_consistency_checklist.md",
+      "size_bytes": 1473,
+      "sha256": "1784eebb3205920ad133691b92701e9b942ee3ecf8aecbe1721c837c40e7eb13"
+    },
+    {
+      "path": "10_QA/package_self_test.md",
+      "size_bytes": 896,
+      "sha256": "ef6d6525644975fbeecea7b0847ff50d0f9230e797c6be2c8582e0c66bc98833"
+    },
+    {
+      "path": "10_QA/package_self_test_console.txt",
+      "size_bytes": 74,
+      "sha256": "7ddb67ea8251f3e15cf6084a9472997832fbcc620f593d29170be893d82babd7"
+    },
+    {
+      "path": "10_QA/red_flags.md",
+      "size_bytes": 1577,
+      "sha256": "78884fb3872afb77da098f3cd56b4e3a308c2d46f7f56fdfbf812280ba9f4317"
+    },
+    {
+      "path": "10_QA/traceability_matrix_template.csv",
+      "size_bytes": 187,
+      "sha256": "4978a43399925e8d549c1a1a4a4f94febf9de055e6fb2367b363ce20974b807c"
+    },
+    {
+      "path": "DECISION_REGISTER.csv",
+      "size_bytes": 979,
+      "sha256": "aee578aef12f81ebefc4c9e2b647d7bf136500c41bd22f06da20043c35e47b53"
+    },
+    {
+      "path": "MANIFEST.md",
+      "size_bytes": 818,
+      "sha256": "81f9c8ddf0d638e8086b96fe304cc291340012d61154727242439677e4ee7871"
+    },
+    {
+      "path": "MASTER_BLUEPRINT.md",
+      "size_bytes": 17739,
+      "sha256": "ac38228146a7bcf0b988bfe9dd4db02aeec12fa14feb6416b2823af8f524cd4b"
+    },
+    {
+      "path": "METHODS_SOURCES.md",
+      "size_bytes": 2812,
+      "sha256": "aa568c064f7387b3350542de76bdf68dd2f3264126fbcac0c76b123b0a99cc34"
+    },
+    {
+      "path": "PROJECT_STATUS.yaml",
+      "size_bytes": 1003,
+      "sha256": "c0fea5a999ef84d1aae58ba3a17f0d2c071a6e321d736192a34662b64f964d4f"
+    },
+    {
+      "path": "README_FIRST.md",
+      "size_bytes": 5017,
+      "sha256": "36530c0085a16b535c2421d4ed6e136fea1294b62886ac0a44fb958790c84114"
+    },
+    {
+      "path": "RISK_REGISTER.csv",
+      "size_bytes": 1398,
+      "sha256": "9ae46e35c026415e4d9d1da5927b5a1e40e1266b564ee97b696c2f337db682f8"
+    },
+    {
+      "path": "TASK_BOARD.csv",
+      "size_bytes": 2666,
+      "sha256": "f8eab6b1eeddcd36a056601dd125ba6296f5038799e41264675ed041121cff3f"
+    },
+    {
+      "path": "tools/README.md",
+      "size_bytes": 476,
+      "sha256": "cdbbe293ca877cab6356c90f8d8fb58a083c42a4a06fd27b6ae7689b9c504d4a"
+    },
+    {
+      "path": "tools/audit_existing_artifacts.py",
+      "size_bytes": 4447,
+      "sha256": "596d2a18a7459b72f780491c1dbd409cbe0d2076f7d82d307f25bc58f6a56f59"
+    },
+    {
+      "path": "tools/check_thesis_style.py",
+      "size_bytes": 3161,
+      "sha256": "bcd3ad825373a12a3d9bd8e0f494340149eb0855dbef6274d64df6af5acc5ae3"
+    },
+    {
+      "path": "tools/generate_manifest.py",
+      "size_bytes": 1394,
+      "sha256": "aa184c76be958112e0487d77529c64e3b8226a200dda1d9885b2be8f16777268"
+    },
+    {
+      "path": "tools/validate_provenance.py",
+      "size_bytes": 3165,
+      "sha256": "5f5159b796d4c4cb6532075d74b9cbda1706420ddb5cf627ac311640d659da41"
+    },
+    {
+      "path": "tools/validate_research_bundle.py",
+      "size_bytes": 4830,
+      "sha256": "98c0cc10fd95a814fd751992960cbb2e88b7f7744ee48b9a3b7507fc79247f01"
+    }
+  ]
+}

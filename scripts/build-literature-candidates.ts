@@ -3,7 +3,13 @@ import path from "node:path";
 
 type CsvRecord = Record<string, string>;
 
-const searchDataDir = path.join(process.cwd(), "data", "systematic_search");
+const legacyRoot = path.join(
+  process.cwd(),
+  "data",
+  "legacy_unverified",
+  "baseline-33658e3",
+);
+const searchDataDir = path.join(legacyRoot, "systematic_search");
 
 function parseCsv(input: string): CsvRecord[] {
   const rows: string[][] = [];
@@ -93,11 +99,19 @@ function buildDataset() {
       row.suggested_decision !== "likely_exclude" &&
       row.suggested_decision !== "exclude_duplicate",
   );
+  const latestSearchDate = searchRows
+    .map((row) => row.search_date)
+    .filter(Boolean)
+    .sort()
+    .at(-1);
+  if (!latestSearchDate) {
+    throw new Error("legacy search_runs.csv has no search_date value");
+  }
 
   const summary = {
     studyId: detectStudyId(studyLabel),
     studyLabel,
-    generatedAt: new Date().toISOString(),
+    generatedAt: `${latestSearchDate}T00:00:00.000Z`,
     primarySearchRuns: searchRows.length,
     latestPubMedHitCount: searchRows.reduce(
       (sum, row) => sum + toNumber(row.hit_count),
@@ -173,6 +187,7 @@ const outputPath = path.join(
   process.cwd(),
   "src",
   "generated",
+  "legacy",
   "literature-candidates.json",
 );
 mkdirSync(path.dirname(outputPath), { recursive: true });

@@ -383,17 +383,17 @@ function ensureKnowledgePackSections(knowledgePack: RawKnowledgePack) {
 
   for (const section of requiredSections) {
     if (!Array.isArray(knowledgePack[section])) {
-      throw new Error(`data/knowledge_pack.json is missing a valid "${section}" array.`);
+      throw new Error(`Legacy knowledge pack is missing a valid "${section}" array.`);
     }
   }
 }
 
-async function readLegacyKnowledgePack(projectRoot: string): Promise<RawKnowledgePack> {
+async function readLegacyKnowledgePack(dataRoot: string): Promise<RawKnowledgePack> {
   const [sourcesRaw, ingredientsRaw, evidenceRaw, rulesRaw] = await Promise.all([
-    readFile(path.join(projectRoot, "data", "source_registry.json"), "utf8"),
-    readFile(path.join(projectRoot, "data", "ingredients.json"), "utf8"),
-    readFile(path.join(projectRoot, "data", "evidence_chunks.json"), "utf8"),
-    readFile(path.join(projectRoot, "data", "safety_rules.json"), "utf8"),
+    readFile(path.join(dataRoot, "source_registry.json"), "utf8"),
+    readFile(path.join(dataRoot, "ingredients.json"), "utf8"),
+    readFile(path.join(dataRoot, "evidence_chunks.json"), "utf8"),
+    readFile(path.join(dataRoot, "safety_rules.json"), "utf8"),
   ]);
 
   return {
@@ -410,11 +410,11 @@ async function readLegacyKnowledgePack(projectRoot: string): Promise<RawKnowledg
   };
 }
 
-async function readKnowledgePack(projectRoot: string): Promise<{
+async function readKnowledgePack(dataRoot: string): Promise<{
   knowledgePack: RawKnowledgePack;
   dataSource: KnowledgeDataSource;
 }> {
-  const knowledgePackPath = path.join(projectRoot, "data", "knowledge_pack.json");
+  const knowledgePackPath = path.join(dataRoot, "knowledge_pack.json");
 
   try {
     const knowledgePackRaw = await readFile(knowledgePackPath, "utf8");
@@ -431,14 +431,18 @@ async function readKnowledgePack(projectRoot: string): Promise<{
     }
 
     return {
-      knowledgePack: await readLegacyKnowledgePack(projectRoot),
+      knowledgePack: await readLegacyKnowledgePack(dataRoot),
       dataSource: "legacy_split_files",
     };
   }
 }
 
-export async function buildKnowledgeIndex(projectRoot: string) {
-  const { knowledgePack, dataSource } = await readKnowledgePack(projectRoot);
+export async function buildKnowledgeIndex(
+  projectRoot: string,
+  options: { dataRoot?: string } = {},
+) {
+  const dataRoot = options.dataRoot ?? path.join(projectRoot, "data");
+  const { knowledgePack, dataSource } = await readKnowledgePack(dataRoot);
   const generatedAt = knowledgePack.package_meta?.generated_at ?? new Date().toISOString();
 
   const ingredients = (knowledgePack.ingredients ?? []).map(buildIngredientRecord);
@@ -595,9 +599,14 @@ export async function buildKnowledgeIndex(projectRoot: string) {
   }) as KnowledgeIndex;
 }
 
-export async function writeKnowledgeIndex(projectRoot: string) {
-  const outputPath = path.join(projectRoot, "src", "generated", "knowledge-index.json");
-  const result = await buildKnowledgeIndex(projectRoot);
+export async function writeKnowledgeIndex(
+  projectRoot: string,
+  options: { dataRoot?: string; outputPath?: string } = {},
+) {
+  const outputPath =
+    options.outputPath ??
+    path.join(projectRoot, "src", "generated", "knowledge-index.json");
+  const result = await buildKnowledgeIndex(projectRoot, options);
   await writeFile(outputPath, `${JSON.stringify(result, null, 2)}\n`, "utf8");
   return result;
 }

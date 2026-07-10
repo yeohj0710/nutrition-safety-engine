@@ -49,3 +49,8 @@ next-env.d.ts
 
 # search pipeline local browser session
 data/systematic_search/.browser/
+
+# local-only research documents and restricted full texts
+research/design/20260710/00_AUDIT/reference_inputs/*.pdf
+research/full_texts/
+data/full_texts/

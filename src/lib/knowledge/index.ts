@@ -3,7 +3,7 @@ import "server-only";
 import { readFileSync, statSync } from "node:fs";
 import path from "node:path";
 
-import knowledgeIndexJson from "@/src/generated/knowledge-index.json";
+import knowledgeIndexJson from "@/src/generated/legacy/knowledge-index.json";
 import {
   getConditionAliases,
   getConditionDisplayLabel,
@@ -46,6 +46,7 @@ const generatedKnowledgeIndexPath = path.join(
   process.cwd(),
   "src",
   "generated",
+  "legacy",
   "knowledge-index.json",
 );
 

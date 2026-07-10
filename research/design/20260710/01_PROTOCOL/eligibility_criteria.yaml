@@ -1,0 +1,40 @@
+# Machine-readable intent expressed as YAML. Keep synchronized with research_protocol_v1.md.
+protocol_version: "1.0-draft"
+decision_values: [include, exclude, uncertain]
+common:
+  population: "Human adults; prespecified high-risk population or separately extractable subgroup"
+  exposure: "Supplement exposure identifiable by ingredient, form, dose, duration, or meaningful intake change"
+  outcome: "At least one prespecified safety outcome"
+  language: "No language restriction at search; translation feasibility documented at full text"
+  publication_status: "Published and eligible unpublished or registered studies; status recorded"
+  exclusions:
+    - animal_or_in_vitro_only
+    - efficacy_only_no_safety_outcome
+    - exposure_not_separable
+    - population_not_separable
+    - editorial_advertisement_unsupported_web
+    - duplicate_report_no_new_data
+questions:
+  A1:
+    population: [warfarin_users, other_vka_users_if_separable]
+    exposure: [vitamin_k_supplement, meaningful_vitamin_k_intake_change]
+    outcomes: [inr_variability, time_in_therapeutic_range, supratherapeutic_inr, subtherapeutic_inr, major_bleeding, nonmajor_bleeding, thromboembolism]
+  A2:
+    population: [oral_anticoagulant_users]
+    subgroup_required: [vka, doac]
+    exposure: [fish_oil, omega3, epa, dha, icosapent_ethyl]
+    outcomes: [major_bleeding, clinically_relevant_nonmajor_bleeding, any_bleeding, inr_change, atrial_fibrillation_secondary]
+  B1:
+    population: [calcium_oxalate_stone_history, recurrent_stone_risk, hypercalciuria]
+    exposure: [supplemental_calcium]
+    exposure_details: [formulation, elemental_dose, timing_with_meals, duration]
+    outcomes: [incident_stone, recurrent_stone, urinary_calcium, hypercalcemia]
+  B2:
+    population: [renal_high_risk_population]
+    exposure: [vitamin_d_alone, vitamin_d_plus_calcium]
+    outcomes: [hypercalciuria, hypercalcemia, incident_stone, recurrent_stone]
+  B3:
+    population: [calcium_oxalate_stone_risk, hyperoxaluria_risk]
+    subgroup_required: [sex]
+    exposure: [vitamin_c_supplement]
+    outcomes: [urinary_oxalate, incident_stone, recurrent_stone, renal_adverse_event]

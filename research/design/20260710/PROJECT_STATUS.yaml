@@ -1,0 +1,21 @@
+project_id: yeohj_nutrition_safety_thesis_reboot
+status_date: 2026-07-10
+current_gate: 0
+current_state: audit_complete_design_package_created
+research_title_ko: "고위험 임상상황에서 영양보충제 안전성 근거의 체계적 구조화와 규칙 기반 상담지원 도구 개발 및 검증: 항응고제 복용과 칼슘옥살산 신결석 위험을 중심으로"
+core_questions: [A1, A2, B1, B2, B3]
+legacy_data_status: legacy_unverified
+protocol_status: draft_pending_supervisor_review
+repo_source_audit_status: pending_direct_repository_access
+live_deployment_observed:
+  url: "https://nutrition-safety-engine.vercel.app/"
+  observed_http_status: 200
+  observed_commit: "33658e3a9ee8dbf6d21ac94a5aa49202b5bf22e5"
+  observed_at: "2026-07-10"
+nonnegotiable_rules:
+  - no_ai_only_exclusion
+  - no_final_claim_without_full_text_locator
+  - no_unvalidated_rule_in_thesis_mode
+  - no_hardcoded_research_counts
+  - no_thesis_results_before_data_freeze
+  - all_counts_derived_from_canonical_data

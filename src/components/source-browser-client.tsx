@@ -285,7 +285,7 @@ export function SourceBrowserClient({
 
                   <div className="mt-3">
                     <Link
-                      href={`/sources/${source.id}`}
+                      href={`/legacy/sources/${source.id}`}
                       className="block text-base font-semibold leading-7 tracking-[-0.02em] text-foreground underline decoration-border-subtle underline-offset-4 transition hover:text-stone-700"
                     >
                       {cleanDisplayText(source.title)}
@@ -333,7 +333,7 @@ export function SourceBrowserClient({
 
                 <div className="flex shrink-0 items-start">
                   <Link
-                    href={`/sources/${source.id}`}
+                    href={`/legacy/sources/${source.id}`}
                     className="inline-flex min-h-10 items-center justify-center rounded-full border border-border-subtle bg-white px-4 py-2 text-sm font-semibold text-foreground transition duration-200 hover:border-stone-300"
                   >
                     출처 상세

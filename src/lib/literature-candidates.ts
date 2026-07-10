@@ -1,4 +1,4 @@
-import literatureCandidateJson from "@/src/generated/literature-candidates.json";
+import literatureCandidateJson from "@/src/generated/legacy/literature-candidates.json";
 import {
   literatureCandidateSchema,
   literatureContextSchema,

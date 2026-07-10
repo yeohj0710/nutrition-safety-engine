@@ -1,0 +1,49 @@
+{
+    "generated_at":  "2026-07-10T14:52:42.6285117+09:00",
+    "status":  "legacy_unverified",
+    "runtime_exposure_allowed":  false,
+    "file_count":  5,
+    "mismatch_count":  0,
+    "files":  [
+                  {
+                      "original_path":  "app/api/ai-explain/route.ts",
+                      "archive_path":  "research/legacy_unverified/runtime_ai/app-api-ai-explain-route.ts.txt",
+                      "sha256_before":  "877af6f640534adf19bf0da08d37185e3013a6675cfb463781bbf75ee4a1e4d5",
+                      "sha256_after":  "877af6f640534adf19bf0da08d37185e3013a6675cfb463781bbf75ee4a1e4d5",
+                      "match":  true,
+                      "status":  "legacy_unverified"
+                  },
+                  {
+                      "original_path":  "src/lib/ai/config.ts",
+                      "archive_path":  "research/legacy_unverified/runtime_ai/src-lib-ai-config.ts.txt",
+                      "sha256_before":  "fe722f6d6b5c661f22efdc289c4559153fa20b34c7eb9e36ae45966b8e78349f",
+                      "sha256_after":  "fe722f6d6b5c661f22efdc289c4559153fa20b34c7eb9e36ae45966b8e78349f",
+                      "match":  true,
+                      "status":  "legacy_unverified"
+                  },
+                  {
+                      "original_path":  "src/lib/ai/schema.ts",
+                      "archive_path":  "research/legacy_unverified/runtime_ai/src-lib-ai-schema.ts.txt",
+                      "sha256_before":  "617bfbbea11a77d2dd58d9f0cf24d5d1b4f1959a14ba88606d95ac5c0f6243a4",
+                      "sha256_after":  "617bfbbea11a77d2dd58d9f0cf24d5d1b4f1959a14ba88606d95ac5c0f6243a4",
+                      "match":  true,
+                      "status":  "legacy_unverified"
+                  },
+                  {
+                      "original_path":  "src/lib/ai/explainSafetyResults.ts",
+                      "archive_path":  "research/legacy_unverified/runtime_ai/src-lib-ai-explainSafetyResults.ts.txt",
+                      "sha256_before":  "84e33707ec31ba53b5b897c88952741c659dcd00477abeafaa7953b4f7169df6",
+                      "sha256_after":  "84e33707ec31ba53b5b897c88952741c659dcd00477abeafaa7953b4f7169df6",
+                      "match":  true,
+                      "status":  "legacy_unverified"
+                  },
+                  {
+                      "original_path":  "__tests__/ai-explain.test.ts",
+                      "archive_path":  "research/legacy_unverified/runtime_ai/tests-ai-explain.test.ts.txt",
+                      "sha256_before":  "0db9a84276ad17a834daf1a2fd4cd0d6b2a04495ef7d733b69f3d77114c927f4",
+                      "sha256_after":  "0db9a84276ad17a834daf1a2fd4cd0d6b2a04495ef7d733b69f3d77114c927f4",
+                      "match":  true,
+                      "status":  "legacy_unverified"
+                  }
+              ]
+}

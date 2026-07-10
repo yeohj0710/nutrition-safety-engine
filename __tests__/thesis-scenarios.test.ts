@@ -1,4 +1,4 @@
-import knowledgeIndexJson from "@/src/generated/knowledge-index.json";
+import knowledgeIndexJson from "@/src/generated/legacy/knowledge-index.json";
 import { runSafetyEngine } from "@/src/lib/safety-engine";
 import { knowledgeIndexSchema, type EngineQuery } from "@/src/types/knowledge";
 import { describe, expect, it } from "vitest";

@@ -2,12 +2,8 @@
 
 import { useEffect, useRef, useState, useTransition } from "react";
 
-import {
-  EvidenceSummaryPanel,
-  type AiGuidanceStatus,
-} from "@/src/components/evidence-summary-panel";
+import { EvidenceSummaryPanel } from "@/src/components/evidence-summary-panel";
 import { RuleCard } from "@/src/components/rule-card";
-import type { AiExplanation, AiExplainResponse } from "@/src/lib/ai/schema";
 import { cleanDisplayText } from "@/src/lib/display-text";
 import {
   parseDailyIntakeText,
@@ -205,11 +201,6 @@ function hasAdvancedProfileValues(profile: ExplorerProfileDraft) {
   );
 }
 
-const pregnancyStatusLabels = {
-  not_pregnant: "해당 없음",
-  pregnant: "임신 중",
-} as const;
-
 function normalizePregnancyStatus(value: string) {
   switch (value) {
     case "pregnant":
@@ -221,15 +212,6 @@ function normalizePregnancyStatus(value: string) {
     default:
       return "";
   }
-}
-
-function getPregnancyStatusLabel(value: string) {
-  const normalized = normalizePregnancyStatus(value);
-  return normalized
-    ? (pregnancyStatusLabels[
-        normalized as keyof typeof pregnancyStatusLabels
-      ] ?? normalized)
-    : "";
 }
 
 const defaultExampleProfile: ExplorerProfileDraft = {
@@ -971,34 +953,6 @@ function getVisibleSections(
   };
 }
 
-function buildAiProfileSummary(response: EngineResponse) {
-  const parts: string[] = [];
-  const profile = response.query.profile;
-  const selectedItems = (response.query.candidateItems ?? [])
-    .map((item) => item.name.trim())
-    .filter(Boolean);
-
-  if (profile.age) parts.push(`나이 ${profile.age}`);
-  if (profile.sex) parts.push(`성별 ${profile.sex}`);
-  if (profile.medications && profile.medications.length > 0) {
-    parts.push(`복용 약물 ${profile.medications.join(", ")}`);
-  }
-  if (profile.conditions && profile.conditions.length > 0) {
-    parts.push(`질환/상태 ${profile.conditions.join(", ")}`);
-  }
-  if (selectedItems.length > 0) {
-    parts.push(`선택 성분 ${selectedItems.join(", ")}`);
-  }
-  if (profile.pregnancyStatus) {
-    parts.push(`임신 ${getPregnancyStatusLabel(profile.pregnancyStatus)}`);
-  }
-  if (profile.lactationStatus) parts.push(`수유 ${profile.lactationStatus}`);
-  if (profile.smokerStatus) parts.push(`흡연 ${profile.smokerStatus}`);
-  if (profile.jurisdiction) parts.push(`관할권 ${profile.jurisdiction}`);
-
-  return parts.join(" / ") || "선택 성분과 개인 조건에 맞춘 영양 안전 결과";
-}
-
 export function RuleExplorerClient({
   metadata,
 }: {
@@ -1034,14 +988,6 @@ export function RuleExplorerClient({
   const [sort, setSort] =
     useState<NonNullable<EngineQuery["sort"]>>("severity_desc");
   const [response, setResponse] = useState<EngineResponse | null>(null);
-  const [aiExplanation, setAiExplanation] = useState<AiExplanation | null>(
-    null,
-  );
-  const [aiGuidanceStatus, setAiGuidanceStatus] =
-    useState<AiGuidanceStatus>("idle");
-  const [aiRuleRecommendations, setAiRuleRecommendations] = useState<
-    Record<string, string>
-  >({});
   const [hasQueried, setHasQueried] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isQueryLoading, setIsQueryLoading] = useState(false);
@@ -1206,75 +1152,6 @@ export function RuleExplorerClient({
     hasRestoredState,
   ]);
 
-  useEffect(() => {
-    if (!response) {
-      setAiExplanation(null);
-      setAiGuidanceStatus("idle");
-      setAiRuleRecommendations({});
-      return;
-    }
-
-    const currentResponse = response;
-    const controller = new AbortController();
-
-    setAiExplanation(null);
-    setAiGuidanceStatus("loading");
-    setAiRuleRecommendations({});
-
-    async function loadAiGuidance() {
-      try {
-        const result = await fetch("/api/ai-explain", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            engineResponse: currentResponse,
-            profileSummary: buildAiProfileSummary(currentResponse),
-          }),
-          signal: controller.signal,
-        });
-
-        if (!result.ok) {
-          setAiExplanation(null);
-          setAiGuidanceStatus("fallback");
-          setAiRuleRecommendations({});
-          return;
-        }
-
-        const payload = (await result.json()) as
-          | AiExplainResponse
-          | { error?: string };
-        if (!("ok" in payload) || !payload.ok) {
-          setAiExplanation(null);
-          setAiGuidanceStatus("fallback");
-          setAiRuleRecommendations({});
-          return;
-        }
-
-        setAiExplanation(payload.explanation);
-        setAiGuidanceStatus("ready");
-        setAiRuleRecommendations(
-          Object.fromEntries(
-            payload.explanation.ruleCardActions.map((item) => [
-              item.ruleId,
-              item.recommendation,
-            ]),
-          ),
-        );
-      } catch (caught) {
-        if (caught instanceof Error && caught.name === "AbortError") {
-          return;
-        }
-
-        setAiExplanation(null);
-        setAiGuidanceStatus("fallback");
-        setAiRuleRecommendations({});
-      }
-    }
-
-    void loadAiGuidance();
-
-    return () => controller.abort();
-  }, [response]);
 
   function resetSectionPreviewCounts() {
     setSectionVisibleCounts({ ...sectionPreviewCounts });
@@ -1362,13 +1239,12 @@ export function RuleExplorerClient({
 
     setHasQueried(true);
     setError(null);
-    setAiRuleRecommendations({});
     setResponse(null);
     setIsQueryLoading(true);
     const startedAt = performance.now();
 
     try {
-      const result = await fetch("/api/rules/query", {
+      const result = await fetch("/api/legacy/rules/query", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(buildQueryPayload(profile)),
@@ -2228,8 +2104,6 @@ export function RuleExplorerClient({
         <>
           <EvidenceSummaryPanel
             response={response}
-            explanation={aiExplanation}
-            status={aiGuidanceStatus}
             resultOverview={resultOverview}
           />
 
@@ -2354,12 +2228,7 @@ export function RuleExplorerClient({
                         animationDelay: `${index * 90 + matchIndex * 45}ms`,
                       }}
                     >
-                      <RuleCard
-                        match={match}
-                        aiRecommendation={
-                          aiRuleRecommendations[match.ruleId] ?? null
-                        }
-                      />
+                      <RuleCard match={match} />
                     </div>
                   ))}
 

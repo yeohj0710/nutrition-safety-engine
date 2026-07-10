@@ -438,11 +438,9 @@ function getActionPanelTone(match: RuleMatch) {
 export function RuleCard({
   match,
   defaultExpandedEvidence = false,
-  aiRecommendation = null,
 }: {
   match: RuleMatch;
   defaultExpandedEvidence?: boolean;
-  aiRecommendation?: string | null;
 }) {
   const badgeMeta = getBadgeMeta(match);
   const actionPanelTone = getActionPanelTone(match);
@@ -530,8 +528,7 @@ export function RuleCard({
     ) ?? "";
   const primaryRecommendation =
     cleanDisplayText(
-      aiRecommendation ??
-        buildDeterministicRecommendation(match, supportingGuidanceSource),
+      buildDeterministicRecommendation(match, supportingGuidanceSource),
     ) ?? "";
   const confidenceLabel = formatBadgeLabel(match.rule.confidence) ?? "unknown";
   const supportingSourceCount = sortedSources.length;
@@ -685,7 +682,7 @@ export function RuleCard({
                       신뢰도 {confidenceLabel}
                     </span>
                     <Link
-                      href={`/rules/${match.ruleId}`}
+                      href={`/legacy/rules/${match.ruleId}`}
                       className="inline-flex min-h-9 items-center justify-center rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-foreground transition duration-150 hover:border-stone-300 hover:bg-stone-50"
                     >
                       규칙 상세
@@ -743,7 +740,7 @@ export function RuleCard({
                             </div>
 
                             <Link
-                              href={`/sources/${source.id}`}
+                              href={`/legacy/sources/${source.id}`}
                               className="mt-3 block text-sm font-semibold leading-6 text-foreground underline decoration-border-subtle underline-offset-4"
                             >
                               {cleanDisplayText(source.title)}
@@ -814,7 +811,7 @@ export function RuleCard({
                       </div>
 
                       <Link
-                        href={`/sources/${primarySource.id}`}
+                        href={`/legacy/sources/${primarySource.id}`}
                         className="mt-3 block text-sm font-semibold leading-6 text-foreground transition hover:text-stone-700"
                       >
                         {cleanDisplayText(primarySource.title)}

@@ -1,0 +1,262 @@
+{
+    "generated_at":  "2026-07-10T14:46:32.8947410+09:00",
+    "repository":  "C:\\dev\\nutrition-safety-engine",
+    "status":  "legacy_unverified",
+    "operation":  "move_without_content_change",
+    "file_count":  36,
+    "mismatch_count":  0,
+    "files":  [
+                  {
+                      "original_path":  "data/evidence_chunks.json",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/evidence_chunks.json",
+                      "sha256_before":  "395c7b6a16868d0dcb7b7faf809afdac8c4e948ddb2de212986af6261210e77e",
+                      "sha256_after":  "395c7b6a16868d0dcb7b7faf809afdac8c4e948ddb2de212986af6261210e77e",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/ingredients.json",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/ingredients.json",
+                      "sha256_before":  "6187f7fd9c256ed3ed38ae323bdd294b5c422b52f7fe2900d1c9eb6a44e5a89a",
+                      "sha256_after":  "6187f7fd9c256ed3ed38ae323bdd294b5c422b52f7fe2900d1c9eb6a44e5a89a",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/knowledge_pack.json",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/knowledge_pack.json",
+                      "sha256_before":  "16e82825a7746d4b850923f29178e0895701639600f0200673f3d03b03988d8c",
+                      "sha256_after":  "16e82825a7746d4b850923f29178e0895701639600f0200673f3d03b03988d8c",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/manifest.json",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/manifest.json",
+                      "sha256_before":  "4fc846d89e9515e462b59129b5247f518cc25cef3fb6f2fb13a545c7d0f7ed99",
+                      "sha256_after":  "4fc846d89e9515e462b59129b5247f518cc25cef3fb6f2fb13a545c7d0f7ed99",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/package_meta.json",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/package_meta.json",
+                      "sha256_before":  "b7eab3e9cb6f4ff6371abad48f03f110f6cbd68ba1b53eafc807edb805ebcaed",
+                      "sha256_after":  "b7eab3e9cb6f4ff6371abad48f03f110f6cbd68ba1b53eafc807edb805ebcaed",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/safety_rules.json",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/safety_rules.json",
+                      "sha256_before":  "52db7292edfc37e73ba947c786b0338c23144e395ef2c8482b3e0c3b9281407c",
+                      "sha256_after":  "52db7292edfc37e73ba947c786b0338c23144e395ef2c8482b3e0c3b9281407c",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/sample_engine_output.json",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/sample_engine_output.json",
+                      "sha256_before":  "6bd7817b983b6dd924ad2ce4683197c850954f816964300267ca627456d6af36",
+                      "sha256_after":  "6bd7817b983b6dd924ad2ce4683197c850954f816964300267ca627456d6af36",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/sample_evaluation_input.json",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/sample_evaluation_input.json",
+                      "sha256_before":  "ece2a3327666e31de63612b11408a0eb83bb44e7d19a983ed2382b065dd66d8b",
+                      "sha256_after":  "ece2a3327666e31de63612b11408a0eb83bb44e7d19a983ed2382b065dd66d8b",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/sample_user_profile.json",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/sample_user_profile.json",
+                      "sha256_before":  "52aedfde831144fe49b1ee36dcdb08e316514abf8ec552a589a2d975d9382010",
+                      "sha256_after":  "52aedfde831144fe49b1ee36dcdb08e316514abf8ec552a589a2d975d9382010",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/source_registry.json",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/source_registry.json",
+                      "sha256_before":  "c1aeda1a700d8d8ef30488a7789ffa6ccb58845d759dc8430363da285f4c6b02",
+                      "sha256_after":  "c1aeda1a700d8d8ef30488a7789ffa6ccb58845d759dc8430363da285f4c6b02",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/systematic_search/evidence_extraction.csv",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/systematic_search/evidence_extraction.csv",
+                      "sha256_before":  "2973d2f1f473ab206941684faf4af5ca30cc7886a8d388c5ba3dbc3fe09c4afb",
+                      "sha256_after":  "2973d2f1f473ab206941684faf4af5ca30cc7886a8d388c5ba3dbc3fe09c4afb",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/systematic_search/raw/embase/.gitkeep",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/systematic_search/raw/embase/.gitkeep",
+                      "sha256_before":  "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+                      "sha256_after":  "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/systematic_search/raw/pubmed/.gitkeep",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/systematic_search/raw/pubmed/.gitkeep",
+                      "sha256_before":  "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+                      "sha256_after":  "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/systematic_search/raw/pubmed/pubmed_anticoag_refined_20260531T223335_90c4eb6f/efetch_001.xml",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/systematic_search/raw/pubmed/pubmed_anticoag_refined_20260531T223335_90c4eb6f/efetch_001.xml",
+                      "sha256_before":  "10007484c716ef6e627689c7ec747b1c50b0fe578744cd7849cfd3ff087aec9f",
+                      "sha256_after":  "10007484c716ef6e627689c7ec747b1c50b0fe578744cd7849cfd3ff087aec9f",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/systematic_search/raw/pubmed/pubmed_anticoag_refined_20260531T223335_90c4eb6f/esearch.json",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/systematic_search/raw/pubmed/pubmed_anticoag_refined_20260531T223335_90c4eb6f/esearch.json",
+                      "sha256_before":  "8d09b1ef6a349f96acbf335533d51ff7deeafd3fb880434ede3b03d392e7cb3a",
+                      "sha256_after":  "8d09b1ef6a349f96acbf335533d51ff7deeafd3fb880434ede3b03d392e7cb3a",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/systematic_search/raw/pubmed/pubmed_anticoag_refined_20260603T125913_ece52619/efetch_001.xml",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/systematic_search/raw/pubmed/pubmed_anticoag_refined_20260603T125913_ece52619/efetch_001.xml",
+                      "sha256_before":  "a09bb8413179d48f0f9cff5221450322ff1236bfa24845c391d2ac340a65755e",
+                      "sha256_after":  "a09bb8413179d48f0f9cff5221450322ff1236bfa24845c391d2ac340a65755e",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/systematic_search/raw/pubmed/pubmed_anticoag_refined_20260603T125913_ece52619/esearch.json",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/systematic_search/raw/pubmed/pubmed_anticoag_refined_20260603T125913_ece52619/esearch.json",
+                      "sha256_before":  "62297dc6d07dc18a3322426ca9aadec524a9caad6a677ebc5addbcdd4e9fd17a",
+                      "sha256_after":  "62297dc6d07dc18a3322426ca9aadec524a9caad6a677ebc5addbcdd4e9fd17a",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/systematic_search/raw/pubmed/pubmed_kidney_stone_refined_20260531T223339_33755914/efetch_001.xml",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/systematic_search/raw/pubmed/pubmed_kidney_stone_refined_20260531T223339_33755914/efetch_001.xml",
+                      "sha256_before":  "74dc9d6807359a7ad5f1541dca17fa482560290c4ee89d4f61ca15ff035c99dd",
+                      "sha256_after":  "74dc9d6807359a7ad5f1541dca17fa482560290c4ee89d4f61ca15ff035c99dd",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/systematic_search/raw/pubmed/pubmed_kidney_stone_refined_20260531T223339_33755914/esearch.json",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/systematic_search/raw/pubmed/pubmed_kidney_stone_refined_20260531T223339_33755914/esearch.json",
+                      "sha256_before":  "e0665c50252f726625f6f3f4a9c73e47fc060f56a7bf1752a6e50eecd8ff0de2",
+                      "sha256_after":  "e0665c50252f726625f6f3f4a9c73e47fc060f56a7bf1752a6e50eecd8ff0de2",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/systematic_search/raw/pubmed/pubmed_kidney_stone_refined_20260603T125918_598b32ee/efetch_001.xml",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/systematic_search/raw/pubmed/pubmed_kidney_stone_refined_20260603T125918_598b32ee/efetch_001.xml",
+                      "sha256_before":  "378c29c65524652aa95d06a23df7d9599ae9f3a6559bc32ac97192cd1a08e0f1",
+                      "sha256_after":  "378c29c65524652aa95d06a23df7d9599ae9f3a6559bc32ac97192cd1a08e0f1",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/systematic_search/raw/pubmed/pubmed_kidney_stone_refined_20260603T125918_598b32ee/esearch.json",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/systematic_search/raw/pubmed/pubmed_kidney_stone_refined_20260603T125918_598b32ee/esearch.json",
+                      "sha256_before":  "779ff3e3472a8d9df38a3ee8713f1bad22162094c4077ebdf5ea1a82b5124de7",
+                      "sha256_after":  "779ff3e3472a8d9df38a3ee8713f1bad22162094c4077ebdf5ea1a82b5124de7",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/systematic_search/raw/secondary_20260603/crossref_anticoag_secondary.json",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/systematic_search/raw/secondary_20260603/crossref_anticoag_secondary.json",
+                      "sha256_before":  "7919002e5c614f93fdd64fcfb397bd6cd6abe3b6ab7bba4a2e376e0eaf18c119",
+                      "sha256_after":  "7919002e5c614f93fdd64fcfb397bd6cd6abe3b6ab7bba4a2e376e0eaf18c119",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/systematic_search/raw/secondary_20260603/crossref_renal_secondary.json",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/systematic_search/raw/secondary_20260603/crossref_renal_secondary.json",
+                      "sha256_before":  "29fc024f124bb2c591a31093b92f9fc44bd8538f13792f751cbbab59a148c7e5",
+                      "sha256_after":  "29fc024f124bb2c591a31093b92f9fc44bd8538f13792f751cbbab59a148c7e5",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/systematic_search/raw/secondary_20260603/europepmc_anticoag_secondary.json",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/systematic_search/raw/secondary_20260603/europepmc_anticoag_secondary.json",
+                      "sha256_before":  "94d3b8b0b218fbd2e92160131260f08c652ab85ff0123413936d3ddc49884463",
+                      "sha256_after":  "94d3b8b0b218fbd2e92160131260f08c652ab85ff0123413936d3ddc49884463",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/systematic_search/raw/secondary_20260603/europepmc_renal_secondary.json",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/systematic_search/raw/secondary_20260603/europepmc_renal_secondary.json",
+                      "sha256_before":  "b774a899beb984aff66871e0193d4be1dd1712c724d98cf0d4c454eecd0b24dc",
+                      "sha256_after":  "b774a899beb984aff66871e0193d4be1dd1712c724d98cf0d4c454eecd0b24dc",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/systematic_search/retrieved_records.csv",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/systematic_search/retrieved_records.csv",
+                      "sha256_before":  "8d8c81be495a1f8fb5a0f965089bd5a4bbfa14ae93519445d3b31ab707791c6b",
+                      "sha256_after":  "8d8c81be495a1f8fb5a0f965089bd5a4bbfa14ae93519445d3b31ab707791c6b",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/systematic_search/safety_rule_seed_20260603.csv",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/systematic_search/safety_rule_seed_20260603.csv",
+                      "sha256_before":  "10967033ca9c34ca68c89d96317ae875eb91823e4b73310265223a2085d3b9aa",
+                      "sha256_after":  "10967033ca9c34ca68c89d96317ae875eb91823e4b73310265223a2085d3b9aa",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/systematic_search/scenario_evaluation_20260603.csv",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/systematic_search/scenario_evaluation_20260603.csv",
+                      "sha256_before":  "a34910851f7027ac35793443c45371dd450dfc550f0138e812694eb9401e015a",
+                      "sha256_after":  "a34910851f7027ac35793443c45371dd450dfc550f0138e812694eb9401e015a",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/systematic_search/scenario_evaluation_20260603.json",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/systematic_search/scenario_evaluation_20260603.json",
+                      "sha256_before":  "b685923236008b7a90f18ee94f5c293be210f74ccce25c0470c36cfc40e11b9a",
+                      "sha256_after":  "b685923236008b7a90f18ee94f5c293be210f74ccce25c0470c36cfc40e11b9a",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/systematic_search/screening_log.csv",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/systematic_search/screening_log.csv",
+                      "sha256_before":  "8356692f4e9f0ecaa82ae3beee9a8c25424966d54aaf6b93e052e7806bc8a8d7",
+                      "sha256_after":  "8356692f4e9f0ecaa82ae3beee9a8c25424966d54aaf6b93e052e7806bc8a8d7",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/systematic_search/screening_priority_20260603.csv",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/systematic_search/screening_priority_20260603.csv",
+                      "sha256_before":  "44a5cc3b052dff0cd9b1de198468f0d56ac92db2b1c7fea398ba80328e699757",
+                      "sha256_after":  "44a5cc3b052dff0cd9b1de198468f0d56ac92db2b1c7fea398ba80328e699757",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/systematic_search/search_runs.csv",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/systematic_search/search_runs.csv",
+                      "sha256_before":  "8b54b22c096ac691e774fab201926e184b7538408e280231f988ab90c4e57103",
+                      "sha256_after":  "8b54b22c096ac691e774fab201926e184b7538408e280231f988ab90c4e57103",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/systematic_search/secondary_retrieved_records_20260603.csv",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/systematic_search/secondary_retrieved_records_20260603.csv",
+                      "sha256_before":  "164f5ae2821754cad344a0917e0b426f4090c663bfc24702af94d2a684ba5962",
+                      "sha256_after":  "164f5ae2821754cad344a0917e0b426f4090c663bfc24702af94d2a684ba5962",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "data/systematic_search/secondary_search_runs_20260603.csv",
+                      "quarantined_path":  "data/legacy_unverified/baseline-33658e3/systematic_search/secondary_search_runs_20260603.csv",
+                      "sha256_before":  "3acc372a383026da0d9c9e516c24cb53be09f3473dad5e8ddd34eb72fd11bec7",
+                      "sha256_after":  "3acc372a383026da0d9c9e516c24cb53be09f3473dad5e8ddd34eb72fd11bec7",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "src/generated/knowledge-index.json",
+                      "quarantined_path":  "src/generated/legacy/knowledge-index.json",
+                      "sha256_before":  "d303f42e263d51adc58ae03429b948b2521eda289de9390501102cae7263c150",
+                      "sha256_after":  "d303f42e263d51adc58ae03429b948b2521eda289de9390501102cae7263c150",
+                      "match":  true
+                  },
+                  {
+                      "original_path":  "src/generated/literature-candidates.json",
+                      "quarantined_path":  "src/generated/legacy/literature-candidates.json",
+                      "sha256_before":  "75c918221c3347bb972b1bdd4db4761673a1cf80e2429c2a0189aaf280492884",
+                      "sha256_after":  "75c918221c3347bb972b1bdd4db4761673a1cf80e2429c2a0189aaf280492884",
+                      "match":  true
+                  }
+              ]
+}

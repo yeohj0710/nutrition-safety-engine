@@ -1,0 +1,6 @@
+﻿decision_id,date,topic,decision,rationale,alternatives_considered,revisit_trigger,status
+D-001,2026-07-10,study type,systematic evidence review + LLM evaluation + deterministic tool validation,align academic method and implementation,narrative review; app-only report,supervisor rejects design,proposed
+D-002,2026-07-10,scope,five prespecified questions; other rules exploratory,restore coherence,all 9 live ingredients; anticoagulant only,search burden or evidence scarcity,proposed
+D-003,2026-07-10,legacy search,treat as pilot_truncated,top-N relevance export,reuse current PRISMA counts,none,accepted for reboot
+D-004,2026-07-10,AI,assist and evaluate; never sole exclusion/clinical authority,known variability and need for human validation,fully manual; AI final judge,validated evidence supports change,proposed
+D-005,2026-07-10,runtime,deterministic validated rules only,repeatability and traceability,generative runtime answer,new separate safety study,proposed

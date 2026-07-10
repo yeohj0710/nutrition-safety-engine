@@ -1,5 +1,5 @@
-import sampleEvaluationInput from "@/data/sample_evaluation_input.json";
-import knowledgeIndexJson from "@/src/generated/knowledge-index.json";
+import sampleEvaluationInput from "@/data/legacy_unverified/baseline-33658e3/sample_evaluation_input.json";
+import knowledgeIndexJson from "@/src/generated/legacy/knowledge-index.json";
 import { runSafetyEngine } from "@/src/lib/safety-engine";
 import { knowledgeIndexSchema, type EngineQuery } from "@/src/types/knowledge";
 import { describe, expect, it } from "vitest";

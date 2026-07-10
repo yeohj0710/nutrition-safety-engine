@@ -1,0 +1,23 @@
+﻿task_id,phase,task,dependency,deliverable,acceptance_test,priority,status
+T001,0,inventory repository and deployment,,00_AUDIT/repo_inventory.json,"HEAD, data lineage, tests, deployment recorded",P0,not_started
+T002,0,isolate legacy data,T001,data/legacy_unverified manifest,no legacy record appears as validated,P0,not_started
+T003,1,supervisor review and protocol freeze,,protocol-v1.0,signed/dated decision and amendment log,P0,not_started
+T004,1,confirm database/full-text access,T003,access_matrix.csv,all planned sources marked available/substitute/blocked,P0,not_started
+T005,2,develop and peer-review five searches,"T003,T004",searches/final,PRESS checks resolved,P0,not_started
+T006,2,execute full exports and hash raw files,T005,search_log.csv + raw files,export_count equals obtainable records; no top-N truncation,P0,not_started
+T007,3,deduplicate and link records,T006,record_report_study tables,sample audit passes; reasons logged,P0,not_started
+T008,3,complete title/abstract screening,T007,screening decisions,human decisions complete; agreement reported,P0,not_started
+T009,3,complete full-text screening,T008,full-text log,all excludes have one primary reason,P0,not_started
+T010,4,extract included studies,T009,extraction table,critical fields double checked,P0,not_started
+T011,4,assess risk of bias,T009,rob table,design-appropriate tool completed,P0,not_started
+T012,4,evaluate AI screening/extraction,"T008,T010",AI evaluation report,held-out/frozen human gold; repeated runs,P0,not_started
+T013,5,synthesize each question,"T010,T011",evidence tables and analysis,no inappropriate pooling; certainty rated,P0,not_started
+T014,6,author and validate evidence claims,T013,claim registry,100% claims have exact locators,P0,not_started
+T015,6,migrate validated rules,T014,rule registry,all thesis rules validated and in scope,P0,not_started
+T016,7,build independent scenario gold set,T015,gold scenarios,two independent authors + adjudication,P0,not_started
+T017,7,run engine validation and error analysis,T016,validation report,metrics + CIs + critical FN analysis,P0,not_started
+T018,7,expert content review,T015,expert review dataset,scope/accuracy/wording reviewed,P1,not_started
+T019,7,refactor app/repo and CI,"T014,T015",production candidate,all test gates pass,P0,not_started
+T020,8,freeze data and generate figures/tables,"T013,T017,T019",release manifest,tag and hashes stable,P0,not_started
+T021,8,write thesis from frozen outputs,T020,DOCX/PDF,chapter and style checks pass,P0,not_started
+T022,8,final consistency and submission audit,T021,final audit,"all numbers, refs, app, appendices agree",P0,not_started

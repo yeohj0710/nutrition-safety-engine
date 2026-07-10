@@ -1,0 +1,1 @@
+﻿search_run_id,question_id,database,platform,coverage_notes,search_datetime_iso,timezone,query_file,query_sha256,limits,total_hits_reported,records_exported,export_format,raw_file,raw_sha256,incremental_from_date,operator,peer_review_status,status,notes

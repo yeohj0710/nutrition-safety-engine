@@ -1,0 +1,285 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/evidence-to-rule.schema.json",
+  "title": "Evidence Claim and Deterministic Rule Bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "bundle_version",
+    "claims",
+    "rules"
+  ],
+  "properties": {
+    "bundle_version": {
+      "type": "string"
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "claim_id",
+          "question_id",
+          "claim_text",
+          "population",
+          "exposure",
+          "outcome",
+          "evidence_layer",
+          "certainty",
+          "support",
+          "verification_status"
+        ],
+        "properties": {
+          "claim_id": {
+            "type": "string",
+            "pattern": "^CLM-"
+          },
+          "question_id": {
+            "type": "string",
+            "enum": [
+              "A1",
+              "A2",
+              "B1",
+              "B2",
+              "B3"
+            ]
+          },
+          "claim_text": {
+            "type": "string",
+            "minLength": 10
+          },
+          "population": {
+            "type": "object"
+          },
+          "exposure": {
+            "type": "object"
+          },
+          "comparator": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "outcome": {
+            "type": "object"
+          },
+          "effect": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "evidence_layer": {
+            "type": "string",
+            "enum": [
+              "primary_synthesis",
+              "secondary_context",
+              "guidance",
+              "safety_signal"
+            ]
+          },
+          "certainty": {
+            "type": "string",
+            "enum": [
+              "high",
+              "moderate",
+              "low",
+              "very_low",
+              "not_graded"
+            ]
+          },
+          "applicability_notes": {
+            "type": "string"
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "support": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "report_id",
+                "locator",
+                "supporting_quote"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string"
+                },
+                "report_id": {
+                  "type": "string"
+                },
+                "study_id": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "locator": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "supporting_quote": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "verification_status": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "human_verified",
+              "validated",
+              "retired"
+            ]
+          },
+          "verified_by": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "version": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "rule_id",
+          "question_id",
+          "scope_status",
+          "conditions",
+          "action_class",
+          "message_template",
+          "claim_ids",
+          "validation_status",
+          "version"
+        ],
+        "properties": {
+          "rule_id": {
+            "type": "string",
+            "pattern": "^RUL-"
+          },
+          "question_id": {
+            "type": "string",
+            "enum": [
+              "A1",
+              "A2",
+              "B1",
+              "B2",
+              "B3"
+            ]
+          },
+          "scope_status": {
+            "type": "string",
+            "enum": [
+              "validated_thesis_scope",
+              "exploratory_demo",
+              "legacy_unverified",
+              "retired"
+            ]
+          },
+          "conditions": {
+            "type": "object"
+          },
+          "exclusions": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "missing_information": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "action_class": {
+            "type": "string",
+            "enum": [
+              "urgent_referral",
+              "avoid_until_review",
+              "pharmacist_review",
+              "monitor_or_consistency",
+              "information_only",
+              "insufficient_evidence"
+            ]
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "critical",
+              "high",
+              "moderate",
+              "low",
+              "informational"
+            ]
+          },
+          "message_template": {
+            "type": "string",
+            "minLength": 10
+          },
+          "rationale_template": {
+            "type": "string"
+          },
+          "claim_ids": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "pattern": "^CLM-"
+            }
+          },
+          "validation_status": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "source_verified",
+              "expert_reviewed",
+              "scenario_validated",
+              "validated",
+              "retired"
+            ]
+          },
+          "validation_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "version": {
+            "type": "string"
+          },
+          "effective_date": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "review_due": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "file": "/mnt/data/current_thesis.txt",
+  "characters": 22701,
+  "findings": [
+    {
+      "severity": "style_warning",
+      "pattern": "단순히\\s*.+?가\\s*아니라\\s*.+?이다",
+      "line": 67,
+      "match": "단순히 좋거나 나쁜 것으로 판단하기 어렵고, 복용량과 기존 병력, 식이\n\n섭취량을 함께 확인해야 한다.\n\n  공공기관 자료와 의학 문헌은 각각 중요한 정보를 제공하지만, 실제로 상담을 준비할 때는 자료가 여러\n\n곳에 흩어져 있다는 점이 문제가 된다. NIH ODS, NCCIH, EFSA, 식품의약품안전처, 한국인 영양소\n"
+    },
+    {
+      "severity": "repetition",
+      "sentence": "이때 후보문헌은 최종 판단이 아니라 원문 검토를 위한 출발점이다.",
+      "count": 5
+    },
+    {
+      "severity": "repetition",
+      "sentence": "다르면 같은 성분이라도 해석이 달라질 수 있으므로, 결과에는 근거 출처와 확인할 조건을 함께 표시한다.",
+      "count": 5
+    }
+  ],
+  "critical_count": 0
+}
