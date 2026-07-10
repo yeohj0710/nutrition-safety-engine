@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "86adeae1b9e23bfd04be214c2626ae5e5de8af25",
+  "implementation_head": "3be77bb52885afd1f4141a1ba643e93ae1147398",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -4066,7 +4066,7 @@
     {
       "path": "research/validation/safe_empty_proxy_report.json",
       "size_bytes": 34684,
-      "sha256": "40cfb13908d49726303f6b97790ee784fa81dd1f957f5671d0b5b366a29cdc5d",
+      "sha256": "9e001fee9b361fc4eb8f585dfa3a07af7c17a34bd04d662f6dcf9048ac5218b5",
       "distribution": "tracked"
     },
     {
@@ -4216,7 +4216,7 @@
     {
       "path": "src/generated/thesis-bundle.json",
       "size_bytes": 555,
-      "sha256": "cde1120538cc199f9501396f755b067663b2341d1f83acf14ddc6250ce6ac9dd",
+      "sha256": "8ca9978a4e805eaf4e7c04bacb712dcf4c532468d39be7d2c99daadecaa26131",
       "distribution": "tracked"
     },
     {
