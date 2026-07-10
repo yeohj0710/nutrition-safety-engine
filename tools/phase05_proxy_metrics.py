@@ -116,7 +116,7 @@ def main() -> int:
         pmc_paragraph = next(csv.DictReader(handle))
     real_locator_contract = {
         "run_id": "CONTRACT-ONLY-PMC5037562-NO-AI-RUN",
-        "report_id": "CONTRACT-PMC5037562-NOT-INCLUDED",
+        "report_id": "RPT-PUBMED-27657121",
         "question_id": "A2",
         "model": {
             "name": "no_model_contract_fixture",

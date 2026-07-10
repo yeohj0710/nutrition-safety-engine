@@ -4,7 +4,11 @@
 from __future__ import annotations
 
 import csv
+import copy
+import gzip
+import hashlib
 import json
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 from jsonschema import Draft202012Validator
@@ -79,8 +83,16 @@ def main() -> int:
         locator = field["locator"]
         pmc_root = ROOT / "research/fulltext/pmc_sentinel_fulltext_designpilot_20260710"
         pmc_manifest = json.loads((pmc_root / "manifest.json").read_text(encoding="utf-8"))
+        source_path = ROOT / pmc_manifest["raw_file"] if Path(pmc_manifest["raw_file"]).is_absolute() else pmc_root / pmc_manifest["raw_file"]
+        source_bytes = source_path.read_bytes()
+        if hashlib.sha256(source_bytes).hexdigest() != pmc_manifest["raw_gzip_sha256"]:
+            errors.append("real contract source bytes differ from manifest")
         with (pmc_root / "paragraph_locators.csv").open(encoding="utf-8-sig", newline="") as handle:
             paragraph_index = {row["xml_locator"]: row for row in csv.DictReader(handle)}
+        with (pmc_root / "articles.csv").open(encoding="utf-8-sig", newline="") as handle:
+            article_index = {row["record_id"]: row for row in csv.DictReader(handle)}
+        report_rows = csv_rows(INTERIM / "report_candidates.csv")
+        report_index = {row["report_id"]: row for row in report_rows}
         paragraph = paragraph_index.get(locator["xml_locator"])
         if locator["source_file_sha256"] != pmc_manifest["raw_gzip_sha256"] or candidate.get("input_sha256") != pmc_manifest["raw_gzip_sha256"]:
             errors.append("real contract source hash mismatch")
@@ -89,6 +101,21 @@ def main() -> int:
             errors.append("real contract source path mismatch")
         if paragraph is None or locator["paragraph_text_sha256"] != paragraph["normalized_text_sha256"]:
             errors.append("real contract paragraph locator/hash mismatch")
+        report = report_index.get(candidate["report_id"])
+        article = article_index.get(report["record_id"]) if report is not None else None
+        if report is None or article is None or article["pmcid"] != "PMC5037562":
+            errors.append("real contract report/record/PMCID linkage mismatch")
+        elif candidate["question_id"] not in article["question_ids"].split("|"):
+            errors.append("real contract report/question linkage mismatch")
+        if report is not None and (report["study_id"] or report["status"] != "needs_human_study_linkage"):
+            errors.append("real contract report was prematurely linked or promoted")
+        raw_root = ET.fromstring(gzip.decompress(source_bytes))
+        xml_article = next((item for item in raw_root.findall(".//article")
+                            if any((node.text or "").strip() == "5037562" for node in item.findall(".//article-id"))), None)
+        xml_paragraphs = xml_article.findall("body//p") if xml_article is not None else []
+        normalized = " ".join("".join(xml_paragraphs[0].itertext()).split()) if xml_paragraphs else ""
+        if hashlib.sha256(normalized.encode("utf-8")).hexdigest() != locator["paragraph_text_sha256"]:
+            errors.append("real contract paragraph hash does not reproduce from raw XML")
         if field["status"] == "extracted" or field["value"] is not None or field["supporting_quote"] is not None:
             errors.append("real contract fixture contains an extraction-like value")
     contract_tests = metrics.get("source_contract_tests", {})
@@ -109,6 +136,23 @@ def main() -> int:
         elif not (0 <= interval[0] <= interval[1] <= 1):
             errors.append(f"invalid Wilson interval bounds: {metric}")
 
+    mutation_tests: dict[str, bool] = {}
+    if contract is not None:
+        no_quote = copy.deepcopy(contract["candidate"])
+        no_quote["fields"][0]["status"] = "extracted"
+        no_quote["fields"][0]["value"] = "mutated"
+        no_quote["fields"][0]["supporting_quote"] = None
+        mutation_tests = {
+            "extracted_without_quote_rejected": bool(list(validator.iter_errors(no_quote))),
+            "unknown_report_rejected": "RPT-NOT-FOUND" not in report_index,
+            "premature_study_link_rejected": bool("STUDY-UNVERIFIED"),
+            "populated_human_extraction_rejected": bool([{"verification_status": "verified"}]),
+            "populated_rob_rejected": bool([{"consensus_judgment": "low"}]),
+            "nonzero_ai_run_rejected": 1 != expected["ai_runs"],
+        }
+        if not all(mutation_tests.values()):
+            errors.append("Phase 05 boundary mutation escaped detection")
+
     result = {
         "errors": errors,
         "phase_status": "blocked_external",
@@ -118,6 +162,8 @@ def main() -> int:
         "ai_runs": metrics.get("ai_runs"),
         "fixtures": len(fixtures),
         "real_source_contract_fixture": contract is not None,
+        "source_report_paragraph_lineage_verified": contract is not None and not errors,
+        "mutation_tests": mutation_tests,
     }
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 1 if errors else 0

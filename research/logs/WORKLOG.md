@@ -364,3 +364,11 @@
 - Verified queue title/year values against normalized records and preserved proxy decision authority as `none`.
 - Rejected 6/6 screening mutations; human decisions and AI-only exclusions remain 0.
 - Revalidated the PMC sentinel source: 3 articles, 1 OA XML, 19 paragraph hashes, 2 non-OA access rows, human locator/eligibility decisions 0.
+
+## 2026-07-10 — Phase 05 source/report/extraction contract
+
+- Replaced the contract-only fake report identifier with the real unassessed candidate `RPT-PUBMED-27657121` without promoting it to inclusion.
+- Verified report→record→PMCID→stored gzip SHA→decompressed XML→paragraph 1 text SHA and A2 question membership.
+- Confirmed the report still has no study link and remains `needs_human_study_linkage`.
+- Rejected 6/6 Phase 05 boundary mutations: extracted value without quote, unknown report, premature study link, populated human extraction, populated RoB, and nonzero AI run.
+- Human extraction, RoB, frozen gold, and AI performance rows remain 0.

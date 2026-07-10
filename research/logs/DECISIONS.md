@@ -172,3 +172,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: require one empty human-decision shell for every record×question retrieval unit and exact key equality with both proxy profiles and the review queue
 - rationale: a record retrieved for multiple questions needs a separate eligibility judgment under each PICO; collapsing to one record-level decision would lose scope
 - impact: all 19,961 PubMed units plus registry and KoreaMed units remain reviewable, while proxy priorities retain zero decision authority
+
+## D-022 — A real-source contract must use a real unpromoted report candidate
+
+- date: 2026-07-10
+- decision: bind the Phase 05 locator fixture to the existing report/record/PMCID chain while keeping extraction value, eligibility, study link, and AI output empty
+- rationale: a fabricated report identifier cannot test cross-entity provenance, but using a candidate report need not imply inclusion
+- impact: Phase 05 now detects report/source drift without turning a locator plumbing test into research evidence
