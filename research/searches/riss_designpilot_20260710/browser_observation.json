@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0.0",
+  "status": "design_pilot_public_count_only_query_translation_not_validated_not_final_search",
+  "observed_at": "2026-07-10",
+  "homepage": "https://www.riss.kr/index.do",
+  "search_endpoint": "https://www.riss.kr/search/Search.do",
+  "search_method": "GET",
+  "positive_control": {
+    "query": "warfarin",
+    "hits": 10859
+  },
+  "runs": [
+    {
+      "question_id": "A1",
+      "query": "warfarin vitamin K",
+      "hits": 555
+    },
+    {
+      "question_id": "A2",
+      "query": "(항응고제 OR 와파린 OR DOAC) AND (오메가-3 OR 어유 OR EPA OR DHA)",
+      "hits": 0
+    },
+    {
+      "question_id": "B1",
+      "query": "(신결석 OR 요로결석 OR 콩팥결석 OR nephrolithiasis OR urolithiasis OR kidney stone) AND (칼슘 보충제 OR calcium supplement)",
+      "hits": 0
+    },
+    {
+      "question_id": "B2",
+      "query": "(신결석 OR 요로결석 OR 콩팥결석 OR nephrolithiasis OR urolithiasis OR kidney stone) AND (비타민 D OR vitamin D OR cholecalciferol)",
+      "hits": 0
+    },
+    {
+      "question_id": "B3",
+      "query": "(신결석 OR 요로결석 OR 콩팥결석 OR nephrolithiasis OR urolithiasis OR kidney stone) AND (비타민 C OR vitamin C OR ascorbic acid)",
+      "hits": 0
+    }
+  ],
+  "records_exported": 0,
+  "human_screening_decisions": 0,
+  "query_translation_validated": false,
+  "final_search_claim_allowed": false,
+  "notes": [
+    "The previously documented SeriesMain URL returned the RISS error page; /index.do and the live GET search form were used.",
+    "A1 is a count-only design observation. Four zero-hit Boolean translations require PRESS review and split-query testing.",
+    "No selected-record export was performed in this pilot."
+  ]
+}

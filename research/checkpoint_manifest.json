@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "9d0e0e0a5871d770f7c6041fac07b7a498ec7a0f",
+  "implementation_head": "7e0f4b1c18902a2385906f7df98b57eceb6a536a",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,7 +10,7 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 703,
+  "file_count": 705,
   "local_required_file_count": 104,
   "files": [
     {
@@ -2373,8 +2373,8 @@
     },
     {
       "path": "research/logs/BLOCKERS.md",
-      "size_bytes": 8355,
-      "sha256": "ae90c85c59c62d459ed08cb19f685f65bf184c1b0114c2e17deaf8ffb863474b",
+      "size_bytes": 9496,
+      "sha256": "5663d56b44e93084873d2efb137936af6004e73cee881afb39a97b6d32c094b6",
       "distribution": "tracked"
     },
     {
@@ -2385,26 +2385,26 @@
     },
     {
       "path": "research/logs/RISKS.md",
-      "size_bytes": 5710,
-      "sha256": "b69b424873a9ae82679e1405d1243f994093abc6ce1b95d0db77fc69cbc3c7d8",
+      "size_bytes": 6051,
+      "sha256": "64b0a1a63f2c89a8433a1ad7d59e83879406d4a90c43395b3335d7dfa11e12c7",
       "distribution": "tracked"
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 25978,
-      "sha256": "efaa57ffabaee7017f128b7daa63cebfaa93bd4b7482221908798536590ad347",
+      "size_bytes": 27214,
+      "sha256": "702cccd0769d7b9e3c5bc5ccf5399977cbd74de1514400baeaaeb3c1bd17f686",
       "distribution": "tracked"
     },
     {
       "path": "research/PROGRESS_LEDGER.md",
-      "size_bytes": 2181,
-      "sha256": "58c0fd23878c7053a53187e33b386759d1243dc36db53ec8c00b132fce1261d0",
+      "size_bytes": 2306,
+      "sha256": "dbf8c216291d969bef5559d0e143ef399929dd86740fcf996a2d4a0c956fbefb",
       "distribution": "tracked"
     },
     {
       "path": "research/protocol/access_matrix.csv",
-      "size_bytes": 4028,
-      "sha256": "4f5eae8fce3c12b221ebc117683669900181fa72d3d57f184bfd3b9160bcf3ed",
+      "size_bytes": 4459,
+      "sha256": "58ce0ba25929d99285be0b3b364b78fe82bcbc44e35db54ad3bf336ece0f2e14",
       "distribution": "tracked"
     },
     {
@@ -3560,6 +3560,12 @@
       "distribution": "tracked"
     },
     {
+      "path": "research/searches/kmbase_designpilot_20260710/observation.json",
+      "size_bytes": 2539,
+      "sha256": "508bd6789b50138e84d26c0e908a70e47fb81c5239d799d01766673d9de38d58",
+      "distribution": "tracked"
+    },
+    {
       "path": "research/searches/koreamed_designpilot_20260710/browser_observation.json",
       "size_bytes": 15437,
       "sha256": "ac8cb187176dd95486099e1029a970b0b248880fa50aa928a9e12d1a12f564bf",
@@ -3635,6 +3641,12 @@
       "path": "research/searches/pubmed_pilot_20260710.json",
       "size_bytes": 7317,
       "sha256": "43459edf000e4d26eef356400e3e13e3668a5d7022a0c0a1d00d4d84ca31c4d4",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/riss_designpilot_20260710/browser_observation.json",
+      "size_bytes": 1748,
+      "sha256": "2f5c16e300f1aa96289aee69c91a6cea0106fe2d1a06829aa8c4d0289943c93b",
       "distribution": "tracked"
     },
     {
@@ -3892,7 +3904,7 @@
     {
       "path": "src/generated/thesis-bundle.json",
       "size_bytes": 555,
-      "sha256": "4b71ac23e5500646161443c7a44dbd3f4f65557080ee700a6d3215e7c38fd73f",
+      "sha256": "2bc0021362cd62e5c80acea88ec4209239164c70ed68a28a21a6ee5aca608a72",
       "distribution": "tracked"
     },
     {

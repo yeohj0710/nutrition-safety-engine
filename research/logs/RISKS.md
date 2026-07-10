@@ -45,3 +45,8 @@
 - Proxy A/B disagree on 4,224 units, confirming term heuristics are unsuitable as final screeners.
 - A1 proxy-high volume remains very large; priority ordering does not reduce required human coverage.
 - Human reviewer fatigue and training consistency remain major risks; 50-row blinded pilot queue is ready but unreviewed.
+
+## 2026-07-10 KMbase design-pilot risk
+
+- KMbase search transport is reachable, but a positive one-word control and failing/zero protocol translations show that PubMed-style Boolean syntax cannot be assumed.
+- Zero-hit responses are not evidence of absence until platform syntax is independently reviewed and split-query recall is checked.

@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0.0",
+  "status": "design_pilot_public_search_transport_verified_query_translation_not_validated_not_final_search",
+  "observed_at": "2026-07-10",
+  "homepage": "https://kmbase.medric.or.kr/",
+  "search_transport": {
+    "form_method": "POST",
+    "form_pg_idx": "150",
+    "log_endpoint": "https://kmbase.medric.or.kr/ahebf/global/search_log/search_log_main.php",
+    "result_route_pattern": "?pg_idx=260&ad_cd={ad_cd}",
+    "browser_runtime_observation": {
+      "button_type": "button",
+      "onclick": "form_submit('1783682293')",
+      "jquery_type": "undefined",
+      "form_submit_type": "undefined",
+      "goMaterial_type": "undefined",
+      "effect": "button click did not submit or navigate in the controlled browser"
+    }
+  },
+  "runs": [
+    {
+      "question_id": "TRANSPORT_PROBE",
+      "query": "warfarin",
+      "http_status": 200,
+      "hits": 5,
+      "kmbase_hits": 5,
+      "external_hits": 0,
+      "ad_cd": 171207,
+      "interpretation": "positive control only; not a protocol search"
+    },
+    {
+      "question_id": "A1",
+      "query": "와파린 비타민 K",
+      "http_status": 200,
+      "hits": 0,
+      "kmbase_hits": 0,
+      "external_hits": 0,
+      "ad_cd": 171208
+    },
+    {
+      "question_id": "A2",
+      "query": "(항응고제 OR 와파린 OR DOAC) AND (오메가-3 OR 어유 OR EPA OR DHA)",
+      "http_status": 200,
+      "hits": 0,
+      "kmbase_hits": 0,
+      "external_hits": 0,
+      "ad_cd": 171209
+    },
+    {
+      "question_id": "B1",
+      "query": "(신결석 OR 요로결석 OR 콩팥결석 OR nephrolithiasis OR urolithiasis OR kidney stone) AND (칼슘 보충제 OR calcium supplement)",
+      "http_status": 500,
+      "response_body": ""
+    },
+    {
+      "question_id": "B2",
+      "query": "(신결석 OR 요로결석 OR 콩팥결석 OR nephrolithiasis OR urolithiasis OR kidney stone) AND (비타민 D OR vitamin D OR cholecalciferol)",
+      "http_status": 500,
+      "response_body": ""
+    },
+    {
+      "question_id": "B3",
+      "query": "(신결석 OR 요로결석 OR 콩팥결석 OR nephrolithiasis OR urolithiasis OR kidney stone) AND (비타민 C OR vitamin C OR ascorbic acid)",
+      "http_status": 500,
+      "response_body": ""
+    }
+  ],
+  "records_exported": 0,
+  "human_screening_decisions": 0,
+  "query_translation_validated": false,
+  "final_search_claim_allowed": false,
+  "next_action": "PRESS-review and split long Boolean blocks into platform-supported short queries; then capture result records and test export"
+}

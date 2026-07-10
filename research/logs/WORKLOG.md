@@ -267,3 +267,18 @@
 - Scopus: Preview homepage, `Sign in` and `Check access`; authenticated document search unavailable.
 - CENTRAL: public search box, CENTRAL filters, and result counts reachable without sign-in; final export not run before protocol approval.
 - Updated `research/protocol/access_matrix.csv`; recorded B-012. No source was falsely marked as a completed final search.
+
+## 2026-07-10 — KMbase public-search transport pilot
+
+- Inspected the live homepage form before retrying the inert Search button.
+- Root cause in the controlled browser: the button is `type=button`, while jQuery, `form_submit`, and `goMaterial` were all undefined; no native form submission occurred.
+- Replayed the same public multipart POST transport used by the official form. Positive control `warfarin` returned 5 KMbase hits (HTTP 200).
+- Protocol drafts A1/A2 returned 0/0; long B1/B2/B3 Boolean drafts returned HTTP 500 with empty bodies.
+- Captured the observation under `research/searches/kmbase_designpilot_20260710/`. Records/export/human decisions remain 0; query translation and final search remain false.
+
+## 2026-07-10 — RISS public count pilot
+
+- Replaced a stale/erroring SeriesMain route with the live `/index.do` form and inspected its GET parameters.
+- Positive control `warfarin` returned 10,859 integrated hits; A1 `warfarin vitamin K` returned 555.
+- A2/B1/B2/B3 draft Boolean strings returned explicit zero-result pages. These are translation warnings, not absence claims.
+- Records/export/human decisions remain 0; captured the count-only observation under `research/searches/riss_designpilot_20260710/`.

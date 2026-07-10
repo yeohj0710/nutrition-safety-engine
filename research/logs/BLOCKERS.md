@@ -9,6 +9,21 @@
 - work that can continue: access mapping, search syntax drafting, schemas, audit fixes, test infrastructure
 - status: `blocked_external`
 
+## B-014 — KMbase platform-query translation not validated
+
+- exact block point: B1/B2/B3 long Boolean drafts return HTTP 500; A1/A2 return 0 despite a 5-hit `warfarin` transport control
+- live evidence: official homepage form/endpoint inspected; controlled-browser script runtime absent; direct official multipart POST transport reproduced
+- minimum next work: PRESS-review syntax, split each concept block into short platform-supported queries, capture records, then verify native export
+- preserved boundary: no observed count is labeled a final search; exported records and human decisions remain 0
+- status: `blocked_method_review`; unrelated RISS and retrieval work continues
+
+## B-015 — RISS query translation/export incomplete
+
+- exact block point: A2/B1/B2/B3 unsplit Boolean drafts returned zero; selected-record export was not executed
+- live evidence: public GET form and count pages verified; positive control 10,859 and A1 555
+- minimum next work: PRESS-review and split queries, then native selected-record export with identifiers and checksums
+- status: `blocked_method_review`; no final-search or absence claim allowed
+
 ## B-002 — Independent reviewers for screening/extraction/scenario gold
 
 - exact block point: human gold cannot be frozen and tool performance cannot be estimated independently
