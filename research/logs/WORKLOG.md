@@ -1,5 +1,12 @@
 # WORKLOG
 
+## 2026-07-10 — Phase 06 safe-empty lineage gate
+
+- Strengthened `tools/validate_phase06_gate.py` to inspect all seven curated thesis JSONL namespaces, not only claim/rule bundle output.
+- Verified curated source/report/study/extraction/RoB/claim/rule rows all 0 and thesis bundle claims/rules 0/0.
+- Verified exactly five unique question decisions, all `not_assessed` and `blocked_external`; no pooling or null-effect inference was created.
+- Added five Phase 06 review routes for synthesis readiness, GRADE, claims, rules, and legacy comparison. Validator errors 0; legacy promotions 0.
+
 ## 2026-07-10 — Phase 05 independent proxy gate
 
 - Added `tools/validate_phase05_proxy.py` using the installed Draft 2020-12 JSON Schema validator.

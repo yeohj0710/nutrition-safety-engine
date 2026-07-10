@@ -1,0 +1,6 @@
+queue_id,area,artifact,blocking_point,minimum_human_input,allowed_work_while_blocked,status
+P6-RQ-001,synthesis_readiness,research/synthesis/meta_analysis_decisions.csv,question-specific synthesis decision,"frozen included studies verified extraction and RoB followed by documented clinical/methodological heterogeneity judgment",safe-empty decision coverage and analysis-code scaffolding,blocked_external
+P6-RQ-002,certainty,research/synthesis/certainty_assessments.csv,outcome-level GRADE,"human GRADE judgments with explicit rationale for every critical outcome",empty-schema and completeness validation,blocked_external
+P6-RQ-003,claims,research/synthesis/claim_registry.csv,validated evidence claims,"human-authored claim with population/exposure/comparator/outcome/effect scope and exact source support locators",empty-registry and lineage invariant tests,blocked_external
+P6-RQ-004,rules,research/synthesis/rule_registry.csv,thesis-mode rules,"validated claim references conditions exclusions missing-information action class and expert review",safe-empty deterministic engine tests,blocked_external
+P6-RQ-005,legacy_comparison,data/legacy_unverified/manifest.json,legacy difference analysis,"row-by-row human comparison only after new claims/rules are validated; no promotion",legacy isolation and leakage tests,blocked_external
