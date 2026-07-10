@@ -11,11 +11,14 @@
     "start": "next start",
     "lint": "npm run prepare:knowledge && eslint .",
     "test": "npm run prepare:knowledge && vitest run",
+    "test:unit": "npm run prepare:knowledge && vitest run __tests__/knowledge-normalize.test.ts __tests__/safety-engine.test.ts",
+    "test:contract": "npm run prepare:knowledge && vitest run __tests__/thesis-mode-boundary.test.ts __tests__/legacy-mode-boundary.test.ts",
+    "test:provenance": "npm run prepare:knowledge && vitest run __tests__/thesis-bundle-isolation.test.ts",
+    "test:scenarios:smoke": "npm run prepare:knowledge && vitest run __tests__/thesis-empty-scenario-proxy.test.ts",
     "typecheck": "npm run prepare:knowledge && tsc --noEmit"
   },
   "dependencies": {
     "next": "16.2.1",
-    "openai": "^6.32.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "server-only": "^0.0.1",

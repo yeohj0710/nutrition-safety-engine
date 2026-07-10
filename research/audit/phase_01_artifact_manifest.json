@@ -126,23 +126,23 @@
     },
     {
       "path": "research/logs/BLOCKERS.md",
-      "size_bytes": 3944,
-      "sha256": "b53d23cdbfba29a49f4d11326979a2ca99d6caabc5b03a01e1c9e82e464d715b"
+      "size_bytes": 6332,
+      "sha256": "b0a3840dc062250cb384f87a56414a00a8a916d7e5c6fe22409f1eda34840718"
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 6095,
-      "sha256": "11f0ec7d67b7b34b9817d85259a0dd5118a02e28df5aabc099ae187a2cc0a21c"
+      "size_bytes": 7352,
+      "sha256": "41fd29d01fccf0ff1c5a5d17fd1cdff5b0a8abc09f9f42858111eaa5d77a1a58"
     },
     {
       "path": "research/logs/RISKS.md",
-      "size_bytes": 4532,
-      "sha256": "0192eb13ac6164a016bafa23bc3ab91cf5e4b3bf122568ed182251724a32adc6"
+      "size_bytes": 5386,
+      "sha256": "eac6dff0abf9e60a6ada6e0c70d46975abf86104ba7910f297c5d10b1fa5e8d1"
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 9775,
-      "sha256": "c25c6d6dbcf29f27a5eade381db2ed70e5813d0adac5181cb1e3e520e99755ca"
+      "size_bytes": 13469,
+      "sha256": "d10e38b65d3ad53fec990094c61677a88d601b5abad3687fdda0161c56716cc9"
     },
     {
       "path": "research/review_queue/phase_01_external_review.csv",
@@ -172,7 +172,7 @@
     {
       "path": "src/generated/thesis-bundle.json",
       "size_bytes": 555,
-      "sha256": "8bb27bc41ad245d8be9f533a010be224640928091f1578aafc39e1aea36511ab"
+      "sha256": "596b1518f29f13c81f3e2618fce32ce72d14bf5525ba58692d083b3f1aa520f5"
     },
     {
       "path": "tools/phase01_audit.py",

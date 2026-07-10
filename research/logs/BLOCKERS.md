@@ -83,3 +83,10 @@ Detailed decision questions: `research/review_queue/phase_01_external_review.csv
 - attempted: two pip installs with bounded retries/timeouts; both timed out
 - workaround: standard-library critical invariant validator; design package still reports schema meta-validation warning
 - status: `blocked_external`
+
+## B-011 — Independent engine gold, expert review, and validated deployment
+
+- exact block point: clinical sensitivity/precision, content validation, release approval
+- available preparation: deterministic thesis engine, 120-case safe-empty proxy, CI workflow, runtime AI removal
+- minimum input needed: validated claim/rule bundle; two independent scenario authors/adjudication; qualified experts; release artifact and deployment identity
+- status: `blocked_external`

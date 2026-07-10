@@ -8,7 +8,7 @@
 | 04 screening and full text | blocked_external_proxy_verified | two deterministic priorities; 19,961/19,961 human queue; 50-row training pilot; AI-only exclusions 0 | human title/abstract/full-text review, adjudication, final reports/studies/PRISMA |
 | 05 extraction quality and AI | blocked_external_proxy_verified | locator rejection and Wilson metric synthetic harness; empty human/RoB schemas | included reports, full texts, human extraction/RoB/gold, actual AI runs |
 | 06 synthesis claims and rules | blocked_external_safe_empty | five no-analysis decisions; certainty/claim/rule registries 0; legacy promotion 0 | accepted extraction/RoB and human synthesis/GRADE |
-| 07 engine validation and release | preparatory_proxy_allowed | thesis boundary scaffold exists | validated rules, independent scenarios, deploy authority/state |
-| 08 thesis and finalization | not_started | outline/style rules exist | frozen results and final manifests |
+| 07 engine validation and release | blocked_external_safe_empty_verified | runtime AI dependency removed; CI workflow; 120×3 deterministic empty scenarios; legacy leakage 0 | validated rules, independent gold/expert review, verified deployment |
+| 08 thesis and finalization | preparatory_methods_only | outline/style rules exist | frozen results and final manifests |
 
 No later phase is complete. Synthetic-proxy artifacts are dry-run evidence only.
