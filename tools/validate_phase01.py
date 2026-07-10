@@ -159,8 +159,13 @@ def main() -> int:
     check(inventory["research_input"]["file_count"] == 513, "unexpected research input file count", errors)
     check(
         inventory["repository"]["head"]
-        == "33658e3a9ee8dbf6d21ac94a5aa49202b5bf22e5",
-        "baseline HEAD changed before Phase 01 commit",
+        != "33658e3a9ee8dbf6d21ac94a5aa49202b5bf22e5",
+        "Phase 01 implementation is not committed beyond the audited baseline",
+        errors,
+    )
+    check(
+        inventory["repository"]["branch"] == "thesis-reboot-20260710",
+        "Phase 01 inventory is not on the thesis reboot branch",
         errors,
     )
     check(
@@ -169,7 +174,12 @@ def main() -> int:
         "origin/main differs from audited baseline",
         errors,
     )
-    check(deployment["production"]["head_matches_deployment"] is True, "deployment/HEAD mismatch", errors)
+    check(
+        deployment["production"]["git_commit"]
+        == "33658e3a9ee8dbf6d21ac94a5aa49202b5bf22e5",
+        "legacy deployment baseline commit changed",
+        errors,
+    )
     check(deployment["validated_deployment"] is False, "legacy production incorrectly marked validated", errors)
     check(len(rule_rows) == 110, "rule scope report must contain 110 legacy rules", errors)
     check(

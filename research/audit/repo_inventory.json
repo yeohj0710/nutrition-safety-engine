@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-10T06:16:00+00:00",
+  "generated_at": "2026-07-10T06:17:34+00:00",
   "repository": {
     "root": "C:\\Users\\hjyeo\\Documents\\Codex\\2026-07-10\\g-24-1-gpt-5-6\\work\\nutrition-safety-engine",
     "branch": "thesis-reboot-20260710",
-    "head": "33658e3a9ee8dbf6d21ac94a5aa49202b5bf22e5",
+    "head": "fe999e1ebf2148d2c29384e828fe43cd0bfdb942",
     "origin_main": "33658e3a9ee8dbf6d21ac94a5aa49202b5bf22e5",
-    "status_porcelain": "M .gitignore\n D __tests__/ai-explain.test.ts\n M __tests__/fixture-scenarios.test.ts\n M __tests__/safety-engine.test.ts\n M __tests__/thesis-scenarios.test.ts\n D app/api/ai-explain/route.ts\n M app/api/rules/query/route.ts\n D app/ingredients/[id]/page.tsx\n D app/ingredients/page.tsx\n M app/manifest.ts\n M app/page.tsx\n M app/robots.ts\n D app/rules/[id]/page.tsx\n M app/sitemap.ts\n D app/sources/[id]/page.tsx\n D app/sources/page.tsx\n D data/evidence_chunks.json\n D data/ingredients.json\n D data/knowledge_pack.json\n D data/manifest.json\n D data/package_meta.json\n D data/safety_rules.json\n D data/sample_engine_output.json\n D data/sample_evaluation_input.json\n D data/sample_user_profile.json\n D data/source_registry.json\n D data/systematic_search/evidence_extraction.csv\n D data/systematic_search/raw/embase/.gitkeep\n D data/systematic_search/raw/pubmed/.gitkeep\n D data/systematic_search/raw/pubmed/pubmed_anticoag_refined_20260531T223335_90c4eb6f/efetch_001.xml\n D data/systematic_search/raw/pubmed/pubmed_anticoag_refined_20260531T223335_90c4eb6f/esearch.json\n D data/systematic_search/raw/pubmed/pubmed_anticoag_refined_20260603T125913_ece52619/efetch_001.xml\n D data/systematic_search/raw/pubmed/pubmed_anticoag_refined_20260603T125913_ece52619/esearch.json\n D data/systematic_search/raw/pubmed/pubmed_kidney_stone_refined_20260531T223339_33755914/efetch_001.xml\n D data/systematic_search/raw/pubmed/pubmed_kidney_stone_refined_20260531T223339_33755914/esearch.json\n D data/systematic_search/raw/pubmed/pubmed_kidney_stone_refined_20260603T125918_598b32ee/efetch_001.xml\n D data/systematic_search/raw/pubmed/pubmed_kidney_stone_refined_20260603T125918_598b32ee/esearch.json\n D data/systematic_search/raw/secondary_20260603/crossref_anticoag_secondary.json\n D data/systematic_search/raw/secondary_20260603/crossref_renal_secondary.json\n D data/systematic_search/raw/secondary_20260603/europepmc_anticoag_secondary.json\n D data/systematic_search/raw/secondary_20260603/europepmc_renal_secondary.json\n D data/systematic_search/retrieved_records.csv\n D data/systematic_search/safety_rule_seed_20260603.csv\n D data/systematic_search/scenario_evaluation_20260603.csv\n D data/systematic_search/scenario_evaluation_20260603.json\n D data/systematic_search/screening_log.csv\n D data/systematic_search/screening_priority_20260603.csv\n D data/systematic_search/search_runs.csv\n D data/systematic_search/secondary_retrieved_records_20260603.csv\n D data/systematic_search/secondary_search_runs_20260603.csv\n M package.json\n M scripts/build-knowledge-index.ts\n M scripts/build-literature-candidates.ts\n M src/components/evidence-summary-panel.tsx\n M src/components/rule-card.tsx\n M src/components/rule-explorer-client.tsx\n M src/components/site-frame.tsx\n M src/components/source-browser-client.tsx\n D src/generated/knowledge-index.json\n D src/generated/literature-candidates.json\n D src/lib/ai/config.ts\n D src/lib/ai/explainSafetyResults.ts\n D src/lib/ai/schema.ts\n M src/lib/knowledge/index.ts\n M src/lib/knowledge/normalize.ts\n M src/lib/literature-candidates.ts\n M src/lib/site.ts\n?? __tests__/legacy-mode-boundary.test.ts\n?? __tests__/thesis-bundle-isolation.test.ts\n?? __tests__/thesis-mode-boundary.test.ts\n?? app/api/legacy/\n?? app/legacy/\n?? data/curated/\n?? data/legacy_unverified/\n?? docs/superpowers/\n?? research/\n?? scripts/build-thesis-bundle.ts\n?? src/domain/\n?? src/engine/\n?? src/evidence/\n?? src/generated/legacy/\n?? src/generated/thesis-bundle.json\n?? tools/phase01_audit.py\n?? tools/validate_phase01.py",
+    "status_porcelain": "",
     "remotes": [
       "origin\thttps://github.com/yeohj0710/nutrition-safety-engine.git (fetch)",
       "origin\thttps://github.com/yeohj0710/nutrition-safety-engine.git (push)"
@@ -714,7 +714,7 @@
       {
         "path": "research/audit/legacy_counts_reproduction.csv",
         "size_bytes": 4371,
-        "modified_at": "2026-07-10T06:15:34+00:00",
+        "modified_at": "2026-07-10T06:16:01+00:00",
         "sha256": "2120fdafd16bcd6fc54e8620c57d062bb48b017514655c36068d9f8b061d4d7d"
       },
       {
@@ -750,7 +750,7 @@
       {
         "path": "research/audit/rule_scope_report.csv",
         "size_bytes": 33224,
-        "modified_at": "2026-07-10T06:15:34+00:00",
+        "modified_at": "2026-07-10T06:16:01+00:00",
         "sha256": "5c4bef953bb3579ae55528a8a21d3118fbaa5bec561929ba0aa7c46ad87fef89"
       },
       {
@@ -1692,19 +1692,19 @@
       {
         "path": "src/generated/legacy/knowledge-index.json",
         "size_bytes": 1007681,
-        "modified_at": "2026-07-10T06:12:34+00:00",
+        "modified_at": "2026-07-10T06:17:02+00:00",
         "sha256": "d303f42e263d51adc58ae03429b948b2521eda289de9390501102cae7263c150"
       },
       {
         "path": "src/generated/legacy/literature-candidates.json",
         "size_bytes": 161920,
-        "modified_at": "2026-07-10T06:12:35+00:00",
+        "modified_at": "2026-07-10T06:17:02+00:00",
         "sha256": "9fb91e7c08daa54288ae927eba8b3e35c6edf2e1ee1fc5c65305fa5f352606d7"
       },
       {
         "path": "src/generated/thesis-bundle.json",
         "size_bytes": 555,
-        "modified_at": "2026-07-10T06:12:35+00:00",
+        "modified_at": "2026-07-10T06:17:02+00:00",
         "sha256": "8bb27bc41ad245d8be9f533a010be224640928091f1578aafc39e1aea36511ab"
       },
       {
@@ -1745,9 +1745,9 @@
       },
       {
         "path": "src/lib/knowledge/normalize.ts",
-        "size_bytes": 21497,
-        "modified_at": "2026-07-10T05:41:45+00:00",
-        "sha256": "a6c3e7981cdd53e6b8014428703bba42e714a8902117077acd1d6e8e1d4e3ea7"
+        "size_bytes": 21493,
+        "modified_at": "2026-07-10T06:16:32+00:00",
+        "sha256": "89f0c043fa3bc7201fa835c95ee573d17507e2030de9597efbd82b350356ef84"
       },
       {
         "path": "src/lib/literature-candidates.ts",

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-10T06:16:01+00:00",
-  "baseline_commit": "33658e3a9ee8dbf6d21ac94a5aa49202b5bf22e5",
+  "generated_at": "2026-07-10T06:17:35+00:00",
+  "baseline_commit": "fe999e1ebf2148d2c29384e828fe43cd0bfdb942",
   "status": "legacy_unverified",
   "physical_quarantine_root": "data/legacy_unverified/baseline-33658e3",
   "policy": {
@@ -332,7 +332,7 @@
     {
       "path": "src/generated/legacy/knowledge-index.json",
       "size_bytes": 1007681,
-      "modified_at": "2026-07-10T06:12:34+00:00",
+      "modified_at": "2026-07-10T06:17:02+00:00",
       "sha256": "d303f42e263d51adc58ae03429b948b2521eda289de9390501102cae7263c150",
       "original_path": "src/generated/knowledge-index.json",
       "status": "legacy_unverified",
@@ -341,7 +341,7 @@
     {
       "path": "src/generated/legacy/literature-candidates.json",
       "size_bytes": 161920,
-      "modified_at": "2026-07-10T06:12:35+00:00",
+      "modified_at": "2026-07-10T06:17:02+00:00",
       "sha256": "9fb91e7c08daa54288ae927eba8b3e35c6edf2e1ee1fc5c65305fa5f352606d7",
       "original_path": "src/generated/literature-candidates.json",
       "status": "legacy_unverified",

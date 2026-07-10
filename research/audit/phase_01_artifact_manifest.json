@@ -52,7 +52,7 @@
     {
       "path": "data/legacy_unverified/manifest.json",
       "size_bytes": 17093,
-      "sha256": "a4d81c92229c50aa93b9e4409a0e093926405c1a634426ca9f3b6c706ac36023"
+      "sha256": "28a9438dfff7f1dbd40ec390c523ef851aa1f8d37df550daf36cb1d0aff2d8de"
     },
     {
       "path": "docs/superpowers/plans/2026-07-10-phase-01-audit-and-normalization.md",
@@ -106,8 +106,8 @@
     },
     {
       "path": "research/audit/repo_inventory.json",
-      "size_bytes": 223943,
-      "sha256": "ebdda6b7e2ca29c80f0a85e77ced60bcf469d45a9acb41d61588c4ba0452a666"
+      "size_bytes": 220348,
+      "sha256": "469a6e352337410a49f92dda663af7f2af232278067562da87d5394da6b8c60e"
     },
     {
       "path": "research/audit/rule_scope_report.csv",
@@ -166,8 +166,8 @@
     },
     {
       "path": "tools/validate_phase01.py",
-      "size_bytes": 11161,
-      "sha256": "0d2f62c1a99c30dbd7b6a58d7c4e2cb41cf2162e96515ab07e7f17485e89b437"
+      "size_bytes": 11435,
+      "sha256": "0afa69a2d891f1535da00c622641a04697b05fd17c880240b2d9075bff102e90"
     }
   ]
 }
