@@ -1,5 +1,11 @@
 # WORKLOG
 
+## 2026-07-10 — Phase 03 human review routing
+
+- Added `research/review_queue/phase_03_external_review.csv` with separate deduplication, report-study linkage, registry screening, registry-report linkage, and subscription-export blockers.
+- Updated Phase 02 database-access queue with live browser observations: CENTRAL public interface reachable; Embase/Scopus licensed search unavailable in current session.
+- Unrelated public-source and deterministic validation work remains authorized to continue; no human decision was synthesized or inferred.
+
 ## 2026-07-10 — Live-source and registry checkpoint verification
 
 - Live G: reconciliation: 513 snapshot files vs 513 live files; missing 0, added 0, SHA mismatches 0.
