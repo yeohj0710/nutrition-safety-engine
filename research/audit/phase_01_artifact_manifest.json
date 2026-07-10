@@ -111,8 +111,8 @@
     },
     {
       "path": "research/audit/live_source_reconciliation.json",
-      "size_bytes": 121514,
-      "sha256": "3809f028f343097f1276a432b1db8a6d88e1007fb1476f554ee222e22d9b051b"
+      "size_bytes": 121519,
+      "sha256": "8315aaa45fc60d2826f1f1215961cad62ed22280d310236e47a506a8fe56efe7"
     },
     {
       "path": "research/audit/phase_01_exit_criteria.md",
@@ -161,8 +161,8 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 42605,
-      "sha256": "4178d0cd3c8d0d2d887da63bf878e9577d11c1f337b4bad1ffa2722d24171439"
+      "size_bytes": 42961,
+      "sha256": "703405b31f724f6155b1d942fd39aee1392733f7e361e2ded71897eb1d146212"
     },
     {
       "path": "research/review_queue/HUMAN_HANDOFF.md",
