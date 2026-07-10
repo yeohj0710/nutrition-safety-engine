@@ -12,7 +12,7 @@ Phase 01 is locally complete. This does not mark the research, public deployment
 |---|---|---|
 | Redesign package read | pass | required files read in order; package manifest mismatch 0 |
 | Repository readable | pass | writable successor worktree; branch/HEAD/status inventoried |
-| Research input established | pass_with_limitation | earlier direct 513-file SHA inventory preserved; current G: re-access blocked and recorded |
+| Research input established | pass | live G: inventory rehashed: 513 files, 57,398,308 bytes, 0 missing/added/SHA mismatches |
 
 ## Required outputs
 

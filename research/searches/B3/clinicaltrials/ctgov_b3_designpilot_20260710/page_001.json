@@ -1,0 +1,2940 @@
+{
+  "request_url": "https://clinicaltrials.gov/api/v2/studies?query.cond=kidney+stone+OR+nephrolithiasis+OR+hyperoxaluria&query.intr=vitamin+C+OR+ascorbic+acid&pageSize=1000&countTotal=true&format=json",
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT05124886",
+          "orgStudyIdInfo": {
+            "id": "21-01274"
+          },
+          "secondaryIdInfos": [
+            {
+              "id": "R01DK128842",
+              "type": "NIH",
+              "link": "https://reporter.nih.gov/quickSearch/R01DK128842"
+            }
+          ],
+          "organization": {
+            "fullName": "NYU Langone Health",
+            "class": "OTHER"
+          },
+          "briefTitle": "Gut Kidney Axis in Enteric Hyperoxaluria",
+          "officialTitle": "Gut Kidney Axis in Enteric Hyperoxaluria: A Clinical Prospective Study of the Effects of the Microbiome on Urinary Oxalate in Participants With Enteric Hyperoxaluria Fed a Moderate Oxalate Diet"
+        },
+        "statusModule": {
+          "statusVerifiedDate": "2026-05",
+          "overallStatus": "RECRUITING",
+          "expandedAccessInfo": {
+            "hasExpandedAccess": false
+          },
+          "startDateStruct": {
+            "date": "2022-11-10",
+            "type": "ACTUAL"
+          },
+          "primaryCompletionDateStruct": {
+            "date": "2028-03-01",
+            "type": "ESTIMATED"
+          },
+          "completionDateStruct": {
+            "date": "2028-03-01",
+            "type": "ESTIMATED"
+          },
+          "studyFirstSubmitDate": "2021-11-03",
+          "studyFirstSubmitQcDate": "2021-11-15",
+          "studyFirstPostDateStruct": {
+            "date": "2021-11-18",
+            "type": "ACTUAL"
+          },
+          "lastUpdateSubmitDate": "2026-05-05",
+          "lastUpdatePostDateStruct": {
+            "date": "2026-05-07",
+            "type": "ACTUAL"
+          }
+        },
+        "sponsorCollaboratorsModule": {
+          "responsibleParty": {
+            "type": "SPONSOR"
+          },
+          "leadSponsor": {
+            "name": "NYU Langone Health",
+            "class": "OTHER"
+          },
+          "collaborators": [
+            {
+              "name": "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+              "class": "NIH"
+            }
+          ]
+        },
+        "oversightModule": {
+          "oversightHasDmc": false,
+          "isFdaRegulatedDrug": false,
+          "isFdaRegulatedDevice": false
+        },
+        "descriptionModule": {
+          "briefSummary": "40 subjects with a confirmed diagnosis of IBD or \\>6 months post-RYGB with a diagnosed USD event or kidney stone on imaging within the past three years and 40 healthy controls will be administered a high oxalate diet on Days 0-3 and Days 21-24 with a washout period on Days 4-7 and will be administered 250mg sodium oxalate on Days 8-20, via prepared spinach, from Weil Cornell Medicine's Clinical and Translational Science Center. Subjects will partake in four stool collections, four 24-h urine collections, two blood collections, and four sets of colonic permeability testing."
+        },
+        "conditionsModule": {
+          "conditions": [
+            "Enteric Hyperoxaluria"
+          ]
+        },
+        "designModule": {
+          "studyType": "INTERVENTIONAL",
+          "phases": [
+            "NA"
+          ],
+          "designInfo": {
+            "allocation": "RANDOMIZED",
+            "interventionModel": "PARALLEL",
+            "primaryPurpose": "OTHER",
+            "maskingInfo": {
+              "masking": "NONE"
+            }
+          },
+          "enrollmentInfo": {
+            "count": 80,
+            "type": "ESTIMATED"
+          }
+        },
+        "armsInterventionsModule": {
+          "armGroups": [
+            {
+              "label": "Healthy Controls",
+              "type": "ACTIVE_COMPARATOR",
+              "interventionNames": [
+                "Other: Moderately High Oxalate (MOx) Diet"
+              ]
+            },
+            {
+              "label": "Enteric Hyperoxaluria",
+              "type": "EXPERIMENTAL",
+              "interventionNames": [
+                "Other: Moderately High Oxalate (MOx) Diet"
+              ]
+            }
+          ],
+          "interventions": [
+            {
+              "type": "OTHER",
+              "name": "Moderately High Oxalate (MOx) Diet",
+              "description": "Diets will contain 16% protein, 30% fat, and 54% carbohydrate, and are controlled in the amounts of calcium (400mg), oxalate (250mg), ascorbic acid (50mg), fiber (30 grams) and, other nutrients. Each controlled diet will be consumed for four days. On days of controlled diets, subjects will be provided with 2 liters of bottled water per day to ensure adequate hydration. After the controlled diet period, there will be a three-day washout period, where participants will consume Ad-lib diets supplemented with a daily intake of oxalate in the form of cooked spinach to be taken with breakfast daily for a total of 2 weeks.",
+              "armGroupLabels": [
+                "Enteric Hyperoxaluria",
+                "Healthy Controls"
+              ]
+            }
+          ]
+        },
+        "outcomesModule": {
+          "primaryOutcomes": [
+            {
+              "measure": "Urinary Oxalate Levels (UOx)",
+              "description": "UOx will be quantified in 24-h samples",
+              "timeFrame": "Day 2-3"
+            },
+            {
+              "measure": "Urinary Oxalate Levels (UOx)",
+              "description": "UOx will be quantified in 24-h samples",
+              "timeFrame": "Day 23-24"
+            }
+          ],
+          "secondaryOutcomes": [
+            {
+              "measure": "Total Fecal Oxalate Levels",
+              "timeFrame": "Day 2-3"
+            },
+            {
+              "measure": "Total Fecal Oxalate Levels",
+              "timeFrame": "Day 14"
+            },
+            {
+              "measure": "Total Fecal Oxalate Levels",
+              "timeFrame": "Day 23-24"
+            },
+            {
+              "measure": "Urinary Calcium Levels",
+              "timeFrame": "Day 2-3"
+            },
+            {
+              "measure": "Urinary Calcium Levels",
+              "timeFrame": "Day 23-24"
+            },
+            {
+              "measure": "Sucralose Levels",
+              "timeFrame": "Day 2-3"
+            },
+            {
+              "measure": "Sucralose Levels",
+              "timeFrame": "Day 23-24"
+            },
+            {
+              "measure": "Calcium Oxalate (CaOx) Supersaturation Levels",
+              "timeFrame": "Day 2-3"
+            },
+            {
+              "measure": "Calcium Oxalate (CaOx) Supersaturation Levels",
+              "timeFrame": "Day 23-24"
+            },
+            {
+              "measure": "Plasma Oxalate Levels",
+              "timeFrame": "Day 2-3"
+            },
+            {
+              "measure": "Plasma Oxalate Levels",
+              "timeFrame": "Day 23-24"
+            }
+          ]
+        },
+        "eligibilityModule": {
+          "eligibilityCriteria": "Inclusion Criteria:\n\nIn order to be eligible to participate in this study, an individual must meet all of the following criteria:\n\n* Subjects \\> 18 years and \\< 80 years of age\n* a confirmed diagnosis of IBD or \\> 6 months post- RYGB, with a diagnosis USD event (renal colic with spontaneous stone passage, emergency room visits, or urological interventions) or have kidney stone on imaging (CT, MRI, or US) in the previous three years.\n* We will include all racial and ethnic groups, and both men and women.\n\nIn order to be eligible in this study as a healthy control, an individual must meet all of the following criteria:\n\n* Subjects \\> 18 years and \\< 80 years of age\n* Healthy controls with no chronic diseases, not on any chronic medications, no history of GI pathology, or urinary stone disease (USD).\n* We will include all racial and ethnic groups, and both men and women.\n\nExclusion Criteria:\n\nAn individual who meets any of the following criteria will be excluded from participation in this study:\n\n* pregnant or nursing women and people with any medical, psychiatric, debilitating disease/disorder or social condition that, in the judgment of the investigator, would interfere with or serve as a contraindication to adherence to the study protocol, ability to give ICF or complete the protocol.\n* subjects with total and partial colectomy.\n* subjects who received oral, intramuscular, or intravenous antibiotics within three months before screening.\n* Patients with perianal disease usually receive recurrent antibiotics and, therefore, will be excluded from the study.\n* patients with an ongoing symptomatic IBD flare or a flare within the previous three months\n* patients with estimated glomerular filtration rates (eGFR) \\< 60 ml/min/1.73 m2 calculated by the CKD-EPI equation measured anytime within the preceding year.\n\nAn individual who meets any of the following criteria will be excluded from participation in this study as a healthy control:\n\n* pregnant or nursing women and people with any medical, psychiatric, debilitating disease/disorder or social condition that, in the judgment of the investigator, would interfere with or serve as a contraindication to adherence to the study protocol, ability to give ICF or complete the protocol.\n* subjects with total and partial colectomy.\n* subjects who received oral, intramuscular, or intravenous antibiotics within three months before screening.\n* Patients with perianal disease usually receive recurrent antibiotics and, therefore, will be excluded from the study.\n* patients with an ongoing symptomatic IBD flare or a flare within the previous three months\n* patients with estimated glomerular filtration rates (eGFR) \\< 60 ml/min/1.73 m2 calculated by the CKD-EPI equation measured anytime within the preceding year.",
+          "healthyVolunteers": true,
+          "sex": "ALL",
+          "minimumAge": "18 Years",
+          "maximumAge": "80 Years",
+          "stdAges": [
+            "ADULT",
+            "OLDER_ADULT"
+          ]
+        },
+        "contactsLocationsModule": {
+          "centralContacts": [
+            {
+              "name": "Lama Nazzal, MD",
+              "role": "CONTACT",
+              "phone": "212-263-2922",
+              "email": "Lama.Nazzal@nyulangone.org"
+            },
+            {
+              "name": "David Goldfarb, MD",
+              "role": "CONTACT",
+              "phone": "212-263-0744",
+              "email": "David.Goldfarb@nyulangone.org"
+            }
+          ],
+          "overallOfficials": [
+            {
+              "name": "Lama Nazzal, MD",
+              "affiliation": "NYU Langone Health",
+              "role": "STUDY_CHAIR"
+            },
+            {
+              "name": "David Goldfarb, MD",
+              "affiliation": "NYU Langone Health",
+              "role": "PRINCIPAL_INVESTIGATOR"
+            }
+          ],
+          "locations": [
+            {
+              "facility": "NYU Langone Health",
+              "status": "RECRUITING",
+              "city": "New York",
+              "state": "New York",
+              "zip": "10016",
+              "country": "United States",
+              "contacts": [
+                {
+                  "name": "Lama Nazzal, MD",
+                  "role": "CONTACT",
+                  "email": "Lama.Nazzal@nyulangone.org"
+                },
+                {
+                  "name": "Lama Nazzal, MD",
+                  "role": "PRINCIPAL_INVESTIGATOR"
+                },
+                {
+                  "name": "David Goldfarb, MD",
+                  "role": "PRINCIPAL_INVESTIGATOR"
+                }
+              ],
+              "geoPoint": {
+                "lat": 40.71427,
+                "lon": -74.00597
+              }
+            }
+          ]
+        },
+        "ipdSharingStatementModule": {
+          "ipdSharing": "YES",
+          "description": "Data collected for this study will be analyzed and stored at the Nazzal-hyperoxaluria data repository. After the study is completed, the de-identified, archived data will and stored at the Nazzal- hyperoxaluria data repository, under the supervision of Dr. Lama Nazzal, for use by other researchers including those outside of the study. Permission to transmit data to the Nazzal-hyperoxaluria data repository will be included in the informed consent.\n\nIndividual participant data that underlie the results reported in this article, after deidentification (text, tables, figures, and appendices) upon reasonable request.",
+          "infoTypes": [
+            "STUDY_PROTOCOL",
+            "SAP"
+          ],
+          "timeFrame": "Beginning 9 months and ending 36 months following article publication or as required by a condition of awards and agreements supporting the research.",
+          "accessCriteria": "The investigator who proposed to use the data will have access to the data upon reasonable request. Requests should be directed to lama.nazzal@nyulangone.org. To gain access, data requestors will need to sign a data access agreement."
+        }
+      },
+      "derivedSection": {
+        "miscInfoModule": {
+          "versionHolder": "2026-07-09"
+        },
+        "interventionBrowseModule": {
+          "meshes": [
+            {
+              "id": "D004032",
+              "term": "Diet"
+            }
+          ],
+          "ancestors": [
+            {
+              "id": "D009747",
+              "term": "Nutritional Physiological Phenomena"
+            },
+            {
+              "id": "D000066888",
+              "term": "Diet, Food, and Nutrition"
+            },
+            {
+              "id": "D010829",
+              "term": "Physiological Phenomena"
+            }
+          ]
+        }
+      },
+      "hasResults": false
+    },
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT04603898",
+          "orgStudyIdInfo": {
+            "id": "IRB-300005614"
+          },
+          "secondaryIdInfos": [
+            {
+              "id": "R01DK126774",
+              "type": "NIH",
+              "link": "https://reporter.nih.gov/quickSearch/R01DK126774"
+            }
+          ],
+          "organization": {
+            "fullName": "University of Alabama at Birmingham",
+            "class": "OTHER"
+          },
+          "briefTitle": "Oxalate Formation From Ascorbic Acid",
+          "officialTitle": "Oxalate Formation From Ascorbic Acid"
+        },
+        "statusModule": {
+          "statusVerifiedDate": "2026-06",
+          "overallStatus": "ACTIVE_NOT_RECRUITING",
+          "expandedAccessInfo": {
+            "hasExpandedAccess": false
+          },
+          "startDateStruct": {
+            "date": "2021-11-15",
+            "type": "ACTUAL"
+          },
+          "primaryCompletionDateStruct": {
+            "date": "2026-12-01",
+            "type": "ESTIMATED"
+          },
+          "completionDateStruct": {
+            "date": "2027-02-01",
+            "type": "ESTIMATED"
+          },
+          "studyFirstSubmitDate": "2020-10-21",
+          "studyFirstSubmitQcDate": "2020-10-21",
+          "studyFirstPostDateStruct": {
+            "date": "2020-10-27",
+            "type": "ACTUAL"
+          },
+          "lastUpdateSubmitDate": "2026-06-07",
+          "lastUpdatePostDateStruct": {
+            "date": "2026-06-09",
+            "type": "ACTUAL"
+          }
+        },
+        "sponsorCollaboratorsModule": {
+          "responsibleParty": {
+            "type": "PRINCIPAL_INVESTIGATOR",
+            "investigatorFullName": "John Knight",
+            "investigatorTitle": "Principal Investigator",
+            "investigatorAffiliation": "University of Alabama at Birmingham"
+          },
+          "leadSponsor": {
+            "name": "University of Alabama at Birmingham",
+            "class": "OTHER"
+          },
+          "collaborators": [
+            {
+              "name": "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+              "class": "NIH"
+            }
+          ]
+        },
+        "oversightModule": {
+          "oversightHasDmc": true,
+          "isFdaRegulatedDrug": false,
+          "isFdaRegulatedDevice": false
+        },
+        "descriptionModule": {
+          "briefSummary": "The purpose of this basic research study is to determine the contribution of endogenous ascorbic acid (AA) turnover to urinary oxalate excretion in both normal BMI and obese adult non-stone formers and calcium oxalate stone formers. The studies proposed will use diets of known nutrient composition, a stable isotope of ascorbic acid (13C6-AA) and mass spectrometric techniques to quantify ascorbic acid turnover to oxalate.",
+          "detailedDescription": "The purpose of this basic research study is to determine the contribution of endogenous ascorbic acid (AA)turnover to urinary oxalate excretion in both normal BMI and obese adult non-stone formers and calcium oxalate stone formers. The studies proposed will use diets of known nutrient composition, a stable isotope of AA, 13C6-AA, and mass spectrometric techniques to quantify AA turnover to oxalate.\n\nAdults (≥19 years) with and without a history of calcium oxalate kidney stone disease will be recruited from within the greater Birmingham area, and divided into normal BMI (BMI\\<25 kg/m2) and obese (BMI≥30 kg/m2) groups. Following consent, subjects will meet with a dietitian to ensure willingness to consume controlled diets, and provide fasted blood and 2 x 24 hour urine specimens to determine general health status and adequacy of 24-hour urine collections, respectively.\n\nEligible subjects will consume a low oxalate controlled diet for 6 days, which will involve 2 days of dietary equilibration followed by oral ingestion of 1 mg/kg carbon-13 AA with breakfast on day 3 and subsequent collection of 4 consecutive 24-hour urine specimens. After the carbon-13 AA load, subjects will return each morning to the Clinical Research Unit for a fasted blood draw, to drop off their 24-hour urine collection, and receive their prepared food. In addition, on day 4, 24 hours after ingesting carbon-13 AA, subjects will collect hourly urine and 1/2 hourly blood samples for 5 hours in the Clinical Research Unit."
+        },
+        "conditionsModule": {
+          "conditions": [
+            "Kidney Stone"
+          ],
+          "keywords": [
+            "Oxalate",
+            "Calcium oxalate stones",
+            "Ascorbic Acid"
+          ]
+        },
+        "designModule": {
+          "studyType": "INTERVENTIONAL",
+          "phases": [
+            "NA"
+          ],
+          "designInfo": {
+            "allocation": "NA",
+            "interventionModel": "SINGLE_GROUP",
+            "primaryPurpose": "BASIC_SCIENCE",
+            "maskingInfo": {
+              "masking": "NONE"
+            }
+          },
+          "enrollmentInfo": {
+            "count": 90,
+            "type": "ACTUAL"
+          }
+        },
+        "armsInterventionsModule": {
+          "armGroups": [
+            {
+              "label": "Controlled Dietary Study",
+              "type": "EXPERIMENTAL",
+              "description": "Subjects will consume a controlled diet (low in oxalate and ascorbic acid) for six days. After two days of equilibration, subjects will provide a blood sample and ingest an oral load of ascorbic acid (1 mg/kg) with breakfast on Day 3. The following day (Day 4), serial blood and urine collections will occur. On Days 5 through 7, subjects will complete a 24-hr urine collection and blood draw.",
+              "interventionNames": [
+                "Dietary Supplement: Low Oxalate Diet",
+                "Dietary Supplement: Carbon-13 Ascorbic Acid Oral Load"
+              ]
+            }
+          ],
+          "interventions": [
+            {
+              "type": "DIETARY_SUPPLEMENT",
+              "name": "Low Oxalate Diet",
+              "description": "Subjects will be instructed to ingest a controlled diet low in oxalate for a total of 4 days",
+              "armGroupLabels": [
+                "Controlled Dietary Study"
+              ]
+            },
+            {
+              "type": "DIETARY_SUPPLEMENT",
+              "name": "Carbon-13 Ascorbic Acid Oral Load",
+              "description": "Subjects will be instructed to ingest 1mg/kg of carbon-13 ascorbic acid at breakfast, 2 days after initiating the low oxalate controlled diet.",
+              "armGroupLabels": [
+                "Controlled Dietary Study"
+              ]
+            }
+          ]
+        },
+        "outcomesModule": {
+          "primaryOutcomes": [
+            {
+              "measure": "Percent contribution of ascorbic acid (AA) to urinary oxalate excretion",
+              "description": "On the last day (Day 4) of controlled diet and 24 hours following ingestion of an oral load of carbon-13 AA (1mg/kg), urine and blood will be collected and the levels of carbon 12 and carbon 13 AA and oxalate measured to determine the percent contribution of AA metabolism to urinary oxalate excretion for each subject.",
+              "timeFrame": "Day 4"
+            }
+          ]
+        },
+        "eligibilityModule": {
+          "eligibilityCriteria": "Inclusion Criteria:\n\n* Able to provide informed consent\n* For stone formers: composition of most recent stone \\> 50% calcium oxalate, no uric acid component\n* For stone formers: first time or recurrent calcium oxalate stone former with stone event within the prior 3 years\n* Two 24-hour urine collections with urinary 24-hour creatinine excretion within 20% of appropriate ratio of creatinine (mg) / body weigh (kg) for gender\n* Willingness to stop supplements (vitamins, Calcium (citrate or carbonate) and other minerals, herbal supplements, nutritional aids, probiotics) for 2 weeks before start and during study\n* Willingness to not undertake vigorous exercise during the study\n* Normal fasting blood Comprehensive Metabolic Panel (CMP)\n* Willingness to ingest menus prepared in Clinical Research Unit at University of Alabama at Birmingham\n* No food allergies or intolerance to any of the foods in study menus\n* If on medications for stone prevention (e.g. thiazides, citrate supplementation excluding calcium citrate), they should have been on a stable dose regimen for at least 8 weeks prior to and during screening, with no changes in dosing anticipated during study protocol. If on allopurinol for stone prevention, stop it for 2 weeks prior to screening and this will not be administered during the study as it has anti-oxidant properties.\n\nExclusion Criteria:\n\n* Diabetes\n* Gout\n* Hypertension\n* Estimated Glomerular Filtration Rate (eGFR) less than 60ml/min/1.73m2\n* Primary hyperoxaluria\n* Nephrotic syndrome\n* Enteric hyperoxaluria\n* Renal tubular acidosis\n* Primary hyperparathyroidism\n* Liver disease\n* Auto-immune disorder\n* Neurogenic bladder\n* Urinary diversion\n* Bariatric surgery\n* Active malignancy or treatment for malignancy within 12 months prior to screening\n* Pregnancy\n* Breastfeeding/nursing individuals\n* Females of child bearing age who are not able to use an effective method of birth control during the study\n* Mental/medical condition that is likely to impede successful study completion\n* Illness including flu/common cold/fever 14 days before study and during study\n* Diarrhea or other abnormal gastrointestinal event (e.g. abnormal bowel movements) 14 days before study or during study\n* Abnormal fasting CMP",
+          "healthyVolunteers": true,
+          "sex": "ALL",
+          "minimumAge": "19 Years",
+          "stdAges": [
+            "ADULT",
+            "OLDER_ADULT"
+          ]
+        },
+        "contactsLocationsModule": {
+          "overallOfficials": [
+            {
+              "name": "John Knight, PhD",
+              "affiliation": "University of Alabama at Birmingham",
+              "role": "PRINCIPAL_INVESTIGATOR"
+            }
+          ],
+          "locations": [
+            {
+              "facility": "University of Alabama at Birmingham",
+              "city": "Birmingham",
+              "state": "Alabama",
+              "zip": "35243-3353",
+              "country": "United States",
+              "geoPoint": {
+                "lat": 33.52066,
+                "lon": -86.80249
+              }
+            }
+          ]
+        },
+        "ipdSharingStatementModule": {
+          "ipdSharing": "NO"
+        }
+      },
+      "derivedSection": {
+        "miscInfoModule": {
+          "versionHolder": "2026-07-09"
+        },
+        "conditionBrowseModule": {
+          "meshes": [
+            {
+              "id": "D007669",
+              "term": "Kidney Calculi"
+            }
+          ],
+          "ancestors": [
+            {
+              "id": "D053040",
+              "term": "Nephrolithiasis"
+            },
+            {
+              "id": "D007674",
+              "term": "Kidney Diseases"
+            },
+            {
+              "id": "D014570",
+              "term": "Urologic Diseases"
+            },
+            {
+              "id": "D052776",
+              "term": "Female Urogenital Diseases"
+            },
+            {
+              "id": "D005261",
+              "term": "Female Urogenital Diseases and Pregnancy Complications"
+            },
+            {
+              "id": "D000091642",
+              "term": "Urogenital Diseases"
+            },
+            {
+              "id": "D052878",
+              "term": "Urolithiasis"
+            },
+            {
+              "id": "D014545",
+              "term": "Urinary Calculi"
+            },
+            {
+              "id": "D052801",
+              "term": "Male Urogenital Diseases"
+            },
+            {
+              "id": "D002137",
+              "term": "Calculi"
+            },
+            {
+              "id": "D020763",
+              "term": "Pathological Conditions, Anatomical"
+            },
+            {
+              "id": "D013568",
+              "term": "Pathological Conditions, Signs and Symptoms"
+            }
+          ]
+        }
+      },
+      "hasResults": false
+    },
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT04437225",
+          "orgStudyIdInfo": {
+            "id": "IRB160505004-GLI"
+          },
+          "secondaryIdInfos": [
+            {
+              "id": "K01DK114332",
+              "type": "NIH",
+              "link": "https://reporter.nih.gov/quickSearch/K01DK114332"
+            },
+            {
+              "id": "UAB",
+              "type": "OTHER",
+              "domain": "UAB"
+            }
+          ],
+          "organization": {
+            "fullName": "University of Alabama at Birmingham",
+            "class": "OTHER"
+          },
+          "briefTitle": "Renal Metabolism of Glycolate to Oxalate",
+          "officialTitle": "Renal Metabolism of Glycolate to Oxalate"
+        },
+        "statusModule": {
+          "statusVerifiedDate": "2026-05",
+          "overallStatus": "ACTIVE_NOT_RECRUITING",
+          "expandedAccessInfo": {
+            "hasExpandedAccess": false
+          },
+          "startDateStruct": {
+            "date": "2020-03-12",
+            "type": "ACTUAL"
+          },
+          "primaryCompletionDateStruct": {
+            "date": "2026-09-01",
+            "type": "ESTIMATED"
+          },
+          "completionDateStruct": {
+            "date": "2027-09-01",
+            "type": "ESTIMATED"
+          },
+          "studyFirstSubmitDate": "2020-06-15",
+          "studyFirstSubmitQcDate": "2020-06-16",
+          "studyFirstPostDateStruct": {
+            "date": "2020-06-18",
+            "type": "ACTUAL"
+          },
+          "lastUpdateSubmitDate": "2026-05-27",
+          "lastUpdatePostDateStruct": {
+            "date": "2026-05-29",
+            "type": "ACTUAL"
+          }
+        },
+        "sponsorCollaboratorsModule": {
+          "responsibleParty": {
+            "type": "PRINCIPAL_INVESTIGATOR",
+            "investigatorFullName": "Sonia Fargue",
+            "investigatorTitle": "Principle Investigator",
+            "investigatorAffiliation": "University of Alabama at Birmingham"
+          },
+          "leadSponsor": {
+            "name": "University of Alabama at Birmingham",
+            "class": "OTHER"
+          },
+          "collaborators": [
+            {
+              "name": "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+              "class": "NIH"
+            }
+          ]
+        },
+        "oversightModule": {
+          "oversightHasDmc": true,
+          "isFdaRegulatedDrug": false,
+          "isFdaRegulatedDevice": false,
+          "isUsExport": false
+        },
+        "descriptionModule": {
+          "briefSummary": "This study will determine the contribution of glycolate metabolism to urinary oxalate excretion in healthy subjects, using carbon 13 isotope glycolate tracer technique and a low-oxalate controlled diet.",
+          "detailedDescription": "It is known that glycolate, an intermediary molecule in normal metabolism, can be converted into oxalate. The origin of urinary oxalate is of interest as calcium oxalate is a main component of kidney stones. In the rare disease primary hyperoxaluria, excessive production of oxalate by the body results in frequent kidney stones and can cause loss of kidney function. Primary hyperoxaluria is caused by deficiencies in one of several enzymes involved in the glycolate pathway.\n\nThis study will seek to determine how much oxalate is formed from glycolate in normal subjects. After consuming a controlled diet, subjects will either ingest or have an intravenous infusion of carbon 13 glycolate, a stable isotope of glycolate that can be tracked and will also label downstream metabolic products. Blood and urine samples will be assessed for their amounts of labeled glycolate and labeled oxalate to provide an accurate measure of how much oxalate is made from normal glycolate breakdown in healthy human subjects."
+        },
+        "conditionsModule": {
+          "conditions": [
+            "Healthy"
+          ],
+          "keywords": [
+            "oxalate metabolism",
+            "kidney stones",
+            "glycolate",
+            "isotope tracer study",
+            "urolithiasis",
+            "oxalate"
+          ]
+        },
+        "designModule": {
+          "studyType": "INTERVENTIONAL",
+          "phases": [
+            "NA"
+          ],
+          "designInfo": {
+            "allocation": "NON_RANDOMIZED",
+            "interventionModel": "SEQUENTIAL",
+            "interventionModelDescription": "Subject will undergo the gold-standard technique of steady-state intravenous infusion of 13-glycolate administration. Selected subjects will also undergo other modified modalities of 13-glycolate administration.",
+            "primaryPurpose": "BASIC_SCIENCE",
+            "maskingInfo": {
+              "masking": "NONE"
+            }
+          },
+          "enrollmentInfo": {
+            "count": 15,
+            "type": "ESTIMATED"
+          }
+        },
+        "armsInterventionsModule": {
+          "armGroups": [
+            {
+              "label": "Constant Infusion of 13C2-Glycolate",
+              "type": "EXPERIMENTAL",
+              "description": "Subjects will consume a controlled diet for 5 days total. On Days 3 and 4, subjects will collect 24 hour urines. On Day 5, they will come to the Clinical Research Unit (CRU) in the fasted state for a visit lasting from 7:00 am to 5:30 pm. An intravenous (IV) catheter will be placed in a vein on the back of the hand at 7:30 am for the carbon 13 glycolate infusion which will occur at a constant rate for 10 hours, following a priming dose. From 7:30 am to 5:30 pm, urine collections will occur hourly, and from 8:30 am to 5:30 pm, IV blood collections will occur every half hour. Subjects will receive a meal at 5:30 pm, thus concluding the CRU visit. At home, subjects will collect timed urine until the next morning to be returned to the CRU.",
+              "interventionNames": [
+                "Dietary Supplement: Low oxalate controlled Diet",
+                "Other: Primed, continuous intravenous infusion of 13C2-Glycolate"
+              ]
+            },
+            {
+              "label": "Single Intravenous Dose of 13C2-Glycolate",
+              "type": "EXPERIMENTAL",
+              "description": "Subjects will consume a controlled diet for 5 days total. On Days 3 and 4, subjects will collect 24 hour urines. On Day 5, they will come to the Clinical Research Unit (CRU) in the fasted state for a visit lasting from 7:00 am to 2:30 pm. An intravenous (IV) catheter will be placed in a vein on the back of the hand at 8:30 am for a single dose of carbon-13 glycolate to be administered. From 7:30 am to 2:30 pm, urine collections will occur hourly. At 8:30 am, IV blood samples will be taken every fifteen minutes until 9:30 am, every half hour from 9:30 am to 10:30 am, and then finally hourly from 10:30 am to 2:30 pm . Subjects will receive a meal at 2:30 pm, thus concluding the CRU visit. At home, subjects will collect timed urine until the next morning to be returned to the CRU.",
+              "interventionNames": [
+                "Dietary Supplement: Low oxalate controlled Diet",
+                "Other: Bolus intravenous infusion of 13C2-Glycolate"
+              ]
+            },
+            {
+              "label": "Single Oral Dose of 13C2-Glycolate",
+              "type": "EXPERIMENTAL",
+              "description": "Subjects will consume a controlled diet for 5 days total. On Days 3 and 4, subjects will collect 24 hour urines. On Day 5, they will come to the Clinical Research Unit (CRU) in the fasted state for a visit lasting from 7:00 am to 2:30 pm. At 8:30 am, subjects will ingest the carbon-13 glycolate, dissolved in to 50 ml (about 1/4 cup) of water. From 7:30 am to 2:30 pm, urine collections will occur hourly. At 8:30 am, intravenous (IV) blood samples will be taken every fifteen minutes until 9:30 am, every half hour from 9:30 am to 10:30 am, and then finally hourly from 10:30 am to 2:30 pm . Subjects will receive a meal at 2:30 pm, thus concluding the CRU visit. At home, subjects will collect timed urine until the next morning to be returned to the CRU.",
+              "interventionNames": [
+                "Dietary Supplement: Low oxalate controlled Diet",
+                "Other: Oral bolus administration of 13C2-Glycolate"
+              ]
+            }
+          ],
+          "interventions": [
+            {
+              "type": "DIETARY_SUPPLEMENT",
+              "name": "Low oxalate controlled Diet",
+              "description": "Participants will consume a diet that is controlled in its contents of protein, carbohydrates, fat, calcium, oxalate, vitamin C and sodium. Participants will be asked not to take any dietary supplements, exercise strenuously, or consume food or drink that is not provided to them.",
+              "armGroupLabels": [
+                "Constant Infusion of 13C2-Glycolate",
+                "Single Intravenous Dose of 13C2-Glycolate",
+                "Single Oral Dose of 13C2-Glycolate"
+              ]
+            },
+            {
+              "type": "OTHER",
+              "name": "Primed, continuous intravenous infusion of 13C2-Glycolate",
+              "description": "Participants will receive a continuous intravenous administration of carbon-13 glycolate, a naturally occurring form of glycolate, over the course of several hours until steady-state is achieved, using an IV catheter.",
+              "armGroupLabels": [
+                "Constant Infusion of 13C2-Glycolate"
+              ],
+              "otherNames": [
+                "Constant infusion of 13C2-Glycolate"
+              ]
+            },
+            {
+              "type": "OTHER",
+              "name": "Bolus intravenous infusion of 13C2-Glycolate",
+              "description": "Participants will receive a bolus intravenous administration of carbon-13 glycolate, a naturally occurring form of glycolate, using an IV catheter.",
+              "armGroupLabels": [
+                "Single Intravenous Dose of 13C2-Glycolate"
+              ],
+              "otherNames": [
+                "Single intravenous dose of 13C2-Glycolate"
+              ]
+            },
+            {
+              "type": "OTHER",
+              "name": "Oral bolus administration of 13C2-Glycolate",
+              "description": "Participants will orally ingest a single dose of carbon-13 glycolate, a naturally occurring form of glycolate.",
+              "armGroupLabels": [
+                "Single Oral Dose of 13C2-Glycolate"
+              ],
+              "otherNames": [
+                "Single oral dose of 13C2-Glycolate"
+              ]
+            }
+          ]
+        },
+        "outcomesModule": {
+          "primaryOutcomes": [
+            {
+              "measure": "Urinary oxalate measured by ion chromatography coupled with mass spectrometry",
+              "description": "Measurement of carbon 13 labeled and unlabeled urinary oxalate following carbon 13 glycolate administration, after equilibration under a low-oxalate diet.",
+              "timeFrame": "day 5 of dietary control"
+            },
+            {
+              "measure": "Plasma glycolate measured by ion chromatography coupled with mass spectrometry",
+              "description": "Measurement of carbon 13 labeled and unlabeled plasma glycolate following carbon 13 glycolate administration, after equilibration under a low-oxalate diet.",
+              "timeFrame": "day 5 of dietary control"
+            }
+          ],
+          "secondaryOutcomes": [
+            {
+              "measure": "Urinary creatinine",
+              "description": "Baseline assessment of 24hr urinary creatinine under controlled low-oxalate diet.",
+              "timeFrame": "day 5 of dietary control"
+            },
+            {
+              "measure": "Urinary glycolate measured by ion chromatography coupled with mass spectrometry",
+              "description": "Measurement of carbon 13 labeled and unlabeled urinary glycolate following carbon 13 glycolate administration, after equilibration under a low-oxalate diet.",
+              "timeFrame": "day 5 of dietary control"
+            }
+          ]
+        },
+        "eligibilityModule": {
+          "eligibilityCriteria": "Inclusion Criteria:\n\n* Mentally competent adults, able to read and comprehend the consent form\n* 18-75 years of age\n* Body Mass Index (BMI) between 19 and 40\n* In good health as judged from a medical history, reported medications, and a complete blood metabolic profile\n* Acceptable 24 hour urine collections (performed twice for screening)\n\nExclusion Criteria:\n\n* History of any hepatic, renal, bowel, or endocrine disease or any other condition that may influence the absorption, transport or urine excretion of ions\n* Abnormal urine chemistries or blood metabolic profiles\n* Poor 24 hour urine collections completed during screening, judged by 24 hour urine creatinine excretion (indicative of not collecting all urine in the 24 hour period)\n* Pregnancy, intention to become pregnant in the near future, or lactation\n* Aged \\<18 or \\>75\n* BMI \\<19 or \\>40",
+          "healthyVolunteers": true,
+          "sex": "ALL",
+          "minimumAge": "18 Years",
+          "maximumAge": "75 Years",
+          "stdAges": [
+            "ADULT",
+            "OLDER_ADULT"
+          ]
+        },
+        "contactsLocationsModule": {
+          "overallOfficials": [
+            {
+              "name": "Sonia Fargue, M.D., Ph.D.",
+              "affiliation": "University of Alabama at Birmingham",
+              "role": "PRINCIPAL_INVESTIGATOR"
+            }
+          ],
+          "locations": [
+            {
+              "facility": "University of Alabama at Birmingham",
+              "city": "Birmingham",
+              "state": "Alabama",
+              "zip": "35233",
+              "country": "United States",
+              "geoPoint": {
+                "lat": 33.52066,
+                "lon": -86.80249
+              }
+            }
+          ]
+        }
+      },
+      "derivedSection": {
+        "miscInfoModule": {
+          "versionHolder": "2026-07-09"
+        },
+        "conditionBrowseModule": {
+          "meshes": [
+            {
+              "id": "D007669",
+              "term": "Kidney Calculi"
+            },
+            {
+              "id": "D052878",
+              "term": "Urolithiasis"
+            }
+          ],
+          "ancestors": [
+            {
+              "id": "D053040",
+              "term": "Nephrolithiasis"
+            },
+            {
+              "id": "D007674",
+              "term": "Kidney Diseases"
+            },
+            {
+              "id": "D014570",
+              "term": "Urologic Diseases"
+            },
+            {
+              "id": "D052776",
+              "term": "Female Urogenital Diseases"
+            },
+            {
+              "id": "D005261",
+              "term": "Female Urogenital Diseases and Pregnancy Complications"
+            },
+            {
+              "id": "D000091642",
+              "term": "Urogenital Diseases"
+            },
+            {
+              "id": "D014545",
+              "term": "Urinary Calculi"
+            },
+            {
+              "id": "D052801",
+              "term": "Male Urogenital Diseases"
+            },
+            {
+              "id": "D002137",
+              "term": "Calculi"
+            },
+            {
+              "id": "D020763",
+              "term": "Pathological Conditions, Anatomical"
+            },
+            {
+              "id": "D013568",
+              "term": "Pathological Conditions, Signs and Symptoms"
+            }
+          ]
+        }
+      },
+      "hasResults": false
+    },
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT01675362",
+          "orgStudyIdInfo": {
+            "id": "4228"
+          },
+          "organization": {
+            "fullName": "Mansoura University",
+            "class": "OTHER"
+          },
+          "briefTitle": "Are There Protective Effects of Antioxidants, Calcium Channel Blocker and Angiotensin Receptor Blocker Against Extracorporeal Shockwaves Lithotripsy Induced Renal Injury?",
+          "officialTitle": "A Randomized Controlled Trial for Evaluating Protective Effects of Antioxidants (Selenium and Vitamins A, C and E), Calcium Channel Blocker (Verapamil) and Angiotensin Receptor Blocker (Losartan) Against Extracorporeal Shockwaves Lithotripsy Induced Renal Injury",
+          "acronym": "SWL"
+        },
+        "statusModule": {
+          "statusVerifiedDate": "2014-10",
+          "overallStatus": "COMPLETED",
+          "expandedAccessInfo": {
+            "hasExpandedAccess": false
+          },
+          "startDateStruct": {
+            "date": "2012-08"
+          },
+          "primaryCompletionDateStruct": {
+            "date": "2014-08",
+            "type": "ACTUAL"
+          },
+          "completionDateStruct": {
+            "date": "2014-10",
+            "type": "ACTUAL"
+          },
+          "studyFirstSubmitDate": "2012-08-27",
+          "studyFirstSubmitQcDate": "2012-08-28",
+          "studyFirstPostDateStruct": {
+            "date": "2012-08-29",
+            "type": "ESTIMATED"
+          },
+          "lastUpdateSubmitDate": "2014-10-08",
+          "lastUpdatePostDateStruct": {
+            "date": "2014-10-09",
+            "type": "ESTIMATED"
+          }
+        },
+        "sponsorCollaboratorsModule": {
+          "responsibleParty": {
+            "type": "PRINCIPAL_INVESTIGATOR",
+            "investigatorFullName": "Ahmed R. EL-Nahas",
+            "investigatorTitle": "Assistant Professor of Urology",
+            "investigatorAffiliation": "Mansoura University"
+          },
+          "leadSponsor": {
+            "name": "Mansoura University",
+            "class": "OTHER"
+          }
+        },
+        "oversightModule": {
+          "oversightHasDmc": true
+        },
+        "descriptionModule": {
+          "briefSummary": "This study will be conducted to evaluate the protective effects and mechanisms of antioxidants (vitamins A, C, E and Selenium), calcium channel blocker (Verapamil) and angiotensin receptor blocker (Lozartan) against shock wave induced renal injuries.",
+          "detailedDescription": "The protective effect will be evaluated via estimation of the changes in renal tubular enzyme (NGAL) and detection of albumen levels in urine. The mechanisms of protection will be investigated by estimation of renal perfusion and functional changes using dynamic MRI."
+        },
+        "conditionsModule": {
+          "conditions": [
+            "Kidney Calculi"
+          ],
+          "keywords": [
+            "Extracorporeal shockwave lithotripsy (ESWL)",
+            "Kidney calculi",
+            "Renal protection",
+            "Antioxidants",
+            "Calcium channel blockers",
+            "Angiotensin receptor blockers"
+          ]
+        },
+        "designModule": {
+          "studyType": "INTERVENTIONAL",
+          "phases": [
+            "PHASE4"
+          ],
+          "designInfo": {
+            "allocation": "RANDOMIZED",
+            "interventionModel": "PARALLEL",
+            "primaryPurpose": "PREVENTION",
+            "maskingInfo": {
+              "masking": "TRIPLE",
+              "whoMasked": [
+                "PARTICIPANT",
+                "CARE_PROVIDER",
+                "INVESTIGATOR"
+              ]
+            }
+          },
+          "enrollmentInfo": {
+            "count": 160,
+            "type": "ACTUAL"
+          }
+        },
+        "armsInterventionsModule": {
+          "armGroups": [
+            {
+              "label": "Control group",
+              "type": "PLACEBO_COMPARATOR",
+              "description": "They will receive placebo",
+              "interventionNames": [
+                "Drug: Placebo"
+              ]
+            },
+            {
+              "label": "Antioxidant group",
+              "type": "ACTIVE_COMPARATOR",
+              "description": "They will be receive vitamins A, C, E and selenium (Selenium ACE) Dosage: Two tablets before ESWL Then 2 tablets every 8 hours after ESWL for one week",
+              "interventionNames": [
+                "Drug: Antioxidant group"
+              ]
+            },
+            {
+              "label": "Calcium channel Blockers",
+              "type": "ACTIVE_COMPARATOR",
+              "description": "They will receive Verapamil (Isoptin 80 mg) Dosage: One tablet 2 hours before ESWL Then one tablet every 12 hours after ESWL for one week",
+              "interventionNames": [
+                "Drug: Calcium Channel Blockers"
+              ]
+            },
+            {
+              "label": "Angiotensin receptor blocker group",
+              "type": "ACTIVE_COMPARATOR",
+              "description": "They will receive Losartan (Cozaar 50 mg) Dosage: One tablet 2 hours before ESWL Then one tablet every day after ESWL for one week",
+              "interventionNames": [
+                "Drug: Angiotensin receptor blocker group"
+              ]
+            }
+          ],
+          "interventions": [
+            {
+              "type": "DRUG",
+              "name": "Antioxidant group",
+              "description": "They will be receive vitamins A, C, E and selenium (Selenium ACE) Dosage: Two tablets before ESWL Then 2 tablets every 8 hours after ESWL for one week",
+              "armGroupLabels": [
+                "Antioxidant group"
+              ],
+              "otherNames": [
+                "Selenium ACE"
+              ]
+            },
+            {
+              "type": "DRUG",
+              "name": "Calcium Channel Blockers",
+              "description": "They will receive Verapamil (Isoptin 80 mg) Dosage: One tablet 2 hours before ESWL Then one tablet every 12 hours after ESWL for one week",
+              "armGroupLabels": [
+                "Calcium channel Blockers"
+              ],
+              "otherNames": [
+                "Verapamil"
+              ]
+            },
+            {
+              "type": "DRUG",
+              "name": "Angiotensin receptor blocker group",
+              "description": "They will receive Losartan (Cozaar 50 mg) Dosage: One tablet 2 hours before ESWL Then one tablet every day after ESWL for one week",
+              "armGroupLabels": [
+                "Angiotensin receptor blocker group"
+              ],
+              "otherNames": [
+                "Losartan"
+              ]
+            },
+            {
+              "type": "DRUG",
+              "name": "Placebo",
+              "description": "They will receive placebo",
+              "armGroupLabels": [
+                "Control group"
+              ]
+            }
+          ]
+        },
+        "outcomesModule": {
+          "primaryOutcomes": [
+            {
+              "measure": "Renal damage",
+              "description": "The protective effect will be evaluated via estimation of the changes in renal tubular enzyme (NGAL) and detection of albumen levels in urine.",
+              "timeFrame": "two hours and one week after Extracorporeal shock wave lithotripsy (ESWL)"
+            }
+          ],
+          "secondaryOutcomes": [
+            {
+              "measure": "The mechanisms of renal protection",
+              "description": "The mechanisms of protection will be investigated by estimation of renal perfusion and functional changes using dynamic MRI",
+              "timeFrame": "Before ESWL, 2 hours and 1 week after ESWL"
+            }
+          ]
+        },
+        "eligibilityModule": {
+          "eligibilityCriteria": "Inclusion Criteria:\n\n1. Well functioning kidney (serum creatinine \\<1.2 mg/dl).\n2. Solitary renal stone.\n3. Size: 25 mm or less in the largest diameter.\n\nExclusion Criteria:\n\n1. Contraindications to ESWL\n2. Previous surgical treatment of renal stones.\n3. Congenital renal anomalies.\n4. Pediatric patients (age \\<18 years).\n5. Patients with Diabetes or hypertension",
+          "healthyVolunteers": false,
+          "sex": "ALL",
+          "minimumAge": "18 Years",
+          "maximumAge": "60 Years",
+          "stdAges": [
+            "ADULT"
+          ]
+        },
+        "contactsLocationsModule": {
+          "overallOfficials": [
+            {
+              "name": "Ahmed R. EL-Nahas, MD",
+              "affiliation": "Mansoura University",
+              "role": "PRINCIPAL_INVESTIGATOR"
+            }
+          ],
+          "locations": [
+            {
+              "facility": "Urology and Nephrology Center",
+              "city": "Al Mansurah",
+              "zip": "35516",
+              "country": "Egypt",
+              "geoPoint": {
+                "lat": 31.03637,
+                "lon": 31.38069
+              }
+            }
+          ]
+        }
+      },
+      "derivedSection": {
+        "miscInfoModule": {
+          "versionHolder": "2026-07-09"
+        },
+        "conditionBrowseModule": {
+          "meshes": [
+            {
+              "id": "D007669",
+              "term": "Kidney Calculi"
+            }
+          ],
+          "ancestors": [
+            {
+              "id": "D053040",
+              "term": "Nephrolithiasis"
+            },
+            {
+              "id": "D007674",
+              "term": "Kidney Diseases"
+            },
+            {
+              "id": "D014570",
+              "term": "Urologic Diseases"
+            },
+            {
+              "id": "D052776",
+              "term": "Female Urogenital Diseases"
+            },
+            {
+              "id": "D005261",
+              "term": "Female Urogenital Diseases and Pregnancy Complications"
+            },
+            {
+              "id": "D000091642",
+              "term": "Urogenital Diseases"
+            },
+            {
+              "id": "D052878",
+              "term": "Urolithiasis"
+            },
+            {
+              "id": "D014545",
+              "term": "Urinary Calculi"
+            },
+            {
+              "id": "D052801",
+              "term": "Male Urogenital Diseases"
+            },
+            {
+              "id": "D002137",
+              "term": "Calculi"
+            },
+            {
+              "id": "D020763",
+              "term": "Pathological Conditions, Anatomical"
+            },
+            {
+              "id": "D013568",
+              "term": "Pathological Conditions, Signs and Symptoms"
+            }
+          ]
+        },
+        "interventionBrowseModule": {
+          "meshes": [
+            {
+              "id": "D002121",
+              "term": "Calcium Channel Blockers"
+            },
+            {
+              "id": "D014700",
+              "term": "Verapamil"
+            },
+            {
+              "id": "D019808",
+              "term": "Losartan"
+            }
+          ],
+          "ancestors": [
+            {
+              "id": "D049990",
+              "term": "Membrane Transport Modulators"
+            },
+            {
+              "id": "D045504",
+              "term": "Molecular Mechanisms of Pharmacological Action"
+            },
+            {
+              "id": "D020228",
+              "term": "Pharmacologic Actions"
+            },
+            {
+              "id": "D020164",
+              "term": "Chemical Actions and Uses"
+            },
+            {
+              "id": "D000077264",
+              "term": "Calcium-Regulating Hormones and Agents"
+            },
+            {
+              "id": "D045505",
+              "term": "Physiological Effects of Drugs"
+            },
+            {
+              "id": "D002317",
+              "term": "Cardiovascular Agents"
+            },
+            {
+              "id": "D045506",
+              "term": "Therapeutic Uses"
+            },
+            {
+              "id": "D010627",
+              "term": "Phenethylamines"
+            },
+            {
+              "id": "D005021",
+              "term": "Ethylamines"
+            },
+            {
+              "id": "D000588",
+              "term": "Amines"
+            },
+            {
+              "id": "D009930",
+              "term": "Organic Chemicals"
+            },
+            {
+              "id": "D001713",
+              "term": "Biphenyl Compounds"
+            },
+            {
+              "id": "D001555",
+              "term": "Benzene Derivatives"
+            },
+            {
+              "id": "D006841",
+              "term": "Hydrocarbons, Aromatic"
+            },
+            {
+              "id": "D006844",
+              "term": "Hydrocarbons, Cyclic"
+            },
+            {
+              "id": "D006838",
+              "term": "Hydrocarbons"
+            },
+            {
+              "id": "D007093",
+              "term": "Imidazoles"
+            },
+            {
+              "id": "D001393",
+              "term": "Azoles"
+            },
+            {
+              "id": "D006573",
+              "term": "Heterocyclic Compounds, 1-Ring"
+            },
+            {
+              "id": "D006571",
+              "term": "Heterocyclic Compounds"
+            },
+            {
+              "id": "D013777",
+              "term": "Tetrazoles"
+            }
+          ]
+        }
+      },
+      "hasResults": false
+    },
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT05229952",
+          "orgStudyIdInfo": {
+            "id": "IRB151020005-OXI"
+          },
+          "organization": {
+            "fullName": "University of Alabama at Birmingham",
+            "class": "OTHER"
+          },
+          "briefTitle": "Assessment of Endogenous Oxalate Synthesis",
+          "officialTitle": "Assessment of Endogenous Oxalate Synthesis"
+        },
+        "statusModule": {
+          "statusVerifiedDate": "2025-05",
+          "overallStatus": "COMPLETED",
+          "expandedAccessInfo": {
+            "hasExpandedAccess": false
+          },
+          "startDateStruct": {
+            "date": "2022-02-10",
+            "type": "ACTUAL"
+          },
+          "primaryCompletionDateStruct": {
+            "date": "2024-09-09",
+            "type": "ACTUAL"
+          },
+          "completionDateStruct": {
+            "date": "2024-09-09",
+            "type": "ACTUAL"
+          },
+          "studyFirstSubmitDate": "2022-01-27",
+          "studyFirstSubmitQcDate": "2022-01-27",
+          "studyFirstPostDateStruct": {
+            "date": "2022-02-08",
+            "type": "ACTUAL"
+          },
+          "resultsFirstSubmitDate": "2024-09-10",
+          "resultsFirstSubmitQcDate": "2024-12-08",
+          "resultsFirstPostDateStruct": {
+            "date": "2024-12-11",
+            "type": "ACTUAL"
+          },
+          "lastUpdateSubmitDate": "2025-05-09",
+          "lastUpdatePostDateStruct": {
+            "date": "2025-05-13",
+            "type": "ACTUAL"
+          }
+        },
+        "sponsorCollaboratorsModule": {
+          "responsibleParty": {
+            "type": "PRINCIPAL_INVESTIGATOR",
+            "investigatorFullName": "Sonia Fargue",
+            "investigatorTitle": "Assistant Professor",
+            "investigatorAffiliation": "University of Alabama at Birmingham"
+          },
+          "leadSponsor": {
+            "name": "University of Alabama at Birmingham",
+            "class": "OTHER"
+          }
+        },
+        "oversightModule": {
+          "oversightHasDmc": true,
+          "isFdaRegulatedDrug": false,
+          "isFdaRegulatedDevice": false
+        },
+        "descriptionModule": {
+          "briefSummary": "This study aims to determine the daily rate of endogenous synthesis of oxalate using carbon 13 oxalate isotope tracer technique and a low-oxalate controlled diet.",
+          "detailedDescription": "Urinary oxalate excretion is derived from both dietary sources and endogenous synthesis. This study will use low-oxalate controlled diet and intravenous infusion of the isotope tracer carbon 13 oxalate, timed with blood and urine collections, to determine the daily rate of endogenous oxalate synthesis in non-stone forming volunteers and in subjects with calcium oxalate kidney stones. A DXA scan will be used to assess body composition."
+        },
+        "conditionsModule": {
+          "conditions": [
+            "Healthy",
+            "Kidney Stone",
+            "Obesity"
+          ],
+          "keywords": [
+            "Oxalate",
+            "Kidney stones",
+            "Urolithiasis",
+            "Nephrolithiasis",
+            "Urologic disease",
+            "Oxalate metabolism"
+          ]
+        },
+        "designModule": {
+          "studyType": "INTERVENTIONAL",
+          "phases": [
+            "NA"
+          ],
+          "designInfo": {
+            "allocation": "NA",
+            "interventionModel": "SEQUENTIAL",
+            "primaryPurpose": "BASIC_SCIENCE",
+            "maskingInfo": {
+              "masking": "NONE"
+            }
+          },
+          "enrollmentInfo": {
+            "count": 23,
+            "type": "ACTUAL"
+          }
+        },
+        "armsInterventionsModule": {
+          "armGroups": [
+            {
+              "label": "Constant infusion of 13C2-oxalate",
+              "type": "EXPERIMENTAL",
+              "description": "Subjects who have passed screening, will consume a low-oxalate, normal calcium controlled diet for 5 days total. On Days 3 and 4, subjects will collect two 24-hour urines. On Day 5, they will receive a carbon 13 oxalate infusion which will occur at a constant rate for 6 hours, in the fasted state, following a priming dose. Hourly urine and twice hourly blood samples will be collected during the 6 hours. Meals will be resumed at the end of the infusion and timed urine collections will take place at home until the next day. A DXA scan will be performed to assess body composition at another date.",
+              "interventionNames": [
+                "Dietary Supplement: Low-oxalate controlled diet",
+                "Other: Primed, continuous intravenous infusion of 13C2-oxalate"
+              ]
+            }
+          ],
+          "interventions": [
+            {
+              "type": "DIETARY_SUPPLEMENT",
+              "name": "Low-oxalate controlled diet",
+              "description": "Participants will consume a diet that is controlled in its contents of protein, carbohydrates, fat, calcium, oxalate, vitamin C and sodium for 5 days. Participants will be asked not to take any dietary supplements, exercise strenuously, or consume food or drink that is not provided to them.",
+              "armGroupLabels": [
+                "Constant infusion of 13C2-oxalate"
+              ]
+            },
+            {
+              "type": "OTHER",
+              "name": "Primed, continuous intravenous infusion of 13C2-oxalate",
+              "description": "Participants will receive a continuous intravenous administration of carbon-13 oxalate, a naturally occurring form of oxalate, over the course of several hours until steady-state is achieved, using an IV catheter, while remaining fasting.",
+              "armGroupLabels": [
+                "Constant infusion of 13C2-oxalate"
+              ]
+            }
+          ]
+        },
+        "outcomesModule": {
+          "primaryOutcomes": [
+            {
+              "measure": "Endogenous Oxalate Synthesis Rate",
+              "description": "Daily oxalate synthesis rate (mg/day) determined by the 13c2-oxalate infusion method",
+              "timeFrame": "day 5"
+            }
+          ],
+          "secondaryOutcomes": [
+            {
+              "measure": "Urinary Oxalate Excretion",
+              "description": "24-hr urinary oxalate excretion (mg/day) after equilibration on the low-oxalate controlled diet, measured by ion chromatography coupled with mass spectrometry.",
+              "timeFrame": "day 3-4"
+            },
+            {
+              "measure": "Urinary Creatinine Excretion",
+              "description": "24-hr urinary creatinine excretion (g/day) after equilibration on the low-oxalate controlled diet.",
+              "timeFrame": "day 3-4"
+            }
+          ]
+        },
+        "eligibilityModule": {
+          "eligibilityCriteria": "Inclusion Criteria:\n\n* Mentally competent adults, able to read and comprehend the consent form\n* Body Mass Index (BMI) between 18.5 and 50 kg/m2\n* Acceptable 24 hour urine collections (judged on screening)\n* good health as judged from a medical history, reported medications, and a complete blood metabolic profile\n* with or without history of calcium oxalate kidney stones\n\nExclusion Criteria:\n\n* History of any hepatic, bowel, or endocrine disease or other condition that may influence the absorption, transport or urine excretion of ions\n* Abnormal urine chemistries or blood metabolic profiles\n* Poor 24 hour urine collections completed during screening, judged by 24 hour urine creatinine excretion (indicative of not collecting all urine in the 24 hour period)\n* Pregnancy, intention to become pregnant in the near future, or lactation\n* Aged lower than 18 or greater than 75 years\n* BMI lower than18.5 or greater than 50 kg/m2",
+          "healthyVolunteers": true,
+          "sex": "ALL",
+          "minimumAge": "18 Years",
+          "maximumAge": "75 Years",
+          "stdAges": [
+            "ADULT",
+            "OLDER_ADULT"
+          ]
+        },
+        "contactsLocationsModule": {
+          "overallOfficials": [
+            {
+              "name": "Sonia Fargue, PhD",
+              "affiliation": "University of Alabama at Birmingham",
+              "role": "PRINCIPAL_INVESTIGATOR"
+            }
+          ],
+          "locations": [
+            {
+              "facility": "University of Alabama at Birmingham",
+              "city": "Birmingham",
+              "state": "Alabama",
+              "zip": "35294",
+              "country": "United States",
+              "geoPoint": {
+                "lat": 33.52066,
+                "lon": -86.80249
+              }
+            }
+          ]
+        },
+        "referencesModule": {
+          "references": [
+            {
+              "pmid": "37312251",
+              "type": "RESULT",
+              "citation": "Fargue S, Wood KD, Crivelli JJ, Assimos DG, Oster RA, Knight J. Endogenous Oxalate Synthesis and Urinary Oxalate Excretion. J Am Soc Nephrol. 2023 Sep 1;34(9):1505-1507. doi: 10.1681/ASN.0000000000000176. Epub 2023 Jun 14. No abstract available."
+            }
+          ]
+        },
+        "ipdSharingStatementModule": {
+          "ipdSharing": "NO"
+        }
+      },
+      "resultsSection": {
+        "participantFlowModule": {
+          "groups": [
+            {
+              "id": "FG000",
+              "title": "Constant Infusion of 13C2-oxalate",
+              "description": "Subjects who have passed screening, will consume a low-oxalate, normal calcium controlled diet for 5 days total. On Days 3 and 4, subjects will collect two 24-hour urines. On Day 5, they will receive a carbon 13 oxalate infusion which will occur at a constant rate for 6 hours, in the fasted state, following a priming dose. Hourly urine and twice hourly blood samples will be collected during the 6 hours. Meals will be resumed at the end of the infusion and timed urine collections will take place at home until the next day. A DXA scan will be performed to assess body composition at another date.\n\nLow-oxalate controlled diet: Participants will consume a diet that is controlled in its contents of protein, carbohydrates, fat, calcium, oxalate, vitamin C and sodium for 5 days. Participants will be asked not to take any dietary supplements, exercise strenuously, or consume food or drink that is not provided to them.\n\nPrimed, continuous intravenous infusion of 13C2-oxalate: Participants will receive a continuous intravenous administration of carbon-13 oxalate, a naturally occurring form of oxalate, over the course of several hours until steady-state is achieved, using an IV catheter, while remaining fasting."
+            }
+          ],
+          "periods": [
+            {
+              "title": "Overall Study",
+              "milestones": [
+                {
+                  "type": "STARTED",
+                  "achievements": [
+                    {
+                      "groupId": "FG000",
+                      "numSubjects": "23"
+                    }
+                  ]
+                },
+                {
+                  "type": "COMPLETED",
+                  "achievements": [
+                    {
+                      "groupId": "FG000",
+                      "numSubjects": "23"
+                    }
+                  ]
+                },
+                {
+                  "type": "NOT COMPLETED",
+                  "achievements": [
+                    {
+                      "groupId": "FG000",
+                      "numSubjects": "0"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "baselineCharacteristicsModule": {
+          "populationDescription": "individuals with and without history of calcium oxalate kidney stones",
+          "groups": [
+            {
+              "id": "BG000",
+              "title": "Constant Infusion of 13C2-oxalate",
+              "description": "Subjects who have passed screening, will consume a low-oxalate, normal calcium controlled diet for 5 days total. On Days 3 and 4, subjects will collect two 24-hour urines. On Day 5, they will receive a carbon 13 oxalate infusion which will occur at a constant rate for 6 hours, in the fasted state, following a priming dose. Hourly urine and twice hourly blood samples will be collected during the 6 hours. Meals will be resumed at the end of the infusion and timed urine collections will take place at home until the next day. A DXA scan will be performed to assess body composition at another date.\n\nLow-oxalate controlled diet: Participants will consume a diet that is controlled in its contents of protein, carbohydrates, fat, calcium, oxalate, vitamin C and sodium for 5 days. Participants will be asked not to take any dietary supplements, exercise strenuously, or consume food or drink that is not provided to them.\n\nPrimed, continuous intravenous infusion of 13C2-oxalate: Participants will receive a continuous intravenous administration of carbon-13 oxalate, a naturally occurring form of oxalate, over the course of several hours until steady-state is achieved, using an IV catheter, while remaining fasting."
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "23"
+                }
+              ]
+            }
+          ],
+          "measures": [
+            {
+              "title": "Age, Categorical",
+              "paramType": "COUNT_OF_PARTICIPANTS",
+              "unitOfMeasure": "Participants",
+              "classes": [
+                {
+                  "categories": [
+                    {
+                      "title": "<=18 years",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "0"
+                        }
+                      ]
+                    },
+                    {
+                      "title": "Between 18 and 65 years",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "23"
+                        }
+                      ]
+                    },
+                    {
+                      "title": ">=65 years",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Age, Continuous",
+              "paramType": "MEAN",
+              "dispersionType": "STANDARD_DEVIATION",
+              "unitOfMeasure": "years",
+              "classes": [
+                {
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "41",
+                          "spread": "11"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Sex: Female, Male",
+              "paramType": "COUNT_OF_PARTICIPANTS",
+              "unitOfMeasure": "Participants",
+              "classes": [
+                {
+                  "categories": [
+                    {
+                      "title": "Female",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "14"
+                        }
+                      ]
+                    },
+                    {
+                      "title": "Male",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "9"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Ethnicity (NIH/OMB)",
+              "paramType": "COUNT_OF_PARTICIPANTS",
+              "unitOfMeasure": "Participants",
+              "classes": [
+                {
+                  "categories": [
+                    {
+                      "title": "Hispanic or Latino",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "1"
+                        }
+                      ]
+                    },
+                    {
+                      "title": "Not Hispanic or Latino",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "21"
+                        }
+                      ]
+                    },
+                    {
+                      "title": "Unknown or Not Reported",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Race (NIH/OMB)",
+              "paramType": "COUNT_OF_PARTICIPANTS",
+              "unitOfMeasure": "Participants",
+              "classes": [
+                {
+                  "categories": [
+                    {
+                      "title": "American Indian or Alaska Native",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "0"
+                        }
+                      ]
+                    },
+                    {
+                      "title": "Asian",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "1"
+                        }
+                      ]
+                    },
+                    {
+                      "title": "Native Hawaiian or Other Pacific Islander",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "0"
+                        }
+                      ]
+                    },
+                    {
+                      "title": "Black or African American",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "10"
+                        }
+                      ]
+                    },
+                    {
+                      "title": "White",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "12"
+                        }
+                      ]
+                    },
+                    {
+                      "title": "More than one race",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "0"
+                        }
+                      ]
+                    },
+                    {
+                      "title": "Unknown or Not Reported",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Region of Enrollment",
+              "paramType": "NUMBER",
+              "unitOfMeasure": "participants",
+              "classes": [
+                {
+                  "title": "United States",
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "23"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Body mass index",
+              "paramType": "MEAN",
+              "dispersionType": "STANDARD_DEVIATION",
+              "unitOfMeasure": "kg/m2",
+              "classes": [
+                {
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "31",
+                          "spread": "6"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "outcomeMeasuresModule": {
+          "outcomeMeasures": [
+            {
+              "type": "PRIMARY",
+              "title": "Endogenous Oxalate Synthesis Rate",
+              "description": "Daily oxalate synthesis rate (mg/day) determined by the 13c2-oxalate infusion method",
+              "reportingStatus": "POSTED",
+              "paramType": "MEAN",
+              "dispersionType": "Standard Deviation",
+              "unitOfMeasure": "mg/day",
+              "timeFrame": "day 5",
+              "groups": [
+                {
+                  "id": "OG000",
+                  "title": "Constant Infusion of 13C2-oxalate",
+                  "description": "Subjects who have passed screening, will consume a low-oxalate, normal calcium controlled diet for 5 days total. On Days 3 and 4, subjects will collect two 24-hour urines. On Day 5, they will receive a carbon 13 oxalate infusion which will occur at a constant rate for 6 hours, in the fasted state, following a priming dose. Hourly urine and twice hourly blood samples will be collected during the 6 hours. Meals will be resumed at the end of the infusion and timed urine collections will take place at home until the next day. A DXA scan will be performed to assess body composition at another date.\n\nLow-oxalate controlled diet: Participants will consume a diet that is controlled in its contents of protein, carbohydrates, fat, calcium, oxalate, vitamin C and sodium for 5 days. Participants will be asked not to take any dietary supplements, exercise strenuously, or consume food or drink that is not provided to them.\n\nPrimed, continuous intravenous infusion of 13C2-oxalate: Participants will receive a continuous intravenous administration of carbon-13 oxalate, a naturally occurring form of oxalate, over the course of several hours until steady-state is achieved, using an IV catheter, while remaining fasting."
+                }
+              ],
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "OG000",
+                      "value": "23"
+                    }
+                  ]
+                }
+              ],
+              "classes": [
+                {
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "OG000",
+                          "value": "17",
+                          "spread": "4"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SECONDARY",
+              "title": "Urinary Oxalate Excretion",
+              "description": "24-hr urinary oxalate excretion (mg/day) after equilibration on the low-oxalate controlled diet, measured by ion chromatography coupled with mass spectrometry.",
+              "reportingStatus": "POSTED",
+              "paramType": "MEAN",
+              "dispersionType": "Standard Deviation",
+              "unitOfMeasure": "mg/day",
+              "timeFrame": "day 3-4",
+              "groups": [
+                {
+                  "id": "OG000",
+                  "title": "Constant Infusion of 13C2-oxalate",
+                  "description": "Subjects who have passed screening, will consume a low-oxalate, normal calcium controlled diet for 5 days total. On Days 3 and 4, subjects will collect two 24-hour urines. On Day 5, they will receive a carbon 13 oxalate infusion which will occur at a constant rate for 6 hours, in the fasted state, following a priming dose. Hourly urine and twice hourly blood samples will be collected during the 6 hours. Meals will be resumed at the end of the infusion and timed urine collections will take place at home until the next day. A DXA scan will be performed to assess body composition at another date.\n\nLow-oxalate controlled diet: Participants will consume a diet that is controlled in its contents of protein, carbohydrates, fat, calcium, oxalate, vitamin C and sodium for 5 days. Participants will be asked not to take any dietary supplements, exercise strenuously, or consume food or drink that is not provided to them.\n\nPrimed, continuous intravenous infusion of 13C2-oxalate: Participants will receive a continuous intravenous administration of carbon-13 oxalate, a naturally occurring form of oxalate, over the course of several hours until steady-state is achieved, using an IV catheter, while remaining fasting."
+                }
+              ],
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "OG000",
+                      "value": "23"
+                    }
+                  ]
+                }
+              ],
+              "classes": [
+                {
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "OG000",
+                          "value": "20",
+                          "spread": "4"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SECONDARY",
+              "title": "Urinary Creatinine Excretion",
+              "description": "24-hr urinary creatinine excretion (g/day) after equilibration on the low-oxalate controlled diet.",
+              "reportingStatus": "POSTED",
+              "paramType": "MEAN",
+              "dispersionType": "Standard Deviation",
+              "unitOfMeasure": "g/day",
+              "timeFrame": "day 3-4",
+              "groups": [
+                {
+                  "id": "OG000",
+                  "title": "Constant Infusion of 13C2-oxalate",
+                  "description": "Subjects who have passed screening, will consume a low-oxalate, normal calcium controlled diet for 5 days total. On Days 3 and 4, subjects will collect two 24-hour urines. On Day 5, they will receive a carbon 13 oxalate infusion which will occur at a constant rate for 6 hours, in the fasted state, following a priming dose. Hourly urine and twice hourly blood samples will be collected during the 6 hours. Meals will be resumed at the end of the infusion and timed urine collections will take place at home until the next day. A DXA scan will be performed to assess body composition at another date.\n\nLow-oxalate controlled diet: Participants will consume a diet that is controlled in its contents of protein, carbohydrates, fat, calcium, oxalate, vitamin C and sodium for 5 days. Participants will be asked not to take any dietary supplements, exercise strenuously, or consume food or drink that is not provided to them.\n\nPrimed, continuous intravenous infusion of 13C2-oxalate: Participants will receive a continuous intravenous administration of carbon-13 oxalate, a naturally occurring form of oxalate, over the course of several hours until steady-state is achieved, using an IV catheter, while remaining fasting."
+                }
+              ],
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "OG000",
+                      "value": "23"
+                    }
+                  ]
+                }
+              ],
+              "classes": [
+                {
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "OG000",
+                          "value": "1.6",
+                          "spread": "0.5"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "adverseEventsModule": {
+          "frequencyThreshold": "0",
+          "timeFrame": "5 days",
+          "eventGroups": [
+            {
+              "id": "EG000",
+              "title": "Constant Infusion of 13C2-oxalate",
+              "description": "Subjects who have passed screening, will consume a low-oxalate, normal calcium controlled diet for 5 days total. On Days 3 and 4, subjects will collect two 24-hour urines. On Day 5, they will receive a carbon 13 oxalate infusion which will occur at a constant rate for 6 hours, in the fasted state, following a priming dose. Hourly urine and twice hourly blood samples will be collected during the 6 hours. Meals will be resumed at the end of the infusion and timed urine collections will take place at home until the next day. A DXA scan will be performed to assess body composition at another date.\n\nLow-oxalate controlled diet: Participants will consume a diet that is controlled in its contents of protein, carbohydrates, fat, calcium, oxalate, vitamin C and sodium for 5 days. Participants will be asked not to take any dietary supplements, exercise strenuously, or consume food or drink that is not provided to them.\n\nPrimed, continuous intravenous infusion of 13C2-oxalate: Participants will receive a continuous intravenous administration of carbon-13 oxalate, a naturally occurring form of oxalate, over the course of several hours until steady-state is achieved, using an IV catheter, while remaining fasting.",
+              "deathsNumAffected": 0,
+              "deathsNumAtRisk": 23,
+              "seriousNumAffected": 0,
+              "seriousNumAtRisk": 23,
+              "otherNumAffected": 0,
+              "otherNumAtRisk": 23
+            }
+          ]
+        },
+        "moreInfoModule": {
+          "certainAgreement": {
+            "piSponsorEmployee": true,
+            "restrictiveAgreement": false
+          },
+          "pointOfContact": {
+            "title": "Dr Sonia Fargue",
+            "organization": "University of Alabama at Birmingham",
+            "email": "sfargue@uab.edu",
+            "phone": "2059756932"
+          }
+        }
+      },
+      "documentSection": {
+        "largeDocumentModule": {
+          "largeDocs": [
+            {
+              "typeAbbrev": "Prot_SAP",
+              "hasProtocol": true,
+              "hasSap": true,
+              "hasIcf": false,
+              "label": "Study Protocol and Statistical Analysis Plan",
+              "date": "2024-12-08",
+              "uploadDate": "2024-12-08T21:00",
+              "filename": "Prot_SAP_000.pdf",
+              "size": 80232
+            },
+            {
+              "typeAbbrev": "ICF",
+              "hasProtocol": false,
+              "hasSap": false,
+              "hasIcf": true,
+              "label": "Informed Consent Form",
+              "date": "2021-03-24",
+              "uploadDate": "2024-09-09T19:23",
+              "filename": "ICF_001.pdf",
+              "size": 209044
+            }
+          ]
+        }
+      },
+      "derivedSection": {
+        "miscInfoModule": {
+          "versionHolder": "2026-07-09"
+        },
+        "conditionBrowseModule": {
+          "meshes": [
+            {
+              "id": "D007669",
+              "term": "Kidney Calculi"
+            },
+            {
+              "id": "D009765",
+              "term": "Obesity"
+            },
+            {
+              "id": "D052878",
+              "term": "Urolithiasis"
+            },
+            {
+              "id": "D053040",
+              "term": "Nephrolithiasis"
+            },
+            {
+              "id": "D014570",
+              "term": "Urologic Diseases"
+            }
+          ],
+          "ancestors": [
+            {
+              "id": "D007674",
+              "term": "Kidney Diseases"
+            },
+            {
+              "id": "D052776",
+              "term": "Female Urogenital Diseases"
+            },
+            {
+              "id": "D005261",
+              "term": "Female Urogenital Diseases and Pregnancy Complications"
+            },
+            {
+              "id": "D000091642",
+              "term": "Urogenital Diseases"
+            },
+            {
+              "id": "D014545",
+              "term": "Urinary Calculi"
+            },
+            {
+              "id": "D052801",
+              "term": "Male Urogenital Diseases"
+            },
+            {
+              "id": "D002137",
+              "term": "Calculi"
+            },
+            {
+              "id": "D020763",
+              "term": "Pathological Conditions, Anatomical"
+            },
+            {
+              "id": "D013568",
+              "term": "Pathological Conditions, Signs and Symptoms"
+            },
+            {
+              "id": "D050177",
+              "term": "Overweight"
+            },
+            {
+              "id": "D044343",
+              "term": "Overnutrition"
+            },
+            {
+              "id": "D009748",
+              "term": "Nutrition Disorders"
+            },
+            {
+              "id": "D009750",
+              "term": "Nutritional and Metabolic Diseases"
+            },
+            {
+              "id": "D001835",
+              "term": "Body Weight"
+            },
+            {
+              "id": "D012816",
+              "term": "Signs and Symptoms"
+            }
+          ]
+        }
+      },
+      "hasResults": true
+    },
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT06578754",
+          "orgStudyIdInfo": {
+            "id": "0096-24-NHR"
+          },
+          "organization": {
+            "fullName": "Western Galilee Hospital-Nahariya",
+            "class": "OTHER_GOV"
+          },
+          "briefTitle": "Validation Testing for Plasma Oxalate Levels in the Biochemical Laboratory at the Galilee Medical Center, in Collaboration With the Biochemistry Laboratory at CHARITE Hospital in Berlin, and Testing the Relationship Between Oxalate Levels and Vitamin C Levels in Plasma",
+          "officialTitle": "Validation Test for Plasma Oxalate Level in a Biochemical Laboratory at the Galilee Medical Center"
+        },
+        "statusModule": {
+          "statusVerifiedDate": "2026-05",
+          "overallStatus": "NOT_YET_RECRUITING",
+          "expandedAccessInfo": {
+            "hasExpandedAccess": false
+          },
+          "startDateStruct": {
+            "date": "2026-08-01",
+            "type": "ESTIMATED"
+          },
+          "primaryCompletionDateStruct": {
+            "date": "2026-12-31",
+            "type": "ESTIMATED"
+          },
+          "completionDateStruct": {
+            "date": "2027-12-01",
+            "type": "ESTIMATED"
+          },
+          "studyFirstSubmitDate": "2024-08-20",
+          "studyFirstSubmitQcDate": "2024-08-28",
+          "studyFirstPostDateStruct": {
+            "date": "2024-08-29",
+            "type": "ACTUAL"
+          },
+          "lastUpdateSubmitDate": "2026-05-03",
+          "lastUpdatePostDateStruct": {
+            "date": "2026-05-07",
+            "type": "ACTUAL"
+          }
+        },
+        "sponsorCollaboratorsModule": {
+          "responsibleParty": {
+            "type": "PRINCIPAL_INVESTIGATOR",
+            "investigatorFullName": "Hadas Shasha-Lavsky",
+            "investigatorTitle": "Principle Investigator",
+            "investigatorAffiliation": "Western Galilee Hospital-Nahariya"
+          },
+          "leadSponsor": {
+            "name": "Western Galilee Hospital-Nahariya",
+            "class": "OTHER_GOV"
+          },
+          "collaborators": [
+            {
+              "name": "Charite University, Berlin, Germany",
+              "class": "OTHER"
+            }
+          ]
+        },
+        "oversightModule": {
+          "oversightHasDmc": false,
+          "isFdaRegulatedDrug": false,
+          "isFdaRegulatedDevice": false
+        },
+        "descriptionModule": {
+          "briefSummary": "Background:\n\nElevated plasma oxalate levels in various conditions, including: primary hyperoxaluria due to increased production in the liver, renal failure due to decreased renal excretion, intestinal diseases with fatty diarrhea due to increased intestinal absorption, and increased intake of substances containing oxalate or sources of oxalate. Primary hyperoxaluria type 1 is a rare hereditary disease in which there is an increase in oxalate production in the liver due to a defect in the AGT enzyme in the oxalate metabolism pathway. The disease causes end-stage renal failure, and until recently, the only treatment was liver and kidney transplantation. The disease is more common in our region, and the Pediatric Nephrology Unit is a center of expertise for this disease. In 2022, a new treatment for hyperoxaluria type 1, which is an alternative to liver transplantation (Lomecirane), was added to the health basket. With the introduction of this treatment in Israel, there was a need to test the level of oxalate in plasma in order to monitor the response to treatment and as part of the preparation for kidney transplantation in cases of type 1 hyperoxaluria with end-stage renal failure. There is no laboratory in Israel that performs plasma oxalate testing. The biochemistry laboratory at the Galilee Medical Center performs oxalate testing in urine using an enzymatic method. Testing for oxalate in plasma using this method requires external validation because the manufacturer intends this test for urine only. There are laboratories around the world that use this method to measure oxalate in plasma.\n\nVitamin C is a precursor (source) for oxalate in the body. High vitamin C levels in dialysis may lead to increased oxalate, which is associated with worsening kidney damage and damage to other organs, including an increase in the incidence of cardiovascular disease. Dialysis patients are therefore advised to avoid vitamin C supplements. On the other hand, cases of symptomatic vitamin C deficiency in dialysis patients have been described due to their tendency to have an inadequate diet. One case was described in the literature by the Nephrology Department at our institution.\n\nObjectives:\n\n1. To validate the plasma oxalate test by comparing it to an external laboratory that performs the test.\n2. To examine the relationship between vitamin C levels and plasma oxalate levels in patients with varying degrees of renal failure.\n\nImportance:\n\n1. Establishment of a laboratory service that does not currently exist in Israel and is clinically important for treatment decisions.\n2. Assessing the relationship between vitamin C levels and oxalate levels in renal failure will help in the tailored treatment of these patients and prevent complications of vitamin C deficiency on the one hand or hyperoxaluria secondary to vitamin C excess on the other.",
+          "detailedDescription": "Background:\n\nThe source of oxalate in the body is endogenous production in the liver and diet. Oxalate is excreted in the urine by the kidneys. In situations where there is excess oxalate in the urine, it may crystallize together with calcium and settle as calcium oxalate crystals in the kidney, causing kidney damage. In cases of advanced kidney damage, oxalate excretion in urine is impaired, and oxalate accumulates in the blood and precipitates in all tissues of the body, including the eyes, bones, bone marrow, blood vessels, and more. Conditions in which there are high levels of oxalate in the body are caused by poisoning (e.g., ethylene glycol) or secondary hyperoxaluria conditions such as cystic fibrosis or inflammatory bowel disease (there is increased oxalate absorption in the intestine in cases of fatty diarrhea) or primary hyperoxaluria.\n\nHyperoxaluria is a group of diseases caused by increased oxalate secretion by the liver due to a genetic defect in the oxalate metabolism pathway in the liver. Type 1 hyperoxaluria (PH1) is the most severe of the group, causing kidney failure in most patients by the second decade of life. Until recently, treatment for PH1 was based on liver transplantation to restore normal enzyme function, and in most cases, kidney transplantation was also required1. In November 2021, the FDA approved a breakthrough drug for hyperoxaluria, LUMASIRAN2.\n\nThere are a number of laboratories, including the biochemistry laboratory at the Galilee Medical Center, that perform urine oxalate level testing. The urine test is performed as an initial screening in situations where hyperoxaluria is suspected, as part of the investigation of kidney stones, and as a follow-up to the response to the new PH1 drug treatment.\n\nThe Pediatric Nephrology Unit at the Galilee Medical Center is a center of expertise for hyperoxaluria. The incidence of this disease in the Galilee population is among the highest in the world, and as a result, our center has accumulated extensive experience in treating this disease.\n\nIn addition, the Pediatric Nephrology Unit served as a center for ALNYLAM's clinical research to test the efficacy and safety of the drug LUMASIRAN. Currently, there are eight PH1 patients receiving the new drug who are being monitored by the Pediatric Nephrology Unit at our institution.\n\nPlasma oxalate testing is mainly required in cases of primary hyperoxaluria, to monitor response to treatment, in preparation for kidney transplantation, and as follow-up after kidney transplantation. There are other situations in which testing is important, as mentioned above, but these are rarer.\n\nThere are no laboratories in Israel that perform plasma oxalate level testing. There are several laboratories, including the biochemistry laboratory at the Galilee Medical Center, that perform oxalate level testing in urine. Urine testing is performed as an initial screening in cases where hyperoxaluria is suspected and as part of the investigation of kidney stones.\n\nBefore PH1 medication was available, when the standard treatment was liver transplantation, it was customary to monitor only oxalate in urine in Israel. In the US and Europe, it was customary to monitor plasma oxalate levels after liver transplantation, and when the level dropped to close to normal, kidney transplantation was recommended. In situations where there was a liver and kidney donation from a deceased donor, it was not customary to delay the kidney transplant, and there were centers that performed dialysis for a certain period after liver-kidney transplantation while monitoring plasma oxalate levels. In Israel, as mentioned, it was not customary to perform dialysis after liver/liver-kidney transplantation, nor was it customary to monitor plasma oxalate levels after transplantation.\n\nThe situation changed after the new drug treatment was approved. Lumasiran was added to the Israeli health basket in 2022 for all PH1 patients. The treatment replaces liver transplantation, and as a result, there is a need to monitor plasma oxalate levels in the following situations3:\n\n1. To monitor response to treatment with Lumasiran in dialysis patients who are not urinating (and therefore cannot be monitored for oxalate reduction in urine)\n2. Prior to kidney transplantation in a PH1 patient with advanced renal failure treated with Lumasiran. According to current recommendations, plasma oxalate levels should be reduced to below 50 micromoles/liter prior to kidney transplantation.\n3. After kidney transplantation in a patient treated with Lumasiran, to assess the risk and need for dialysis after transplantation in order to protect the kidney in case of high plasma oxalate levels.\n\nTesting for oxalate in plasma is relatively more complicated than testing for oxalate in urine because urine levels are an order of magnitude higher than plasma levels (urine levels are measured in mmol/L and plasma levels in micromol/L), and the tests available on the market are more sensitive at higher concentrations. In addition, oxalate is unstable: ascorbic acid is converted to oxalate in a relatively basic environment (pH \\> 4), and therefore plasma must be acidified during test preparation.\n\nThe kit used to test for oxalate in urine in our biochemical laboratory is based on the enzyme oxalate oxidase and a color reaction (colorimetric) and is purchased from Biotech Trinity. According to the manufacturer's instructions, the kit is intended for testing oxalate levels in urine. This test is performed in our laboratory and has been internally validated according to the manufacturer's instructions.\n\nThere are two types of tests for plasma oxalate levels in laboratories around the world4 - mass spectrometry (gas or ion). The second method (mass spectrometry) is considered accurate for plasma oxalate but is quite expensive and not available to our laboratory. The use of the enzyme oxalate oxidase is accepted in research and for clinical purposes in leading laboratories around the world.\n\nThe biochemical laboratory at CHARITE Hospital in Berlin makes extensive use of plasma oxalate testing for clinical and research purposes. The laboratory and the nephrology department at CHARITE Hospital are considered world leaders in the field of hyperoxaluria. The director of the nephrology department at CHARITE, Prof. Felix Knopf, has published numerous articles on the subject, in which he used the enzymatic plasma oxalate test in the TRINITY kit6.\n\nGiven the need for plasma oxalate testing in Israel, and as we are a leading center in the field of hyperoxaluria in Israel, we are interested in making the test available in our institution's biochemical laboratory. In accordance with the means available to the laboratory here and after testing the effectiveness and reliability of the enzymatic test based on oxalate oxidase, we decided to validate the plasma oxalate test in our laboratory. Since the manufacturer intends the kit for urine testing only, it is not possible to perform validation based on the manufacturer's controls, and we needed external validation. In the pilot tests we have conducted so far, we have obtained acceptable values in accordance with the patient's clinical condition. Prof. Knopf from Charité Hospital in Berlin agreed to perform external validation for us for the plasma oxalate test performed in our biochemical laboratory.\n\nVitamin C (ascorbic acid) is a precursor to oxalate, so in situations where there is a tendency for high oxalate levels, such as hyperoxaluria and renal failure, it is recommended to avoid high doses of vitamin C supplements. KDOQI recommendations 2020 (Kidney Disease Outcome Quality Initiative)7 regarding vitamin C supplements in patients with stage 1-5 chronic kidney disease is to give a relatively low dose to patients at increased risk of vitamin C deficiency while monitoring oxalate levels or the development of calcium oxalate stones in the kidney. Previous studies have shown a link between vitamin C supplements or ascorbic acid levels and oxalate levels in patients with chronic renal failure and dialysis patients8,9. Low vitamin C levels are associated with the relatively poor nutritional status of patients with renal failure and may manifest clinically with symptoms of vitamin C deficiency. The dialysis unit at the Galilee Medical Center described a case of a dialysis patient who suffered from symptomatic vitamin C deficiency that required treatment with high doses of oral vitamin C. High blood oxalate levels in dialysis patients have been found to be associated with a higher incidence of cardiovascular complications. Hence the recommendations to exercise caution when administering vitamin C supplements in cases of renal failure or dialysis, where oxalate clearance by the kidneys is poor and therefore oxalate produced from excess ascorbic acid may accumulate in the blood and various tissues in the body and cause multi-system damage.\n\nThere are few studies that have examined the relationship between oxalate levels and vitamin C levels in various degrees of renal failure and hyperoxaluria. We are interested in testing vitamin C levels in addition to plasma oxalate levels for all participants in the above study in order to assess vitamin C deficiency in the population of patients with renal failure or hyperoxaluria and to assess the relationship between vitamin C levels and blood oxalate levels in this group.\n\nMain objective - validation of plasma oxalate level testing Additional objective - examination of the relationship between vitamin C levels and plasma oxalate levels in patients with renal failure and hyperoxaluria treated with Lumicran.\n\nImportance of conducting the research:\n\n1. Establishment of a laboratory service that does not currently exist in Israel and is clinically important for treatment decisions, as detailed above.\n2. Assessing the relationship between vitamin C levels and oxalate levels in a population of patients with renal failure and hyperoxaluria will help in the tailored treatment of these patients and in preventing complications of vitamin C deficiency on the one hand, or hyperoxaluria secondary to vitamin C excess on the other.\n\nMethods:\n\nNumber of samples:\n\n1. For the validation test, 30 blood samples will be taken from 30 different patients. The samples will be taken from a variety of patients in order to obtain a wide range of plasma oxalate levels. Approximately 5 samples will be taken from healthy volunteers, approximately 20 samples from dialysis patients with no history of hyperoxaluria, and approximately 5 samples from hyperoxaluria patients receiving medication or who have undergone liver transplants.\n\n   Each sample will be sent for oxalate level testing at the biochemical laboratory at the Galilee Medical Center + biochemical laboratory at the Charité Hospital in Berlin + vitamin C level testing at Sheba Hospital.\n2. To examine the relationship between vitamin C levels and oxalate levels in dialysis patients: approximately 20 additional blood samples will be taken from dialysis patients, and oxalate levels will be tested at the local laboratory and vitamin C levels at the Sheba Medical Center laboratory, Tel Aviv, Israel.\n\nTotal number of participants: 50 Oxalate plasma testing protocol - attached in the appendix. The protocol has been approved by the laboratory where the external validation will be performed.\n\nEach sample will undergo immediate centrifugation, and the plasma will be divided into two test tubes and stored frozen (-80°C). One test tube will be sent for testing at the laboratory in Berlin, and one test tube will remain here and be tested at our laboratory.\n\nThe sample handling stage until freezing is the same as it will be performed here.\n\nThe sample handling process in the laboratory here will be performed by one laboratory employee.\n\nThe samples will be sent frozen to the laboratory in Berlin. Stage two - sample processing after thawing - will be carried out according to a protocol agreed upon by both laboratories in order to prevent differences in sample processing. We will also coordinate the days on which the tests are carried out between the two laboratories in order to prevent differences resulting from the duration of sample preservation in frozen storage.\n\nThe protocol was jointly written by us and the laboratory in Berlin. Vitamin C level testing will be performed at an external laboratory (Sheba).\n\nStatistics - After receiving the test results from Berlin, we will compare the results obtained there and here using the following tests:\n\nQuantitative data will be described using means and standard deviations, median, interquartile range (IQR), and range.\n\nPaired sample comparison tests - To examine the differences between two paired samples using a paired sample T test (if the differences are normally distributed) or a Wilcoxon signed rank test if the distribution of the differences is not normal. A 95% confidence interval will be calculated for the difference between the paired samples.\n\nCorrelation tests - to examine the relationship between the paired samples. Pearson's correlation coefficient test or alternatively Spearman's correlation coefficient test (selected according to sample size and distribution shape) Bland-Altman plots and scatter plots will be used to illustrate the differences between the results.\n\nA P value lower than 5% will be considered statistically significant. Anonymity: Samples will be marked with a code provided here, without identifying details on the forms or test tubes. The coding table will be kept separately on the principal investigator's computer and in a separate binder in the research coordinator's cabinet.\n\nInformed consent: Volunteers will sign an informed consent form after receiving an explanation of the significance of the test."
+        },
+        "conditionsModule": {
+          "conditions": [
+            "Hyperoxaluria"
+          ],
+          "keywords": [
+            "plasma oxalate level, hyperoxaluria"
+          ]
+        },
+        "designModule": {
+          "studyType": "OBSERVATIONAL",
+          "patientRegistry": true,
+          "targetDuration": "1 Year",
+          "designInfo": {
+            "observationalModel": "COHORT",
+            "timePerspective": "PROSPECTIVE"
+          },
+          "enrollmentInfo": {
+            "count": 50,
+            "type": "ESTIMATED"
+          }
+        },
+        "armsInterventionsModule": {
+          "armGroups": [
+            {
+              "label": "Healthy volunteers",
+              "description": "About 10 blood samples to be taken from this group",
+              "interventionNames": [
+                "Other: This is an non-interventional study"
+              ]
+            },
+            {
+              "label": "Dialysis patients without a background of hyperoxaluria",
+              "description": "About 10 blood samples to be taken from this group as well as 20 additional blood samples from dialysis patients where oxalate levels and vitamin C levels will be tested",
+              "interventionNames": [
+                "Other: This is an non-interventional study"
+              ]
+            },
+            {
+              "label": "Hyperoxaluria patients receiving drug treatment or after a liver transplant",
+              "description": "About 5 blood samples from this group",
+              "interventionNames": [
+                "Other: This is an non-interventional study"
+              ]
+            },
+            {
+              "label": "Patients advanced kidney failure not on dialysis",
+              "description": "About 5 blood samples from this group",
+              "interventionNames": [
+                "Other: This is an non-interventional study"
+              ]
+            }
+          ],
+          "interventions": [
+            {
+              "type": "OTHER",
+              "name": "This is an non-interventional study",
+              "description": "Only blood samples will be required in this study. It is noninterventional.",
+              "armGroupLabels": [
+                "Dialysis patients without a background of hyperoxaluria",
+                "Healthy volunteers",
+                "Hyperoxaluria patients receiving drug treatment or after a liver transplant",
+                "Patients advanced kidney failure not on dialysis"
+              ]
+            }
+          ]
+        },
+        "outcomesModule": {
+          "primaryOutcomes": [
+            {
+              "measure": "correlation of plasma oxalate between local and external laboratories",
+              "description": "The plasma oxalate results from local and external laboratories will be compared by statistical analysis:\n\nComparison tests for paired samples - to examine the differences between two paired samples using the paired sample T test or the Wilcoxon signed rank test if the distribution of the differences is not normal. A 95% confidence interval will be calculated for the difference between the paired samples.\n\nCorrelation tests -Pearson's correlation coefficient test or alternatively Spearman's correlation coefficient test Bland-Altman plot and Scatter plot curves will be used to demonstrate the difference between the results.\n\nA P value lower than 5% will be considered statistically significant. The investigators aim to to have non significant differences between the results of the laboratories in order to conclude that the results in the local laboratory are valid.",
+              "timeFrame": "1 year"
+            }
+          ]
+        },
+        "eligibilityModule": {
+          "eligibilityCriteria": "Inclusion Criteria:\n\n* Signing the informed consent\n\nExclusion Criteria:\n\n* Not willing to participate",
+          "healthyVolunteers": true,
+          "sex": "ALL",
+          "minimumAge": "1 Minute",
+          "maximumAge": "80 Years",
+          "stdAges": [
+            "CHILD",
+            "ADULT",
+            "OLDER_ADULT"
+          ],
+          "studyPopulation": "Healthy patients Dialysis patients without a background of hyperoxaluria Hyperoxaluria patients receiving drug treatment or after a liver transplant Patients with advanced kidney failure not on dialysis",
+          "samplingMethod": "PROBABILITY_SAMPLE"
+        },
+        "contactsLocationsModule": {
+          "centralContacts": [
+            {
+              "name": "Hadas Shasha-Lavsky, MD",
+              "role": "CONTACT",
+              "phone": "+97249107580",
+              "email": "hadasl2@gmc.gov.il"
+            }
+          ]
+        },
+        "referencesModule": {
+          "references": [
+            {
+              "pmid": "34281958",
+              "type": "BACKGROUND",
+              "citation": "Pfau A, Ermer T, Coca SG, Tio MC, Genser B, Reichel M, Finkelstein FO, Marz W, Wanner C, Waikar SS, Eckardt KU, Aronson PS, Drechsler C, Knauf F. High Oxalate Concentrations Correlate with Increased Risk for Sudden Cardiac Death in Dialysis Patients. J Am Soc Nephrol. 2021 Sep;32(9):2375-2385. doi: 10.1681/ASN.2020121793. Epub 2021 Jul 19."
+            },
+            {
+              "pmid": "32829751",
+              "type": "BACKGROUND",
+              "citation": "Ikizler TA, Burrowes JD, Byham-Gray LD, Campbell KL, Carrero JJ, Chan W, Fouque D, Friedman AN, Ghaddar S, Goldstein-Fuchs DJ, Kaysen GA, Kopple JD, Teta D, Yee-Moon Wang A, Cuppari L. KDOQI Clinical Practice Guideline for Nutrition in CKD: 2020 Update. Am J Kidney Dis. 2020 Sep;76(3 Suppl 1):S1-S107. doi: 10.1053/j.ajkd.2020.05.006."
+            },
+            {
+              "pmid": "32472220",
+              "type": "BACKGROUND",
+              "citation": "Stokes F, Acquaviva-Bourdain C, Hoppe B, Lieske JC, Lindner E, Toulson G, Vaz FM, Rumsby G. Plasma oxalate: comparison of methodologies. Urolithiasis. 2020 Dec;48(6):473-480. doi: 10.1007/s00240-020-01197-4. Epub 2020 May 29."
+            },
+            {
+              "pmid": "16306102",
+              "type": "BACKGROUND",
+              "citation": "Ladwig PM, Liedtke RR, Larson TS, Lieske JC. Sensitive spectrophotometric assay for plasma oxalate. Clin Chem. 2005 Dec;51(12):2377-80. doi: 10.1373/clinchem.2005.054353. No abstract available."
+            },
+            {
+              "pmid": "33912770",
+              "type": "BACKGROUND",
+              "citation": "Oka Y, Miyazaki M, Matsuda H. Plasma Oxalate Concentration and Patients With CKD. Kidney Int Rep. 2021 Mar 1;6(4):1194. doi: 10.1016/j.ekir.2020.10.041. eCollection 2021 Apr. No abstract available."
+            }
+          ]
+        },
+        "ipdSharingStatementModule": {
+          "ipdSharing": "NO"
+        }
+      },
+      "derivedSection": {
+        "miscInfoModule": {
+          "versionHolder": "2026-07-09"
+        },
+        "conditionBrowseModule": {
+          "meshes": [
+            {
+              "id": "D006959",
+              "term": "Hyperoxaluria"
+            }
+          ],
+          "ancestors": [
+            {
+              "id": "D007674",
+              "term": "Kidney Diseases"
+            },
+            {
+              "id": "D014570",
+              "term": "Urologic Diseases"
+            },
+            {
+              "id": "D052776",
+              "term": "Female Urogenital Diseases"
+            },
+            {
+              "id": "D005261",
+              "term": "Female Urogenital Diseases and Pregnancy Complications"
+            },
+            {
+              "id": "D000091642",
+              "term": "Urogenital Diseases"
+            },
+            {
+              "id": "D052801",
+              "term": "Male Urogenital Diseases"
+            }
+          ]
+        }
+      },
+      "hasResults": false
+    },
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT06989320",
+          "orgStudyIdInfo": {
+            "id": "IRB300014279-OSS"
+          },
+          "secondaryIdInfos": [
+            {
+              "id": "R01DK137784",
+              "type": "NIH",
+              "link": "https://reporter.nih.gov/quickSearch/R01DK137784"
+            }
+          ],
+          "organization": {
+            "fullName": "University of Alabama at Birmingham",
+            "class": "OTHER"
+          },
+          "briefTitle": "Endogenous Oxalate Synthesis in Idiopathic Calcium Oxalate Kidney Stone Disease",
+          "officialTitle": "Endogenous Oxalate Synthesis in Idiopathic Calcium Oxalate Kidney Stone Formers"
+        },
+        "statusModule": {
+          "statusVerifiedDate": "2026-05",
+          "overallStatus": "RECRUITING",
+          "expandedAccessInfo": {
+            "hasExpandedAccess": false
+          },
+          "startDateStruct": {
+            "date": "2025-05-27",
+            "type": "ACTUAL"
+          },
+          "primaryCompletionDateStruct": {
+            "date": "2030-12-31",
+            "type": "ESTIMATED"
+          },
+          "completionDateStruct": {
+            "date": "2031-12-31",
+            "type": "ESTIMATED"
+          },
+          "studyFirstSubmitDate": "2025-05-09",
+          "studyFirstSubmitQcDate": "2025-05-16",
+          "studyFirstPostDateStruct": {
+            "date": "2025-05-25",
+            "type": "ACTUAL"
+          },
+          "lastUpdateSubmitDate": "2026-05-27",
+          "lastUpdatePostDateStruct": {
+            "date": "2026-05-29",
+            "type": "ACTUAL"
+          }
+        },
+        "sponsorCollaboratorsModule": {
+          "responsibleParty": {
+            "type": "PRINCIPAL_INVESTIGATOR",
+            "investigatorFullName": "Sonia Fargue",
+            "investigatorTitle": "Associate professor",
+            "investigatorAffiliation": "University of Alabama at Birmingham"
+          },
+          "leadSponsor": {
+            "name": "University of Alabama at Birmingham",
+            "class": "OTHER"
+          },
+          "collaborators": [
+            {
+              "name": "University of Texas, Southwestern Medical Center at Dallas",
+              "class": "OTHER"
+            },
+            {
+              "name": "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+              "class": "NIH"
+            }
+          ]
+        },
+        "oversightModule": {
+          "oversightHasDmc": true,
+          "isFdaRegulatedDrug": false,
+          "isFdaRegulatedDevice": false
+        },
+        "descriptionModule": {
+          "briefSummary": "The goal of this clinical trial study is to test if patients with idiopathic calcium oxalate kidney stones have an increased production of oxalate by the body, which would lead to increased urinary excretion of oxalate.\n\nThe study will recruit adult patients with a history of calcium oxalate kidney stones and healthy volunteers without kidney stones.\n\nParticipants will\n\ningest fixed diets containing low amounts of oxalate for 5 days ingest a soluble form of glycolate and vitamin C collect urine, blood, stool during the dietary and oral dosing portions of the study and also collect breath sample during the oral glycolate test",
+          "detailedDescription": "In this study the investigators propose to measure the production of oxalate by the body (endogenous oxalate synthesis), after equilibration on a low oxalate diet (\\<60 mg oxalate/day, 600-800 mg calcium/day) and estimate the importance of vitamin C and glycolate metabolism to oxalate production in both Calcium Oxalate Kidney Stone patients and matched controls by oral dosings of those two substances.\n\nPhase 1. Screening and low-oxalate diet 24-hr urinary excretions. Between the University of Alabama at Birmingham (UAB) and the University of Texas Southwestern Medical Center (UTSW), the study will enroll 40 subjects with idiopathic Calcium Oxalate Kidney Stone (20 Males/20 Females) and 40 non-kidney stone forming controls (20 Males/20 Females). Participants in the two groups will be matched for age (within 10 yrs) and gender. Screening will include blood complete metabolic profile and two 24-hour urine specimens collected at home on self-choice diets and anthropometric measurements.\n\nParticipants will then ingest the controlled low-oxalate (\\<60 mg/day) diet for 5 consecutive days and collect two 24-hour urines after 2 days of dietary equilibration.\n\nPhase 2. Oxalate production and 13C-glycolate dosing tests. On Day 5, participants will arrive after an overnight fast in the research unit to undergo the oral 13C-glycolate dosing test. After a 1-hour baseline urine collection, they will ingest an oral load containing 0.5 mg/kg body weight of 13C-glycolate, dissolved in bottled water. For the next 7 hours, blood and urine will be collected hourly, and breath as more time points. They will remain on the fixed diet for 24 hours with a meal 7 hours post-load, and dinner at home 12 hours post-load. They will collect the remainder of their 24-hour urine at home.\n\nPhase 3. Oxalate production and 13C-ascorbic acid dosing tests. After 1 day of equilibration on the same low-oxalate diet, participants will arrive after an overnight fast in the research unit to provid eone blood and one urine sample and then ingest an oral dose of 13C-ascorbic acid (0.75 mg/kg), return home and continue to ingest the low-oxalate diet. The next morning, participants will arrive after an overnight fast in the research unit. For the next 7 hours, blood and urine will be collected hourly. They will remain on the fixed diet for 24 hours with a meal at the end of the visit."
+        },
+        "conditionsModule": {
+          "conditions": [
+            "Kidney Stones",
+            "Kidney Calculi",
+            "Urolithiasis",
+            "Urolithiasis, Calcium Oxalate",
+            "Nephrolithiasis",
+            "Nephrolithiasis, Calcium Oxalate",
+            "Oxalate Urolithiasis",
+            "Healthy",
+            "Healthy Volunteer"
+          ],
+          "keywords": [
+            "oxalate synthesis"
+          ]
+        },
+        "designModule": {
+          "studyType": "INTERVENTIONAL",
+          "phases": [
+            "NA"
+          ],
+          "designInfo": {
+            "allocation": "NON_RANDOMIZED",
+            "interventionModel": "PARALLEL",
+            "primaryPurpose": "BASIC_SCIENCE",
+            "maskingInfo": {
+              "masking": "NONE"
+            }
+          },
+          "enrollmentInfo": {
+            "count": 80,
+            "type": "ESTIMATED"
+          }
+        },
+        "armsInterventionsModule": {
+          "armGroups": [
+            {
+              "label": "Idiopathic Calcium Oxalate Kidney Stone Patients",
+              "type": "EXPERIMENTAL",
+              "description": "Low oxalate fixed diets. oral glycolate and ascorbic acid administration",
+              "interventionNames": [
+                "Dietary Supplement: Low-oxalate diet and glycolate dosing",
+                "Dietary Supplement: Oral glycolate dosing",
+                "Dietary Supplement: Oral 13C- ascorbic acid dosing"
+              ]
+            },
+            {
+              "label": "Healthy non-kidney stone forming individuals",
+              "type": "ACTIVE_COMPARATOR",
+              "description": "Low oxalate fixed diets. oral glycolate and ascorbic acid administration",
+              "interventionNames": [
+                "Dietary Supplement: Low-oxalate diet and glycolate dosing",
+                "Dietary Supplement: Oral glycolate dosing",
+                "Dietary Supplement: Oral 13C- ascorbic acid dosing"
+              ]
+            }
+          ],
+          "interventions": [
+            {
+              "type": "DIETARY_SUPPLEMENT",
+              "name": "Low-oxalate diet and glycolate dosing",
+              "description": "Low-oxalate diet 4 days of fixed eucaloric diet with low oxalate (\\<60 mg/day), normal calcium content (600-1000 mg/day)",
+              "armGroupLabels": [
+                "Healthy non-kidney stone forming individuals",
+                "Idiopathic Calcium Oxalate Kidney Stone Patients"
+              ]
+            },
+            {
+              "type": "DIETARY_SUPPLEMENT",
+              "name": "Oral glycolate dosing",
+              "description": "Oral 13C-glycolate dosing (0.5 mg/kg)",
+              "armGroupLabels": [
+                "Healthy non-kidney stone forming individuals",
+                "Idiopathic Calcium Oxalate Kidney Stone Patients"
+              ]
+            },
+            {
+              "type": "DIETARY_SUPPLEMENT",
+              "name": "Oral 13C- ascorbic acid dosing",
+              "description": "Oral 13C- ascorbic acid dosing (0.75 mg/kg)",
+              "armGroupLabels": [
+                "Healthy non-kidney stone forming individuals",
+                "Idiopathic Calcium Oxalate Kidney Stone Patients"
+              ]
+            }
+          ]
+        },
+        "outcomesModule": {
+          "primaryOutcomes": [
+            {
+              "measure": "Estimated endogenous oxalate synthesis (oxalate mg/day)",
+              "description": "Basal rate of endogenous oxalate synthesis estimated by repeat fasted hourly urine collections (mg/day)",
+              "timeFrame": "1 day"
+            }
+          ],
+          "secondaryOutcomes": [
+            {
+              "measure": "24-hour urinary oxalate excretion on low oxalate diet",
+              "description": "mean 24-hour urinary oxalate excretion on the low oxalate diet (mg/day)",
+              "timeFrame": "2 days"
+            },
+            {
+              "measure": "contribution of ascorbic acid breakdown to urinary oxalate excretion",
+              "description": "contribution of ascorbic acid breakdown to oxalate synthesis (%)",
+              "timeFrame": "2 days"
+            }
+          ],
+          "otherOutcomes": [
+            {
+              "measure": "Contribution of glycolate metabolism to urinary oxalate",
+              "description": "Proportion of 13C-glycolate orally dosed that is metabolized to urinary 13C-oxalate in the fasted stated (%)",
+              "timeFrame": "1 day"
+            }
+          ]
+        },
+        "eligibilityModule": {
+          "eligibilityCriteria": "Inclusion Criteria:\n\n* age 18-80 yrs\n* Body Mass Index \\> 18.5 kg/m2\n* Normal fasting serum electrolytes on comprehensive metabolic profile\n* Willing to ingest fixed diets\n* Willing to stop supplements (vitamins including vitamin C, calcium (citrate or carbonate) and other minerals, herbal supplements, nutritional aids, probiotics) for 2 weeks before start and during study.\n* For stone formers: first time or recurrent Calcium Oxalate stone former. Composition of most recent stone ≥ 50% calcium oxalate if available, uric acid component \\<20%\n\nExclusion Criteria:\n\n* Chronic Kidney Disease stage 4-5\n* Primary hyperoxaluria, Enteric (secondary) hyperoxaluria\n* Liver, bowel, endocrine or renal diseases (other than idiopathic Calcium Oxalate kidney stones) or any other condition that may influence the absorption, transport or urinary excretion of ions, which will compromise the interpretation of results, including: Cystic fibrosis, Celiac disease, Cystinuria, Uric acid stone former, Nephrotic syndrome, Sarcoidosis, Renal tubular acidosis, Primary hyperparathyroidism, Neurogenic bladder, Urinary diversion, Chronic diarrhea, Bariatric surgery, Inflammatory bowel disease\n* Pregnancy or breast-feeding\n* Incompatible dietary requirements with the study, food allergies or intolerance to any of the foods in study menus\n* Active malignancy or treatment for malignancy within 12 months prior to screening\n* Utilization of immunosuppressive medication\n* Uncontrolled hypertension or diabetes\n* Diabetes type 1",
+          "healthyVolunteers": true,
+          "sex": "ALL",
+          "minimumAge": "18 Years",
+          "maximumAge": "80 Years",
+          "stdAges": [
+            "ADULT",
+            "OLDER_ADULT"
+          ]
+        },
+        "contactsLocationsModule": {
+          "centralContacts": [
+            {
+              "name": "Sonia Fargue, PhD",
+              "role": "CONTACT",
+              "phone": "205-975-6932",
+              "email": "sfargue@uabmc.edu"
+            }
+          ],
+          "overallOfficials": [
+            {
+              "name": "Sonia Fargue, PhD",
+              "affiliation": "University of Alabama at Birmingham",
+              "role": "PRINCIPAL_INVESTIGATOR"
+            }
+          ],
+          "locations": [
+            {
+              "facility": "United States, Alabama University of Alabama at Birmingham",
+              "status": "RECRUITING",
+              "city": "Birmingham",
+              "state": "Alabama",
+              "zip": "35294",
+              "country": "United States",
+              "contacts": [
+                {
+                  "name": "Sonia Fargue, PhD",
+                  "role": "CONTACT",
+                  "phone": "205-975-6932",
+                  "email": "sfargue@uabmc.edu"
+                },
+                {
+                  "name": "Research Coordinator",
+                  "role": "CONTACT",
+                  "phone": "205-934-5712",
+                  "email": "kidneystone@uabmc.edu"
+                },
+                {
+                  "name": "Sonia Fargue, PhD",
+                  "role": "PRINCIPAL_INVESTIGATOR"
+                }
+              ],
+              "geoPoint": {
+                "lat": 33.52066,
+                "lon": -86.80249
+              }
+            },
+            {
+              "facility": "University of Texas South Western Medical Center",
+              "status": "NOT_YET_RECRUITING",
+              "city": "Dallas",
+              "state": "Texas",
+              "zip": "75390",
+              "country": "United States",
+              "contacts": [
+                {
+                  "name": "Naim Maalouf, MD",
+                  "role": "CONTACT",
+                  "email": "Naim.Maalouf@UTSouthwestern.edu"
+                },
+                {
+                  "name": "Research Coordinator",
+                  "role": "CONTACT",
+                  "email": "Esperanza.Jackson@UTSouthwestern.edu"
+                },
+                {
+                  "name": "Naim Maalouf, MD",
+                  "role": "PRINCIPAL_INVESTIGATOR"
+                }
+              ],
+              "geoPoint": {
+                "lat": 32.78306,
+                "lon": -96.80667
+              }
+            }
+          ]
+        },
+        "ipdSharingStatementModule": {
+          "ipdSharing": "NO"
+        }
+      },
+      "derivedSection": {
+        "miscInfoModule": {
+          "versionHolder": "2026-07-09"
+        },
+        "conditionBrowseModule": {
+          "meshes": [
+            {
+              "id": "D007669",
+              "term": "Kidney Calculi"
+            },
+            {
+              "id": "D052878",
+              "term": "Urolithiasis"
+            },
+            {
+              "id": "C563477",
+              "term": "Nephrolithiasis, Calcium Oxalate"
+            },
+            {
+              "id": "D053040",
+              "term": "Nephrolithiasis"
+            }
+          ],
+          "ancestors": [
+            {
+              "id": "D007674",
+              "term": "Kidney Diseases"
+            },
+            {
+              "id": "D014570",
+              "term": "Urologic Diseases"
+            },
+            {
+              "id": "D052776",
+              "term": "Female Urogenital Diseases"
+            },
+            {
+              "id": "D005261",
+              "term": "Female Urogenital Diseases and Pregnancy Complications"
+            },
+            {
+              "id": "D000091642",
+              "term": "Urogenital Diseases"
+            },
+            {
+              "id": "D014545",
+              "term": "Urinary Calculi"
+            },
+            {
+              "id": "D052801",
+              "term": "Male Urogenital Diseases"
+            },
+            {
+              "id": "D002137",
+              "term": "Calculi"
+            },
+            {
+              "id": "D020763",
+              "term": "Pathological Conditions, Anatomical"
+            },
+            {
+              "id": "D013568",
+              "term": "Pathological Conditions, Signs and Symptoms"
+            }
+          ]
+        }
+      },
+      "hasResults": false
+    },
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT03704350",
+          "orgStudyIdInfo": {
+            "id": "IRB-300002318-P20"
+          },
+          "secondaryIdInfos": [
+            {
+              "id": "P20DK119788",
+              "type": "NIH",
+              "link": "https://reporter.nih.gov/quickSearch/P20DK119788"
+            },
+            {
+              "id": "UAB",
+              "type": "OTHER",
+              "domain": "UAB"
+            }
+          ],
+          "organization": {
+            "fullName": "University of Alabama at Birmingham",
+            "class": "OTHER"
+          },
+          "briefTitle": "Influence of Obesity on Endogenous Oxalate Synthesis",
+          "officialTitle": "Influence of Obesity on Endogenous Oxalate Synthesis"
+        },
+        "statusModule": {
+          "statusVerifiedDate": "2026-03",
+          "overallStatus": "ACTIVE_NOT_RECRUITING",
+          "expandedAccessInfo": {
+            "hasExpandedAccess": false
+          },
+          "startDateStruct": {
+            "date": "2019-05-24",
+            "type": "ACTUAL"
+          },
+          "primaryCompletionDateStruct": {
+            "date": "2026-08-31",
+            "type": "ESTIMATED"
+          },
+          "completionDateStruct": {
+            "date": "2026-12-01",
+            "type": "ESTIMATED"
+          },
+          "studyFirstSubmitDate": "2018-10-03",
+          "studyFirstSubmitQcDate": "2018-10-09",
+          "studyFirstPostDateStruct": {
+            "date": "2018-10-12",
+            "type": "ACTUAL"
+          },
+          "lastUpdateSubmitDate": "2026-03-17",
+          "lastUpdatePostDateStruct": {
+            "date": "2026-03-19",
+            "type": "ACTUAL"
+          }
+        },
+        "sponsorCollaboratorsModule": {
+          "responsibleParty": {
+            "type": "PRINCIPAL_INVESTIGATOR",
+            "investigatorFullName": "Dean Assimos, MD",
+            "investigatorTitle": "Principal Investigator",
+            "investigatorAffiliation": "University of Alabama at Birmingham"
+          },
+          "leadSponsor": {
+            "name": "University of Alabama at Birmingham",
+            "class": "OTHER"
+          },
+          "collaborators": [
+            {
+              "name": "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+              "class": "NIH"
+            }
+          ]
+        },
+        "oversightModule": {
+          "oversightHasDmc": false,
+          "isFdaRegulatedDrug": false,
+          "isFdaRegulatedDevice": false
+        },
+        "descriptionModule": {
+          "briefSummary": "There is increasing evidence that obesity is associated with increased urinary oxalate excretion, an important risk factor for calcium oxalate stone formation. By the administration of a controlled low oxalate diet the investigators will estimate endogenous oxalate synthesis in both non-obese and obese non-kidney-stone forming adults. This study seeks to thusly increase the understanding of the relationships between obesity and endogenous oxalate synthesis to serve as a platform to develop novel therapies for stone prevention.",
+          "detailedDescription": "Calcium oxalate stone disease results in billions of dollars in healthcare costs per year, creates large economic losses due to decreased work productivity, and produces significant pain and suffering in affected individuals impacting quality of life. Almost 9% of the population in the United States may now experience a stone event at least once in their lifetime and that figure is increasing. Although stone removing treatments have advanced in the last few decades with a variety of minimally invasive procedures such as shock wave lithotripsy, ureteroscopy and percutaneous nephrolithotomy, our knowledge of how stones form and how to prevent them has not kept pace. Approximately 70-80% of the stones formed contain oxalate. Oxalate is an end product of metabolism and an ubiquitous element of human diets. Small increases in urinary oxalate can increase calcium oxalate crystal formation and thus stone disease. Urinary oxalate levels are affected by both dietary and endogenous components, complicating the discrimination between the two sources. Multiple epidemiological and clinical studies have demonstrated a link between body mass index (BMI) and kidney stone disease and also an increased urinary oxalate excretion.\n\nThe interpretation of studies suggesting a link between obesity and the amount of urinary oxalate excreted is confounded by the failure in most studies to use diets controlled in calcium and oxalate. Adult humans without a history of kidney stones will be placed on controlled low oxalate diets to estimate the contribution of endogenous oxalate synthesis to the urinary oxalate pool. In addition, oral doses of 13C2-glycolate and 13C6- vitamin C will be used to determine their conversions to 13C2-oxalate and provide an index of endogenous oxalate production. Body morphometric indices, markers of oxidative stress, and insulin resistance will be assessed in these subjects.They will also be evaluated with DXA and MRI to define body fat content and distribution."
+        },
+        "conditionsModule": {
+          "conditions": [
+            "Kidney Stone"
+          ]
+        },
+        "designModule": {
+          "studyType": "INTERVENTIONAL",
+          "phases": [
+            "NA"
+          ],
+          "designInfo": {
+            "allocation": "NON_RANDOMIZED",
+            "interventionModel": "PARALLEL",
+            "primaryPurpose": "PREVENTION",
+            "maskingInfo": {
+              "masking": "NONE"
+            }
+          },
+          "enrollmentInfo": {
+            "count": 40,
+            "type": "ESTIMATED"
+          }
+        },
+        "armsInterventionsModule": {
+          "armGroups": [
+            {
+              "label": "20-24.9 BMI",
+              "type": "ACTIVE_COMPARATOR",
+              "description": "Participants with a BMI that falls between 20 and 24.9 who will receive the controlled diet",
+              "interventionNames": [
+                "Dietary Supplement: controlled diet"
+              ]
+            },
+            {
+              "label": "25-29.9 BMI",
+              "type": "ACTIVE_COMPARATOR",
+              "description": "Participants with a BMI that falls between 25 and 29.9 who will receive the controlled diet",
+              "interventionNames": [
+                "Dietary Supplement: controlled diet"
+              ]
+            },
+            {
+              "label": "30-34.9 BMI",
+              "type": "ACTIVE_COMPARATOR",
+              "description": "Participants with a BMI that falls between 30 and 34.9 who will receive the controlled diet",
+              "interventionNames": [
+                "Dietary Supplement: controlled diet"
+              ]
+            },
+            {
+              "label": "35-39.9 BMI",
+              "type": "ACTIVE_COMPARATOR",
+              "description": "Participants with a BMI that falls between 35 and 39.9 who will receive the controlled diet",
+              "interventionNames": [
+                "Dietary Supplement: controlled diet"
+              ]
+            },
+            {
+              "label": "40-44.9 BMI",
+              "type": "ACTIVE_COMPARATOR",
+              "description": "Participants with a BMI that falls between 40 and 44.9 who will receive the controlled diet",
+              "interventionNames": [
+                "Dietary Supplement: controlled diet"
+              ]
+            },
+            {
+              "label": "45-50 BMI",
+              "type": "ACTIVE_COMPARATOR",
+              "description": "Participants with a BMI that falls between 45 and 50 who will receive the controlled diet.",
+              "interventionNames": [
+                "Dietary Supplement: controlled diet"
+              ]
+            }
+          ],
+          "interventions": [
+            {
+              "type": "DIETARY_SUPPLEMENT",
+              "name": "controlled diet",
+              "description": "Participants will consume a diet that is controlled in its daily contents of oxalate, calcium, vitamin C and sodium, and in its content of carbohydrate, fat, and protein. Participants will be asked not to take any dietary supplements (vitamins, calcium or other minerals, herbal supplements, nutritional aids), to exercise strenuously, or to consume food or drink that is not provided to them as part of the controlled diet.",
+              "armGroupLabels": [
+                "20-24.9 BMI",
+                "25-29.9 BMI",
+                "30-34.9 BMI",
+                "35-39.9 BMI",
+                "40-44.9 BMI",
+                "45-50 BMI"
+              ]
+            }
+          ]
+        },
+        "outcomesModule": {
+          "primaryOutcomes": [
+            {
+              "measure": "Urinary oxalate excretion",
+              "description": "Urinary oxalate excretion from 24 hour urine collections will be reported as mg/day.",
+              "timeFrame": "Baseline through Day 12"
+            }
+          ]
+        },
+        "eligibilityModule": {
+          "eligibilityCriteria": "Inclusion Criteria:\n\n* Age 25-60 years\n* Body Mass Index (BMI) \\<50\n\nExclusion Criteria:\n\n* history of kidney stones\n* history of diabetes, hepatic disease, renal disease including Chronic Kidney Disease (CKD), bowel disease or other endocrine disorders\n* pregnant or lactating women, or those with the intention to become pregnant in the near future\n* abnormal liver enzymes\n* hemoglobin A1C \\> 6.5",
+          "healthyVolunteers": true,
+          "sex": "ALL",
+          "minimumAge": "18 Years",
+          "maximumAge": "60 Years",
+          "stdAges": [
+            "ADULT"
+          ]
+        },
+        "contactsLocationsModule": {
+          "overallOfficials": [
+            {
+              "name": "Dean Assimos, MD",
+              "affiliation": "University of Alabama at Birmingham",
+              "role": "PRINCIPAL_INVESTIGATOR"
+            }
+          ],
+          "locations": [
+            {
+              "facility": "University of Alabama at Birmingham",
+              "city": "Birmingham",
+              "state": "Alabama",
+              "zip": "35233",
+              "country": "United States",
+              "geoPoint": {
+                "lat": 33.52066,
+                "lon": -86.80249
+              }
+            }
+          ]
+        },
+        "ipdSharingStatementModule": {
+          "ipdSharing": "NO"
+        }
+      },
+      "derivedSection": {
+        "miscInfoModule": {
+          "versionHolder": "2026-07-09"
+        },
+        "conditionBrowseModule": {
+          "meshes": [
+            {
+              "id": "D007669",
+              "term": "Kidney Calculi"
+            }
+          ],
+          "ancestors": [
+            {
+              "id": "D053040",
+              "term": "Nephrolithiasis"
+            },
+            {
+              "id": "D007674",
+              "term": "Kidney Diseases"
+            },
+            {
+              "id": "D014570",
+              "term": "Urologic Diseases"
+            },
+            {
+              "id": "D052776",
+              "term": "Female Urogenital Diseases"
+            },
+            {
+              "id": "D005261",
+              "term": "Female Urogenital Diseases and Pregnancy Complications"
+            },
+            {
+              "id": "D000091642",
+              "term": "Urogenital Diseases"
+            },
+            {
+              "id": "D052878",
+              "term": "Urolithiasis"
+            },
+            {
+              "id": "D014545",
+              "term": "Urinary Calculi"
+            },
+            {
+              "id": "D052801",
+              "term": "Male Urogenital Diseases"
+            },
+            {
+              "id": "D002137",
+              "term": "Calculi"
+            },
+            {
+              "id": "D020763",
+              "term": "Pathological Conditions, Anatomical"
+            },
+            {
+              "id": "D013568",
+              "term": "Pathological Conditions, Signs and Symptoms"
+            }
+          ]
+        }
+      },
+      "hasResults": false
+    }
+  ],
+  "nextPageToken": null
+}

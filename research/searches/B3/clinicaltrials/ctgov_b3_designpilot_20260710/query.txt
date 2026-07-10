@@ -1,0 +1,2 @@
+condition=kidney stone OR nephrolithiasis OR hyperoxaluria
+intervention=vitamin C OR ascorbic acid

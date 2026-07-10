@@ -53,6 +53,6 @@ The exposed `/api/ai-explain` route, `src/lib/ai/**`, and related test were byte
 
 The old production input `warfarin + CoQ10` selected a fatigue meta-analysis beneath an INR-interaction message. This proves that valid IDs alone do not establish claim support. No legacy source, claim, or rule is promoted; later validated claims require report/source and exact locator links.
 
-## Research-input evidence limitation
+## Research-input live reconciliation
 
-The original G: drive was directly inventoried earlier: 513 files, 57,398,308 bytes, with per-file SHA-256 in `research/audit/legacy_source_audit/audit_report.json`. The successor sandbox cannot currently re-open G:. `repo_inventory.json` therefore labels these rows `preserved_audit_snapshot` and records the source-report hash; it does not claim live re-access.
+The original G: root was re-opened on 2026-07-10 and all 513 files (57,398,308 bytes) were rehashed. `research/audit/live_source_reconciliation.json` reports 0 missing files, 0 additions, and 0 content mismatches against the preserved audit. `repo_inventory.json` now records `live_filesystem_hash` and `live_reaccessed=true`.

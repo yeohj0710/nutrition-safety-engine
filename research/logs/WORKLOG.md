@@ -1,5 +1,29 @@
 # WORKLOG
 
+## 2026-07-10 — Live-source and registry checkpoint verification
+
+- Live G: reconciliation: 513 snapshot files vs 513 live files; missing 0, added 0, SHA mismatches 0.
+- Research design bundle: jsonschema/PyYAML environment installed from `requirements-research.lock.txt`; validator errors 0, warnings 0.
+- Phase 01 validator: errors 0; expected warnings only for unvalidated public release and later-phase QA.
+- ClinicalTrials.gov validator: 5 runs, 207 reported/exported, 20 checksum-verified files, errors 0.
+- Software verification: lint pass; TypeScript pass; Vitest 10 files/35 tests pass; Next.js production build pass with 106 generated pages.
+- Thesis bundle remains safe-empty: 0 validated claims, 0 validated rules. Legacy runtime remains isolated under `/legacy` and `/api/legacy/**`.
+
+## 2026-07-10 — Live legacy scholarly PDF profile
+
+- Located the only distinct scholarly source PDF found in the live G: research tree: Gencer et al. omega-3/atrial-fibrillation systematic review.
+- Verified SHA-256 `444ce80af5459344585d33ebfaa1a9a3021d76a11a325cdfa5e0981d108f3bd3`, 1,664,634 bytes, 26 pages, DOI on page 1.
+- Rendered page 1 and visually confirmed legible title/author content. Registered as `legacy_unverified_secondary_reference` with no human screening decision and no claim locators.
+- No evidence claim, rule, included-study decision, or synthesis value was created from this PDF.
+
+## 2026-07-10 — ClinicalTrials.gov full design-pilot export
+
+- Exported all API v2 hits for A1/A2/B1/B2/B3: 139/23/23/14/8, total 207/207; no top-N truncation.
+- Verified 20 raw/query/metadata files against per-run SHA-256 manifests; validator errors 0.
+- Normalized 207 retrievals to 201 unique NCT records; generated 500 registry→PubMed linkage candidates.
+- Created 207-row human review queue with zero prefilled decisions. Flagged all 139 A1 rows for the vitamin-K-antagonist lexical risk.
+- Status remains `design_pilot_not_final_search`; no registry record promoted to included evidence.
+
 ## 2026-07-10 11:01:45 +09:00
 
 - phase / task ID: Phase 01 / T001 entry and baseline
@@ -131,3 +155,24 @@
 - procedure: applied DOCX/PDF skill gates; checked result-freeze prerequisites; generated reproducibility instructions and manifest including tracked and local raw files
 - result: checkpoint manifest 501 files, 104 local-required payloads; project_complete false; claims/rules 0/0; final DOCX/PDF/deployment null
 - decision: no thesis document created before results freeze; Phase 08 remains `blocked_external`
+
+## 2026-07-10 live-source continuation
+
+- phase / task ID: Phase 01 evidence refresh and downstream provenance audit
+- procedure: restored full filesystem access; re-opened original G: research root; hashed all files; reconciled paths, sizes, and SHA-256 against preserved audit; profiled 105 legacy CSVs by unique content
+- result: 513 files, 57,398,308 bytes, exact snapshot match; missing 0, added 0, content mismatch 0; 105 CSV copies reduce to 28 unique CSV hashes
+- finding: legacy tables contain automated `suggested_decision`, `seed_requires_human_source_check`, no independent reviewer IDs, and claim/extraction rows without exact full-text locators; no legacy promotion allowed
+- decision: close G: access blocker only; retain protocol, PRESS, human screening/extraction/RoB/scenario blockers
+
+## 2026-07-10 isolated research environment refresh
+
+- procedure: retried dependency installation after full access restoration; installed pinned JSON Schema/YAML validators in `.venv`; wrote exact lock file; reran design-package validator
+- result: errors 0, warnings 0; prior dependency blocker resolved
+
+## 2026-07-10 — Live subscription-source access check
+
+- Existing Chrome state checked read-only; no credentials or account state changed.
+- Embase: `/landing?status=grey`, `Sign in` and `Check access`; authenticated search unavailable.
+- Scopus: Preview homepage, `Sign in` and `Check access`; authenticated document search unavailable.
+- CENTRAL: public search box, CENTRAL filters, and result counts reachable without sign-in; final export not run before protocol approval.
+- Updated `research/protocol/access_matrix.csv`; recorded B-012. No source was falsely marked as a completed final search.

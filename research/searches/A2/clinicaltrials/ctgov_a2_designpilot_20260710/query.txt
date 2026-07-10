@@ -1,0 +1,2 @@
+condition=anticoagulation OR atrial fibrillation OR venous thromboembolism
+intervention=omega-3 OR fish oil OR EPA OR DHA OR icosapent

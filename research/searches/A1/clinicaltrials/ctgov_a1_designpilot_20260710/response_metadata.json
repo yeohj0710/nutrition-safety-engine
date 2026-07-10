@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "ctgov_a1_designpilot_20260710",
+  "question_id": "A1",
+  "database": "ClinicalTrials.gov",
+  "platform": "ClinicalTrials.gov API v2",
+  "search_datetime_iso": "2026-07-10T07:02:22.170Z",
+  "timezone": "UTC",
+  "status": "design_pilot_full_export_not_final_search",
+  "peer_review_status": "pending_external_human_review",
+  "protocol_status": "pending_human_approval",
+  "query_sha256": "fd361e6524d2fed7c5750a602077be9374b3a400ef7a412dcd299b5538539408",
+  "total_hits_reported": 139,
+  "records_exported": 139,
+  "top_n_truncation": false,
+  "page_count": 1
+}

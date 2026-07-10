@@ -1,0 +1,2 @@
+condition=anticoagulation OR warfarin
+intervention=vitamin K OR phylloquinone

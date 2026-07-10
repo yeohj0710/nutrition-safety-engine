@@ -6,14 +6,15 @@ Proxy pipeline status: `complete_verified`
 
 | Criterion | Proxy evidence | Final-gate status |
 |---|---|---|
-| Total hits and export counts reconcile | five PubMed pilots, 19,961/19,961 | pass_proxy_only |
+| Total hits and export counts reconcile | five PubMed pilots, 19,961/19,961; five ClinicalTrials.gov pilots, 207/207 | pass_proxy_only |
 | No top-N truncation | A1 split into 14 publication-date partitions; all unique IDs equal reported hits | pass_proxy_only |
-| Raw hashes | 123 payload/metadata files checksum-verified; manifest generated | pass_proxy_only |
+| Raw hashes | PubMed payload/metadata manifest plus 20 ClinicalTrials.gov files checksum-verified | pass_proxy_only |
 | Sentinel recall | 9/9 | pass_proxy_only |
-| Normalized records | 19,961 retrieval instances; 19,609 unique PMIDs | pass_proxy_only |
+| Normalized records | PubMed: 19,961 retrieval instances/19,609 unique PMIDs; registry: 207 retrieval instances/201 unique NCT IDs | pass_proxy_only |
 | Duplicate candidate generation | 342 exact DOI/title pairs | pass_proxy_only |
 | Human duplicate decisions | 0/342 | blocked_external |
 | Report→study linkage | 19,609 report candidates; 0 human study links | blocked_external |
+| Registry screening/linkage | 207 undecided rows; 500 registry→PubMed candidate links; 0 human decisions | blocked_external |
 | Approved final searches across planned sources | none | blocked_external |
 
-These artifacts test complete-export, checksum, normalization, and queue generation. They are not final searches, included-study counts, PRISMA data, or human deduplication results.
+ClinicalTrials.gov A1 has a known lexical risk: `vitamin K` also retrieves vitamin-K-antagonist studies. All 139 A1 registry retrievals are flagged for human review. These artifacts test complete-export, checksum, normalization, and queue generation. They are not final searches, included-study counts, PRISMA data, or human deduplication results.

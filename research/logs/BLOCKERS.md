@@ -31,12 +31,15 @@ Detailed decision questions: `research/review_queue/phase_01_external_review.csv
 
 ## B-004 — Live re-access to original G: research folder
 
+Status: `resolved_2026-07-10`.
+
 - exact block point: re-hashing original research files from the successor sandbox
 - already attempted: direct `Test-Path` and Phase 01 audit access; sandbox returned access denied/unavailable
 - available evidence: preserved 513-file, 57,398,308-byte inventory with per-file SHA-256 and source-report hash
 - minimum input needed: future session/environment with the G: mount readable
 - affected artifacts: live source-integrity refresh only; local code, protocol design, proxy queues, and later reproducible scaffolding continue
-- status: `blocked_external`
+- resolution evidence: `research/audit/live_source_reconciliation.json`; 513/513 exact match, mismatch 0
+- status: `resolved`
 
 ## B-005 — Independent PRESS review
 
@@ -79,14 +82,26 @@ Detailed decision questions: `research/review_queue/phase_01_external_review.csv
 
 ## B-010 — Isolated Python dependency download
 
+Status: `resolved_2026-07-10`.
+
 - exact block point: installing `jsonschema==4.25.1` into `.venv`
 - attempted: two pip installs with bounded retries/timeouts; both timed out
 - workaround: standard-library critical invariant validator; design package still reports schema meta-validation warning
-- status: `blocked_external`
+- resolution evidence: `.venv` installed `jsonschema==4.25.1` and `PyYAML==6.0.3`; bundle validator errors 0, warnings 0; `requirements-research.lock.txt`
+- status: `resolved`
 
 ## B-011 — Independent engine gold, expert review, and validated deployment
 
 - exact block point: clinical sensitivity/precision, content validation, release approval
 - available preparation: deterministic thesis engine, 120-case safe-empty proxy, CI workflow, runtime AI removal
 - minimum input needed: validated claim/rule bundle; two independent scenario authors/adjudication; qualified experts; release artifact and deployment identity
+- status: `blocked_external`
+
+## B-012 — Subscription database entitlement
+
+- exact block point: reproducible Embase and Scopus final searches/exports
+- live check: existing Chrome session reached Embase `landing?status=grey` and Scopus Preview; both exposed `Sign in`/`Check access`, with no authenticated search entitlement
+- partial access: CENTRAL public search/filter interface is reachable without sign-in; final query/export remains protocol-gated
+- minimum input needed: institutional or personal licensed access for Embase and Scopus/WoS, then complete native exports and search histories
+- work that can continue: PubMed, CENTRAL public design-pilot, registries, Korean databases, citation chasing, queue/test tooling
 - status: `blocked_external`

@@ -1,0 +1,10 @@
+{
+  "status": "synthetic_proxy_unreviewed",
+  "checksum_verified_files": 20,
+  "retrieval_instances": 207,
+  "unique_registry_records": 201,
+  "cross_question_duplicate_instances": 6,
+  "registry_to_pubmed_link_candidates": 500,
+  "human_registry_decisions": 0,
+  "human_linkage_decisions": 0
+}

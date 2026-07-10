@@ -1,0 +1,2 @@
+condition=kidney stone OR nephrolithiasis OR hypercalciuria
+intervention=calcium supplement OR calcium carbonate OR calcium citrate

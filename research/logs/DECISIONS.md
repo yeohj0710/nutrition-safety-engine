@@ -68,10 +68,19 @@ Status: superseded by D-007 after the reproducible baseline was captured.
 
 ## D-008 — Unavailable research drive evidence
 
+Status: superseded after live re-access on 2026-07-10.
+
 - date: 2026-07-10
 - decision: when G: is unavailable, use the preserved 513-file SHA audit as a labeled snapshot, never as a claim of live re-access
 - rationale: preserves evidence without requesting permissions or fabricating verification
-- impact: live source re-verification remains a blocker independent of other work
+- impact: historical snapshot handling remains documented; live reconciliation now proves exact 513-file continuity
+
+## D-014 — Legacy research tables remain unverified after live access
+
+- date: 2026-07-10
+- decision: do not promote G: CSV rows despite exact file-integrity verification
+- rationale: integrity proves files are unchanged, not that automated screening, locator-free extraction, adapted quality labels, or developer scenarios are valid human evidence
+- impact: legacy content remains useful for audit/sentinel discovery only; all final decisions restart under the new protocol
 
 ## D-009 — Phase 02 search status boundary
 
