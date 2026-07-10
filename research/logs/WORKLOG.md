@@ -1,5 +1,21 @@
 # WORKLOG
 
+## 2026-07-10 — Phase 07 full-chain verification
+
+- CI YAML parsed successfully; Phase 07 review queue contains five rows and all artifact paths exist.
+- Phase 01/02/04/05/06, ClinicalTrials.gov, and Phase 07 validators returned errors 0 after report generation.
+- Lint and TypeScript passed; Vitest 10 files/35 tests passed; production build generated 106 pages.
+- Post-build Phase 07 source-hash gate returned errors 0. The verified statement is limited to the safe-empty boundary; independent clinical validation and production deployment remain absent.
+
+## 2026-07-10 — Phase 07 executable safe-empty and CI gate
+
+- Added an executable 120-scenario runner with three repeats per scenario and a 360-execution report bound to runner, engine, and thesis-bundle SHA-256.
+- Verified 120/120 deterministic, legacy leakage 0, nonempty outputs 0, independent gold 0, expert reviews 0; clinical performance claims remain prohibited.
+- Added Phase 07 gate checks for stale report hashes, runtime OpenAI dependency/files, legacy deployment status, and unique scenario IDs.
+- Initial gate failure traced to empty `src/lib/ai` and `app/api/ai-explain` directories with zero files. Gate now tests actual runtime files; rerun errors 0.
+- CI now installs the locked research Python environment and runs ClinicalTrials.gov plus Phase 04/05/06/07 gates. Full PubMed XML rehash stays local because 266 MB raw payloads are intentionally not Git-distributed.
+- Added five Phase 07 external review routes. Existing production remains `legacy_unverified_production`, not a validated thesis release.
+
 ## 2026-07-10 — Phase 06 safe-empty lineage gate
 
 - Strengthened `tools/validate_phase06_gate.py` to inspect all seven curated thesis JSONL namespaces, not only claim/rule bundle output.

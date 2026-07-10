@@ -15,6 +15,7 @@
     "test:contract": "npm run prepare:knowledge && vitest run __tests__/thesis-mode-boundary.test.ts __tests__/legacy-mode-boundary.test.ts",
     "test:provenance": "npm run prepare:knowledge && vitest run __tests__/thesis-bundle-isolation.test.ts",
     "test:scenarios:smoke": "npm run prepare:knowledge && vitest run __tests__/thesis-empty-scenario-proxy.test.ts",
+    "validate:phase07:proxy": "npm run prepare:thesis && tsx scripts/run-phase07-safe-empty-proxy.ts && python tools/validate_phase07_gate.py",
     "typecheck": "npm run prepare:knowledge && tsc --noEmit"
   },
   "dependencies": {
