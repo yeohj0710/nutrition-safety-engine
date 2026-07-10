@@ -501,3 +501,9 @@
 - Added repository-root containment, namespace, existence, duplicate-ID, and byte-level SHA-256 checks to deterministic thesis-bundle construction.
 - Targeted provenance suite passes 9/9, including valid bytes, stale declared SHA rejection, and `../` root-escape rejection. TypeScript typecheck and empty safe-state bundle build pass.
 - Production certainty/claims/rules remain 0/0/0; no evidence or rule was promoted.
+
+## 2026-07-10 — Deterministic bundle commit identity repair
+
+- Post-commit rebuild exposed a self-referential artifact: `engineCommit = HEAD` made the tracked bundle stale immediately after every commit.
+- Changed identity derivation to the latest commit touching `src/evidence`, `src/domain`, or the bundle builder itself.
+- This preserves implementation traceability while allowing unrelated commits and repeated builds to remain byte-stable.

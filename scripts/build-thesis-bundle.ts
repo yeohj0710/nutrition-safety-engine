@@ -115,9 +115,9 @@ function assertUnique(values: string[], label: string) {
   }
 }
 
-function readCommit() {
+function readEngineCommit() {
   try {
-    return execFileSync("git", ["rev-parse", "HEAD"], {
+    return execFileSync("git", ["log", "-1", "--format=%H", "--", "src/evidence", "src/domain", "scripts/build-thesis-bundle.ts"], {
       cwd: projectRoot,
       encoding: "utf8",
       stdio: ["ignore", "pipe", "ignore"],
@@ -175,7 +175,7 @@ function buildThesisBundle() {
     meta: {
       schemaVersion: "1.1.0",
       bundleVersion: "0.0.0-phase01-empty",
-      engineCommit: readCommit(),
+      engineCommit: readEngineCommit(),
       sourceNamespace: "data/curated",
       scope: "validated_thesis_scope",
       generationMode: "deterministic",

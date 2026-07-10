@@ -166,8 +166,8 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 21969,
-      "sha256": "383518f65b949892e75dc9cda695550a2687ab42f8d90afb39af247feb55b8dd"
+      "size_bytes": 22599,
+      "sha256": "c9110ed7090233161d6486de31d929d7c04a7f19dacdd89e7b6a625730a3de44"
     },
     {
       "path": "research/logs/RISKS.md",
@@ -176,8 +176,8 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 46108,
-      "sha256": "1ebbea42c49801e207ab8cb65d4cf61ddfe25361983f2e2167248841bdca6434"
+      "size_bytes": 46556,
+      "sha256": "5e2ab6be6c1d26c4555365eadc210e6363507792c380d2201f8a740f134699b4"
     },
     {
       "path": "research/review_queue/HUMAN_HANDOFF.md",
@@ -246,13 +246,13 @@
     },
     {
       "path": "scripts/build-thesis-bundle.ts",
-      "size_bytes": 6576,
-      "sha256": "9e2e58502e98115cd1e86d2862d0e94c2aa076fd4e506f8ebb2f56e38e4572dc"
+      "size_bytes": 6665,
+      "sha256": "717e073ab912af91f78a8cfa6a9ca52d35ba8dddc0b57371d499080c79434858"
     },
     {
       "path": "src/generated/thesis-bundle.json",
       "size_bytes": 620,
-      "sha256": "3d9192acbc0ec7468dc280e52cf876de7711fa8e02433f42a58f7a77aca9a480"
+      "sha256": "40cc2fb0c08a1ef02863ac7d2ac47b15aba6dda5f9af05814d27c84ff6b2eece"
     },
     {
       "path": "tools/phase01_audit.py",

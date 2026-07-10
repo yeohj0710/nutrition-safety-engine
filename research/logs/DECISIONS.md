@@ -298,3 +298,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: reopen every curated source file during deterministic thesis-bundle construction and reject missing files, path escape, legacy/synthetic namespaces, duplicate source IDs, or SHA-256 mismatch
 - rationale: agreement between a claim support row and a source registry row only proves that two declarations match; it does not prove either declaration matches the preserved source bytes
 - impact: a changed or relocated source cannot silently retain validated claims/rules; bundle generation stops before runtime artifacts are written
+
+## D-040 — Bundle engine commit identifies engine inputs, not generated output HEAD
+
+- date: 2026-07-10
+- decision: derive `engineCommit` from the latest commit touching the engine/provenance/bundle-builder inputs rather than unconditional repository HEAD
+- rationale: embedding HEAD in a tracked generated file creates an impossible fixed point where committing the file immediately makes its embedded commit stale and every build dirties the tree
+- impact: unrelated research/log commits no longer rewrite the bundle; changing engine inputs still advances the identity and requires one deliberate regenerated artifact commit
