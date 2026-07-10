@@ -284,3 +284,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: replicate each applicable human-gold field across every preserved run for its report/question and calculate TP/FP/FN at `(run_id, report_id, question_id, field_name)` resolution
 - rationale: collapsing repeated runs to unique fields lets one successful repeat hide another repeat's false negative and overstates recall and stability
 - impact: a field found in two of three repeats now contributes TP=2 and FN=1; critical false negatives retain the failing run ID
+
+## D-038 — AI efficiency is paired and separate from accuracy
+
+- date: 2026-07-10
+- decision: measure human-only and AI-assisted minutes for the same reviewer/report pair, preserve workflow order, and report time savings and correction burden separately from accuracy
+- rationale: unpaired timing confounds reviewer and report complexity, while faster processing cannot compensate for worse extraction safety
+- impact: absent paired timing yields `efficiency: null`; completed rows report mean/median paired savings, total minutes, correction rate with denominator/CI, and order counts without an invented significance test

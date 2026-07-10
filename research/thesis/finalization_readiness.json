@@ -109,8 +109,8 @@
     },
     {
       "path": "research/extraction/phase_05_exit_criteria.md",
-      "size_bytes": 3008,
-      "sha256": "82d19420435b2bafb74f43d44073c81790c4cc7c7f1c91115c91b9aa4d86e731"
+      "size_bytes": 3002,
+      "sha256": "f346a85199656adf17a1c31753135841956d6f18a99a12e4b81fb3aa0e388b01"
     },
     {
       "path": "research/synthesis/phase_06_exit_criteria.md",
@@ -144,8 +144,8 @@
     },
     {
       "path": "research/review_queue/human_handoff_manifest.json",
-      "size_bytes": 18927,
-      "sha256": "82d1d90672127a2fb8dc9e777bd2f93bcd6ab3de1e4208f4cac53432242a92ea"
+      "size_bytes": 20015,
+      "sha256": "97773bc98520726044265b85e64ef33092162e0e7ea718bbfb19a27490152dd5"
     }
   ]
 }

@@ -5,13 +5,16 @@
   "ai_runs": 0,
   "raw_run_manifests": 0,
   "human_review_rows": 0,
+  "efficiency_pairs": 0,
   "metrics": null,
+  "efficiency": null,
   "contract_tests": {
     "exact_match": true,
     "critical_fn": true,
     "unsupported": true,
     "raw_manifest_valid": true,
     "raw_manifest_wrong_hash_rejected": true,
-    "repeat_run_denominator": true
+    "repeat_run_denominator": true,
+    "paired_efficiency": true
   }
 }

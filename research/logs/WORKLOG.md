@@ -487,3 +487,10 @@
 - Replaced unique-field detection denominators with run-field instances and explicitly reject duplicate field names inside one run.
 - Gold fields are replicated across every run of the corresponding report/question; gold reports with no run remain visible as `NO_RUN` false negatives.
 - Added a three-repeat mutation contract: two detections and one omission reproduce TP 2, FN 1, recall 2/3. Evaluator contracts now pass 6/6.
+
+## 2026-07-10 — Paired AI extraction efficiency path
+
+- Added a hash-bound human timing table keyed to a real preserved AI run, report/question, reviewer, and randomized/counterbalanced workflow order.
+- Validation rejects missing run lineage, duplicate pairs, negative durations, empty denominators, corrected fields above reviewed fields, and invalid order labels.
+- Outputs are mean/median human-only and AI-assisted time, paired net minutes saved, total savings, corrected-field rate with Wilson interval, and workflow-order counts.
+- Paired synthetic contract passes; total evaluator contracts 7/7. Current timing pairs 0, therefore `efficiency: null`.

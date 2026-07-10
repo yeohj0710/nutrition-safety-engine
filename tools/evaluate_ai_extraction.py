@@ -10,6 +10,7 @@ import math
 import tempfile
 from collections import defaultdict
 from pathlib import Path
+from statistics import mean, median
 
 from jsonschema import Draft202012Validator
 
@@ -19,6 +20,7 @@ GOLD = ROOT / "data/curated/ai_extraction_gold.csv"
 RUNS = ROOT / "data/interim/ai_extraction_runs.jsonl"
 RUN_MANIFEST = ROOT / "data/interim/ai_extraction_run_manifest.csv"
 REVIEW = ROOT / "data/curated/ai_extraction_human_review.csv"
+EFFICIENCY = ROOT / "data/curated/ai_extraction_efficiency.csv"
 OUTPUT = ROOT / "research/extraction/ai_extraction_evaluation.json"
 SCHEMA = ROOT / "research/design/20260710/04_EXTRACTION/llm_extraction_schema.json"
 GOLD_FIELDS = ["gold_id", "report_id", "question_id", "field_name", "value_json", "unit", "locator_valid",
@@ -28,6 +30,9 @@ REVIEW_FIELDS = ["run_id", "field_name", "quote_entails", "locator_correct", "wr
 MANIFEST_FIELDS = ["run_id", "input_path", "input_sha256", "prompt_path", "prompt_sha256", "raw_output_path",
                    "raw_output_sha256", "model_name", "model_version_or_access_date", "temperature", "api_or_app",
                    "attempt_count", "executed_at", "manifest_row_sha256"]
+EFFICIENCY_FIELDS = ["pair_id", "run_id", "report_id", "question_id", "reviewer_id", "human_only_minutes",
+                     "ai_assisted_minutes", "fields_reviewed", "fields_corrected", "workflow_order", "measured_at",
+                     "efficiency_row_sha256"]
 
 
 def sha_text(value: str) -> str:
@@ -99,7 +104,7 @@ def validate_run_manifests(runs: list[dict], manifests: list[dict], root: Path =
     return errors
 
 
-def load_inputs() -> tuple[list[dict], list[dict], list[dict], list[dict], list[str]]:
+def load_inputs() -> tuple[list[dict], list[dict], list[dict], list[dict], list[dict], list[str]]:
     errors: list[str] = []
     with GOLD.open(encoding="utf-8-sig", newline="") as handle:
         reader = csv.DictReader(handle)
@@ -130,6 +135,11 @@ def load_inputs() -> tuple[list[dict], list[dict], list[dict], list[dict], list[
         if reader.fieldnames != MANIFEST_FIELDS:
             errors.append("AI run manifest header mismatch")
         manifests = list(reader)
+    with EFFICIENCY.open(encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle)
+        if reader.fieldnames != EFFICIENCY_FIELDS:
+            errors.append("AI efficiency header mismatch")
+        efficiency = list(reader)
     for row_no, row in enumerate(gold, 2):
         if row["gold_status"] != "frozen_consensus":
             errors.append(f"gold row {row_no}: not frozen_consensus")
@@ -151,7 +161,43 @@ def load_inputs() -> tuple[list[dict], list[dict], list[dict], list[dict], list[
             if row[field].lower() not in {"true", "false"}:
                 errors.append(f"human review row {row_no}: {field} must be true/false")
     errors.extend(validate_run_manifests(runs, manifests))
-    return gold, runs, reviews, manifests, errors
+    run_ids = {run.get("run_id") for run in runs}
+    pair_ids = set()
+    for row_no, row in enumerate(efficiency, 2):
+        expected = sha_text("\x1f".join(row[field] for field in EFFICIENCY_FIELDS if field != "efficiency_row_sha256"))
+        if row["efficiency_row_sha256"] != expected:
+            errors.append(f"AI efficiency row {row_no}: hash mismatch")
+        if row["pair_id"] in pair_ids:
+            errors.append(f"AI efficiency row {row_no}: duplicate pair_id")
+        pair_ids.add(row["pair_id"])
+        if row["run_id"] not in run_ids or not row["reviewer_id"] or not row["measured_at"]:
+            errors.append(f"AI efficiency row {row_no}: missing run/reviewer/time provenance")
+        if row["workflow_order"] not in {"human_first", "ai_first"}:
+            errors.append(f"AI efficiency row {row_no}: invalid workflow_order")
+        try:
+            human_minutes, ai_minutes = float(row["human_only_minutes"]), float(row["ai_assisted_minutes"])
+            reviewed, corrected = int(row["fields_reviewed"]), int(row["fields_corrected"])
+            if human_minutes < 0 or ai_minutes < 0 or reviewed < 1 or corrected < 0 or corrected > reviewed:
+                raise ValueError
+        except ValueError:
+            errors.append(f"AI efficiency row {row_no}: invalid duration/field counts")
+    return gold, runs, reviews, manifests, efficiency, errors
+
+
+def evaluate_efficiency(rows: list[dict]) -> dict | None:
+    if not rows:
+        return None
+    human = [float(row["human_only_minutes"]) for row in rows]
+    assisted = [float(row["ai_assisted_minutes"]) for row in rows]
+    savings = [left - right for left, right in zip(human, assisted)]
+    reviewed = sum(int(row["fields_reviewed"]) for row in rows)
+    corrected = sum(int(row["fields_corrected"]) for row in rows)
+    return {"paired_reports": len(rows), "human_only_minutes": {"mean": mean(human), "median": median(human)},
+            "ai_assisted_minutes": {"mean": mean(assisted), "median": median(assisted)},
+            "net_minutes_saved": {"mean": mean(savings), "median": median(savings), "total": sum(savings)},
+            "corrected_field_rate": proportion(corrected, reviewed),
+            "workflow_order_counts": {order: sum(row["workflow_order"] == order for row in rows)
+                                      for order in ("human_first", "ai_first")}}
 
 
 def evaluate(gold: list[dict], runs: list[dict], reviews: list[dict] | None = None) -> dict:
@@ -255,6 +301,8 @@ def contract_tests() -> dict:
     missed = evaluate(gold, [dict(run, run_id="T2", fields=[])])
     unsupported = evaluate(gold, [dict(run, run_id="T3", fields=[dict(run["fields"][0], field_name="invented")])])
     repeated = evaluate(gold, [run, dict(run, run_id="T4"), dict(run, run_id="T5", fields=[])])
+    efficiency = evaluate_efficiency([{"human_only_minutes": "20", "ai_assisted_minutes": "12", "fields_reviewed": "10",
+                                       "fields_corrected": "2", "workflow_order": "human_first"}])
     with tempfile.TemporaryDirectory() as temp:
         root = Path(temp)
         for name, value in (("input.txt", b"input"), ("prompt.txt", b"prompt"), ("output.txt", b"output")):
@@ -275,11 +323,12 @@ def contract_tests() -> dict:
     return {"exact_match": good["exact_value"]["rate"] == 1, "critical_fn": missed["critical_false_negative_count"] == 1,
             "unsupported": unsupported["unsupported_claims"]["n"] == 1, "raw_manifest_valid": valid_manifest,
             "raw_manifest_wrong_hash_rejected": wrong_hash_rejected,
-            "repeat_run_denominator": repeated["detection"]["tp"] == 2 and repeated["detection"]["fn"] == 1 and repeated["detection"]["recall"] == 2 / 3}
+            "repeat_run_denominator": repeated["detection"]["tp"] == 2 and repeated["detection"]["fn"] == 1 and repeated["detection"]["recall"] == 2 / 3,
+            "paired_efficiency": efficiency["net_minutes_saved"]["total"] == 8 and efficiency["corrected_field_rate"]["rate"] == 0.2}
 
 
 def main() -> int:
-    gold, runs, reviews, manifests, errors = load_inputs()
+    gold, runs, reviews, manifests, efficiency, errors = load_inputs()
     tests = contract_tests()
     if not all(tests.values()):
         errors.append("internal contract test failure")
@@ -287,14 +336,16 @@ def main() -> int:
         result = {"status": "invalid_inputs_no_performance_metrics", "errors": errors, "contract_tests": tests}
     elif not gold or not runs:
         result = {"status": "blocked_external_no_performance_metrics", "errors": [], "human_gold_fields": len(gold),
-                  "ai_runs": len(runs), "raw_run_manifests": len(manifests), "human_review_rows": len(reviews), "metrics": None, "contract_tests": tests}
+                  "ai_runs": len(runs), "raw_run_manifests": len(manifests), "human_review_rows": len(reviews),
+                  "efficiency_pairs": len(efficiency), "metrics": None, "efficiency": evaluate_efficiency(efficiency), "contract_tests": tests}
     elif not reviews:
         result = {"status": "blocked_external_missing_human_ai_field_review_no_performance_metrics", "errors": [],
                   "human_gold_fields": len(gold), "ai_runs": len(runs), "human_review_rows": 0,
                   "metrics": None, "contract_tests": tests}
     else:
         try:
-            result = {"errors": [], "contract_tests": tests, **evaluate(gold, runs, reviews)}
+            result = {"errors": [], "contract_tests": tests, **evaluate(gold, runs, reviews),
+                      "efficiency": evaluate_efficiency(efficiency)}
         except ValueError as exc:
             result = {"status": "invalid_inputs_no_performance_metrics", "errors": [str(exc)], "contract_tests": tests}
     OUTPUT.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

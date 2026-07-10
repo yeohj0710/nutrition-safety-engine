@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "7d3d2575586850d093b818d312f03032956c5930",
+  "implementation_head": "cc7c25bab274c8d9437dce00b737427b498c5d16",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,7 +10,7 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 818,
+  "file_count": 819,
   "local_required_file_count": 104,
   "files": [
     {
@@ -293,6 +293,12 @@
       "path": "CLAUDE.md",
       "size_bytes": 92,
       "sha256": "916553741cfa955edda754d5a419ae606837853281441a6bebc598aa1a69fe8f",
+      "distribution": "tracked"
+    },
+    {
+      "path": "data/curated/ai_extraction_efficiency.csv",
+      "size_bytes": 173,
+      "sha256": "02d3264be74dba945904506df73392a7c2de8be1d21c51f2358634a618d55e88",
       "distribution": "tracked"
     },
     {
@@ -1005,8 +1011,8 @@
     },
     {
       "path": "research/audit/phase_01_artifact_manifest.json",
-      "size_bytes": 9473,
-      "sha256": "20d73f3640bc98c46443070b9c374657b85b9de37dd4f7424995294367210adf",
+      "size_bytes": 9658,
+      "sha256": "8a1dfdf242e8ce3d11efe829631313b6a78e83e5b6761985d8aef7484c875e94",
       "distribution": "tracked"
     },
     {
@@ -1791,8 +1797,8 @@
     },
     {
       "path": "research/extraction/ai_extraction_evaluation.json",
-      "size_bytes": 419,
-      "sha256": "315516b98655cb9127b282d684b82c8bf569216ecbd3ed5acf603db7dc173073",
+      "size_bytes": 500,
+      "sha256": "d0dc789678d64390ef5a3d70d450ae7a2eb943834f836668b33f11c3f63df861",
       "distribution": "tracked"
     },
     {
@@ -1803,8 +1809,8 @@
     },
     {
       "path": "research/extraction/phase_05_exit_criteria.md",
-      "size_bytes": 3008,
-      "sha256": "82d19420435b2bafb74f43d44073c81790c4cc7c7f1c91115c91b9aa4d86e731",
+      "size_bytes": 3002,
+      "sha256": "f346a85199656adf17a1c31753135841956d6f18a99a12e4b81fb3aa0e388b01",
       "distribution": "tracked"
     },
     {
@@ -2505,8 +2511,8 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 20699,
-      "sha256": "a636905f5cee32d8b412111554d0aebbd78514f3d05520669e9f25009af7b96c",
+      "size_bytes": 21326,
+      "sha256": "8a86915b1778c5afa4f0d3e5415dcb38672c7f9801d825e25a91827709706b82",
       "distribution": "tracked"
     },
     {
@@ -2517,14 +2523,14 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 44835,
-      "sha256": "839eaedf78732dfaca59725e580825e69655fab904a117dd0be9b1dba7ba9fe5",
+      "size_bytes": 45496,
+      "sha256": "d7be6d4224fce24f8e71d2ed9e70931f64f1377dd2e3cef8ff4310810264a8e9",
       "distribution": "tracked"
     },
     {
       "path": "research/PROGRESS_LEDGER.md",
-      "size_bytes": 2906,
-      "sha256": "0a5040b0df4e3ef6bf9054c18f9fbc1e2d11c183ade28d90423895198e9cfd25",
+      "size_bytes": 2914,
+      "sha256": "2a0442e509f1efc3b99a4bb5fb9b0e8fc765cbcac34c3f33a6bc2181ea5a6fc4",
       "distribution": "tracked"
     },
     {
@@ -2589,8 +2595,8 @@
     },
     {
       "path": "research/review_queue/human_handoff_manifest.json",
-      "size_bytes": 18927,
-      "sha256": "82d1d90672127a2fb8dc9e777bd2f93bcd6ab3de1e4208f4cac53432242a92ea",
+      "size_bytes": 20015,
+      "sha256": "97773bc98520726044265b85e64ef33092162e0e7ea718bbfb19a27490152dd5",
       "distribution": "tracked"
     },
     {
@@ -4198,7 +4204,7 @@
     {
       "path": "research/thesis/finalization_readiness.json",
       "size_bytes": 4999,
-      "sha256": "74bc8ddba93056cc7fafa69448c47025633a2ecbbad9c2a4ee018b6eaae42148",
+      "sha256": "14a947207c549b0d27b13ea82ccabd713daffd696ca2f40ce3e818c3f58a2a1b",
       "distribution": "tracked"
     },
     {
@@ -4539,8 +4545,8 @@
     },
     {
       "path": "tools/build_human_handoff_manifest.py",
-      "size_bytes": 9209,
-      "sha256": "7c8ae3a305f236d13b658e1159e5ca37708ba8d9cd03b7762f6e824c08ac657b",
+      "size_bytes": 9700,
+      "sha256": "635e7baf54e015c0f005697f9ebaeee05e590baeb46cbe97f2d6594d32a550ad",
       "distribution": "tracked"
     },
     {
@@ -4599,8 +4605,8 @@
     },
     {
       "path": "tools/evaluate_ai_extraction.py",
-      "size_bytes": 17699,
-      "sha256": "cb3b94434625895923e5cf1fcccebc671561b154e9934abe8a0bef4b72b8a216",
+      "size_bytes": 21189,
+      "sha256": "0d8113ea85b3a54626df95232ac7f2d5b734f96c5aeec5e0b285bb175d4a3786",
       "distribution": "tracked"
     },
     {
@@ -4780,7 +4786,7 @@
     {
       "path": "tools/validate_human_handoff_manifest.py",
       "size_bytes": 3551,
-      "sha256": "2045ccf3d26476b07f6eef4d83cd77b33488504ab9d7088a3a55f0f45c60f430",
+      "sha256": "cac67c667c487630c168d98ca798a78fc747c3d5c9397e269d860a8fd99d47ec",
       "distribution": "tracked"
     },
     {

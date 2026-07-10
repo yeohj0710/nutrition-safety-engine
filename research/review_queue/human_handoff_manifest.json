@@ -10,7 +10,7 @@
     "independent_validation",
     "finalization"
   ],
-  "queue_count": 27,
+  "queue_count": 28,
   "total_rows": 20900,
   "rows_with_any_human_data": 0,
   "rows_complete_candidate": 0,
@@ -402,6 +402,44 @@
         "reviewer_id",
         "reviewed_at",
         "review_row_sha256"
+      ],
+      "rows_with_any_human_data": 0,
+      "rows_complete_candidate": 0,
+      "progress_state": "awaiting_upstream_rows"
+    },
+    {
+      "queue_id": "P5_ai_efficiency",
+      "path": "data/curated/ai_extraction_efficiency.csv",
+      "sha256": "02d3264be74dba945904506df73392a7c2de8be1d21c51f2358634a618d55e88",
+      "size_bytes": 173,
+      "row_count": 0,
+      "human_entry_fields": [
+        "pair_id",
+        "run_id",
+        "report_id",
+        "question_id",
+        "reviewer_id",
+        "human_only_minutes",
+        "ai_assisted_minutes",
+        "fields_reviewed",
+        "fields_corrected",
+        "workflow_order",
+        "measured_at",
+        "efficiency_row_sha256"
+      ],
+      "minimum_completion_fields": [
+        "pair_id",
+        "run_id",
+        "report_id",
+        "question_id",
+        "reviewer_id",
+        "human_only_minutes",
+        "ai_assisted_minutes",
+        "fields_reviewed",
+        "fields_corrected",
+        "workflow_order",
+        "measured_at",
+        "efficiency_row_sha256"
       ],
       "rows_with_any_human_data": 0,
       "rows_complete_candidate": 0,

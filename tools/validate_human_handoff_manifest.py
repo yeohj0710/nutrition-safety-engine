@@ -44,8 +44,8 @@ def main() -> int:
             errors.append(f"handoff progress state mismatch: {item['path']}")
         any_total += any_count
         complete_total += complete
-    if value.get("queue_count") != len(queues) or len(queues) != 27:
-        errors.append("expected 27 handoff queues")
+    if value.get("queue_count") != len(queues) or len(queues) != 28:
+        errors.append("expected 28 handoff queues")
     if value.get("rows_with_any_human_data") != any_total or value.get("rows_complete_candidate") != complete_total:
         errors.append("handoff aggregate progress mismatch")
     if value.get("human_work_complete") is not False or value.get("status") != "ready_for_external_review_not_completed":
