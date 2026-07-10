@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "status": "local_production_smoke_not_validated_deployment",
+  "validated_deployment": false,
+  "browser": "Playwright Chromium",
+  "browser_pages_inspected": [
+    "/",
+    "/legacy"
+  ],
+  "checks": {
+    "home_200": true,
+    "protocol_questions_5_present": true,
+    "thesis_empty_notice_present": true,
+    "legacy_warning_present": true,
+    "legacy_200": true,
+    "robots_200": true,
+    "sitemap_200": true,
+    "api_200": true,
+    "api_validated_scope": true,
+    "api_empty_actions": true,
+    "api_no_legacy": true
+  },
+  "all_passed": true,
+  "source_hashes": {
+    "app/page.tsx": "1da377e73cc931754b9e6569512e54dea799236425a727354217abfc8d536ce3",
+    "src/engine/run-thesis-engine.ts": "8cfedffe94d6b81bf2c3ef487dea1a24fdf977f0c5a8866b6da09250ab5dd81b",
+    "src/generated/thesis-bundle.json": "1a7b13e4cc2cba0b3f78d947127ca19b6d74f4e9f2c0e7f4e9046a071861a9b9"
+  },
+  "build_id_sha256": "fc4c2275d87588e63ac8ba07036dc8634dc7d824af8c1f0a1b4b152069381f95"
+}

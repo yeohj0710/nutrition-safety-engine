@@ -397,3 +397,11 @@
 - Mechanically fixed results freeze, results writing, final DOCX/PDF, project completion, validated deployment, and submission manifest to false/null.
 - Validator rejects evidence hash drift, premature final artifacts, nonzero unverified human/research outputs, or any false completion flag.
 - The nonfinal methods checkpoint remains available; no final results section or final thesis artifact was created.
+
+## 2026-07-10 — Local production browser/API smoke
+
+- Started the optimized Next.js production build and inspected `/` and `/legacy` with Playwright Chromium.
+- Found and corrected four stale homepage research-question labels that did not match protocol A1-A2/B1-B3.
+- Centralized the five labels in a domain constant and added a regression test.
+- Rechecked the homepage, legacy warning, thesis API empty validated scope, robots, and sitemap: 11/11 smoke checks pass.
+- Captured source/build hashes in `local_production_smoke.json`; this is local software evidence, not a validated public deployment.

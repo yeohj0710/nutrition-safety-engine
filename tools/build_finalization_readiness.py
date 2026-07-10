@@ -14,6 +14,7 @@ EVIDENCE = [
     "research/validation/phase_07_exit_criteria.md", "research/thesis/phase_08_exit_criteria.md",
     "research/audit/deployment_baseline.json",
     "research/thesis/checkpoints/methods_checkpoint_qa.json",
+    "research/validation/local_production_smoke.json",
 ]
 
 

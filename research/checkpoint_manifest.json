@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "823c1bc3f03fe1e53603667f50d9b3cd28620c7f",
+  "implementation_head": "d37a8da06d0b52752799cc9a68a88bd46c1f0dcf",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,13 +10,13 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 787,
+  "file_count": 792,
   "local_required_file_count": 104,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "size_bytes": 1747,
-      "sha256": "dc939ede14b01c2212a653449a2eaec12860555b4afb339e9938797f48451f10",
+      "size_bytes": 1808,
+      "sha256": "58f8757b99325df01ea2c5389d78bb1d19ae6fc0556b2d1604217f093294ef27",
       "distribution": "tracked"
     },
     {
@@ -101,6 +101,12 @@
       "path": "__tests__/query-input.test.ts",
       "size_bytes": 1133,
       "sha256": "d97497c8bc87606c078aef79b523082cbcc440ebd5a64904d5c6198c861dcb0a",
+      "distribution": "tracked"
+    },
+    {
+      "path": "__tests__/research-question-scope.test.ts",
+      "size_bytes": 628,
+      "sha256": "8bf5d8693982a94b1e8deb1cfe81201e527c70d78e52d3eaadc3caf2438977ee",
       "distribution": "tracked"
     },
     {
@@ -267,8 +273,8 @@
     },
     {
       "path": "app/page.tsx",
-      "size_bytes": 5330,
-      "sha256": "4b25f6c81c3496cce3237cfaec8ff29a49f2a1eb1b01186ed1c9fa19b138b6af",
+      "size_bytes": 5031,
+      "sha256": "1da377e73cc931754b9e6569512e54dea799236425a727354217abfc8d536ce3",
       "distribution": "tracked"
     },
     {
@@ -813,8 +819,8 @@
     },
     {
       "path": "package.json",
-      "size_bytes": 3571,
-      "sha256": "236f0880706b2615887fbc15df9ab0a39db33a34f5c0abb545b9b911b275afd0",
+      "size_bytes": 3749,
+      "sha256": "dfd8bcbc47558e59ef67e7c585c5b9cb85ef8fc822f9e18015ded941862bce78",
       "distribution": "tracked"
     },
     {
@@ -946,7 +952,7 @@
     {
       "path": "research/audit/phase_01_artifact_manifest.json",
       "size_bytes": 8729,
-      "sha256": "b6d4197077311f514eeb87257961ffa18d38d3639ff8cf6e43ec5e0b5e2dbad8",
+      "sha256": "5c094405f1274ea66ba76cf18a5f50ab18f539fbe51e1852dfa868eb396f6973",
       "distribution": "tracked"
     },
     {
@@ -2433,8 +2439,8 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 14366,
-      "sha256": "07063ad8543ac078880f83e5bc777a8a6caf3b4ab80076de9c3da3bb954975cb",
+      "size_bytes": 14803,
+      "sha256": "aa6435a50e6de15f2e1f2cb919a14cc6f032b21a5d2f9af0538eade70f0470fb",
       "distribution": "tracked"
     },
     {
@@ -2445,14 +2451,14 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 37063,
-      "sha256": "b8c9e812a9cce4d0da712eae7bc646521153e1e0d9441c2c95be41955fd4196f",
+      "size_bytes": 37668,
+      "sha256": "d91d6f21fac3e5eda41a7b1ca992a3be70d2389f1ac11c69235f9984d370c2d7",
       "distribution": "tracked"
     },
     {
       "path": "research/PROGRESS_LEDGER.md",
-      "size_bytes": 2619,
-      "sha256": "16c1d3fe93a984b46d695f59211181c70808c261447398d0967c2eaea8d28cde",
+      "size_bytes": 2605,
+      "sha256": "e9b8046ba0f2a7b352ec440fac1335b22750dbc72541883888e4d4169c683a47",
       "distribution": "tracked"
     },
     {
@@ -4101,8 +4107,8 @@
     },
     {
       "path": "research/thesis/finalization_readiness.json",
-      "size_bytes": 4612,
-      "sha256": "52625ab0d2a225b0c954581237ec7a6399bf374d9139616175864418c72deadc",
+      "size_bytes": 4804,
+      "sha256": "d79750c6609444fb65911ecc700d68edf607d81aa4a724183fe30ed9790d307b",
       "distribution": "tracked"
     },
     {
@@ -4120,25 +4126,31 @@
     {
       "path": "research/validation/independent_gold_scenario_authoring_queue.csv",
       "size_bytes": 23983,
-      "sha256": "72d2a3a36e7b9edaf5ea36b9df482d03386b59f27882fc3088d51cc02abfac37",
+      "sha256": "461fdd81e575401d54dc4935991891f7182255dfaf02609fae2b460e487b542a",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/validation/local_production_smoke.json",
+      "size_bytes": 1036,
+      "sha256": "0a985c6d993d2bcd17b126005d507ea56b819c4833c89a19dbfa6bdb7ae21228",
       "distribution": "tracked"
     },
     {
       "path": "research/validation/phase_07_exit_criteria.md",
-      "size_bytes": 2073,
-      "sha256": "5c51d6f491291b2585b45529a614ed8fbbff58d2c5c3a4d87e14981f71049398",
+      "size_bytes": 2203,
+      "sha256": "3eca6265330a2ed74d424e6b428a5a1a9d9baea77d85b970904fd16917a4df57",
       "distribution": "tracked"
     },
     {
       "path": "research/validation/safe_empty_proxy_report.json",
       "size_bytes": 34775,
-      "sha256": "9c4b33132d6507c2f9197e5914273ebd40016fc0bfe00d4bf855a36e8380007a",
+      "sha256": "f002a6ef66c0d8801352d0804438bb8977efdfb9dc5896f1fd8a8f02ae55965d",
       "distribution": "tracked"
     },
     {
       "path": "research/validation/synthetic_scenario_blind_expert_review.csv",
       "size_bytes": 46923,
-      "sha256": "c6d00ca3cccf144c8f18aac51aaa3816b89cfa3355f44811d197b2a1271176de",
+      "sha256": "f5521fba3546f2a869ec8db1ecf429cfacddbd0440c444647689433ba86c3bfa",
       "distribution": "tracked"
     },
     {
@@ -4256,6 +4268,12 @@
       "distribution": "tracked"
     },
     {
+      "path": "src/domain/research-questions.ts",
+      "size_bytes": 352,
+      "sha256": "2b25aeab518625c92d27b843fb84d70073067c99a95139822462ba7256d77b41",
+      "distribution": "tracked"
+    },
+    {
       "path": "src/domain/thesis.ts",
       "size_bytes": 3644,
       "sha256": "6e898ae29e569036526b919413bcf2011943899433ad6c2263c6efc00e39bfaa",
@@ -4294,7 +4312,7 @@
     {
       "path": "src/generated/thesis-bundle.json",
       "size_bytes": 620,
-      "sha256": "73b981a7cabaa468326a1068cf5b16023f97a4de0bb6dec3a2cbc633a39269fa",
+      "sha256": "1a7b13e4cc2cba0b3f78d947127ca19b6d74f4e9f2c0e7f4e9046a071861a9b9",
       "distribution": "tracked"
     },
     {
@@ -4413,8 +4431,8 @@
     },
     {
       "path": "tools/build_finalization_readiness.py",
-      "size_bytes": 3938,
-      "sha256": "aa9aebb0e3553b3b8f4df4cd2b95189e6523d07a0bbad9b5fd5f6ff4431c026f",
+      "size_bytes": 3993,
+      "sha256": "974c65f92d44acb2322363c2cdcd7ce071bbdeeeb288fb75dcf5cbaefbfd9b15",
       "distribution": "tracked"
     },
     {
@@ -4445,6 +4463,12 @@
       "path": "tools/capture_korean_db_split_pilot.mjs",
       "size_bytes": 5002,
       "sha256": "3e87e92d145b0589f23e4c706c8fe88fe5d09b5822cf72ab0a0078fa4efbc7b3",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/capture_local_production_smoke.py",
+      "size_bytes": 3243,
+      "sha256": "193f6b9548281168f91e5834a9815deb5637d11b6936c3d199764b4339d927b4",
       "distribution": "tracked"
     },
     {
@@ -4631,6 +4655,12 @@
       "path": "tools/validate_korean_db_split_pilot.py",
       "size_bytes": 4541,
       "sha256": "55575f59404dbb25b3aedcd99ae87be8166dc90c85e56f33bbe12e84dade2b79",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/validate_local_production_smoke.py",
+      "size_bytes": 1528,
+      "sha256": "366548889e1cd0a95700457df8760a98c6db4859827cad3727733a50993c0a52",
       "distribution": "tracked"
     },
     {

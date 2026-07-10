@@ -2,7 +2,7 @@
   "meta": {
     "schemaVersion": "1.1.0",
     "bundleVersion": "0.0.0-phase01-empty",
-    "engineCommit": "0d7755de90113d7ab644b75afe690b1a2df92476",
+    "engineCommit": "d37a8da06d0b52752799cc9a68a88bd46c1f0dcf",
     "sourceNamespace": "data/curated",
     "scope": "validated_thesis_scope",
     "generationMode": "deterministic",

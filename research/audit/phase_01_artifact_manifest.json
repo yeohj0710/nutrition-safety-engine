@@ -151,8 +151,8 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 14366,
-      "sha256": "07063ad8543ac078880f83e5bc777a8a6caf3b4ab80076de9c3da3bb954975cb"
+      "size_bytes": 14803,
+      "sha256": "aa6435a50e6de15f2e1f2cb919a14cc6f032b21a5d2f9af0538eade70f0470fb"
     },
     {
       "path": "research/logs/RISKS.md",
@@ -161,8 +161,8 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 37063,
-      "sha256": "b8c9e812a9cce4d0da712eae7bc646521153e1e0d9441c2c95be41955fd4196f"
+      "size_bytes": 37668,
+      "sha256": "d91d6f21fac3e5eda41a7b1ca992a3be70d2389f1ac11c69235f9984d370c2d7"
     },
     {
       "path": "research/review_queue/korean_db_PRESS_review.csv",
@@ -227,7 +227,7 @@
     {
       "path": "src/generated/thesis-bundle.json",
       "size_bytes": 620,
-      "sha256": "73b981a7cabaa468326a1068cf5b16023f97a4de0bb6dec3a2cbc633a39269fa"
+      "sha256": "1a7b13e4cc2cba0b3f78d947127ca19b6d74f4e9f2c0e7f4e9046a071861a9b9"
     },
     {
       "path": "tools/phase01_audit.py",

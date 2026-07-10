@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { loadThesisBundle } from "@/src/evidence/load-thesis-bundle";
+import { protocolQuestions } from "@/src/domain/research-questions";
 import { siteDescription, siteName } from "@/src/lib/site";
 
 export const metadata: Metadata = {
@@ -9,14 +10,6 @@ export const metadata: Metadata = {
   description: siteDescription,
   alternates: { canonical: "/" },
 };
-
-const protocolQuestions = [
-  ["A1", "항응고제 복용자와 비타민 K 관련 안전성"],
-  ["A2", "신장결석 위험과 칼슘·비타민 D 관련 안전성"],
-  ["B1", "흡연자와 베타카로틴 관련 안전성"],
-  ["B2", "임신·수유와 영양성분 관련 안전성"],
-  ["B3", "약물–영양성분 복용 간격 관련 안전성"],
-] as const;
 
 export default function Home() {
   const bundle = loadThesisBundle();

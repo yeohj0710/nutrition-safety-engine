@@ -200,3 +200,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: represent all A-K acceptance areas in one hash-bound readiness manifest and require every finalization flag to remain false while any gate is open
 - rationale: separate passing software checks can otherwise be mistaken for a completed study or submission-ready thesis
 - impact: final writing, artifacts, deployment, and manifest pointers cannot appear until the full upstream evidence state is regenerated and independently validated
+
+## D-026 — Homepage question labels are protocol-controlled data
+
+- date: 2026-07-10
+- decision: keep A1-A2/B1-B3 display labels in a tested domain constant rather than independent page copy
+- rationale: browser smoke exposed stale legacy topics on the thesis homepage despite correct backend protocol artifacts
+- impact: scope-label drift now fails a unit test; passing local browser smoke remains distinct from validated deployment

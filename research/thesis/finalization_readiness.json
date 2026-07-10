@@ -119,8 +119,8 @@
     },
     {
       "path": "research/validation/phase_07_exit_criteria.md",
-      "size_bytes": 2073,
-      "sha256": "5c51d6f491291b2585b45529a614ed8fbbff58d2c5c3a4d87e14981f71049398"
+      "size_bytes": 2203,
+      "sha256": "3eca6265330a2ed74d424e6b428a5a1a9d9baea77d85b970904fd16917a4df57"
     },
     {
       "path": "research/thesis/phase_08_exit_criteria.md",
@@ -136,6 +136,11 @@
       "path": "research/thesis/checkpoints/methods_checkpoint_qa.json",
       "size_bytes": 1095,
       "sha256": "6255b8b8cae45029b43927105bc6d8c69af27bc075159c0170f726f2a0fc229f"
+    },
+    {
+      "path": "research/validation/local_production_smoke.json",
+      "size_bytes": 1036,
+      "sha256": "0a985c6d993d2bcd17b126005d507ea56b819c4833c89a19dbfa6bdb7ae21228"
     }
   ]
 }
