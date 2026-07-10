@@ -133,6 +133,7 @@ function buildThesisBundle() {
   const studies = readJsonLines("studies.jsonl");
   const extractions = readJsonLines("extractions.jsonl");
   const riskOfBias = readJsonLines("risk_of_bias.jsonl");
+  const certaintyAssessments = readJsonLines("certainty_assessments.jsonl");
   const claims = parseClaims(readJsonLines("claims.jsonl"));
   const rules = parseRules(readJsonLines("rules.jsonl"));
   assertUnique(claims.map((claim) => claim.claim_id), "claim_id");
@@ -164,6 +165,7 @@ function buildThesisBundle() {
     sources,
     reports,
     extractions,
+    certaintyAssessments,
     claims: validatedClaims,
     rules: validatedRules,
   });
@@ -181,6 +183,7 @@ function buildThesisBundle() {
       studyCount: studies.length,
       extractionCount: extractions.length,
       riskOfBiasCount: riskOfBias.length,
+      certaintyAssessmentCount: certaintyAssessments.length,
       claimCount: validatedClaims.length,
       ruleCount: validatedRules.length,
     },
@@ -189,6 +192,7 @@ function buildThesisBundle() {
     studies,
     extractions,
     riskOfBias,
+    certaintyAssessments,
     claims: validatedClaims,
     rules: validatedRules,
   };

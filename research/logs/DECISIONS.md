@@ -179,3 +179,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: bind the Phase 05 locator fixture to the existing report/record/PMCID chain while keeping extraction value, eligibility, study link, and AI output empty
 - rationale: a fabricated report identifier cannot test cross-entity provenance, but using a candidate report need not imply inclusion
 - impact: Phase 05 now detects report/source drift without turning a locator plumbing test into research evidence
+
+## D-023 — Validated claims require a validated GRADE row
+
+- date: 2026-07-10
+- decision: replace free-standing certainty labels with a mandatory certainty-assessment reference whose question, grade, and validation state must match the claim
+- rationale: a claim-level string cannot prove that GRADE was performed, independently checked, or applied to the same outcome question
+- impact: thesis claims cannot enter the deterministic bundle until a human-validated GRADE registry row exists and all upstream extraction provenance matches

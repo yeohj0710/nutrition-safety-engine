@@ -7,6 +7,7 @@
   "required": [
     "bundle_version",
     "contract_mode",
+    "certainty_assessments",
     "claims",
     "rules"
   ],
@@ -17,6 +18,21 @@
     "contract_mode": {
       "type": "string",
       "enum": ["production", "synthetic_contract_fixture"]
+    },
+    "certainty_assessments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["certainty_assessment_id", "question_id", "certainty", "verification_status"],
+        "properties": {
+          "certainty_assessment_id": {"type": "string", "minLength": 1},
+          "question_id": {"type": "string", "enum": ["A1", "A2", "B1", "B2", "B3"]},
+          "certainty": {"type": "string", "enum": ["high", "moderate", "low", "very_low"]},
+          "verification_status": {"type": "string", "enum": ["draft", "validated"]},
+          "verified_by": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
+        }
+      }
     },
     "claims": {
       "type": "array",
@@ -33,6 +49,7 @@
           "outcome",
           "evidence_layer",
           "certainty",
+          "certainty_assessment_id",
           "support",
           "verification_status"
         ],
@@ -98,6 +115,10 @@
               "very_low",
               "not_graded"
             ]
+          },
+          "certainty_assessment_id": {
+            "type": "string",
+            "minLength": 1
           },
           "applicability_notes": {
             "type": "string"

@@ -11,9 +11,11 @@ Phase status: `blocked_external`
 - Validated claims: 0
 - Thesis rules: 0
 - Legacy automatic promotions: 0
-- Curated source/report/study/extraction/RoB/claim/rule JSONL rows: 0/0/0/0/0/0/0
+- Curated source/report/study/extraction/RoB/certainty/claim/rule JSONL rows: 0/0/0/0/0/0/0/0
 - Five question-specific meta-analysis decisions: all `not_assessed`, all `blocked_external`
-- Claim-rule contract tests: 9/9 pass on synthetic-only bundle; legacy source, wrong quote hash, missing/draft/mismatched claim, unvalidated rule, missing expert review, and missing independent scenario all rejected
+- Claim-rule contract tests: 11/11 pass on synthetic-only bundle; legacy source, wrong quote hash, missing/draft/mismatched claim, missing/mismatched GRADE, unvalidated rule, missing expert review, and missing independent scenario all rejected
+- Validated claim GRADE boundary: every claim requires an existing validated certainty row with identical question and certainty grade
+- Production extraction boundary: source/report/extraction IDs, source IDs, locator hashes, quotes, and quote hashes must match upstream validated rows
 - Thesis bundle builder: production provenance validator runs before output and checks source/report/extraction existence and validation, source-row/hash match, quote hash, question consistency, human verifiers, expert review, and independent scenario evidence
 
 No synthesis or pooling is justified. Empty registries are an enforced safety state, not a null-effect research result. Phase 06 requires human-frozen studies, verified extraction/RoB, question-specific synthesis, and GRADE before any claim or rule can be validated.

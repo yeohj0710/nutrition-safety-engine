@@ -10,7 +10,9 @@
     "question_mismatch_rejected": true,
     "unvalidated_rule_rejected": true,
     "missing_expert_review_rejected": true,
-    "missing_scenario_validation_rejected": true
+    "missing_scenario_validation_rejected": true,
+    "missing_certainty_rejected": true,
+    "certainty_mismatch_rejected": true
   },
   "all_passed": true,
   "production_claims_created": 0,

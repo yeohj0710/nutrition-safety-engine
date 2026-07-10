@@ -2,7 +2,7 @@
   "meta": {
     "schemaVersion": "1.1.0",
     "bundleVersion": "0.0.0-phase01-empty",
-    "engineCommit": "d23596a3e51c48b06430ff7195233dc00f21bab4",
+    "engineCommit": "fe08e31de583d6d7675455ac8e068a1976f4086c",
     "sourceNamespace": "data/curated",
     "scope": "validated_thesis_scope",
     "generationMode": "deterministic",
@@ -11,6 +11,7 @@
     "studyCount": 0,
     "extractionCount": 0,
     "riskOfBiasCount": 0,
+    "certaintyAssessmentCount": 0,
     "claimCount": 0,
     "ruleCount": 0
   },
@@ -19,6 +20,7 @@
   "studies": [],
   "extractions": [],
   "riskOfBias": [],
+  "certaintyAssessments": [],
   "claims": [],
   "rules": []
 }

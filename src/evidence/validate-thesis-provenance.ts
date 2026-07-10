@@ -38,12 +38,14 @@ export function assertValidatedThesisProvenance(input: {
   sources: Row[];
   reports: Row[];
   extractions: Row[];
+  certaintyAssessments: Row[];
   claims: Row[];
   rules: Row[];
 }) {
   const sources = index(input.sources, "source_id", "sources");
   const reports = index(input.reports, "report_id", "reports");
   const extractions = index(input.extractions, "extraction_id", "extractions");
+  const certaintyAssessments = index(input.certaintyAssessments, "certainty_assessment_id", "certaintyAssessments");
   const claims = index(input.claims, "claim_id", "claims");
 
   for (const [claimId, claim] of claims) {
@@ -52,6 +54,12 @@ export function assertValidatedThesisProvenance(input: {
     if (text(claim, "scope_status", location) !== "validated_thesis_scope") throw new Error(`${location}: outside thesis scope`);
     stringArray(claim, "verified_by", location);
     const questionId = text(claim, "question_id", location);
+    const certaintyId = text(claim, "certainty_assessment_id", location);
+    const certainty = certaintyAssessments.get(certaintyId);
+    if (!certainty) throw new Error(`${location}: missing certainty assessment`);
+    if (certainty.question_id !== questionId || certainty.verification_status !== "validated" || certainty.certainty !== claim.certainty) {
+      throw new Error(`${location}: certainty assessment mismatch or not validated`);
+    }
     const support = claim.support;
     if (!Array.isArray(support) || support.length === 0) throw new Error(`${location}: support required`);
     support.forEach((value, position) => {
@@ -77,7 +85,11 @@ export function assertValidatedThesisProvenance(input: {
       const extraction = extractions.get(extractionId);
       if (!source || !report || !extraction) throw new Error(`${supportLocation}: missing source/report/extraction`);
       if (source.source_path !== sourcePath || source.source_file_sha256 !== sourceSha) throw new Error(`${supportLocation}: source row mismatch`);
+      if (report.source_id !== sourceId || extraction.source_id !== sourceId) throw new Error(`${supportLocation}: upstream source mismatch`);
       if (report.question_id !== questionId || extraction.question_id !== questionId || extraction.report_id !== reportId) throw new Error(`${supportLocation}: upstream question/report mismatch`);
+      if (extraction.locator !== item.locator || extraction.locator_text_sha256 !== item.locator_text_sha256 || extraction.supporting_quote !== quote || extraction.supporting_quote_sha256 !== quoteSha) {
+        throw new Error(`${supportLocation}: extraction support mismatch`);
+      }
       if (source.verification_status !== "validated" || report.verification_status !== "validated" || extraction.verification_status !== "validated") throw new Error(`${supportLocation}: upstream row not validated`);
     });
   }

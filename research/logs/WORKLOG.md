@@ -372,3 +372,11 @@
 - Confirmed the report still has no study link and remains `needs_human_study_linkage`.
 - Rejected 6/6 Phase 05 boundary mutations: extracted value without quote, unknown report, premature study link, populated human extraction, populated RoB, and nonzero AI run.
 - Human extraction, RoB, frozen gold, and AI performance rows remain 0.
+
+## 2026-07-10 — Phase 06 GRADE-to-claim provenance
+
+- Added an empty curated `certainty_assessments.jsonl` registry and included it in deterministic thesis-bundle generation.
+- Made `certainty_assessment_id` mandatory for every claim contract and required a matching validated question/grade row.
+- Strengthened production provenance so report and extraction source IDs, extraction locator/hash, quote, and quote hash must equal claim support.
+- Expanded synthetic claim-rule mutations from 9 to 11 with missing and mismatched GRADE rejection.
+- TypeScript provenance tests pass 9/9; production certainty/claim/rule rows and legacy promotions remain 0/0/0/0.

@@ -2,12 +2,17 @@
   "schema_version": "1.0.0",
   "phase": "01_audit_and_normalization",
   "manifest_self_excluded": true,
-  "file_count": 46,
+  "file_count": 47,
   "files": [
     {
       "path": "__tests__/thesis-bundle-isolation.test.ts",
       "size_bytes": 1253,
       "sha256": "c3cd5a8579a99a0f710fdbc53a3b482068359edbe3f5d666e34dcfca35ff1591"
+    },
+    {
+      "path": "data/curated/certainty_assessments.jsonl",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
       "path": "data/curated/claims.jsonl",
@@ -146,8 +151,8 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 12697,
-      "sha256": "bfb9a0e159e6fac3f50d2dcdcbbf91501d9fe9f1ad566ccab8f91c684c293833"
+      "size_bytes": 13237,
+      "sha256": "444ff9a9266a03ff9878a46e751438382620cf79e9c24a8a299c7ffa30c2ac45"
     },
     {
       "path": "research/logs/RISKS.md",
@@ -156,8 +161,8 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 34901,
-      "sha256": "d8d8cbc908abca08f4a2f069ee64dba3d97b2ad07dc665e3ccdd1ed5461c1fa2"
+      "size_bytes": 35563,
+      "sha256": "68fbf3f82bb409b79567c7f0ea87971f88d70d149d23b800c988d9229a4d2d59"
     },
     {
       "path": "research/review_queue/korean_db_PRESS_review.csv",
@@ -216,13 +221,13 @@
     },
     {
       "path": "scripts/build-thesis-bundle.ts",
-      "size_bytes": 6308,
-      "sha256": "620dc33878c03af247fc3d37a86a42e595c09357d78176f4750623397b1adb3b"
+      "size_bytes": 6498,
+      "sha256": "9b0f591984923132c7d9d580a5727f9ca08f1911a8e76a841db3659f323ef65e"
     },
     {
       "path": "src/generated/thesis-bundle.json",
-      "size_bytes": 555,
-      "sha256": "2d29320bd29b3aa2f4688606750204f86571911e888bfa54241cc0eefaa1e524"
+      "size_bytes": 620,
+      "sha256": "68fc28a30915fcdb5c2d293b997d6182db50db33db9c496f9e90b1d85fc534a1"
     },
     {
       "path": "tools/phase01_audit.py",

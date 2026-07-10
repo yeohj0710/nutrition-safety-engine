@@ -28,7 +28,7 @@ def main() -> int:
     counts = {name: count_rows(path) for name, path in paths.items()}
     curated_names = (
         "sources.jsonl", "reports.jsonl", "studies.jsonl", "extractions.jsonl",
-        "risk_of_bias.jsonl", "claims.jsonl", "rules.jsonl",
+        "risk_of_bias.jsonl", "certainty_assessments.jsonl", "claims.jsonl", "rules.jsonl",
     )
     curated_counts = {
         name: nonempty_jsonl_rows(REPO / "data/curated" / name) for name in curated_names
@@ -55,6 +55,7 @@ def main() -> int:
         "valid_synthetic_contract_accepted", "legacy_source_rejected", "wrong_quote_hash_rejected",
         "missing_claim_rejected", "draft_claim_rejected", "question_mismatch_rejected",
         "unvalidated_rule_rejected", "missing_expert_review_rejected", "missing_scenario_validation_rejected",
+        "missing_certainty_rejected", "certainty_mismatch_rejected",
     }
     tests = contract.get("tests", {})
     if contract.get("status") != "synthetic_contract_test_not_research_evidence" or set(tests) != expected_contract_tests or not all(tests.values()):

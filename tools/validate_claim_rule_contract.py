@@ -21,8 +21,16 @@ def sha(text: str) -> str:
 
 def semantic_errors(bundle: dict) -> list[str]:
     errors: list[str] = []
+    certainty = {item["certainty_assessment_id"]: item for item in bundle.get("certainty_assessments", [])}
     claims = {claim["claim_id"]: claim for claim in bundle.get("claims", [])}
     for claim in claims.values():
+        assessment = certainty.get(claim.get("certainty_assessment_id"))
+        if assessment is None:
+            errors.append("missing certainty")
+        elif (assessment.get("question_id") != claim.get("question_id")
+              or assessment.get("certainty") != claim.get("certainty")
+              or assessment.get("verification_status") != "validated"):
+            errors.append("certainty mismatch")
         for support in claim.get("support", []):
             if "legacy_unverified" in support.get("source_path", ""):
                 errors.append("legacy source")
@@ -56,6 +64,13 @@ def main() -> int:
     valid = {
         "bundle_version": "synthetic-contract-1",
         "contract_mode": "synthetic_contract_fixture",
+        "certainty_assessments": [{
+            "certainty_assessment_id": "GRADE-SYNTH-001",
+            "question_id": "A1",
+            "certainty": "low",
+            "verification_status": "validated",
+            "verified_by": ["SYNTH-REVIEWER-1"],
+        }],
         "claims": [{
             "claim_id": "CLM-SYNTH-001",
             "question_id": "A1",
@@ -66,6 +81,7 @@ def main() -> int:
             "outcome": {"synthetic": True},
             "evidence_layer": "primary_synthesis",
             "certainty": "low",
+            "certainty_assessment_id": "GRADE-SYNTH-001",
             "support": [{
                 "source_id": "SRC-SYNTH-001",
                 "report_id": "RPT-SYNTH-001",
@@ -104,6 +120,7 @@ def main() -> int:
     for name in (
         "legacy_source", "wrong_quote_hash", "missing_claim", "draft_claim",
         "question_mismatch", "unvalidated_rule", "missing_expert_review", "missing_scenario_validation",
+        "missing_certainty", "certainty_mismatch",
     ):
         mutations[name] = copy.deepcopy(valid)
     mutations["legacy_source"]["claims"][0]["support"][0]["source_path"] = "data/legacy_unverified/source.xml"
@@ -114,6 +131,8 @@ def main() -> int:
     mutations["unvalidated_rule"]["rules"][0]["validation_status"] = "draft"
     mutations["missing_expert_review"]["rules"][0]["validation_evidence"] = ["independent_scenario:SYNTH", "other:SYNTH"]
     mutations["missing_scenario_validation"]["rules"][0]["validation_evidence"] = ["expert_review:SYNTH", "other:SYNTH"]
+    mutations["missing_certainty"]["certainty_assessments"] = []
+    mutations["certainty_mismatch"]["certainty_assessments"][0]["certainty"] = "moderate"
     tests = {"valid_synthetic_contract_accepted": accepted(valid)}
     tests.update({f"{name}_rejected": not accepted(bundle) for name, bundle in mutations.items()})
     result = {
