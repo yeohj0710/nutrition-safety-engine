@@ -17,7 +17,11 @@
 - 최종 판정: 0건
 - 두 proxy 추천 불일치: 4,224건
 - 사람 교육용 무작위 pilot queue: 질문별 10건, 총 50건, seed `20260710`
+- 별도 ClinicalTrials.gov 사람 검토 큐: 207건, 사전 판정 0건
+- ClinicalTrials.gov A1 139건: vitamin-K-antagonist 어휘 오탐 위험 표시
 
 ## 해석 제한
 
 높음·중간·낮음은 검토 순서용 synthetic 신호다. 낮음도 제외하지 않는다. 사람 gold가 잠기기 전 sensitivity, specificity, precision, F2, 작업절감률을 계산하지 않는다. 실제 AI 모델·프롬프트 평가도 사람 gold와 개발/평가 분할 후 별도 실행한다.
+
+PubMed 19,961건과 ClinicalTrials.gov 207건의 합계 20,168은 database-question retrieval unit 작업량이다. 중복 제거된 record, 포함 report/study, 최종 PRISMA 수가 아니다.

@@ -1,5 +1,19 @@
 # WORKLOG
 
+## 2026-07-10 — Phase 04 integrated verification
+
+- Phase validators 01/02/03/04/06 and ClinicalTrials.gov validator all returned errors 0.
+- Phase 04 proof: PubMed queue 19,961; registry queue 207; proxy disagreements 4,224; human decisions 0; AI-only exclusions 0.
+- Software chain rerun after integration: lint pass, TypeScript pass, Vitest 10 files/35 tests pass, Next.js build 106 pages pass.
+- Thesis output remains safe-empty at 0 validated claims and 0 validated rules; final PRISMA remains prohibited.
+
+## 2026-07-10 — Phase 04 registry queue integration
+
+- Extended the Phase 04 validator to require the 207-row ClinicalTrials.gov human queue, zero human/final decisions, and all 139 A1 lexical-risk flags.
+- Regenerated PRISMA status with separate PubMed 19,961 and registry 207 database-question retrieval units; total workload 20,168.
+- Preserved `final_prisma_allowed=false`, human screened 0, full-text assessed 0, and null included report/study counts.
+- Phase 04 proxy validator errors 0. Registry entries received no heuristic inclusion/exclusion decision.
+
 ## 2026-07-10 — Phase 03 human review routing
 
 - Added `research/review_queue/phase_03_external_review.csv` with separate deduplication, report-study linkage, registry screening, registry-report linkage, and subscription-export blockers.

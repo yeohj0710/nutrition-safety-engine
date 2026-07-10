@@ -1,6 +1,9 @@
 {
   "status": "unavailable_pending_human_screening",
-  "identified_proxy_record_question_units": 19961,
+  "pubmed_record_question_units": 19961,
+  "clinicaltrials_record_question_units": 207,
+  "identified_record_question_units_total": 20168,
+  "counting_note": "Database-question retrieval units; not deduplicated studies or PRISMA final records.",
   "human_screened": 0,
   "full_text_assessed": 0,
   "included_reports": null,

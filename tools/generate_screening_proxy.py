@@ -295,11 +295,19 @@ def main() -> int:
     (REPO / "research/screening/proxy_run_metadata.json").write_text(
         json.dumps(run_metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
+    registry_queue_path = interim / "clinicaltrials_review_queue.csv"
+    registry_units = 0
+    if registry_queue_path.exists():
+        with registry_queue_path.open("r", encoding="utf-8-sig", newline="") as handle:
+            registry_units = sum(1 for _ in csv.DictReader(handle))
     (REPO / "research/screening/prisma_status.json").write_text(
         json.dumps(
             {
                 "status": "unavailable_pending_human_screening",
-                "identified_proxy_record_question_units": len(queue),
+                "pubmed_record_question_units": len(queue),
+                "clinicaltrials_record_question_units": registry_units,
+                "identified_record_question_units_total": len(queue) + registry_units,
+                "counting_note": "Database-question retrieval units; not deduplicated studies or PRISMA final records.",
                 "human_screened": 0,
                 "full_text_assessed": 0,
                 "included_reports": None,
