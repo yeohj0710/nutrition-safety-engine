@@ -1,0 +1,6 @@
+queue_id,area,artifact,blocking_point,minimum_human_input,allowed_work_while_blocked,status
+P8-RQ-001,result_freeze,research/PROGRESS_LEDGER.md,results/discussion/abstract writing,"completed Phase 03-07 gates with frozen data analysis rules and independent scenarios",methods/provenance outline and checkpoint consistency tests,blocked_external
+P8-RQ-002,department_format,research/thesis/thesis_draft_status.md,final DOCX layout,"latest official department template submission rules and required front matter",document-generation tooling preparation without final thesis claim,blocked_external
+P8-RQ-003,supervisor_revision,research/logs/DECISIONS.md,final narrative and amendments,"dated supervisor review with resolved amendment/disposition log",traceable change-log structure,blocked_external
+P8-RQ-004,final_document,research/thesis/phase_08_exit_criteria.md,DOCX PDF and page QA,"frozen results followed by Korean thesis drafting citation verification DOCX rendering PDF conversion and every-page visual review",checkpoint manifest and prohibition tests,blocked_external
+P8-RQ-005,submission_manifest,research/checkpoint_manifest.json,final submission package,"validated deployment release tag final documents consistency report and immutable final manifest",truthful non-final checkpoint hashing,blocked_external

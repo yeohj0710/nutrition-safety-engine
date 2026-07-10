@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "58eefec718a125b65c6d9fb68e69fa7d08cfb3c8",
+  "implementation_head": "40ffc937fd4f27e6b76ceee818d6b114f83e6f44",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,13 +10,13 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 501,
+  "file_count": 563,
   "local_required_file_count": 104,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "size_bytes": 702,
-      "sha256": "3393a5786de74e2e0a813ef99b9825afc82a9dc1d5fccd78145ffbb1d6dd2b46",
+      "size_bytes": 1078,
+      "sha256": "bfca25100ea08f5f61a116383931b3a0274315f15fca89a7878237263c31bf47",
       "distribution": "tracked"
     },
     {
@@ -326,6 +326,30 @@
       "distribution": "tracked"
     },
     {
+      "path": "data/interim/clinicaltrials_records.csv",
+      "size_bytes": 107646,
+      "sha256": "f2b4850cafc873ced0b4578ceafffd7e7e19f6c7abb067d6de7fef3160bef702",
+      "distribution": "tracked"
+    },
+    {
+      "path": "data/interim/clinicaltrials_retrievals.csv",
+      "size_bytes": 29475,
+      "sha256": "796b350c69c9650aa88644a76cd808a58dba4f9fe860bd28f957bb23757846cd",
+      "distribution": "tracked"
+    },
+    {
+      "path": "data/interim/clinicaltrials_review_queue.csv",
+      "size_bytes": 27961,
+      "sha256": "238a8cbb0ed54b59f707f9c4ba52b1beec456a313159672c1be1b212bc763a07",
+      "distribution": "tracked"
+    },
+    {
+      "path": "data/interim/clinicaltrials_summary.json",
+      "size_bytes": 305,
+      "sha256": "298e3fe76978ae144a9ea85d97649a26f112663e67dbeca75d5b987ed378a8ff",
+      "distribution": "tracked"
+    },
+    {
       "path": "data/interim/dedup_summary.json",
       "size_bytes": 1526,
       "sha256": "19d03c49a04efa5f3aa4cdbef501b208cfb53fcce922d05256a0ec9716dd3765",
@@ -372,6 +396,12 @@
       "size_bytes": 39320033,
       "sha256": "a904c9c2a333a30e33898ba46a8099b75f8284d7e97b9f568e30e773a1bdd1ae",
       "distribution": "local_required"
+    },
+    {
+      "path": "data/interim/registry_report_link_candidates.csv",
+      "size_bytes": 71436,
+      "sha256": "ad20dbf6d3de4cae61881dc121eea928c45e774304709102e3cdb118bb7b32ea",
+      "distribution": "tracked"
     },
     {
       "path": "data/interim/report_candidates.csv",
@@ -622,7 +652,7 @@
     {
       "path": "data/legacy_unverified/manifest.json",
       "size_bytes": 17093,
-      "sha256": "28a9438dfff7f1dbd40ec390c523ef851aa1f8d37df550daf36cb1d0aff2d8de",
+      "sha256": "1faf9c156339b65d87821c61356b86e356e330add20d2c5fe10547a5e7799cb6",
       "distribution": "tracked"
     },
     {
@@ -735,8 +765,8 @@
     },
     {
       "path": "package.json",
-      "size_bytes": 1618,
-      "sha256": "387bc24c1610aab800d9f94e666f9670f2515efcbf85fbbaebd5b3ed2af88545",
+      "size_bytes": 1892,
+      "sha256": "892d35c0cc82b4bceea1f1684b3cfe184fa712536a71f92ff605b4adc6495b2a",
       "distribution": "tracked"
     },
     {
@@ -788,6 +818,18 @@
       "distribution": "tracked"
     },
     {
+      "path": "REPRODUCIBILITY.md",
+      "size_bytes": 1017,
+      "sha256": "ca32b0e66895a348e53bdbc4c39b879589ee6d36b4148bf27380e3edb53e1b68",
+      "distribution": "tracked"
+    },
+    {
+      "path": "requirements-research.lock.txt",
+      "size_bytes": 121,
+      "sha256": "3b0b19dbec9aad40bd45d471ccb0998de66611408a29ddcb02950076a9ba7b82",
+      "distribution": "tracked"
+    },
+    {
       "path": "requirements.txt",
       "size_bytes": 88,
       "sha256": "96f15c88b19447bcbcd8be39b8ded1299e0a0a8f118aa0ff2497086690f09c6c",
@@ -795,8 +837,8 @@
     },
     {
       "path": "research/audit/data_lineage.md",
-      "size_bytes": 3328,
-      "sha256": "f752e7b20d212508b44b37f4e3d5405a614819e22cdb797627513967559a70c8",
+      "size_bytes": 3291,
+      "sha256": "129c2bf97d738f61fb66f42a79e3598c7e9da47773865fc7d48b8a3cbeebc2f9",
       "distribution": "tracked"
     },
     {
@@ -818,6 +860,12 @@
       "distribution": "tracked"
     },
     {
+      "path": "research/audit/legacy_fulltext_profile.json",
+      "size_bytes": 1199,
+      "sha256": "b93a6ddb25ecf894f54c010a4550685f9ed2b8652e563255b9b65ef640d2e530",
+      "distribution": "tracked"
+    },
+    {
       "path": "research/audit/legacy_move_hashes.json",
       "size_bytes": 19579,
       "sha256": "f54fef1a0fc62ab6b6040b53b93fd283eca96668fa1d1d78f1eb03e60c3b1bed",
@@ -836,15 +884,27 @@
       "distribution": "tracked"
     },
     {
+      "path": "research/audit/live_research_profiles.json",
+      "size_bytes": 217266,
+      "sha256": "e16a24cb4ed7280a3f8d201672a81416c9ada207319f7d730d3fd35ec2a68235",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/audit/live_source_reconciliation.json",
+      "size_bytes": 121514,
+      "sha256": "8d2210edc2c7c1f38a0cf8e67063f089ed2f95a289b114544c3a91fb8bf47bf0",
+      "distribution": "tracked"
+    },
+    {
       "path": "research/audit/phase_01_artifact_manifest.json",
-      "size_bytes": 6614,
-      "sha256": "6aa87f2d8a14df0fb41d6478e5cabd6691ca5ac9bad09c49400f4cad56ca30e2",
+      "size_bytes": 7964,
+      "sha256": "ee77812e39e1a92e3c76fe303eae888490ebab6ebf09be4d2568cef7ea791810",
       "distribution": "tracked"
     },
     {
       "path": "research/audit/phase_01_exit_criteria.md",
-      "size_bytes": 2457,
-      "sha256": "df13cbf21a6ccfb487040fc1052f3d74532d67472e85ffb2e0acb0252d020743",
+      "size_bytes": 2438,
+      "sha256": "b8d3ca41558518396b7c9adca9b215a15a013f77c202d934d0b24c4a51698db5",
       "distribution": "tracked"
     },
     {
@@ -855,8 +915,8 @@
     },
     {
       "path": "research/audit/repo_inventory.json",
-      "size_bytes": 220348,
-      "sha256": "469a6e352337410a49f92dda663af7f2af232278067562da87d5394da6b8c60e",
+      "size_bytes": 281560,
+      "sha256": "963998d4c5dcd341d570af171699036101c5c6c4ab6554cc8b9bf4707e26f356",
       "distribution": "tracked"
     },
     {
@@ -938,6 +998,18 @@
       "distribution": "tracked"
     },
     {
+      "path": "research/design/20260710/00_AUDIT/reference_inputs/260406_피드백.txt",
+      "size_bytes": 1301,
+      "sha256": "1ce6f9fa1649aa39a75e0f821d8f96639a0c178a125bc00ecd1ae574c4dac0e0",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/design/20260710/00_AUDIT/reference_inputs/260413 피드백.txt",
+      "size_bytes": 430,
+      "sha256": "d554b93b8d3f6a8705607f7522d69b7540112a905e454b37604c1157ac8ce853",
+      "distribution": "tracked"
+    },
+    {
       "path": "research/design/20260710/00_AUDIT/reference_inputs/desktop.ini",
       "size_bytes": 246,
       "sha256": "b9629f88fcf26d1acc8c27e7118ed9b0ae9cb56c6294dcac7aacb0532aa200c0",
@@ -947,6 +1019,30 @@
       "path": "research/design/20260710/00_AUDIT/reference_inputs/README.md",
       "size_bytes": 1172,
       "sha256": "c02be088321a2b4561a392646de7d1064884da7fd660d3e22e0c340c803ddd52",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/design/20260710/00_AUDIT/reference_inputs/기존_AGENTS.md",
+      "size_bytes": 30620,
+      "sha256": "5a85fed09a81f83cbb70244daedf673a066fd537af7d21c12aaac2955f533110",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/design/20260710/00_AUDIT/reference_inputs/기존_정리_기준.txt",
+      "size_bytes": 2160,
+      "sha256": "796f54ef3a0eae8ea62bc09ca44ba7a9aec2c5c91e08c2ab6d292fe2629215f0",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/design/20260710/00_AUDIT/reference_inputs/기존졸업논문_텍스트추출_감사용.txt",
+      "size_bytes": 44400,
+      "sha256": "a0add625e4c307c1e797208c067de2a0058dc7cd97c6a63000503760763c6afd",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/design/20260710/00_AUDIT/reference_inputs/연구계획서_텍스트추출_감사용.txt",
+      "size_bytes": 22146,
+      "sha256": "736c2ff93f0443c6595583cd0b19d0a130c81b4ed250152adeec3ab03ab3346d",
       "distribution": "tracked"
     },
     {
@@ -1587,8 +1683,8 @@
     },
     {
       "path": "research/extraction/phase_05_exit_criteria.md",
-      "size_bytes": 634,
-      "sha256": "dfc26ed7b8f4410a874f5a4cab1c6b4af78fdf67964b12ed5d774384cf605d87",
+      "size_bytes": 1061,
+      "sha256": "805e600e60e216ecd9d956b9fdfd4f493c7ca6f0d623225b10975e3cbf8a4e8b",
       "distribution": "tracked"
     },
     {
@@ -1635,14 +1731,14 @@
     },
     {
       "path": "research/logs/BLOCKERS.md",
-      "size_bytes": 6332,
-      "sha256": "b0a3840dc062250cb384f87a56414a00a8a916d7e5c6fe22409f1eda34840718",
+      "size_bytes": 7370,
+      "sha256": "789e5e3c3a79f3e32fd902f440619b7242ee8c3b09ea47f067f49707f24519bf",
       "distribution": "tracked"
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 7352,
-      "sha256": "41fd29d01fccf0ff1c5a5d17fd1cdff5b0a8abc09f9f42858111eaa5d77a1a58",
+      "size_bytes": 7920,
+      "sha256": "f5c497d9530c96762067b8d759ae30b6070fcd13aad4da6260f70523e21d03d5",
       "distribution": "tracked"
     },
     {
@@ -1653,20 +1749,20 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 13469,
-      "sha256": "d10e38b65d3ad53fec990094c61677a88d601b5abad3687fdda0161c56716cc9",
+      "size_bytes": 23430,
+      "sha256": "6875526f24773fd27986fa174187a121dbb12f0481685353d6c63731f6a22eb8",
       "distribution": "tracked"
     },
     {
       "path": "research/PROGRESS_LEDGER.md",
-      "size_bytes": 1860,
-      "sha256": "e78884302a331375ce4c7eb6c0dd774221bed26b6e3f430388a55784ec28d2c3",
+      "size_bytes": 2155,
+      "sha256": "15145942575313b838a03d37bb58e45657535cb3561e806f3127832f59f1612f",
       "distribution": "tracked"
     },
     {
       "path": "research/protocol/access_matrix.csv",
-      "size_bytes": 2999,
-      "sha256": "19f17b3babf3612e26e0689c3a7f252d1d463ee46700895d017a3b521c4c4ed6",
+      "size_bytes": 3231,
+      "sha256": "2e73441e619ee03b153870b63754e564f7475f849de22967dd36116012d1e428",
       "distribution": "tracked"
     },
     {
@@ -1719,8 +1815,38 @@
     },
     {
       "path": "research/review_queue/phase_02_external_review.csv",
-      "size_bytes": 1155,
-      "sha256": "f3f55aeed1c8d9df4035a0de3c7a9a3265733ef7866c63817631d5bb38ad102a",
+      "size_bytes": 1250,
+      "sha256": "a4acc471603a6ac89a2939a8457a6e0dac4d5a03c05c215d3cf03e6914a2df5b",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/review_queue/phase_03_external_review.csv",
+      "size_bytes": 1447,
+      "sha256": "c01316dc248bfb3889b6ae57db88b4892fa43c14e8ad5f2463e33d27743a9660",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/review_queue/phase_05_external_review.csv",
+      "size_bytes": 1281,
+      "sha256": "c61d4b66614ea5de3e7c24b6b427f95475ce9ededf929eb829d86c926600a82a",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/review_queue/phase_06_external_review.csv",
+      "size_bytes": 1337,
+      "sha256": "c4a60d26261b8116930f7ddd53afdfa43911edcf85183f1e70d6b123832176b0",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/review_queue/phase_07_external_review.csv",
+      "size_bytes": 1351,
+      "sha256": "a95e73cec3783498ad77f0637e415e526b2c2c3ee9fc7e94a03866fea76dbb84",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/review_queue/phase_08_external_review.csv",
+      "size_bytes": 1320,
+      "sha256": "eb9420ad055eec76b80e7c72d4be6714e07b4ec277f95cebd319c263a8677d41",
       "distribution": "tracked"
     },
     {
@@ -1737,26 +1863,56 @@
     },
     {
       "path": "research/screening/phase_04_exit_criteria.md",
-      "size_bytes": 1015,
-      "sha256": "48bbf674ebd1481dcfb77440920d294fda28feae9002d3d5e5955744bd0fcd72",
+      "size_bytes": 1347,
+      "sha256": "6667fd0884c0420f49d7a091cfd092e4f87357e7057b42677959835409d18934",
       "distribution": "tracked"
     },
     {
       "path": "research/screening/prisma_status.json",
-      "size_bytes": 253,
-      "sha256": "11a2af149ce25749320ba256605a218f61de21a7b2530f928979a0e06b02cdd2",
+      "size_bytes": 451,
+      "sha256": "2ab61882b00cadce87e5f2decd983dcf8bfef0c7cd626419bb78b299f0c15261",
       "distribution": "tracked"
     },
     {
       "path": "research/screening/proxy_dry_run_report.md",
-      "size_bytes": 984,
-      "sha256": "0c611e407d074cb95686de197f2168d78cb659f39a3f75c7731cfa870bf7c128",
+      "size_bytes": 1334,
+      "sha256": "6b4ab88a92bd0386a01477d69002b3710207055e46ee18a7fd2a44f20bec128e",
       "distribution": "tracked"
     },
     {
       "path": "research/screening/proxy_run_metadata.json",
       "size_bytes": 2298,
-      "sha256": "4d87c8b934597d905affa3c09cd20adde528560d78f4ec96b24822e7b000f703",
+      "sha256": "ddcfe8dad6cdfa68bfd9d65322d2cbd7031f2936620ec502192289d664a2db6c",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/A1/clinicaltrials/ctgov_a1_designpilot_20260710/checksum.sha256",
+      "size_bytes": 319,
+      "sha256": "93c963331d67e4e94afb9daf31e9c86fd6444d36d165429c47125fd1e558ded8",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/A1/clinicaltrials/ctgov_a1_designpilot_20260710/ids.txt",
+      "size_bytes": 1668,
+      "sha256": "fdddd809a200645fe3f421976defdd7fb8c6d71194dc699dd3746443aaa4d9b7",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/A1/clinicaltrials/ctgov_a1_designpilot_20260710/page_001.json",
+      "size_bytes": 4876875,
+      "sha256": "f57323de5bf9098334830093945fb5a63ca67227540722e83c6352ec3d24c7a1",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/A1/clinicaltrials/ctgov_a1_designpilot_20260710/query.txt",
+      "size_bytes": 78,
+      "sha256": "fd361e6524d2fed7c5750a602077be9374b3a400ef7a412dcd299b5538539408",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/A1/clinicaltrials/ctgov_a1_designpilot_20260710/response_metadata.json",
+      "size_bytes": 605,
+      "sha256": "41e4eea6c1a8489d05f1d1d40fc7332ab521fa4e79ac919b71c7a275ec44811f",
       "distribution": "tracked"
     },
     {
@@ -2162,6 +2318,36 @@
       "distribution": "tracked"
     },
     {
+      "path": "research/searches/A2/clinicaltrials/ctgov_a2_designpilot_20260710/checksum.sha256",
+      "size_bytes": 319,
+      "sha256": "eeec01dff4d6c0036418fd93c4963cd28cf358af1cb20c3c065766ea09844ea9",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/A2/clinicaltrials/ctgov_a2_designpilot_20260710/ids.txt",
+      "size_bytes": 276,
+      "sha256": "3cb7587328ea958485269c7343665310dbf246c3f59c4c6992add3e924e59d8a",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/A2/clinicaltrials/ctgov_a2_designpilot_20260710/page_001.json",
+      "size_bytes": 620566,
+      "sha256": "f6f48de27654cb2e4d87bfee88449b242431fd61bf9a90a9b53f706e6a65e1b8",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/A2/clinicaltrials/ctgov_a2_designpilot_20260710/query.txt",
+      "size_bytes": 135,
+      "sha256": "6119ef68ec5c3c26ec9bbf3251d2297724b2b76deb3c0ac578dd9e20e52b7094",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/A2/clinicaltrials/ctgov_a2_designpilot_20260710/response_metadata.json",
+      "size_bytes": 603,
+      "sha256": "fccf00580bf0746a477b89b640047e4cd6cd19e4c499c72260234b89aa59af0e",
+      "distribution": "tracked"
+    },
+    {
       "path": "research/searches/A2/pubmed/pubmed_a2_designpilot_20260710/checksum.sha256",
       "size_bytes": 723,
       "sha256": "09b0031ab38cdd4d89d94b61d5f28aba2406ed3a86f7f1f4cc97fc17d2ed349b",
@@ -2219,6 +2405,36 @@
       "path": "research/searches/A2/pubmed/pubmed_a2_designpilot_20260710/response_metadata.json",
       "size_bytes": 712,
       "sha256": "09432df91134b950e0cff4fa21848e2f051e351834ee59fa640e16eaf15f6d4a",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/B1/clinicaltrials/ctgov_b1_designpilot_20260710/checksum.sha256",
+      "size_bytes": 319,
+      "sha256": "eb94ee91f3273ae3d192a1c963b5a6937f5f5e2d092519aa71bb6093bfdc5249",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/B1/clinicaltrials/ctgov_b1_designpilot_20260710/ids.txt",
+      "size_bytes": 276,
+      "sha256": "902858424572ea4091a0a7c20e4605b4ee3fec757cd35789770b50f2dced89c1",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/B1/clinicaltrials/ctgov_b1_designpilot_20260710/page_001.json",
+      "size_bytes": 429611,
+      "sha256": "b034b137f4410222259c38dd37ec1a3cb7e2e75f91c6f4f8e90c0abd46797e4e",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/B1/clinicaltrials/ctgov_b1_designpilot_20260710/query.txt",
+      "size_bytes": 132,
+      "sha256": "ab0c949d9035e2e27361cb949f3656e61061b1f9ad61263259d589eb575ce582",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/B1/clinicaltrials/ctgov_b1_designpilot_20260710/response_metadata.json",
+      "size_bytes": 603,
+      "sha256": "7c7199b1ddb8b17b9983519cc9e11f5b765351421f6ff97dc58c65028470c006",
       "distribution": "tracked"
     },
     {
@@ -2291,6 +2507,36 @@
       "path": "research/searches/B1/pubmed/pubmed_b1_designpilot_20260710/response_metadata.json",
       "size_bytes": 714,
       "sha256": "184ca552ba1fb9198313d7f16bad30ff98d9841b9ad81849e7ab9b5dd282963f",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/B2/clinicaltrials/ctgov_b2_designpilot_20260710/checksum.sha256",
+      "size_bytes": 319,
+      "sha256": "8f5a82249f6dd8c9295fd47a14278eda641117f006fbac64eff8b36771a5d36f",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/B2/clinicaltrials/ctgov_b2_designpilot_20260710/ids.txt",
+      "size_bytes": 168,
+      "sha256": "acff4e300c07e01730b01acb41d1c507babf771291c2bfcf268c5e55248de0a6",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/B2/clinicaltrials/ctgov_b2_designpilot_20260710/page_001.json",
+      "size_bytes": 258657,
+      "sha256": "bcc723e6251df786713bf7a8e510154d6b5470d5f2553a01ef21ec6043f070f5",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/B2/clinicaltrials/ctgov_b2_designpilot_20260710/query.txt",
+      "size_bytes": 120,
+      "sha256": "88977b61a1f9704197a71e62dae0aa86cf92264b39f7c0807874b16d269d08b3",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/B2/clinicaltrials/ctgov_b2_designpilot_20260710/response_metadata.json",
+      "size_bytes": 603,
+      "sha256": "6d6718bb2e9c98d69ec4a51491e286b4a02f7058246e50e4aa12285e8edc5bea",
       "distribution": "tracked"
     },
     {
@@ -2474,6 +2720,36 @@
       "distribution": "tracked"
     },
     {
+      "path": "research/searches/B3/clinicaltrials/ctgov_b3_designpilot_20260710/checksum.sha256",
+      "size_bytes": 319,
+      "sha256": "60929afa7cab1497a0fe18be3a85c28febdedf5a1af213bd6b11b2f2c22d0ed0",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/B3/clinicaltrials/ctgov_b3_designpilot_20260710/ids.txt",
+      "size_bytes": 96,
+      "sha256": "3b58632503724e2889ceb72e0c0d94b1c9400f7b3215dbdade3cb25243d0b2bc",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/B3/clinicaltrials/ctgov_b3_designpilot_20260710/page_001.json",
+      "size_bytes": 145749,
+      "sha256": "e7e97a1b38bd874cf2b3f4fc396905a22771dc445ea383e0209040dcd6a3af42",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/B3/clinicaltrials/ctgov_b3_designpilot_20260710/query.txt",
+      "size_bytes": 99,
+      "sha256": "07572ace992a927cdb23f158dc391f4961d056c20a5dcc0c1a50422bb2d4eaad",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/B3/clinicaltrials/ctgov_b3_designpilot_20260710/response_metadata.json",
+      "size_bytes": 601,
+      "sha256": "c8677b20d8bbd290785c41a342a23328f98ce1f96735776054b8e82bfe4baab0",
+      "distribution": "tracked"
+    },
+    {
       "path": "research/searches/B3/pubmed/pubmed_b3_designpilot_20260710/checksum.sha256",
       "size_bytes": 642,
       "sha256": "fd23788af7376109cd48778100be6ff914a6ba1d1bcb1c55d6f437fefb29d55f",
@@ -2528,15 +2804,27 @@
       "distribution": "tracked"
     },
     {
+      "path": "research/searches/clinicaltrials_search_log.csv",
+      "size_bytes": 2881,
+      "sha256": "22aab44aa3d69fcf9af7ae1d5a54370db04b90dace7aa0efdb13d683f280a9b9",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/searches/clinicaltrials_validation.json",
+      "size_bytes": 131,
+      "sha256": "cd3b7e0ab9b8e8fcd943bd35dfb53c85a664591f22d05944b0eb1862ccde2e55",
+      "distribution": "tracked"
+    },
+    {
       "path": "research/searches/phase_03_exit_criteria.md",
-      "size_bytes": 1136,
-      "sha256": "af36b505aaa3215ceadc40069ec45f6d3c0408c4028f52c5ced9698447ba62e3",
+      "size_bytes": 1552,
+      "sha256": "c3ed0db77d4f48b48f2752b18b84c8a09e076af53afbc8016b0a5fa89f42f89c",
       "distribution": "tracked"
     },
     {
       "path": "research/searches/proxy_manifest.json",
       "size_bytes": 35190,
-      "sha256": "6c21d9ddcb0e610244b61dd5a4761b0b33acf75a95f35135eef887e8839b6c61",
+      "sha256": "ccdd5b603083ded72eb94d2ab6af982bb4cffa1be09d6771311e9a2dce4f28ec",
       "distribution": "tracked"
     },
     {
@@ -2625,8 +2913,8 @@
     },
     {
       "path": "research/synthesis/phase_06_exit_criteria.md",
-      "size_bytes": 556,
-      "sha256": "8970f30fa33e9635dc919d8ee3c1525e810202fa6c333fc23146260aad23cf2c",
+      "size_bytes": 943,
+      "sha256": "ec092e6b72cf1ab30012d6367057e41e6b44b1f0eb7f7f5f97028d5f8d034b1d",
       "distribution": "tracked"
     },
     {
@@ -2636,9 +2924,27 @@
       "distribution": "tracked"
     },
     {
+      "path": "research/thesis/phase_08_exit_criteria.md",
+      "size_bytes": 1095,
+      "sha256": "3bd8091dd2bb29448b2144d72b4f410232b84194b69433934d1be7024707dcb2",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/thesis/thesis_draft_status.md",
+      "size_bytes": 836,
+      "sha256": "fa6f5dec1026bd372eb3ea737d49db621ac4bdc5dc16dcafb9863facc1c58a22",
+      "distribution": "tracked"
+    },
+    {
       "path": "research/validation/phase_07_exit_criteria.md",
-      "size_bytes": 702,
-      "sha256": "056048038dce64ca6d81be0704bd5c256ae00a946ef6250ba6fdd11bf4e35338",
+      "size_bytes": 1307,
+      "sha256": "7a3a2ae530b08f4c3731d107bab53b0611ce9542d7e88ee3f8d5eb4b3f9fa377",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/validation/safe_empty_proxy_report.json",
+      "size_bytes": 34684,
+      "sha256": "424fa99325e32ea31262baa1c1eab098375aec420a1a8f3cd441d8cb97f89b6f",
       "distribution": "tracked"
     },
     {
@@ -2705,6 +3011,12 @@
       "path": "scripts/dev-with-knowledge-watch.ts",
       "size_bytes": 3039,
       "sha256": "63154a41502d1802fe5323219a0216a6e869eab8b150d4c0582979c7d18e74bb",
+      "distribution": "tracked"
+    },
+    {
+      "path": "scripts/run-phase07-safe-empty-proxy.ts",
+      "size_bytes": 3616,
+      "sha256": "459349392b6ec5e6961c8b8a22ef983c787b5d22629abb44978d8e115e57f313",
       "distribution": "tracked"
     },
     {
@@ -2776,7 +3088,7 @@
     {
       "path": "src/generated/thesis-bundle.json",
       "size_bytes": 555,
-      "sha256": "596b1518f29f13c81f3e2618fce32ce72d14bf5525ba58692d083b3f1aa520f5",
+      "sha256": "4b71ac23e5500646161443c7a44dbd3f4f65557080ee700a6d3215e7c38fd73f",
       "distribution": "tracked"
     },
     {
@@ -2882,9 +3194,33 @@
       "distribution": "tracked"
     },
     {
+      "path": "tools/build_clinicaltrials_review_queue.py",
+      "size_bytes": 1261,
+      "sha256": "dbe95c63e80d92b1bd93324d63d76a3257dd3e731856f1e351d3d03bf101ed34",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/clinicaltrials_export.mjs",
+      "size_bytes": 4437,
+      "sha256": "131bedf8a9a9e5cd625268728584f763f90940dd91e314bb4036c283c4e6af43",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/generate_checkpoint_manifest.py",
+      "size_bytes": 2566,
+      "sha256": "50cd2b8fb7f156dc68f07f94a932977507051ddf309207d890cc65745b345559",
+      "distribution": "tracked"
+    },
+    {
       "path": "tools/generate_screening_proxy.py",
-      "size_bytes": 13008,
-      "sha256": "323666b534c37ee22c1bfc65ad48c12d0cc1e50b661e7716c9b82379de48735f",
+      "size_bytes": 13564,
+      "sha256": "adf9d92cc11b872aa47ba1efc171baefe158af2d9e954fb50457de744ee66f4a",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/normalize_clinicaltrials_exports.py",
+      "size_bytes": 8126,
+      "sha256": "34a8d1dabbb7c8ab7f32d1ac98e3a189c41309f7cd1537be7898fc4f5112c72c",
       "distribution": "tracked"
     },
     {
@@ -2912,9 +3248,21 @@
       "distribution": "tracked"
     },
     {
+      "path": "tools/profile_live_research.py",
+      "size_bytes": 3212,
+      "sha256": "abd7f9a772157d7c0f06b389006acdaf855db2443d2ef2c871b699200bd5a254",
+      "distribution": "tracked"
+    },
+    {
       "path": "tools/pubmed_export.mjs",
       "size_bytes": 7110,
       "sha256": "376bf49e9c60720eece00efa28fbcf6a775346088ab313e532ac7b6bfb520942",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/reconcile_live_source.py",
+      "size_bytes": 3547,
+      "sha256": "6646bf5685ab9300cd952cbe4f570203965032e3c0ab0fdb4eb9f3835c9fc819",
       "distribution": "tracked"
     },
     {
@@ -2978,6 +3326,12 @@
       "distribution": "tracked"
     },
     {
+      "path": "tools/validate_clinicaltrials_proxy.py",
+      "size_bytes": 2583,
+      "sha256": "a7697500cf658abfbffeee1bd65bf27867c392bd17a94a3c1f12c8aebd560f41",
+      "distribution": "tracked"
+    },
+    {
       "path": "tools/validate_phase01.py",
       "size_bytes": 11435,
       "sha256": "0afa69a2d891f1535da00c622641a04697b05fd17c880240b2d9075bff102e90",
@@ -2997,14 +3351,32 @@
     },
     {
       "path": "tools/validate_phase04_proxy.py",
-      "size_bytes": 4794,
-      "sha256": "63337046c4f9bf60686771d913b474e9937bfd34dfb37ab4c4979ede543e3e06",
+      "size_bytes": 5990,
+      "sha256": "72e207b5873785c2d284d1b2ea7610d770bbb71081599f9f2a0c12d3afb697a5",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/validate_phase05_proxy.py",
+      "size_bytes": 3417,
+      "sha256": "fcf8bdb16902acb9a039b66fbe4389fbd49a920372cac34142ffcc03ecf06401",
       "distribution": "tracked"
     },
     {
       "path": "tools/validate_phase06_gate.py",
-      "size_bytes": 1637,
-      "sha256": "a0f72ab3a66d38cf2d9516d1b4ce4717883854996632b4b8f980149ec813fbce",
+      "size_bytes": 2680,
+      "sha256": "01be8a9077cbfb2f66bc771c625224469d46037a6e9bb24703772bf5c9499381",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/validate_phase07_gate.py",
+      "size_bytes": 3222,
+      "sha256": "4500b03738f1796e53cc87f4df0842bff88f8c336afb3d7e84932e3593c83726",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/validate_phase08_checkpoint.py",
+      "size_bytes": 3960,
+      "sha256": "57f415d3b9605537201f5367ec752aba1964e3b292d67f753ee1a3acb1535d86",
       "distribution": "tracked"
     },
     {

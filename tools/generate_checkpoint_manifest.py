@@ -24,8 +24,15 @@ def git(*args: str) -> str:
     return subprocess.check_output(["git", *args], cwd=REPO, text=True, encoding="utf-8").strip()
 
 
+def tracked_paths() -> list[str]:
+    output = subprocess.check_output(
+        ["git", "-c", "core.quotepath=false", "ls-files", "-z"], cwd=REPO
+    ).decode("utf-8")
+    return [value for value in output.split("\0") if value]
+
+
 def main() -> int:
-    tracked = [REPO / value for value in git("ls-files").splitlines() if value]
+    tracked = [REPO / value for value in tracked_paths()]
     local = sorted((REPO / "research/searches").glob("*/pubmed/*/efetch_*.xml"))
     records = REPO / "data/interim/records.csv"
     if records.is_file():

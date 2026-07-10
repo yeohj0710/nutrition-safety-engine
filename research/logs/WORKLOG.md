@@ -1,5 +1,19 @@
 # WORKLOG
 
+## 2026-07-10 — Phase 08 checkpoint verification
+
+- Initial coverage gate found six Korean-path tracked files missing. Root cause: `git ls-files` quoted non-ASCII paths, which were interpreted as literal quoted filenames and skipped.
+- Replaced line-oriented quoted parsing with UTF-8, NUL-delimited `git -c core.quotepath=false ls-files -z` in both generator and validator.
+- Regenerated checkpoint: 563 files = 459 tracked + 104 local required; all size/SHA checks and tracked coverage passed with errors 0.
+- Final DOCX/PDF remain null and prohibited before results freeze; checkpoint status is verified but Phase 08 remains `blocked_external`.
+
+## 2026-07-10 — Phase 08 non-final checkpoint gate preparation
+
+- Added a Phase 08 validator for manifest file count, unique paths, tracked-file coverage, 104 required local payloads, SHA-256/size integrity, and implementation-head ancestry.
+- Gate requires project complete false, claims/rules 0/0, final DOCX/PDF null, and validated public deployment null.
+- Gate rejects `output/final/thesis.docx` or `.pdf` before results freeze; no final thesis artifact is fabricated.
+- Added five Phase 08 external review routes for result freeze, department format, supervisor amendments, final document QA, and submission manifest.
+
 ## 2026-07-10 — Phase 07 full-chain verification
 
 - CI YAML parsed successfully; Phase 07 review queue contains five rows and all artifact paths exist.
