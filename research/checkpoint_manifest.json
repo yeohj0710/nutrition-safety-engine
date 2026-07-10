@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "e6b9f9e74c2abbb802613d8ae2863a5cda2b6228",
+  "implementation_head": "03a6fc8cae866233cfa4e3b1bc4e8f0fd03ecc3c",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -933,8 +933,8 @@
     },
     {
       "path": "research/audit/phase_01_artifact_manifest.json",
-      "size_bytes": 7964,
-      "sha256": "ee77812e39e1a92e3c76fe303eae888490ebab6ebf09be4d2568cef7ea791810",
+      "size_bytes": 8547,
+      "sha256": "fb61256412e8120db20e7cd8e5ec64ed67a1556b3f38c348cc1bd6e48fe18758",
       "distribution": "tracked"
     },
     {

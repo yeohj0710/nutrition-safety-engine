@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "phase": "01_audit_and_normalization",
   "manifest_self_excluded": true,
-  "file_count": 43,
+  "file_count": 46,
   "files": [
     {
       "path": "__tests__/thesis-bundle-isolation.test.ts",
@@ -141,23 +141,33 @@
     },
     {
       "path": "research/logs/BLOCKERS.md",
-      "size_bytes": 7370,
-      "sha256": "789e5e3c3a79f3e32fd902f440619b7242ee8c3b09ea47f067f49707f24519bf"
+      "size_bytes": 10320,
+      "sha256": "ec971ffbfc18ccac1946ac5482b23d945d22f9938732f4d99102ac16a863bee2"
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 7920,
-      "sha256": "f5c497d9530c96762067b8d759ae30b6070fcd13aad4da6260f70523e21d03d5"
+      "size_bytes": 10542,
+      "sha256": "3ef445715971dcd9793277e90ed96c021610ec0e26e60bb602697e30b76bb1bf"
     },
     {
       "path": "research/logs/RISKS.md",
-      "size_bytes": 5386,
-      "sha256": "eac6dff0abf9e60a6ada6e0c70d46975abf86104ba7910f297c5d10b1fa5e8d1"
+      "size_bytes": 7308,
+      "sha256": "37189f69c9f3196b30a0ba53fa2eaf2d4b72fbc85ec6620181e552e473748ca0"
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 21592,
-      "sha256": "3d84a15990eee3bb15f570e68e8fb84b572af756842b24a463de92cc0f215df5"
+      "size_bytes": 32378,
+      "sha256": "087151d55b1ff51cf192024644efdf799179b0f07a57b8391e1ff3b3231acbac"
+    },
+    {
+      "path": "research/review_queue/korean_db_PRESS_review.csv",
+      "size_bytes": 17904,
+      "sha256": "b561d62d7f7eee7e5c18211558db3ac4692d9a0827d0a2914783679784534e4b"
+    },
+    {
+      "path": "research/review_queue/korean_db_PRESS_review.md",
+      "size_bytes": 1274,
+      "sha256": "28682d38d5b8de65b90d54727faa8cfc2ef7b901f520446c1c5a3bafcdf9f296"
     },
     {
       "path": "research/review_queue/phase_01_external_review.csv",
@@ -166,13 +176,13 @@
     },
     {
       "path": "research/review_queue/phase_02_external_review.csv",
-      "size_bytes": 1250,
-      "sha256": "a4acc471603a6ac89a2939a8457a6e0dac4d5a03c05c215d3cf03e6914a2df5b"
+      "size_bytes": 1339,
+      "sha256": "b10752c4d3f65795723f8c3101c2ab42974e26792ab15196c59d677cb310a1c4"
     },
     {
       "path": "research/review_queue/phase_03_external_review.csv",
-      "size_bytes": 1447,
-      "sha256": "c01316dc248bfb3889b6ae57db88b4892fa43c14e8ad5f2463e33d27743a9660"
+      "size_bytes": 2024,
+      "sha256": "f4311899d7a56b67020f95382baed6092fa53d8e0c6d6ff603622619d493790e"
     },
     {
       "path": "research/review_queue/phase_05_external_review.csv",
@@ -186,13 +196,18 @@
     },
     {
       "path": "research/review_queue/phase_07_external_review.csv",
-      "size_bytes": 1351,
-      "sha256": "a95e73cec3783498ad77f0637e415e526b2c2c3ee9fc7e94a03866fea76dbb84"
+      "size_bytes": 1441,
+      "sha256": "22be5a40678457be3d2abb5f87c196512fd5bc8f2ac51b992ee5110eb5e017a7"
+    },
+    {
+      "path": "research/review_queue/phase_08_external_review.csv",
+      "size_bytes": 1320,
+      "sha256": "eb9420ad055eec76b80e7c72d4be6714e07b4ec277f95cebd319c263a8677d41"
     },
     {
       "path": "research/review_queue/PRESS_review.csv",
-      "size_bytes": 2523,
-      "sha256": "91e8ddd6181448e5099046b849c37995543434070d3c1d24ad6ef73502b25860"
+      "size_bytes": 2939,
+      "sha256": "b56713e936abe6e21d77ce961f458b005db85b61474cb88cecadaf1f17a5d501"
     },
     {
       "path": "research/review_queue/PRESS_review.md",
@@ -201,13 +216,13 @@
     },
     {
       "path": "scripts/build-thesis-bundle.ts",
-      "size_bytes": 6073,
-      "sha256": "fa77491350d80baa6660b4a039579ec88015a89a9650359fe44e4d2b10b0a8d5"
+      "size_bytes": 6308,
+      "sha256": "620dc33878c03af247fc3d37a86a42e595c09357d78176f4750623397b1adb3b"
     },
     {
       "path": "src/generated/thesis-bundle.json",
       "size_bytes": 555,
-      "sha256": "4b71ac23e5500646161443c7a44dbd3f4f65557080ee700a6d3215e7c38fd73f"
+      "sha256": "2d29320bd29b3aa2f4688606750204f86571911e888bfa54241cc0eefaa1e524"
     },
     {
       "path": "tools/phase01_audit.py",
