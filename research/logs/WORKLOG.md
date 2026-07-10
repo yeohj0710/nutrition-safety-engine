@@ -356,3 +356,11 @@
 - Independently recomputed all 342 exact DOI/title duplicate candidate pairs and their reasons.
 - Rejected 5/5 mutations: wrong raw PMID, wrong title, missing duplicate candidate, filled human decision, and filled study link.
 - Human dedup decisions and human study links remain 0; no proxy row was promoted.
+
+## 2026-07-10 — Phase 04 screening-lineage gate
+
+- Proved exact record-question key equality across 19,961 PubMed retrievals, both proxy outputs, the mandatory human-review queue, and empty decision shells.
+- Confirmed all 207 ClinicalTrials.gov and 62 KoreaMed retrieval units reach their corresponding human queues without loss.
+- Verified queue title/year values against normalized records and preserved proxy decision authority as `none`.
+- Rejected 6/6 screening mutations; human decisions and AI-only exclusions remain 0.
+- Revalidated the PMC sentinel source: 3 articles, 1 OA XML, 19 paragraph hashes, 2 non-OA access rows, human locator/eligibility decisions 0.

@@ -165,3 +165,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: validate every normalized PubMed record/retrieval against its referenced raw XML and independently regenerate the complete exact-duplicate candidate set
 - rationale: output hashes and aggregate counts cannot prove that individual rows point to the correct source bytes or that candidate generation is complete
 - impact: raw PMID/title/DOI drift, missing candidate pairs, and premature human decisions fail before any deduplication output can support screening
+
+## D-021 — Screening decisions are record-question units
+
+- date: 2026-07-10
+- decision: require one empty human-decision shell for every record×question retrieval unit and exact key equality with both proxy profiles and the review queue
+- rationale: a record retrieved for multiple questions needs a separate eligibility judgment under each PICO; collapsing to one record-level decision would lose scope
+- impact: all 19,961 PubMed units plus registry and KoreaMed units remain reviewable, while proxy priorities retain zero decision authority

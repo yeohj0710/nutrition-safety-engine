@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "0d89e1cf68428ea8f630705dc8124ac8377afe37",
+  "implementation_head": "7220c35168388950a3bab80bd21c63adcfff89ca",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,7 +10,7 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 780,
+  "file_count": 782,
   "local_required_file_count": 104,
   "files": [
     {
@@ -801,8 +801,8 @@
     },
     {
       "path": "package.json",
-      "size_bytes": 3301,
-      "sha256": "c66d11d3485a645b8dc50bf25d5e4d671e8b207c7c341cbe5ea1a9be312df00c",
+      "size_bytes": 3397,
+      "sha256": "53bcaa53705a34b5b3792ecb97b88cc9f695f6f805ab486fdcb735c489a76516",
       "distribution": "tracked"
     },
     {
@@ -934,7 +934,7 @@
     {
       "path": "research/audit/phase_01_artifact_manifest.json",
       "size_bytes": 8547,
-      "sha256": "4e699589baac17f2b55dc0dd95977a73227c44f9224b61f76451543c0c9652da",
+      "sha256": "54fbecfc23c28deff8f26aec073bcfd247513ec8b830a1d7b08f80128201bf4e",
       "distribution": "tracked"
     },
     {
@@ -2421,8 +2421,8 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 11633,
-      "sha256": "dc55cc2a78c46a015d1e06011775ce4efda15f38d910a5894ee414eee2ffa29e",
+      "size_bytes": 12182,
+      "sha256": "971cafcbbab12ebe779d50310b22b4166805c5f0aad24de3c64c1aa5d5608a14",
       "distribution": "tracked"
     },
     {
@@ -2433,14 +2433,14 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 33561,
-      "sha256": "1cee20a52b98362da1eb5c96ead5e298f4d18aec812f013c348b61a4474f6811",
+      "size_bytes": 34235,
+      "sha256": "a4562470483bae17c8e1ce8ee7c6e2ee26bf632ce0616200ec56232590e66e15",
       "distribution": "tracked"
     },
     {
       "path": "research/PROGRESS_LEDGER.md",
-      "size_bytes": 2582,
-      "sha256": "67461eb37a24088e72869b4ed004b313383a433e8f4a4ef377a4f25d66b044fb",
+      "size_bytes": 2591,
+      "sha256": "b1648db9778395402c59c58d5abc56b182149d79c36ee5a452437fee4dfb5026",
       "distribution": "tracked"
     },
     {
@@ -2564,9 +2564,15 @@
       "distribution": "tracked"
     },
     {
+      "path": "research/screening/phase04_screening_lineage_validation.json",
+      "size_bytes": 2486,
+      "sha256": "1993bfdc538a5609cb970a99de18bfdac11124c570bd4b07392dc7918acd425c",
+      "distribution": "tracked"
+    },
+    {
       "path": "research/screening/phase_04_exit_criteria.md",
-      "size_bytes": 2632,
-      "sha256": "365b94327eb105d42fdbc145192ef4ffcf2812fd21edc135c8b277a16010f74b",
+      "size_bytes": 3007,
+      "sha256": "6ead6e7456dfde4c54d03be1744465f31bf13c2617c66a3dcd24163383c5ad61",
       "distribution": "tracked"
     },
     {
@@ -4637,6 +4643,12 @@
       "path": "tools/validate_phase04_proxy.py",
       "size_bytes": 9227,
       "sha256": "445c0d0236186e05aa0c95afc744864fa15c491f561652e08d4d4bcdeee9384d",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/validate_phase04_screening_lineage.py",
+      "size_bytes": 5833,
+      "sha256": "32fe6d58e5786a363fe7809db3c855a01dd1d6152bc6a8a83f9c314ee80db00b",
       "distribution": "tracked"
     },
     {
