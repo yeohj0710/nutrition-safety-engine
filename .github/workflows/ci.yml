@@ -25,6 +25,7 @@ jobs:
       - run: npm run test:provenance
       - run: npm run test:scenarios:smoke
       - run: npm run validate:phase07:proxy
+      - run: python tools/validate_phase07_review_queues.py
       - run: npm run build
       - run: python tools/validate_phase01.py
       - run: python tools/validate_phase02.py

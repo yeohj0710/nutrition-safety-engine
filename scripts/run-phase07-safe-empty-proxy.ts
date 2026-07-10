@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 import { runThesisEngine } from "../src/engine/run-thesis-engine";
@@ -35,6 +35,20 @@ const scenarios = Array.from({ length: 120 }, (_, index) => {
     },
   };
 });
+
+const scenarioInputPath = resolve(root, "research/validation/synthetic_scenario_inputs.jsonl");
+mkdirSync(resolve(root, "research/validation"), { recursive: true });
+writeFileSync(
+  scenarioInputPath,
+  scenarios.map((scenario) => JSON.stringify({
+    scenario_id: scenario.scenarioId,
+    question_id: scenario.questionId,
+    status: "synthetic_boundary_input_not_independent_gold",
+    input: scenario.input,
+    input_sha256: sha(JSON.stringify(scenario.input)),
+  })).join("\n") + "\n",
+  "utf8",
+);
 
 let deterministic = 0;
 let legacyLeakage = 0;
@@ -75,6 +89,7 @@ const report = {
     runner: fileSha("scripts/run-phase07-safe-empty-proxy.ts"),
     engine: fileSha("src/engine/run-thesis-engine.ts"),
     thesis_bundle: fileSha("src/generated/thesis-bundle.json"),
+    scenario_inputs: fileSha("research/validation/synthetic_scenario_inputs.jsonl"),
   },
   scenarios: scenarioResults,
 };

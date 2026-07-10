@@ -137,3 +137,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: a `validated_thesis_scope` rule must reference existing validated claims for the same question, source-bound human-verified support, expert review, and independent scenario evidence
 - rationale: JSON shape alone cannot prove referential integrity or validation sufficiency
 - impact: draft/missing/mismatched claims, wrong quote hashes, legacy sources, and incomplete validation evidence are rejected before bundle generation
+
+## D-017 — Synthetic review cannot become independent gold
+
+- date: 2026-07-10
+- decision: keep synthetic-input expert review and double-authored independent-gold creation in separate queues
+- rationale: reviewers judging agent-generated cases are not independent scenario authors and cannot establish unbiased clinical performance
+- impact: synthetic queue feedback may refine coverage only; sensitivity/precision remain prohibited until the blank gold queue is independently authored, adjudicated, and hash-locked

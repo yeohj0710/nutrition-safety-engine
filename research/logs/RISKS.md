@@ -48,6 +48,7 @@
 - PMCID presence is not equivalent to reusable full-text XML. Sentinel testing found 2/3 PMC records metadata-only/non-OA, so access status must be parsed per report before extraction.
 - Locator labels can drift when source files change. Extraction validation now binds source bytes and paragraph text hashes; human locator verification is still required.
 - A structurally valid rule can still reference the wrong claim. Phase 06 now enforces claim existence, question consistency, validation status, and expert/scenario evidence semantically.
+- Expert review of synthetic scenarios can create circular validation. Separate blind-review and independent-authoring queues prevent synthetic cases from being counted as gold.
 
 ## 2026-07-10 KMbase design-pilot risk
 

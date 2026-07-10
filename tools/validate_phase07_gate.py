@@ -2,6 +2,7 @@
 """Validate Phase 07 safe-empty boundary and prohibit false release claims."""
 
 import hashlib
+import csv
 import json
 from pathlib import Path
 
@@ -37,6 +38,7 @@ def main() -> int:
         "runner": ROOT / "scripts/run-phase07-safe-empty-proxy.ts",
         "engine": ROOT / "src/engine/run-thesis-engine.ts",
         "thesis_bundle": ROOT / "src/generated/thesis-bundle.json",
+        "scenario_inputs": ROOT / "research/validation/synthetic_scenario_inputs.jsonl",
     }
     for key, path in source_paths.items():
         if report.get("source_hashes", {}).get(key) != sha256(path):
@@ -46,6 +48,20 @@ def main() -> int:
         errors.append("scenario detail must contain 120 unique IDs")
     if any(row.get("deterministic") is not True for row in scenarios):
         errors.append("one or more synthetic scenarios are nondeterministic")
+    with (ROOT / "research/validation/synthetic_scenario_blind_expert_review.csv").open(encoding="utf-8-sig", newline="") as handle:
+        blind_rows = list(csv.DictReader(handle))
+    with (ROOT / "research/validation/independent_gold_scenario_authoring_queue.csv").open(encoding="utf-8-sig", newline="") as handle:
+        gold_rows = list(csv.DictReader(handle))
+    if len(blind_rows) != 120 or any(row["reviewer_id"] or row["reviewed_at"] for row in blind_rows):
+        errors.append("blind expert review queue missing or prefilled")
+    gold_human_fields = (
+        "author_1_id", "author_1_input_json", "author_1_expected_actions_json",
+        "author_2_id", "author_2_input_json", "author_2_expected_actions_json",
+        "adjudicator_id", "adjudicated_input_json", "adjudicated_expected_actions_json",
+        "critical_failure_labels_json", "authored_at", "adjudicated_at", "gold_row_sha256",
+    )
+    if len(gold_rows) != 120 or any(any(row[field] for field in gold_human_fields) for row in gold_rows):
+        errors.append("independent gold authoring queue missing or prefilled")
 
     package = json.loads((ROOT / "package.json").read_text(encoding="utf-8"))
     if "openai" in package.get("dependencies", {}) or "openai" in package.get("devDependencies", {}):
@@ -70,6 +86,8 @@ def main() -> int:
         "synthetic_scenarios": len(scenarios),
         "independent_gold_scenarios": report.get("independent_gold_scenarios"),
         "validated_deployment": False,
+        "blind_expert_review_rows": len(blind_rows),
+        "gold_authoring_rows": len(gold_rows),
     }
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 1 if errors else 0

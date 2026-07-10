@@ -327,3 +327,10 @@
 - Independent semantic checks require every linked claim to exist, match the rule question, and be validated; expert-review and independent-scenario evidence prefixes are mandatory.
 - Nine synthetic-only tests pass. Production claims/rules and legacy promotions remain 0/0/0.
 - Integrated the same semantic boundary into `build-thesis-bundle.ts`; targeted Vitest contract/isolation suite passes 7/7 and TypeScript checking passes.
+
+## 2026-07-10 — Phase 07 blind review and independent-gold handoff
+
+- Persisted all 120 deterministic synthetic inputs as JSONL and added their file SHA-256 to the executable proxy report.
+- Generated a 120-row blind expert queue bound to each input, runner, engine, and thesis-bundle SHA; outputs are not exposed and all reviewer fields are blank.
+- Generated a separate 120-row independent-gold authoring queue balanced 24 per question. Both author drafts, adjudication, critical-failure labels, and gold hashes remain blank.
+- Validator confirms synthetic inputs/reviews/gold-authoring rows 120/120/120; expert reviews and independent gold remain 0/0.
