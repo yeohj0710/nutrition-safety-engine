@@ -405,3 +405,11 @@
 - Centralized the five labels in a domain constant and added a regression test.
 - Rechecked the homepage, legacy warning, thesis API empty validated scope, robots, and sitemap: 11/11 smoke checks pass.
 - Captured source/build hashes in `local_production_smoke.json`; this is local software evidence, not a validated public deployment.
+
+## 2026-07-10 — Consolidated external-human handoff
+
+- Inventoried 21 protocol, PRESS, deduplication, screening, access, extraction, RoB, synthesis, validation, and finalization queues/templates.
+- Bound 20,900 current rows to file SHA-256 and recorded each queue's protected human-only fields.
+- Verified protected human fields populated 0; phase-level blocker rows are instructions, not completed judgments.
+- Added a dependency-ordered handoff guide so later judgments cannot be entered before their sampling frames are frozen.
+- Linked the handoff manifest into finalization readiness; no synthetic or legacy value was converted to a human decision.

@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "phase": "01_audit_and_normalization",
   "manifest_self_excluded": true,
-  "file_count": 47,
+  "file_count": 49,
   "files": [
     {
       "path": "__tests__/thesis-bundle-isolation.test.ts",
@@ -151,8 +151,8 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 14803,
-      "sha256": "aa6435a50e6de15f2e1f2cb919a14cc6f032b21a5d2f9af0538eade70f0470fb"
+      "size_bytes": 15355,
+      "sha256": "3c81a386ff3de215c939fee6161b05dca8701ea12874280a549fbdea073353e9"
     },
     {
       "path": "research/logs/RISKS.md",
@@ -161,8 +161,18 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 37668,
-      "sha256": "d91d6f21fac3e5eda41a7b1ca992a3be70d2389f1ac11c69235f9984d370c2d7"
+      "size_bytes": 38325,
+      "sha256": "aa983f625e0f509885776662b61d893c1c86d6044911e49ebd22011bf20ad518"
+    },
+    {
+      "path": "research/review_queue/HUMAN_HANDOFF.md",
+      "size_bytes": 1448,
+      "sha256": "25d3a4d17fc856e32c0adf62efe4421b3e828c1a65a9c3e75cacd7558a3532e2"
+    },
+    {
+      "path": "research/review_queue/human_handoff_manifest.json",
+      "size_bytes": 9077,
+      "sha256": "f55d156befb9cd72488d8c30719ae0d23525c02a74773c57b18fea1bc983c820"
     },
     {
       "path": "research/review_queue/korean_db_PRESS_review.csv",

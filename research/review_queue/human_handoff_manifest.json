@@ -1,0 +1,283 @@
+{
+  "schema_version": "1.0.0",
+  "status": "ready_for_external_review_not_completed",
+  "dependency_order": [
+    "protocol_PRESS",
+    "retrieval_dedup",
+    "screening_fulltext",
+    "extraction_RoB",
+    "synthesis_GRADE_claim_rule",
+    "independent_validation",
+    "finalization"
+  ],
+  "queue_count": 21,
+  "total_rows": 20900,
+  "rows_with_human_data": 0,
+  "human_work_complete": false,
+  "queues": [
+    {
+      "queue_id": "P2_PRESS_main",
+      "path": "research/review_queue/PRESS_review.csv",
+      "sha256": "b56713e936abe6e21d77ce961f458b005db85b61474cb88cecadaf1f17a5d501",
+      "size_bytes": 2939,
+      "row_count": 8,
+      "protected_human_fields": [],
+      "rows_with_human_data": 0
+    },
+    {
+      "queue_id": "P2_PRESS_korean",
+      "path": "research/review_queue/korean_db_PRESS_review.csv",
+      "sha256": "b561d62d7f7eee7e5c18211558db3ac4692d9a0827d0a2914783679784534e4b",
+      "size_bytes": 17904,
+      "row_count": 40,
+      "protected_human_fields": [
+        "reviewer_id",
+        "reviewed_at",
+        "decision",
+        "comments",
+        "required_revision"
+      ],
+      "rows_with_human_data": 0
+    },
+    {
+      "queue_id": "P3_dedup",
+      "path": "data/interim/deduplication_decisions.csv",
+      "sha256": "0aaaa0cdbe4d731e0382285c8aa916af5ab328bbc5719f4cf0a71c3b75ca8b51",
+      "size_bytes": 16873,
+      "row_count": 342,
+      "protected_human_fields": [
+        "decision",
+        "canonical_record_id",
+        "duplicate_cluster_id",
+        "duplicate_reason",
+        "verified_by",
+        "verified_at"
+      ],
+      "rows_with_human_data": 0
+    },
+    {
+      "queue_id": "P4_pubmed_screening",
+      "path": "data/interim/screening_decisions.csv",
+      "sha256": "3437c64d529c4b396ee1da317111e9c68609401018fd1ae0f8ad74560fab911c",
+      "size_bytes": 2172440,
+      "row_count": 19961,
+      "protected_human_fields": [
+        "reviewer_id",
+        "decision",
+        "primary_reason_code",
+        "reviewed_at",
+        "final_decision",
+        "final_reason_code",
+        "adjudicator_id"
+      ],
+      "rows_with_human_data": 0
+    },
+    {
+      "queue_id": "P4_registry_screening",
+      "path": "data/interim/clinicaltrials_review_queue.csv",
+      "sha256": "238a8cbb0ed54b59f707f9c4ba52b1beec456a313159672c1be1b212bc763a07",
+      "size_bytes": 27961,
+      "row_count": 207,
+      "protected_human_fields": [
+        "reviewer_1_id",
+        "reviewer_1_decision",
+        "reviewer_2_id",
+        "reviewer_2_decision",
+        "adjudicator_id",
+        "final_decision"
+      ],
+      "rows_with_human_data": 0
+    },
+    {
+      "queue_id": "P4_koreamed_screening",
+      "path": "data/interim/koreamed_review_queue.csv",
+      "sha256": "ff44fe788dd382dd41fb88569bc027b1b424988726c759f01d6e1e03f32cf909",
+      "size_bytes": 18583,
+      "row_count": 62,
+      "protected_human_fields": [
+        "reviewer_1_id",
+        "reviewer_1_decision",
+        "reviewer_2_id",
+        "reviewer_2_decision",
+        "adjudicator_id",
+        "final_decision"
+      ],
+      "rows_with_human_data": 0
+    },
+    {
+      "queue_id": "P4_non_oa_access",
+      "path": "research/fulltext/pmc_sentinel_fulltext_designpilot_20260710/non_oa_access_queue.csv",
+      "sha256": "4f2486a6927b2436800350b9030f8aeb168f1caf08fefbbc84a267895e64ed8f",
+      "size_bytes": 544,
+      "row_count": 2,
+      "protected_human_fields": [
+        "requester_id",
+        "requested_at",
+        "access_outcome",
+        "obtained_file_sha256"
+      ],
+      "rows_with_human_data": 0
+    },
+    {
+      "queue_id": "P5_extraction",
+      "path": "data/interim/extractions_human.csv",
+      "sha256": "fdd23d8b44d5631e7cf3b28ea6b18a5189aa6952c2a791783d454f693858002d",
+      "size_bytes": 222,
+      "row_count": 0,
+      "protected_human_fields": [
+        "extracted_by",
+        "verified_by",
+        "verification_status"
+      ],
+      "rows_with_human_data": 0
+    },
+    {
+      "queue_id": "P5_risk_of_bias",
+      "path": "data/interim/risk_of_bias.csv",
+      "sha256": "46931c6c5912d02efe15465310ecb607952cd083ea201e8756e8ba68e8729ae0",
+      "size_bytes": 211,
+      "row_count": 0,
+      "protected_human_fields": [
+        "reviewer_id",
+        "reviewed_at",
+        "consensus_judgment",
+        "adjudicator_id"
+      ],
+      "rows_with_human_data": 0
+    },
+    {
+      "queue_id": "P6_grade",
+      "path": "research/synthesis/certainty_assessments.csv",
+      "sha256": "8fb80a4fcef040a954ac585e13de7d3d45907d32bdeced3441413014e34c970b",
+      "size_bytes": 161,
+      "row_count": 0,
+      "protected_human_fields": [],
+      "rows_with_human_data": 0
+    },
+    {
+      "queue_id": "P6_claims",
+      "path": "research/synthesis/claim_registry.csv",
+      "sha256": "3c43dfe3819f0091a23fa868a017a30e3ea1ad5b38eb461e252b9c083959d77d",
+      "size_bytes": 240,
+      "row_count": 0,
+      "protected_human_fields": [
+        "verified_by",
+        "verification_status"
+      ],
+      "rows_with_human_data": 0
+    },
+    {
+      "queue_id": "P6_rules",
+      "path": "research/synthesis/rule_registry.csv",
+      "sha256": "16de204eef829477a1d9af94afe8f44cebe144e7d97742ee5de9257ec9ae2930",
+      "size_bytes": 264,
+      "row_count": 0,
+      "protected_human_fields": [
+        "validation_status"
+      ],
+      "rows_with_human_data": 0
+    },
+    {
+      "queue_id": "P7_blind_expert",
+      "path": "research/validation/synthetic_scenario_blind_expert_review.csv",
+      "sha256": "f5521fba3546f2a869ec8db1ecf429cfacddbd0440c444647689433ba86c3bfa",
+      "size_bytes": 46923,
+      "row_count": 120,
+      "protected_human_fields": [
+        "reviewer_id",
+        "clinical_plausibility",
+        "risk_coverage",
+        "missing_information",
+        "comments",
+        "reviewed_at"
+      ],
+      "rows_with_human_data": 0
+    },
+    {
+      "queue_id": "P7_independent_gold",
+      "path": "research/validation/independent_gold_scenario_authoring_queue.csv",
+      "sha256": "461fdd81e575401d54dc4935991891f7182255dfaf02609fae2b460e487b542a",
+      "size_bytes": 23983,
+      "row_count": 120,
+      "protected_human_fields": [
+        "author_1_id",
+        "author_1_input_json",
+        "author_1_expected_actions_json",
+        "author_2_id",
+        "author_2_input_json",
+        "author_2_expected_actions_json",
+        "adjudicator_id",
+        "adjudicated_input_json",
+        "adjudicated_expected_actions_json",
+        "critical_failure_labels_json",
+        "authored_at",
+        "adjudicated_at",
+        "gold_row_sha256"
+      ],
+      "rows_with_human_data": 0
+    },
+    {
+      "queue_id": "P1_external",
+      "path": "research/review_queue/phase_01_external_review.csv",
+      "sha256": "6a409c46df05a4ea63ce9406d943a7112a45a6fd6c8993d919c1c7592add7713",
+      "size_bytes": 2876,
+      "row_count": 6,
+      "protected_human_fields": [],
+      "rows_with_human_data": 0
+    },
+    {
+      "queue_id": "P2_external",
+      "path": "research/review_queue/phase_02_external_review.csv",
+      "sha256": "b10752c4d3f65795723f8c3101c2ab42974e26792ab15196c59d677cb310a1c4",
+      "size_bytes": 1339,
+      "row_count": 5,
+      "protected_human_fields": [],
+      "rows_with_human_data": 0
+    },
+    {
+      "queue_id": "P3_external",
+      "path": "research/review_queue/phase_03_external_review.csv",
+      "sha256": "f4311899d7a56b67020f95382baed6092fa53d8e0c6d6ff603622619d493790e",
+      "size_bytes": 2024,
+      "row_count": 7,
+      "protected_human_fields": [],
+      "rows_with_human_data": 0
+    },
+    {
+      "queue_id": "P5_external",
+      "path": "research/review_queue/phase_05_external_review.csv",
+      "sha256": "c61d4b66614ea5de3e7c24b6b427f95475ce9ededf929eb829d86c926600a82a",
+      "size_bytes": 1281,
+      "row_count": 5,
+      "protected_human_fields": [],
+      "rows_with_human_data": 0
+    },
+    {
+      "queue_id": "P6_external",
+      "path": "research/review_queue/phase_06_external_review.csv",
+      "sha256": "c4a60d26261b8116930f7ddd53afdfa43911edcf85183f1e70d6b123832176b0",
+      "size_bytes": 1337,
+      "row_count": 5,
+      "protected_human_fields": [],
+      "rows_with_human_data": 0
+    },
+    {
+      "queue_id": "P7_external",
+      "path": "research/review_queue/phase_07_external_review.csv",
+      "sha256": "22be5a40678457be3d2abb5f87c196512fd5bc8f2ac51b992ee5110eb5e017a7",
+      "size_bytes": 1441,
+      "row_count": 5,
+      "protected_human_fields": [],
+      "rows_with_human_data": 0
+    },
+    {
+      "queue_id": "P8_external",
+      "path": "research/review_queue/phase_08_external_review.csv",
+      "sha256": "eb9420ad055eec76b80e7c72d4be6714e07b4ec277f95cebd319c263a8677d41",
+      "size_bytes": 1320,
+      "row_count": 5,
+      "protected_human_fields": [],
+      "rows_with_human_data": 0
+    }
+  ]
+}

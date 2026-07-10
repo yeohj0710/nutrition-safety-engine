@@ -12,3 +12,5 @@
 | 08 thesis and finalization | blocked_external_checkpoint_manifested | A-K readiness manifest: 11 gates open, finalization false; methods-only nonfinal DOCX/PDF with 8/8-page QA | frozen results, department format, final DOCX/PDF, validated deployment, final manifest |
 
 No later phase is complete. Synthetic-proxy artifacts are dry-run evidence only.
+
+External handoff: 21 hash-bound queues/templates, 20,900 current rows, protected human fields populated 0. Follow `research/review_queue/HUMAN_HANDOFF.md` in dependency order.

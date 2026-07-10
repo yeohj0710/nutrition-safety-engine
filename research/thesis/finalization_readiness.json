@@ -141,6 +141,11 @@
       "path": "research/validation/local_production_smoke.json",
       "size_bytes": 1036,
       "sha256": "0a985c6d993d2bcd17b126005d507ea56b819c4833c89a19dbfa6bdb7ae21228"
+    },
+    {
+      "path": "research/review_queue/human_handoff_manifest.json",
+      "size_bytes": 9077,
+      "sha256": "f55d156befb9cd72488d8c30719ae0d23525c02a74773c57b18fea1bc983c820"
     }
   ]
 }

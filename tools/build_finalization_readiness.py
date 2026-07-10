@@ -15,6 +15,7 @@ EVIDENCE = [
     "research/audit/deployment_baseline.json",
     "research/thesis/checkpoints/methods_checkpoint_qa.json",
     "research/validation/local_production_smoke.json",
+    "research/review_queue/human_handoff_manifest.json",
 ]
 
 

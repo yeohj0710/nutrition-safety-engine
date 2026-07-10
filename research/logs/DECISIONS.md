@@ -207,3 +207,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: keep A1-A2/B1-B3 display labels in a tested domain constant rather than independent page copy
 - rationale: browser smoke exposed stale legacy topics on the thesis homepage despite correct backend protocol artifacts
 - impact: scope-label drift now fails a unit test; passing local browser smoke remains distinct from validated deployment
+
+## D-027 — Human queues follow one dependency-ordered handoff manifest
+
+- date: 2026-07-10
+- decision: hash-bind every active human queue/template in one manifest while preserving each phase's original file and protected fields
+- rationale: scattered queues make it easy to skip upstream freezes, enter judgments in the wrong artifact, or mistake blocker instructions for completed review
+- impact: any queue edit invalidates the handoff/readiness chain until counts and hashes are regenerated; protected fields remain zero until real reviewers act
