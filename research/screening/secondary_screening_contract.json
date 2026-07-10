@@ -5,6 +5,7 @@
   "secondary_queue_rows": 0,
   "secondary_human_reviews": 0,
   "selection_audit_rows": 0,
+  "queue_write_status": "generated_no_human_data",
   "contract_tests": {
     "include_all": true,
     "uncertain_all": true,

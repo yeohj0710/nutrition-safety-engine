@@ -564,3 +564,10 @@
 - Added explicit pending/partial/complete-candidate semantics for duplicate decisions and report-study linkage, plus linker identity/time fields.
 - Reparsed 103 raw XML files and reproduced 19,609 records, 19,961 retrievals, and 342/342 duplicate pairs with errors 0. A variable-shadowing count bug briefly reported 29; it was corrected and revalidated at 342.
 - Current human duplicate decisions/study links remain 0/0; no final-search, inclusion, or PRISMA claim was created.
+
+## 2026-07-10 — Future-safe blinded secondary screening
+
+- Found unconditional secondary-queue rewriting and blank-only validation.
+- Added byte preservation with exact selected-key/title/year/source-hash checks and write-before-fail behavior for changed selection lineage.
+- Added not-started/in-progress/complete-candidate semantics; reviewer-2 disagreement requires adjudicator identity before completion.
+- Preservation contracts pass 3/3 and existing five selection/blinding contracts pass. Current primary/secondary human decisions remain 0/0.

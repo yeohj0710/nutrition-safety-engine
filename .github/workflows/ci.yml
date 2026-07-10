@@ -52,6 +52,7 @@ jobs:
       - run: python tools/validate_local_production_smoke.py
       - run: python tools/validate_human_handoff_manifest.py
       - run: python tools/validate_secondary_screening_queue.py
+      - run: python tools/validate_secondary_queue_preservation.py
       - run: python tools/validate_fulltext_review_queue.py
       - run: python tools/validate_extraction_rob_work_queues.py
       - run: python tools/validate_phase05_preservation.py

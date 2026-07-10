@@ -31,15 +31,27 @@ def main() -> int:
            for source in completed if source["record_id"] == row["record_id"] and source["question_ids"] == row["question_id"]):
         errors.append("secondary source-row hash mismatch")
     human = ("reviewer_2_id", "reviewer_2_decision", "reviewer_2_reason", "reviewed_at", "final_decision", "adjudicator_id")
-    if any(any(row[field] for field in human) or row["adjudication_status"] != "not_started" for row in queue):
-        errors.append("secondary queue contains unverified human values")
+    audit_by = {(row["record_id"], row["question_id"]): row for row in audit}
+    complete_candidates = 0
+    for row in queue:
+        any_human = any(row[field] for field in human)
+        reviewer_complete = all(row[field] for field in ("reviewer_2_id", "reviewer_2_decision", "reviewed_at")) and row["reviewer_2_decision"] in {"include", "exclude", "uncertain"}
+        final_complete = reviewer_complete and row["final_decision"] in {"include", "exclude", "uncertain"}
+        primary = audit_by.get((row["record_id"], row["question_id"]), {}).get("primary_decision")
+        if final_complete and primary != row["reviewer_2_decision"] and not row["adjudicator_id"]:
+            final_complete = False
+        expected_status = "complete_candidate_requires_validation" if final_complete else "in_progress" if any_human else "not_started"
+        if row["adjudication_status"] != expected_status:
+            errors.append(f"secondary progress mismatch: {row['secondary_id']}")
+        complete_candidates += int(final_complete)
     if queue and any(field in queue[0] for field in ("primary_decision", "primary_reason_code", "selection_basis")):
         errors.append("primary decisions leaked into blinded reviewer queue")
     report = json.loads((ROOT / "research/screening/secondary_screening_contract.json").read_text(encoding="utf-8"))
     if not report.get("all_passed") or not all(report.get("contract_tests", {}).values()):
         errors.append("secondary screening contract tests failed")
     result = {"errors": errors, "primary_completed_rows": len(completed), "secondary_queue_rows": len(queue),
-              "secondary_human_reviews": 0, "contract_tests": len(report.get("contract_tests", {}))}
+              "secondary_human_reviews": sum(bool(row["reviewer_2_id"]) for row in queue),
+              "secondary_complete_candidates": complete_candidates, "contract_tests": len(report.get("contract_tests", {}))}
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 1 if errors else 0
 

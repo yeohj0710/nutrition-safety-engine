@@ -48,6 +48,23 @@ def write(path: Path, fields: list[str], rows: list[dict[str, str]]) -> None:
         writer.writeheader(); writer.writerows(rows)
 
 
+def write_or_preserve_queue(path: Path, fields: list[str], generated: list[dict[str, str]],
+                            human_fields: tuple[str, ...], static_fields: tuple[str, ...]) -> str:
+    if path.exists():
+        with path.open(encoding="utf-8-sig", newline="") as handle:
+            reader = csv.DictReader(handle); existing = list(reader)
+            if reader.fieldnames != fields:
+                if any(any(row.get(field, "") for field in human_fields) for row in existing):
+                    raise ValueError("secondary queue header changed after human review")
+            elif any(any(row[field] for field in human_fields) for row in existing):
+                old = {row["secondary_id"]: row for row in existing}; new = {row["secondary_id"]: row for row in generated}
+                if set(old) != set(new) or any(any(old[key][field] != new[key][field] for field in static_fields) for key in old):
+                    raise ValueError("secondary selection lineage changed after human review")
+                return "preserved_existing_human_data"
+    write(path, fields, generated)
+    return "generated_no_human_data"
+
+
 def main() -> int:
     with (DATA / "screening_decisions.csv").open(encoding="utf-8-sig", newline="") as handle:
         decisions = list(csv.DictReader(handle))
@@ -74,9 +91,14 @@ def main() -> int:
                            "primary_decision": row["decision"], "primary_reason_code": row["primary_reason_code"],
                            "selection_basis": basis, "selection_sha256": selection_sha,
                            "source_primary_row_sha256": source_sha})
-    write(QUEUE, ["secondary_id", "record_id", "question_id", "title", "year", "selection_sha256",
-                  "source_primary_row_sha256", "reviewer_2_id", "reviewer_2_decision", "reviewer_2_reason",
-                  "reviewed_at", "adjudication_status", "final_decision", "adjudicator_id"], queue_rows)
+    queue_fields = ["secondary_id", "record_id", "question_id", "title", "year", "selection_sha256",
+                    "source_primary_row_sha256", "reviewer_2_id", "reviewer_2_decision", "reviewer_2_reason",
+                    "reviewed_at", "adjudication_status", "final_decision", "adjudicator_id"]
+    queue_write_status = write_or_preserve_queue(QUEUE, queue_fields, queue_rows,
+        ("reviewer_2_id", "reviewer_2_decision", "reviewer_2_reason", "reviewed_at", "final_decision", "adjudicator_id"),
+        ("record_id", "question_id", "title", "year", "selection_sha256", "source_primary_row_sha256"))
+    with QUEUE.open(encoding="utf-8-sig", newline="") as handle:
+        actual_queue = list(csv.DictReader(handle))
     write(AUDIT, ["record_id", "question_id", "primary_decision", "primary_reason_code", "selection_basis",
                   "selection_sha256", "source_primary_row_sha256"], audit_rows)
     synthetic = [{"record_id": f"R{i}", "question_ids": "A1", "decision": "exclude",
@@ -90,8 +112,9 @@ def main() -> int:
              "deterministic": [(r["record_id"], b) for r, b in first] == [(r["record_id"], b) for r, b in second],
              "primary_decision_blinded": "primary_decision" not in (queue_rows[0] if queue_rows else {"secondary_id": ""})}
     report = {"schema_version": "1.0.0", "status": "awaiting_completed_primary_screening",
-              "primary_completed_rows": len(completed), "secondary_queue_rows": len(queue_rows),
-              "secondary_human_reviews": 0, "selection_audit_rows": len(audit_rows),
+              "primary_completed_rows": len(completed), "secondary_queue_rows": len(actual_queue),
+              "secondary_human_reviews": sum(bool(row["reviewer_2_id"]) for row in actual_queue),
+              "selection_audit_rows": len(audit_rows), "queue_write_status": queue_write_status,
               "contract_tests": tests, "all_passed": all(tests.values())}
     REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(report, ensure_ascii=False))

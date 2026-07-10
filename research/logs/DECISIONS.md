@@ -396,3 +396,17 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: validate explicit progress states for duplicate decisions and report-study links rather than requiring every field to stay blank
 - rationale: blank-only lineage gates made human deduplication and study linkage impossible to complete
 - impact: partial rows remain visible; complete duplicate calls require verifier/time and duplicate-specific canonical/cluster/reason fields; complete links require study ID/linker/time
+
+## D-054 — Secondary screening rebuilds preserve reviewer-2 work
+
+- date: 2026-07-10
+- decision: regenerate the blinded secondary queue only while human fields are empty; otherwise require identical selected keys and source/selection hashes and preserve bytes
+- rationale: recalculating the deterministic 20% sample must not erase independent reviewer decisions
+- impact: stable populated queues survive, changed primary selection fails before write, and the derived non-blinded selection audit may still be regenerated separately
+
+## D-055 — Secondary screening supports explicit adjudication progress
+
+- date: 2026-07-10
+- decision: accept not-started, in-progress, and complete-candidate rows; disagreements with the primary decision require an adjudicator before completion
+- rationale: blank-only validation prevents double screening, while accepting an unadjudicated disagreement would bypass the protocol
+- impact: reviewer-2 work can advance without being called final; complete candidates still require downstream phase validation

@@ -27,6 +27,7 @@
     "validate:human-handoff": "python tools/validate_human_handoff_manifest.py",
     "build:secondary-screening": "python tools/build_secondary_screening_queue.py",
     "validate:secondary-screening": "python tools/validate_secondary_screening_queue.py",
+    "validate:secondary-preservation": "python tools/validate_secondary_queue_preservation.py",
     "build:fulltext-review": "python tools/build_fulltext_review_queue.py",
     "validate:fulltext-review": "python tools/validate_fulltext_review_queue.py",
     "build:extraction-rob-work": "python tools/build_extraction_rob_work_queues.py",

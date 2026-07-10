@@ -14,6 +14,7 @@ Proxy queue status: `complete_verified`
 | AI-only exclusions | pass | 0 |
 | Human title/abstract or registry decisions | blocked_external | 0/20,230 database-question retrieval units |
 | Blinded secondary-review selection | pass_local | all include/uncertain plus ceil(20%) per excluded question/reason stratum; 5/5 contracts; awaiting primary rows |
+| Secondary queue preservation/progression | pass_local | populated reviewer-2 bytes preserved; selection drift rejected before write; not-started/in-progress/complete-candidate states; preservation 3/3 |
 | Full-text double-review routing | pass_local | secondary final include/uncertain only; proxy fields absent; reviewer 1/2/final fields; 6/6 contracts; awaiting secondary rows |
 | Human pilot training | blocked_external | 0/50 |
 | Full-text double review | blocked_external | 0 reports assessed |
