@@ -124,3 +124,10 @@
 - result: scenario smoke 1/1, contract 4/4, provenance 1/1 pass; determinism 100%; actions/rules/claims empty; legacy leakage 0
 - limitation: independent gold 0, validated rules 0, expert review 0, validated deployment none
 - decision: safe-empty software boundary verified; Phase 07 and release remain `blocked_external`
+
+## 2026-07-10 16:20:00 +09:00
+
+- phase / task ID: Phase 08 / truthful checkpoint finalization
+- procedure: applied DOCX/PDF skill gates; checked result-freeze prerequisites; generated reproducibility instructions and manifest including tracked and local raw files
+- result: checkpoint manifest 501 files, 104 local-required payloads; project_complete false; claims/rules 0/0; final DOCX/PDF/deployment null
+- decision: no thesis document created before results freeze; Phase 08 remains `blocked_external`

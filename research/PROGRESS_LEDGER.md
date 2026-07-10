@@ -9,6 +9,6 @@
 | 05 extraction quality and AI | blocked_external_proxy_verified | locator rejection and Wilson metric synthetic harness; empty human/RoB schemas | included reports, full texts, human extraction/RoB/gold, actual AI runs |
 | 06 synthesis claims and rules | blocked_external_safe_empty | five no-analysis decisions; certainty/claim/rule registries 0; legacy promotion 0 | accepted extraction/RoB and human synthesis/GRADE |
 | 07 engine validation and release | blocked_external_safe_empty_verified | runtime AI dependency removed; CI workflow; 120×3 deterministic empty scenarios; legacy leakage 0 | validated rules, independent gold/expert review, verified deployment |
-| 08 thesis and finalization | preparatory_methods_only | outline/style rules exist | frozen results and final manifests |
+| 08 thesis and finalization | blocked_external_checkpoint_manifested | truthful thesis status; 501-file checkpoint manifest including 104 local payloads | frozen results, department format, final DOCX/PDF, visual QA |
 
 No later phase is complete. Synthetic-proxy artifacts are dry-run evidence only.
