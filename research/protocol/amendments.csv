@@ -1,0 +1,3 @@
+amendment_id,date,protocol_version_before,protocol_version_after,section,change_before,change_after,reason,impact_on_completed_work,approved_by,status
+AM-000,2026-07-10,,1.0-draft,all,legacy plan,reboot protocol drafted,methodological redesign after audit,none,pending supervisor review,draft
+AM-001,2026-07-10,1.0-draft,1.0-pending,administration,"draft without execution boundary","pending_human_approval; public-source pilots and synthetic proxies explicitly non-final",prevent unapproved pilots from being presented as final searches or results,none,pending supervisor review,pending_human_approval

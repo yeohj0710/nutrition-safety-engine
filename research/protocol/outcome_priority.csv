@@ -1,0 +1,18 @@
+question_id,outcome_id,outcome_label_ko,domain,priority,analysis_layer,minimum_definition,notes
+A1,A1_O1,주요 출혈,clinical_event,critical,primary,study definition plus ISTH/BARC/TIMI mapping,do not merge incompatible definitions
+A1,A1_O2,혈전색전 사건,clinical_event,critical,primary,study-defined stroke/systemic embolism/VTE,separate event types
+A1,A1_O3,치료범위 내 시간,anticoagulation_control,important,secondary,TTR method and observation period,record Rosendaal or alternative
+A1,A1_O4,극단 INR 이탈,anticoagulation_control,important,secondary,threshold and count/person-time,do not equate with clinical event
+A2,A2_O1,주요 출혈,clinical_event,critical,primary,study definition plus standard mapping,VKA and DOAC strata separate
+A2,A2_O2,임상적으로 중요한 비주요 출혈,clinical_event,critical,primary,definition and healthcare use,keep separate from minor bleeding
+A2,A2_O3,모든 출혈,clinical_event,important,secondary,study definition,do not substitute for major bleeding
+A2,A2_O4,INR 변화,anticoagulation_control,important,secondary,warfarin/VKA subgroup only,not applicable to DOAC monitoring
+B1,B1_O1,신결석 발생·재발,clinical_event,critical,primary,incident/recurrent and ascertainment route,separate history subgroup
+B1,B1_O2,24시간 요중 칼슘,biomarker,important,secondary,unit and collection validity,surrogate layer
+B1,B1_O3,고칼슘혈증,adverse_event,important,secondary,total/ionized threshold,record correction method
+B2,B2_O1,신결석 발생·재발,clinical_event,critical,primary,incident/recurrent and ascertainment route,vitamin D alone vs calcium coadministration
+B2,B2_O2,고칼슘뇨,biomarker,important,secondary,24-hour threshold or study definition,surrogate layer
+B2,B2_O3,고칼슘혈증,adverse_event,important,secondary,total/ionized threshold,record correction method
+B3,B3_O1,신결석 발생·재발,clinical_event,critical,primary,incident/recurrent and ascertainment route,sex subgroup required where reported
+B3,B3_O2,요중 옥살산,biomarker,important,secondary,24-hour or spot and unit,surrogate layer
+B3,B3_O3,신기능 위해,adverse_event,important,secondary,AKI/eGFR/creatinine definition,separate clinical and laboratory outcomes

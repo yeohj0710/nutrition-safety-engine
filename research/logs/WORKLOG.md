@@ -77,3 +77,11 @@
 - result: move SHA mismatches 0; AI archive mismatches 0; audit 513 preserved source rows/110 legacy rule rows/package mismatch 0; Phase 01 validator errors 0; lint/typecheck pass; Vitest 9 files/34 tests pass; build 106 pages with no `/api/ai-explain`; pytest 4 pass
 - limitation: G: cannot be re-opened in this sandbox; inventory explicitly uses preserved audit snapshot; current public deployment remains the legacy baseline
 - decision: Phase 01 `complete_verified`; project remains `in_progress`; proceed to Phase 02 without treating synthetic proxies as human evidence
+
+## 2026-07-10 15:35:00 +09:00
+
+- phase / task ID: Phase 02 / protocol and search design local gate
+- procedure: materialized canonical pending protocol, amendments, access matrix, outcome priorities, human/AI role matrix, registration status, five full PubMed drafts, platform translations, sentinel set, workload forecast, PRESS queue, and external review queue; verified current official access documentation; ran live PubMed ESearch design pilots
+- result: five queries returned 19,961 combined design-pilot hits; B1 initially missed PMID 21525191, record inspection found `Urinary Calculi`/`urinary tract stone`, query corrected; final sentinel check 9/9; Phase 02 validator errors 0
+- limitation: A1 12,229 and B2 4,879 predict high workload; independent PRESS, supervisor approval, subscription access, and full-text route remain external
+- decision: Phase 02 remains `blocked_external`, not complete; public retrieval/tooling may continue only as design pilot or synthetic proxy

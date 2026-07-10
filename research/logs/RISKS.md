@@ -26,3 +26,9 @@
 - R-005/R-008 remediated in the local build: thesis-default API/UI and no runtime AI route. They remain deployment risks until Gate 7 identity checks pass.
 - R-011 remediated for generated literature candidates; repeated builds are hash-stable.
 - New access limitation: G: is unavailable in the successor sandbox. The preserved 513-file SHA snapshot is usable for audit continuity, but live re-verification remains open.
+
+## 2026-07-10 Phase 02 status note
+
+- R-001 likelihood increased: PubMed-only design pilot yields 19,961 records and about 266 title/abstract reviewer-hours before dedup/full-text work.
+- A1 and B2 require PRESS-guided precision review or an explicitly approved workload/scope decision; no results-driven narrowing allowed.
+- Subscription and full-text access remain high-impact risks. Public PubMed and ClinicalTrials.gov access is verified; WHO ICTRP export has constraints.

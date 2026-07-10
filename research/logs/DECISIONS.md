@@ -72,3 +72,17 @@ Status: superseded by D-007 after the reproducible baseline was captured.
 - decision: when G: is unavailable, use the preserved 513-file SHA audit as a labeled snapshot, never as a claim of live re-access
 - rationale: preserves evidence without requesting permissions or fabricating verification
 - impact: live source re-verification remains a blocker independent of other work
+
+## D-009 — Phase 02 search status boundary
+
+- date: 2026-07-10
+- decision: label all searches before dated supervisor and PRESS approval `design_pilot_not_final_search`
+- rationale: allows reproducibility and workload testing without retrospective protocol-freeze claims
+- impact: pilot hit counts cannot enter PRISMA or thesis results; later approved searches get new run IDs and raw exports
+
+## D-010 — B1 recall correction
+
+- date: 2026-07-10
+- decision: add `Urinary Calculi` and urinary/urinary-tract stone terms to B1–B3 PubMed disease blocks
+- rationale: initial B1 draft missed sentinel PMID 21525191 because its indexing/title used urinary rather than kidney terminology
+- impact: B1 pilot increased from 1,200 to 1,353 and sentinel recall became 9/9 overall; change occurred before final search approval

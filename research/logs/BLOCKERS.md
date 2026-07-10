@@ -37,3 +37,19 @@ Detailed decision questions: `research/review_queue/phase_01_external_review.csv
 - minimum input needed: future session/environment with the G: mount readable
 - affected artifacts: live source-integrity refresh only; local code, protocol design, proxy queues, and later reproducible scaffolding continue
 - status: `blocked_external`
+
+## B-005 — Independent PRESS review
+
+- exact block point: final search-string freeze and final multi-database execution
+- already attempted: five PubMed drafts, live counts, 9-sentinel recall test, B1 recall correction, platform translation drafts, seven-row PRESS queue
+- minimum input needed: independent information specialist/systematic-reviewer decision for each queue row, including A1/B2 workload refinements
+- work that can continue: public API pilot exports, pipeline and dedup tests, review-package preparation
+- status: `blocked_external`
+
+## B-006 — Subscription database and full-text access
+
+- exact block point: authenticated Embase, CENTRAL, Scopus/WoS exports and paywalled full-text verification
+- already attempted: official access/export documentation checked; public-source routes recorded
+- minimum input needed: institution/session-specific access outcome and export limits
+- work that can continue: PubMed, ClinicalTrials.gov, public registry pilots; open-access locator work
+- status: `blocked_external`

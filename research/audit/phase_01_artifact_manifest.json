@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "phase": "01_audit_and_normalization",
   "manifest_self_excluded": true,
-  "file_count": 33,
+  "file_count": 36,
   "files": [
     {
       "path": "__tests__/thesis-bundle-isolation.test.ts",
@@ -126,28 +126,43 @@
     },
     {
       "path": "research/logs/BLOCKERS.md",
-      "size_bytes": 2910,
-      "sha256": "b47737295c1737afd397b03c4710b59a5d8fe295706be7becc5fac143039ef27"
+      "size_bytes": 3944,
+      "sha256": "b53d23cdbfba29a49f4d11326979a2ca99d6caabc5b03a01e1c9e82e464d715b"
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 5274,
-      "sha256": "1cfe646fc308982bb2877b37500fe0e7c923656622a549a7b538814def9be5f6"
+      "size_bytes": 6095,
+      "sha256": "11f0ec7d67b7b34b9817d85259a0dd5118a02e28df5aabc099ae187a2cc0a21c"
     },
     {
       "path": "research/logs/RISKS.md",
-      "size_bytes": 4054,
-      "sha256": "c289c64334181d08fc3f10efddd6e59db6ed70731e25bd8aa56d619d787b99b0"
+      "size_bytes": 4532,
+      "sha256": "0192eb13ac6164a016bafa23bc3ab91cf5e4b3bf122568ed182251724a32adc6"
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 8788,
-      "sha256": "0b7af310532d50742e3a5c9c519b5d79e8980b787c782d020d52343cdc88ccfb"
+      "size_bytes": 9775,
+      "sha256": "c25c6d6dbcf29f27a5eade381db2ed70e5813d0adac5181cb1e3e520e99755ca"
     },
     {
       "path": "research/review_queue/phase_01_external_review.csv",
       "size_bytes": 2876,
       "sha256": "6a409c46df05a4ea63ce9406d943a7112a45a6fd6c8993d919c1c7592add7713"
+    },
+    {
+      "path": "research/review_queue/phase_02_external_review.csv",
+      "size_bytes": 1155,
+      "sha256": "f3f55aeed1c8d9df4035a0de3c7a9a3265733ef7866c63817631d5bb38ad102a"
+    },
+    {
+      "path": "research/review_queue/PRESS_review.csv",
+      "size_bytes": 2523,
+      "sha256": "91e8ddd6181448e5099046b849c37995543434070d3c1d24ad6ef73502b25860"
+    },
+    {
+      "path": "research/review_queue/PRESS_review.md",
+      "size_bytes": 846,
+      "sha256": "0f530d47a600f7ea1bfff1ca1e7214f32c247283454e9f612793cb4621ae5eac"
     },
     {
       "path": "scripts/build-thesis-bundle.ts",

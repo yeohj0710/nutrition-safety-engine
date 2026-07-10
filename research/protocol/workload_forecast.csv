@@ -1,0 +1,7 @@
+question_id,pubmed_pilot_hits,screening_rate_records_per_hour,primary_reviewer_hours,second_reviewer_20pct_hours,total_title_abstract_hours_before_dedup,interpretation
+A1,12229,90,135.88,27.18,163.06,unmanageable without PRESS-guided precision improvement or approved scope adjustment
+A2,820,90,9.11,1.82,10.93,feasible before cross-database dedup
+B1,1353,90,15.03,3.01,18.04,moderate workload
+B2,4879,90,54.21,10.84,65.05,high workload; test safe precision refinements while preserving sentinels
+B3,680,90,7.56,1.51,9.07,feasible before cross-database dedup
+ALL,19961,90,221.79,44.36,266.15,PubMed-only design pilot; not PRISMA counts and excludes full-text/extraction workload

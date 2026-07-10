@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0.0",
+  "accessed_at": "2026-07-10T06:24:12.106Z",
+  "time_zone": "UTC",
+  "endpoint": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
+  "status": "design_pilot_not_final_search",
+  "limitation": "Counts are workload estimates before human protocol/PRESS approval and are not PRISMA results.",
+  "request_rate": "<= 2.5 requests/second; no API key",
+  "runs": [
+    {
+      "question_id": "A1",
+      "database": "PubMed",
+      "platform": "NCBI E-utilities ESearch",
+      "status": "design_pilot_not_final_search",
+      "query_file": "research/searches/search_strategy_drafts/A1_pubmed.txt",
+      "query_sha256": "1c8cf631d80cafe6979690e2e346d0b713ec4ede510d68ecd675c3d7f02e6d66",
+      "hit_count_at_access": 12229,
+      "query_translation": "(\"Warfarin\"[MeSH Terms] OR \"Warfarin\"[Title/Abstract] OR \"vitamin K antagonist\"[Title/Abstract] OR \"vitamin K antagonists\"[Title/Abstract] OR \"VKA\"[Title/Abstract] OR \"VKAs\"[Title/Abstract] OR \"acenocoumarol\"[Title/Abstract] OR \"phenprocoumon\"[Title/Abstract]) AND (\"vitamin k\"[MeSH Terms] OR \"vitamin k\"[Title/Abstract] OR \"phylloquinone\"[Title/Abstract] OR \"menaquinone*\"[Title/Abstract] OR \"MK-7\"[Title/Abstract] OR \"MK7\"[Title/Abstract] OR \"vitamin K supplement\"[Title/Abstract] OR \"vitamin K supplements\"[Title/Abstract] OR \"vitamin K supplementation\"[Title/Abstract] OR \"vitamin K intake\"[Title/Abstract] OR \"dietary vitamin K\"[Title/Abstract])",
+      "sentinel_checks": [
+        {
+          "pmid": "27346552",
+          "retrieved": true
+        },
+        {
+          "pmid": "23953594",
+          "retrieved": true
+        },
+        {
+          "pmid": "21193422",
+          "retrieved": true
+        }
+      ]
+    },
+    {
+      "question_id": "A2",
+      "database": "PubMed",
+      "platform": "NCBI E-utilities ESearch",
+      "status": "design_pilot_not_final_search",
+      "query_file": "research/searches/search_strategy_drafts/A2_pubmed.txt",
+      "query_sha256": "6c12f61d0e6964b0057611a1cbb6525dcb48077139b8808e08666b44122654d4",
+      "hit_count_at_access": 820,
+      "query_translation": "(\"Anticoagulants\"[MeSH Terms] OR \"anticoagulan*\"[Title/Abstract] OR \"warfarin\"[Title/Abstract] OR \"vitamin K antagonist\"[Title/Abstract] OR \"vitamin K antagonists\"[Title/Abstract] OR \"VKA\"[Title/Abstract] OR \"VKAs\"[Title/Abstract] OR \"direct oral anticoagulant\"[Title/Abstract] OR \"direct oral anticoagulants\"[Title/Abstract] OR \"DOAC\"[Title/Abstract] OR \"DOACs\"[Title/Abstract] OR \"apixaban\"[Title/Abstract] OR \"rivaroxaban\"[Title/Abstract] OR \"edoxaban\"[Title/Abstract] OR \"dabigatran\"[Title/Abstract]) AND (\"fatty acids, omega 3\"[MeSH Terms] OR \"omega-3\"[Title/Abstract] OR \"omega3\"[Title/Abstract] OR \"n-3\"[Title/Abstract] OR \"fish oil\"[Title/Abstract] OR \"fish oils\"[Title/Abstract] OR \"eicosapentaenoic\"[Title/Abstract] OR \"EPA\"[Title/Abstract] OR \"docosahexaenoic\"[Title/Abstract] OR \"DHA\"[Title/Abstract] OR \"icosapent\"[Title/Abstract] OR \"icosapent ethyl\"[Title/Abstract])",
+      "sentinel_checks": [
+        {
+          "pmid": "7795149",
+          "retrieved": true
+        },
+        {
+          "pmid": "27657121",
+          "retrieved": true
+        }
+      ]
+    },
+    {
+      "question_id": "B1",
+      "database": "PubMed",
+      "platform": "NCBI E-utilities ESearch",
+      "status": "design_pilot_not_final_search",
+      "query_file": "research/searches/search_strategy_drafts/B1_pubmed.txt",
+      "query_sha256": "2500922a5460a60d1a38ca8113bd02e24a5a4ed0e69d11d2099b765d283d13e9",
+      "hit_count_at_access": 1353,
+      "query_translation": "(\"Kidney Calculi\"[MeSH Terms] OR \"Urinary Calculi\"[MeSH Terms] OR \"nephrolithiasis\"[Title/Abstract] OR \"urolithiasis\"[Title/Abstract] OR \"kidney stone\"[Title/Abstract] OR \"kidney stones\"[Title/Abstract] OR \"renal stone\"[Title/Abstract] OR \"renal stones\"[Title/Abstract] OR \"urinary stone\"[Title/Abstract] OR \"urinary stones\"[Title/Abstract] OR \"urinary tract stone\"[Title/Abstract] OR \"urinary tract stones\"[Title/Abstract] OR \"hypercalciuria\"[Title/Abstract] OR \"calcium oxalate\"[Title/Abstract]) AND (\"calcium, dietary\"[MeSH Terms] OR \"Calcium Carbonate\"[MeSH Terms] OR \"calcium supplement\"[Title/Abstract] OR \"calcium supplements\"[Title/Abstract] OR \"calcium supplementation\"[Title/Abstract] OR \"supplemental calcium\"[Title/Abstract] OR \"Calcium Carbonate\"[Title/Abstract] OR \"calcium citrate\"[Title/Abstract])",
+      "sentinel_checks": [
+        {
+          "pmid": "21525191",
+          "retrieved": true
+        }
+      ]
+    },
+    {
+      "question_id": "B2",
+      "database": "PubMed",
+      "platform": "NCBI E-utilities ESearch",
+      "status": "design_pilot_not_final_search",
+      "query_file": "research/searches/search_strategy_drafts/B2_pubmed.txt",
+      "query_sha256": "c78f241a84c6cfa84d710490b821c6ebf41692493d9b0906e386832924f62c22",
+      "hit_count_at_access": 4879,
+      "query_translation": "(\"Kidney Calculi\"[MeSH Terms] OR \"Urinary Calculi\"[MeSH Terms] OR \"nephrolithiasis\"[Title/Abstract] OR \"urolithiasis\"[Title/Abstract] OR \"kidney stone\"[Title/Abstract] OR \"kidney stones\"[Title/Abstract] OR \"urinary stone\"[Title/Abstract] OR \"urinary stones\"[Title/Abstract] OR \"urinary tract stone\"[Title/Abstract] OR \"urinary tract stones\"[Title/Abstract] OR \"hypercalciuria\"[Title/Abstract] OR \"hypercalcemia\"[Title/Abstract] OR \"calcium oxalate\"[Title/Abstract]) AND (\"vitamin d\"[MeSH Terms] OR \"vitamin d\"[Title/Abstract] OR \"cholecalciferol\"[Title/Abstract] OR \"ergocalciferol\"[Title/Abstract] OR \"calcifediol\"[Title/Abstract] OR \"vitamin D supplement\"[Title/Abstract] OR \"vitamin D supplements\"[Title/Abstract] OR \"vitamin D supplementation\"[Title/Abstract])",
+      "sentinel_checks": [
+        {
+          "pmid": "27604776",
+          "retrieved": true
+        },
+        {
+          "pmid": "27765695",
+          "retrieved": true
+        }
+      ]
+    },
+    {
+      "question_id": "B3",
+      "database": "PubMed",
+      "platform": "NCBI E-utilities ESearch",
+      "status": "design_pilot_not_final_search",
+      "query_file": "research/searches/search_strategy_drafts/B3_pubmed.txt",
+      "query_sha256": "1cd3f203baa8a45c45fa5e33fd965a566097e7bd1e726ff47ec238824ed1e3f9",
+      "hit_count_at_access": 680,
+      "query_translation": "(\"Kidney Calculi\"[MeSH Terms] OR \"Urinary Calculi\"[MeSH Terms] OR \"nephrolithiasis\"[Title/Abstract] OR \"urolithiasis\"[Title/Abstract] OR \"kidney stone\"[Title/Abstract] OR \"kidney stones\"[Title/Abstract] OR \"urinary stone\"[Title/Abstract] OR \"urinary stones\"[Title/Abstract] OR \"urinary tract stone\"[Title/Abstract] OR \"urinary tract stones\"[Title/Abstract] OR \"hyperoxaluria\"[Title/Abstract] OR \"oxalate\"[Title/Abstract] OR \"calcium oxalate\"[Title/Abstract]) AND (\"Ascorbic Acid\"[MeSH Terms] OR \"vitamin C\"[Title/Abstract] OR \"Ascorbic Acid\"[Title/Abstract] OR \"ascorbate\"[Title/Abstract] OR \"vitamin C supplement\"[Title/Abstract] OR \"vitamin C supplements\"[Title/Abstract] OR \"vitamin C supplementation\"[Title/Abstract])",
+      "sentinel_checks": [
+        {
+          "pmid": "23381591",
+          "retrieved": true
+        }
+      ]
+    }
+  ]
+}
