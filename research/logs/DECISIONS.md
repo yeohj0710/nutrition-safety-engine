@@ -347,3 +347,17 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: encode critical-failure labels as a subset of adjudicated expected `rule_id` values and treat any missing labeled rule as a critical false negative
 - rationale: free-text severity labels cannot be joined deterministically to engine outputs
 - impact: critical misses are traceable to scenario and rule; any nonzero critical FN produces explicit release-prohibited status
+
+## D-047 — Deployment evidence is a single immutable release binding
+
+- date: 2026-07-10
+- decision: accept at most one deployment-verification row binding deployment ID/URL/provider, exact release commit, thesis-bundle SHA, post-deploy report path/SHA, external verifier, and timestamps
+- rationale: a successful local build or an arbitrary public URL does not prove that the validated bundle was deployed and smoke-tested
+- impact: missing deployment remains an external blocker; any partially populated or mismatched row fails QA rather than being reported as a release
+
+## D-048 — No release commit is assigned before predeployment gates pass
+
+- date: 2026-07-10
+- decision: keep `release_commit` null while validated claims/rules, 120 gold metrics, zero critical FN, full determinism, or 120 expert reviews are incomplete
+- rationale: embedding ordinary moving HEAD values in a tracked blocked-state report creates noise and can imply a release candidate exists
+- impact: current readiness remains stable and explicitly non-release; commit identity appears only when a genuine candidate or deployment row exists

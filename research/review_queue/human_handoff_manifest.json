@@ -10,7 +10,7 @@
     "independent_validation",
     "finalization"
   ],
-  "queue_count": 28,
+  "queue_count": 29,
   "total_rows": 20900,
   "rows_with_any_human_data": 0,
   "rows_complete_candidate": 0,
@@ -588,6 +588,42 @@
       "rows_with_any_human_data": 0,
       "rows_complete_candidate": 0,
       "progress_state": "not_started"
+    },
+    {
+      "queue_id": "P7_deployment_verification",
+      "path": "research/validation/deployment_verification.csv",
+      "sha256": "c2eb7ccc015145212558203c3154f639863ca7632f62ebc73f200ac708c381cf",
+      "size_bytes": 168,
+      "row_count": 0,
+      "human_entry_fields": [
+        "deployment_id",
+        "deployment_url",
+        "provider",
+        "release_commit",
+        "thesis_bundle_sha256",
+        "deployed_at",
+        "postdeploy_report_path",
+        "postdeploy_report_sha256",
+        "verified_by",
+        "verified_at",
+        "status"
+      ],
+      "minimum_completion_fields": [
+        "deployment_id",
+        "deployment_url",
+        "provider",
+        "release_commit",
+        "thesis_bundle_sha256",
+        "deployed_at",
+        "postdeploy_report_path",
+        "postdeploy_report_sha256",
+        "verified_by",
+        "verified_at",
+        "status"
+      ],
+      "rows_with_any_human_data": 0,
+      "rows_complete_candidate": 0,
+      "progress_state": "awaiting_upstream_rows"
     },
     {
       "queue_id": "P1_external",

@@ -20,6 +20,7 @@ Safe-empty software boundary: `complete_verified`
 - Queue preservation and progression: rebuild initializes or refreshes only queues with no human data; populated bytes are preserved; pending/partial/complete states are validated; preservation 3/3 and progress states 6/6
 - Independent performance path: adjudicated/hash-valid candidates promote to a separate curated JSONL; exactly 120 bundle-matched scenarios are required before sensitivity, precision, exact match, determinism, or critical-FN metrics are emitted; current 0 and `metrics: null`
 - Validated release deployment: none
+- Release readiness manifest: six predeployment gates plus a single deployment-verification row must bind provider deployment ID/URL, release commit, thesis bundle, post-deploy report bytes, verifier, and timestamps; current release-ready false
 - Runtime AI files/dependency: 0; empty historical directories do not count as runtime modules
 - CI research gates: Phase 01/02/04/05/06, ClinicalTrials.gov, and Phase 07 proxy configured; Phase 03 raw PubMed XML rehash remains local-only
 
@@ -32,3 +33,5 @@ Future completed gold rows require two distinct authors, a distinct adjudicator,
 The evaluator executes every accepted scenario three times, scores `(rule_id, action_class)` action sets, reports Wilson intervals with exact denominators, lists critical missed rule IDs, and SHA-binds evaluator, engine, curated gold, and thesis bundle. Any critical false negative yields release-prohibited status.
 
 The current public Vercel deployment is the legacy baseline at commit `33658e3`; it is not a validated thesis release. Phase 07 remains blocked until a release commit, immutable manifest, deployment identity, and post-deploy smoke evidence all match.
+
+`deployment_verification.csv` is intentionally empty. A populated but mismatched row fails QA; absence remains a transparent external blocker. No release commit is assigned while predeployment evidence is incomplete.

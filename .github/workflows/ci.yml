@@ -28,6 +28,7 @@ jobs:
       - run: python tools/validate_phase07_review_queues.py
       - run: python tools/validate_phase07_queue_preservation.py
       - run: npm run evaluate:phase07:gold
+      - run: python tools/build_phase07_release_readiness.py
       - run: npm run build
       - run: python tools/validate_phase01.py
       - run: python tools/validate_phase02.py

@@ -535,3 +535,10 @@
 - Added a three-repeat engine evaluator with action-level TP/FP/FN, sensitivity, precision, scenario exact match, determinism, Wilson intervals, and critical-FN detail.
 - Evaluator/engine/gold/bundle hashes are reproduced by the Phase 07 gate. Scoring unit tests pass 3/3.
 - Current curated gold is 0/120; report status is `blocked_external_incomplete_independent_gold`, metrics are null, and release remains prohibited.
+
+## 2026-07-10 — Phase 07 release and deployment readiness gate
+
+- Added a six-gate predeployment assessment for validated claims, validated rules, complete independent gold metrics, zero critical FN, 100% determinism, and 120 completed expert reviews.
+- Added an empty deployment-verification schema that must bind provider identity, exact release commit/bundle, post-deploy report bytes, and external verification.
+- Release readiness emits false, deployment false, final manifest null, and no release commit while prerequisites are absent. State contracts pass 3/3.
+- Current public legacy baseline was not changed or reclassified; no deployment or publication action was taken.
