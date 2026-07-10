@@ -3,11 +3,14 @@
   "errors": [],
   "human_gold_fields": 0,
   "ai_runs": 0,
+  "raw_run_manifests": 0,
   "human_review_rows": 0,
   "metrics": null,
   "contract_tests": {
     "exact_match": true,
     "critical_fn": true,
-    "unsupported": true
+    "unsupported": true,
+    "raw_manifest_valid": true,
+    "raw_manifest_wrong_hash_rejected": true
   }
 }

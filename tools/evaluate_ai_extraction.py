@@ -7,6 +7,7 @@ import csv
 import hashlib
 import json
 import math
+import tempfile
 from collections import defaultdict
 from pathlib import Path
 
@@ -16,6 +17,7 @@ from jsonschema import Draft202012Validator
 ROOT = Path(__file__).resolve().parents[1]
 GOLD = ROOT / "data/curated/ai_extraction_gold.csv"
 RUNS = ROOT / "data/interim/ai_extraction_runs.jsonl"
+RUN_MANIFEST = ROOT / "data/interim/ai_extraction_run_manifest.csv"
 REVIEW = ROOT / "data/curated/ai_extraction_human_review.csv"
 OUTPUT = ROOT / "research/extraction/ai_extraction_evaluation.json"
 SCHEMA = ROOT / "research/design/20260710/04_EXTRACTION/llm_extraction_schema.json"
@@ -23,10 +25,21 @@ GOLD_FIELDS = ["gold_id", "report_id", "question_id", "field_name", "value_json"
                "critical", "gold_status", "consensus_by", "frozen_at", "gold_row_sha256"]
 REVIEW_FIELDS = ["run_id", "field_name", "quote_entails", "locator_correct", "wrong_arm", "wrong_timepoint",
                  "study_report_mixing", "critical_numeric_error", "reviewer_id", "reviewed_at", "review_row_sha256"]
+MANIFEST_FIELDS = ["run_id", "input_path", "input_sha256", "prompt_path", "prompt_sha256", "raw_output_path",
+                   "raw_output_sha256", "model_name", "model_version_or_access_date", "temperature", "api_or_app",
+                   "attempt_count", "executed_at", "manifest_row_sha256"]
 
 
 def sha_text(value: str) -> str:
     return hashlib.sha256(value.encode("utf-8")).hexdigest()
+
+
+def sha_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
 
 
 def wilson(n: int, total: int, z: float = 1.959963984540054) -> list[float | None]:
@@ -52,7 +65,41 @@ def expected_gold_hash(row: dict) -> str:
     return sha_text("\x1f".join(values))
 
 
-def load_inputs() -> tuple[list[dict], list[dict], list[dict], list[str]]:
+def validate_run_manifests(runs: list[dict], manifests: list[dict], root: Path = ROOT) -> list[str]:
+    errors: list[str] = []
+    run_by_id = {run.get("run_id"): run for run in runs}
+    manifest_by_id = {row["run_id"]: row for row in manifests}
+    if len(manifest_by_id) != len(manifests):
+        errors.append("duplicate AI run manifest run_id")
+    if set(run_by_id) != set(manifest_by_id):
+        errors.append("AI parsed runs and raw-run manifests must map one-to-one")
+    for row_no, row in enumerate(manifests, 2):
+        expected = sha_text("\x1f".join(row[field] for field in MANIFEST_FIELDS if field != "manifest_row_sha256"))
+        if row["manifest_row_sha256"] != expected:
+            errors.append(f"AI run manifest row {row_no}: hash mismatch")
+        if not row["api_or_app"] or not row["executed_at"] or not row["attempt_count"].isdigit() or int(row["attempt_count"]) < 1:
+            errors.append(f"AI run manifest row {row_no}: incomplete execution provenance")
+        for path_field, hash_field in (("input_path", "input_sha256"), ("prompt_path", "prompt_sha256"),
+                                       ("raw_output_path", "raw_output_sha256")):
+            relative = Path(row[path_field])
+            path = (root / relative).resolve()
+            if relative.is_absolute() or "legacy_unverified" in relative.parts or not path.is_relative_to(root) or not path.is_file():
+                errors.append(f"AI run manifest row {row_no}: invalid {path_field}")
+            elif sha_file(path) != row[hash_field]:
+                errors.append(f"AI run manifest row {row_no}: {hash_field} mismatch")
+        run = run_by_id.get(row["run_id"])
+        if run:
+            model = run.get("model", {})
+            if model.get("name") != row["model_name"] or model.get("version_or_access_date") != row["model_version_or_access_date"]:
+                errors.append(f"AI run manifest row {row_no}: model identity mismatch")
+            if canonical(model.get("temperature")) != row["temperature"]:
+                errors.append(f"AI run manifest row {row_no}: temperature mismatch")
+            if model.get("prompt_sha256") != row["prompt_sha256"] or run.get("input_sha256") != row["input_sha256"] or run.get("output_sha256") != row["raw_output_sha256"]:
+                errors.append(f"AI run manifest row {row_no}: parsed/raw hash linkage mismatch")
+    return errors
+
+
+def load_inputs() -> tuple[list[dict], list[dict], list[dict], list[dict], list[str]]:
     errors: list[str] = []
     with GOLD.open(encoding="utf-8-sig", newline="") as handle:
         reader = csv.DictReader(handle)
@@ -78,6 +125,11 @@ def load_inputs() -> tuple[list[dict], list[dict], list[dict], list[str]]:
         if reader.fieldnames != REVIEW_FIELDS:
             errors.append("human review header mismatch")
         reviews = list(reader)
+    with RUN_MANIFEST.open(encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle)
+        if reader.fieldnames != MANIFEST_FIELDS:
+            errors.append("AI run manifest header mismatch")
+        manifests = list(reader)
     for row_no, row in enumerate(gold, 2):
         if row["gold_status"] != "frozen_consensus":
             errors.append(f"gold row {row_no}: not frozen_consensus")
@@ -98,7 +150,8 @@ def load_inputs() -> tuple[list[dict], list[dict], list[dict], list[str]]:
         for field in REVIEW_FIELDS[2:8]:
             if row[field].lower() not in {"true", "false"}:
                 errors.append(f"human review row {row_no}: {field} must be true/false")
-    return gold, runs, reviews, errors
+    errors.extend(validate_run_manifests(runs, manifests))
+    return gold, runs, reviews, manifests, errors
 
 
 def evaluate(gold: list[dict], runs: list[dict], reviews: list[dict] | None = None) -> dict:
@@ -185,12 +238,30 @@ def contract_tests() -> dict:
     good = evaluate(gold, [run])
     missed = evaluate(gold, [dict(run, run_id="T2", fields=[])])
     unsupported = evaluate(gold, [dict(run, run_id="T3", fields=[dict(run["fields"][0], field_name="invented")])])
+    with tempfile.TemporaryDirectory() as temp:
+        root = Path(temp)
+        for name, value in (("input.txt", b"input"), ("prompt.txt", b"prompt"), ("output.txt", b"output")):
+            (root / name).write_bytes(value)
+        hashes = {name: sha_file(root / name) for name in ("input.txt", "prompt.txt", "output.txt")}
+        raw_run = {"run_id": "RAW1", "input_sha256": hashes["input.txt"], "output_sha256": hashes["output.txt"],
+                   "model": {"name": "fixture", "version_or_access_date": "test", "temperature": None,
+                             "prompt_sha256": hashes["prompt.txt"]}}
+        manifest = {"run_id": "RAW1", "input_path": "input.txt", "input_sha256": hashes["input.txt"],
+                    "prompt_path": "prompt.txt", "prompt_sha256": hashes["prompt.txt"], "raw_output_path": "output.txt",
+                    "raw_output_sha256": hashes["output.txt"], "model_name": "fixture", "model_version_or_access_date": "test",
+                    "temperature": "null", "api_or_app": "fixture", "attempt_count": "1", "executed_at": "2026-07-10T00:00:00Z"}
+        manifest["manifest_row_sha256"] = sha_text("\x1f".join(manifest[field] for field in MANIFEST_FIELDS if field != "manifest_row_sha256"))
+        valid_manifest = not validate_run_manifests([raw_run], [manifest], root)
+        bad_hash = dict(manifest, input_sha256="f" * 64)
+        bad_hash["manifest_row_sha256"] = sha_text("\x1f".join(bad_hash[field] for field in MANIFEST_FIELDS if field != "manifest_row_sha256"))
+        wrong_hash_rejected = bool(validate_run_manifests([raw_run], [bad_hash], root))
     return {"exact_match": good["exact_value"]["rate"] == 1, "critical_fn": missed["critical_false_negative_count"] == 1,
-            "unsupported": unsupported["unsupported_claims"]["n"] == 1}
+            "unsupported": unsupported["unsupported_claims"]["n"] == 1, "raw_manifest_valid": valid_manifest,
+            "raw_manifest_wrong_hash_rejected": wrong_hash_rejected}
 
 
 def main() -> int:
-    gold, runs, reviews, errors = load_inputs()
+    gold, runs, reviews, manifests, errors = load_inputs()
     tests = contract_tests()
     if not all(tests.values()):
         errors.append("internal contract test failure")
@@ -198,7 +269,7 @@ def main() -> int:
         result = {"status": "invalid_inputs_no_performance_metrics", "errors": errors, "contract_tests": tests}
     elif not gold or not runs:
         result = {"status": "blocked_external_no_performance_metrics", "errors": [], "human_gold_fields": len(gold),
-                  "ai_runs": len(runs), "human_review_rows": len(reviews), "metrics": None, "contract_tests": tests}
+                  "ai_runs": len(runs), "raw_run_manifests": len(manifests), "human_review_rows": len(reviews), "metrics": None, "contract_tests": tests}
     elif not reviews:
         result = {"status": "blocked_external_missing_human_ai_field_review_no_performance_metrics", "errors": [],
                   "human_gold_fields": len(gold), "ai_runs": len(runs), "human_review_rows": 0,

@@ -474,3 +474,10 @@
 - Evaluator validates gold/review row hashes, consensus/reviewer provenance, JSON Schema output, unique run IDs, and exact one-to-one field-review coverage.
 - Predeclared outputs cover precision/recall/F1, exact/numeric/unit accuracy, quote entailment, locator accuracy, unsupported claims, wrong arm/timepoint, report mixing, critical numeric errors/FNs, and three-run stability.
 - Internal metric contracts pass 3/3. Current gold/runs/reviews are 0/0/0, so the research output is `blocked_external_no_performance_metrics` with `metrics: null`.
+
+## 2026-07-10 — AI raw-run provenance gate
+
+- Added a blank run manifest that binds every future parsed run one-to-one to repository-local input, full prompt, and raw output files.
+- Validator reproduces all three SHA-256 values and cross-checks model identity, version/access date, JSON temperature, API/app route, attempt count, execution time, and parsed-run hash fields.
+- Paths outside the repository or under `legacy_unverified` are rejected. Valid-manifest and wrong-byte-hash contracts pass, bringing the evaluator contract suite to 5/5.
+- Current parsed runs/raw manifests remain 0/0; metrics remain null.

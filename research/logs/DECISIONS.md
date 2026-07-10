@@ -270,3 +270,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: compute production AI metrics only when frozen hash-bound human gold, schema-valid preserved AI runs, and one-to-one independent human field reviews are all present
 - rationale: locator presence is not locator correctness, and synthetic fixtures or unreviewed outputs cannot establish extraction accuracy or safety
 - impact: the empty state emits `metrics: null`; completed inputs yield detection, value/unit, human-judged quote/locator, safety-error, critical-FN, and repeat-stability outputs with explicit denominators
+
+## D-036 — Parsed AI output is not a reproducible raw run
+
+- date: 2026-07-10
+- decision: require one manifest row per parsed run, binding repository-local input, full prompt, and raw model output bytes to their SHA-256 values and execution/model metadata
+- rationale: a parsed JSON candidate alone cannot reproduce the prompt context, provider output, retry history, or exact evaluated bytes
+- impact: missing, extra, legacy, out-of-root, stale-hash, or model-mismatched manifests invalidate inputs and suppress all performance metrics
