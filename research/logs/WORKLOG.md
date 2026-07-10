@@ -428,3 +428,11 @@
 - Phase 02 validation rejects decisions outside each row's allow-list, missing reviewer/date, and partial reviewer identity without a decision.
 - Rebuilt the 21-artifact Phase 02 evidence manifest and human handoff hashes.
 - Main PRESS is now actionable `not_started`, not a blocker-only instruction; completed rows remain 0/8.
+
+## 2026-07-10 — Blinded secondary screening pipeline
+
+- Added a deterministic builder that waits for complete primary reviewer/date/decision triples.
+- It selects every include/uncertain unit and `ceil(20%)` from each excluded question×reason stratum using a stable hash.
+- Reviewer 2 receives title/year and source hashes but not primary decision, reason, or selection basis; those stay in a separate audit file.
+- Five contracts pass for complete include/uncertain coverage, 20% ceiling, determinism, and primary-decision blinding.
+- Primary completed rows and secondary queue rows remain 0/0, correctly marked awaiting upstream review.

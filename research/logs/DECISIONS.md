@@ -228,3 +228,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: store reviewer, date, and one row-specific allowed decision directly in the main PRESS queue
 - rationale: a review request without result fields cannot become auditable approval or amendment evidence
 - impact: the eight main PRESS rows can now progress through the handoff model while invalid or partial decisions fail Phase 02 validation
+
+## D-030 — Secondary screening is selected deterministically and blinded
+
+- date: 2026-07-10
+- decision: route all primary include/uncertain decisions and a stable ceil-20% excluded stratum sample to a reviewer-2 queue that hides primary judgments
+- rationale: the protocol requires double review while avoiding both convenience sampling and anchoring on reviewer 1
+- impact: selection is reproducible and auditable; secondary review cannot start until complete primary rows exist and cannot inherit proxy or primary decisions

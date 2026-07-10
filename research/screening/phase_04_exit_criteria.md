@@ -13,6 +13,7 @@ Proxy queue status: `complete_verified`
 | Screening boundary mutations | pass_proxy_only | 6/6 missing-unit, authority, decision, title, pilot-scope, and registry-loss mutations rejected |
 | AI-only exclusions | pass | 0 |
 | Human title/abstract or registry decisions | blocked_external | 0/20,230 database-question retrieval units |
+| Blinded secondary-review selection | pass_local | all include/uncertain plus ceil(20%) per excluded question/reason stratum; 5/5 contracts; awaiting primary rows |
 | Human pilot training | blocked_external | 0/50 |
 | Full-text double review | blocked_external | 0 reports assessed |
 | Public PMC locator resolution | pass_proxy_only | 19,609 PMID input; 99 checksum-verified responses; 5,563 unique PMCID candidates; human verification 0 |

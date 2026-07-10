@@ -24,6 +24,8 @@
     "validate:local-production-smoke": "python tools/validate_local_production_smoke.py",
     "build:human-handoff": "python tools/build_human_handoff_manifest.py",
     "validate:human-handoff": "python tools/validate_human_handoff_manifest.py",
+    "build:secondary-screening": "python tools/build_secondary_screening_queue.py",
+    "validate:secondary-screening": "python tools/validate_secondary_screening_queue.py",
     "validate:pmc-locators": "python tools/validate_pmc_fulltext_candidates.py",
     "capture:pmc-sentinel-fulltext": "python tools/capture_pmc_sentinel_fulltext.py",
     "validate:pmc-sentinel-fulltext": "python tools/validate_pmc_sentinel_fulltext.py",

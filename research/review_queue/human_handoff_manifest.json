@@ -10,7 +10,7 @@
     "independent_validation",
     "finalization"
   ],
-  "queue_count": 21,
+  "queue_count": 22,
   "total_rows": 20900,
   "rows_with_any_human_data": 0,
   "rows_complete_candidate": 0,
@@ -158,6 +158,30 @@
       "rows_with_any_human_data": 0,
       "rows_complete_candidate": 0,
       "progress_state": "not_started"
+    },
+    {
+      "queue_id": "P4_pubmed_secondary",
+      "path": "data/interim/secondary_screening_review_queue.csv",
+      "sha256": "9e56e93863f6bc83afe7991f4ac12bda464526ee8a093d4830ba8e6394134d41",
+      "size_bytes": 207,
+      "row_count": 0,
+      "human_entry_fields": [
+        "reviewer_2_id",
+        "reviewer_2_decision",
+        "reviewer_2_reason",
+        "reviewed_at",
+        "final_decision",
+        "adjudicator_id"
+      ],
+      "minimum_completion_fields": [
+        "reviewer_2_id",
+        "reviewer_2_decision",
+        "reviewed_at",
+        "final_decision"
+      ],
+      "rows_with_any_human_data": 0,
+      "rows_complete_candidate": 0,
+      "progress_state": "awaiting_upstream_rows"
     },
     {
       "queue_id": "P4_non_oa_access",
