@@ -110,6 +110,19 @@ def main() -> int:
         row["status"] in {"pending_external_human_review", "blocked_external"} for row in press
     ):
         errors.append("PRESS queue is incomplete or falsely closed")
+    press_human_fields = {"reviewer_id", "reviewed_at", "decision", "comments", "required_revision"}
+    if press and not press_human_fields <= set(press[0]):
+        errors.append("main PRESS queue cannot record human decisions")
+    press_completed = 0
+    for row in press:
+        decision = row.get("decision", "").strip()
+        if decision:
+            press_completed += 1
+            allowed = set(row["allowed_decisions"].split(";"))
+            if decision not in allowed or not row.get("reviewer_id", "").strip() or not row.get("reviewed_at", "").strip():
+                errors.append(f"invalid/incomplete PRESS decision: {row['review_id']}")
+        elif row.get("reviewer_id", "").strip() or row.get("reviewed_at", "").strip():
+            errors.append(f"partial PRESS identity without decision: {row['review_id']}")
 
     review = csv_rows("research/review_queue/phase_02_external_review.csv")
     if len(review) < 5 or not all(row["status"] == "blocked_external" for row in review):
@@ -122,6 +135,7 @@ def main() -> int:
         "pubmed_pilot_hits": sum(int(run["hit_count_at_access"]) for run in runs),
         "sentinel_checks": sum(len(run["sentinel_checks"]) for run in runs),
         "press_queue_rows": len(press),
+        "press_completed_rows": press_completed,
         "external_review_rows": len(review),
     }
     print(json.dumps(result, ensure_ascii=False, indent=2))

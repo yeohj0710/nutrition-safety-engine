@@ -418,6 +418,13 @@
 
 - Corrected the handoff validator so legitimate future reviewer entries no longer fail merely for being nonzero.
 - Added queue-specific human-entry and minimum-completion fields with four actionable states plus blocker instructions.
-- Current distribution is 8 blocker instructions, 8 not started, and 5 awaiting upstream rows; in-progress and complete-candidate rows remain 0.
+- Current distribution is 7 blocker instructions, 9 not started, and 5 awaiting upstream rows; in-progress and complete-candidate rows remain 0.
 - Five state-contract tests cover instruction, upstream-empty, untouched, partial, and complete-candidate transitions.
 - `human_work_complete` remains false even for complete candidates until phase-specific validators accept the decisions.
+
+## 2026-07-10 — Writable main PRESS decisions
+
+- Added reviewer ID, review date, decision, comments, and required-revision columns to all eight main PRESS rows without altering findings or allowed decisions.
+- Phase 02 validation rejects decisions outside each row's allow-list, missing reviewer/date, and partial reviewer identity without a decision.
+- Rebuilt the 21-artifact Phase 02 evidence manifest and human handoff hashes.
+- Main PRESS is now actionable `not_started`, not a blocker-only instruction; completed rows remain 0/8.

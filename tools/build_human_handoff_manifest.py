@@ -15,7 +15,7 @@ def spec(queue_id: str, path: str, human: list[str], required: list[str]):
 
 
 SPECS = [
-    spec("P2_PRESS_main", "research/review_queue/PRESS_review.csv", [], []),
+    spec("P2_PRESS_main", "research/review_queue/PRESS_review.csv", ["reviewer_id", "reviewed_at", "decision", "comments", "required_revision"], ["reviewer_id", "reviewed_at", "decision"]),
     spec("P2_PRESS_korean", "research/review_queue/korean_db_PRESS_review.csv", ["reviewer_id", "reviewed_at", "decision", "comments", "required_revision"], ["reviewer_id", "reviewed_at", "decision"]),
     spec("P3_dedup", "data/interim/deduplication_decisions.csv", ["decision", "canonical_record_id", "duplicate_cluster_id", "duplicate_reason", "verified_by", "verified_at"], ["decision", "verified_by", "verified_at"]),
     spec("P4_pubmed_screening", "data/interim/screening_decisions.csv", ["reviewer_id", "decision", "primary_reason_code", "reviewed_at", "final_decision", "final_reason_code", "adjudicator_id"], ["reviewer_id", "decision", "reviewed_at", "final_decision"]),

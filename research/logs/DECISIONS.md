@@ -221,3 +221,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: derive queue progress from minimum completion fields and accept partial/complete-candidate states without setting `human_work_complete`
 - rationale: requiring human fields to stay permanently blank blocks legitimate review, while treating any populated field as completion accepts partial work
 - impact: reviewers can progress safely; only phase-specific semantic validation can convert complete candidates into accepted research decisions
+
+## D-029 — Every PRESS finding needs a writable allowed-decision record
+
+- date: 2026-07-10
+- decision: store reviewer, date, and one row-specific allowed decision directly in the main PRESS queue
+- rationale: a review request without result fields cannot become auditable approval or amendment evidence
+- impact: the eight main PRESS rows can now progress through the handoff model while invalid or partial decisions fail Phase 02 validation

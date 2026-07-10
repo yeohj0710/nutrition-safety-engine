@@ -14,6 +14,7 @@ Project status: `in_progress`
 | Workload forecast | pass_local | 19,961 PubMed pilot hits; estimated 266.15 title/abstract reviewer-hours before dedup |
 | Human/AI roles and metrics frozen | pass_local | `human_ai_role_matrix.md` |
 | Independent PRESS review | blocked_external | main queue 8 rows plus checksum-bound KMbase/RISS detail queue 40 rows; human decisions 0 |
+| PRESS decision storage | pass_local | both main and Korean queues contain reviewer/date/allowed-decision fields; partial or invalid decisions rejected |
 | Dated protocol approval | blocked_external | no supervisor decision |
 | Authenticated database/full-text access | blocked_external | CENTRAL public hit counts available but full content/export authentication-blocked; Embase/Scopus unavailable |
 | Registration/public URL | blocked_external | protocol intentionally not represented as registered |

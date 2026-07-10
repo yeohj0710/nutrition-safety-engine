@@ -20,14 +20,24 @@
     {
       "queue_id": "P2_PRESS_main",
       "path": "research/review_queue/PRESS_review.csv",
-      "sha256": "b56713e936abe6e21d77ce961f458b005db85b61474cb88cecadaf1f17a5d501",
-      "size_bytes": 2939,
+      "sha256": "ffff061a66bdc2c14b72f66ff683cfd3ae1d5aed396c32d3926238e1373ac127",
+      "size_bytes": 3039,
       "row_count": 8,
-      "human_entry_fields": [],
-      "minimum_completion_fields": [],
+      "human_entry_fields": [
+        "reviewer_id",
+        "reviewed_at",
+        "decision",
+        "comments",
+        "required_revision"
+      ],
+      "minimum_completion_fields": [
+        "reviewer_id",
+        "reviewed_at",
+        "decision"
+      ],
       "rows_with_any_human_data": 0,
       "rows_complete_candidate": 0,
-      "progress_state": "blocker_instruction"
+      "progress_state": "not_started"
     },
     {
       "queue_id": "P2_PRESS_korean",
