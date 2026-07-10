@@ -52,7 +52,7 @@
     {
       "path": "data/legacy_unverified/manifest.json",
       "size_bytes": 17093,
-      "sha256": "95a4448ad5c6e56c736b2110f3b0a31c09a2ad386f54813f43cfe7c71bff358c"
+      "sha256": "1faf9c156339b65d87821c61356b86e356e330add20d2c5fe10547a5e7799cb6"
     },
     {
       "path": "docs/superpowers/plans/2026-07-10-phase-01-audit-and-normalization.md",
@@ -121,8 +121,8 @@
     },
     {
       "path": "research/audit/repo_inventory.json",
-      "size_bytes": 282915,
-      "sha256": "8debc4b77a43f6e80ff0cf5b3ad70c9214c6b956ef312d6991c87e56f3b06690"
+      "size_bytes": 281560,
+      "sha256": "963998d4c5dcd341d570af171699036101c5c6c4ab6554cc8b9bf4707e26f356"
     },
     {
       "path": "research/audit/rule_scope_report.csv",
@@ -156,8 +156,8 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 16896,
-      "sha256": "137e3dde41f62f061a3f1e70d119c2f4318e5dad68cf3f74b03432de2a33638a"
+      "size_bytes": 17696,
+      "sha256": "5728c126ab98cb4af49cd7795232c898a9d2cd16e5ec88c1cce9170edbb33a1e"
     },
     {
       "path": "research/review_queue/phase_01_external_review.csv",
@@ -187,7 +187,7 @@
     {
       "path": "src/generated/thesis-bundle.json",
       "size_bytes": 555,
-      "sha256": "596b1518f29f13c81f3e2618fce32ce72d14bf5525ba58692d083b3f1aa520f5"
+      "sha256": "5081479212f277b020bc43ebb226d08189282146cee4a27ad67b2264a1798f0e"
     },
     {
       "path": "tools/phase01_audit.py",

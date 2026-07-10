@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-10T07:10:08+00:00",
+  "generated_at": "2026-07-10T07:11:12+00:00",
   "repository": {
     "root": "C:\\Users\\hjyeo\\Documents\\Codex\\2026-07-10\\g-24-1-gpt-5-6\\work\\nutrition-safety-engine",
     "branch": "thesis-reboot-20260710",
-    "head": "1f8488666f21e45be2c1a73906b5a36486258aba",
+    "head": "e44bdea6a6daa18edf5513a932c1f27d517cc733",
     "origin_main": "33658e3a9ee8dbf6d21ac94a5aa49202b5bf22e5",
-    "status_porcelain": "M data/legacy_unverified/manifest.json\n M research/PROGRESS_LEDGER.md\n M research/audit/data_lineage.md\n M research/audit/phase_01_artifact_manifest.json\n M research/audit/phase_01_exit_criteria.md\n M research/audit/repo_inventory.json\n M research/logs/BLOCKERS.md\n M research/logs/DECISIONS.md\n M research/logs/WORKLOG.md\n M research/protocol/access_matrix.csv\n M research/searches/phase_03_exit_criteria.md\n?? data/interim/clinicaltrials_records.csv\n?? data/interim/clinicaltrials_retrievals.csv\n?? data/interim/clinicaltrials_review_queue.csv\n?? data/interim/clinicaltrials_summary.json\n?? data/interim/registry_report_link_candidates.csv\n?? requirements-research.lock.txt\n?? research/audit/legacy_fulltext_profile.json\n?? research/audit/live_research_profiles.json\n?? research/audit/live_source_reconciliation.json\n?? research/searches/A1/clinicaltrials/\n?? research/searches/A2/clinicaltrials/\n?? research/searches/B1/clinicaltrials/\n?? research/searches/B2/clinicaltrials/\n?? research/searches/B3/clinicaltrials/\n?? research/searches/clinicaltrials_search_log.csv\n?? research/searches/clinicaltrials_validation.json\n?? tools/build_clinicaltrials_review_queue.py\n?? tools/clinicaltrials_export.mjs\n?? tools/normalize_clinicaltrials_exports.py\n?? tools/profile_live_research.py\n?? tools/reconcile_live_source.py\n?? tools/validate_clinicaltrials_proxy.py",
+    "status_porcelain": "M src/generated/thesis-bundle.json",
     "remotes": [
       "origin\thttps://github.com/yeohj0710/nutrition-safety-engine.git (fetch)",
       "origin\thttps://github.com/yeohj0710/nutrition-safety-engine.git (push)"
@@ -852,7 +852,7 @@
       {
         "path": "research/audit/legacy_counts_reproduction.csv",
         "size_bytes": 4371,
-        "modified_at": "2026-07-10T06:58:33+00:00",
+        "modified_at": "2026-07-10T07:10:09+00:00",
         "sha256": "2120fdafd16bcd6fc54e8620c57d062bb48b017514655c36068d9f8b061d4d7d"
       },
       {
@@ -906,7 +906,7 @@
       {
         "path": "research/audit/rule_scope_report.csv",
         "size_bytes": 33224,
-        "modified_at": "2026-07-10T06:58:33+00:00",
+        "modified_at": "2026-07-10T07:10:09+00:00",
         "sha256": "5c4bef953bb3579ae55528a8a21d3118fbaa5bec561929ba0aa7c46ad87fef89"
       },
       {
@@ -1739,9 +1739,9 @@
       },
       {
         "path": "research/logs/WORKLOG.md",
-        "size_bytes": 16896,
-        "modified_at": "2026-07-10T07:09:41+00:00",
-        "sha256": "137e3dde41f62f061a3f1e70d119c2f4318e5dad68cf3f74b03432de2a33638a"
+        "size_bytes": 17696,
+        "modified_at": "2026-07-10T07:10:59+00:00",
+        "sha256": "5728c126ab98cb4af49cd7795232c898a9d2cd16e5ec88c1cce9170edbb33a1e"
       },
       {
         "path": "research/protocol/access_matrix.csv",
@@ -2400,20 +2400,20 @@
       {
         "path": "src/generated/legacy/knowledge-index.json",
         "size_bytes": 1007681,
-        "modified_at": "2026-07-10T06:54:42+00:00",
+        "modified_at": "2026-07-10T07:10:31+00:00",
         "sha256": "d303f42e263d51adc58ae03429b948b2521eda289de9390501102cae7263c150"
       },
       {
         "path": "src/generated/legacy/literature-candidates.json",
         "size_bytes": 161920,
-        "modified_at": "2026-07-10T06:54:42+00:00",
+        "modified_at": "2026-07-10T07:10:31+00:00",
         "sha256": "9fb91e7c08daa54288ae927eba8b3e35c6edf2e1ee1fc5c65305fa5f352606d7"
       },
       {
         "path": "src/generated/thesis-bundle.json",
         "size_bytes": 555,
-        "modified_at": "2026-07-10T06:54:43+00:00",
-        "sha256": "596b1518f29f13c81f3e2618fce32ce72d14bf5525ba58692d083b3f1aa520f5"
+        "modified_at": "2026-07-10T07:11:10+00:00",
+        "sha256": "5081479212f277b020bc43ebb226d08189282146cee4a27ad67b2264a1798f0e"
       },
       {
         "path": "src/lib/display-text.ts",
