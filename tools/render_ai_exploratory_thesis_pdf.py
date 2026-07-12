@@ -22,7 +22,7 @@ class ThesisDoc(BaseDocTemplate):
  def draw_page(self,canvas,doc):
   canvas.saveState();canvas.setFont("Malgun",8);canvas.setFillColor(colors.HexColor("#667078"));canvas.drawRightString(letter[0]-inch,letter[1]-0.55*inch,"영양보충제 안전성 체계적 근거 검토와 개인맞춤 조회 시스템");canvas.drawRightString(letter[0]-inch,0.55*inch,str(doc.page));canvas.restoreState()
 
-styles=getSampleStyleSheet();body=ParagraphStyle("Body",fontName="Malgun",fontSize=10.4,leading=16.2,firstLineIndent=10.4,spaceAfter=6,alignment=TA_JUSTIFY,textColor=colors.HexColor("#111111"),wordWrap="CJK");h1=ParagraphStyle("H1",fontName="MalgunBold",fontSize=15,leading=20,spaceBefore=18,spaceAfter=9,keepWithNext=True,textColor=colors.HexColor("#111111"),wordWrap="CJK");h2=ParagraphStyle("H2",fontName="MalgunBold",fontSize=11.8,leading=16,spaceBefore=12,spaceAfter=5,keepWithNext=True,textColor=colors.HexColor("#222222"),wordWrap="CJK");cover=ParagraphStyle("Cover",fontName="MalgunBold",fontSize=20,leading=29,alignment=TA_CENTER,textColor=colors.HexColor("#111111"),wordWrap="CJK");center=ParagraphStyle("Center",parent=body,firstLineIndent=0,alignment=TA_CENTER);small=ParagraphStyle("Small",fontName="Malgun",fontSize=7.5,leading=10,wordWrap="CJK")
+styles=getSampleStyleSheet();body=ParagraphStyle("Body",fontName="Malgun",fontSize=10.4,leading=16.2,firstLineIndent=10.4,spaceAfter=6,alignment=TA_JUSTIFY,textColor=colors.HexColor("#111111"),wordWrap="CJK");h1=ParagraphStyle("H1",fontName="MalgunBold",fontSize=15,leading=20,spaceBefore=18,spaceAfter=9,keepWithNext=True,textColor=colors.HexColor("#111111"),wordWrap="CJK");h2=ParagraphStyle("H2",fontName="MalgunBold",fontSize=11.8,leading=16,spaceBefore=12,spaceAfter=5,keepWithNext=True,textColor=colors.HexColor("#222222"),wordWrap="CJK");cover=ParagraphStyle("Cover",fontName="MalgunBold",fontSize=20,leading=29,alignment=TA_CENTER,textColor=colors.HexColor("#111111"),wordWrap="CJK");center=ParagraphStyle("Center",parent=body,firstLineIndent=0,alignment=TA_CENTER);small=ParagraphStyle("Small",fontName="Malgun",fontSize=7.5,leading=10,wordWrap="CJK");reference=ParagraphStyle("Reference",fontName="Malgun",fontSize=8.3,leading=11.2,leftIndent=10,firstLineIndent=-10,spaceAfter=3,textColor=colors.HexColor("#222222"),wordWrap="CJK")
 def iter_blocks(doc):
  for child in doc.element.body.iterchildren():
   if child.tag.endswith("}p"):yield DocxParagraph(child,doc)
@@ -51,7 +51,7 @@ for block in iter_blocks(docx):
   story.append(Paragraph(esc(text),h1));continue
  if style.startswith("Heading 2"):story.append(Paragraph(esc(text),h2));continue
  if style=="Caption":story.append(Paragraph(esc(text),small));continue
- if style.startswith("List Number"):story.append(Paragraph("- "+esc(text),body));continue
+ if style.startswith("List Number"):story.append(Paragraph("- "+esc(text),reference));continue
  story.append(Paragraph(esc(text),small if in_toc else body))
 ThesisDoc(str(PDF),pagesize=letter,rightMargin=inch,leftMargin=inch,topMargin=.8*inch,bottomMargin=.8*inch,title="영양보충제 안전성 체계적 근거 검토와 개인맞춤 조회 시스템",author="여형준").build(story)
 print(PDF.relative_to(ROOT))
