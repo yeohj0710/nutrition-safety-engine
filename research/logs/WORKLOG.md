@@ -688,3 +688,9 @@
 - Adopted a separate AI-only exploratory evidence-mapping and deterministic software-validation protocol without rewriting v1 history.
 - Explicitly prohibited systematic-review, PRISMA-final, human-consensus, RoB/GRADE-complete, clinical-recommendation, and independent-gold claims.
 - Added a role/authority matrix and executable protocol validator; errors 0.
+## 2026-07-12 — Protocol v2 PubMed AI classification
+
+- Applied both preserved deterministic profiles to all 19,961 PubMed record-question units.
+- Produced 12,330 agreement-retain, 982 agreement-deprioritize, and 6,649 disagreement/uncertain classifications.
+- Preserved all units; created no human decisions, systematic-review inclusions, exclusions, or PRISMA counts.
+- Deterministic rebuild, exact coverage, class vocabulary, and authority mutation tests pass.

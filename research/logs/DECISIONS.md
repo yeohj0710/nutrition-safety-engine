@@ -541,3 +541,6 @@ Proxy disagreement and priority bands may determine the order of human review ba
 ## D-20260712-19 — Adopt a transparent AI-only exploratory study as protocol v2
 
 The v1 human-screened systematic-review design remains historically preserved and externally blocked. Protocol v2 is a distinct AI exploratory evidence map and software-validation study authorized by the user's 2026-07-12 instruction. V2 may finish without human screening only by permanently foregoing systematic-review inclusion, GRADE, clinical efficacy/safety, human agreement, independent-gold, and clinical-validation claims.
+## D-20260712-20 — Dual-profile agreement is an exploratory class, not eligibility
+
+The conservative/sensitivity profile intersection defines v2 navigation classes only. `ai_agreement_deprioritize` is retained in the corpus and is not an exclusion; `ai_agreement_retain` is not a systematic-review inclusion; all remaining combinations are `ai_disagreement_uncertain`.

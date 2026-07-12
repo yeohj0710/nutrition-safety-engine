@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "protocol_version": "2.0-ai-exploratory",
+  "status": "complete_ai_exploratory_classification_no_human_authority",
+  "row_count": 19961,
+  "classifications": {
+    "ai_agreement_deprioritize": 982,
+    "ai_agreement_retain": 12330,
+    "ai_disagreement_uncertain": 6649
+  },
+  "input_sha256": {
+    "sensitivity": "29431515814e15925a93248ed867b5dab0f98dde323240a644035f512c142706",
+    "conservative": "84c7b5e2947619a0a4b464cadaf8a2eea983d9b8e17eba9a73f4534f174ce7f7",
+    "context": "0cbdbd117d551331d9425fd9e8435012f9c5e6b1f2c5e53860d5e0c15b67a6b4"
+  },
+  "output_path": "data/curated_v2/ai_screening_classifications.csv",
+  "output_sha256": "2f805dabf05298bd124ca13fed9fa99ed4d81de42e085f94fde0fd31b06b79bc",
+  "human_screening_decisions": 0,
+  "systematic_review_inclusions": null,
+  "prisma_allowed": false
+}
