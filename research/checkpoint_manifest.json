@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "707496fb23e909a6cbb551423438da5d1c7880c7",
+  "implementation_head": "62945958ce6a6165629dbd7346f8b31fb5746bd4",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,13 +10,13 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 891,
+  "file_count": 901,
   "local_required_file_count": 104,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "size_bytes": 4486,
-      "sha256": "890c91b9a440f25b0841a2f7db71e195d76395abdab58ec57b9fc9ad5a9e5e8a",
+      "size_bytes": 4546,
+      "sha256": "f4c90fe9316bf083650d3741fa0887f65fe3601416e02e03f4f6e0962b9c6eaa",
       "distribution": "tracked"
     },
     {
@@ -29,6 +29,12 @@
       "path": ".impeccable.md",
       "size_bytes": 1242,
       "sha256": "7ffc9def79ec44f82ce8c69c4346a90e385f6265e7f8b90bd491e556dff21b04",
+      "distribution": "tracked"
+    },
+    {
+      "path": "__tests__/ai-exploratory-boundary.test.ts",
+      "size_bytes": 898,
+      "sha256": "75bbea51d14bb5b88616affbcb7a58b89b3d484acbc06272c00a39f43574e6a3",
       "distribution": "tracked"
     },
     {
@@ -161,6 +167,12 @@
       "path": "AGENTS.md",
       "size_bytes": 1812,
       "sha256": "019247d56d9b622ee7f1c2fd783ee28ddcaf5f6b7384430b9227e58c187c0c66",
+      "distribution": "tracked"
+    },
+    {
+      "path": "app/api/exploratory/query/route.ts",
+      "size_bytes": 390,
+      "sha256": "3b65161945dccb618b0293106207e388865a51e6351489388918f1805432056a",
       "distribution": "tracked"
     },
     {
@@ -395,6 +407,18 @@
       "path": "data/curated_v2/evidence_map.csv",
       "size_bytes": 42187953,
       "sha256": "7fbd8cab64c7ba874ec95c759c9597684151b020e4fdc4f708afbbdabf5aa7c2",
+      "distribution": "tracked"
+    },
+    {
+      "path": "data/curated_v2/exploratory_rules.jsonl",
+      "size_bytes": 1150,
+      "sha256": "edf3022d5eac73f13b69d69e1fda35f5e476976566190c2a6f45bf7e07c9489e",
+      "distribution": "tracked"
+    },
+    {
+      "path": "data/curated_v2/provisional_claims.jsonl",
+      "size_bytes": 4341,
+      "sha256": "fbcc05cc698aa8a5c259b353d946595aa67ba7bf1ef752f63306bd70f4ed7c65",
       "distribution": "tracked"
     },
     {
@@ -957,8 +981,8 @@
     },
     {
       "path": "package.json",
-      "size_bytes": 8020,
-      "sha256": "aac6ae97ae6c89769bf8e1f5f4cb3a4e643cca463649f80dc1cf4565bc2db810",
+      "size_bytes": 8219,
+      "sha256": "cf904f055f36e796b719bc05fd33d9f8563a9cfb4c0d1286133584ea2c45bc12",
       "distribution": "tracked"
     },
     {
@@ -2607,8 +2631,8 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 64342,
-      "sha256": "a485669391ea0586fad65dbb725f652311d6f01b66bf1eedf688bd6989ba35b0",
+      "size_bytes": 64831,
+      "sha256": "d0a2eb60c9273f2b07aee5bece58f25a98a303174133bc3b0263882d6b465c34",
       "distribution": "tracked"
     },
     {
@@ -2619,8 +2643,8 @@
     },
     {
       "path": "research/PROGRESS_LEDGER_V2.md",
-      "size_bytes": 1233,
-      "sha256": "5f90cfc1e4dd351b2f7d75fd567f347136e85013dceb7b569a29aeedf353a2cc",
+      "size_bytes": 1319,
+      "sha256": "b3e25d98a82045378a5e80555a86afe8ccb21b985e06f72808d5f152e441a98e",
       "distribution": "tracked"
     },
     {
@@ -2631,8 +2655,8 @@
     },
     {
       "path": "research/protocol/ai_exploratory_acceptance_criteria.md",
-      "size_bytes": 1633,
-      "sha256": "06f27c593446a14dc8e07a5687dcbcb499254ee728697ee18c65a97468af00ce",
+      "size_bytes": 1646,
+      "sha256": "a3b58a0dc41f3ef1fb168ab4b795f27d9e436dc64fd76cf048d43a8b8f811086",
       "distribution": "tracked"
     },
     {
@@ -4568,6 +4592,12 @@
       "distribution": "tracked"
     },
     {
+      "path": "src/domain/ai-exploratory.ts",
+      "size_bytes": 2253,
+      "sha256": "053cbf1c9f4afc45047de9b3d690a6dea151157e3f420d1fddc079fa64f3ffdb",
+      "distribution": "tracked"
+    },
+    {
       "path": "src/domain/research-questions.ts",
       "size_bytes": 352,
       "sha256": "2b25aeab518625c92d27b843fb84d70073067c99a95139822462ba7256d77b41",
@@ -4580,9 +4610,21 @@
       "distribution": "tracked"
     },
     {
+      "path": "src/engine/run-ai-exploratory-engine.ts",
+      "size_bytes": 1772,
+      "sha256": "162e314fd95a062ee0b3ef29023c81236e8f70711e4e2e1110f0e13b136889ca",
+      "distribution": "tracked"
+    },
+    {
       "path": "src/engine/run-thesis-engine.ts",
       "size_bytes": 4883,
       "sha256": "8cfedffe94d6b81bf2c3ef487dea1a24fdf977f0c5a8866b6da09250ab5dd81b",
+      "distribution": "tracked"
+    },
+    {
+      "path": "src/evidence/load-ai-exploratory-bundle.ts",
+      "size_bytes": 321,
+      "sha256": "94cffac323e8451bc788de9163fd162ebb002b3e72e9c84215b445e786d31a6c",
       "distribution": "tracked"
     },
     {
@@ -4595,6 +4637,12 @@
       "path": "src/evidence/validate-thesis-provenance.ts",
       "size_bytes": 7900,
       "sha256": "bbfbc53efc2c37eeb8ae60d0ad6f193e85b038f2dc726fa3a242273aff27d3a9",
+      "distribution": "tracked"
+    },
+    {
+      "path": "src/generated/ai-exploratory-bundle.json",
+      "size_bytes": 7405,
+      "sha256": "9d168b15bf30ad9ec93b91346e81852aaf9c66b7d76746f5a5b5ccb52a19f6cb",
       "distribution": "tracked"
     },
     {
@@ -4721,6 +4769,12 @@
       "path": "tools/__init__.py",
       "size_bytes": 52,
       "sha256": "837673a8f0b763eb4236e72369aa5c43bb6b732bb3765015ff79dbda3bd84ca5",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/build_ai_exploratory_bundle.py",
+      "size_bytes": 2715,
+      "sha256": "1ffa1311ee4d8e17695607cf1a978a8435da29e7506abbd34e2eaee0b65f85cc",
       "distribution": "tracked"
     },
     {
@@ -5021,6 +5075,12 @@
       "path": "tools/search_pipeline/storage.py",
       "size_bytes": 3753,
       "sha256": "1ae0536b7e91cee30854a85bd14fce3035a3fb8e6e3213db921431d6d2663f2f",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/validate_ai_exploratory_bundle.py",
+      "size_bytes": 2206,
+      "sha256": "32b069bffa6505b2ab6f36da5872f8984053a36bab5e0d5c58ed41e347e34a2f",
       "distribution": "tracked"
     },
     {
