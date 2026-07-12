@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "fbbdbd2b23f1d9d7fd0ca27a27cee33e641ce3c3",
+  "implementation_head": "eac9f7db8d1cbbb9e265f0f5e78311f66d1f95a3",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,13 +10,13 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 869,
+  "file_count": 873,
   "local_required_file_count": 104,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "size_bytes": 3952,
-      "sha256": "3018fda05253474cbc5f066f39e488f116b0ebff8be5fa3a088df54671b64b34",
+      "size_bytes": 4061,
+      "sha256": "0a185594c6d8a576986f13715077b8d9b5e70983c89c07ba881d259b9fb908cc",
       "distribution": "tracked"
     },
     {
@@ -560,6 +560,12 @@
       "distribution": "tracked"
     },
     {
+      "path": "data/interim/screening_batch_assignments.csv",
+      "size_bytes": 2225298,
+      "sha256": "9fac0539847f2672ab8ee4934e1be30e8f29d78a281f400a9325e0e5bdae700b",
+      "distribution": "tracked"
+    },
+    {
       "path": "data/interim/screening_decisions.csv",
       "size_bytes": 2172440,
       "sha256": "3437c64d529c4b396ee1da317111e9c68609401018fd1ae0f8ad74560fab911c",
@@ -927,8 +933,8 @@
     },
     {
       "path": "package.json",
-      "size_bytes": 7258,
-      "sha256": "db169b0766de3fb1547ac3f5aeef9a403b7657946f6f3c3d661a6f2584ff784e",
+      "size_bytes": 7412,
+      "sha256": "f889dd9c7e9a4e858c39d2c8c8379f105746a2b81e8a3a49928b8ed19904a2ca",
       "distribution": "tracked"
     },
     {
@@ -2565,20 +2571,20 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 40604,
-      "sha256": "47ae03cc236d23bee642070dfec64bb38f07cb9218f3595691a4bc898323d1e2",
+      "size_bytes": 40906,
+      "sha256": "0b2e30c4d7851a2884b8905258814049e5164217a5b2e1998237af2021a1cbad",
       "distribution": "tracked"
     },
     {
       "path": "research/logs/RISKS.md",
-      "size_bytes": 8718,
-      "sha256": "bff553017d4c0b0e8dfbe6085c8566d3f2b46a172108597b78b75a603c73a405",
+      "size_bytes": 9007,
+      "sha256": "24d2bedb7c2b919642da1d4d6f91824f79d9613da3637aab86816f7c36b60b36",
       "distribution": "tracked"
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 62052,
-      "sha256": "069d2937e914c0742e94d12ce23a3350b6b43190afacf15563b2b92aa58b33a4",
+      "size_bytes": 62491,
+      "sha256": "919fa298807951b159e1c8a14d61681503e270df05601292100488a4b1299bf5",
       "distribution": "tracked"
     },
     {
@@ -2655,8 +2661,8 @@
     },
     {
       "path": "research/review_queue/HUMAN_HANDOFF.md",
-      "size_bytes": 2301,
-      "sha256": "246ea07c893dd84efd81749a9a094ed7650da5542bf261b9c0b8e6b92df5e27d",
+      "size_bytes": 2651,
+      "sha256": "59d9826f875a8d483ef7fd7d9ac323635f3b6776b208f96c782518cbd52d05bc",
       "distribution": "tracked"
     },
     {
@@ -2751,8 +2757,8 @@
     },
     {
       "path": "research/screening/phase_04_exit_criteria.md",
-      "size_bytes": 4704,
-      "sha256": "b8c7a7387c73ce11753603ad51114741b43b44184e3d46f7e78d7fa0a60d57b6",
+      "size_bytes": 4920,
+      "sha256": "f185c2a13530360c49c47aa1e460ce2bf572fc9dc0c1bf3b08bd649a05b4b2f1",
       "distribution": "tracked"
     },
     {
@@ -2771,6 +2777,12 @@
       "path": "research/screening/proxy_run_metadata.json",
       "size_bytes": 2430,
       "sha256": "39b8fcf2a952a295fec434f3e034ce7b4bcdb2cff88bd1815bca2ce99bfcc255",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/screening/screening_batch_manifest.json",
+      "size_bytes": 1991,
+      "sha256": "7c0109e688b5f99ec497295ae066e37e2a4200a07a1f17bff2c65affb417ecdd",
       "distribution": "tracked"
     },
     {
@@ -4748,6 +4760,12 @@
       "distribution": "tracked"
     },
     {
+      "path": "tools/build_screening_batches.py",
+      "size_bytes": 3137,
+      "sha256": "c010023c5a99078ad7026e414f3961e95b32cd0473e1c1aca887cb773006ed0a",
+      "distribution": "tracked"
+    },
+    {
       "path": "tools/build_screening_review_context.py",
       "size_bytes": 3882,
       "sha256": "d4bad94b55a2480176423a8b8b922c92179c58bc6b23bc6827b0a0aea88bda3f",
@@ -5183,6 +5201,12 @@
       "path": "tools/validate_results_freeze.py",
       "size_bytes": 3072,
       "sha256": "f0158a9883b59f57b7f49f36cc77c28017a6aa41033b6ebb9c2af1d192301142",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/validate_screening_batches.py",
+      "size_bytes": 2596,
+      "sha256": "eb87aefe599fc91fd9f055b15624add6250f690a223acb15173167f5fb0fcc32",
       "distribution": "tracked"
     },
     {
