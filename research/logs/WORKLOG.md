@@ -788,4 +788,11 @@
 - defects: prompt-only controls did not reject invented numeric thresholds or direct start/stop/dose instructions; the form did not explicitly warn against personal identifiers
 - procedure: compare every model-generated numeric token with structured input/evidence tokens, reject URLs/overlong output/direct medication instructions/unsupported safety claims, fall back deterministically, and add a visible no-identifiers notice
 - regression: mocked outputs containing an invented `5000 mg` threshold and `복용을 중단하세요` were rejected; full suite 16 files/64 tests, lint, typecheck, and build pass
+
+## 2026-07-12 — Runtime AI availability hardening
+
+- added an 8-second abort deadline to the OpenAI summary request so upstream latency cannot hold the personalized lookup indefinitely
+- added a regression proving timeout/fetch failure returns the deterministic grounded Korean fallback
+- removed `shell:true` from the software-quality capture process and invoked npm/vitest through their Node entry points
+- verification: 16 files/65 tests, lint, TypeScript and production build passed; shell deprecation warning absent
 - boundary: model output remains wording assistance only and cannot add clinical facts or actions
