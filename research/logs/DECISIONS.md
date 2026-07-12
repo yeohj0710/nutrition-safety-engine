@@ -553,3 +553,6 @@ Question overlap duplicates a record across record-question rows. V2 reports PMC
 ## D-20260712-23 — V2 scenarios measure software behavior only
 
 The 120 synthetic fixtures may prove deterministic exact-term routing, provenance carriage, and absence of prohibited action/legacy leakage. They cannot estimate clinical sensitivity, precision, false-negative risk, expert agreement, or usability.
+## D-20260712-24 — The v2 thesis reports descriptive and technical results only
+
+The final v2 narrative may report corpus counts, observability, classifier agreement, access locators, deterministic routing, provenance, and leakage tests. It may not report included studies, pooled effects, RoB, GRADE, clinical efficacy/safety, human agreement, or independent-gold performance.

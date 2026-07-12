@@ -717,3 +717,9 @@
 - Determinism, exact question routing, and source-provenance completeness were 120/120.
 - Clinical-action leakage, legacy leakage, and false routes across eight near-match negative cases were all 0.
 - The report explicitly prohibits independent-gold or clinical-performance interpretation.
+## 2026-07-12 — Protocol v2 Korean thesis artifacts
+
+- Generated a data-driven Korean thesis in Markdown and DOCX plus a six-page PDF from verified v2 manifests.
+- Used a narrative formal layout with Korean font compatibility, running header/page numbers, four source/result tables, and a SHA-256 lineage appendix.
+- Inspected all six PDF pages at full resolution; fixed an orphan reference heading and Windows-path glyph issue; open visual defects 0.
+- DOCX/PDF required text, dynamic counts, sections, tables, placeholders, and hashes validate with errors 0.
