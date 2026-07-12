@@ -781,3 +781,11 @@
 - procedure: A1 now requires dietary/supplement/stability exposure and excludes reversal/coagulopathy; A2 requires both oral-anticoagulant context and bleeding/coagulation/pharmacology outcome; B1 requires explicit oral/dietary/supplemental calcium exposure phrase
 - result: core set reduced from 128 to 121 without filling quotas (A1 30/A2 5/B1 30/B2 30/B3 26); all 4,593 candidates remain preserved
 - interpretation: the smaller set is a stricter automated direct-evidence set, not a human final-inclusion set
+
+## 2026-07-12 — AI 요약 출력 경계·개인정보 안내
+
+- phase/task: runtime summary safety boundary
+- defects: prompt-only controls did not reject invented numeric thresholds or direct start/stop/dose instructions; the form did not explicitly warn against personal identifiers
+- procedure: compare every model-generated numeric token with structured input/evidence tokens, reject URLs/overlong output/direct medication instructions/unsupported safety claims, fall back deterministically, and add a visible no-identifiers notice
+- regression: mocked outputs containing an invented `5000 mg` threshold and `복용을 중단하세요` were rejected; full suite 16 files/64 tests, lint, typecheck, and build pass
+- boundary: model output remains wording assistance only and cannot add clinical facts or actions
