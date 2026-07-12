@@ -1,0 +1,151 @@
+{
+  "schema_version": "1.0.0",
+  "study_id": "nutrition-safety-engine-ai-exploratory-v2",
+  "status": "complete_verified_ai_exploratory",
+  "protocol_version": "2.0-ai-exploratory",
+  "implementation_head": "903ae6f6b7b389b4b8241d6f157ada4bec0a4bb0",
+  "v1_systematic_review_status": "blocked_external_not_relabelled",
+  "systematic_review_claim_allowed": false,
+  "clinical_recommendation_allowed": false,
+  "human_review_claim_allowed": false,
+  "summary": {
+    "record_question_units": 20230,
+    "source_counts": {
+      "clinicaltrials": 207,
+      "koreamed": 62,
+      "pubmed": 19961
+    },
+    "abstract_observed": 18015,
+    "title_metadata_only": 2215,
+    "pubmed_classifications": {
+      "ai_agreement_deprioritize": 982,
+      "ai_agreement_retain": 12330,
+      "ai_disagreement_uncertain": 6649
+    },
+    "synthetic_scenarios": 120,
+    "executions": 360,
+    "clinical_action_leakage": 0,
+    "legacy_leakage": 0,
+    "runtime_home_status": 200,
+    "runtime_api_status": 200,
+    "pdf_visual_pages_checked": 6,
+    "pdf_visual_defects_open": 0
+  },
+  "artifacts": [
+    {
+      "path": "research/protocol/protocol-v2.0-ai-exploratory.md",
+      "size_bytes": 6176,
+      "sha256": "b751c6a3d9bed4d75f564863af9e35c142a378a69c3299894a4cf409797a3906"
+    },
+    {
+      "path": "research/protocol/amendments.csv",
+      "size_bytes": 1116,
+      "sha256": "4f37b9d2cd41f3e47c4795aa3f50949008996d001070fdd3d4002df8e9f989ee"
+    },
+    {
+      "path": "research/protocol/ai_exploratory_role_matrix.md",
+      "size_bytes": 1299,
+      "sha256": "677be333133ab8f8b99ac727e23b56eb5f230ffacf35eebd836e2e110d8e32de"
+    },
+    {
+      "path": "data/curated_v2/ai_screening_classifications.csv",
+      "size_bytes": 5157529,
+      "sha256": "2f805dabf05298bd124ca13fed9fa99ed4d81de42e085f94fde0fd31b06b79bc"
+    },
+    {
+      "path": "data/curated_v2/ai_nonpubmed_classifications.csv",
+      "size_bytes": 108975,
+      "sha256": "7c721d78d51b1bca036a40f3c71147c83cf6c6ab20fbed56e4c0af22ec6c395e"
+    },
+    {
+      "path": "data/curated_v2/evidence_map.csv",
+      "size_bytes": 42187953,
+      "sha256": "7fbd8cab64c7ba874ec95c759c9597684151b020e4fdc4f708afbbdabf5aa7c2"
+    },
+    {
+      "path": "data/curated_v2/provisional_claims.jsonl",
+      "size_bytes": 4341,
+      "sha256": "fbcc05cc698aa8a5c259b353d946595aa67ba7bf1ef752f63306bd70f4ed7c65"
+    },
+    {
+      "path": "data/curated_v2/exploratory_rules.jsonl",
+      "size_bytes": 1165,
+      "sha256": "b15365e8f9d541a12c329648b004efacc520509585f311e319a5b5eb4670471b"
+    },
+    {
+      "path": "research/screening/ai_exploratory_screening_manifest.json",
+      "size_bytes": 869,
+      "sha256": "57586998ca1a052f195105a74fbf76b1410c0e58dda1ad0d45cab65e89ab7ed1"
+    },
+    {
+      "path": "research/screening/ai_exploratory_nonpubmed_manifest.json",
+      "size_bytes": 707,
+      "sha256": "b3cb4ae6bc4ac9b276f35fd500a34361d10d48b84343de5ff342381ec8cbf9aa"
+    },
+    {
+      "path": "research/synthesis/ai_exploratory_map_manifest.json",
+      "size_bytes": 1403,
+      "sha256": "17cf02787c8bad423c10412887c4633f482060d820f88864225330b9fbc9040d"
+    },
+    {
+      "path": "src/generated/ai-exploratory-bundle.json",
+      "size_bytes": 7429,
+      "sha256": "668f43687216d0b18e79d727a5bbb5ad2bb186fd0e3c07a443eb96ee04ecb6a9"
+    },
+    {
+      "path": "research/validation/ai_exploratory_performance.json",
+      "size_bytes": 41247,
+      "sha256": "71bee0fb97dd39b22fa9d528c95329f1f7a8dcc2d0beaf2d6aa8f61d8713555a"
+    },
+    {
+      "path": "research/validation/ai_exploratory_local_smoke.json",
+      "size_bytes": 722,
+      "sha256": "f9f4e54c24451406ef03588c54e988cafb5a57a9349defc43d81087f4bd0c2b5"
+    },
+    {
+      "path": "research/thesis/ai_exploratory_thesis_ko.md",
+      "size_bytes": 10674,
+      "sha256": "9534006ab5c6a511f3dbc53a1024bd8282ed959ff096283a9d8a85c7894a467f"
+    },
+    {
+      "path": "research/thesis/ai_exploratory_thesis.docx",
+      "size_bytes": 44944,
+      "sha256": "595a056c83840601a4103095e0dc67b8da506f47d4c31f771c05e37b0cbe9459"
+    },
+    {
+      "path": "research/thesis/ai_exploratory_thesis.pdf",
+      "size_bytes": 136025,
+      "sha256": "2afabeb7487b642e3d838e6bf5e3c2ef630b57b477ea8fe65560562113640b75"
+    },
+    {
+      "path": "tools/build_ai_exploratory_screening.py",
+      "size_bytes": 4001,
+      "sha256": "9937e6add49bad30349a3c803af809d2008f635d43382a0c6b81ec39d85684da"
+    },
+    {
+      "path": "tools/build_ai_exploratory_nonpubmed.py",
+      "size_bytes": 2954,
+      "sha256": "b09a53aee596eca91d4d763942d34b0da3c2bef63434002bd61e9763d995b320"
+    },
+    {
+      "path": "tools/build_ai_exploratory_evidence_map.py",
+      "size_bytes": 4762,
+      "sha256": "0b12a7f19d830f54df97a9c93739fcb402f5a3c88a8a5fd9d868bf49f51088e6"
+    },
+    {
+      "path": "tools/build_ai_exploratory_bundle.py",
+      "size_bytes": 2729,
+      "sha256": "9da8add476b85aab6e6ae8b538a64478154c0cc6d2a164004aef67d54cc4a980"
+    },
+    {
+      "path": "tools/build_ai_exploratory_thesis.py",
+      "size_bytes": 21232,
+      "sha256": "194ed853fe9bf76de14304ff61de83266148e841a6844f45263647b2dd2d6e7c"
+    },
+    {
+      "path": "scripts/evaluate-ai-exploratory-scenarios.ts",
+      "size_bytes": 2975,
+      "sha256": "b3bdc5e387dc9fe1134578aaf176f5a67db7e5a3b55ed4d193a1339832b3e4ab"
+    }
+  ]
+}

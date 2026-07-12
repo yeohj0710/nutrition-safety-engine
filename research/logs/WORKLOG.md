@@ -728,3 +728,8 @@
 - Started the optimized Next.js production server and called `/api/exploratory/query` over HTTP.
 - Home and API returned 200; vitamin K routed once to A1 under `ai_exploratory`.
 - Clinical actions, legacy leakage, and validated-thesis-scope leakage were all 0; report hashes bind engine, bundle, and route.
+## 2026-07-12 — Protocol v2 final gate
+
+- Bound 23 protocol, classification, evidence-map, claim/rule, engine, validation, thesis, and builder artifacts into the final SHA-256 manifest.
+- Full v2 validator suite, 53 Vitest tests, typecheck, production build, local HTTP smoke, DOCX structure, and six-page PDF visual QA all pass.
+- Marked only protocol v2 `complete_verified_ai_exploratory`; v1 remains `blocked_external_not_relabelled`.

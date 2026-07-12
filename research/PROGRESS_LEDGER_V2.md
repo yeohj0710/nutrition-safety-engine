@@ -10,4 +10,6 @@
 | 기술 시나리오 검증 | complete_verified | synthetic fixtures 120개×3회; 결정성·정확 question routing·계보 120/120; 임상행동·legacy 누출·8개 near-match 오경로 0 | 없음 |
 | 한국어 논문·runtime | complete_verified | data-driven 한국어 DOCX, 6쪽 PDF, Markdown; PDF 전 페이지 defects 0; production 홈/API 200, A1 routing, 임상행동·legacy·validated-scope 누출 0 | 최종 manifest |
 
+최종 상태: `complete_verified_ai_exploratory`. 23개 핵심 산출물은 `research/thesis/ai_exploratory_final_manifest.json`에 SHA-256으로 고정됐다. V1 체계적 문헌고찰은 이 완료 상태에 포함되지 않는다.
+
 v1 체계적 문헌고찰은 계속 `blocked_external`이며 v2 완료로 대체되지 않는다.
