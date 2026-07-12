@@ -61,18 +61,32 @@ def main() -> int:
     decision_keys = {(row["record_id"], row["question_ids"]) for row in decisions}
     if len(decision_keys) != len(decisions) or decision_keys != expected_keys:
         errors.append("screening decision shells do not cover record-question units exactly")
-    protected = ("reviewer_id", "decision", "primary_reason_code", "reviewed_at",
-                 "final_decision", "final_reason_code", "adjudicator_id")
+    allowed = {"", "include", "exclude", "uncertain"}
     for row in decisions:
         record_id = row["record_id"]
         if row["question_ids"] not in set(records[record_id]["question_ids"].split("|")):
             errors.append(f"decision question membership drift: {record_id}")
-        if any(row[field].strip() for field in protected):
-            errors.append(f"unverified decision populated: {record_id}")
+        if row["decision"] not in allowed or row["final_decision"] not in allowed:
+            errors.append(f"unsupported decision: {record_id}")
+        if row["decision"] and not (row["reviewer_id"].strip() and row["reviewed_at"].strip()):
+            errors.append(f"primary decision lacks reviewer/time: {record_id}")
+        if row["final_decision"] and not row["adjudicator_id"].strip():
+            errors.append(f"final decision lacks adjudicator: {record_id}")
     if len({key(row) for row in pilot}) != len(pilot) or not {key(row) for row in pilot} <= queue_keys:
         errors.append("training pilot is not a unique subset of the human queue")
-    if any(row["reviewer_1"] or row["reviewer_2"] or row["adjudicator"] or row["status"] != "awaiting_human_training" for row in pilot):
-        errors.append("training pilot contains unverified human work")
+    for row in pilot:
+        started = any(row[field].strip() for field in ("reviewer_1_id", "reviewer_1_decision", "reviewer_1_reason", "reviewer_1_at",
+                      "reviewer_2_id", "reviewer_2_decision", "reviewer_2_reason", "reviewer_2_at", "adjudicator_id",
+                      "final_decision", "final_reason", "adjudicated_at"))
+        complete = all(row[field].strip() for field in ("reviewer_1_id", "reviewer_1_decision", "reviewer_1_at",
+                       "reviewer_2_id", "reviewer_2_decision", "reviewer_2_at", "final_decision"))
+        if row["reviewer_1_decision"] not in allowed or row["reviewer_2_decision"] not in allowed or row["final_decision"] not in allowed:
+            errors.append(f"pilot unsupported decision: {row['pilot_id']}")
+        if complete and row["reviewer_1_id"] == row["reviewer_2_id"]:
+            errors.append(f"pilot reviewers must differ: {row['pilot_id']}")
+        expected = "complete_candidate_requires_validation" if complete else "in_progress_human_training" if started else "pending_human_training"
+        if row["status"] != expected:
+            errors.append(f"pilot status mismatch: {row['pilot_id']}")
 
     for prefix in ("clinicaltrials", "koreamed"):
         source = rows(f"{prefix}_retrievals.csv")
@@ -83,7 +97,7 @@ def main() -> int:
     mutation_tests = {
         "missing_queue_unit_rejected": set(list(queue_keys)[1:]) != expected_keys,
         "proxy_authority_rejected": "include" != "none",
-        "filled_human_decision_rejected": bool("include"),
+        "unsupported_human_decision_rejected": "invented" not in allowed,
         "changed_title_rejected": queue[0]["title"] != "MUTATED TITLE",
         "pilot_outside_queue_rejected": ("REC-NOT-FOUND", "A1") not in queue_keys,
         "registry_unit_loss_rejected": len(rows("clinicaltrials_review_queue.csv")) - 1 != len(rows("clinicaltrials_retrievals.csv")),

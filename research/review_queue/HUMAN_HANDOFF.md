@@ -8,7 +8,7 @@ Complete work in dependency order. Do not enter later-phase judgments before the
 
 1. Protocol approval and PRESS: `PRESS_review.csv`, then every row of `korean_db_PRESS_review.csv` and authenticated platform translations.
 2. Retrieval and deduplication: rerun approved final searches, preserve native exports, then complete `deduplication_decisions.csv`, `registry_linkage_decisions.csv`, and report-study linkage.
-3. Screening and full text: complete primary decisions, run `build:secondary-screening`, complete the blinded secondary queue, then adjudicate and record lawful full-text access, exclusion reasons, and report-study links.
+3. Screening and full text: complete the 50-row two-reviewer training pilot, complete primary decisions, run `build:secondary-screening`, complete the blinded secondary queue, then adjudicate and record lawful full-text access, exclusion reasons, and report-study links.
 4. Extraction and RoB: run `build:extraction-rob-work` after verified full-text inclusion; then populate `extractions_human.csv` and `risk_of_bias.csv` with two-person verification and source locators.
 5. Synthesis and GRADE: decide question-specific pooling, complete outcome-level certainty rows, then validate claims and rules.
 6. Independent validation: independently author twice and adjudicate all 120 gold scenarios; expert review remains separate from gold authoring.

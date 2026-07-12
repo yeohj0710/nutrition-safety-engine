@@ -10,8 +10,8 @@
     "independent_validation",
     "finalization"
   ],
-  "queue_count": 32,
-  "total_rows": 41009,
+  "queue_count": 33,
+  "total_rows": 41059,
   "rows_with_any_human_data": 0,
   "rows_complete_candidate": 0,
   "all_actionable_queues_complete_candidate": false,
@@ -148,6 +148,39 @@
         "reviewer_id",
         "decision",
         "reviewed_at",
+        "final_decision"
+      ],
+      "rows_with_any_human_data": 0,
+      "rows_complete_candidate": 0,
+      "progress_state": "not_started"
+    },
+    {
+      "queue_id": "P4_screening_training",
+      "path": "data/interim/screening_pilot_queue.csv",
+      "sha256": "bf522a63e14452e3c38aa99a5c7f0f2dd7828672486119f27e655396b3ca5279",
+      "size_bytes": 4050,
+      "row_count": 50,
+      "human_entry_fields": [
+        "reviewer_1_id",
+        "reviewer_1_decision",
+        "reviewer_1_reason",
+        "reviewer_1_at",
+        "reviewer_2_id",
+        "reviewer_2_decision",
+        "reviewer_2_reason",
+        "reviewer_2_at",
+        "adjudicator_id",
+        "final_decision",
+        "final_reason",
+        "adjudicated_at"
+      ],
+      "minimum_completion_fields": [
+        "reviewer_1_id",
+        "reviewer_1_decision",
+        "reviewer_1_at",
+        "reviewer_2_id",
+        "reviewer_2_decision",
+        "reviewer_2_at",
         "final_decision"
       ],
       "rows_with_any_human_data": 0,

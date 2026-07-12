@@ -98,23 +98,23 @@ def main() -> int:
             errors.append(f"proxy {label} claims decision authority")
     if any(row["requires_human_review"].lower() != "true" for row in queue):
         errors.append("one or more records escaped human review queue")
-    decision_fields = ("reviewer_id", "decision", "final_decision", "adjudicator_id")
-    if any(any(row[field] for field in decision_fields) for row in decisions):
-        errors.append("screening decisions contain unverified human/final values")
+    allowed_screening = {"", "include", "exclude", "uncertain"}
+    if any(row["decision"] not in allowed_screening or row["final_decision"] not in allowed_screening for row in decisions):
+        errors.append("screening decisions contain unsupported values")
     registry_decision_fields = (
         "reviewer_1_id", "reviewer_1_decision", "reviewer_2_id",
         "reviewer_2_decision", "adjudicator_id", "final_decision",
     )
-    if any(any(row[field] for field in registry_decision_fields) for row in registry_queue):
-        errors.append("registry queue contains unverified human/final values")
+    if any(row["reviewer_1_decision"] not in allowed_screening or row["reviewer_2_decision"] not in allowed_screening or row["final_decision"] not in allowed_screening for row in registry_queue):
+        errors.append("registry queue contains unsupported decision values")
     if sum(bool(row["known_query_risk"]) for row in registry_queue) != 139:
         errors.append("registry A1 lexical-risk flags must cover 139 rows")
     koreamed_decision_fields = (
         "reviewer_1_id", "reviewer_1_decision", "reviewer_2_id",
         "reviewer_2_decision", "adjudicator_id", "final_decision",
     )
-    if any(any(row[field] for field in koreamed_decision_fields) for row in koreamed_queue):
-        errors.append("KoreaMed queue contains unverified human/final values")
+    if any(row["reviewer_1_decision"] not in allowed_screening or row["reviewer_2_decision"] not in allowed_screening or row["final_decision"] not in allowed_screening for row in koreamed_queue):
+        errors.append("KoreaMed queue contains unsupported decision values")
     if full_text or excluded_full_text:
         errors.append("full-text outputs are populated without human review")
     if metadata.get("ai_only_exclusions") != 0 or metadata.get("human_decisions") != 0:

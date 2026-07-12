@@ -11,7 +11,7 @@
   "mutation_tests": {
     "missing_queue_unit_rejected": true,
     "proxy_authority_rejected": true,
-    "filled_human_decision_rejected": true,
+    "unsupported_human_decision_rejected": true,
     "changed_title_rejected": true,
     "pilot_outside_queue_rejected": true,
     "registry_unit_loss_rejected": true
@@ -44,8 +44,8 @@
     },
     {
       "path": "data/interim/screening_pilot_queue.csv",
-      "size_bytes": 3494,
-      "sha256": "7923a07dbd65b839160e2dfe8cd5275ea5b8b29fce6fd3e01abe9525ffee1305"
+      "size_bytes": 4050,
+      "sha256": "bf522a63e14452e3c38aa99a5c7f0f2dd7828672486119f27e655396b3ca5279"
     },
     {
       "path": "data/interim/clinicaltrials_retrievals.csv",

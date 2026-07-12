@@ -522,3 +522,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: store each of 500 registry–PubMed linkage judgments in a preserved CSV ledger and expose it as a separate workbook sheet beside read-only context
 - rationale: context and priority cannot substitute for an accountable same-study/not-same/uncertain decision with verifier and timestamp
 - impact: human linkage can now progress without editing generated context or allowing automated linkage authority
+
+## D-072 — Proxy regeneration must preserve primary screening work
+
+- date: 2026-07-12
+- decision: initialize primary and training queues only while human fields are empty; preserve populated bytes and reject changed record/question lineage
+- rationale: a reproducible proxy must never erase the human decisions that determine eligibility, and reviewer IDs alone do not constitute training
+- impact: the 50-row pilot now records two decisions and adjudication, while AI-only exclusions remain impossible

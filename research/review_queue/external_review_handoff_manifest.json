@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "external_human_handoff_copy_not_research_results",
   "workbook_path": "research/review_queue/external_review_handoff.xlsx",
-  "workbook_sha256": "258d23c66c1c9871075c8160b8d5ba6ae3a4c129f2a7b584b5b710378f1e1aab",
+  "workbook_sha256": "9d7b4bbe38c020f37f86ae33c3859eb603a1ae322279f58d8637d65dceb3d8f5",
   "sheets": {
     "README": 9,
     "PRESS_Main": 8,
@@ -10,7 +10,8 @@
     "Dedup_Context": 342,
     "Registry_Links": 500,
     "Registry_Decisions": 500,
-    "Screening_Pilot": 50
+    "Screening_Pilot": 50,
+    "Pilot_Decisions": 50
   },
   "sources": {
     "research/review_queue/PRESS_review.csv": "ffff061a66bdc2c14b72f66ff683cfd3ae1d5aed396c32d3926238e1373ac127",
@@ -19,7 +20,8 @@
     "data/interim/registry_link_review_context.csv": "9e2c87e208af528ce561ad3829068864d10b812a41911db2ff2345043817c48b",
     "data/interim/deduplication_decisions.csv": "0aaaa0cdbe4d731e0382285c8aa916af5ab328bbc5719f4cf0a71c3b75ca8b51",
     "data/interim/registry_linkage_decisions.csv": "55e7706810204b2ce6493fdcc10bbce8ec7fe2b1839332d0256c454f231e8706",
-    "data/interim/screening_pilot_queue.csv": "7923a07dbd65b839160e2dfe8cd5275ea5b8b29fce6fd3e01abe9525ffee1305"
+    "data/interim/screening_pilot_queue.csv": "bf522a63e14452e3c38aa99a5c7f0f2dd7828672486119f27e655396b3ca5279",
+    "data/interim/screening_review_context.csv": "0cbdbd117d551331d9425fd9e8435012f9c5e6b1f2c5e53860d5e0c15b67a6b4"
   },
   "visual_qa": {
     "rendered_sheets": [
@@ -29,9 +31,10 @@
       "Dedup Context",
       "Registry Links",
       "Registry Decisions",
-      "Screening Pilot"
+      "Screening Pilot",
+      "Pilot Decisions"
     ],
-    "inspected_sheets": 7,
+    "inspected_sheets": 8,
     "defects_open": 0
   },
   "authority_note": "Edits must be reconciled to canonical CSV files and pass validators before use."

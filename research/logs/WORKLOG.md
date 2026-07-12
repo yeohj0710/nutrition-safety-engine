@@ -659,3 +659,9 @@
 - Found that the first workbook revision exposed duplicate and registry context but lacked canonical registry-linkage decision fields.
 - Added a 500-row registry linkage decision queue with allowed human decisions, study/report IDs, reason, verifier/time, future-safe states, source-drift rejection, and byte preservation.
 - Joined dedup decision fields to its context and added a separate Registry Decisions sheet; all seven sheets were re-rendered and visually checked after resolving a renderer defect in the far-right combined layout.
+
+## 2026-07-12 primary screening and training preservation
+
+- Found that proxy regeneration unconditionally rewrote all primary screening decisions and the 50-row training pilot; the pilot had reviewer names but no decision, reason, time, or adjudication fields.
+- Added byte preservation and lineage rejection for primary/pilot queues, future-safe validators, and a complete two-reviewer/adjudication pilot schema.
+- Enriched the workbook pilot sheet with title/abstract/source context and editable dropdown fields; preservation contracts pass 4/4 and human training remains 0/50.

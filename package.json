@@ -73,6 +73,7 @@
     "build:registry-linkage-decisions": "python tools/build_registry_linkage_decisions.py",
     "validate:registry-linkage-decisions": "python tools/validate_registry_linkage_decisions.py",
     "validate:registry-linkage-preservation": "python tools/validate_registry_linkage_preservation.py",
+    "validate:primary-screening-preservation": "python tools/validate_primary_screening_preservation.py",
     "validate:phase04:screening-lineage": "python tools/validate_phase04_screening_lineage.py",
     "typecheck": "npm run prepare:knowledge && tsc --noEmit"
   },

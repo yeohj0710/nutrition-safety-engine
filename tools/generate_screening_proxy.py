@@ -71,6 +71,23 @@ def write_csv(path: Path, rows: list[dict[str, Any]], fields: list[str]) -> None
         writer.writerows(rows)
 
 
+def write_or_preserve(path: Path, rows: list[dict[str, Any]], fields: list[str], key: str,
+                      human_fields: tuple[str, ...], static_fields: tuple[str, ...]) -> str:
+    if path.is_file():
+        with path.open(encoding="utf-8-sig", newline="") as handle:
+            reader = csv.DictReader(handle); existing, old_fields = list(reader), reader.fieldnames or []
+        populated = any(any(row.get(field, "").strip() for field in human_fields) for row in existing)
+        if populated and old_fields != fields:
+            raise ValueError(f"human queue header mismatch; refusing overwrite: {path}")
+        if populated:
+            old = {row[key]: row for row in existing}; new = {str(row[key]): row for row in rows}
+            if set(old) != set(new) or any(any(old[item][field] != str(new[item][field]) for field in static_fields) for item in old):
+                raise ValueError(f"human queue lineage changed; refusing overwrite: {path}")
+            return "preserved_existing_human_data"
+    write_csv(path, rows, fields)
+    return "generated_no_human_data"
+
+
 def classify(question: str, record: dict[str, str], profile: str) -> dict[str, Any]:
     text = f"{record['title']}\n{record['abstract']}"
     signals = {
@@ -202,7 +219,13 @@ def main() -> int:
         )
     queue.sort(key=lambda row: (rank[row["proxy_priority_band"]], row["tie_break_hash"]))
     write_csv(interim / "screening_review_queue.csv", queue, list(queue[0].keys()))
-    write_csv(interim / "screening_decisions.csv", decisions, list(decisions[0].keys()))
+    decision_fields = list(decisions[0].keys())
+    decision_write_status = write_or_preserve(
+        interim / "screening_decisions.csv", decisions, decision_fields, "record_id",
+        ("reviewer_id", "decision", "primary_reason_code", "secondary_reason_notes", "evidence_layer_candidate",
+         "reviewed_at", "adjudication_status", "final_decision", "final_reason_code", "adjudicator_id", "notes"),
+        ("record_id", "question_ids", "screening_stage"),
+    )
 
     rng = random.Random(SEED)
     by_question: dict[str, list[dict[str, Any]]] = defaultdict(list)
@@ -218,13 +241,19 @@ def main() -> int:
                     "pilot_id": f"PILOT-{question}-{row['record_id'].removeprefix('REC-PUBMED-')}",
                     "record_id": row["record_id"],
                     "question_id": question,
-                    "reviewer_1": "",
-                    "reviewer_2": "",
-                    "adjudicator": "",
-                    "status": "awaiting_human_training",
+                    "reviewer_1_id": "", "reviewer_1_decision": "", "reviewer_1_reason": "", "reviewer_1_at": "",
+                    "reviewer_2_id": "", "reviewer_2_decision": "", "reviewer_2_reason": "", "reviewer_2_at": "",
+                    "adjudicator_id": "", "final_decision": "", "final_reason": "", "adjudicated_at": "",
+                    "status": "pending_human_training",
                 }
             )
-    write_csv(interim / "screening_pilot_queue.csv", pilot, list(pilot[0].keys()))
+    pilot_fields = list(pilot[0].keys())
+    pilot_write_status = write_or_preserve(
+        interim / "screening_pilot_queue.csv", pilot, pilot_fields, "pilot_id",
+        ("reviewer_1_id", "reviewer_1_decision", "reviewer_1_reason", "reviewer_1_at", "reviewer_2_id",
+         "reviewer_2_decision", "reviewer_2_reason", "reviewer_2_at", "adjudicator_id", "final_decision",
+         "final_reason", "adjudicated_at"), ("pilot_id", "record_id", "question_id"),
+    )
 
     empty_full_text_fields = [
         "report_id",
@@ -286,6 +315,8 @@ def main() -> int:
         "final_decisions": 0,
         "ai_only_exclusions": 0,
         "limitation": "Heuristic proxies test queue plumbing only; they are not AI performance or eligibility decisions.",
+        "screening_decision_write_status": decision_write_status,
+        "training_pilot_write_status": pilot_write_status,
     }
     for profile in profiles:
         run_metadata[f"{profile}_output_sha256"] = sha256(

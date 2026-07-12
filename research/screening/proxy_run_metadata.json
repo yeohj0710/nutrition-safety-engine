@@ -4,7 +4,7 @@
   "seed": 20260710,
   "input_records_sha256": "a904c9c2a333a30e33898ba46a8099b75f8284d7e97b9f568e30e773a1bdd1ae",
   "input_retrievals_sha256": "2efce65f50fe5bcce939320c7c330df8f0b9522901af5dc3ee383ef667f57892",
-  "script_sha256": "76069bc10bd3b902659fa19a9a6da3145b98833670f8a6da5101b298518d9690",
+  "script_sha256": "d40bf751b6432f8ce15a2f882dc6fa96892146126a08d3c1b9f89c9a31dd56cf",
   "record_question_units": 19961,
   "all_units_require_human_review": true,
   "proxy_counts": {
@@ -87,6 +87,8 @@
   "final_decisions": 0,
   "ai_only_exclusions": 0,
   "limitation": "Heuristic proxies test queue plumbing only; they are not AI performance or eligibility decisions.",
+  "screening_decision_write_status": "preserved_existing_human_data",
+  "training_pilot_write_status": "generated_no_human_data",
   "sensitivity_first_output_sha256": "29431515814e15925a93248ed867b5dab0f98dde323240a644035f512c142706",
   "structured_conservative_output_sha256": "84c7b5e2947619a0a4b464cadaf8a2eea983d9b8e17eba9a73f4534f174ce7f7"
 }
