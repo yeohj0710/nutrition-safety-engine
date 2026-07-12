@@ -8,10 +8,10 @@
     "prepare:ai-exploratory": "python tools/build_ai_exploratory_bundle.py",
     "prepare:knowledge": "npm run prepare:legacy && npm run prepare:thesis && npm run prepare:ai-exploratory",
     "dev": "tsx scripts/dev-with-knowledge-watch.ts",
-    "build": "npm run prepare:knowledge && next build",
+    "build": "next build",
     "start": "next start",
-    "lint": "npm run prepare:knowledge && eslint .",
-    "test": "npm run prepare:knowledge && vitest run",
+    "lint": "eslint .",
+    "test": "vitest run",
     "test:unit": "npm run prepare:knowledge && vitest run __tests__/knowledge-normalize.test.ts __tests__/safety-engine.test.ts",
     "test:contract": "npm run prepare:knowledge && vitest run __tests__/thesis-mode-boundary.test.ts __tests__/legacy-mode-boundary.test.ts",
     "test:provenance": "npm run prepare:knowledge && vitest run __tests__/thesis-bundle-isolation.test.ts",
@@ -67,6 +67,7 @@
     "evaluate:ai-exploratory-scenarios": "tsx scripts/evaluate-ai-exploratory-scenarios.ts",
     "validate:ai-exploratory-scenarios": "python tools/validate_ai_exploratory_scenarios.py",
     "validate:ai-exploratory-thesis": "python tools/validate_ai_exploratory_thesis.py",
+    "validate:systematic-review-v3": "python tools/validate_core_evidence_v3.py && python tools/validate_systematic_review_thesis_v3.py",
     "capture:ai-exploratory-smoke": "python tools/capture_ai_exploratory_smoke.py",
     "validate:ai-exploratory-smoke": "python tools/validate_ai_exploratory_smoke.py",
     "build:ai-exploratory-final-manifest": "python tools/build_ai_exploratory_final_manifest.py",
@@ -94,7 +95,7 @@
     "validate:phase04:screening-lineage": "python tools/validate_phase04_screening_lineage.py",
     "build:screening-batches": "python tools/build_screening_batches.py",
     "validate:screening-batches": "python tools/validate_screening_batches.py",
-    "typecheck": "npm run prepare:knowledge && tsc --noEmit"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "next": "16.2.1",

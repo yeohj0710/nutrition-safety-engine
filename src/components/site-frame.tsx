@@ -27,7 +27,7 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
             </span>
           </Link>
           <span className="shrink-0 rounded-full bg-blue-50 px-3 py-1.5 text-xs font-semibold text-blue-600">
-            Thesis mode
+            논문 연구 시스템
           </span>
         </div>
       </header>

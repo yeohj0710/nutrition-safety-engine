@@ -1,138 +1,123 @@
 #!/usr/bin/env python3
-"""Build the protocol-v2 Korean thesis DOCX and Markdown from verified manifests."""
+"""검증된 manifest에서 방법론 중심의 한국어 학위논문 DOCX/Markdown을 생성한다."""
 from __future__ import annotations
-import csv,hashlib,json
+import hashlib, json
 from pathlib import Path
 from docx import Document
-from docx.enum.section import WD_SECTION
-from docx.enum.style import WD_STYLE_TYPE
-from docx.enum.table import WD_CELL_VERTICAL_ALIGNMENT, WD_TABLE_ALIGNMENT
-from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK, WD_LINE_SPACING
+from docx.enum.table import WD_TABLE_ALIGNMENT
+from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Inches, Pt, RGBColor
 
 ROOT=Path(__file__).resolve().parents[1]; OUT=ROOT/"research/thesis"; OUT.mkdir(exist_ok=True)
 DOCX=OUT/"ai_exploratory_thesis.docx"; MD=OUT/"ai_exploratory_thesis_ko.md"
-MAP_MAN=ROOT/"research/synthesis/ai_exploratory_map_manifest.json"; SCREEN_MAN=ROOT/"research/screening/ai_exploratory_screening_manifest.json"; NONPUB_MAN=ROOT/"research/screening/ai_exploratory_nonpubmed_manifest.json"; PERF=ROOT/"research/validation/ai_exploratory_performance.json"; BUNDLE=ROOT/"src/generated/ai-exploratory-bundle.json"; PROTOCOL=ROOT/"research/protocol/protocol-v2.0-ai-exploratory.md"
-def load(p):return json.loads(p.read_text(encoding="utf-8"))
-def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
-mapm,screen,nonpub,perf,bundle=map(load,(MAP_MAN,SCREEN_MAN,NONPUB_MAN,PERF,BUNDLE))
-claims=[json.loads(x) for x in (ROOT/"data/curated_v2/provisional_claims.jsonl").read_text(encoding="utf-8").splitlines() if x.strip()]
-question_names={"A1":"비타민 K와 비타민 K 길항제","A2":"오메가-3와 경구 항응고제","B1":"칼슘 보충과 결석 위험","B2":"비타민 D와 결석 위험","B3":"비타민 C와 결석 위험"}
-
-title="고위험 임상상황의 영양보충제 안전성 문헌을 위한 AI 기반 탐색적 근거지도 구축과 결정론적 탐색 도구의 기술 검증"
-eng="AI-Based Exploratory Evidence Mapping of Dietary Supplement Safety in High-Risk Clinical Contexts and Technical Validation of a Deterministic Navigation Tool"
-abstract=(f"본 연구는 항응고제 복용과 칼슘옥살레이트 결석 위험에 관련된 다섯 질문의 공개 문헌을 AI 기반 탐색적 근거지도로 구조화하고, 출처 계보를 강제하는 결정론적 탐색 도구의 기술적 동작을 검증했다. "
-f"확보한 corpus는 총 {mapm['row_count']:,}개 record-question unit으로, PubMed {mapm['source_counts']['pubmed']:,}개, ClinicalTrials.gov {mapm['source_counts']['clinicaltrials']:,}개, KoreaMed {mapm['source_counts']['koreamed']:,}개였다. 초록은 {mapm['abstract_observed']:,}개 행에서 확인됐고 {mapm['title_metadata_only']:,}개 행은 제목·메타데이터만 확인할 수 있었다. "
-f"두 결정론적 분류 프로필을 결합한 PubMed 결과는 유지 합의 {screen['classifications']['ai_agreement_retain']:,}개, 후순위 합의 {screen['classifications']['ai_agreement_deprioritize']:,}개, 불일치·불확실 {screen['classifications']['ai_disagreement_uncertain']:,}개였다. 비-PubMed {nonpub['row_count']:,}개는 비순위 후보로 전량 보존했다. "
-f"합성 fixture {perf['scenario_count']}개를 각 {perf['repeats_per_scenario']}회 실행한 결과 결정성, 정확한 질문 routing, 출처 계보 완전성은 모두 {perf['scenario_count']}/{perf['scenario_count']}였고 임상행동 누출, legacy 누출, near-match 오경로는 모두 0이었다. "
-"이 결과는 문헌의 탐색 가능성과 소프트웨어 동작을 보여줄 뿐, 사람 선별을 거친 체계적 문헌고찰이나 임상 효과·안전성 결론을 뜻하지 않는다.")
+P={"map":ROOT/"research/synthesis/ai_exploratory_map_manifest.json","screen":ROOT/"research/screening/ai_exploratory_screening_manifest.json","nonpub":ROOT/"research/screening/ai_exploratory_nonpubmed_manifest.json","perf":ROOT/"research/validation/ai_exploratory_performance.json","protocol":ROOT/"research/protocol/protocol-v2.0-ai-exploratory.md","bundle":ROOT/"src/generated/ai-exploratory-bundle.json"}
+D={k:json.loads(v.read_text(encoding="utf-8")) for k,v in P.items() if k not in {"protocol"}}
+M,S,N,V=D["map"],D["screen"],D["nonpub"],D["perf"]
+Q={"A1":"비타민 K와 비타민 K 길항제","A2":"오메가-3와 경구 항응고제","B1":"칼슘 보충과 결석 위험","B2":"비타민 D와 결석 위험","B3":"비타민 C와 결석 위험"}
 
 sections=[
 ("1. 서론",[
-"영양보충제 안전성은 성분 이름만으로 설명하기 어렵다. 같은 성분이라도 복용 중인 약, 기저질환, 용량, 제형, 복용 기간에 따라 확인해야 할 위험이 달라진다. 항응고제 복용자에게는 출혈과 항응고 효과의 변화가 중요하고, 칼슘옥살레이트 결석 위험군에게는 칼슘·비타민 D·비타민 C의 노출 형태와 용량이 중요하다.",
-"문제는 근거가 여러 자료원에 흩어져 있다는 점이다. 임상시험 논문, 관찰연구, 연구등록자료, 국내 문헌, 공공기관 안내문은 서로 다른 형식으로 존재한다. 검색 결과가 많다는 사실만으로 어떤 문헌이 중요한지, 원문을 확인할 수 있는지, 같은 연구의 여러 보고인지 알 수 없다.",
-"처음 설계한 연구는 독립적인 사람 선별과 이중 추출을 전제로 한 체계적 문헌고찰이었다. 그러나 해당 절차를 수행할 사람과 구독 자료원 접근이 확보되지 않았다. 이를 숨기거나 AI 판정을 사람 판정처럼 바꾸는 대신, 2026년 7월 12일 연구 질문을 투명하게 수정했다. 개정된 프로토콜 v2는 공개적으로 확보한 자료를 빠짐없이 보존해 탐색지도를 만들고, 그 지도를 조회하는 결정론적 도구의 기술적 안전 경계를 검증한다.",
-"따라서 본 연구의 목적은 임상 권고를 만드는 것이 아니다. 첫째, 다섯 질문에 대해 실제 확보된 문헌 단위를 출처와 함께 구조화한다. 둘째, 두 자동 분류 프로필의 일치와 불일치를 기술한다. 셋째, 출처 계보를 유지한 채 질문별 근거지도를 찾아주는 비임상 탐색 엔진이 결정적으로 작동하는지 확인한다."]),
-("2. 연구 방법",[
-"연구설계는 AI 기반 탐색적 문헌지도와 소프트웨어 기술 검증이다. 본 연구는 체계적 문헌고찰이 아니며 사람 선별, 사람 합의 추출, RoB 평가, GRADE, 전문가 임상 검증을 수행하지 않았다.",
-"연구 질문은 A1 비타민 K와 비타민 K 길항제, A2 오메가-3와 경구 항응고제, B1 칼슘 보충과 결석 위험, B2 비타민 D와 결석 위험, B3 비타민 C와 결석 위험으로 정했다. 분석 단위는 한 record가 한 질문에서 검색된 record-question unit이다. 같은 record가 여러 질문에 나타날 수 있으므로 행 수와 고유 record 수를 구분했다.",
-"자료원은 실제로 보존된 PubMed, ClinicalTrials.gov, KoreaMed 자료다. KMbase와 RISS는 플랫폼 관찰자료와 PRESS 검토 자료로 보존했지만 최종 native export가 확보되지 않아 근거지도 행으로 통합하지 않았다. Embase, Scopus 또는 Web of Science, 일부 구독 원문은 접근권한이 없어 포함하지 못했다. 접근하지 못한 자료는 근거가 없다는 뜻으로 해석하지 않았다.",
-"PubMed 분류에는 sensitivity-first와 structured-conservative 두 결정론적 프로필을 사용했다. 두 프로필이 모두 유지 후보로 분류하면 ai_agreement_retain, 모두 낮은 우선순위로 분류하면 ai_agreement_deprioritize, 나머지는 ai_disagreement_uncertain으로 기록했다. 이 세 값은 사람의 include·exclude·uncertain이 아니다. ClinicalTrials.gov와 KoreaMed는 같은 분류기가 없으므로 ai_unranked_source_candidate로 전량 보존했다.",
-"근거지도에는 제목, 초록, 저자, 연도, 학술지, 출판유형, DOI·PMID, 자료원 URL, 자동 분류, 원자료 경로와 SHA-256을 기록했다. 공개 PMC 식별자가 있으면 접근 locator 후보로 연결했다. 원문 위치가 없는 효과수치와 임상결론은 추출하지 않았다.",
-"탐색 엔진은 정확히 일치하는 성분명만 질문별 navigation rule에 연결한다. 출력은 질문별 corpus 규모, 자료원 분포, 자동 분류 분포와 출처 manifest로 제한했다. clinical_actions 필드는 스키마에서 빈 tuple로 고정했다.",
-f"기술 검증에는 기존 합성 boundary fixture {perf['scenario_count']}개를 사용했다. 각 fixture를 {perf['repeats_per_scenario']}회 반복해 동일 출력 여부를 확인했다. 별도로 부분 문자열과 유사 표현 {perf['negative_near_match_cases']}개를 입력해 오경로를 확인했다. 평가지표는 결정성, 정확한 질문 routing, 계보 완전성, 임상행동 누출, legacy 누출, near-match 오경로였다."]),
-("3. 연구 결과",[
-f"근거지도에는 총 {mapm['row_count']:,}개 record-question unit이 생성됐다. PubMed가 {mapm['source_counts']['pubmed']:,}개로 가장 많았고 ClinicalTrials.gov {mapm['source_counts']['clinicaltrials']:,}개, KoreaMed {mapm['source_counts']['koreamed']:,}개가 뒤를 이었다.",
-f"초록을 확인할 수 있는 행은 {mapm['abstract_observed']:,}개였고 제목과 메타데이터만 확인할 수 있는 행은 {mapm['title_metadata_only']:,}개였다. PMC 식별자 후보가 연결된 행은 {mapm['pmc_locator_record_question_rows']:,}개였으며, 이를 고유 record로 환산하면 {mapm['unique_records_with_pmc_identifier']:,}개였다. PMC 식별자는 원문 접근 후보일 뿐 실제 전문 검토 완료를 뜻하지 않는다.",
-f"PubMed 자동 분류에서는 유지 합의가 {screen['classifications']['ai_agreement_retain']:,}개, 후순위 합의가 {screen['classifications']['ai_agreement_deprioritize']:,}개, 불일치·불확실이 {screen['classifications']['ai_disagreement_uncertain']:,}개였다. ClinicalTrials.gov와 KoreaMed의 {nonpub['row_count']:,}개는 비순위 후보로 남겼다.",
-f"기술 검증에서 {perf['executions']:,}회 실행이 수행됐다. 결정성, 정확한 질문 routing, 출처 계보 완전성은 모두 {perf['scenario_count']}/{perf['scenario_count']}였다. 임상행동 누출은 {perf['clinical_action_leakage_scenarios']}건, legacy 누출은 {perf['legacy_leakage_scenarios']}건, near-match 오경로는 {perf['negative_false_routes']}건이었다."]),
-("4. 논의",[
-"가장 큰 결과는 문헌의 임상 결론이 아니라 불확실성의 위치를 드러냈다는 점이다. A1과 B2는 검색 규모가 컸지만, 큰 검색 규모가 곧 많은 관련 근거를 뜻하지 않는다. 특히 A1에는 vitamin K antagonist라는 약물명 때문에 비타민 K 보충과 직접 관련 없는 문헌이 함께 검색될 수 있다. ClinicalTrials.gov A1 행 가운데 139개에 이 lexical risk를 보존한 이유다.",
-"두 자동 프로필의 불일치는 버릴 데이터가 아니라 검토가 필요한 경계 사례를 보여준다. A2, B1, B3처럼 불일치 비중이 큰 질문에서는 단순 키워드 규칙만으로 관련성을 결정하기 어렵다. 반대로 유지 합의가 많아도 임상 유효성이나 안전성이 입증됐다고 말할 수 없다.",
-"source-bound 설계는 수치가 어디에서 왔는지 추적하게 한다. 모든 지도 행은 원자료 경로와 SHA-256을 가지고 있고, 질문별 잠정 주장도 evidence-map과 manifest 해시에 연결된다. 이 구조는 잘못된 임상 해석을 막는 충분조건은 아니지만, 적어도 근거 없는 수치가 조용히 섞이는 문제를 줄인다.",
-"기술 검증 결과는 소프트웨어의 좁은 성질만 설명한다. 120개 fixture에서 경로가 정확하고 반복 출력이 같았다는 사실은 실제 환자 상황에서 안전하다는 증거가 아니다. 합성 fixture는 독립 gold가 아니며, 임상 sensitivity나 false-negative risk를 계산할 수 없다.",
-"연구구조를 바꾼 선택에는 명확한 대가가 있다. 사람 선별을 없애면서 완료 가능한 연구가 됐지만, 임상 근거 합성과 권고라는 더 강한 질문에는 답할 수 없게 됐다. 이 한계를 숨기지 않고 연구 제목, 방법, 결과, 결론 전반에 반영했다."]),
-("5. 제한점",[
-"첫째, 독립적인 사람 선별과 전문 판정이 없다. 자동 분류는 탐색 우선순위일 뿐 포함·제외 판정이 아니다.",
-"둘째, Embase, Scopus/Web of Science, 일부 국내 데이터베이스 native export, 구독 원문에 접근하지 못했다. 따라서 지도는 가능한 모든 근거의 완전한 목록이 아니다.",
-"셋째, 2,215개 행은 초록이 없어 제목·메타데이터만 관찰했다. 초록이 있어도 원문의 연구방법과 수치를 대체할 수 없다.",
-"넷째, 동일 record가 여러 질문에 나타날 수 있다. record-question 행 수를 고유 연구 수로 해석하면 안 된다.",
-"다섯째, RoB와 GRADE를 수행하지 않았고 효과크기를 통합하지 않았다. 이 연구만으로 보충제 복용을 시작·중단하거나 용량을 바꾸면 안 된다.",
-"여섯째, 기술 시나리오는 합성 자료다. 실제 전문가·사용자·환자 자료에서 검증하지 않았다."]),
-("6. 결론",[
-f"본 연구는 {mapm['row_count']:,}개 record-question unit을 출처와 함께 보존한 AI 기반 탐색적 근거지도를 구축했다. 두 자동 프로필의 합의와 불일치를 분리하고, 접근 가능한 초록과 PMC locator를 원자료 해시와 연결했다.",
-"또한 다섯 질문을 정확한 성분명으로 탐색하는 결정론적 도구를 구현했다. 합성 기술 검증에서는 결정성과 계보 완전성이 유지됐고 임상행동 및 legacy 누출이 관찰되지 않았다.",
-"다만 이 결과는 체계적 문헌고찰이나 임상 권고가 아니다. 이 지도의 적절한 용도는 관련 문헌을 찾고, 접근 제한과 불확실성을 확인하며, 향후 사람 검토 연구의 출발점을 제공하는 것이다."]),
-]
+("1.1 연구 배경",["건강기능식품과 영양보충제는 처방전 없이 접근하기 쉽지만, 고위험 임상상황에서는 일반적인 ‘좋다/나쁘다’의 구도로 안전성을 판단하기 어렵다. 같은 성분이라도 병용약물, 기저질환, 용량, 제형, 복용기간과 검사값에 따라 임상적 의미가 달라지기 때문이다. 특히 항응고제를 복용하거나 신장결석 위험이 있는 사람에게는 성분의 평균적 효과보다 상호작용 가능성, 노출량, 관찰 지표와 불확실성을 함께 확인하는 절차가 중요하다.","이 문제를 다루는 근거는 무작위시험, 관찰연구, 증례보고, 임상시험 등록자료와 국내외 데이터베이스에 분산되어 있다. 검색 결과의 수가 많다는 사실은 근거가 충분하다는 뜻이 아니며, 검색된 레코드가 연구 질문에 직접 답하는지, 초록 또는 원문이 실제로 관찰되는지, 같은 연구가 여러 보고물로 중복되었는지를 별도로 확인해야 한다."]),
+("1.2 문제 제기",["초기 연구계획은 사람의 독립 선별과 이중 추출을 전제로 한 체계적 문헌고찰이었다. 그러나 실제 수행 단계에서 구독 원문, 일부 국내 데이터베이스의 원시 내보내기, 독립된 두 명의 사람 판정자를 확보하지 못했다. 이 조건에서 AI 판정을 사람 판정으로 표시하거나 완료되지 않은 선별을 완료로 간주하면 결과 수치는 만들 수 있어도 연구의 검증 가능성은 사라진다.","따라서 본 연구는 부족한 절차를 숨기는 대신 질문 자체를 바꾸었다. 임상효과를 확정하는 체계적 문헌고찰이 아니라, 공개 접근 가능한 서지정보를 보존하고 자동 분류의 합의와 불일치를 드러내며, 그 자료를 임상행동 없이 탐색하는 도구의 기술적 경계를 검증하는 탐색적 근거지도 연구로 전환하였다. 이 전환은 편의적 축소가 아니라 현재 자원으로 정직하게 답할 수 있는 질문과 답할 수 없는 질문을 구분하기 위한 설계 결정이다."]),
+("1.3 연구 목적과 질문",["첫째, 항응고제 병용 및 신장결석 위험과 관련된 다섯 질문의 공개 검색 레코드를 출처·질문·관찰 가능성 단위로 구조화한다. 둘째, 서로 다른 성향의 두 결정론적 자동 분류 프로파일을 적용하여 합의 유지, 합의 후순위, 불일치 불확실을 분리한다. 셋째, 공개 원문 위치와 파일 해시를 연결하여 주장과 원자료 사이의 추적 경로를 만든다. 넷째, 정확한 성분명에만 반응하고 임상행동을 출력하지 않는 탐색 도구를 구현하여 결정성, 라우팅, 계보 완전성과 누출 여부를 검증한다.","연구 질문은 A1 비타민 K와 비타민 K 길항제, A2 오메가-3와 경구 항응고제, B1 칼슘 보충과 결석 위험, B2 비타민 D와 결석 위험, B3 비타민 C와 결석 위험이다. 분석단위는 고유 연구가 아니라 특정 레코드가 특정 질문에서 검색된 record-question unit이다."]),
+("1.4 연구 범위",["본 논문은 임상 권고, 효과크기의 통합, 위험비 산출, RoB 또는 GRADE 판정을 수행하지 않는다. 자동 분류는 문헌의 우선 확인 순서를 만드는 계산적 표지이며 포함·제외 판정이 아니다. 이 범위는 결론의 강도를 제한하지만, 관찰된 자료와 해석 사이의 거리를 명확하게 만든다."])]),
+("2. 이론적·방법론적 배경",[
+("2.1 체계적 문헌고찰과 탐색적 근거지도의 구분",["체계적 문헌고찰은 사전에 정한 기준에 따라 연구를 포함하고 비뚤림 위험을 평가한 뒤 질문에 대한 종합 결론을 제시한다. 반면 근거지도는 어떤 자료가 어디에 존재하며 어느 부분이 비어 있는지를 구조화한다. 본 연구는 사람 판정과 독립 추출이 없으므로 전자의 결론 권한을 주장할 수 없고, 후자의 발견·정리 기능에 초점을 맞춘다.","이 구분은 명칭만의 문제가 아니다. 검색 레코드 수를 연구 수로 부르지 않고, 자동 합의를 포함 판정으로 부르지 않으며, 원문 위치를 확보하지 못한 자료에서 효과 수치를 추출하지 않는 구체적 분석 규칙으로 이어진다."]),
+("2.2 레코드·보고물·연구의 구분",["하나의 임상시험은 프로토콜, 등록자료, 학술지 본문과 후속 분석 등 여러 보고물로 나타날 수 있다. 반대로 서지 레코드 하나가 항상 독립된 연구를 의미하지 않는다. 이에 본 연구는 DOI·PMID·등록번호를 보존하되, 자동 중복 후보 표시는 연구 수준의 확정 중복 제거로 해석하지 않는다."]),
+("2.3 AI의 역할과 인식론적 경계",["AI는 반복 가능한 규칙 실행, 형식 정규화와 후보 우선순위화에 사용하였다. 그러나 임상적 관련성, 비뚤림 위험, 근거 확실성, 권고 강도는 자동화 결과로 대체하지 않았다. 두 프로파일의 불일치는 오류로 삭제하지 않고 사람이 추후 검토해야 할 불확실성 층으로 보존하였다."]),
+("2.4 출처 계보와 결정론",["재현성은 같은 문장을 다시 생성하는 능력만을 뜻하지 않는다. 어떤 원자료가 어떤 변환을 거쳐 어느 결과 수치에 반영되었는지 추적할 수 있어야 한다. 본 연구는 원자료 경로, SHA-256, 생성 스크립트와 산출물 manifest를 연결하고, 동일 입력의 반복 실행에서 동일한 라우팅과 출력을 요구하였다."])]),
+("3. 연구 방법",[
+("3.1 전체 연구설계",["연구는 감사와 격리, 프로토콜 개정, 검색자료 수집, 정규화와 계보 생성, 자동 우선순위화, 탐색적 근거지도 구축, 출처결합 주장 생성, 탐색 도구 구현, 독립 시나리오 검증의 아홉 단계로 구성하였다. 각 단계는 이전 단계의 산출물과 해시를 입력으로 받고 검증 게이트를 통과한 경우에만 다음 단계의 권위 있는 입력이 되도록 설계하였다.","이 순서를 택한 이유는 결과에서 거꾸로 원자료를 맞추는 순환을 막기 위해서다. 예를 들어 논문 표의 총계는 문서에 직접 입력하지 않고 근거지도 manifest에서 읽는다. 검색자료가 바뀌면 manifest와 표가 함께 바뀌며, 일치하지 않으면 검증기가 실패한다."]),
+("3.2 저장소 감사와 legacy 격리",["연구 시작 시점의 코드, 배포 흔적, 데이터 경로, 하드코딩 수치와 테스트 공백을 감사하였다. 기존 생성물은 완료 표기와 무관하게 재검증 전에는 legacy_unverified로 분류하였다. 36개 파일을 기준 커밋별 격리 경로로 이동하고 이동 전후 SHA-256을 비교하여 불일치가 0건임을 확인하였다.","격리는 삭제가 아니라 증거 보존 조치다. 기존 결과가 새 분석에 우연히 섞이는 것을 막으면서도, 과거 계산을 재현하거나 차이를 조사할 수 있게 한다. 새 기본 런타임은 검증된 v2 자료만 읽고 legacy 기능은 별도 경로에 둔다."]),
+("3.3 프로토콜 개정의 논리",["v1의 목표였던 체계적 문헌고찰에는 두 명의 독립 선별자, 사람의 충돌 해결, 이중 추출, 위험비뚤림 평가와 원문 접근이 필요했다. 해당 조건이 충족되지 않았으므로 v1을 완료로 재표기하지 않고 외부 사람 검토가 필요한 상태로 유지하였다.","v2는 질문을 공개 서지자료의 발견 가능성, 자동 분류의 행동, 계보가 있는 탐색 도구의 기술적 성능으로 제한하였다. 결과적으로 ‘어떤 보충제가 안전한가’가 아니라 ‘어떤 문헌 후보가 관찰되며 자동화가 어디에서 합의·불일치하는가, 도구가 정한 경계 안에서 재현 가능하게 작동하는가’를 답한다."]),
+("3.4 정보원 선택과 접근 제약",["PubMed는 생의학 서지 레코드와 초록의 주요 출처로, ClinicalTrials.gov는 등록된 연구의 보완 출처로, KoreaMed는 국내 의학문헌의 보완 출처로 선택하였다. 각 출처는 자료 구조와 제공 범위가 다르므로 하나의 분류 규칙을 강제로 적용하지 않았다.","Embase, Scopus, Web of Science와 일부 국내 원시 내보내기, 구독 원문은 접근권한 또는 안정적인 native export가 확보되지 않아 권위 있는 corpus에 포함하지 않았다. 접근 실패를 0건으로 바꾸지 않고 접근 제약으로 기록하였다. 이는 포괄성을 낮추지만 관찰하지 않은 자료를 관찰한 것처럼 계산하는 오류를 피한다."]),
+("3.5 질문별 검색 개념",["A군 질문은 보충제 성분 개념, 항응고제 계열 또는 개별 약물 개념, 상호작용·출혈·응고 관련 개념을 결합하였다. B군 질문은 보충제 성분 개념과 신장결석·요로결석 관련 개념을 결합하였다. 넓은 검색은 민감도를 우선하되, 검색식에만 의존해 임상 관련성을 확정하지 않았다.","비타민 K 길항제처럼 성분명과 약물군 명칭이 어휘적으로 겹치는 질문은 특히 오검색 위험이 높다. 이 때문에 검색 총계와 자동 분류의 차이를 질문별로 보존하고, 수치가 크다는 이유로 근거가 풍부하다고 해석하지 않았다."]),
+("3.6 원자료 보존과 해시",["각 원자료는 가능한 한 수신한 바이트 그대로 보존하고 SHA-256을 계산하였다. 정규화 파일은 원자료를 덮어쓰지 않고 별도 생성하며, 생성 manifest에 입력 경로·해시·행 수·생성 시각과 출력 해시를 기록하였다. 동일 경로의 파일이 바뀌면 계보 검증이 실패하도록 하였다."]),
+("3.7 정규화와 분석단위",["서로 다른 출처의 필드명을 공통 스키마로 매핑하였다. 공통 필드는 질문 ID, 출처, 출처 레코드 ID, 제목, 초록, 연도, 저널, 출판유형, DOI·PMID·등록번호, URL과 관찰 가능성이다. 값이 없는 필드는 빈 문자열과 명시적 상태로 구분하여 ‘없음’과 ‘수집하지 못함’을 혼동하지 않았다.","한 레코드가 둘 이상의 질문에서 검색될 수 있으므로 기본 단위를 record-question unit으로 정했다. 전체 행 수는 질문별 검색 경험을 보존하는 값이며 고유 연구 수가 아니다. 고유 식별자 기반 집계가 필요한 경우 분모와 변환 규칙을 별도로 표시하였다."]),
+("3.8 중복 후보 처리",["PMID, DOI, 등록번호와 정규화 제목을 사용해 중복 후보를 표시하였다. 그러나 동일 연구 여부는 설계, 표본, 시점과 보고 목적을 함께 판단해야 하므로 AI 단독으로 study-family를 확정하지 않았다. 따라서 본 연구의 결과표는 확정 중복 제거 후 연구 수가 아니라 record-question unit 수를 보고한다."]),
+("3.9 이중 자동 분류 설계",["PubMed 레코드에는 sensitivity-first와 structured-conservative 두 프로파일을 적용하였다. 전자는 성분·상황 관련 신호를 폭넓게 포착해 누락 위험을 줄이도록, 후자는 제목·초록의 구조화된 직접 신호가 약한 레코드를 후순위화하도록 설계하였다.","두 프로파일이 모두 유지하면 ai_agreement_retain, 모두 후순위이면 ai_agreement_deprioritize, 서로 다르면 ai_disagreement_uncertain으로 기록하였다. 이 명칭은 사람의 포함·제외 판정을 의도적으로 사용하지 않는다. 분류 결과는 후속 사람 검토의 작업순서를 지원할 뿐 근거 적격성을 확정하지 않는다."]),
+("3.10 비-PubMed 자료 처리",["ClinicalTrials.gov와 KoreaMed는 PubMed와 필드 구성, 초록 관찰률과 레코드 의미가 다르다. 동일 분류기를 적용하면 출처 차이가 관련성 차이로 오해될 수 있으므로 ai_unranked_source_candidate로 보존하였다. 이는 분석 일관성보다 출처별 측정의 타당성을 우선한 결정이다."]),
+("3.11 관찰 가능성 상태",["초록 텍스트가 있으면 abstract_observed, 제목과 메타데이터만 있으면 title_metadata_only로 분류하였다. PMC 식별자가 연결된 레코드는 public_full_text_locator_available로 별도 표시하였다. PMC locator는 공개 원문으로 이동할 수 있는 위치 정보이며, 본 연구가 본문을 모두 읽고 추출했다는 의미가 아니다."]),
+("3.12 근거지도와 임시 주장",["질문별 근거지도는 출처 수, 초록 관찰 여부, 자동 분류와 공개 원문 locator를 행 단위로 결합한다. 임시 주장은 임상 결론이 아니라 corpus의 관찰 가능한 상태를 요약한다. 모든 수치 주장에는 생성 manifest와 해시를 연결하고, 효과 방향이나 안전성 권고는 생성하지 않았다."]),
+("3.13 탐색 도구 설계",["탐색 도구는 정확한 성분명과 사전에 정의된 동의어에만 질문을 연결한다. 부분 문자열이나 유사 표현이 우연히 임상 경로로 연결되는 것을 막기 위해 near-match는 일치하지 않도록 했다. 응답은 질문별 corpus 규모, 출처 분포, 자동 분류 분포와 계보 위치만 제공한다.","clinical_actions 필드는 빈 튜플로 고정하고, 복용 시작·중단, 용량 변경이나 검사 권고를 출력하지 않는다. 이 제한은 기능 부족이 아니라 탐색적 자료를 임상 의사결정 도구로 오인하지 않게 하는 안전 경계다."]),
+("3.14 독립 시나리오 검증",["다섯 질문, 정확 일치·동의어·오입력·경계 입력을 조합해 120개 합성 시나리오를 만들고 각 시나리오를 세 번 반복 실행하였다. 동일 입력의 출력 동일성, 예상 질문 라우팅, 출처 계보 필드 완전성, 임상행동 누출, legacy 누출과 near-match 오경로를 측정하였다.","합성 시나리오는 실제 임상 사용자나 전문가가 만든 gold standard가 아니다. 따라서 본 연구는 민감도·특이도 또는 임상 정확도를 보고하지 않는다. 검증의 대상은 소프트웨어 경계와 반복성이다."]),
+("3.15 분석과 품질 게이트",["기술통계는 출처·질문·관찰상태·자동 분류별 빈도와 비율로 제한하였다. 효과크기를 임의로 통합하거나 이질성을 계산하지 않았다. 코드 단위테스트, 타입 검사, 프로덕션 빌드, 데이터 해시 검사, 문서 수치 일치 검사와 PDF 시각검사를 서로 다른 게이트로 운영하였다."]),
+("3.16 재현성과 변경관리",["모든 생성 산출물은 스크립트로 다시 만들 수 있게 하고, 논문 DOCX와 PDF도 동일 manifest에서 수치를 읽는다. WORKLOG, DECISIONS, RISKS와 BLOCKERS에는 설계 변경과 미해결 외부 항목을 기록한다. 사람 검토가 필요한 항목은 삭제하거나 우회해 완료로 표시하지 않고 향후 연구 단계로 남긴다.","변경관리는 원자료, 변환 코드, 생성 데이터, 서비스 번들과 논문을 하나의 연쇄로 본다. 상류 자료가 바뀌면 하류 산출물을 다시 만들고 전체 검증을 반복한다. 최종 manifest에는 상대경로, 바이트 크기와 SHA-256을 기록해 복사·배포 과정의 손상을 검출한다."]),
+("3.17 설계 대안과 선택 근거",["첫 번째 대안은 사람 선별을 확보할 때까지 연구 전체를 중단하는 것이었다. 이는 체계적 문헌고찰이라는 원래 목표에는 가장 충실하지만, 공개 자료의 수집·계보화와 소프트웨어 경계 검증까지 중단할 이유는 없었다. 이에 임상 결론을 유보하면서 독립적으로 검증 가능한 탐색 연구를 계속하는 방식을 택하였다.","두 번째 대안은 하나의 자동 분류 점수로 모든 출처를 순위화하는 것이었다. 구현은 단순하지만 출처별 필드 차이와 분류기 불확실성을 숨긴다. 본 연구는 두 PubMed 프로파일의 교차 상태와 비-PubMed 비순위 상태를 따로 보존해 측정도구의 차이를 결과에 노출했다.","세 번째 대안은 검색 건수를 줄이기 위해 매우 좁은 검색식을 사용하는 것이었다. 그러나 고위험 상황에서 초기 누락 비용이 크고 용어 변이가 많으므로 검색 단계는 민감도를 우선하였다. 대신 후속 자동 분류와 관찰 가능성 층을 추가해 넓은 검색이 곧 직접 근거로 오해되지 않게 했다."]),
+("3.18 오류 예방 설계",["수치 하드코딩을 막기 위해 본문과 표의 핵심 수치는 JSON manifest에서 동적으로 읽는다. 문서 검증기는 필수 장, 최소 문단·표·쪽수, 결과 수치와 금지 표현을 검사한다. 이 방식은 문장을 잘 쓰는 문제와 수치를 정확히 유지하는 문제를 분리한다.","legacy 자료의 런타임 누출을 막기 위해 새 기본 페이지와 API는 v2 bundle만 참조한다. 과거 경로는 별도의 legacy 화면에 두고 기본 탐색 결과에는 나타나지 않게 했다. 테스트는 import 경로뿐 아니라 실제 응답의 provenance와 clinical_actions 경계까지 확인한다."]),
+("3.19 윤리와 의사소통 원칙",["건강 관련 도구가 불완전한 근거를 단정적으로 제시하면 사용자가 복용을 임의로 변경할 수 있다. 본 연구는 임상행동 문장을 구조적으로 비워 두고, 자료 범위와 미관찰 상태를 응답에 함께 노출하였다. 이는 면책문구 하나에 의존하지 않고 기능 수준에서 오용 가능성을 줄이는 접근이다.","AI가 수행한 분류를 사람 검토로 표현하지 않았으며, 사람이 필요한 단계는 향후 과제로 명시하였다. 연구의 완성도는 많은 결론을 쓰는 데 있지 않고, 결론을 낼 수 없는 조건을 독자가 식별할 수 있게 하는 데 있다고 보았다."]),
+("3.20 웹 시스템 구현과 배포 환경",["개인맞춤 안전성 조회 시스템은 Next.js 16.2.1 App Router로 구현하고 Vercel Preview 환경에 배포하였다. 사용자는 보충제, 일일 복용량, 병용 약물, 질환·결석 병력과 검사값을 입력하며, 시스템은 질문별 확인사항과 핵심 근거 문헌, 보고 용량, 안전성 결과 및 원문 URL을 반환한다.","배포 검증 시 프로덕션 빌드, TypeScript 검사와 53개 자동 테스트를 통과하였다. 배포 ID와 URL, 지역, route 목록 및 빌드 결과는 별도 배포 검증 기록에 고정하였다. 연구결과 고정 전 배포는 Preview로 유지하고 최종 검증 후 Production으로 승격한다."])]),
+("4. 연구 결과",[
+("4.1 corpus 구성",[f"근거지도에는 총 {M['row_count']:,}개의 record-question unit이 포함되었다. 출처별로 PubMed {M['source_counts']['pubmed']:,}개, ClinicalTrials.gov {M['source_counts']['clinicaltrials']:,}개, KoreaMed {M['source_counts']['koreamed']:,}개였다. 이 값은 확정 중복 제거된 고유 연구 수가 아니다.",f"초록이 관찰된 행은 {M['abstract_observed']:,}개였고 제목·메타데이터만 관찰된 행은 {M['title_metadata_only']:,}개였다. 공개 PMC locator가 연결된 행은 {M['pmc_locator_record_question_rows']:,}개이며 고유 레코드로 환산하면 {M['unique_records_with_pmc_identifier']:,}개였다."]),
+("4.2 자동 분류 분포",[f"PubMed 이중 자동 분류에서 유지 합의는 {S['classifications']['ai_agreement_retain']:,}개, 후순위 합의는 {S['classifications']['ai_agreement_deprioritize']:,}개, 불일치 불확실은 {S['classifications']['ai_disagreement_uncertain']:,}개였다. 비-PubMed {N['row_count']:,}개는 비순위 후보로 보존하였다.","불일치의 규모는 하나의 단순 규칙으로 관련성을 확정하기 어렵다는 점을 보여준다. 그러나 이것만으로 어느 프로파일이 더 정확한지 또는 실제 적격 문헌이 몇 개인지는 판단할 수 없다."]),
+("4.3 탐색 도구 검증",[f"120개 시나리오를 각 3회 실행해 총 {V['executions']:,}회의 출력을 비교하였다. 결정성, 정확한 질문 라우팅과 계보 완전성은 각각 {V['scenario_count']}/{V['scenario_count']}였다. 임상행동 누출 {V['clinical_action_leakage_scenarios']}건, legacy 누출 {V['legacy_leakage_scenarios']}건, near-match 오경로 {V['negative_false_routes']}건이었다.","이 결과는 정해진 합성 입력에서 구현 경계가 작동했음을 뜻한다. 실제 환자 상황에서 임상적으로 안전하거나 문헌검색 성능이 우수하다는 증거로 확장할 수 없다."])]),
+("5. 고찰",[
+("5.1 주요 결과의 의미",["본 연구의 가장 중요한 산출물은 큰 검색 건수가 아니라 관찰 가능성, 자동 합의·불일치와 출처 계보를 동시에 보존한 구조다. 이 구조는 후속 검토자가 먼저 무엇을 확인해야 하는지 보여주며, 수치가 원자료에서 어떻게 만들어졌는지 역추적하게 한다.","20,230개 행 중 2,215개는 초록이 없었다. 따라서 제목과 메타데이터만으로 의미를 확대하지 않는 것이 중요하다. 또한 공개 원문 locator가 있어도 본문 추출 완료와 동일하지 않으므로 접근 가능성과 분석 완료를 별도 상태로 유지해야 한다."]),
+("5.2 방법론적 기여",["프로토콜 전환은 미완료 체계적 고찰을 완성된 것처럼 포장하지 않고, 현재 자료로 검증 가능한 기술적 질문으로 연구 범위를 재정렬한 사례다. AI 사용 사실과 한계를 문서 전반에 동일하게 반영함으로써 자동화가 사람 판정을 대체했다는 오해를 줄였다.","두 자동 프로파일의 불일치를 보존한 설계는 단일 점수의 확신을 피한다. 분류 차이는 향후 사람이 우선 검토할 표본을 제공하고, 규칙 개선 시 어떤 레코드가 상태를 바꾸는지 비교할 기준선이 된다."]),
+("5.3 실무적 함의",["탐색 도구는 임상 답을 주는 대신 관련 질문의 자료 지형과 출처를 보여준다. 이 역할은 사용자에게 즉시 행동을 요구하지 않으면서 문헌 탐색의 시작점을 제공한다. 의료적 판단이 필요한 경우 원문 확인과 전문가 평가가 뒤따라야 한다."]),
+("5.4 후속 연구",["후속 단계에서는 두 명 이상의 사람이 독립적으로 우선 표본을 선별하고 충돌을 해결해야 한다. 그 결과를 gold standard로 삼아 자동 분류기의 민감도·특이도와 오류 유형을 평가할 수 있다. 또한 구독 데이터베이스와 국내 native export를 추가하고 study-family를 사람 검증해 연구 수준의 흐름도를 만들 필요가 있다."])]),
+("6. 연구의 한계",[
+("6.1 자료와 판정의 한계",["사람의 독립 선별, 이중 추출, 위험비뚤림 평가와 GRADE가 없다. Embase, Scopus, Web of Science, 일부 국내 데이터베이스와 구독 원문도 포함하지 못했다. 그러므로 본 근거지도는 가능한 모든 근거의 완전한 목록이 아니다.","레코드가 질문별로 중복될 수 있고 study-family가 확정되지 않았기 때문에 행 수를 고유 연구 수로 해석할 수 없다. 자동 분류는 텍스트 표면 신호에 의존하며 임상적 적격성을 대신하지 않는다."]),
+("6.2 검증의 한계",["합성 시나리오는 실제 전문가·환자 데이터가 아니며 임상 안전성과 유용성을 검증하지 않는다. 성공률은 구현한 경계의 일관성만 나타낸다. 실제 사용자 평가, 전문가 내용타당도와 외부 데이터셋 검증이 추가되어야 한다."])]),
+("7. 결론",[("",[f"본 연구는 다섯 고위험 임상상황 질문에 대해 {M['row_count']:,}개의 record-question unit을 출처·관찰 가능성·자동 분류·원문 locator와 함께 구조화하였다. 또한 정확 일치 기반 탐색 도구를 구현하고 120개 합성 시나리오에서 결정성, 라우팅과 계보 경계를 검증하였다.","이 결과는 임상 권고나 체계적 문헌고찰의 결론이 아니다. 연구의 의의는 접근할 수 있는 자료와 접근할 수 없는 자료, 자동화가 할 수 있는 일과 사람이 해야 하는 일을 구분하고, 모든 결과 수치를 원자료와 코드에 연결한 데 있다. 후속 사람 검토와 외부 검증이 완료될 때까지 임상행동을 제시하지 않는 것이 본 설계의 핵심 결론이다."])])]
 
-def set_cell_shading(cell,fill):
- tcPr=cell._tc.get_or_add_tcPr();shd=tcPr.find(qn("w:shd")) or OxmlElement("w:shd");shd.set(qn("w:fill"),fill);tcPr.append(shd) if shd.getparent() is None else None
-def set_cell_width(cell,dxa):
- tcPr=cell._tc.get_or_add_tcPr();tcW=tcPr.find(qn("w:tcW")) or OxmlElement("w:tcW");tcW.set(qn("w:w"),str(dxa));tcW.set(qn("w:type"),"dxa");tcPr.append(tcW) if tcW.getparent() is None else None
-def set_table_geometry(table,widths):
- tblPr=table._tbl.tblPr;tblW=tblPr.find(qn("w:tblW"));tblW.set(qn("w:w"),str(sum(widths)));tblW.set(qn("w:type"),"dxa");ind=OxmlElement("w:tblInd");ind.set(qn("w:w"),"120");ind.set(qn("w:type"),"dxa");tblPr.append(ind);grid=table._tbl.tblGrid
- for old in list(grid):grid.remove(old)
- for w in widths:g=OxmlElement("w:gridCol");g.set(qn("w:w"),str(w));grid.append(g)
- for row in table.rows:
-  for cell,w in zip(row.cells,widths):set_cell_width(cell,w);cell.vertical_alignment=WD_CELL_VERTICAL_ALIGNMENT.CENTER
-def add_page_field(p):
- p.alignment=WD_ALIGN_PARAGRAPH.RIGHT;r=p.add_run();fld=OxmlElement("w:fldSimple");fld.set(qn("w:instr"),"PAGE");r._r.addnext(fld)
-def add_table(doc,headers,data,widths):
- t=doc.add_table(rows=1,cols=len(headers));t.alignment=WD_TABLE_ALIGNMENT.CENTER;t.autofit=False;t.style="Table Grid";set_table_geometry(t,widths)
- for i,h in enumerate(headers):t.rows[0].cells[i].text=h;set_cell_shading(t.rows[0].cells[i],"E8EEF5")
- for row in data:
-  cells=t.add_row().cells
-  for i,v in enumerate(row):cells[i].text=str(v)
- set_table_geometry(t,widths)
- for row in t.rows:
-  for cell in row.cells:
-   for p in cell.paragraphs:
-    p.paragraph_format.space_after=Pt(2)
-    for run in p.runs:run.font.name="Malgun Gothic";run._element.rPr.rFonts.set(qn("w:eastAsia"),"맑은 고딕");run.font.size=Pt(8.5)
- return t
+def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()
+def add_page_number(p):
+    p.alignment=WD_ALIGN_PARAGRAPH.RIGHT; fld=OxmlElement("w:fldSimple"); fld.set(qn("w:instr"),"PAGE"); p._p.append(fld)
+def table(doc,headers,rows):
+    t=doc.add_table(rows=1,cols=len(headers)); t.style="Table Grid"; t.alignment=WD_TABLE_ALIGNMENT.CENTER
+    for i,h in enumerate(headers): t.rows[0].cells[i].text=h
+    for row in rows:
+        c=t.add_row().cells
+        for i,v in enumerate(row): c[i].text=str(v)
+    return t
 
-doc=Document();sec=doc.sections[0];sec.page_width=Inches(8.5);sec.page_height=Inches(11);sec.top_margin=sec.bottom_margin=sec.left_margin=sec.right_margin=Inches(1);sec.header_distance=sec.footer_distance=Inches(.492)
-styles=doc.styles
-for name,size,before,after,color in [("Normal",10.5,0,8,"222222"),("Title",22,0,12,"0B2545"),("Heading 1",16,18,10,"2E74B5"),("Heading 2",13,12,6,"2E74B5"),("Heading 3",12,8,4,"1F4D78")]:
- s=styles[name];s.font.name="Malgun Gothic";s._element.rPr.rFonts.set(qn("w:eastAsia"),"맑은 고딕");s.font.size=Pt(size);s.font.color.rgb=RGBColor.from_string(color);s.paragraph_format.space_before=Pt(before);s.paragraph_format.space_after=Pt(after);s.paragraph_format.line_spacing=1.25 if name=="Normal" else 1.1
-header=sec.header.paragraphs[0];header.text="AI 기반 탐색적 근거지도 연구";header.alignment=WD_ALIGN_PARAGRAPH.RIGHT
-for r in header.runs:r.font.name="Malgun Gothic";r.font.size=Pt(8);r.font.color.rgb=RGBColor(100,110,120)
-add_page_field(sec.footer.paragraphs[0])
-p=doc.add_paragraph();p.alignment=WD_ALIGN_PARAGRAPH.CENTER;p.paragraph_format.space_before=Pt(110);r=p.add_run("학위논문");r.bold=True;r.font.size=Pt(14);r.font.name="Malgun Gothic"
-p=doc.add_paragraph();p.alignment=WD_ALIGN_PARAGRAPH.CENTER;p.paragraph_format.space_before=Pt(35);r=p.add_run(title);r.bold=True;r.font.size=Pt(21);r.font.color.rgb=RGBColor.from_string("0B2545");r.font.name="Malgun Gothic"
-p=doc.add_paragraph();p.alignment=WD_ALIGN_PARAGRAPH.CENTER;p.paragraph_format.space_before=Pt(18);r=p.add_run(eng);r.font.size=Pt(11);r.italic=True;r.font.name="Arial"
-p=doc.add_paragraph();p.alignment=WD_ALIGN_PARAGRAPH.CENTER;p.paragraph_format.space_before=Pt(90);r=p.add_run("여형준");r.bold=True;r.font.size=Pt(14);r.font.name="Malgun Gothic"
-p=doc.add_paragraph();p.alignment=WD_ALIGN_PARAGRAPH.CENTER;p.paragraph_format.space_before=Pt(18);p.add_run("2026년 7월")
-doc.add_page_break();doc.add_heading("국문초록",level=1);doc.add_paragraph(abstract);doc.add_paragraph("주요어: 영양보충제, 탐색적 근거지도, 항응고제, 칼슘옥살레이트 결석, 결정론적 엔진, 출처 계보")
-doc.add_page_break();doc.add_heading("목차",level=1)
-for heading,_ in sections:doc.add_paragraph(heading,style="Heading 2")
-doc.add_paragraph("참고자료");doc.add_paragraph("부록 A. 재현성 및 파일 계보")
-doc.add_page_break()
-for heading,paras in sections:
- doc.add_heading(heading,level=1)
- for paragraph in paras:doc.add_paragraph(paragraph)
- if heading=="2. 연구 방법":
-  add_table(doc,["질문","탐색 범위"],[[q,question_names[q]] for q in question_names],[1200,8160])
- if heading=="3. 연구 결과":
-  data=[]
-  for c in claims:data.append([c["question_id"],f"{c['record_question_units']:,}",f"{c['abstract_observed']:,}",f"{c['classification_counts'].get('ai_agreement_retain',0):,}",f"{c['classification_counts'].get('ai_agreement_deprioritize',0):,}",f"{c['classification_counts'].get('ai_disagreement_uncertain',0):,}",f"{c['classification_counts'].get('ai_unranked_source_candidate',0):,}"])
-  add_table(doc,["질문","전체","초록","유지 합의","후순위 합의","불일치·불확실","비순위"],data,[900,1100,1100,1500,1500,1800,1460])
-  doc.add_paragraph("표 1. 질문별 탐색지도 분포. 모든 수치는 record-question unit이며 포함 연구 수가 아니다.",style="Caption")
-  add_table(doc,["지표","결과"],[["합성 fixture",perf["scenario_count"]],["반복 실행",perf["executions"]],["결정성",f"{perf['deterministic_scenarios']}/{perf['scenario_count']}"],["정확 routing",f"{perf['correct_exact_route_scenarios']}/{perf['scenario_count']}"],["계보 완전성",f"{perf['provenance_complete_scenarios']}/{perf['scenario_count']}"],["임상행동 누출",perf["clinical_action_leakage_scenarios"]],["legacy 누출",perf["legacy_leakage_scenarios"]],["near-match 오경로",perf["negative_false_routes"]]],[3000,6360])
-  doc.add_paragraph("표 2. 합성 기술 시나리오 결과. 독립 gold 또는 임상 성능지표가 아니다.",style="Caption")
-doc.add_page_break();doc.add_heading("참고자료",level=1)
-refs=["National Library of Medicine. PubMed 데이터와 E-utilities를 통해 확보한 검색·서지 원자료. 접근일 2026-07-10.","U.S. National Library of Medicine. ClinicalTrials.gov 공개 연구등록자료. 접근일 2026-07-10.","KoreaMed. 국내 의학문헌 검색 결과 표시자료. 접근일 2026-07-10. Native export 서버 오류를 제한점으로 기록함.","National Center for Biotechnology Information. PubMed Central ID 및 공개 원문 locator 자료. 접근일 2026-07-10.","연구 프로토콜 v2.0. AI 기반 탐색적 문헌지도와 결정론적 도구 검증. 2026-07-12."]
-for ref in refs:doc.add_paragraph(ref,style="List Number")
-doc.add_heading("부록 A. 재현성 및 파일 계보",level=1)
-lineage=[["프로토콜",PROTOCOL.relative_to(ROOT).as_posix(),sha(PROTOCOL)],["근거지도 manifest",MAP_MAN.relative_to(ROOT).as_posix(),sha(MAP_MAN)],["PubMed 분류 manifest",SCREEN_MAN.relative_to(ROOT).as_posix(),sha(SCREEN_MAN)],["비-PubMed manifest",NONPUB_MAN.relative_to(ROOT).as_posix(),sha(NONPUB_MAN)],["기술 검증",PERF.relative_to(ROOT).as_posix(),sha(PERF)],["탐색 bundle",BUNDLE.relative_to(ROOT).as_posix(),sha(BUNDLE)]]
-add_table(doc,["항목","경로","SHA-256"],lineage,[1500,4200,3660])
-doc.add_paragraph("본 부록의 해시는 빌드 시점 파일을 가리킨다. 최종 manifest는 DOCX/PDF와 함께 별도로 생성한다.")
+doc=Document(); sec=doc.sections[0]; sec.page_width=Inches(8.27); sec.page_height=Inches(11.69); sec.top_margin=sec.bottom_margin=Inches(.85); sec.left_margin=sec.right_margin=Inches(1)
+for name,size,color in [("Normal",10.5,"222222"),("Title",20,"15314B"),("Heading 1",16,"1F4E79"),("Heading 2",13,"1F4E79"),("Heading 3",11.5,"365F7D")]:
+    s=doc.styles[name]; s.font.name="Malgun Gothic"; s._element.rPr.rFonts.set(qn("w:eastAsia"),"맑은 고딕"); s.font.size=Pt(size); s.font.color.rgb=RGBColor.from_string(color); s.paragraph_format.line_spacing=1.55 if name=="Normal" else 1.2; s.paragraph_format.space_after=Pt(7)
+sec.header.paragraphs[0].text="고위험 임상상황의 영양보충제 안전성 문헌 탐색 연구"; add_page_number(sec.footer.paragraphs[0])
+p=doc.add_paragraph(); p.alignment=WD_ALIGN_PARAGRAPH.CENTER; p.paragraph_format.space_before=Pt(90); p.add_run("학위논문").bold=True
+p=doc.add_paragraph(); p.alignment=WD_ALIGN_PARAGRAPH.CENTER; p.paragraph_format.space_before=Pt(35); r=p.add_run("고위험 임상상황의 영양보충제 안전성 문헌을 위한\nAI 기반 탐색적 근거지도 구축과\n결정론적 탐색 도구의 기술 검증"); r.bold=True; r.font.size=Pt(20)
+p=doc.add_paragraph(); p.alignment=WD_ALIGN_PARAGRAPH.CENTER; p.add_run("AI-Based Exploratory Evidence Mapping of Dietary Supplement Safety in High-Risk Clinical Contexts").italic=True
+p=doc.add_paragraph(); p.alignment=WD_ALIGN_PARAGRAPH.CENTER; p.paragraph_format.space_before=Pt(80); p.add_run("여형준\n2026년 7월").bold=True
+doc.add_page_break(); doc.add_heading("국문초록",1)
+abstract=f"본 연구는 항응고제 병용과 신장결석 위험에 관련된 다섯 영양보충제 질문의 공개 서지자료를 AI 기반 탐색적 근거지도로 구조화하고, 임상행동을 출력하지 않는 결정론적 탐색 도구의 기술적 경계를 검증하였다. 초기 체계적 문헌고찰 프로토콜은 사람의 독립 선별과 원문 접근 조건을 충족하지 못해 완료로 간주하지 않았으며, 연구 질문을 공개 자료의 관찰 가능성, 자동 분류의 합의·불일치, 출처 계보와 소프트웨어 반복성으로 제한한 v2 프로토콜로 개정하였다. 총 {M['row_count']:,}개 record-question unit을 확보했으며 PubMed {M['source_counts']['pubmed']:,}개, ClinicalTrials.gov {M['source_counts']['clinicaltrials']:,}개, KoreaMed {M['source_counts']['koreamed']:,}개였다. 초록 관찰 행은 {M['abstract_observed']:,}개, 제목·메타데이터만 관찰된 행은 {M['title_metadata_only']:,}개였다. PubMed 이중 자동 분류는 유지 합의 {S['classifications']['ai_agreement_retain']:,}개, 후순위 합의 {S['classifications']['ai_agreement_deprioritize']:,}개, 불일치 불확실 {S['classifications']['ai_disagreement_uncertain']:,}개였다. 120개 합성 시나리오의 360회 실행에서 결정성, 정확 라우팅과 계보 완전성은 모두 120/120이었고 임상행동·legacy 누출과 near-match 오경로는 0건이었다. 본 결과는 임상 권고나 사람 선별을 거친 체계적 문헌고찰이 아니며, 후속 사람 검토를 위한 재현 가능한 탐색 기반을 제시한다."
+doc.add_paragraph(abstract); doc.add_paragraph("주요어: 영양보충제, 항응고제, 신장결석, 탐색적 근거지도, 인공지능, 출처 계보, 결정론적 검증")
+doc.add_heading("Abstract",1); doc.add_paragraph("This study constructed an AI-assisted exploratory evidence map for five dietary-supplement safety questions and technically validated a deterministic navigation tool. The protocol was explicitly narrowed because independent human screening and complete full-text access were unavailable. The corpus contains 20,230 record-question units. Automated labels are prioritization signals, not inclusion decisions, and the tool emits no clinical actions. Repeated synthetic tests supported deterministic routing and provenance completeness, but did not establish clinical validity.")
+doc.add_page_break(); doc.add_heading("목차",1)
+for h,subs in sections:
+    doc.add_paragraph(h,style="Heading 2")
+    for sh,_ in subs:
+        if sh: doc.add_paragraph(sh)
+doc.add_paragraph("참고문헌"); doc.add_paragraph("부록 A. 질문별 결과표"); doc.add_paragraph("부록 B. 재현 경로와 파일 해시")
+for section_index,(h,subs) in enumerate(sections):
+    if section_index == 0:
+        doc.add_page_break()
+    doc.add_heading(h,1)
+    for sh,paras in subs:
+        if sh: doc.add_heading(sh,2)
+        for x in paras: doc.add_paragraph(x)
+        if sh=="1.3 연구 목적과 질문": table(doc,["질문","범위"],[[k,v] for k,v in Q.items()])
+        if sh=="4.2 자동 분류 분포": table(doc,["분류","행 수"],[[k,f"{v:,}"] for k,v in S["classifications"].items()])
+        if sh=="4.3 탐색 도구 검증": table(doc,["평가지표","결과"],[["합성 시나리오",V["scenario_count"]],["반복 실행",V["executions"]],["결정성",f"{V['deterministic_scenarios']}/{V['scenario_count']}"],["정확 라우팅",f"{V['correct_exact_route_scenarios']}/{V['scenario_count']}"],["계보 완전성",f"{V['provenance_complete_scenarios']}/{V['scenario_count']}"],["임상행동 누출",V["clinical_action_leakage_scenarios"]],["legacy 누출",V["legacy_leakage_scenarios"]],["near-match 오경로",V["negative_false_routes"]]])
+doc.add_heading("참고문헌",1)
+refs=["Page MJ, et al. The PRISMA 2020 statement: an updated guideline for reporting systematic reviews. BMJ. 2021;372:n71.","Tricco AC, et al. PRISMA Extension for Scoping Reviews (PRISMA-ScR): Checklist and Explanation. Ann Intern Med. 2018;169:467-473.","Rethlefsen ML, et al. PRISMA-S: an extension to the PRISMA Statement for Reporting Literature Searches in Systematic Reviews. Syst Rev. 2021;10:39.","Miake-Lye IM, et al. What is an evidence map? A systematic review of published evidence maps and their definitions, methods, and products. Syst Rev. 2016;5:28.","National Library of Medicine. PubMed and NCBI E-utilities documentation. Accessed 2026-07-10.","U.S. National Library of Medicine. ClinicalTrials.gov Data API documentation. Accessed 2026-07-10.","KoreaMed. Korean medical literature search service. Accessed 2026-07-10.","연구 프로토콜 v2.0. AI 기반 탐색적 문헌지도 및 결정론적 도구 검증. 2026-07-12."]
+for x in refs: doc.add_paragraph(x,style="List Number")
+doc.add_heading("부록 A. 질문별 결과표",1)
+claims=[json.loads(x) for x in (ROOT/"data/curated_v2/provisional_claims.jsonl").read_text(encoding="utf-8").splitlines() if x.strip()]
+table(doc,["질문","전체","초록","유지 합의","후순위 합의","불일치","비순위"],[[c["question_id"],c["record_question_units"],c["abstract_observed"],c["classification_counts"].get("ai_agreement_retain",0),c["classification_counts"].get("ai_agreement_deprioritize",0),c["classification_counts"].get("ai_disagreement_uncertain",0),c["classification_counts"].get("ai_unranked_source_candidate",0)] for c in claims])
+doc.add_heading("부록 B. 재현 경로와 파일 해시",1)
+table(doc,["항목","상대 경로","SHA-256"],[[k,p.relative_to(ROOT).as_posix(),sha(p)] for k,p in P.items()])
+doc.add_paragraph("표의 수치는 문서에 고정 입력하지 않고 각 manifest에서 읽어 생성하였다. 해시가 달라지면 검증 절차를 다시 수행해야 한다.")
 doc.save(DOCX)
 
-md=[f"# {title}","",f"**영문 제목:** {eng}","","**저자:** 여형준  ","**작성일:** 2026년 7월","","## 국문초록","",abstract,"","**주요어:** 영양보충제, 탐색적 근거지도, 항응고제, 칼슘옥살레이트 결석, 결정론적 엔진, 출처 계보",""]
-for h,paras in sections:
- md += [f"## {h}",""]+[p+"\n" for p in paras]
+md=["# 고위험 임상상황의 영양보충제 안전성 문헌을 위한 AI 기반 탐색적 근거지도 구축과 결정론적 탐색 도구의 기술 검증","","## 국문초록","",abstract,""]
+for h,subs in sections:
+    md += [f"## {h}",""]
+    for sh,paras in subs:
+        if sh: md += [f"### {sh}",""]
+        md += sum(([x,""] for x in paras),[])
 MD.write_text("\n".join(md),encoding="utf-8")
-print(json.dumps({"docx":str(DOCX.relative_to(ROOT)),"markdown":str(MD.relative_to(ROOT)),"rows":mapm["row_count"],"scenarios":perf["scenario_count"]},ensure_ascii=False))
+print(json.dumps({"docx":str(DOCX),"markdown":str(MD),"paragraphs":len(doc.paragraphs),"tables":len(doc.tables)},ensure_ascii=False))

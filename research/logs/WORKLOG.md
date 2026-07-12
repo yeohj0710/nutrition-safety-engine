@@ -733,3 +733,11 @@
 - Bound 23 protocol, classification, evidence-map, claim/rule, engine, validation, thesis, and builder artifacts into the final SHA-256 manifest.
 - Full v2 validator suite, 53 Vitest tests, typecheck, production build, local HTTP smoke, DOCX structure, and six-page PDF visual QA all pass.
 - Marked only protocol v2 `complete_verified_ai_exploratory`; v1 remains `blocked_external_not_relabelled`.
+# 2026-07-12 — v3 전체 회귀·배포·최종 승인 감사
+
+- phase/task: v3 final review continuation
+- inputs: v3 PICOS/core manifests, personalized API/UI, systematic-review thesis, Production deployment, A–K acceptance criteria
+- procedure: beginner-facing result UI and SVG chevrons verified; runtime AI constrained to evidence-bound wording; 59 tests/lint/typecheck/build and v3 evidence/thesis validators run; Production alias redeployed; G: delivery package recursively hashed; default npm quality commands detached from legacy generators
+- outputs: `research/validation/deployment_validation_v3.md`, `research/validation/final_acceptance_audit_v3.md`, `tools/build_final_delivery_manifest.py`, updated G: `FINAL_MANIFEST.json`
+- result: technical gates pass; A–K acceptance remains partial because independent human screening/extraction/RoB/GRADE/gold/expert review are absent
+- next: bind a clean Git commit to a fresh Production deployment; preserve all external-human items as explicit blockers

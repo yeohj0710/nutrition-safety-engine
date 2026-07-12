@@ -1,0 +1,302 @@
+[
+  {
+    "question_id": "A1",
+    "ingredient": "vitamin K",
+    "medication": "warfarin or vitamin K antagonist",
+    "condition": "anticoagulation",
+    "checks": [
+      "recent vitamin K intake change",
+      "dose and formulation",
+      "recent INR and stability"
+    ],
+    "output": "확인 항목과 근거 문헌을 표시하고 복용 시작·중단·용량 변경은 지시하지 않는다.",
+    "evidence": [
+      {
+        "record_id": "REC-PUBMED-26962786",
+        "title": "Interaction Between Dietary Vitamin K Intake and Anticoagulation by Vitamin K Antagonists: Is It Really True?: A Systematic Review.",
+        "doi": "10.1097/md.0000000000002895",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26962786/",
+        "locator": "ABSTRACT: Interaction Between Dietary Vitamin K Intake and Anticoagulation by Vitamin K Antagonists: Is It Really True?: A Systematic Review.. | Educational advice is often given to patients starting treatment with vitamin K Antagonists (VKAs). | Common belief is that dietary vitamin K intake could counteract the anticoagulant effect by VKAs and for many years, patients have been discouraged to consume vitamin-K-rich foods, such as green leafy vegetables.The objective of this study is to summarize the current evidence supporting the putative interaction between dietary vitamin K intake and changes in INR with the VKAs.Data sources are MEDLINE via PubMed and Cochrane database.All clinical studies investigating the relationship between dietary vitamin K and measures of anticoagulation were included.",
+        "dose": "150 μg | 76 to 217 μg",
+        "outcome": "Interaction Between Dietary Vitamin K Intake and Anticoagulation by Vitamin K Antagonists: Is It Really True?: A Systematic Review.. | Common belief is that dietary vitamin K intake could counteract the anticoagulant effect by VKAs and for many years, patients have been discouraged to consume vitamin-K-rich foods, such as green leafy vegetables.The objective of this study is to summarize the current evidence supporting the putative interaction between dietary vitamin K intake and changes in INR with the VKAs.Data sources are MEDLINE via PubMed and Cochrane database.All clinical studies investigating the relationship between dietary vitamin K and measures of anticoagulation were included. | We excluded all studies of supplementation of vitamin K alone.We performed a systematic review of the literature up to October 2015, searching for a combination of \"food,\" \"diet,\" \"vitamin K,\" \"phylloquinone,\" \"warfarin,\" \"INR,\" \"coagulation,\" and \"anticoagulant.\"Two dietary interventional trials and 9 observational studies were included."
+      },
+      {
+        "record_id": "REC-PUBMED-10886201",
+        "title": "A prospective randomized study to determine the optimal dose of intravenous vitamin K in reversal of over-warfarinization.",
+        "doi": "10.1046/j.1365-2141.2000.02001.x",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/10886201/",
+        "locator": "ABSTRACT: A prospective randomized study to determine the optimal dose of intravenous vitamin K in reversal of over-warfarinization.. | We measured international normalized ratio (INR), activated partial thromboplastin time (APTT) and prothrombin fragment 1 + 2 (F1 + 2) over 7 d in 24 asymptomatic or mildly haemorrhagic patients on warfarin with prolonged INR of > 7.0 who were randomized to receive 0.5 mg, 1 mg or 2 mg intravenous vitamin K. | Of six severely overanticoagulated patients (INR > 9.5 with APTT ratio > 2), five failed to achieve an INR < or = 4.0 on day 1, irrespective of vitamin K dose given.",
+        "dose": "0.5 mg | 1 mg | 2 mg",
+        "outcome": "The optimal management of asymptomatic overanticoagulated patients remains unknown. | We measured international normalized ratio (INR), activated partial thromboplastin time (APTT) and prothrombin fragment 1 + 2 (F1 + 2) over 7 d in 24 asymptomatic or mildly haemorrhagic patients on warfarin with prolonged INR of > 7.0 who were randomized to receive 0.5 mg, 1 mg or 2 mg intravenous vitamin K. | Of six severely overanticoagulated patients (INR > 9.5 with APTT ratio > 2), five failed to achieve an INR < or = 4.0 on day 1, irrespective of vitamin K dose given."
+      },
+      {
+        "record_id": "REC-PUBMED-21193422",
+        "title": "Vitamin K1 supplementation to improve the stability of anticoagulation therapy with vitamin K antagonists: a dose-finding study.",
+        "doi": "10.3324/haematol.2010.035162",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/21193422/",
+        "locator": "ABSTRACT: Vitamin K1 supplementation to improve the stability of anticoagulation therapy with vitamin K antagonists: a dose-finding study.. | In previous studies supplementation with low dose vitamin K(1) was shown to improve the stability of anticoagulant control. | DESIGN AND METHODS: Four hundred patients from two anticoagulation clinics starting with vitamin K antagonists, independently of a possible history of instable anticoagulation, were randomized to receive either placebo or 100, 150 or 200 μg of vitamin K(1) together with their treatment with vitamin K antagonists.",
+        "dose": "100 μg | 150 μg | 200 μg",
+        "outcome": "Vitamin K1 supplementation to improve the stability of anticoagulation therapy with vitamin K antagonists: a dose-finding study.. | BACKGROUND: Poor anticoagulant stability in patients using vitamin K antagonists is a risk factor for both bleeding and thrombosis. | DESIGN AND METHODS: Four hundred patients from two anticoagulation clinics starting with vitamin K antagonists, independently of a possible history of instable anticoagulation, were randomized to receive either placebo or 100, 150 or 200 μg of vitamin K(1) together with their treatment with vitamin K antagonists."
+      },
+      {
+        "record_id": "REC-PUBMED-15543329",
+        "title": "Over-the-counter vitamin K1-containing multivitamin supplements disrupt warfarin anticoagulation in vitamin K1-depleted patients. A prospective, controlled trial.",
+        "doi": "10.1160/th04-06-0346",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/15543329/",
+        "locator": "ABSTRACT: Over-the-counter vitamin K1-containing multivitamin supplements disrupt warfarin anticoagulation in vitamin K1-depleted patients. | Most multivitamin supplements contain far less vitamin K(1) than thought to affect warfarin anticoagulation. | Therefore, we compared the effect of a vitamin K(1)-containing multivitamin on warfarin anticoagulation between patients with low versus normal vitamin K(1) status.",
+        "dose": "1.5 mcg | 25 mcg | 4.5 mcg",
+        "outcome": "Over-the-counter vitamin K1-containing multivitamin supplements disrupt warfarin anticoagulation in vitamin K1-depleted patients. | Most multivitamin supplements contain far less vitamin K(1) than thought to affect warfarin anticoagulation. | Therefore, we compared the effect of a vitamin K(1)-containing multivitamin on warfarin anticoagulation between patients with low versus normal vitamin K(1) status."
+      },
+      {
+        "record_id": "REC-PUBMED-23928870",
+        "title": "Nutri-pharmacogenomics of warfarin anticoagulation therapy: VKORC1 genotype-dependent influence of dietary vitamin K intake.",
+        "doi": "10.1007/s11239-013-0978-9",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/23928870/",
+        "locator": "ABSTRACT: Nutri-pharmacogenomics of warfarin anticoagulation therapy: VKORC1 genotype-dependent influence of dietary vitamin K intake.. | In subjects with a variant VKORC1-1639 G allele, the mean daily warfarin dose was significantly attenuated by low vitamin K intake compared with medium and high intake after adjustment for covariates (3.4 vs. | The results of the present study suggest that the capacity of dietary vitamin K intake to influence warfarin dose requirements during anticoagulation therapy is VKORC1 genotype-dependent, at least in part.",
+        "dose": "1639 G | 3.91 mg | 4.0 mg",
+        "outcome": "Nutri-pharmacogenomics of warfarin anticoagulation therapy: VKORC1 genotype-dependent influence of dietary vitamin K intake.. | To investigate genotype-nutrient interactions in warfarin anticoagulation therapy, 202 consecutive outpatients (M/F = 142/60, mean age, 69 years) undergoing treatment with warfarin were enrolled. | The results of the present study suggest that the capacity of dietary vitamin K intake to influence warfarin dose requirements during anticoagulation therapy is VKORC1 genotype-dependent, at least in part."
+      }
+    ],
+    "status": "automated_evidence_linked_personalized_check"
+  },
+  {
+    "question_id": "A2",
+    "ingredient": "omega-3/fish oil",
+    "medication": "oral anticoagulant",
+    "condition": "bleeding risk",
+    "checks": [
+      "daily EPA+DHA dose",
+      "bleeding history",
+      "concurrent antiplatelet or NSAID"
+    ],
+    "output": "확인 항목과 근거 문헌을 표시하고 복용 시작·중단·용량 변경은 지시하지 않는다.",
+    "evidence": [
+      {
+        "record_id": "REC-PUBMED-28197979",
+        "title": "No Effect of Omega-3 Carboxylic Acids on Pharmacokinetics/Pharmacodynamics of Warfarin or on Platelet Function When Co-administered with Acetylsalicylic Acid: Results of Two Phase I Studies in Healthy Volunteers.",
+        "doi": "10.1007/s40256-017-0217-4",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28197979/",
+        "locator": "ABSTRACT: No Effect of Omega-3 Carboxylic Acids on Pharmacokinetics/Pharmacodynamics of Warfarin or on Platelet Function When Co-administered with Acetylsalicylic Acid: Results of Two Phase I Studies in Healthy Volunteers.. | In OM-EPA-007, no significant effect of OM3-CA was observed on ASA-dependent or ASA-independent platelet activation.",
+        "dose": "25 mg | 4 g | 40 mg | 81 mg",
+        "outcome": "No Effect of Omega-3 Carboxylic Acids on Pharmacokinetics/Pharmacodynamics of Warfarin or on Platelet Function When Co-administered with Acetylsalicylic Acid: Results of Two Phase I Studies in Healthy Volunteers.. | OBJECTIVE: Our objective was to assess the effects of OM3-CA on warfarin pharmacokinetics and pharmacodynamics and on acetylsalicylic acid (ASA)-dependent and independent platelet activation when co-administered with ASA in two phase I studies. | Lack of a drug-drug interaction was indicated when 90% confidence intervals (CIs) fell entirely within the range 80-125% for least-squares mean (LSM) ratios of area under the concentration-time curve (AUC), maximum observed plasma concentration (C max), international normalized ratio (INR) AUC to 168 h and maximum INR."
+      },
+      {
+        "record_id": "REC-PUBMED-29627068",
+        "title": "Role of Fish Oil in Post-Cardiotomy Bleeding: A Summary of the Basic Science and Clinical Trials.",
+        "doi": "10.1016/j.athoracsur.2018.01.041",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29627068/",
+        "locator": "ABSTRACT: Role of Fish Oil in Post-Cardiotomy Bleeding: A Summary of the Basic Science and Clinical Trials.. | RESULTS: Fish oil induces an in vitro coagulopathy in humans due to inhibitory effects in platelet-to-platelet adhesion and platelet-stimulated thrombin generation. | The effect from fish oil alone is weak, but it is enhanced and may become clinically noticeable in patients taking antiplatelet therapy, and, to a lesser extent, in patients on factor Xa inhibitors and warfarin.",
+        "dose": "",
+        "outcome": "Role of Fish Oil in Post-Cardiotomy Bleeding: A Summary of the Basic Science and Clinical Trials.. | RESULTS: Fish oil induces an in vitro coagulopathy in humans due to inhibitory effects in platelet-to-platelet adhesion and platelet-stimulated thrombin generation. | The effect from fish oil alone is weak, but it is enhanced and may become clinically noticeable in patients taking antiplatelet therapy, and, to a lesser extent, in patients on factor Xa inhibitors and warfarin."
+      },
+      {
+        "record_id": "REC-PUBMED-21423055",
+        "title": "Omega-3 and fish oil supplements do not cause increased bleeding during spinal decompression surgery.",
+        "doi": "10.1097/bsd.0b013e3182120227",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/21423055/",
+        "locator": "ABSTRACT: Omega-3 and fish oil supplements do not cause increased bleeding during spinal decompression surgery.. | OBJECTIVE: The purpose of this study was to assess whether preoperative use of fish oil supplements increases intraoperative blood loss and postoperative bleeding complications during lumbar decompression surgery. | SUMMARY OF BACKGROUND DATA: Omega-3 fatty acids (n-3FA) are widely used as over-the-counter supplements because of well-established cardioprotective and antiplatelet effects.",
+        "dose": "",
+        "outcome": "Omega-3 and fish oil supplements do not cause increased bleeding during spinal decompression surgery.. | OBJECTIVE: The purpose of this study was to assess whether preoperative use of fish oil supplements increases intraoperative blood loss and postoperative bleeding complications during lumbar decompression surgery. | SUMMARY OF BACKGROUND DATA: Omega-3 fatty acids (n-3FA) are widely used as over-the-counter supplements because of well-established cardioprotective and antiplatelet effects."
+      },
+      {
+        "record_id": "REC-PUBMED-27657121",
+        "title": "The Use of Fish Oil with Warfarin Does Not Significantly Affect either the International Normalised Ratio or Incidence of Adverse Events in Patients with Atrial Fibrillation and Deep Vein Thrombosis: A Retrospective Study.",
+        "doi": "10.3390/nu8090578",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27657121/",
+        "locator": "ABSTRACT: The Use of Fish Oil with Warfarin Does Not Significantly Affect either the International Normalised Ratio or Incidence of Adverse Events in Patients with Atrial Fibrillation and Deep Vein Thrombosis: A Retrospective Study.. | CONCLUSION: Omega-3 supplementation with fish and krill oil does not significantly affect long-term warfarin control and bleeding and thromboembolic events when consumed concurrently in patients managed at an anticoagulation clinic.",
+        "dose": "",
+        "outcome": "Drug interactions influence the safety of warfarin use and while extensive literature exists regarding the effect on warfarin control and bleeding incidence with many medicines, there is little evidence on the influence of complementary medicines. | The aim of this study was to assess the influence of fish and krill oil supplementation on warfarin control and bleeding incidence in AF and DVT patients. | Overall, it was found that fish and krill oils did not significantly alter warfarin time in therapeutic range (TTR) or bleeding incidence, even when compared by gender."
+      },
+      {
+        "record_id": "REC-PUBMED-17182793",
+        "title": "Plasma triacylglycerol and coagulation factor concentrations predict the anticoagulant effect of dietary fish oil in overweight subjects.",
+        "doi": "10.1093/jn/137.1.7",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/17182793/",
+        "locator": "ABSTRACT: Plasma triacylglycerol and coagulation factor concentrations predict the anticoagulant effect of dietary fish oil in overweight subjects.. | Fish oil, containing (n-3) PUFA, is associated with a moderate reduction in cardiovascular disease through a multifactorial mechanism involving a decrease in plasma lipids and anticoagulant activity. | In both healthy subjects and diabetes patients, high triacylglycerol concentrations (>1.69 mmol/L) at baseline were closely linked to a strong fish oil-induced lowering of triacylglycerol and coagulation factor V, VII, and X concentrations, and thrombin generation.",
+        "dose": "3.1 g",
+        "outcome": "Plasma triacylglycerol and coagulation factor concentrations predict the anticoagulant effect of dietary fish oil in overweight subjects.. | In both healthy subjects and diabetes patients, high triacylglycerol concentrations (>1.69 mmol/L) at baseline were closely linked to a strong fish oil-induced lowering of triacylglycerol and coagulation factor V, VII, and X concentrations, and thrombin generation."
+      }
+    ],
+    "status": "automated_evidence_linked_personalized_check"
+  },
+  {
+    "question_id": "B1",
+    "ingredient": "calcium",
+    "medication": "",
+    "condition": "kidney stone or hypercalciuria",
+    "checks": [
+      "supplement dose",
+      "dietary calcium",
+      "stone type and urine calcium"
+    ],
+    "output": "확인 항목과 근거 문헌을 표시하고 복용 시작·중단·용량 변경은 지시하지 않는다.",
+    "evidence": [
+      {
+        "record_id": "REC-PUBMED-19321253",
+        "title": "Diet, fluid, or supplements for secondary prevention of nephrolithiasis: a systematic review and meta-analysis of randomized trials.",
+        "doi": "10.1016/j.eururo.2009.03.031",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/19321253/",
+        "locator": "ABSTRACT: Content and results of multicomponent dietary interventions were heterogeneous; in one trial, fewer participants assigned increased dietary calcium, low animal protein, and low sodium had stone recurrence versus controls (20% vs 38%, p=0.03), while in another trial, more participants assigned diets that included low animal protein, high fruit and fiber, and low purine had recurrent stones than controls (30% vs 4%, p=0.004).",
+        "dose": "",
+        "outcome": "Diet, fluid, or supplements for secondary prevention of nephrolithiasis: a systematic review and meta-analysis of randomized trials.. | CONTEXT: Although numerous trials have evaluated efficacy of diet, fluid, or supplement interventions for secondary prevention of nephrolithiasis, few are included in previous systematic reviews or referenced in recent nephrolithiasis management guidelines. | OBJECTIVE: To determine efficacy and safety of diet, fluid, or supplement interventions for secondary prevention of nephrolithiasis."
+      },
+      {
+        "record_id": "REC-PUBMED-11271790",
+        "title": "Why oral calcium supplements may reduce renal stone disease: report of a clinical pilot study.",
+        "doi": "10.1136/jcp.54.1.54",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/11271790/",
+        "locator": "ABSTRACT: Why oral calcium supplements may reduce renal stone disease: report of a clinical pilot study.. | AIMS: To investigate whether increasing the daily baseline of gut calcium can cause a gradual downregulation of the active intestinal transport of calcium via reduced parathyroid hormone (PTH) mediated activation of vitamin D, and to discuss why such a mechanism might prevent calcium oxalate rich stones. | METHODS: Within an intensive 24 hour urine collection regimen, daily calcium supplementation (500 mg) was given to five stone formers for a 10 week period during a six month crossover study.",
+        "dose": "500 mg",
+        "outcome": "Why oral calcium supplements may reduce renal stone disease: report of a clinical pilot study.. | AIMS: To investigate whether increasing the daily baseline of gut calcium can cause a gradual downregulation of the active intestinal transport of calcium via reduced parathyroid hormone (PTH) mediated activation of vitamin D, and to discuss why such a mechanism might prevent calcium oxalate rich stones. | METHODS: Within an intensive 24 hour urine collection regimen, daily calcium supplementation (500 mg) was given to five stone formers for a 10 week period during a six month crossover study."
+      },
+      {
+        "record_id": "REC-PUBMED-33872340",
+        "title": "Effect of dietary treatment and fluid intake on the prevention of recurrent calcium stones and changes in urine composition: A meta-analysis and systematic review.",
+        "doi": "10.1371/journal.pone.0250257",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33872340/",
+        "locator": "ABSTRACT: Effect of dietary treatment and fluid intake on the prevention of recurrent calcium stones and changes in urine composition: A meta-analysis and systematic review.. | To perform a systematic review and meta-analysis of randomized controlled trials (RCTs) for investigating the effect of dietary treatment and fluid intake on the prevention of recurrent calcium stones and changes in urine composition. | In conclusion, our study shows that the only low protein with or without fiber does not affect recurrence, but low Na, normal Ca diet has a marked effect on reducing recurrence of calcium stone.",
+        "dose": "",
+        "outcome": "Effect of dietary treatment and fluid intake on the prevention of recurrent calcium stones and changes in urine composition: A meta-analysis and systematic review.. | To perform a systematic review and meta-analysis of randomized controlled trials (RCTs) for investigating the effect of dietary treatment and fluid intake on the prevention of recurrent calcium stones and changes in urine composition. | PubMed, Web of Science, Embase, EBSCO, and Cochrane Library databases (updated November 2020) were searched for studies with the following keywords: diet, fluid, recurrent, prevention, randomized controlled trials, and nephrolithiasis."
+      },
+      {
+        "record_id": "REC-PUBMED-24937025",
+        "title": "Incidence of hypercalciuria and hypercalcemia during vitamin D and calcium supplementation in older women.",
+        "doi": "10.1097/gme.0000000000000270",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24937025/",
+        "locator": "ABSTRACT: Incidence of hypercalciuria and hypercalcemia during vitamin D and calcium supplementation in older women.. | OBJECTIVE: This study aims to prospectively assess the incidence of hypercalciuria and hypercalcemia with different doses of vitamin D and with a calcium intake of approximately 1,200 mg/day. | Serum and 24-hour urine calcium were collected every 3 months on supplementation, any test result above the upper reference range represented an episode of hypercalcemia or hypercalciuria.",
+        "dose": "10.2 mg | 200 mg | 300 mg | 800 IU",
+        "outcome": "Incidence of hypercalciuria and hypercalcemia during vitamin D and calcium supplementation in older women.. | OBJECTIVE: This study aims to prospectively assess the incidence of hypercalciuria and hypercalcemia with different doses of vitamin D and with a calcium intake of approximately 1,200 mg/day. | Serum and 24-hour urine calcium were collected every 3 months on supplementation, any test result above the upper reference range represented an episode of hypercalcemia or hypercalciuria."
+      },
+      {
+        "record_id": "REC-PUBMED-32652950",
+        "title": "Dietary and lifestyle factors for primary prevention of nephrolithiasis: a systematic review and meta-analysis.",
+        "doi": "10.1186/s12882-020-01925-3",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32652950/",
+        "locator": "ABSTRACT: Vitamin D (1.22, 1.01-1.49) and calcium (1.16, 1.00-1.35) supplementation alone increased the risk of stones in meta-analyses of observational studies, but not in RCTs, where the cosupplementation conferred significant risk. | The independent and combined effects of vitamin D and calcium supplementation on nephrolithiasis need further elucidation.",
+        "dose": "",
+        "outcome": "Dietary and lifestyle factors for primary prevention of nephrolithiasis: a systematic review and meta-analysis.. | BACKGROUND: Dietary and lifestyle factors may play an important role in the increasing prevalence of nephrolithiasis. | We aimed to review and quantify the associations between lifestyle factors and incident nephrolithiasis and suggest lifestyle changes for the primary prevention of nephrolithiasis."
+      }
+    ],
+    "status": "automated_evidence_linked_personalized_check"
+  },
+  {
+    "question_id": "B2",
+    "ingredient": "vitamin D",
+    "medication": "",
+    "condition": "kidney stone, hypercalciuria, or hypercalcemia",
+    "checks": [
+      "daily dose",
+      "25(OH)D",
+      "serum and urine calcium"
+    ],
+    "output": "확인 항목과 근거 문헌을 표시하고 복용 시작·중단·용량 변경은 지시하지 않는다.",
+    "evidence": [
+      {
+        "record_id": "REC-PUBMED-37481570",
+        "title": "Effect of two vitamin D repletion protocols on 24-h urine calcium in patients with recurrent calcium kidney stones and vitamin D deficiency: a randomized clinical trial.",
+        "doi": "10.1186/s40001-023-01226-z",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37481570/",
+        "locator": "ABSTRACT: Effect of two vitamin D repletion protocols on 24-h urine calcium in patients with recurrent calcium kidney stones and vitamin D deficiency: a randomized clinical trial.. | OBJECTIVES: To evaluate the effects of two vitamin D repletion therapies (cholecalciferol) on serum levels of 25-hydroxyvitamin D (25(OH)D) and 24-h urine calcium in patients with recurrent calcium kidney stones and vitamin D deficiency (VDD).",
+        "dose": "000 IU | 2000 IU",
+        "outcome": "Effect of two vitamin D repletion protocols on 24-h urine calcium in patients with recurrent calcium kidney stones and vitamin D deficiency: a randomized clinical trial.. | OBJECTIVES: To evaluate the effects of two vitamin D repletion therapies (cholecalciferol) on serum levels of 25-hydroxyvitamin D (25(OH)D) and 24-h urine calcium in patients with recurrent calcium kidney stones and vitamin D deficiency (VDD). | DESIGN, SETTING, PARTICIPANTS: A parallel-group randomized controlled clinical trial on patients who referred to Labbafinejad kidney stone prevention clinic, Tehran, Iran."
+      },
+      {
+        "record_id": "REC-PUBMED-24657333",
+        "title": "Risk of hypercalcemia in blacks taking hydrochlorothiazide and vitamin D.",
+        "doi": "10.1016/j.amjmed.2014.02.044",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24657333/",
+        "locator": "ABSTRACT: Risk of hypercalcemia in blacks taking hydrochlorothiazide and vitamin D.. | The risk for hypercalcemia among blacks using vitamin D and hydrochlorothiazide is undefined. | METHODS: We assessed the frequency of hypercalcemia in hydrochlorothiazide users in a post hoc analysis of a randomized, double-blind, dose-finding trial of 328 blacks (median age 51 years) assigned to either placebo, or 1000, 2000, or 4000 international units of cholecalciferol (vitamin D3) daily for 3 months during the winter (2007-2010).",
+        "dose": "0.2 mg | 4000 IU | 4000 international units",
+        "outcome": "Risk of hypercalcemia in blacks taking hydrochlorothiazide and vitamin D.. | INTRODUCTION: Hydrochlorothiazide, an effective antihypertensive medication commonly prescribed to blacks, decreases urinary calcium excretion. | The risk for hypercalcemia among blacks using vitamin D and hydrochlorothiazide is undefined."
+      },
+      {
+        "record_id": "REC-PUBMED-24937025",
+        "title": "Incidence of hypercalciuria and hypercalcemia during vitamin D and calcium supplementation in older women.",
+        "doi": "10.1097/gme.0000000000000270",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24937025/",
+        "locator": "ABSTRACT: Incidence of hypercalciuria and hypercalcemia during vitamin D and calcium supplementation in older women.. | OBJECTIVE: This study aims to prospectively assess the incidence of hypercalciuria and hypercalcemia with different doses of vitamin D and with a calcium intake of approximately 1,200 mg/day. | No relationship between hypercalcemia or hypercalciuria and vitamin D dose was found, and hypercalciuria was equally common in the placebo group.",
+        "dose": "10.2 mg | 200 mg | 300 mg | 800 IU",
+        "outcome": "Incidence of hypercalciuria and hypercalcemia during vitamin D and calcium supplementation in older women.. | OBJECTIVE: This study aims to prospectively assess the incidence of hypercalciuria and hypercalcemia with different doses of vitamin D and with a calcium intake of approximately 1,200 mg/day. | Serum and 24-hour urine calcium were collected every 3 months on supplementation, any test result above the upper reference range represented an episode of hypercalcemia or hypercalciuria."
+      },
+      {
+        "record_id": "REC-PUBMED-40995255",
+        "title": "Association Between Vitamin D Supplementation and Urolithiasis Recurrence Outcomes in Known Stone Formers: A Retrospective Cohort Study With Dose-Response Analysis.",
+        "doi": "10.7759/cureus.90853",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40995255/",
+        "locator": "ABSTRACT: Association Between Vitamin D Supplementation and Urolithiasis Recurrence Outcomes in Known Stone Formers: A Retrospective Cohort Study With Dose-Response Analysis.. | Background Vitamin D supplementation is widely prescribed to correct vitamin D deficiency, but its impact on urinary stone recurrence in patients with a history of urolithiasis (stone formers) remains uncertain. | Conclusions In this retrospective cohort of known stone formers, vitamin D supplementation, particularly at higher doses, was associated with a greater risk of recurrence.",
+        "dose": "000 IU | 800 IU",
+        "outcome": "Association Between Vitamin D Supplementation and Urolithiasis Recurrence Outcomes in Known Stone Formers: A Retrospective Cohort Study With Dose-Response Analysis.. | Background Vitamin D supplementation is widely prescribed to correct vitamin D deficiency, but its impact on urinary stone recurrence in patients with a history of urolithiasis (stone formers) remains uncertain. | A total of 353 adult stone formers were categorized as non-supplemented (n = 235) or supplemented (n = 118), with stratification by dose (≤800 IU daily, 10,000 IU weekly, and 50,000 IU weekly)."
+      },
+      {
+        "record_id": "REC-PUBMED-23595003",
+        "title": "A 250 μg/week dose of vitamin D was as effective as a 50 μg/d dose in healthy adults, but a regimen of four weekly followed by monthly doses of 1250 μg raised the risk of hypercalciuria.",
+        "doi": "10.1017/s000711451300113x",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/23595003/",
+        "locator": "ABSTRACT: A 250 μg/week dose of vitamin D was as effective as a 50 μg/d dose in healthy adults, but a regimen of four weekly followed by monthly doses of 1250 μg raised the risk of hypercalciuria.. | Although vitamin D supplementation remains a controversial issue, these data document that supplementing with ≤ 250 mg/week (≤ 10 000 IU/week) can improve or maintain vitamin D status in healthy populations without the risk of hypercalciuria, but 24 h urinary Ca excretion should be evaluated in healthy persons receiving vitamin D3 supplementation in weekly single doses of 1250 μg (50 000 IU).",
+        "dose": "000 IU | 1250 μg | 1544 μg | 2000 IU | 250 mg | 250 μg | 331 μg | 50 μg | 70 μg",
+        "outcome": "A 250 μg/week dose of vitamin D was as effective as a 50 μg/d dose in healthy adults, but a regimen of four weekly followed by monthly doses of 1250 μg raised the risk of hypercalciuria.. | Subjects in the 1250 μg treatment group, who had a BMI >26 kg/m2, had a steady increase in urinary Ca in the first 3 weeks of supplementation, and, overall, the relative risk of hypercalciuria was higher in the 1250 μg group than in the placebo group (P=0·01). | Although vitamin D supplementation remains a controversial issue, these data document that supplementing with ≤ 250 mg/week (≤ 10 000 IU/week) can improve or maintain vitamin D status in healthy populations without the risk of hypercalciuria, but 24 h urinary Ca excretion should be evaluated in healthy persons receiving vitamin D3 supplementation in weekly single doses of 1250 μg (50 000 IU)."
+      }
+    ],
+    "status": "automated_evidence_linked_personalized_check"
+  },
+  {
+    "question_id": "B3",
+    "ingredient": "vitamin C",
+    "medication": "",
+    "condition": "kidney stone or hyperoxaluria",
+    "checks": [
+      "daily dose",
+      "stone history",
+      "urine oxalate or renal impairment"
+    ],
+    "output": "확인 항목과 근거 문헌을 표시하고 복용 시작·중단·용량 변경은 지시하지 않는다.",
+    "evidence": [
+      {
+        "record_id": "REC-PUBMED-30178451",
+        "title": "Ascorbic Acid Supplements and Kidney Stones Incidence Among Men and Women: A systematic review and meta-analysis.",
+        "doi": "10.22037/uj.v0i0.4275",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30178451/",
+        "locator": "ABSTRACT: Ascorbic Acid Supplements and Kidney Stones Incidence Among Men and Women: A systematic review and meta-analysis.. | PURPOSE: The relationship of ascorbic acid (AA) supplements and risk of kidney stones among men and women is controversial.",
+        "dose": "1000-1499mg | 1500 mg | 1500mg | 250-499mg | 500-999 mg | 500-999mg",
+        "outcome": "Ascorbic Acid Supplements and Kidney Stones Incidence Among Men and Women: A systematic review and meta-analysis.. | PURPOSE: The relationship of ascorbic acid (AA) supplements and risk of kidney stones among men and women is controversial. | This systematic evaluation was performed to obtain comprehensive evidence about the relationship of AA supplements and risk of kidney stones among men and women."
+      },
+      {
+        "record_id": "REC-PUBMED-15987848",
+        "title": "Ascorbate increases human oxaluria and kidney stone risk.",
+        "doi": "10.1093/jn/135.7.1673",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/15987848/",
+        "locator": "ABSTRACT: Ascorbate increases human oxaluria and kidney stone risk..",
+        "dose": "1000 mg | 136 mg | 18 mg | 2000 mg",
+        "outcome": "Ascorbate increases human oxaluria and kidney stone risk.. | However, because AA is endogenously converted to oxalate and appears to increase the absorption of dietary oxalate, supplementation may increase the risk of kidney stones. | The effect of AA supplementation on urinary oxalate was studied in a randomized, crossover, controlled design in which subjects consumed a controlled diet in a university metabolic unit."
+      },
+      {
+        "record_id": "REC-PUBMED-10929425",
+        "title": "Ascorbic acid in idiopathic recurrent calcium urolithiasis in humans--does it have an abettor role in oxalate, and calcium oxalate crystallization?",
+        "doi": "10.1007/s002400000101",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/10929425/",
+        "locator": "ABSTRACT: Ascorbic acid in idiopathic recurrent calcium urolithiasis in humans--does it have an abettor role in oxalate, and calcium oxalate crystallization?. | The role of ascorbic acid (ASC) in the pathophysiology of renal calcium stones is not clear.",
+        "dose": "5 mg",
+        "outcome": "Ascorbic acid in idiopathic recurrent calcium urolithiasis in humans--does it have an abettor role in oxalate, and calcium oxalate crystallization?. | The role of ascorbic acid (ASC) in the pathophysiology of renal calcium stones is not clear. | We evaluated ASC in blood and urine of fasting male patients with idiopathic calcium urolithiasis (ICU) and healthy volunteers."
+      },
+      {
+        "record_id": "REC-PUBMED-1569652",
+        "title": "Ascorbic acid overdosing: a risk factor for calcium oxalate nephrolithiasis.",
+        "doi": "10.1016/s0022-5347(17)37521-3",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/1569652/",
+        "locator": "ABSTRACT: Ascorbic acid overdosing: a risk factor for calcium oxalate nephrolithiasis.. | Before and after administration, successive 6-hour urine specimens were collected from the nephrostomy tube and from the contralateral kidney directly into a preservative to stabilize ascorbic acid and oxalate. | Urinary oxalate was then measured enzymatically after removal of ascorbic acid with sodium nitrite.",
+        "dose": "000 mg | 500 mg | 6 to 13 mg",
+        "outcome": "Ascorbic acid overdosing: a risk factor for calcium oxalate nephrolithiasis.. | Before and after administration, successive 6-hour urine specimens were collected from the nephrostomy tube and from the contralateral kidney directly into a preservative to stabilize ascorbic acid and oxalate. | Urinary oxalate was then measured enzymatically after removal of ascorbic acid with sodium nitrite."
+      },
+      {
+        "record_id": "REC-PUBMED-30276648",
+        "title": "Ascorbic acid-induced oxalate nephropathy: a case report and discussion of pathologic mechanisms.",
+        "doi": "10.1007/s13730-018-0366-6",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30276648/",
+        "locator": "ABSTRACT: Ascorbic acid-induced oxalate nephropathy: a case report and discussion of pathologic mechanisms.. | We present a patient whose intake of vitamin C supplements (2 g/day), exacerbated by predisposing factors of prior small bowel obstruction and resection, and benign prostate hyperplasia (BPH), resulted in acute kidney injury due to oxalate nephropathy. | We review past reports of vitamin C-induced oxalate nephropathy and discuss the underlying precipitating factors.",
+        "dose": "2 g",
+        "outcome": "Ascorbic acid-induced oxalate nephropathy: a case report and discussion of pathologic mechanisms.. | Oxalate nephropathy is associated with hereditary hyperoxaluria, Crohn disease, and previous gastric or intestinal surgery, especially in the setting of increased oxalate intake or ethylene glycol ingestion. | We present a patient whose intake of vitamin C supplements (2 g/day), exacerbated by predisposing factors of prior small bowel obstruction and resection, and benign prostate hyperplasia (BPH), resulted in acute kidney injury due to oxalate nephropathy."
+      }
+    ],
+    "status": "automated_evidence_linked_personalized_check"
+  }
+]
