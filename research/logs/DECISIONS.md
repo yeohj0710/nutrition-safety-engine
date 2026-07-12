@@ -501,3 +501,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: bind the live queue to a readable role/JSON/hash guide and validate question balance before accepting any authored row
 - rationale: a blank 120-row shell and evaluator code do not tell independent humans how to create reproducible gold without seeing engine outputs
 - impact: external authors can produce hash-valid candidates; zero authored rows still yields null metrics and prohibited release
+
+## D-069 — Repair thesis instructions without inventing results
+
+- date: 2026-07-12
+- decision: reconstruct style, outline, and status documents now, but continue prohibiting results-dependent prose and final artifacts until the evidence-derived freeze passes
+- rationale: readable writing infrastructure is legitimate pre-freeze work; drafting results from empty human evidence is not
+- impact: final authoring can start from a usable Korean structure after freeze, while current final DOCX/PDF paths remain absent

@@ -641,3 +641,9 @@
 - Found no actionable guide for the live 18-column independent-gold queue, while older validation documents were unreadable mojibake.
 - Added a Korean guide specifying two independent authors, a distinct adjudicator, engine-developer separation, JSON contracts, U+001F row hashing, question-balanced boundary coverage, and performance-reporting prohibitions.
 - Validator confirms exact queue schema, 120 rows, 24 per A1–B3 question, and human-authored rows 0; promotion remains 0 and performance remains null.
+
+## 2026-07-12 Phase 08 thesis-writing guidance repair
+
+- Found that the final Korean style guide, thesis outline, and draft-status document were unreadable mojibake despite a valid methods-only checkpoint.
+- Rebuilt all three as readable Korean documents, preserving the results-freeze prohibition and explicitly separating search hits, synthetic proxies, legacy material, results, and interpretation.
+- Validator confirms required provenance/freeze language and absence of pre-freeze final DOCX/PDF; methods checkpoint remains 8/8-page verified and non-final.

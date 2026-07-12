@@ -11,6 +11,7 @@ Phase status: `blocked_external`
 | Verified methods-only checkpoint | complete_verified |
 | Checkpoint DOCX/PDF visual QA | complete_verified: 8/8 pages; errors 0 |
 | Results, discussion, conclusion | prohibited before freeze |
+| Thesis writing guidance | pass_local: corrupted style guide, outline, and status replaced with readable UTF-8 Korean documents; source/proxy/legacy language and pre-freeze final-artifact prohibition validated in CI |
 | Korean/English abstracts | prohibited before freeze |
 | Final DOCX/PDF | not created |
 | Final page-by-page visual QA | not applicable until final document exists |
