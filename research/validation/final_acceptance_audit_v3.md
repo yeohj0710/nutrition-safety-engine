@@ -18,7 +18,7 @@
 | H. 엔진과 앱 | partial | API contract, 경계, legacy 분리, Production build와 고정 URL, 입력 수치·URL·위험 지시문을 차단하는 AI 출력 검증과 결정적 fallback | 사용자용 문장화만 허용한 변경을 amendment log에 고정하고 commit-deployment 일치 재검증 |
 | I. 시나리오·전문가 검증 | blocked_external | 5개 사용자 예시와 자동 회귀테스트 보존 | 구현 독립 gold, 전문가 검토, sensitivity/precision/CI |
 | J. 논문 | partial | DOCX/PDF 16쪽, 225문단, 표 4개, 전 페이지 시각검사 및 해시 | 학과 최신 양식·참고문헌·전문 내용의 사람 최종 검토 |
-| K. 재현성과 제출 | partial | 재현 코드, G: 재귀 SHA-256 manifest, Production URL | clean status, Git tag, 공개 저장소와 배포 commit 일치 |
+| K. 재현성과 제출 | partial | 재현 코드, G: 재귀 SHA-256 manifest, clean Git status, 공개 branch, `thesis-v3-20260712` tag, Production 고정 URL | 공개 저장소의 최종 제출 branch를 main에 병합할지 결정; 외부 검토 미완료 항목은 계속 공개 |
 
 ## 해석 제한
 
