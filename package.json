@@ -63,6 +63,8 @@
     "validate:registry-link-review-context": "python tools/validate_registry_link_review_context.py",
     "build:screening-review-context": "python tools/build_screening_review_context.py",
     "validate:screening-review-context": "python tools/validate_screening_review_context.py",
+    "build:nonpubmed-screening-context": "python tools/build_nonpubmed_screening_context.py",
+    "validate:nonpubmed-screening-context": "python tools/validate_nonpubmed_screening_context.py",
     "validate:phase04:screening-lineage": "python tools/validate_phase04_screening_lineage.py",
     "typecheck": "npm run prepare:knowledge && tsc --noEmit"
   },

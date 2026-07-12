@@ -473,3 +473,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: provide one source-bound row per retrieval with complete available bibliographic/abstract context and both proxy explanations, but keep all human decision columns in the separate screening decision ledger
 - rationale: reviewers need the source text and prioritization rationale together; mixing them with decisions risks accidental AI-only exclusion or overwritten judgments
 - impact: 19,961 PubMed units are directly reviewable while proxy outputs retain zero decision authority
+
+## D-065 — Give every non-PubMed queue source context
+
+- date: 2026-07-12
+- decision: expose registry trial characteristics and KoreaMed URL/linkage candidates beside their review units without populating reviewer fields
+- rationale: an ID-only registry row and title-only KoreaMed row are insufficient for accountable human screening
+- impact: all 269 non-PubMed proxy retrieval units can be reviewed from source-bound context; native KoreaMed export and human linkage gates remain open
