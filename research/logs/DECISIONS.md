@@ -547,3 +547,6 @@ The conservative/sensitivity profile intersection defines v2 navigation classes 
 ## D-20260712-21 — Non-PubMed records remain unranked source candidates
 
 Registry and KoreaMed records do not inherit PubMed classifier scores. They remain `ai_unranked_source_candidate`; known lexical risks and export failures are retained as limitations, not converted into eligibility decisions.
+## D-20260712-22 — Evidence-map rows and unique records use separate denominators
+
+Question overlap duplicates a record across record-question rows. V2 reports PMC access as both 5,653 mapped rows and 5,563 unique records and never substitutes either for included reports, studies, or full texts reviewed.

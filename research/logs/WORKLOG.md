@@ -699,3 +699,9 @@
 - Added all 207 ClinicalTrials.gov and 62 KoreaMed record-question units as unranked source candidates because no equivalent dual-profile classifier exists.
 - Preserved 139 vitamin-K-antagonist lexical-risk flags and all 62 KoreaMed native-export limitations.
 - Exact 269/269 coverage, deterministic rebuild, source counts, hashes, and non-authority boundaries pass.
+## 2026-07-12 — Protocol v2 source-bound evidence map
+
+- Built 20,230 source-bound bibliographic map rows: PubMed 19,961, ClinicalTrials.gov 207, KoreaMed 62.
+- Observed abstracts exist for 18,015 rows; 2,215 are title/metadata-only.
+- Separated PMC denominators: 5,653 record-question rows, 5,563 unique records; verified 104 referenced source-file hashes.
+- Extracted no effect values and emitted no clinical claims, meta-analysis, RoB, or GRADE result.
