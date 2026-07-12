@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Ensure the Korean DB PRESS queue is complete, source-bound, and human-blank."""
+"""Ensure the Korean DB PRESS queue is source-bound and human-review consistent."""
 
 from __future__ import annotations
 
@@ -37,10 +37,21 @@ def main() -> int:
             errors.append(f"row {index}: response provenance mismatch")
         if row.get("observed_hits") != str(run.get("hits")):
             errors.append(f"row {index}: hit count mismatch")
-        if row.get("status") != "pending_external_human_review":
-            errors.append(f"row {index}: human review falsely closed")
-        if any(row.get(field, "") for field in HUMAN_FIELDS):
-            errors.append(f"row {index}: human-only field was prefilled")
+        populated = [field for field in HUMAN_FIELDS if row.get(field, "").strip()]
+        decision = row.get("decision", "").strip()
+        allowed = set(row.get("allowed_decisions", "").split(";"))
+        if not populated:
+            expected_status = "pending_external_human_review"
+        elif decision and row.get("reviewer_id", "").strip() and row.get("reviewed_at", "").strip():
+            expected_status = "complete_candidate_requires_validation"
+            if decision not in allowed:
+                errors.append(f"row {index}: decision outside allowed vocabulary")
+            if decision == "return_with_edits" and not row.get("required_revision", "").strip():
+                errors.append(f"row {index}: return_with_edits requires revision text")
+        else:
+            expected_status = "in_progress_external_human_review"
+        if row.get("status") != expected_status:
+            errors.append(f"row {index}: expected status {expected_status}")
         if row.get("platform") == "KMbase" and "do not infer absence" not in row.get("review_focus", ""):
             errors.append(f"row {index}: KMbase zero-hit safeguard missing")
     if seen != set(run_index):
@@ -49,7 +60,7 @@ def main() -> int:
         "errors": errors,
         "rows": len(rows),
         "human_decisions": sum(bool(row.get("decision")) for row in rows),
-        "status": "pending_external_human_review",
+        "status": "valid" if not errors else "invalid",
     }
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 1 if errors else 0

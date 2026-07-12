@@ -592,3 +592,10 @@
 - Found that the foundational validator and isolation unit test required claims, rules, sources, reports, studies, extractions, and RoB to remain empty forever.
 - Replaced permanent-zero checks with exact meta/array count consistency, validated thesis claim/rule statuses, curated namespace, and recursive legacy/synthetic exclusion.
 - Current empty bundle still passes, as do the updated unit test and TypeScript typecheck. Future production rows remain subject to source-byte, extraction, GRADE, claim, rule, expert, and independent-scenario gates.
+
+## 2026-07-12 Phase 02 PRESS preservation
+
+- Found that Korean PRESS queue regeneration overwrote human review fields and validators rejected legitimate review progress.
+- Added byte-exact preservation, source-drift rejection, pending/in-progress/complete-candidate validation, and CI regression coverage.
+- Verified Phase 02 evidence locally: 21 artifacts, 8 main PRESS rows, 40 Korean PRESS rows; external human completion remains open.
+- Verification: preservation 2/2, Phase 02 validator pass, typecheck pass, Vitest 14 files / 51 tests pass.

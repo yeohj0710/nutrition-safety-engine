@@ -9,6 +9,14 @@
 - work that can continue: access mapping, search syntax drafting, schemas, audit fixes, test infrastructure
 - status: `blocked_external`
 
+## B-014 — Independent PRESS decisions absent
+
+- exact block point: Phase 02 final-search authorization
+- current evidence: 8 main and 40 Korean PRESS rows; completed independent human decisions 0
+- minimum external change: qualified independent reviewer records allowed decision, reviewer identity, timestamp, and required revisions where applicable
+- work that can continue: preserve search bytes, validate lineage, prepare screening/extraction infrastructure, and run synthetic proxy separately
+- status: `external_human_blocker`
+
 ## B-014 — KMbase platform-query translation not validated
 
 - exact block point: B1/B2/B3 long Boolean drafts return HTTP 500; A1/A2 return 0 despite a 5-hit `warfarin` transport control

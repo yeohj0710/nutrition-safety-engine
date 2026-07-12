@@ -29,6 +29,28 @@ FIELDS = [
 ]
 
 
+def write_or_preserve(output: Path, rows: list[dict[str, object]]) -> str:
+    human_fields = ("reviewer_id", "reviewed_at", "decision", "comments", "required_revision")
+    if output.is_file():
+        with output.open("r", encoding="utf-8-sig", newline="") as handle:
+            existing = list(csv.DictReader(handle))
+        if any(any(row.get(field, "").strip() for field in human_fields) for row in existing):
+            static_fields = tuple(field for field in FIELDS if field not in human_fields and field != "status")
+            normalized = [{key: str(value) for key, value in row.items()} for row in rows]
+            if len(existing) != len(normalized) or any(
+                any(old.get(field, "") != new.get(field, "") for field in static_fields)
+                for old, new in zip(existing, normalized)
+            ):
+                raise ValueError("populated human PRESS queue no longer matches source; refusing overwrite")
+            return "preserved_existing_human_data"
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with output.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=FIELDS, lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(rows)
+    return "generated_no_human_data"
+
+
 def main() -> int:
     source = json.loads(SOURCE.read_text(encoding="utf-8"))
     runs = source.get("runs", [])
@@ -64,12 +86,8 @@ def main() -> int:
                 "status": "pending_external_human_review",
             }
         )
-    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    with OUTPUT.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=FIELDS, lineterminator="\n")
-        writer.writeheader()
-        writer.writerows(rows)
-    print(json.dumps({"rows": len(rows), "platforms": per_platform}, ensure_ascii=False))
+    write_status = write_or_preserve(OUTPUT, rows)
+    print(json.dumps({"rows": len(rows), "platforms": per_platform, "write_status": write_status}, ensure_ascii=False))
     return 0
 
 

@@ -42,6 +42,7 @@ jobs:
       - run: python tools/validate_koreamed_designpilot.py
       - run: python tools/validate_korean_db_split_pilot.py
       - run: python tools/validate_korean_db_press_queue.py
+      - run: python tools/validate_korean_db_press_preservation.py
       - run: python tools/validate_phase04_proxy.py
       - run: python tools/validate_phase05_proxy.py
       - run: python tools/validate_claim_rule_contract.py

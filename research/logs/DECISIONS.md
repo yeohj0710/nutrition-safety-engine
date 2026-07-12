@@ -445,3 +445,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: replace later-phase zero/empty assertions with collection-count consistency, validated thesis scope/status, and forbidden legacy/synthetic namespace checks
 - rationale: Phase 01 began with an intentionally empty bundle, but requiring it to remain empty makes any legitimate claim/rule progression fail the foundational audit
 - impact: current 0/0 state still passes; future curated evidence can pass only through the deterministic builder and production provenance gates, never by legacy promotion
+
+## D-061 — Preserve populated PRESS review bytes
+
+- date: 2026-07-12
+- decision: regenerate the Korean PRESS queue only while human fields are empty; preserve populated bytes when source-bound static fields match and fail on lineage drift
+- rationale: rerunning deterministic builders must not destroy independent human judgments
+- impact: valid human progress can move from pending to in-progress and complete-candidate without being erased or falsely rejected

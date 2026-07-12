@@ -60,3 +60,8 @@
 
 - A polished checkpoint could be mistaken for a completed thesis. Filename, cover, running header, terminal hold notice, QA flags, and validators all mark it non-final.
 - Department formatting remains unconfirmed. The current A4 Korean academic layout validates rendering only and must not be treated as school approval.
+
+## 2026-07-12 PRESS review integrity
+
+- Mitigated: Korean PRESS regeneration now preserves populated human rows byte-for-byte and rejects changed source-bound fields.
+- Residual: all 48 PRESS rows remain without an independent human decision, so final searches remain prohibited.

@@ -45,11 +45,10 @@ def main() -> int:
             errors.append(f"artifact hash/size mismatch: {entry['path']}")
     main_press = rows("research/review_queue/PRESS_review.csv")
     korean_press = rows("research/review_queue/korean_db_PRESS_review.csv")
-    if any(row.get("status") not in {"pending_external_human_review", "blocked_external"} for row in main_press):
-        errors.append("main PRESS row falsely closed")
-    human_fields = ("reviewer", "reviewer_id", "decision", "review_date", "reviewed_at")
-    if any(any(row.get(field, "").strip() for field in human_fields) for row in korean_press):
-        errors.append("Korean PRESS queue contains unverified human decisions")
+    allowed_statuses = {"pending_external_human_review", "in_progress_external_human_review",
+                        "complete_candidate_requires_validation", "blocked_external"}
+    if any(row.get("status") not in allowed_statuses for row in main_press + korean_press):
+        errors.append("PRESS row has unsupported review status")
     result = {"errors": errors, "artifact_count": len(artifacts),
               "main_press_rows": len(main_press), "korean_press_rows": len(korean_press),
               "phase_complete": False}
