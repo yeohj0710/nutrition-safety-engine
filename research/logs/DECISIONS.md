@@ -480,3 +480,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: expose registry trial characteristics and KoreaMed URL/linkage candidates beside their review units without populating reviewer fields
 - rationale: an ID-only registry row and title-only KoreaMed row are insufficient for accountable human screening
 - impact: all 269 non-PubMed proxy retrieval units can be reviewed from source-bound context; native KoreaMed export and human linkage gates remain open
+
+## D-066 — Treat corrupted documentation as failed evidence
+
+- date: 2026-07-12
+- decision: replace the unreadable extraction dictionary with a UTF-8 guide and exact machine-readable dictionary, and make encoding/header identity a CI gate
+- rationale: a file's existence or prior completion label does not prove that human extractors can read it or that it matches the current schema
+- impact: every extraction column now has an auditable Korean definition and conditional rule; no research value was inferred or populated

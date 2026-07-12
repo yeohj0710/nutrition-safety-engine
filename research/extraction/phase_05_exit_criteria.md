@@ -7,7 +7,7 @@ Synthetic metric harness: `complete_verified`
 | Criterion | Status |
 |---|---|
 | Extraction and RoB schemas | pass_local |
-| Human extraction data dictionary | pass_local: exact 55-field protocol template including outcome, denominators, effect/CI, locator, and verification fields |
+| Human extraction data dictionary | pass_local: corrupted legacy text replaced with UTF-8 Korean guide plus machine-readable 55-row dictionary; exact header order 55/55; replacement characters 0; outcome, denominators, effect/CI, locator, and verification rules explicit |
 | JSON Schema draft validation | pass_local: Draft 2020-12 schema valid; valid/invalid expectations enforced for 3 fixtures |
 | Extracted value requires quote+locator | pass_contract: schema requires nonempty quote, page or XML locator, source path, and source SHA-256 |
 | Real source locator contract | pass_contract_only: PMC5037562 raw gzip + paragraph locator/hash bound; wrong source hash, paragraph hash, XML locator, and legacy source all rejected |

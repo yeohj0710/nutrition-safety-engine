@@ -65,3 +65,8 @@
 
 - Mitigated: Korean PRESS regeneration now preserves populated human rows byte-for-byte and rejects changed source-bound fields.
 - Residual: all 48 PRESS rows remain without an independent human decision, so final searches remain prohibited.
+
+## 2026-07-12 documentation encoding integrity
+
+- Mitigated for the active extraction dictionary: UTF-8 content is readable, has zero replacement characters, and matches all 55 template fields in order.
+- Residual: other imported Korean design-package files may contain historical mojibake or replacement characters; they must not be cited as usable instructions until individually validated or reconstructed.

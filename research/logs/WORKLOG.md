@@ -623,3 +623,9 @@
 - Joined all 207 ClinicalTrials.gov retrieval units to trial title, status, design, enrollment, conditions, interventions, sponsor, dates, results flag, URL, and known lexical-risk warning.
 - Joined all 62 KoreaMed complete-display records to native URL/export status and 35 exact-title PubMed candidate links with PubMed XML paths.
 - Both context files are SHA-bound, deterministic, and explicitly carry no screening or linkage decision authority.
+
+## 2026-07-12 Phase 05 extraction dictionary repair
+
+- Audited the claimed-complete extraction dictionary and found irreversible replacement-character corruption plus fields that did not match the live 55-column extraction template.
+- Reconstructed a natural Korean operator guide and a machine-readable 55-row dictionary in exact template order, with types, allowed values, conditional requirements, and source-locator rules.
+- Added CI validation for 55/55 header identity, contiguous positions, complete definitions, and zero Unicode replacement characters.
