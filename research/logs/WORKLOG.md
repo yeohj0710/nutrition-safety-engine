@@ -741,3 +741,11 @@
 - outputs: `research/validation/deployment_validation_v3.md`, `research/validation/final_acceptance_audit_v3.md`, `tools/build_final_delivery_manifest.py`, updated G: `FINAL_MANIFEST.json`
 - result: technical gates pass; A–K acceptance remains partial because independent human screening/extraction/RoB/GRADE/gold/expert review are absent
 - next: bind a clean Git commit to a fresh Production deployment; preserve all external-human items as explicit blockers
+
+## 2026-07-12 — v3 핵심 문헌 무결성 강화
+
+- phase/task: v3 provenance validation
+- input: `research/systematic_review_v3/core_evidence.csv`, `core_manifest.json`, `personalized_rules.json`
+- procedure: required schema, A1–B3 question set, question-record uniqueness, mandatory evidence fields, HTTPS source URLs, DOI/provider ID formats, extraction authority, human-screened boundary, and rule-to-evidence links added to validator
+- result: 129 records passed with zero schema, identifier, authority, or referential-integrity errors
+- limitation: automated metadata integrity does not replace human full-text eligibility or clinical appraisal
