@@ -27,7 +27,7 @@
 ## 즉시 통과한 기술 증거
 
 - 핵심 근거 validator: 129건, A1 30/A2 12/B1 30/B2 30/B3 27, 오류 0
-- 웹 회귀검사: 16 test files, 59 tests
+- 웹 회귀검사: 16 test files, 62 tests
 - lint, TypeScript, Next.js Production build 통과
 - 논문 validator: 16쪽, 217문단, 표 4개, 오류 0
 - Production 고정 URL: https://nutrition-safety-engine.vercel.app

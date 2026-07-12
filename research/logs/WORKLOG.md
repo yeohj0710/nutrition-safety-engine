@@ -749,3 +749,11 @@
 - procedure: required schema, A1–B3 question set, question-record uniqueness, mandatory evidence fields, HTTPS source URLs, DOI/provider ID formats, extraction authority, human-screened boundary, and rule-to-evidence links added to validator
 - result: 129 records passed with zero schema, identifier, authority, or referential-integrity errors
 - limitation: automated metadata integrity does not replace human full-text eligibility or clinical appraisal
+
+## 2026-07-12 — Production UI 접근성·입력경계 보강
+
+- phase/task: website accessibility and negative-path QA
+- procedure: applied current Vercel interface guidelines; added skip link, summary focus state, async live region, reduced-motion scroll behavior, autocomplete policy, input limits, resilient network/JSON error handling, and server-side type/length validation
+- browser evidence: Playwright desktop end-to-end calcium example and 390×844 mobile render; no horizontal clipping observed
+- automated evidence: malformed JSON, oversized health text, and non-string field regressions added; 16 files/62 tests, lint, typecheck, and Production build pass
+- limitation: technical accessibility inspection is not a human usability study

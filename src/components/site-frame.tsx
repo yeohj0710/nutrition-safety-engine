@@ -6,6 +6,12 @@ import { projectAffiliation, projectAuthor } from "@/src/lib/project-identity";
 export function SiteFrame({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-full flex-col bg-white">
+      <a
+        href="#main-content"
+        className="fixed left-3 top-3 z-50 -translate-y-20 rounded-lg bg-stone-950 px-4 py-2 text-sm font-semibold text-white transition-transform focus-visible:translate-y-0"
+      >
+        본문 바로가기
+      </a>
       <header className="border-b border-stone-200 bg-white px-6">
         <div className="mx-auto flex min-h-16 max-w-[1049px] items-center justify-between gap-4">
           <Link href="/" className="flex min-w-0 items-center gap-3">

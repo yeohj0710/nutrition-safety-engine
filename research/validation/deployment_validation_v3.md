@@ -12,6 +12,6 @@
 - 출력: 질문 ID, 개인 입력 요약, 확인사항, 핵심 근거 문헌, 용량·안전성 결과, 원문 URL, 배포 버전
 - 안전 경계: 복용 시작·중단·용량 변경을 지시하지 않음
 - 핵심 근거: 129건(A1 30건, A2 12건, B1 30건, B2 30건, B3 27건)
-- 로컬 검증: 59 tests passed, lint passed, TypeScript passed, production build passed
+- 로컬 검증: 62 tests passed, lint passed, TypeScript passed, production build passed
 
 이 배포는 연구계획서의 개인맞춤 조회 시스템을 구현한 Production 배포이다. 고정 주소와 데이터 manifest를 논문 및 최종 산출물에 함께 기록한다.
