@@ -1,12 +1,12 @@
 {
   "schema_version": "software-quality-v3.0",
-  "captured_at": "2026-07-12T08:45:32.431Z",
+  "captured_at": "2026-07-12T08:52:25.528Z",
   "test_files": 16,
-  "tests": 65,
+  "tests": 67,
   "test_failures": 0,
   "lint": "passed",
   "typescript": "passed",
   "production_build": "passed",
   "test_report": "research/validation/vitest_v3.json",
-  "test_report_sha256": "b8456e0bb9b48a1a7839b4f4b4afb3d3b100489463be67464a604a92839406fc"
+  "test_report_sha256": "a6f17d5e99a11d23b88d9527302336dfe0ed65d58d11f834bb62ced857b726ab"
 }

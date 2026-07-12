@@ -795,4 +795,12 @@
 - added a regression proving timeout/fetch failure returns the deterministic grounded Korean fallback
 - removed `shell:true` from the software-quality capture process and invoked npm/vitest through their Node entry points
 - verification: 16 files/65 tests, lint, TypeScript and production build passed; shell deprecation warning absent
+
+## 2026-07-12 — Personalized summary concision and numeric completeness
+
+- ran all five Production examples through the live model path; routing, five evidence links, numeric preservation and prohibited-action checks passed
+- found calcium and vitamin D summaries exceeded the intended length and could repeat lab values through post-generation appending
+- replaced numeric appending with an acceptance gate requiring every input number and rejecting every invented number
+- capped accepted generated summaries at 300 characters; rejected long or incomplete output now uses a concise deterministic fallback without duplicated lab text
+- verification: 16 files/67 tests, lint, TypeScript and production build passed
 - boundary: model output remains wording assistance only and cannot add clinical facts or actions

@@ -27,7 +27,7 @@
 ## 즉시 통과한 기술 증거
 
 - 핵심 근거 validator: 121건, A1 30/A2 5/B1 30/B2 30/B3 26, 오류 0
-- 웹 회귀검사: 16 test files, 65 tests
+- 웹 회귀검사: 16 test files, 67 tests
 - lint, TypeScript, Next.js Production build 통과
 - 논문 validator: 16쪽, 225문단, 표 4개, 오류 0
 - Production 모바일 브라우저: 예시 펼침·자동입력·조회·맞춤 요약·근거 접기 정상, 콘솔 오류 0, 가로 overflow 0

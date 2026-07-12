@@ -13,6 +13,6 @@
 - 안전 경계: 복용 시작·중단·용량 변경을 지시하지 않음
 - 투여 맥락 용량 추출: 369건
 - 핵심 근거: 121건(A1 30건, A2 5건, B1 30건, B2 30건, B3 26건)
-- 로컬 검증: 65 tests passed, lint passed, TypeScript passed, production build passed
+- 로컬 검증: 67 tests passed, lint passed, TypeScript passed, production build passed
 
 이 배포는 연구계획서의 개인맞춤 조회 시스템을 구현한 Production 배포이다. 고정 주소와 데이터 manifest를 논문 및 최종 산출물에 함께 기록한다.
