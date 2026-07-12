@@ -30,6 +30,20 @@ def write_csv(path: Path, fields: list[str], rows: list[dict]) -> None:
         writer.writerows(rows)
 
 
+def write_or_preserve(path: Path, fields: list[str], generated: list[dict], static_fields: tuple[str, ...], human_fields: tuple[str, ...]) -> str:
+    if path.exists():
+        with path.open(encoding="utf-8-sig", newline="") as handle:
+            existing = list(csv.DictReader(handle))
+        if any(any(row.get(field, "").strip() for field in human_fields) for row in existing):
+            old = [{field: row.get(field, "") for field in static_fields} for row in existing]
+            new = [{field: row.get(field, "") for field in static_fields} for row in generated]
+            if old != new:
+                raise RuntimeError(f"{path.name} source drift; human decisions preserved, manual migration required")
+            return "preserved_human_review"
+    write_csv(path, fields, generated)
+    return "wrote_generated_queue"
+
+
 def main() -> int:
     observation = json.loads(OBS.read_text(encoding="utf-8"))
     queries_dir = RUN / "queries"
@@ -96,10 +110,12 @@ def main() -> int:
         "final_decision": "",
         "notes": "Awaiting human screening; browser capture is not an eligibility decision.",
     } for row in records]
-    write_csv(
+    review_write_status = write_or_preserve(
         ROOT / "data/interim/koreamed_review_queue.csv",
         ["record_id", "kmid", "question_id", "title", "source_status", "reviewer_1_id", "reviewer_1_decision", "reviewer_2_id", "reviewer_2_decision", "adjudicator_id", "final_decision", "notes"],
         review_queue,
+        ("record_id", "kmid", "question_id", "title", "source_status"),
+        ("reviewer_1_id", "reviewer_1_decision", "reviewer_2_id", "reviewer_2_decision", "adjudicator_id", "final_decision"),
     )
 
     with (ROOT / "data/interim/records.csv").open(encoding="utf-8-sig", newline="") as handle:
@@ -119,11 +135,17 @@ def main() -> int:
                 "human_link_decision": "",
                 "status": "candidate_requires_human_review",
             })
-    write_csv(
+    link_write_status = write_or_preserve(
         ROOT / "data/interim/koreamed_pubmed_link_candidates.csv",
         ["koreamed_record_id", "kmid", "pubmed_record_id", "pmid", "match_basis", "human_link_decision", "status"],
         links,
+        ("koreamed_record_id", "kmid", "pubmed_record_id", "pmid", "match_basis", "status"),
+        ("human_link_decision",),
     )
+    with (ROOT / "data/interim/koreamed_review_queue.csv").open(encoding="utf-8-sig", newline="") as handle:
+        effective_review_queue = list(csv.DictReader(handle))
+    with (ROOT / "data/interim/koreamed_pubmed_link_candidates.csv").open(encoding="utf-8-sig", newline="") as handle:
+        effective_links = list(csv.DictReader(handle))
     outputs = [
         OBS, RUN / "search_log.csv", ROOT / "data/interim/koreamed_records.csv",
         ROOT / "data/interim/koreamed_retrievals.csv", ROOT / "data/interim/koreamed_review_queue.csv",
@@ -141,8 +163,10 @@ def main() -> int:
         "unique_kmids": len({row["kmid"] for row in records}),
         "native_records_exported": 0,
         "exact_title_link_candidates": len(links),
-        "human_eligibility_decisions": 0,
-        "human_link_decisions": 0,
+        "human_eligibility_decisions": sum(bool(row.get("final_decision", "").strip()) for row in effective_review_queue),
+        "human_link_decisions": sum(bool(row.get("human_link_decision", "").strip()) for row in effective_links),
+        "review_queue_write_status": review_write_status,
+        "link_queue_write_status": link_write_status,
         "final_search_claim_allowed": False,
         "export_error": observation["export_observation"]["server_error"],
         "checksum_manifest_sha256": sha256(checksum),

@@ -35,11 +35,13 @@ def main() -> int:
         errors.append("KoreaMed complete-display record coverage mismatch")
     if any(row["human_eligibility_decision"] for row in records):
         errors.append("KoreaMed records contain unverified eligibility decisions")
-    if any(row["human_link_decision"] for row in links):
-        errors.append("KoreaMed links contain unverified human decisions")
+    allowed_link = {"", "same_report", "not_same_report", "uncertain"}
+    if any(row["human_link_decision"] not in allowed_link for row in links):
+        errors.append("KoreaMed links contain invalid human decisions")
     queue_fields = ("reviewer_1_id", "reviewer_1_decision", "reviewer_2_id", "reviewer_2_decision", "adjudicator_id", "final_decision")
-    if any(any(row[field] for field in queue_fields) for row in queue):
-        errors.append("KoreaMed review queue contains unverified human decisions")
+    allowed_screen = {"", "include", "exclude", "uncertain"}
+    if any(row["reviewer_1_decision"] not in allowed_screen or row["reviewer_2_decision"] not in allowed_screen or row["final_decision"] not in allowed_screen for row in queue):
+        errors.append("KoreaMed review queue contains invalid human decisions")
     if any(row["status"] != STATUS for row in log + retrievals):
         errors.append("KoreaMed status overstated")
     if summary.get("native_records_exported") != 0 or summary.get("final_search_claim_allowed") is not False:
@@ -57,7 +59,7 @@ def main() -> int:
         "records_captured": len(records),
         "native_records_exported": 0,
         "exact_title_link_candidates": len(links),
-        "human_decisions": 0,
+        "human_decisions": sum(bool(row["final_decision"]) for row in queue),
         "final_search_claim_allowed": False,
     }
     (RUN / "validation.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

@@ -665,3 +665,9 @@
 - Found that proxy regeneration unconditionally rewrote all primary screening decisions and the 50-row training pilot; the pilot had reviewer names but no decision, reason, time, or adjudication fields.
 - Added byte preservation and lineage rejection for primary/pilot queues, future-safe validators, and a complete two-reviewer/adjudication pilot schema.
 - Enriched the workbook pilot sheet with title/abstract/source context and editable dropdown fields; preservation contracts pass 4/4 and human training remains 0/50.
+## 2026-07-12 — Non-PubMed human-review preservation
+
+- Audited ClinicalTrials.gov and KoreaMed queue generators against populated human cells.
+- Added fail-closed source-drift checks and preservation for 207 ClinicalTrials screening rows, 62 KoreaMed screening rows, and 35 KoreaMed–PubMed link candidates.
+- Added a destructive-in-a-restored-fixture preservation contract; 3/3 mutation cases pass.
+- Kept KoreaMed design-pilot and native-export limitation unchanged; no eligibility or linkage claim was promoted.

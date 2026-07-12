@@ -70,3 +70,6 @@
 
 - Mitigated for the active extraction dictionary: UTF-8 content is readable, has zero replacement characters, and matches all 55 template fields in order.
 - Residual: other imported Korean design-package files may contain historical mojibake or replacement characters; they must not be cited as usable instructions until individually validated or reconstructed.
+## R-20260712-12 — Non-PubMed regeneration could erase human review — mitigated
+
+Three queues were previously written unconditionally. Generator guards and a 3/3 mutation preservation contract now prevent silent overwrite. Residual risk: an intentional source refresh after human work requires a reviewed migration rather than automatic row reconciliation.

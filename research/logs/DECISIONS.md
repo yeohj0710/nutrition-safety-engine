@@ -529,3 +529,6 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: initialize primary and training queues only while human fields are empty; preserve populated bytes and reject changed record/question lineage
 - rationale: a reproducible proxy must never erase the human decisions that determine eligibility, and reviewer IDs alone do not constitute training
 - impact: the 50-row pilot now records two decisions and adjudication, while AI-only exclusions remain impossible
+## D-20260712-16 — Non-PubMed review queues are append-only with respect to human work
+
+ClinicalTrials.gov screening, KoreaMed screening, and KoreaMed–PubMed linkage generators may refresh an undecided queue. Once a human-authority field is populated, regeneration must preserve the file byte-for-byte unless static source columns match; source drift then fails closed and requires an explicit migration.
