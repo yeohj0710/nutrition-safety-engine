@@ -70,6 +70,7 @@
     "validate:systematic-review-v3": "python tools/validate_core_evidence_v3.py && python tools/validate_systematic_review_thesis_v3.py",
     "capture:evidence-links-v3": "python tools/check_evidence_links_v3.py",
     "validate:evidence-links-v3": "python tools/validate_evidence_links_v3.py",
+    "validate:final-delivery-manifest": "python tools/validate_final_delivery_manifest.py",
     "capture:software-quality-v3": "node tools/capture_software_quality_v3.mjs",
     "capture:ai-exploratory-smoke": "python tools/capture_ai_exploratory_smoke.py",
     "validate:ai-exploratory-smoke": "python tools/validate_ai_exploratory_smoke.py",

@@ -810,4 +810,10 @@
 - result: 118 unique URLs reachable, broken 0, network error 0
 - added a reproducible capture script, source-SHA validator and JSON evidence report
 - added the link audit result to the thesis methods and software/deployment validation table; rendered page 9 visually with no clipping or overflow
+
+## 2026-07-12 — Final delivery manifest verification
+
+- confirmed the G-drive manifest is valid UTF-8 JSON; an initial PowerShell parse failed because Windows PowerShell decoded UTF-8 as ANSI
+- added a UTF-8-aware validator that compares manifest rows with the recursive file set and checks every recorded byte size and SHA-256
+- validation result before packaging the validator: 70 files, missing/unlisted/size/SHA errors 0
 - boundary: model output remains wording assistance only and cannot add clinical facts or actions
