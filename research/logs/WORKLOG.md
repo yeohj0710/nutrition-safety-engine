@@ -694,3 +694,8 @@
 - Produced 12,330 agreement-retain, 982 agreement-deprioritize, and 6,649 disagreement/uncertain classifications.
 - Preserved all units; created no human decisions, systematic-review inclusions, exclusions, or PRISMA counts.
 - Deterministic rebuild, exact coverage, class vocabulary, and authority mutation tests pass.
+## 2026-07-12 — Protocol v2 non-PubMed integration
+
+- Added all 207 ClinicalTrials.gov and 62 KoreaMed record-question units as unranked source candidates because no equivalent dual-profile classifier exists.
+- Preserved 139 vitamin-K-antagonist lexical-risk flags and all 62 KoreaMed native-export limitations.
+- Exact 269/269 coverage, deterministic rebuild, source counts, hashes, and non-authority boundaries pass.

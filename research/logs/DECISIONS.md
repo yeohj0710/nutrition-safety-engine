@@ -544,3 +544,6 @@ The v1 human-screened systematic-review design remains historically preserved an
 ## D-20260712-20 — Dual-profile agreement is an exploratory class, not eligibility
 
 The conservative/sensitivity profile intersection defines v2 navigation classes only. `ai_agreement_deprioritize` is retained in the corpus and is not an exclusion; `ai_agreement_retain` is not a systematic-review inclusion; all remaining combinations are `ai_disagreement_uncertain`.
+## D-20260712-21 — Non-PubMed records remain unranked source candidates
+
+Registry and KoreaMed records do not inherit PubMed classifier scores. They remain `ai_unranked_source_candidate`; known lexical risks and export failures are retained as limitations, not converted into eligibility decisions.

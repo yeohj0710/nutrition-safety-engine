@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "protocol_version": "2.0-ai-exploratory",
+  "status": "complete_unranked_nonpubmed_exploratory_mapping",
+  "row_count": 269,
+  "source_counts": {
+    "clinicaltrials": 207,
+    "koreamed": 62
+  },
+  "input_sha256": {
+    "clinicaltrials": "e753cee635bbbe8197fa872297a9f27ad2be18ecbfbad3777bf86b6a3ee437a7",
+    "koreamed": "f33ca3522c4685459b17230502c414559bff27befccc95d93f6f347837370cb7"
+  },
+  "output_path": "data/curated_v2/ai_nonpubmed_classifications.csv",
+  "output_sha256": "7c721d78d51b1bca036a40f3c71147c83cf6c6ab20fbed56e4c0af22ec6c395e",
+  "classification": "ai_unranked_source_candidate",
+  "human_decisions": 0,
+  "prisma_allowed": false
+}

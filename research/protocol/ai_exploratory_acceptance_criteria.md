@@ -13,7 +13,7 @@
 - [x] 19,961 PubMed record-question unit을 누락 없이 분류한다.
 - [x] 자동 분류는 `retain/deprioritize/disagreement`만 사용한다.
 - [x] PRISMA 최종 포함·제외 수를 만들지 않는다.
-- [ ] ClinicalTrials.gov·KoreaMed 단위를 동일한 v2 분류 체계로 통합한다.
+- [x] ClinicalTrials.gov·KoreaMed 단위를 v2 비순위 후보 체계로 통합한다.
 
 ## 추출·합성
 
@@ -35,4 +35,3 @@
 - [ ] 모든 수치가 코드에서 재생성된다.
 - [ ] DOCX/PDF 전 페이지 시각검사가 통과한다.
 - [ ] 최종 manifest, clean commit, 로컬 런타임 검증이 통과한다.
-
