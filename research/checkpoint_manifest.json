@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "f43e6cea6db6026278b0839ddcd33e1538aa1e73",
+  "implementation_head": "6d4520aed2e78241342934bd05bb621b7370073f",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,13 +10,13 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 859,
+  "file_count": 863,
   "local_required_file_count": 104,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "size_bytes": 3557,
-      "sha256": "66bd28a49ec07fd701bdd7ed892c050489ee9f3bc2406c6039ea4cc77c526dc9",
+      "size_bytes": 3620,
+      "sha256": "83f703f2bf83f063990a8fadb0272d4cc3ce720354b3012cb5569e40569dba08",
       "distribution": "tracked"
     },
     {
@@ -921,8 +921,8 @@
     },
     {
       "path": "package.json",
-      "size_bytes": 6667,
-      "sha256": "0eef0ca4e5549b6b430b2b0452c61716e426243c06cb1de288f37d5f922788af",
+      "size_bytes": 6761,
+      "sha256": "93119a6c70783f848e48d11dce41f1513712f5d311e161ac515a76f6ee1e104e",
       "distribution": "tracked"
     },
     {
@@ -2559,8 +2559,8 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 38350,
-      "sha256": "6ba2e77f7dfd16e80b668800e4c9f74afc81ec707d774c19718999a476822c7a",
+      "size_bytes": 38847,
+      "sha256": "a8845acd573aeb2859930be9245bcbe45d924b60a173572360161ebf2799681f",
       "distribution": "tracked"
     },
     {
@@ -2571,8 +2571,8 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 59274,
-      "sha256": "b0d3926980f0f6ad79c658dbfbd5d927033093e0d87f904be08748d43de3e40a",
+      "size_bytes": 59801,
+      "sha256": "534ba30be1fa342391a1d1089a5224c33e54dd0176ee79613a2647c07460aba4",
       "distribution": "tracked"
     },
     {
@@ -2636,9 +2636,21 @@
       "distribution": "tracked"
     },
     {
+      "path": "research/review_queue/external_review_handoff.xlsx",
+      "size_bytes": 243273,
+      "sha256": "039304696063e76fe397cc21d36e828fa5cae439b2d4fa432c12e540ce51894d",
+      "distribution": "tracked"
+    },
+    {
+      "path": "research/review_queue/external_review_handoff_manifest.json",
+      "size_bytes": 1362,
+      "sha256": "ba62482aee4b95319b672aec79a99b4ed1a442f2b482a1e916dc236c226d0d50",
+      "distribution": "tracked"
+    },
+    {
       "path": "research/review_queue/HUMAN_HANDOFF.md",
-      "size_bytes": 1718,
-      "sha256": "67ee4dddca7aa537451527311b37f331bd7345382b63d4ab86ecf4e4604b9f36",
+      "size_bytes": 2087,
+      "sha256": "2b1f52dcc4eb024f38463ae0ad512fbb67df0047736d6bb2ce602f975ef0310c",
       "distribution": "tracked"
     },
     {
@@ -4646,6 +4658,12 @@
       "distribution": "tracked"
     },
     {
+      "path": "tools/build_external_review_workbook.mjs",
+      "size_bytes": 7381,
+      "sha256": "bd65197c059a9747b48734b33470a63dc81f2739155f6d8934a72c7bb049d2f6",
+      "distribution": "tracked"
+    },
+    {
       "path": "tools/build_extraction_rob_work_queues.py",
       "size_bytes": 8350,
       "sha256": "aa243b1a0355394ebb5d27d0bb761724896e9f3cb3876ae5d116489022d1518c",
@@ -4913,6 +4931,12 @@
       "path": "tools/validate_duplicate_review_context.py",
       "size_bytes": 2595,
       "sha256": "e7279b640059353d76fd78f2f07d986d67d76aab862a4a9f9d15098d078d078d",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/validate_external_review_workbook.py",
+      "size_bytes": 2369,
+      "sha256": "3cf0ace6398d53f5f1e80a216eab12c04efecd9528d4882050d86469f029c7e8",
       "distribution": "tracked"
     },
     {
