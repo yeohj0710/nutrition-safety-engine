@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "d59f6c2003f97b279b5fc738c21604920a82446b",
+  "implementation_head": "a9ea14bc0c68028ce04928a9f32b74e259355edf",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,13 +10,13 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 868,
+  "file_count": 869,
   "local_required_file_count": 104,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "size_bytes": 3884,
-      "sha256": "41565a9f33f97d62194e7c5dd3a8a1dcf15a7e4f0c96ce162734590981c6fcfd",
+      "size_bytes": 3952,
+      "sha256": "3018fda05253474cbc5f066f39e488f116b0ebff8be5fa3a088df54671b64b34",
       "distribution": "tracked"
     },
     {
@@ -927,8 +927,8 @@
     },
     {
       "path": "package.json",
-      "size_bytes": 7161,
-      "sha256": "6b1cb0953cc7c9f2dbee5a6b113fb4a47fd1a3f641e787da4349a5a52f2f19ea",
+      "size_bytes": 7258,
+      "sha256": "db169b0766de3fb1547ac3f5aeef9a403b7657946f6f3c3d661a6f2584ff784e",
       "distribution": "tracked"
     },
     {
@@ -2565,20 +2565,20 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 39858,
-      "sha256": "95b7d092124ff2aab73415e5a1efe5de7e0b52d82b4a8ac8f91a22b5d6c5453d",
+      "size_bytes": 40267,
+      "sha256": "c322a04bcc0cfe40172d79eb91ea598a68f3ac689f7f7febaa965e4f26fdd235",
       "distribution": "tracked"
     },
     {
       "path": "research/logs/RISKS.md",
-      "size_bytes": 8000,
-      "sha256": "e22c40e975df6ab79d1a47c2468668075f5807815775689a4891956a6528d696",
+      "size_bytes": 8361,
+      "sha256": "829f76724dc6746073383b1948feb8b972925f39c2476b3d690c565a6163ddec",
       "distribution": "tracked"
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 60980,
-      "sha256": "1e406242f21fec1b0f4c60d8a1f52347b82639e2be762bd57cf2f3e2f6c122ff",
+      "size_bytes": 61499,
+      "sha256": "1fb49eb0a11a814eb13eed2d627fee201deb255118387f723662a3adaee62ff4",
       "distribution": "tracked"
     },
     {
@@ -3879,8 +3879,8 @@
     },
     {
       "path": "research/searches/koreamed_designpilot_20260710/summary.json",
-      "size_bytes": 584,
-      "sha256": "ea87a669bee8b798e02d094b07f4cc3d24bef0037eae0a98ca1d5293c20d54eb",
+      "size_bytes": 696,
+      "sha256": "e05c23427220f0e558ef8d36c89aedf3c98e1acdaf587aede4c9111a3f46ecb4",
       "distribution": "tracked"
     },
     {
@@ -4653,8 +4653,8 @@
     },
     {
       "path": "tools/build_clinicaltrials_review_queue.py",
-      "size_bytes": 1261,
-      "sha256": "dbe95c63e80d92b1bd93324d63d76a3257dd3e731856f1e351d3d03bf101ed34",
+      "size_bytes": 2440,
+      "sha256": "7bed2900b4e1b513c5a0a4000159643b9f0b45c0be84be61b11f5e79878722a3",
       "distribution": "tracked"
     },
     {
@@ -4809,8 +4809,8 @@
     },
     {
       "path": "tools/normalize_koreamed_observation.py",
-      "size_bytes": 6117,
-      "sha256": "7cf9371cc89d78ae2d75fc1922fe241630387f78bc9404a326a05bab7c15f4b1",
+      "size_bytes": 7957,
+      "sha256": "e21101ebe4f7b5d41b7dc60ca66d701323f52f5ee6390fa3cafb66f6c699d38b",
       "distribution": "tracked"
     },
     {
@@ -5007,8 +5007,8 @@
     },
     {
       "path": "tools/validate_koreamed_designpilot.py",
-      "size_bytes": 3373,
-      "sha256": "2bd5bafc29ffe9654c9c57aa6ae8535c4fcaf8c559a876e910cf17e1ef6f321c",
+      "size_bytes": 3673,
+      "sha256": "b00c90329edf987afdeaf8a928a1306e69e57131b49e81160b0ee65d469d956d",
       "distribution": "tracked"
     },
     {
@@ -5039,6 +5039,12 @@
       "path": "tools/validate_methods_checkpoint.py",
       "size_bytes": 3282,
       "sha256": "a84d6b698925b43eec84e11581953c9b4f9aa4adc75c6ab2e379e2eaa7e79d43",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/validate_nonpubmed_review_preservation.py",
+      "size_bytes": 2207,
+      "sha256": "5781dfa97fc31b8febc9f352ddc3ff2c07b8274affcc2efb1a58ca19de152455",
       "distribution": "tracked"
     },
     {
