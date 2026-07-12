@@ -8,6 +8,6 @@
 | 탐색 근거지도 | complete_verified | 20,230/20,230 source-bound rows; 초록 18,015, title-only 2,215; PMC locator 5,653 record-question rows/5,563 unique records; raw sources 104개 해시 검증 | 없음 |
 | 잠정 주장·탐색 엔진 | complete_verified | 5개 질문별 source-bound provisional claim, 5개 evidence-navigation rule; 임상행동 0; 53 tests, typecheck/build 통과 | 없음 |
 | 기술 시나리오 검증 | complete_verified | synthetic fixtures 120개×3회; 결정성·정확 question routing·계보 120/120; 임상행동·legacy 누출·8개 near-match 오경로 0 | 없음 |
-| 한국어 논문 | complete_verified | data-driven 한국어 DOCX, 6쪽 PDF, Markdown; 4개 표; PDF 전 페이지 시각검사 defects 0; 구조·본문·수치 validator errors 0 | 최종 manifest·runtime smoke |
+| 한국어 논문·runtime | complete_verified | data-driven 한국어 DOCX, 6쪽 PDF, Markdown; PDF 전 페이지 defects 0; production 홈/API 200, A1 routing, 임상행동·legacy·validated-scope 누출 0 | 최종 manifest |
 
 v1 체계적 문헌고찰은 계속 `blocked_external`이며 v2 완료로 대체되지 않는다.

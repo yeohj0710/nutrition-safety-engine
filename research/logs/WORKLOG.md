@@ -723,3 +723,8 @@
 - Used a narrative formal layout with Korean font compatibility, running header/page numbers, four source/result tables, and a SHA-256 lineage appendix.
 - Inspected all six PDF pages at full resolution; fixed an orphan reference heading and Windows-path glyph issue; open visual defects 0.
 - DOCX/PDF required text, dynamic counts, sections, tables, placeholders, and hashes validate with errors 0.
+## 2026-07-12 — Protocol v2 local production smoke
+
+- Started the optimized Next.js production server and called `/api/exploratory/query` over HTTP.
+- Home and API returned 200; vitamin K routed once to A1 under `ai_exploratory`.
+- Clinical actions, legacy leakage, and validated-thesis-scope leakage were all 0; report hashes bind engine, bundle, and route.
