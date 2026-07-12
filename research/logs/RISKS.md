@@ -79,3 +79,6 @@ The 35 candidates were preserved but absent from the consolidated manifest/workb
 ## R-20260712-14 — Monolithic PubMed queue impedes external review — mitigated
 
 The 19,961-row queue is now deterministically partitioned into 40 bounded batches with exact one-to-one coverage. Residual risk: assignment does not supply the required independent reviewers or decisions.
+## R-20260712-15 — Design change could be mistaken for completion of v1 — active control
+
+V2 removes human screening by changing the study question, not by imputing human decisions. Separate protocol, role matrix, output paths, authority labels, prohibited-claim validator, and preserved v1 queues prevent retrospective relabeling. Residual risk is reader confusion; every v2 thesis section must state the AI-only exploratory boundary.

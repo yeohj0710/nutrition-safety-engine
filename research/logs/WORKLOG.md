@@ -682,3 +682,9 @@
 - Partitioned all 19,961 PubMed record-question units into 40 reviewer workload batches of at most 500 rows.
 - Ordered within question by proxy disagreement, then priority band, then stable record ID; this is workload routing only and has no decision authority.
 - Bound source/output hashes and passed exact-coverage, sequence, missing-row, duplicate-key, and authority contracts.
+## 2026-07-12 — Protocol v2 AI exploratory redesign
+
+- Recorded the user's explicit instruction to remove human screening as amendment AM-002.
+- Adopted a separate AI-only exploratory evidence-mapping and deterministic software-validation protocol without rewriting v1 history.
+- Explicitly prohibited systematic-review, PRISMA-final, human-consensus, RoB/GRADE-complete, clinical-recommendation, and independent-gold claims.
+- Added a role/authority matrix and executable protocol validator; errors 0.

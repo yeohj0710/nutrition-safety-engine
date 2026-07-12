@@ -538,3 +538,6 @@ An exact normalized title is candidate-generation evidence, not a report identit
 ## D-20260712-18 — Screening proxy may order work but cannot decide eligibility
 
 Proxy disagreement and priority bands may determine the order of human review batches. They cannot populate reviewer identities, eligibility decisions, exclusion reasons, adjudication, PRISMA counts, or thesis results.
+## D-20260712-19 — Adopt a transparent AI-only exploratory study as protocol v2
+
+The v1 human-screened systematic-review design remains historically preserved and externally blocked. Protocol v2 is a distinct AI exploratory evidence map and software-validation study authorized by the user's 2026-07-12 instruction. V2 may finish without human screening only by permanently foregoing systematic-review inclusion, GRADE, clinical efficacy/safety, human agreement, independent-gold, and clinical-validation claims.
