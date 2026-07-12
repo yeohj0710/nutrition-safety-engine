@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "62945958ce6a6165629dbd7346f8b31fb5746bd4",
+  "implementation_head": "860d20ec3334e24578eb63b63a43fb66d8f8ec5e",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,13 +10,13 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 901,
+  "file_count": 904,
   "local_required_file_count": 104,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "size_bytes": 4546,
-      "sha256": "f4c90fe9316bf083650d3741fa0887f65fe3601416e02e03f4f6e0962b9c6eaa",
+      "size_bytes": 4664,
+      "sha256": "e5b33a2db0882837ed521092b2a93d4be6bca8dd58735c3a477dd54fa0778b01",
       "distribution": "tracked"
     },
     {
@@ -411,8 +411,8 @@
     },
     {
       "path": "data/curated_v2/exploratory_rules.jsonl",
-      "size_bytes": 1150,
-      "sha256": "edf3022d5eac73f13b69d69e1fda35f5e476976566190c2a6f45bf7e07c9489e",
+      "size_bytes": 1165,
+      "sha256": "b15365e8f9d541a12c329648b004efacc520509585f311e319a5b5eb4670471b",
       "distribution": "tracked"
     },
     {
@@ -981,8 +981,8 @@
     },
     {
       "path": "package.json",
-      "size_bytes": 8219,
-      "sha256": "cf904f055f36e796b719bc05fd33d9f8563a9cfb4c0d1286133584ea2c45bc12",
+      "size_bytes": 8406,
+      "sha256": "b5f42409ef9f3e182da48964cfbf02ba36144b228a6e4a4af3ff9ecf4820b1cc",
       "distribution": "tracked"
     },
     {
@@ -2619,8 +2619,8 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 42401,
-      "sha256": "0eae75e120e0787234cb7323de144098c3c23c0e8bc88663f6ed4f7e1232b85f",
+      "size_bytes": 42715,
+      "sha256": "41e7c5c9bc228773945ab8f1a9edeb1e0631001d9b260440b4e995faa37505d1",
       "distribution": "tracked"
     },
     {
@@ -2631,8 +2631,8 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 64831,
-      "sha256": "d0a2eb60c9273f2b07aee5bece58f25a98a303174133bc3b0263882d6b465c34",
+      "size_bytes": 65293,
+      "sha256": "25d511606d972ddf242a4847dbfd4a1255e2487f0edb9ad5db6300e325fe3798",
       "distribution": "tracked"
     },
     {
@@ -2643,8 +2643,8 @@
     },
     {
       "path": "research/PROGRESS_LEDGER_V2.md",
-      "size_bytes": 1319,
-      "sha256": "b3e25d98a82045378a5e80555a86afe8ccb21b985e06f72808d5f152e441a98e",
+      "size_bytes": 1414,
+      "sha256": "c06ae66b10c4023fb164deb0ff7dd6b5c1a093b471df486916566384eee065ff",
       "distribution": "tracked"
     },
     {
@@ -2655,8 +2655,8 @@
     },
     {
       "path": "research/protocol/ai_exploratory_acceptance_criteria.md",
-      "size_bytes": 1646,
-      "sha256": "a3b58a0dc41f3ef1fb168ab4b795f27d9e436dc64fd76cf048d43a8b8f811086",
+      "size_bytes": 1925,
+      "sha256": "33ea7baab0f33e0d4fdd2895746d966f3c94d6a953e8ab57755418448f2c9527",
       "distribution": "tracked"
     },
     {
@@ -4418,6 +4418,12 @@
       "distribution": "tracked"
     },
     {
+      "path": "research/validation/ai_exploratory_performance.json",
+      "size_bytes": 41247,
+      "sha256": "71bee0fb97dd39b22fa9d528c95329f1f7a8dcc2d0beaf2d6aa8f61d8713555a",
+      "distribution": "tracked"
+    },
+    {
       "path": "research/validation/deployment_verification.csv",
       "size_bytes": 168,
       "sha256": "c2eb7ccc015145212558203c3154f639863ca7632f62ebc73f200ac708c381cf",
@@ -4544,6 +4550,12 @@
       "distribution": "tracked"
     },
     {
+      "path": "scripts/evaluate-ai-exploratory-scenarios.ts",
+      "size_bytes": 2975,
+      "sha256": "b3bdc5e387dc9fe1134578aaf176f5a67db7e5a3b55ed4d193a1339832b3e4ab",
+      "distribution": "tracked"
+    },
+    {
       "path": "scripts/evaluate-phase07-independent-gold.ts",
       "size_bytes": 4242,
       "sha256": "e5ce1a9a8a1b7547f2e97f840b7994cb07d3d46688fd5f4fef09841c62a14a5b",
@@ -4641,8 +4653,8 @@
     },
     {
       "path": "src/generated/ai-exploratory-bundle.json",
-      "size_bytes": 7405,
-      "sha256": "9d168b15bf30ad9ec93b91346e81852aaf9c66b7d76746f5a5b5ccb52a19f6cb",
+      "size_bytes": 7429,
+      "sha256": "668f43687216d0b18e79d727a5bbb5ad2bb186fd0e3c07a443eb96ee04ecb6a9",
       "distribution": "tracked"
     },
     {
@@ -4660,7 +4672,7 @@
     {
       "path": "src/generated/thesis-bundle.json",
       "size_bytes": 620,
-      "sha256": "1860a5cec4be36ef9e6b870ea3fca46e357fd0cf2c2ec842b15c82f7847bcf26",
+      "sha256": "05de73e6e04984c2030b62a44e9266a42d461afbb02f883f20dcf25594867c46",
       "distribution": "tracked"
     },
     {
@@ -4773,8 +4785,8 @@
     },
     {
       "path": "tools/build_ai_exploratory_bundle.py",
-      "size_bytes": 2715,
-      "sha256": "1ffa1311ee4d8e17695607cf1a978a8435da29e7506abbd34e2eaee0b65f85cc",
+      "size_bytes": 2729,
+      "sha256": "9da8add476b85aab6e6ae8b538a64478154c0cc6d2a164004aef67d54cc4a980",
       "distribution": "tracked"
     },
     {
@@ -5093,6 +5105,12 @@
       "path": "tools/validate_ai_exploratory_nonpubmed.py",
       "size_bytes": 2210,
       "sha256": "2ecc55dfc40ad4015585fe55d890e699b344a10284fe6f9d49a4cd0bc90fe74f",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/validate_ai_exploratory_scenarios.py",
+      "size_bytes": 2063,
+      "sha256": "bef5c87082231590655a29312baea5e68f948809a3a0091274bb1bc60edba0f2",
       "distribution": "tracked"
     },
     {
