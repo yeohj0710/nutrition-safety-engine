@@ -31,5 +31,6 @@
 - lint, TypeScript, Next.js Production build 통과
 - 논문 validator: 16쪽, 225문단, 표 4개, 오류 0
 - Production 모바일 브라우저: 예시 펼침·자동입력·조회·맞춤 요약·근거 접기 정상, 콘솔 오류 0, 가로 overflow 0
+- 핵심 근거 링크: 121개 레코드의 고유 URL 118개 전수 접근 확인, broken/network error 0
 - Production 고정 URL: https://nutrition-safety-engine.vercel.app
 - 최종 전달 폴더: `G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준`

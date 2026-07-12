@@ -803,4 +803,11 @@
 - replaced numeric appending with an acceptance gate requiring every input number and rejecting every invented number
 - capped accepted generated summaries at 300 characters; rejected long or incomplete output now uses a concise deterministic fallback without duplicated lab text
 - verification: 16 files/67 tests, lint, TypeScript and production build passed
+
+## 2026-07-12 — Core evidence link integrity audit
+
+- sent live HTTP requests to every unique `source_url` in the 121-row core evidence table
+- result: 118 unique URLs reachable, broken 0, network error 0
+- added a reproducible capture script, source-SHA validator and JSON evidence report
+- added the link audit result to the thesis methods and software/deployment validation table; rendered page 9 visually with no clipping or overflow
 - boundary: model output remains wording assistance only and cannot add clinical facts or actions

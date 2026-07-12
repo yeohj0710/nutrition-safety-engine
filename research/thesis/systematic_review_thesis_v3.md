@@ -52,7 +52,7 @@ Next.js App Router로 구현하였다. 입력은 보충제, 일일 용량, 병�
 
 ### 2.8 검증과 배포
 
-단위·계약·경계·개인맞춤 API 테스트 67개, lint, TypeScript 검사와 Production 빌드를 수행하였다. 최종 시스템은 https://nutrition-safety-engine.vercel.app 에 배포하였다.
+단위·계약·경계·개인맞춤 API 테스트 67개, lint, TypeScript 검사와 Production 빌드를 수행하였다. 핵심 근거 121건의 고유 서지 URL 118개를 네트워크로 점검하였다. 최종 시스템은 https://nutrition-safety-engine.vercel.app 에 배포하였다.
 
 ### 2.9 자동화 절차를 선택한 이유
 
