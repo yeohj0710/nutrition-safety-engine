@@ -5,7 +5,8 @@
   "scripts": {
     "prepare:legacy": "tsx scripts/build-knowledge-index.ts && tsx scripts/build-literature-candidates.ts",
     "prepare:thesis": "tsx scripts/build-thesis-bundle.ts",
-    "prepare:knowledge": "npm run prepare:legacy && npm run prepare:thesis",
+    "prepare:ai-exploratory": "python tools/build_ai_exploratory_bundle.py",
+    "prepare:knowledge": "npm run prepare:legacy && npm run prepare:thesis && npm run prepare:ai-exploratory",
     "dev": "tsx scripts/dev-with-knowledge-watch.ts",
     "build": "npm run prepare:knowledge && next build",
     "start": "next start",
@@ -62,6 +63,7 @@
     "validate:ai-exploratory-nonpubmed": "python tools/validate_ai_exploratory_nonpubmed.py",
     "build:ai-exploratory-map": "python tools/build_ai_exploratory_evidence_map.py",
     "validate:ai-exploratory-map": "python tools/validate_ai_exploratory_evidence_map.py",
+    "validate:ai-exploratory-bundle": "python tools/validate_ai_exploratory_bundle.py",
     "validate:phase03:lineage": "python tools/validate_phase03_lineage.py",
     "validate:phase03:preservation": "python tools/validate_phase03_queue_preservation.py",
     "build:duplicate-review-context": "python tools/build_duplicate_review_context.py",

@@ -1,0 +1,5 @@
+{"claim_id": "V2-MAP-A1", "clinical_action": null, "output_type": "evidence_navigation", "question_id": "A1", "rule_id": "V2-NAV-A1", "scope_status": "ai_exploratory", "trigger_terms": ["vitamin k", "phylloquinone", "menaquinone"]}
+{"claim_id": "V2-MAP-A2", "clinical_action": null, "output_type": "evidence_navigation", "question_id": "A2", "rule_id": "V2-NAV-A2", "scope_status": "ai_exploratory", "trigger_terms": ["omega-3", "omega 3", "fish oil", "epa", "dha", "icosapent"]}
+{"claim_id": "V2-MAP-B1", "clinical_action": null, "output_type": "evidence_navigation", "question_id": "B1", "rule_id": "V2-NAV-B1", "scope_status": "ai_exploratory", "trigger_terms": ["calcium"]}
+{"claim_id": "V2-MAP-B2", "clinical_action": null, "output_type": "evidence_navigation", "question_id": "B2", "rule_id": "V2-NAV-B2", "scope_status": "ai_exploratory", "trigger_terms": ["vitamin d", "cholecalciferol", "ergocalciferol"]}
+{"claim_id": "V2-MAP-B3", "clinical_action": null, "output_type": "evidence_navigation", "question_id": "B3", "rule_id": "V2-NAV-B3", "scope_status": "ai_exploratory", "trigger_terms": ["vitamin c", "ascorbic acid", "ascorbate"]}

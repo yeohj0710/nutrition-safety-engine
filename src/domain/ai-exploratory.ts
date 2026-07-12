@@ -1,0 +1,11 @@
+import { z } from "zod";
+import { thesisQuerySchema } from "@/src/domain/thesis";
+
+export const AI_EXPLORATORY_SCOPE = "ai_exploratory" as const;
+const claimSchema = z.object({ claim_id:z.string(), question_id:z.enum(["A1","A2","B1","B2","B3"]), claim_type:z.literal("provisional_ai_map_claim"), statement:z.string(), record_question_units:z.number().int().nonnegative(), source_counts:z.record(z.string(),z.number()), classification_counts:z.record(z.string(),z.number()), abstract_observed:z.number().int().nonnegative(), support:z.object({path:z.string(),sha256:z.string().regex(/^[a-f0-9]{64}$/),manifest_path:z.string(),manifest_sha256:z.string().regex(/^[a-f0-9]{64}$/)}), authority:z.literal("ai_exploratory_only"),clinical_interpretation_allowed:z.literal(false),scope_status:z.literal(AI_EXPLORATORY_SCOPE)});
+const ruleSchema=z.object({rule_id:z.string(),question_id:z.enum(["A1","A2","B1","B2","B3"]),trigger_terms:z.array(z.string()).min(1),output_type:z.literal("evidence_navigation"),claim_id:z.string(),clinical_action:z.null(),scope_status:z.literal(AI_EXPLORATORY_SCOPE)});
+export const aiExploratoryBundleSchema=z.object({meta:z.object({schemaVersion:z.string(),bundleVersion:z.string(),scope:z.literal(AI_EXPLORATORY_SCOPE),generationMode:z.literal("deterministic"),evidenceMapSha256:z.string().regex(/^[a-f0-9]{64}$/),claimCount:z.literal(5),ruleCount:z.literal(5)}),claims:z.array(claimSchema).length(5),rules:z.array(ruleSchema).length(5)});
+export const aiExploratoryResponseSchema=z.object({request_id:z.string().regex(/^v2_[a-f0-9]{24}$/),scope:z.literal(AI_EXPLORATORY_SCOPE),bundle_version:z.string(),normalized_terms:z.array(z.string()),navigation:z.array(z.object({question_id:z.string(),claim_id:z.string(),message:z.string(),record_question_units:z.number(),source_counts:z.record(z.string(),z.number()),classification_counts:z.record(z.string(),z.number()),support:z.object({path:z.string(),sha256:z.string(),manifest_path:z.string(),manifest_sha256:z.string()})})),clinical_actions:z.tuple([]),limitations:z.array(z.string()).min(1)});
+export { thesisQuerySchema };
+export type AiExploratoryBundle=z.infer<typeof aiExploratoryBundleSchema>;
+export type AiExploratoryResponse=z.infer<typeof aiExploratoryResponseSchema>;

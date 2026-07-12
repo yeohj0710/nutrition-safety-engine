@@ -705,3 +705,9 @@
 - Observed abstracts exist for 18,015 rows; 2,215 are title/metadata-only.
 - Separated PMC denominators: 5,653 record-question rows, 5,563 unique records; verified 104 referenced source-file hashes.
 - Extracted no effect values and emitted no clinical claims, meta-analysis, RoB, or GRADE result.
+## 2026-07-12 — Protocol v2 provisional claims and navigation engine
+
+- Generated five question-level provisional map claims and five exact-term evidence-navigation rules from the source-bound map.
+- Added a separate `ai_exploratory` schema, bundle loader, deterministic engine, and API route.
+- The response schema structurally fixes `clinical_actions` to an empty tuple and excludes all validated-thesis action classes.
+- Tests increased to 53/53; typecheck and production build pass.
