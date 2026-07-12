@@ -647,3 +647,9 @@
 - Found that the final Korean style guide, thesis outline, and draft-status document were unreadable mojibake despite a valid methods-only checkpoint.
 - Rebuilt all three as readable Korean documents, preserving the results-freeze prohibition and explicitly separating search hits, synthetic proxies, legacy material, results, and interpretation.
 - Validator confirms required provenance/freeze language and absence of pre-freeze final DOCX/PDF; methods checkpoint remains 8/8-page verified and non-final.
+
+## 2026-07-12 external human review workbook
+
+- Packaged the actionable PRESS queues, 342-pair duplicate context, 500-link registry context, and 50-row screening training pilot into a six-sheet XLSX convenience copy.
+- Highlighted editable human fields, froze headers/identifiers, preserved canonical IDs and context, and stated that CSV files remain authoritative.
+- Rendered and visually inspected all six sheets after width/wrap repair; source/workbook SHA-256 manifest and XLSX package validator pass with defects open 0.

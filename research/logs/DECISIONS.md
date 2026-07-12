@@ -508,3 +508,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: reconstruct style, outline, and status documents now, but continue prohibiting results-dependent prose and final artifacts until the evidence-derived freeze passes
 - rationale: readable writing infrastructure is legitimate pre-freeze work; drafting results from empty human evidence is not
 - impact: final authoring can start from a usable Korean structure after freeze, while current final DOCX/PDF paths remain absent
+
+## D-070 — XLSX is a convenience copy, CSV remains authoritative
+
+- date: 2026-07-12
+- decision: provide one visually checked external-review workbook while requiring all completed values to be reconciled to canonical CSV files and revalidated
+- rationale: a workbook reduces file-switching for human reviewers, but parallel editable authorities would break provenance and regeneration safety
+- impact: external review can start more easily without changing the fail-closed research data model

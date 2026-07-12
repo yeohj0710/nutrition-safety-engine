@@ -2,6 +2,8 @@
 
 Status: `ready_for_external_review_not_completed`
 
+Convenience copy: `external_review_handoff.xlsx` contains six visually checked sheets for PRESS, duplicate context, registry links, and the 50-row screening training pilot. It is not the authority of record; reconcile completed cells back to the canonical CSV files and run validators. Its source/workbook hashes are stored in `external_review_handoff_manifest.json`.
+
 Complete work in dependency order. Do not enter later-phase judgments before the upstream sampling frame is frozen.
 
 1. Protocol approval and PRESS: `PRESS_review.csv`, then every row of `korean_db_PRESS_review.csv` and authenticated platform translations.
