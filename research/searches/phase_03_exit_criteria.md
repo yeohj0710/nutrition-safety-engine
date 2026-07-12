@@ -21,7 +21,7 @@ Proxy pipeline status: `complete_verified`
 | Human duplicate decisions | 0/342 | blocked_external |
 | Report→study linkage | 19,609 report candidates; 0 human study links | blocked_external |
 | Human queue preservation/progression | normalizer preserves populated dedup/linkage files byte-for-byte; lineage changes fail without write; pending/partial/complete-candidate states validated; preservation 3/3 | pass_local |
-| Registry screening/linkage | 207 undecided rows; 500 registry→PubMed candidate links; 0 human decisions | blocked_external |
+| Registry screening/linkage | 207 undecided rows; 500 registry→PubMed candidate links; paired review context includes 46 RESULT, 127 DERIVED, 327 BACKGROUND citations; 146 also bind to current PubMed XML corpus and 354 retain registry citation/raw provenance only; 0 human decisions | blocked_external |
 | Approved final searches across planned sources | none | blocked_external |
 
 ClinicalTrials.gov A1 has a known lexical risk: `vitamin K` also retrieves vitamin-K-antagonist studies. All 139 A1 registry retrievals are flagged for human review. These artifacts test complete-export, checksum, normalization, and queue generation. They are not final searches, included-study counts, PRISMA data, or human deduplication results.

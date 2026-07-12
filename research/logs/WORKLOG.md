@@ -605,3 +605,9 @@
 - Joined every one of 342 exact duplicate candidates to both source records with PMID, DOI, title, first author, year, journal, and raw XML location.
 - Prioritized review without making a duplicate decision: 36 exact DOI, 22 exact title plus author/year, and 284 title-collision manual reviews.
 - Bound the 342-row context to source and output SHA-256; validator confirms exact coverage and `context_only_no_decision` status.
+
+## 2026-07-12 Phase 03 registry–PubMed review context
+
+- Joined all 500 ClinicalTrials.gov PMID references to trial metadata, exact registry citation text, and raw registry response location.
+- Of 500 links, 146 also occur in the current 19,609-record PubMed proxy corpus and bind to PubMed XML; the other 354 remain explicitly registry-citation-only rather than fabricated as missing search records.
+- Preserved 46 RESULT, 127 DERIVED, and 327 BACKGROUND reference types as review priority only; no report–study linkage decision was generated.

@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "status": "synthetic_proxy_context_no_linkage_authority",
+  "candidate_count": 500,
+  "output_rows": 500,
+  "reference_types": {
+    "RESULT": 46,
+    "DERIVED": 127,
+    "BACKGROUND": 327
+  },
+  "pubmed_in_search_corpus": 146,
+  "inputs": {
+    "registry_report_link_candidates.csv": "ad20dbf6d3de4cae61881dc121eea928c45e774304709102e3cdb118bb7b32ea",
+    "clinicaltrials_records.csv": "f2b4850cafc873ced0b4578ceafffd7e7e19f6c7abb067d6de7fef3160bef702",
+    "clinicaltrials_retrievals.csv": "796b350c69c9650aa88644a76cd808a58dba4f9fe860bd28f957bb23757846cd",
+    "records.csv": "a904c9c2a333a30e33898ba46a8099b75f8284d7e97b9f568e30e773a1bdd1ae"
+  },
+  "output": {
+    "path": "data/interim/registry_link_review_context.csv",
+    "sha256": "9e2c87e208af528ce561ad3829068864d10b812a41911db2ff2345043817c48b"
+  }
+}

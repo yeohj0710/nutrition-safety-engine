@@ -459,3 +459,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: expose paired bibliographic and raw-file context plus deterministic review priority, but never an automated duplicate/nonduplicate recommendation
 - rationale: exact titles can be distinct publications, while exact DOI matches deserve first review; both still require accountable human judgment
 - impact: reviewers can assess all 342 pairs from one source-bound file without treating proxy logic as a screening decision
+
+## D-063 — Keep out-of-corpus registry references explicit
+
+- date: 2026-07-12
+- decision: use ClinicalTrials.gov citation and raw-response provenance for every PMID reference, and attach PubMed XML metadata only when that PMID is actually present in the current search corpus
+- rationale: a registry reference can be valid linkage evidence without being retrieved by the question-specific PubMed proxy; inventing a PubMed search record would corrupt retrieval lineage
+- impact: 500 candidates are reviewable, while 354 out-of-corpus references remain visibly distinct from the 146 dual-source records

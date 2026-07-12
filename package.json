@@ -59,6 +59,8 @@
     "validate:phase03:preservation": "python tools/validate_phase03_queue_preservation.py",
     "build:duplicate-review-context": "python tools/build_duplicate_review_context.py",
     "validate:duplicate-review-context": "python tools/validate_duplicate_review_context.py",
+    "build:registry-link-review-context": "python tools/build_registry_link_review_context.py",
+    "validate:registry-link-review-context": "python tools/validate_registry_link_review_context.py",
     "validate:phase04:screening-lineage": "python tools/validate_phase04_screening_lineage.py",
     "typecheck": "npm run prepare:knowledge && tsc --noEmit"
   },
