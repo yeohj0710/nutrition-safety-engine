@@ -69,6 +69,8 @@
     "validate:ai-exploratory-thesis": "python tools/validate_ai_exploratory_thesis.py",
     "capture:ai-exploratory-smoke": "python tools/capture_ai_exploratory_smoke.py",
     "validate:ai-exploratory-smoke": "python tools/validate_ai_exploratory_smoke.py",
+    "build:ai-exploratory-final-manifest": "python tools/build_ai_exploratory_final_manifest.py",
+    "validate:ai-exploratory-final-manifest": "python tools/validate_ai_exploratory_final_manifest.py",
     "validate:phase03:lineage": "python tools/validate_phase03_lineage.py",
     "validate:phase03:preservation": "python tools/validate_phase03_queue_preservation.py",
     "build:duplicate-review-context": "python tools/build_duplicate_review_context.py",

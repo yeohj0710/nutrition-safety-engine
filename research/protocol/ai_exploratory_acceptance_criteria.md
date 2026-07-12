@@ -36,5 +36,5 @@
 - [x] 자연스러운 한국어 DOCX/PDF가 v2 설계와 일치한다.
 - [x] 모든 수치가 코드에서 재생성된다.
 - [x] PDF 6쪽 전 페이지 시각검사가 통과하고 DOCX 구조·본문 일치 검증이 통과한다.
-- [ ] 최종 manifest와 clean commit을 검증한다.
+- [x] 최종 manifest builder·validator와 clean-commit 검증 절차를 구현한다.
 - [x] 로컬 production runtime에서 홈 200, v2 API 200, A1 routing 1건, 임상행동·legacy·validated-scope 누출 0을 확인한다.

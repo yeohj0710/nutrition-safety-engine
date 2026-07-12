@@ -556,3 +556,6 @@ The 120 synthetic fixtures may prove deterministic exact-term routing, provenanc
 ## D-20260712-24 — The v2 thesis reports descriptive and technical results only
 
 The final v2 narrative may report corpus counts, observability, classifier agreement, access locators, deterministic routing, provenance, and leakage tests. It may not report included studies, pooled effects, RoB, GRADE, clinical efficacy/safety, human agreement, or independent-gold performance.
+## D-20260712-25 — V2 completion never relabels v1 as complete
+
+The final manifest may mark only `2.0-ai-exploratory` complete. It must preserve the human-screened v1 systematic review as `blocked_external_not_relabelled` and must state that systematic-review, human-review, and clinical-recommendation claims are disallowed.
