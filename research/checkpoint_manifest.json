@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "a9ea14bc0c68028ce04928a9f32b74e259355edf",
+  "implementation_head": "fbbdbd2b23f1d9d7fd0ca27a27cee33e641ce3c3",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -477,8 +477,8 @@
     },
     {
       "path": "data/interim/koreamed_pubmed_link_candidates.csv",
-      "size_bytes": 4114,
-      "sha256": "fb9c234f625d78c503702c7508287a1ba4fda215cff983b1b6ecd4a97161bc86",
+      "size_bytes": 4255,
+      "sha256": "4c017df4bf6be3eafcfb6096ba709865b65a0cd1daa90957b3fa8805503e53e9",
       "distribution": "tracked"
     },
     {
@@ -2565,20 +2565,20 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 40267,
-      "sha256": "c322a04bcc0cfe40172d79eb91ea598a68f3ac689f7f7febaa965e4f26fdd235",
+      "size_bytes": 40604,
+      "sha256": "47ae03cc236d23bee642070dfec64bb38f07cb9218f3595691a4bc898323d1e2",
       "distribution": "tracked"
     },
     {
       "path": "research/logs/RISKS.md",
-      "size_bytes": 8361,
-      "sha256": "829f76724dc6746073383b1948feb8b972925f39c2476b3d690c565a6163ddec",
+      "size_bytes": 8718,
+      "sha256": "bff553017d4c0b0e8dfbe6085c8566d3f2b46a172108597b78b75a603c73a405",
       "distribution": "tracked"
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 61499,
-      "sha256": "1fb49eb0a11a814eb13eed2d627fee201deb255118387f723662a3adaee62ff4",
+      "size_bytes": 62052,
+      "sha256": "069d2937e914c0742e94d12ce23a3350b6b43190afacf15563b2b92aa58b33a4",
       "distribution": "tracked"
     },
     {
@@ -2643,26 +2643,26 @@
     },
     {
       "path": "research/review_queue/external_review_handoff.xlsx",
-      "size_bytes": 318483,
-      "sha256": "9d7b4bbe38c020f37f86ae33c3859eb603a1ae322279f58d8637d65dceb3d8f5",
+      "size_bytes": 321824,
+      "sha256": "108f0ce6b662587d666f1bdccc9332170d38b5549e2a5ba3ee13e84ba8be23da",
       "distribution": "tracked"
     },
     {
       "path": "research/review_queue/external_review_handoff_manifest.json",
-      "size_bytes": 1825,
-      "sha256": "d6dff9e9f58486cdec2c989e87ddf3ff7555bb503df3ee84af529225a1f9fe2e",
+      "size_bytes": 1999,
+      "sha256": "0912467d7e0dc156e427d761c4f339eda702f7f7e513f6c1ef06e2c74c3d031c",
       "distribution": "tracked"
     },
     {
       "path": "research/review_queue/HUMAN_HANDOFF.md",
-      "size_bytes": 2195,
-      "sha256": "dfaf007aee4085744810bafcb34ec73b5c4971a39119e08e78065b87317f28a5",
+      "size_bytes": 2301,
+      "sha256": "246ea07c893dd84efd81749a9a094ed7650da5542bf261b9c0b8e6b92df5e27d",
       "distribution": "tracked"
     },
     {
       "path": "research/review_queue/human_handoff_manifest.json",
-      "size_bytes": 25325,
-      "sha256": "a4266bd6dd994714eac6a3121cefc793c2a11c7a12b4908edc72b442e1a6ea84",
+      "size_bytes": 26001,
+      "sha256": "0c7f21a726e85d45830c3e6f56f69ae3c7bb10cf8d68110e3e67bc34f9683414",
       "distribution": "tracked"
     },
     {
@@ -2740,7 +2740,7 @@
     {
       "path": "research/screening/nonpubmed_screening_context_manifest.json",
       "size_bytes": 1060,
-      "sha256": "a10cdb5f7e5d87c05399c5f72eeded9fa08bdb141a2b704c3c4a920a683d95ef",
+      "sha256": "47952bd666e09d256a7b83670f7147dbd85be70acecffab3d6174d31c2385b87",
       "distribution": "tracked"
     },
     {
@@ -3838,7 +3838,7 @@
     {
       "path": "research/searches/koreamed_designpilot_20260710/checksum.sha256",
       "size_bytes": 1347,
-      "sha256": "c8f27047f89ad207ca5430ea2ff6995e9294884e95df62e17e43fc62ea898053",
+      "sha256": "1d3643474536d98a5e3970c00ce5203ec8b499df30bb38e7f83af033b99edd1f",
       "distribution": "tracked"
     },
     {
@@ -3880,7 +3880,7 @@
     {
       "path": "research/searches/koreamed_designpilot_20260710/summary.json",
       "size_bytes": 696,
-      "sha256": "e05c23427220f0e558ef8d36c89aedf3c98e1acdaf587aede4c9111a3f46ecb4",
+      "sha256": "27f80c5a5d5ce029aca6f50be22c9563bc94907f92d1639a4d15ca68fc3cf254",
       "distribution": "tracked"
     },
     {
@@ -4665,8 +4665,8 @@
     },
     {
       "path": "tools/build_external_review_workbook.mjs",
-      "size_bytes": 11474,
-      "sha256": "91ad1f3082847e40a88791591ad884f62da1c9beda5dbdd218643068ae977d4f",
+      "size_bytes": 12090,
+      "sha256": "a27a0d560616a3ea8072f28a3db4e0627c900942d0970ec8e2f5b31760170720",
       "distribution": "tracked"
     },
     {
@@ -4689,8 +4689,8 @@
     },
     {
       "path": "tools/build_human_handoff_manifest.py",
-      "size_bytes": 12240,
-      "sha256": "f0e7b7b9ef5ad56b767546575139a28d186fffdc7ca5aa45d156c32c3e7c5383",
+      "size_bytes": 12472,
+      "sha256": "1d2e56687eaffb1c5d4e62801b750e2251d3e235d5586f200f521b29a92e622f",
       "distribution": "tracked"
     },
     {
@@ -4809,8 +4809,8 @@
     },
     {
       "path": "tools/normalize_koreamed_observation.py",
-      "size_bytes": 7957,
-      "sha256": "e21101ebe4f7b5d41b7dc60ca66d701323f52f5ee6390fa3cafb66f6c699d38b",
+      "size_bytes": 8151,
+      "sha256": "72a10c32580da0f52543f8c331801115ea2a9f02dbb91f64fa59f262e261c0aa",
       "distribution": "tracked"
     },
     {
@@ -4947,8 +4947,8 @@
     },
     {
       "path": "tools/validate_external_review_workbook.py",
-      "size_bytes": 2650,
-      "sha256": "6bd0f9f7fdb6b5e8407b0d85376ef92b4c06f8fbaf3de819d3862e4c7f972c9d",
+      "size_bytes": 2740,
+      "sha256": "0625561aa936b675ece671dd2b3679924c695d97ab57d7d27be021d2515069f6",
       "distribution": "tracked"
     },
     {
@@ -4996,7 +4996,7 @@
     {
       "path": "tools/validate_human_handoff_manifest.py",
       "size_bytes": 3996,
-      "sha256": "90597bcb242248238e662be361357273aae9c7b5c83f24782508bfad41122fcf",
+      "sha256": "45945e94573dd0709943cc5d753cff370f0fed3d49f01ebc6feb1cf5f3d54cd7",
       "distribution": "tracked"
     },
     {
@@ -5007,8 +5007,8 @@
     },
     {
       "path": "tools/validate_koreamed_designpilot.py",
-      "size_bytes": 3673,
-      "sha256": "b00c90329edf987afdeaf8a928a1306e69e57131b49e81160b0ee65d469d956d",
+      "size_bytes": 3911,
+      "sha256": "8089ecbc5404f7121e35abe80be384ec902cbd2d5e420f73d104334c5bedd5db",
       "distribution": "tracked"
     },
     {
