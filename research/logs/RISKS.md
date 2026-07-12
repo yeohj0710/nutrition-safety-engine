@@ -76,3 +76,6 @@ Three queues were previously written unconditionally. Generator guards and a 3/3
 ## R-20260712-13 — KoreaMed linkage candidates omitted from reviewer handoff — mitigated
 
 The 35 candidates were preserved but absent from the consolidated manifest/workbook. They are now an explicit actionable queue with source hashes and a visually verified decision sheet. Residual risk remains wholly external: no human linkage decisions exist yet.
+## R-20260712-14 — Monolithic PubMed queue impedes external review — mitigated
+
+The 19,961-row queue is now deterministically partitioned into 40 bounded batches with exact one-to-one coverage. Residual risk: assignment does not supply the required independent reviewers or decisions.

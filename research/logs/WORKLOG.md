@@ -677,3 +677,8 @@
 - Added accountable decision fields (`human_link_decision`, reason, verifier, timestamp), future-safe validation, and hash-bound manifest coverage.
 - Expanded the review workbook to nine sheets, repaired its corrupted Korean README text, rendered all nine sheets, and closed two visual defects.
 - Human handoff now inventories 34 queues and 41,094 rows; human decisions remain 0.
+## 2026-07-12 — Deterministic PubMed screening batches
+
+- Partitioned all 19,961 PubMed record-question units into 40 reviewer workload batches of at most 500 rows.
+- Ordered within question by proxy disagreement, then priority band, then stable record ID; this is workload routing only and has no decision authority.
+- Bound source/output hashes and passed exact-coverage, sequence, missing-row, duplicate-key, and authority contracts.

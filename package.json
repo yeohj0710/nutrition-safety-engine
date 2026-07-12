@@ -76,6 +76,8 @@
     "validate:primary-screening-preservation": "python tools/validate_primary_screening_preservation.py",
     "validate:nonpubmed-preservation": "python tools/validate_nonpubmed_review_preservation.py",
     "validate:phase04:screening-lineage": "python tools/validate_phase04_screening_lineage.py",
+    "build:screening-batches": "python tools/build_screening_batches.py",
+    "validate:screening-batches": "python tools/validate_screening_batches.py",
     "typecheck": "npm run prepare:knowledge && tsc --noEmit"
   },
   "dependencies": {

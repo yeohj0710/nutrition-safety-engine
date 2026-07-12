@@ -535,3 +535,6 @@ ClinicalTrials.gov screening, KoreaMed screening, and KoreaMed–PubMed linkage 
 ## D-20260712-17 — KoreaMed exact-title matches remain human linkage candidates
 
 An exact normalized title is candidate-generation evidence, not a report identity decision. Every candidate requires an allowed decision plus a written reason, verifier identity, and timestamp before downstream deduplication or study linkage can use it.
+## D-20260712-18 — Screening proxy may order work but cannot decide eligibility
+
+Proxy disagreement and priority bands may determine the order of human review batches. They cannot populate reviewer identities, eligibility decisions, exclusion reasons, adjudication, PRISMA counts, or thesis results.

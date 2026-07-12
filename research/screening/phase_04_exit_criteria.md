@@ -21,6 +21,7 @@ Proxy queue status: `complete_verified`
 | Full-text queue preservation/progression | pass_local | access/source/study/design/two-reviewer bytes preserved; routing drift rejected; actual source SHA reproduced; preservation 3/3; complete candidates 0 |
 | Human pilot training | blocked_external | actionable 50-row queue with two independent decisions/reasons/timestamps, adjudication, title/abstract context, progress states, and dropdowns; human completion 0/50 |
 | Primary/pilot decision preservation | pass_local | populated primary and training bytes preserved; record/question/pilot lineage drift rejected before write; preservation contracts 4/4 |
+| PubMed reviewer workload partition | pass_local | 19,961/19,961 units partitioned once into 40 deterministic batches, maximum 500 rows; source/output hashes bound; decision authority none; mutation contracts 3/3 |
 | Full-text double review | blocked_external | 0 reports assessed |
 | Public PMC locator resolution | pass_proxy_only | 19,609 PMID input; 99 checksum-verified responses; 5,563 unique PMCID candidates; human verification 0 |
 | PMC full-text retrieval path | pass_design_pilot_only | 3 PMC-located sentinels fetched in one official EFetch batch; 1 OA full-text XML, 2 metadata-only non-OA; 10 section + 19 paragraph-hash locators; 2-row non-OA access queue; human decisions 0 |

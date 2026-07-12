@@ -52,6 +52,8 @@ jobs:
       - run: python tools/validate_registry_linkage_decisions.py
       - run: python tools/validate_registry_linkage_preservation.py
       - run: python tools/validate_primary_screening_preservation.py
+      - run: python tools/build_screening_batches.py
+      - run: python tools/validate_screening_batches.py
       - run: python tools/validate_nonpubmed_review_preservation.py
       - run: python tools/validate_clinicaltrials_proxy.py
       - run: python tools/validate_pmc_fulltext_candidates.py
