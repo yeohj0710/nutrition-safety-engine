@@ -1,0 +1,9 @@
+.env
+.env.*
+!.env.example
+.playwright-cli
+output
+tmp
+coverage
+research/full_texts
+data/full_texts
