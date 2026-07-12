@@ -16,7 +16,7 @@
 - SVG chevron은 장식 아이콘으로 `aria-hidden=true` 적용
 - 조회 결과와 오류 영역에 `aria-live=polite`, 로딩 중 `aria-busy=true` 적용
 - 390px viewport에서 예시 카드·입력 폼이 한 열로 배치되고 가로 잘림 없음
-- 현재 manifest 수치 4,593/369/1,507/128과 질문별 12~30건 표시 확인
+- 현재 manifest 수치 4,593/369/1,507/121과 질문별 5~30건 표시 확인
 - `prefers-reduced-motion`에서 CSS 전환을 축소하고 예시 자동 스크롤을 즉시 이동으로 변경
 - 긴 건강정보 입력은 UI와 API 양쪽에서 길이 제한
 - malformed JSON, 과도한 입력, 비문자 필드는 400/no-store로 거부

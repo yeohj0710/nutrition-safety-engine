@@ -1,8 +1,8 @@
 {
-  "core_records": 128,
+  "core_records": 121,
   "per_question": {
     "A1": 30,
-    "A2": 12,
+    "A2": 5,
     "B1": 30,
     "B2": 30,
     "B3": 26

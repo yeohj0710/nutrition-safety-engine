@@ -773,3 +773,11 @@
 - procedure: require ingredient-and-administration context in the same sentence, strengthen numeric/unit boundaries, prohibit laboratory concentration suffixes and uppercase `G`, exclude explicit pediatric/pregnancy/animal titles only from the core set, preserve all raw candidates, normalize bibliography title/year formatting
 - result: dose-observed records changed from the overinclusive 987 to 369; core set changed from 129 to 128 (A1 30/A2 12/B1 30/B2 30/B3 26); raw PICOS candidates remain 4,593
 - verification: malformed dose and out-of-scope title checks added to validators; no `.0` bibliography years remain
+
+## 2026-07-12 — 질문별 노출 직접성 재감사
+
+- phase/task: core evidence semantic boundary review
+- defects: warfarin reversal treatment entered A1 supplementation/intake evidence; non-anticoagulant perioperative bleeding entered A2; calcium-stone pathophysiology without calcium exposure entered B1
+- procedure: A1 now requires dietary/supplement/stability exposure and excludes reversal/coagulopathy; A2 requires both oral-anticoagulant context and bleeding/coagulation/pharmacology outcome; B1 requires explicit oral/dietary/supplemental calcium exposure phrase
+- result: core set reduced from 128 to 121 without filling quotas (A1 30/A2 5/B1 30/B2 30/B3 26); all 4,593 candidates remain preserved
+- interpretation: the smaller set is a stricter automated direct-evidence set, not a human final-inclusion set

@@ -22,10 +22,11 @@ def title_direct(r):
  if re.search(r"\b(infant|infants|child|children|pediatric|paediatric|adolescent|neonat\w*|newborn|pregnan\w*|mouse|mice|murine|rat|rats|canine|dog|dogs|frog|frogs|bovine|swine|pig|pigs)\b",t):return False
  if r.question_id=="A1":
   if re.search(r"non-vitamin k antagonist|vitamin k antagonist (?:vs|versus)",t) and not re.search(r"dietary|intake|supplement|vitamin k1|phylloquinone|menaquinone",t):return False
-  exposure=bool(re.search(r"dietary vitamin k|vitamin k1|vitamin k (?:intake|supplement|administr|dose|for|in reversal)|oral vitamin k|intravenous vitamin k|phylloquinone|menaquinone",t))
-  return bool(exposure and re.search(r"warfarin|anticoag|inr|over-warfarin|bleed",t))
- if r.question_id=="A2":return bool(re.search(r"omega.?3|fish oil|eicosapentaenoic|docosahexaenoic|\bepa\b|\bdha\b",t) and re.search(r"warfarin|anticoag|bleed|hemorrhag|inr|coagulat|platelet",t))
- if r.question_id=="B1":return bool((re.search(r"calcium",t) and re.search(r"stone|nephrolith|urolith|hypercalciur",t)) or (re.search(r"diet|supplement",t) and re.search(r"stone|nephrolith|urolith",t)))
+  if re.search(r"reversal|reverses|reverse |over.?anticoag|over-warfarin|coagulopathy|supratherapeutic|excessive anticoag|hypoprothrombin",t):return False
+  exposure=bool(re.search(r"dietary vitamin k|vitamin k intake|vitamin k1? supplement|vitamin k supplementation|multivitamin|anticoagulation (?:control|stability)|anticoagulant stability",t))
+  return bool(exposure and re.search(r"warfarin|vitamin k antagonist|anticoag|inr",t))
+ if r.question_id=="A2":return bool(re.search(r"omega.?3|fish oil|eicosapentaenoic|docosahexaenoic|\bepa\b|\bdha\b",t) and re.search(r"warfarin|anticoag|apixaban|rivaroxaban|dabigatran|edoxaban",t) and re.search(r"bleed|hemorrhag|inr|coagulat|platelet|pharmacokinetic|pharmacodynamic",t))
+ if r.question_id=="B1":return bool(re.search(r"oral calcium|dietary calcium|calcium (?:supplement|intake|diet|restriction|fortified|carbonate|citrate)|supplemented with calcium|milk|mineral water containing calcium",t) and re.search(r"stone|nephrolith|urolith|hypercalciur",t))
  if r.question_id=="B2":return bool(re.search(r"vitamin d|cholecalciferol|ergocalciferol",t) and re.search(r"stone|nephrolith|urolith|hypercalciur|hypercalcemia|urine calcium",t) and re.search(r"supplement|repletion|intake|dose|administr|taking|therapy|treatment",t))
  return bool(re.search(r"vitamin c|ascorb",t) and re.search(r"stone|nephrolith|urolith|oxalat|hyperoxalur",t))
 d=d[d.apply(title_direct,axis=1)].copy()

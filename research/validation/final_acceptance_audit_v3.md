@@ -14,7 +14,7 @@
 | D. 추출과 질평가 | blocked_external | 투여 맥락이 확인된 용량 관찰 369건, 원문 locator 1,507건, 자동 추출 필드 보존 | 원문 숫자 이중 확인, report-study 연결, RoB 독립 평가 |
 | E. 합성 | partial | 질문별 분리와 비정량 구조화, 임의 메타분석 없음 | GRADE 또는 승인된 대안, 효과크기·CI 기반 합성 |
 | F. AI 평가 | blocked_external | 자동화 코드·입력·산출물과 해시 보존 | 사람 gold 선잠금, 개발/평가 분리, 실제 선별·추출 성능 |
-| G. Claim과 규칙 | partial | v3 개인맞춤 규칙은 질문별 확인사항과 성인 범위 핵심 문헌 128건을 연결 | 원문 locator 단위의 사람 검증 claim과 임계값 검증 |
+| G. Claim과 규칙 | partial | v3 개인맞춤 규칙은 질문별 확인사항과 노출 직접성 핵심 문헌 121건을 연결 | 원문 locator 단위의 사람 검증 claim과 임계값 검증 |
 | H. 엔진과 앱 | partial | API contract, 경계, legacy 분리, Production build와 고정 URL | runtime AI는 사용자 요구에 따른 문장화 전용 예외이므로 protocol amendment 필요; commit-deployment 일치 재검증 |
 | I. 시나리오·전문가 검증 | blocked_external | 5개 사용자 예시와 자동 회귀테스트 보존 | 구현 독립 gold, 전문가 검토, sensitivity/precision/CI |
 | J. 논문 | partial | DOCX/PDF 16쪽, 217문단, 표 4개, 시각검사 및 해시 | 학과 최신 양식·참고문헌·전문 내용의 사람 최종 검토 |
@@ -26,9 +26,9 @@
 
 ## 즉시 통과한 기술 증거
 
-- 핵심 근거 validator: 128건, A1 30/A2 12/B1 30/B2 30/B3 26, 오류 0
+- 핵심 근거 validator: 121건, A1 30/A2 5/B1 30/B2 30/B3 26, 오류 0
 - 웹 회귀검사: 16 test files, 62 tests
 - lint, TypeScript, Next.js Production build 통과
-- 논문 validator: 16쪽, 216문단, 표 4개, 오류 0
+- 논문 validator: 16쪽, 209문단, 표 4개, 오류 0
 - Production 고정 URL: https://nutrition-safety-engine.vercel.app
 - 최종 전달 폴더: `G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준`

@@ -21,15 +21,6 @@
         "outcome": "Interaction Between Dietary Vitamin K Intake and Anticoagulation by Vitamin K Antagonists: Is It Really True?: A Systematic Review.. | Common belief is that dietary vitamin K intake could counteract the anticoagulant effect by VKAs and for many years, patients have been discouraged to consume vitamin-K-rich foods, such as green leafy vegetables.The objective of this study is to summarize the current evidence supporting the putative interaction between dietary vitamin K intake and changes in INR with the VKAs.Data sources are MEDLINE via PubMed and Cochrane database.All clinical studies investigating the relationship between dietary vitamin K and measures of anticoagulation were included. | We excluded all studies of supplementation of vitamin K alone.We performed a systematic review of the literature up to October 2015, searching for a combination of \"food,\" \"diet,\" \"vitamin K,\" \"phylloquinone,\" \"warfarin,\" \"INR,\" \"coagulation,\" and \"anticoagulant.\"Two dietary interventional trials and 9 observational studies were included."
       },
       {
-        "record_id": "REC-PUBMED-10886201",
-        "title": "A prospective randomized study to determine the optimal dose of intravenous vitamin K in reversal of over-warfarinization.",
-        "doi": "10.1046/j.1365-2141.2000.02001.x",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/10886201/",
-        "locator": "ABSTRACT: A prospective randomized study to determine the optimal dose of intravenous vitamin K in reversal of over-warfarinization.. | We measured international normalized ratio (INR), activated partial thromboplastin time (APTT) and prothrombin fragment 1 + 2 (F1 + 2) over 7 d in 24 asymptomatic or mildly haemorrhagic patients on warfarin with prolonged INR of > 7.0 who were randomized to receive 0.5 mg, 1 mg or 2 mg intravenous vitamin K. | Of six severely overanticoagulated patients (INR > 9.5 with APTT ratio > 2), five failed to achieve an INR < or = 4.0 on day 1, irrespective of vitamin K dose given.",
-        "dose": "0.5 mg | 1 mg | 2 mg",
-        "outcome": "The optimal management of asymptomatic overanticoagulated patients remains unknown. | We measured international normalized ratio (INR), activated partial thromboplastin time (APTT) and prothrombin fragment 1 + 2 (F1 + 2) over 7 d in 24 asymptomatic or mildly haemorrhagic patients on warfarin with prolonged INR of > 7.0 who were randomized to receive 0.5 mg, 1 mg or 2 mg intravenous vitamin K. | Of six severely overanticoagulated patients (INR > 9.5 with APTT ratio > 2), five failed to achieve an INR < or = 4.0 on day 1, irrespective of vitamin K dose given."
-      },
-      {
         "record_id": "REC-PUBMED-21193422",
         "title": "Vitamin K1 supplementation to improve the stability of anticoagulation therapy with vitamin K antagonists: a dose-finding study.",
         "doi": "10.3324/haematol.2010.035162",
@@ -48,13 +39,22 @@
         "outcome": "Over-the-counter vitamin K1-containing multivitamin supplements disrupt warfarin anticoagulation in vitamin K1-depleted patients. | Most multivitamin supplements contain far less vitamin K(1) than thought to affect warfarin anticoagulation. | Therefore, we compared the effect of a vitamin K(1)-containing multivitamin on warfarin anticoagulation between patients with low versus normal vitamin K(1) status."
       },
       {
-        "record_id": "REC-PUBMED-21605730",
-        "title": "Reversal of overanticoagulation in very elderly hospitalized patients with an INR above 5.0: 24-hour INR response after vitamin K administration.",
-        "doi": "10.1016/j.amjmed.2011.01.016",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/21605730/",
-        "locator": "ABSTRACT: Reversal of overanticoagulation in very elderly hospitalized patients with an INR above 5.0: 24-hour INR response after vitamin K administration.. | In the subset of Day 0 INRs between 5.0 and 6.0, mean INR decreased from 5.5±0.3 to 2.7±1.0 (P<.0001) on Day 1 after oral administration of 1 mg vitamin K1 (n=121) and from 5.3±0.3 to 5.0±1.6 (P=.149) without vitamin K1 administration (n=48). | CONCLUSION: In elderly inpatients with INR ≥5.0, both vitamin K antagonist dose omission and vitamin K1 administration according to recommendations were effective in reversing overanticoagulation, allowing most INRs to return to the 1.8-3.2 range without excessive overcorrection.",
-        "dose": "1 mg",
-        "outcome": "Reversal of overanticoagulation in very elderly hospitalized patients with an INR above 5.0: 24-hour INR response after vitamin K administration.. | BACKGROUND: Reversal of overanticoagulation to minimize the bleeding risk is important in elderly inpatients receiving vitamin K antagonist therapy. | The objective of this study is to evaluate whether guidelines based on American College of Chest Physicians recommendations for the management of overanticoagulation (international normalized ratio [INR] ≥5.0) can apply to elderly inpatients, and notably allow 24-hour INRs to return to the 1.8-3.2 range in this population."
+        "record_id": "REC-PUBMED-23744743",
+        "title": "Anticoagulation control with daily low-dose vitamin k to reduce clinically adverse outcomes and international normalized ratio variability: a systematic review and meta-analysis.",
+        "doi": "10.1002/phar.1302",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/23744743/",
+        "locator": "ABSTRACT: Anticoagulation control with daily low-dose vitamin k to reduce clinically adverse outcomes and international normalized ratio variability: a systematic review and meta-analysis.. | STUDY OBJECTIVES: Difficulties managing warfarin therapy have led to speculation that daily supplementation with a low dose of vitamin K might improve anticoagulation control and clinical outcomes. | Thus we sought to review the available medical literature systematically examining the effectiveness of low-dose vitamin K supplementation for the reduction of clinically relevant adverse events due to vitamin K antagonist (VKA) use and for stabilization of the international normalized ratio (INR).",
+        "dose": "100 to 200 μg",
+        "outcome": "Anticoagulation control with daily low-dose vitamin k to reduce clinically adverse outcomes and international normalized ratio variability: a systematic review and meta-analysis.. | STUDY OBJECTIVES: Difficulties managing warfarin therapy have led to speculation that daily supplementation with a low dose of vitamin K might improve anticoagulation control and clinical outcomes. | Thus we sought to review the available medical literature systematically examining the effectiveness of low-dose vitamin K supplementation for the reduction of clinically relevant adverse events due to vitamin K antagonist (VKA) use and for stabilization of the international normalized ratio (INR)."
+      },
+      {
+        "record_id": "REC-PUBMED-15121490",
+        "title": "Role of dietary vitamin K intake in chronic oral anticoagulation: prospective evidence from observational and randomized protocols.",
+        "doi": "10.1016/j.amjmed.2003.12.036",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/15121490/",
+        "locator": "ABSTRACT: Role of dietary vitamin K intake in chronic oral anticoagulation: prospective evidence from observational and randomized protocols.. | PURPOSE: The potential association between vitamin K intake and coagulation instability has been explored primarily in case reports and small, retrospective, uncontrolled studies. | We prospectively evaluated the effects of dietary vitamin K intake on anticoagulation parameters.",
+        "dose": "",
+        "outcome": "Role of dietary vitamin K intake in chronic oral anticoagulation: prospective evidence from observational and randomized protocols.. | PURPOSE: The potential association between vitamin K intake and coagulation instability has been explored primarily in case reports and small, retrospective, uncontrolled studies. | We prospectively evaluated the effects of dietary vitamin K intake on anticoagulation parameters."
       }
     ],
     "status": "automated_evidence_linked_personalized_check"
@@ -81,40 +81,40 @@
         "outcome": "No Effect of Omega-3 Carboxylic Acids on Pharmacokinetics/Pharmacodynamics of Warfarin or on Platelet Function When Co-administered with Acetylsalicylic Acid: Results of Two Phase I Studies in Healthy Volunteers.. | OBJECTIVE: Our objective was to assess the effects of OM3-CA on warfarin pharmacokinetics and pharmacodynamics and on acetylsalicylic acid (ASA)-dependent and independent platelet activation when co-administered with ASA in two phase I studies. | Lack of a drug-drug interaction was indicated when 90% confidence intervals (CIs) fell entirely within the range 80-125% for least-squares mean (LSM) ratios of area under the concentration-time curve (AUC), maximum observed plasma concentration (C max), international normalized ratio (INR) AUC to 168 h and maximum INR."
       },
       {
-        "record_id": "REC-PUBMED-29627068",
-        "title": "Role of Fish Oil in Post-Cardiotomy Bleeding: A Summary of the Basic Science and Clinical Trials.",
-        "doi": "10.1016/j.athoracsur.2018.01.041",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/29627068/",
-        "locator": "ABSTRACT: Role of Fish Oil in Post-Cardiotomy Bleeding: A Summary of the Basic Science and Clinical Trials.. | RESULTS: Fish oil induces an in vitro coagulopathy in humans due to inhibitory effects in platelet-to-platelet adhesion and platelet-stimulated thrombin generation. | The effect from fish oil alone is weak, but it is enhanced and may become clinically noticeable in patients taking antiplatelet therapy, and, to a lesser extent, in patients on factor Xa inhibitors and warfarin.",
+        "record_id": "REC-PUBMED-23207874",
+        "title": "The assessment of risk for gastrointestinal injury with anticoagulant and antiplatelet drugs: the possible beneficial effect of eicosapentaenoic Acid for the risk of gastrointestinal injury.",
+        "doi": "10.1248/bpb.b12-00584",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/23207874/",
+        "locator": "ABSTRACT: The assessment of risk for gastrointestinal injury with anticoagulant and antiplatelet drugs: the possible beneficial effect of eicosapentaenoic Acid for the risk of gastrointestinal injury..",
         "dose": "",
-        "outcome": "Role of Fish Oil in Post-Cardiotomy Bleeding: A Summary of the Basic Science and Clinical Trials.. | RESULTS: Fish oil induces an in vitro coagulopathy in humans due to inhibitory effects in platelet-to-platelet adhesion and platelet-stimulated thrombin generation. | The effect from fish oil alone is weak, but it is enhanced and may become clinically noticeable in patients taking antiplatelet therapy, and, to a lesser extent, in patients on factor Xa inhibitors and warfarin."
+        "outcome": "The assessment of risk for gastrointestinal injury with anticoagulant and antiplatelet drugs: the possible beneficial effect of eicosapentaenoic Acid for the risk of gastrointestinal injury.. | Of the 3271 patients who received antithrombotic drug therapy, 172 (5.3%) developed gastrointestinal injuries, including gastric ulcers, duodenal ulcers, and hemorrhagic gastrointestinal injuries."
       },
       {
-        "record_id": "REC-PUBMED-21423055",
-        "title": "Omega-3 and fish oil supplements do not cause increased bleeding during spinal decompression surgery.",
-        "doi": "10.1097/bsd.0b013e3182120227",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/21423055/",
-        "locator": "ABSTRACT: Omega-3 and fish oil supplements do not cause increased bleeding during spinal decompression surgery.. | OBJECTIVE: The purpose of this study was to assess whether preoperative use of fish oil supplements increases intraoperative blood loss and postoperative bleeding complications during lumbar decompression surgery. | SUMMARY OF BACKGROUND DATA: Omega-3 fatty acids (n-3FA) are widely used as over-the-counter supplements because of well-established cardioprotective and antiplatelet effects.",
+        "record_id": "REC-PUBMED-17182793",
+        "title": "Plasma triacylglycerol and coagulation factor concentrations predict the anticoagulant effect of dietary fish oil in overweight subjects.",
+        "doi": "10.1093/jn/137.1.7",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/17182793/",
+        "locator": "ABSTRACT: Plasma triacylglycerol and coagulation factor concentrations predict the anticoagulant effect of dietary fish oil in overweight subjects.. | Fish oil, containing (n-3) PUFA, is associated with a moderate reduction in cardiovascular disease through a multifactorial mechanism involving a decrease in plasma lipids and anticoagulant activity. | In both healthy subjects and diabetes patients, high triacylglycerol concentrations (>1.69 mmol/L) at baseline were closely linked to a strong fish oil-induced lowering of triacylglycerol and coagulation factor V, VII, and X concentrations, and thrombin generation.",
         "dose": "",
-        "outcome": "Omega-3 and fish oil supplements do not cause increased bleeding during spinal decompression surgery.. | OBJECTIVE: The purpose of this study was to assess whether preoperative use of fish oil supplements increases intraoperative blood loss and postoperative bleeding complications during lumbar decompression surgery. | SUMMARY OF BACKGROUND DATA: Omega-3 fatty acids (n-3FA) are widely used as over-the-counter supplements because of well-established cardioprotective and antiplatelet effects."
+        "outcome": "Plasma triacylglycerol and coagulation factor concentrations predict the anticoagulant effect of dietary fish oil in overweight subjects.. | In both healthy subjects and diabetes patients, high triacylglycerol concentrations (>1.69 mmol/L) at baseline were closely linked to a strong fish oil-induced lowering of triacylglycerol and coagulation factor V, VII, and X concentrations, and thrombin generation."
       },
       {
-        "record_id": "REC-PUBMED-27657121",
-        "title": "The Use of Fish Oil with Warfarin Does Not Significantly Affect either the International Normalised Ratio or Incidence of Adverse Events in Patients with Atrial Fibrillation and Deep Vein Thrombosis: A Retrospective Study.",
-        "doi": "10.3390/nu8090578",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/27657121/",
-        "locator": "ABSTRACT: The Use of Fish Oil with Warfarin Does Not Significantly Affect either the International Normalised Ratio or Incidence of Adverse Events in Patients with Atrial Fibrillation and Deep Vein Thrombosis: A Retrospective Study.. | CONCLUSION: Omega-3 supplementation with fish and krill oil does not significantly affect long-term warfarin control and bleeding and thromboembolic events when consumed concurrently in patients managed at an anticoagulation clinic.",
+        "record_id": "REC-PUBMED-17923275",
+        "title": "Extremely prolonged INR associated with warfarin in combination with both trazodone and omega-3 fatty acids.",
+        "doi": "10.1016/j.arcmed.2007.05.004",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/17923275/",
+        "locator": "ABSTRACT: Extremely prolonged INR associated with warfarin in combination with both trazodone and omega-3 fatty acids.. | Coadministration of warfarin with omega-3 fatty acids can lead to additional anticoagulation.",
         "dose": "",
-        "outcome": "Drug interactions influence the safety of warfarin use and while extensive literature exists regarding the effect on warfarin control and bleeding incidence with many medicines, there is little evidence on the influence of complementary medicines. | The aim of this study was to assess the influence of fish and krill oil supplementation on warfarin control and bleeding incidence in AF and DVT patients. | Overall, it was found that fish and krill oils did not significantly alter warfarin time in therapeutic range (TTR) or bleeding incidence, even when compared by gender."
+        "outcome": "Extremely prolonged INR associated with warfarin in combination with both trazodone and omega-3 fatty acids.. | Two weeks after taking these medications, when he routinely checked his international normalized ratio (INR), he arrived at the Emergency Department (ED) with a test result showing an INR of 8.06. | His INR returned to normal within 2 days."
       },
       {
-        "record_id": "REC-PUBMED-17192169",
-        "title": "Subdural hematoma after a fall in an elderly patient taking high-dose omega-3 fatty acids with warfarin and aspirin: case report and review of the literature.",
-        "doi": "10.1592/phco.27.1.152",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/17192169/",
-        "locator": "ABSTRACT: Subdural hematoma after a fall in an elderly patient taking high-dose omega-3 fatty acids with warfarin and aspirin: case report and review of the literature.. | Few data exist on whether or not fish oil can be used safely with other antiplatelet or anticoagulant drugs. | We report the case of a patient who after a minor fall developed a subdural hematoma requiring craniotomy that likely was precipitated by concomitant use of high-dose omega-3 fatty acids 6 g/day with both aspirin and warfarin.",
-        "dose": "6 g/day",
-        "outcome": "The elderly population is at an increased risk for major bleeding, possibly due to increased sensitivity to anticoagulation, multiple comorbidities, and polypharmacy. | Elderly patients receiving antiplatelet and anticoagulant therapy have an additional risk for bleeding. | The mechanism of action of n-3 PUFA is not completely understood, but a dual antiplatelet and anticoagulant effect has been proposed."
+        "record_id": "REC-PUBMED-10767122",
+        "title": "Effects of Marine Fish Oils on the Anticoagulation Status of Patients Receiving Chronic Warfarin Therapy.",
+        "doi": "10.1023/a:1008852127668",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/10767122/",
+        "locator": "ABSTRACT: Effects of Marine Fish Oils on the Anticoagulation Status of Patients Receiving Chronic Warfarin Therapy.. | The purpose of this placebo-controlled, randomized, double-blinded, parallel study was to determine the existence and magnitude of effect of various doses of fish oil supplements on International Normalized Ratio (INR) determinations in patients receiving chronic warfarin therapy. | Fish oil supplementation in doses of 3-6 grams per day does not seem to create a statistically significant effect on the anticoagulation status of patients receiving chronic warfarin therapy.",
+        "dose": "",
+        "outcome": "Effects of Marine Fish Oils on the Anticoagulation Status of Patients Receiving Chronic Warfarin Therapy.. | The purpose of this placebo-controlled, randomized, double-blinded, parallel study was to determine the existence and magnitude of effect of various doses of fish oil supplements on International Normalized Ratio (INR) determinations in patients receiving chronic warfarin therapy. | Patients from anticoagulation clinics from both the Brady Green Community Health Center and Audie L."
       }
     ],
     "status": "automated_evidence_linked_personalized_check"
@@ -132,15 +132,6 @@
     "output": "확인 항목과 근거 문헌을 표시하고 복용 시작·중단·용량 변경은 지시하지 않는다.",
     "evidence": [
       {
-        "record_id": "REC-PUBMED-19321253",
-        "title": "Diet, fluid, or supplements for secondary prevention of nephrolithiasis: a systematic review and meta-analysis of randomized trials.",
-        "doi": "10.1016/j.eururo.2009.03.031",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/19321253/",
-        "locator": "ABSTRACT: Content and results of multicomponent dietary interventions were heterogeneous; in one trial, fewer participants assigned increased dietary calcium, low animal protein, and low sodium had stone recurrence versus controls (20% vs 38%, p=0.03), while in another trial, more participants assigned diets that included low animal protein, high fruit and fiber, and low purine had recurrent stones than controls (30% vs 4%, p=0.004).",
-        "dose": "",
-        "outcome": "Diet, fluid, or supplements for secondary prevention of nephrolithiasis: a systematic review and meta-analysis of randomized trials.. | CONTEXT: Although numerous trials have evaluated efficacy of diet, fluid, or supplement interventions for secondary prevention of nephrolithiasis, few are included in previous systematic reviews or referenced in recent nephrolithiasis management guidelines. | OBJECTIVE: To determine efficacy and safety of diet, fluid, or supplement interventions for secondary prevention of nephrolithiasis."
-      },
-      {
         "record_id": "REC-PUBMED-11271790",
         "title": "Why oral calcium supplements may reduce renal stone disease: report of a clinical pilot study.",
         "doi": "10.1136/jcp.54.1.54",
@@ -148,15 +139,6 @@
         "locator": "ABSTRACT: Why oral calcium supplements may reduce renal stone disease: report of a clinical pilot study.. | AIMS: To investigate whether increasing the daily baseline of gut calcium can cause a gradual downregulation of the active intestinal transport of calcium via reduced parathyroid hormone (PTH) mediated activation of vitamin D, and to discuss why such a mechanism might prevent calcium oxalate rich stones. | METHODS: Within an intensive 24 hour urine collection regimen, daily calcium supplementation (500 mg) was given to five stone formers for a 10 week period during a six month crossover study.",
         "dose": "500 mg",
         "outcome": "Why oral calcium supplements may reduce renal stone disease: report of a clinical pilot study.. | AIMS: To investigate whether increasing the daily baseline of gut calcium can cause a gradual downregulation of the active intestinal transport of calcium via reduced parathyroid hormone (PTH) mediated activation of vitamin D, and to discuss why such a mechanism might prevent calcium oxalate rich stones. | METHODS: Within an intensive 24 hour urine collection regimen, daily calcium supplementation (500 mg) was given to five stone formers for a 10 week period during a six month crossover study."
-      },
-      {
-        "record_id": "REC-PUBMED-33872340",
-        "title": "Effect of dietary treatment and fluid intake on the prevention of recurrent calcium stones and changes in urine composition: A meta-analysis and systematic review.",
-        "doi": "10.1371/journal.pone.0250257",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/33872340/",
-        "locator": "ABSTRACT: Effect of dietary treatment and fluid intake on the prevention of recurrent calcium stones and changes in urine composition: A meta-analysis and systematic review.. | To perform a systematic review and meta-analysis of randomized controlled trials (RCTs) for investigating the effect of dietary treatment and fluid intake on the prevention of recurrent calcium stones and changes in urine composition. | In conclusion, our study shows that the only low protein with or without fiber does not affect recurrence, but low Na, normal Ca diet has a marked effect on reducing recurrence of calcium stone.",
-        "dose": "",
-        "outcome": "Effect of dietary treatment and fluid intake on the prevention of recurrent calcium stones and changes in urine composition: A meta-analysis and systematic review.. | To perform a systematic review and meta-analysis of randomized controlled trials (RCTs) for investigating the effect of dietary treatment and fluid intake on the prevention of recurrent calcium stones and changes in urine composition. | PubMed, Web of Science, Embase, EBSCO, and Cochrane Library databases (updated November 2020) were searched for studies with the following keywords: diet, fluid, recurrent, prevention, randomized controlled trials, and nephrolithiasis."
       },
       {
         "record_id": "REC-PUBMED-24937025",
@@ -168,13 +150,31 @@
         "outcome": "Incidence of hypercalciuria and hypercalcemia during vitamin D and calcium supplementation in older women.. | OBJECTIVE: This study aims to prospectively assess the incidence of hypercalciuria and hypercalcemia with different doses of vitamin D and with a calcium intake of approximately 1,200 mg/day. | Serum and 24-hour urine calcium were collected every 3 months on supplementation, any test result above the upper reference range represented an episode of hypercalcemia or hypercalciuria."
       },
       {
-        "record_id": "REC-PUBMED-32652950",
-        "title": "Dietary and lifestyle factors for primary prevention of nephrolithiasis: a systematic review and meta-analysis.",
-        "doi": "10.1186/s12882-020-01925-3",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/32652950/",
-        "locator": "ABSTRACT: Vitamin D (1.22, 1.01-1.49) and calcium (1.16, 1.00-1.35) supplementation alone increased the risk of stones in meta-analyses of observational studies, but not in RCTs, where the cosupplementation conferred significant risk. | The independent and combined effects of vitamin D and calcium supplementation on nephrolithiasis need further elucidation.",
-        "dose": "",
-        "outcome": "Dietary and lifestyle factors for primary prevention of nephrolithiasis: a systematic review and meta-analysis.. | BACKGROUND: Dietary and lifestyle factors may play an important role in the increasing prevalence of nephrolithiasis. | We aimed to review and quantify the associations between lifestyle factors and incident nephrolithiasis and suggest lifestyle changes for the primary prevention of nephrolithiasis."
+        "record_id": "REC-PUBMED-11836046",
+        "title": "Risk of calcium oxalate nephrolithiasis in postmenopausal women supplemented with calcium or combined calcium and estrogen.",
+        "doi": "10.1016/s0378-5122(01)00277-8",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/11836046/",
+        "locator": "ABSTRACT: Risk of calcium oxalate nephrolithiasis in postmenopausal women supplemented with calcium or combined calcium and estrogen.. | However, the safety of the treatments in terms of the risk of calcium oxalate stone formation is unknown. | They were randomly allocated to receive either 625 mg of calcium carbonate (250 mg of elemental calcium) at the end of a meal three times a day (group A, n=26) or calcium carbonate in the same manner plus 0.625 mg/day of conjugated equine estrogen and 5 mg medrogestone acetate from day 1-12 each month (group B, n=30).",
+        "dose": "0.625 mg/day | 250 mg | 5 mg | 625 mg",
+        "outcome": "Risk of calcium oxalate nephrolithiasis in postmenopausal women supplemented with calcium or combined calcium and estrogen.. | However, the safety of the treatments in terms of the risk of calcium oxalate stone formation is unknown. | They were randomly allocated to receive either 625 mg of calcium carbonate (250 mg of elemental calcium) at the end of a meal three times a day (group A, n=26) or calcium carbonate in the same manner plus 0.625 mg/day of conjugated equine estrogen and 5 mg medrogestone acetate from day 1-12 each month (group B, n=30)."
+      },
+      {
+        "record_id": "REC-PUBMED-9508013",
+        "title": "Substituting milk for apple juice does not increase kidney stone risk in most normocalciuric adults who form calcium oxalate stones.",
+        "doi": "10.1016/s0002-8223(98)00071-6",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/9508013/",
+        "locator": "ABSTRACT: Substituting milk for apple juice does not increase kidney stone risk in most normocalciuric adults who form calcium oxalate stones.. | SUBJECTS: Twenty-one normocalciuric adults with a history of at least 1 calcium oxalate stone and urinary oxalate excretion exceeding 275 micromol/day on their self-selected diet. | APPLICATIONS: Substituting 360 mL milk daily for apple juice with meals in a diet containing moderate amounts of dietary oxalate from whole grains, legumes, fruits, and vegetables does not increase the risk index of calcium oxalate precipitability in most normocalciuric adults who form stones.",
+        "dose": "400 mg | 800 mg",
+        "outcome": "Substituting milk for apple juice does not increase kidney stone risk in most normocalciuric adults who form calcium oxalate stones.. | SUBJECTS: Twenty-one normocalciuric adults with a history of at least 1 calcium oxalate stone and urinary oxalate excretion exceeding 275 micromol/day on their self-selected diet. | APPLICATIONS: Substituting 360 mL milk daily for apple juice with meals in a diet containing moderate amounts of dietary oxalate from whole grains, legumes, fruits, and vegetables does not increase the risk index of calcium oxalate precipitability in most normocalciuric adults who form stones."
+      },
+      {
+        "record_id": "REC-PUBMED-23137489",
+        "title": "Calcium supplementation and kidney stone risk in osteoporosis: a systematic literature review.",
+        "doi": "",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/23137489/",
+        "locator": "ABSTRACT: Calcium supplementation and kidney stone risk in osteoporosis: a systematic literature review.. | OBJECTIVES: This paper aims to examine the risk of nephrolithiasis in patients with osteoporosis and calcium supplementation. | CONCLUSIONS: According to our results, calcium supplements in the treatment of osteoporosis alone or in combination with another type of treatment does not significantly increase the risk of nephrolithiasis or renal colic.",
+        "dose": "1.500 mg | 120 mg",
+        "outcome": "Calcium supplementation and kidney stone risk in osteoporosis: a systematic literature review.. | OBJECTIVES: This paper aims to examine the risk of nephrolithiasis in patients with osteoporosis and calcium supplementation. | We measured the likelihood of developing kidney stones, renal colic, changes in urinary sediment and serum parameters."
       }
     ],
     "status": "automated_evidence_linked_personalized_check"
