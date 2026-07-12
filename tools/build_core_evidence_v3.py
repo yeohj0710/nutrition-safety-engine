@@ -19,6 +19,7 @@ def score(r):
 d["priority_score"]=d.apply(score,axis=1);core=d.sort_values(["question_id","priority_score","year"],ascending=[True,False,False]).groupby("question_id").head(30)
 def title_direct(r):
  t=r.title.lower()
+ if re.search(r"\b(infant|infants|child|children|pediatric|paediatric|adolescent|neonat\w*|newborn|pregnan\w*|mouse|mice|murine|rat|rats|canine|dog|dogs|frog|frogs|bovine|swine|pig|pigs)\b",t):return False
  if r.question_id=="A1":
   if re.search(r"non-vitamin k antagonist|vitamin k antagonist (?:vs|versus)",t) and not re.search(r"dietary|intake|supplement|vitamin k1|phylloquinone|menaquinone",t):return False
   exposure=bool(re.search(r"dietary vitamin k|vitamin k1|vitamin k (?:intake|supplement|administr|dose|for|in reversal)|oral vitamin k|intravenous vitamin k|phylloquinone|menaquinone",t))

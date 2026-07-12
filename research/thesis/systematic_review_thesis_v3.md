@@ -6,7 +6,7 @@
 
 
 
-본 연구는 항응고제를 복용하는 성인과 신장결석·고칼슘뇨 등 신장 관련 고위험군에서 비타민 K, 오메가-3, 칼슘, 비타민 D 및 비타민 C 보충제의 안전성 근거를 체계적으로 검색·구조화하고, 개인의 복용 조건에 따라 확인사항과 근거 문헌을 제시하는 웹 시스템을 구축하는 것을 목적으로 하였다. PubMed, ClinicalTrials.gov와 KoreaMed에서 수집한 공개 서지자료를 연구계획서의 PICOS에 따라 자동 선별하고 대상자, 보충제, 용량, 안전성 결과와 근거 위치를 추출하였다. 직접 관련 후보는 4,593건이었고, 용량 정보가 확인된 문헌은 987건, 공개 원문 위치가 연결된 문헌은 1,507건이었다. 제목 직접관련성, 연구설계, 용량·결과 및 원문 접근성을 기준으로 핵심 근거 129건을 선정하였다. 조회 시스템은 보충제, 일일 용량, 병용 약물, 질환·결석 병력과 검사값을 입력받아 질문별 확인사항, 맞춤형 요약과 근거 원문을 제공하도록 구현하였다. 62개 자동 테스트, TypeScript 검사와 Production 빌드를 통과한 버전을 Vercel 고정 주소에 배포하였다. 본 연구는 체계적인 검색·선별·추출과 소프트웨어 검증을 수행했으나 독립된 두 명의 사람 선별자가 없으므로 자동 선별 결과를 최종 임상 권고로 해석할 수 없다.
+본 연구는 항응고제를 복용하는 성인과 신장결석·고칼슘뇨 등 신장 관련 고위험군에서 비타민 K, 오메가-3, 칼슘, 비타민 D 및 비타민 C 보충제의 안전성 근거를 체계적으로 검색·구조화하고, 개인의 복용 조건에 따라 확인사항과 근거 문헌을 제시하는 웹 시스템을 구축하는 것을 목적으로 하였다. PubMed, ClinicalTrials.gov와 KoreaMed에서 수집한 공개 서지자료를 연구계획서의 PICOS에 따라 자동 선별하고 대상자, 보충제, 용량, 안전성 결과와 근거 위치를 추출하였다. 직접 관련 후보는 4,593건이었고, 용량 정보가 확인된 문헌은 369건, 공개 원문 위치가 연결된 문헌은 1,507건이었다. 제목 직접관련성, 연구설계, 용량·결과 및 원문 접근성을 기준으로 핵심 근거 128건을 선정하였다. 조회 시스템은 보충제, 일일 용량, 병용 약물, 질환·결석 병력과 검사값을 입력받아 질문별 확인사항, 맞춤형 요약과 근거 원문을 제공하도록 구현하였다. 62개 자동 테스트, TypeScript 검사와 Production 빌드를 통과한 버전을 Vercel 고정 주소에 배포하였다. 본 연구는 체계적인 검색·선별·추출과 소프트웨어 검증을 수행했으나 독립된 두 명의 사람 선별자가 없으므로 자동 선별 결과를 최종 임상 권고로 해석할 수 없다.
 
 ## 국문초록
 
@@ -58,7 +58,7 @@ Next.js App Router로 구현하였다. 입력은 보충제, 일일 용량, 병�
 
 ### 3.1 문헌 선별과 추출
 
-PICOS 직접 후보는 4,593건이었다. 이 중 987건에서 단위가 있는 용량을 관찰했고 1,507건에 공개 원문 위치를 연결하였다. 제목 직접관련성 필터를 통과한 핵심 문헌은 129건이었다.
+PICOS 직접 후보는 4,593건이었다. 이 중 369건에서 단위가 있는 용량을 관찰했고 1,507건에 공개 원문 위치를 연결하였다. 제목 직접관련성 필터를 통과한 핵심 문헌은 128건이었다.
 
 ### 3.2 질문별 핵심 근거
 
@@ -66,91 +66,91 @@ PICOS 직접 후보는 4,593건이었다. 이 중 987건에서 단위가 있는 
 
 A1 질문의 핵심 문헌은 30건이었다. 아래 문헌은 연구설계, 직접관련성, 용량·결과 및 원문 접근성을 종합해 우선 배치하였다.
 
-이 가운데 명시적 용량이 관찰된 문헌은 22건, 공개 원문 위치가 연결된 문헌은 7건이었다. 용량이 공란인 경우 수치가 없다고 단정하지 않고, 현재 확보한 초록에서 명시적 단위를 추출하지 못한 상태로 해석하였다.
+이 가운데 명시적 용량이 관찰된 문헌은 18건, 공개 원문 위치가 연결된 문헌은 7건이었다. 용량이 공란인 경우 수치가 없다고 단정하지 않고, 현재 확보한 초록에서 명시적 단위를 추출하지 못한 상태로 해석하였다.
 
 핵심 문헌 목록은 임상 권고 순위가 아니라 후속 원문 확인의 우선순위다. 연구설계와 제목의 직접관련성을 우선하되, 실제 효과 방향과 적용 가능성은 대상자 특성, 비교군, 용량 및 결과 정의를 원문에서 확인해야 한다.
 
-Interaction Between Dietary Vitamin K Intake and Anticoagulation by Vitamin K Antagonists: Is It Really True?: A Systematic Review. (2016.0). 보고 용량: 150 μg | 76 to 217 μg
+Interaction Between Dietary Vitamin K Intake and Anticoagulation by Vitamin K Antagonists: Is It Really True?: A Systematic Review (2016). 보고 용량: 150 μg/day | 76 to 217 μg/day
 
-A prospective randomized study to determine the optimal dose of intravenous vitamin K in reversal of over-warfarinization. (2000.0). 보고 용량: 0.5 mg | 1 mg | 2 mg
+A prospective randomized study to determine the optimal dose of intravenous vitamin K in reversal of over-warfarinization (2000). 보고 용량: 0.5 mg | 1 mg | 2 mg
 
-Vitamin K1 supplementation to improve the stability of anticoagulation therapy with vitamin K antagonists: a dose-finding study. (2011.0). 보고 용량: 100 μg | 150 μg | 200 μg
+Vitamin K1 supplementation to improve the stability of anticoagulation therapy with vitamin K antagonists: a dose-finding study (2011). 보고 용량: 100 μg | 150 μg | 200 μg
 
-Over-the-counter vitamin K1-containing multivitamin supplements disrupt warfarin anticoagulation in vitamin K1-depleted patients. A prospective, controlled trial. (2004.0). 보고 용량: 1.5 mcg | 25 mcg | 4.5 mcg
+Over-the-counter vitamin K1-containing multivitamin supplements disrupt warfarin anticoagulation in vitamin K1-depleted patients. A prospective, controlled trial (2004). 보고 용량: 25 mcg
 
-Nutri-pharmacogenomics of warfarin anticoagulation therapy: VKORC1 genotype-dependent influence of dietary vitamin K intake. (2014.0). 보고 용량: 1639 G | 3.91 mg | 4.0 mg
+Reversal of overanticoagulation in very elderly hospitalized patients with an INR above 5.0: 24-hour INR response after vitamin K administration (2011). 보고 용량: 1 mg
 
 ### 3.2.2 오메가-3와 항응고제
 
 A2 질문의 핵심 문헌은 12건이었다. 아래 문헌은 연구설계, 직접관련성, 용량·결과 및 원문 접근성을 종합해 우선 배치하였다.
 
-이 가운데 명시적 용량이 관찰된 문헌은 4건, 공개 원문 위치가 연결된 문헌은 1건이었다. 용량이 공란인 경우 수치가 없다고 단정하지 않고, 현재 확보한 초록에서 명시적 단위를 추출하지 못한 상태로 해석하였다.
+이 가운데 명시적 용량이 관찰된 문헌은 2건, 공개 원문 위치가 연결된 문헌은 1건이었다. 용량이 공란인 경우 수치가 없다고 단정하지 않고, 현재 확보한 초록에서 명시적 단위를 추출하지 못한 상태로 해석하였다.
 
 핵심 문헌 목록은 임상 권고 순위가 아니라 후속 원문 확인의 우선순위다. 연구설계와 제목의 직접관련성을 우선하되, 실제 효과 방향과 적용 가능성은 대상자 특성, 비교군, 용량 및 결과 정의를 원문에서 확인해야 한다.
 
-No Effect of Omega-3 Carboxylic Acids on Pharmacokinetics/Pharmacodynamics of Warfarin or on Platelet Function When Co-administered with Acetylsalicylic Acid: Results of Two Phase I Studies in Healthy Volunteers. (2017.0). 보고 용량: 25 mg | 4 g | 40 mg | 81 mg
+No Effect of Omega-3 Carboxylic Acids on Pharmacokinetics/Pharmacodynamics of Warfarin or on Platelet Function When Co-administered with Acetylsalicylic Acid: Results of Two Phase I Studies in Healthy Volunteers (2017). 보고 용량: 4 g | 40 mg | 81 mg
 
-Role of Fish Oil in Post-Cardiotomy Bleeding: A Summary of the Basic Science and Clinical Trials. (2018.0). 초록 내 명시적 용량 없음.
+Role of Fish Oil in Post-Cardiotomy Bleeding: A Summary of the Basic Science and Clinical Trials (2018). 초록 내 명시적 용량 없음.
 
-Omega-3 and fish oil supplements do not cause increased bleeding during spinal decompression surgery. (2012.0). 초록 내 명시적 용량 없음.
+Omega-3 and fish oil supplements do not cause increased bleeding during spinal decompression surgery (2012). 초록 내 명시적 용량 없음.
 
-The Use of Fish Oil with Warfarin Does Not Significantly Affect either the International Normalised Ratio or Incidence of Adverse Events in Patients with Atrial Fibrillation and Deep Vein Thrombosis: A Retrospective Study. (2016.0). 초록 내 명시적 용량 없음.
+The Use of Fish Oil with Warfarin Does Not Significantly Affect either the International Normalised Ratio or Incidence of Adverse Events in Patients with Atrial Fibrillation and Deep Vein Thrombosis: A Retrospective Study (2016). 초록 내 명시적 용량 없음.
 
-Plasma triacylglycerol and coagulation factor concentrations predict the anticoagulant effect of dietary fish oil in overweight subjects. (2007.0). 보고 용량: 3.1 g
+Subdural hematoma after a fall in an elderly patient taking high-dose omega-3 fatty acids with warfarin and aspirin: case report and review of the literature (2007). 보고 용량: 6 g/day
 
 ### 3.2.3 칼슘과 신장결석
 
 B1 질문의 핵심 문헌은 30건이었다. 아래 문헌은 연구설계, 직접관련성, 용량·결과 및 원문 접근성을 종합해 우선 배치하였다.
 
-이 가운데 명시적 용량이 관찰된 문헌은 22건, 공개 원문 위치가 연결된 문헌은 11건이었다. 용량이 공란인 경우 수치가 없다고 단정하지 않고, 현재 확보한 초록에서 명시적 단위를 추출하지 못한 상태로 해석하였다.
+이 가운데 명시적 용량이 관찰된 문헌은 14건, 공개 원문 위치가 연결된 문헌은 10건이었다. 용량이 공란인 경우 수치가 없다고 단정하지 않고, 현재 확보한 초록에서 명시적 단위를 추출하지 못한 상태로 해석하였다.
 
 핵심 문헌 목록은 임상 권고 순위가 아니라 후속 원문 확인의 우선순위다. 연구설계와 제목의 직접관련성을 우선하되, 실제 효과 방향과 적용 가능성은 대상자 특성, 비교군, 용량 및 결과 정의를 원문에서 확인해야 한다.
 
-Diet, fluid, or supplements for secondary prevention of nephrolithiasis: a systematic review and meta-analysis of randomized trials. (2009.0). 초록 내 명시적 용량 없음.
+Diet, fluid, or supplements for secondary prevention of nephrolithiasis: a systematic review and meta-analysis of randomized trials (2009). 초록 내 명시적 용량 없음.
 
-Why oral calcium supplements may reduce renal stone disease: report of a clinical pilot study. (2001.0). 보고 용량: 500 mg
+Why oral calcium supplements may reduce renal stone disease: report of a clinical pilot study (2001). 보고 용량: 500 mg
 
-Effect of dietary treatment and fluid intake on the prevention of recurrent calcium stones and changes in urine composition: A meta-analysis and systematic review. (2021.0). 초록 내 명시적 용량 없음.
+Effect of dietary treatment and fluid intake on the prevention of recurrent calcium stones and changes in urine composition: A meta-analysis and systematic review (2021). 초록 내 명시적 용량 없음.
 
-Incidence of hypercalciuria and hypercalcemia during vitamin D and calcium supplementation in older women. (2014.0). 보고 용량: 10.2 mg | 200 mg | 300 mg | 800 IU
+Incidence of hypercalciuria and hypercalcemia during vitamin D and calcium supplementation in older women (2014). 보고 용량: 1,200 mg | 1,200 mg/day | 200 mg
 
-Dietary and lifestyle factors for primary prevention of nephrolithiasis: a systematic review and meta-analysis. (2020.0). 초록 내 명시적 용량 없음.
+Dietary and lifestyle factors for primary prevention of nephrolithiasis: a systematic review and meta-analysis (2020). 초록 내 명시적 용량 없음.
 
 ### 3.2.4 비타민 D와 신장결석
 
 B2 질문의 핵심 문헌은 30건이었다. 아래 문헌은 연구설계, 직접관련성, 용량·결과 및 원문 접근성을 종합해 우선 배치하였다.
 
-이 가운데 명시적 용량이 관찰된 문헌은 23건, 공개 원문 위치가 연결된 문헌은 20건이었다. 용량이 공란인 경우 수치가 없다고 단정하지 않고, 현재 확보한 초록에서 명시적 단위를 추출하지 못한 상태로 해석하였다.
+이 가운데 명시적 용량이 관찰된 문헌은 15건, 공개 원문 위치가 연결된 문헌은 18건이었다. 용량이 공란인 경우 수치가 없다고 단정하지 않고, 현재 확보한 초록에서 명시적 단위를 추출하지 못한 상태로 해석하였다.
 
 핵심 문헌 목록은 임상 권고 순위가 아니라 후속 원문 확인의 우선순위다. 연구설계와 제목의 직접관련성을 우선하되, 실제 효과 방향과 적용 가능성은 대상자 특성, 비교군, 용량 및 결과 정의를 원문에서 확인해야 한다.
 
-Effect of two vitamin D repletion protocols on 24-h urine calcium in patients with recurrent calcium kidney stones and vitamin D deficiency: a randomized clinical trial. (2023.0). 보고 용량: 000 IU | 2000 IU
+Effect of two vitamin D repletion protocols on 24-h urine calcium in patients with recurrent calcium kidney stones and vitamin D deficiency: a randomized clinical trial (2023). 보고 용량: 2000 IU | 50,000 IU
 
-Risk of hypercalcemia in blacks taking hydrochlorothiazide and vitamin D. (2014.0). 보고 용량: 0.2 mg | 4000 IU | 4000 international units
+Risk of hypercalcemia in blacks taking hydrochlorothiazide and vitamin D (2014). 보고 용량: 4000 IU | 4000 international units
 
-Incidence of hypercalciuria and hypercalcemia during vitamin D and calcium supplementation in older women. (2014.0). 보고 용량: 10.2 mg | 200 mg | 300 mg | 800 IU
+Incidence of hypercalciuria and hypercalcemia during vitamin D and calcium supplementation in older women (2014). 보고 용량: 1,200 mg | 1,200 mg/day
 
-Association Between Vitamin D Supplementation and Urolithiasis Recurrence Outcomes in Known Stone Formers: A Retrospective Cohort Study With Dose-Response Analysis. (2025.0). 보고 용량: 000 IU | 800 IU
+A 250 μg/week dose of vitamin D was as effective as a 50 μg/d dose in healthy adults, but a regimen of four weekly followed by monthly doses of 1250 μg raised the risk of hypercalciuria (2013). 보고 용량: 1250 μg | 50 000 IU
 
-A 250 μg/week dose of vitamin D was as effective as a 50 μg/d dose in healthy adults, but a regimen of four weekly followed by monthly doses of 1250 μg raised the risk of hypercalciuria. (2013.0). 보고 용량: 000 IU | 1250 μg | 1544 μg | 2000 IU | 250 mg | 250 μg | 331 μg | 50 μg | 70 μg
+Monthly high-dose vitamin D supplementation does not increase kidney stone risk or serum calcium: results from a randomized controlled trial (2019). 보고 용량: 100,000 IU
 
 ### 3.2.5 비타민 C와 신장결석
 
-B3 질문의 핵심 문헌은 27건이었다. 아래 문헌은 연구설계, 직접관련성, 용량·결과 및 원문 접근성을 종합해 우선 배치하였다.
+B3 질문의 핵심 문헌은 26건이었다. 아래 문헌은 연구설계, 직접관련성, 용량·결과 및 원문 접근성을 종합해 우선 배치하였다.
 
-이 가운데 명시적 용량이 관찰된 문헌은 18건, 공개 원문 위치가 연결된 문헌은 10건이었다. 용량이 공란인 경우 수치가 없다고 단정하지 않고, 현재 확보한 초록에서 명시적 단위를 추출하지 못한 상태로 해석하였다.
+이 가운데 명시적 용량이 관찰된 문헌은 8건, 공개 원문 위치가 연결된 문헌은 10건이었다. 용량이 공란인 경우 수치가 없다고 단정하지 않고, 현재 확보한 초록에서 명시적 단위를 추출하지 못한 상태로 해석하였다.
 
 핵심 문헌 목록은 임상 권고 순위가 아니라 후속 원문 확인의 우선순위다. 연구설계와 제목의 직접관련성을 우선하되, 실제 효과 방향과 적용 가능성은 대상자 특성, 비교군, 용량 및 결과 정의를 원문에서 확인해야 한다.
 
-Ascorbic Acid Supplements and Kidney Stones Incidence Among Men and Women: A systematic review and meta-analysis. (2019.0). 보고 용량: 1000-1499mg | 1500 mg | 1500mg | 250-499mg | 500-999 mg | 500-999mg
+Ascorbic Acid Supplements and Kidney Stones Incidence Among Men and Women: A systematic review and meta-analysis (2019). 초록 내 명시적 용량 없음.
 
-Ascorbate increases human oxaluria and kidney stone risk. (2005.0). 보고 용량: 1000 mg | 136 mg | 18 mg | 2000 mg
+Ascorbic acid-induced oxalate nephropathy: a case report and discussion of pathologic mechanisms (2019). 보고 용량: 2 g/day
 
-Ascorbic acid in idiopathic recurrent calcium urolithiasis in humans--does it have an abettor role in oxalate, and calcium oxalate crystallization? (2000.0). 보고 용량: 5 mg
+No Reported Renal Stones with Intravenous Vitamin C Administration: A Prospective Case Series Study (2018). 초록 내 명시적 용량 없음.
 
-Ascorbic acid overdosing: a risk factor for calcium oxalate nephrolithiasis. (1992.0). 보고 용량: 000 mg | 500 mg | 6 to 13 mg
+A case report of renal oxalosis and secondary hyperoxaluria due to chronic high vitamin C consumption (2025). 보고 용량: 3 g
 
-Ascorbic acid-induced oxalate nephropathy: a case report and discussion of pathologic mechanisms. (2019.0). 보고 용량: 2 g
+Vitamin C-induced hyperoxaluria causing reversible tubulointerstitial nephritis and chronic renal failure: a case report (2007). 보고 용량: 680 mg
 
 ### 3.3 개인맞춤 조회 시스템
 
@@ -170,266 +170,264 @@ AI 요약은 사용자가 입력한 숫자와 단위를 보존하고 구조화�
 
 ## 5. 결론
 
-본 연구는 다섯 영양보충제 안전성 질문에 대해 4,593건의 PICOS 직접 후보에서 대상자·용량·안전성 결과와 근거 위치를 구조화하고 핵심 문헌 129건을 선정하였다. 이를 개인 조건 기반 웹 조회 시스템으로 구현해 Production에 배포하였다. 결과는 임상 처방을 대신하지 않지만 상담 전에 확인할 조건과 근거 문헌을 빠르게 정리하는 재현 가능한 도구를 제공한다.
+본 연구는 다섯 영양보충제 안전성 질문에 대해 4,593건의 PICOS 직접 후보에서 대상자·용량·안전성 결과와 근거 위치를 구조화하고 핵심 문헌 128건을 선정하였다. 이를 개인 조건 기반 웹 조회 시스템으로 구현해 Production에 배포하였다. 결과는 임상 처방을 대신하지 않지만 상담 전에 확인할 조건과 근거 문헌을 빠르게 정리하는 재현 가능한 도구를 제공한다.
 
 ## 참고문헌
 
-[A1] Interaction Between Dietary Vitamin K Intake and Anticoagulation by Vitamin K Antagonists: Is It Really True?: A Systematic Review.. 2016.0. 10.1097/md.0000000000002895
+[A1] Interaction Between Dietary Vitamin K Intake and Anticoagulation by Vitamin K Antagonists: Is It Really True?: A Systematic Review. 2016. 10.1097/md.0000000000002895
 
-[A1] A prospective randomized study to determine the optimal dose of intravenous vitamin K in reversal of over-warfarinization.. 2000.0. 10.1046/j.1365-2141.2000.02001.x
+[A1] A prospective randomized study to determine the optimal dose of intravenous vitamin K in reversal of over-warfarinization. 2000. 10.1046/j.1365-2141.2000.02001.x
 
-[A1] Vitamin K1 supplementation to improve the stability of anticoagulation therapy with vitamin K antagonists: a dose-finding study.. 2011.0. 10.3324/haematol.2010.035162
+[A1] Vitamin K1 supplementation to improve the stability of anticoagulation therapy with vitamin K antagonists: a dose-finding study. 2011. 10.3324/haematol.2010.035162
 
-[A1] Over-the-counter vitamin K1-containing multivitamin supplements disrupt warfarin anticoagulation in vitamin K1-depleted patients. A prospective, controlled trial.. 2004.0. 10.1160/th04-06-0346
+[A1] Over-the-counter vitamin K1-containing multivitamin supplements disrupt warfarin anticoagulation in vitamin K1-depleted patients. A prospective, controlled trial. 2004. 10.1160/th04-06-0346
 
-[A1] Nutri-pharmacogenomics of warfarin anticoagulation therapy: VKORC1 genotype-dependent influence of dietary vitamin K intake.. 2014.0. 10.1007/s11239-013-0978-9
+[A1] Reversal of overanticoagulation in very elderly hospitalized patients with an INR above 5.0: 24-hour INR response after vitamin K administration. 2011. 10.1016/j.amjmed.2011.01.016
 
-[A1] Reversal of overanticoagulation in very elderly hospitalized patients with an INR above 5.0: 24-hour INR response after vitamin K administration.. 2011.0. 10.1016/j.amjmed.2011.01.016
+[A1] Role of dietary vitamin K intake in chronic oral anticoagulation: prospective evidence from observational and randomized protocols. 2004. 10.1016/j.amjmed.2003.12.036
 
-[A1] Short-term warfarin reversal for elective surgery--using low-dose intravenous vitamin K: safe, reliable and convenient*.. 2011.0. 10.1111/j.1365-2141.2011.08787.x
+[A1] The effect of low-dose oral vitamin K supplementation on INR stability in patients receiving warfarin. A randomised trial. 2016. 10.1160/th16-04-0320
 
-[A1] Role of dietary vitamin K intake in chronic oral anticoagulation: prospective evidence from observational and randomized protocols.. 2004.0. 10.1016/j.amjmed.2003.12.036
+[A1] Vitamin K for improved anticoagulation control in patients receiving warfarin. 2014. 10.1002/14651858.cd009917.pub2
 
-[A1] The effect of low-dose oral vitamin K supplementation on INR stability in patients receiving warfarin. A randomised trial.. 2016.0. 10.1160/th16-04-0320
+[A1] Antagonism of warfarin-induced hypoprothrombinemia with use of low-dose subcutaneous vitamin K1. 1997. 10.1002/j.1552-4604.1997.tb04363.x
 
-[A1] Vitamin K for improved anticoagulation control in patients receiving warfarin.. 2014.0. 10.1002/14651858.cd009917.pub2
+[A1] Reversal of excessive effect of regular anticoagulation: low oral dose of phytonadione (vitamin K1) compared with warfarin discontinuation. 1993. https://pubmed.ncbi.nlm.nih.gov/8292723/
 
-[A1] Antagonism of warfarin-induced hypoprothrombinemia with use of low-dose subcutaneous vitamin K1.. 1997.0. 10.1002/j.1552-4604.1997.tb04363.x
+[A1] Nutri-pharmacogenomics of warfarin anticoagulation therapy: VKORC1 genotype-dependent influence of dietary vitamin K intake. 2014. 10.1007/s11239-013-0978-9
 
-[A1] [Oral administration of intravenous preparation of Vitamin K for excessive anticoagulation due to warfarin].. 2012.0. https://pubmed.ncbi.nlm.nih.gov/22522851/
+[A1] Short-term warfarin reversal for elective surgery--using low-dose intravenous vitamin K: safe, reliable and convenient*. 2011. 10.1111/j.1365-2141.2011.08787.x
 
-[A1] Comparison of oral vs intravenous phytonadione (vitamin K1) in patients with excessive anticoagulation: a prospective randomized controlled study.. 2003.0. 10.1001/archinte.163.20.2469
+[A1] A single dose of oral vitamin K effectively reverses oral anticoagulation with phenprocoumon during heart catheterisation. 2006. 10.4414/smw.2006.11452
 
-[A1] Reversal of excessive effect of regular anticoagulation: low oral dose of phytonadione (vitamin K1) compared with warfarin discontinuation.. 1993.0. https://pubmed.ncbi.nlm.nih.gov/8292723/
+[A1] Low-dose oral vitamin K reliably reverses over-anticoagulation due to warfarin. 1998. https://pubmed.ncbi.nlm.nih.gov/9657434/
 
-[A1] A single dose of oral vitamin K effectively reverses oral anticoagulation with phenprocoumon during heart catheterisation.. 2006.0. 10.4414/smw.2006.11452
+[A1] Vitamin K for reversal of excessive vitamin K antagonist anticoagulation: a systematic review and meta-analysis. 2019. 10.1182/bloodadvances.2018025163
 
-[A1] Low-dose oral vitamin K reliably reverses over-anticoagulation due to warfarin.. 1998.0. https://pubmed.ncbi.nlm.nih.gov/9657434/
+[A1] Association Between Usual Vitamin K Intake and Anticoagulation in Patients Under Warfarin Therapy. 2015. 10.7762/cnr.2015.4.4.235
 
-[A1] Vitamin K for reversal of excessive vitamin K antagonist anticoagulation: a systematic review and meta-analysis.. 2019.0. 10.1182/bloodadvances.2018025163
+[A1] Vitamin K supplementation can improve stability of anticoagulation for patients with unexplained variability in response to warfarin. 2007. 10.1182/blood-2006-09-049262
 
-[A1] Association Between Usual Vitamin K Intake and Anticoagulation in Patients Under Warfarin Therapy.. 2015.0. 10.7762/cnr.2015.4.4.235
+[A1] Daily vitamin K supplementation improves anticoagulant stability. 2007. 10.1111/j.1538-7836.2007.02715.x
 
-[A1] Vitamin K supplementation can improve stability of anticoagulation for patients with unexplained variability in response to warfarin.. 2007.0. 10.1182/blood-2006-09-049262
+[A1] Effect of 200μG/day of vitamin K1 on the variability of anticoagulation control in patients on warfarin: a randomized controlled trial. 2013. 10.1016/j.thromres.2013.07.019
 
-[A1] Daily vitamin K supplementation improves anticoagulant stability.. 2007.0. 10.1111/j.1538-7836.2007.02715.x
+[A1] [Oral administration of intravenous preparation of Vitamin K for excessive anticoagulation due to warfarin]. 2012. https://pubmed.ncbi.nlm.nih.gov/22522851/
 
-[A1] Effect of 200μG/day of vitamin K1 on the variability of anticoagulation control in patients on warfarin: a randomized controlled trial.. 2013.0. 10.1016/j.thromres.2013.07.019
+[A1] Comparison of oral vs intravenous phytonadione (vitamin K1) in patients with excessive anticoagulation: a prospective randomized controlled study. 2003. 10.1001/archinte.163.20.2469
 
-[A1] Treatment of warfarin-associated coagulopathy with oral vitamin K: a randomised controlled trial.. 2000.0. 10.1016/s0140-6736(00)03125-1
+[A1] Treatment of warfarin-associated coagulopathy with oral vitamin K: a randomised controlled trial. 2000. 10.1016/s0140-6736(00)03125-1
 
-[A1] Randomized, placebo-controlled trial of orally administered vitamin K1 for warfarin-associated coagulopathy in Chinese patients with mechanical heart valves.. 2021.0. 10.1007/s00228-021-03127-8
+[A1] Randomized, placebo-controlled trial of orally administered vitamin K1 for warfarin-associated coagulopathy in Chinese patients with mechanical heart valves. 2021. 10.1007/s00228-021-03127-8
 
-[A1] Management of Supratherapeutic International Normalized Ratio without Bleeding after Warfarin Use: An Evaluation of Vitamin K Administration (SUPRA-WAR-K Study).. 2017.0. 10.4212/cjhp.v70i3.1660
+[A1] Management of Supratherapeutic International Normalized Ratio without Bleeding after Warfarin Use: An Evaluation of Vitamin K Administration (SUPRA-WAR-K Study). 2017. 10.4212/cjhp.v70i3.1660
 
-[A1] Effect of low-dose supplements of menaquinone-7 (vitamin K2 ) on the stability of oral anticoagulant treatment: dose-response relationship in healthy volunteers.. 2013.0. 10.1111/jth.12203
+[A1] Warfarin and vitamin K intake in the era of pharmacogenetics. 2010. 10.1111/j.1365-2125.2010.03672.x
 
-[A1] Warfarin and vitamin K intake in the era of pharmacogenetics.. 2010.0. 10.1111/j.1365-2125.2010.03672.x
+[A1] Oral vitamin K versus placebo to correct excessive anticoagulation in patients receiving warfarin: a randomized trial. 2009. 10.7326/0003-4819-150-5-200903030-00005
 
-[A1] Oral vitamin K versus placebo to correct excessive anticoagulation in patients receiving warfarin: a randomized trial.. 2009.0. 10.7326/0003-4819-150-5-200903030-00005
+[A1] Low-dose oral vitamin K to normalize the international normalized ratio prior to surgery in patients who require temporary interruption of warfarin. 2007. 10.1007/s11239-007-0022-z
 
-[A1] Low-dose oral vitamin K to normalize the international normalized ratio prior to surgery in patients who require temporary interruption of warfarin.. 2007.0. 10.1007/s11239-007-0022-z
+[A1] Warfarin cessation before cardiopulmonary bypass: lessons learned from a randomized controlled trial of oral vitamin K. 2007. 10.1016/j.athoracsur.2007.03.014
 
-[A1] Warfarin cessation before cardiopulmonary bypass: lessons learned from a randomized controlled trial of oral vitamin K.. 2007.0. 10.1016/j.athoracsur.2007.03.014
+[A1] Oral vitamin K produces a normal INR within 24 hours of its administration in most patients discontinuing warfarin. 2005. https://pubmed.ncbi.nlm.nih.gov/15642685/
 
-[A1] Oral vitamin K produces a normal INR within 24 hours of its administration in most patients discontinuing warfarin.. 2005.0. https://pubmed.ncbi.nlm.nih.gov/15642685/
+[A1] Impaired warfarin response secondary to high-dose vitamin K1 for rapid anticoagulation reversal: case series and literature review. 2004. 10.1592/phco.24.13.1213.38080
 
-[A2] No Effect of Omega-3 Carboxylic Acids on Pharmacokinetics/Pharmacodynamics of Warfarin or on Platelet Function When Co-administered with Acetylsalicylic Acid: Results of Two Phase I Studies in Healthy Volunteers.. 2017.0. 10.1007/s40256-017-0217-4
+[A2] No Effect of Omega-3 Carboxylic Acids on Pharmacokinetics/Pharmacodynamics of Warfarin or on Platelet Function When Co-administered with Acetylsalicylic Acid: Results of Two Phase I Studies in Healthy Volunteers. 2017. 10.1007/s40256-017-0217-4
 
-[A2] Role of Fish Oil in Post-Cardiotomy Bleeding: A Summary of the Basic Science and Clinical Trials.. 2018.0. 10.1016/j.athoracsur.2018.01.041
+[A2] Role of Fish Oil in Post-Cardiotomy Bleeding: A Summary of the Basic Science and Clinical Trials. 2018. 10.1016/j.athoracsur.2018.01.041
 
-[A2] Omega-3 and fish oil supplements do not cause increased bleeding during spinal decompression surgery.. 2012.0. 10.1097/bsd.0b013e3182120227
+[A2] Omega-3 and fish oil supplements do not cause increased bleeding during spinal decompression surgery. 2012. 10.1097/bsd.0b013e3182120227
 
-[A2] The Use of Fish Oil with Warfarin Does Not Significantly Affect either the International Normalised Ratio or Incidence of Adverse Events in Patients with Atrial Fibrillation and Deep Vein Thrombosis: A Retrospective Study.. 2016.0. 10.3390/nu8090578
+[A2] The Use of Fish Oil with Warfarin Does Not Significantly Affect either the International Normalised Ratio or Incidence of Adverse Events in Patients with Atrial Fibrillation and Deep Vein Thrombosis: A Retrospective Study. 2016. 10.3390/nu8090578
 
-[A2] Plasma triacylglycerol and coagulation factor concentrations predict the anticoagulant effect of dietary fish oil in overweight subjects.. 2007.0. 10.1093/jn/137.1.7
+[A2] Subdural hematoma after a fall in an elderly patient taking high-dose omega-3 fatty acids with warfarin and aspirin: case report and review of the literature. 2007. 10.1592/phco.27.1.152
 
-[A2] Subdural hematoma after a fall in an elderly patient taking high-dose omega-3 fatty acids with warfarin and aspirin: case report and review of the literature.. 2007.0. 10.1592/phco.27.1.152
+[A2] Nasal Bleeding as a Potential Side Effect of Omega-3 Fatty Acids: A Case Report. 2026. 10.2174/0115748863448971260303083058
 
-[A2] Fish oil interaction with warfarin.. 2004.0. 10.1345/aph.1d007
+[A2] The assessment of risk for gastrointestinal injury with anticoagulant and antiplatelet drugs: the possible beneficial effect of eicosapentaenoic Acid for the risk of gastrointestinal injury. 2013. 10.1248/bpb.b12-00584
 
-[A2] Nasal Bleeding as a Potential Side Effect of Omega-3 Fatty Acids: A Case Report.. 2026.0. 10.2174/0115748863448971260303083058
+[A2] Plasma triacylglycerol and coagulation factor concentrations predict the anticoagulant effect of dietary fish oil in overweight subjects. 2007. 10.1093/jn/137.1.7
 
-[A2] The assessment of risk for gastrointestinal injury with anticoagulant and antiplatelet drugs: the possible beneficial effect of eicosapentaenoic Acid for the risk of gastrointestinal injury.. 2013.0. 10.1248/bpb.b12-00584
+[A2] Extremely prolonged INR associated with warfarin in combination with both trazodone and omega-3 fatty acids. 2007. 10.1016/j.arcmed.2007.05.004
 
-[A2] Extremely prolonged INR associated with warfarin in combination with both trazodone and omega-3 fatty acids.. 2007.0. 10.1016/j.arcmed.2007.05.004
+[A2] Fish oil interaction with warfarin. 2004. 10.1345/aph.1d007
 
-[A2] Effects of Marine Fish Oils on the Anticoagulation Status of Patients Receiving Chronic Warfarin Therapy.. 1998.0. 10.1023/a:1008852127668
+[A2] Effects of Marine Fish Oils on the Anticoagulation Status of Patients Receiving Chronic Warfarin Therapy. 1998. 10.1023/a:1008852127668
 
-[A2] Omega-3 Fatty Acid Supplementation and Warfarin: A Lethal Combination in Traumatic Brain Injury.. 2017.0. 10.1097/jtn.0000000000000256
+[A2] Omega-3 Fatty Acid Supplementation and Warfarin: A Lethal Combination in Traumatic Brain Injury. 2017. 10.1097/jtn.0000000000000256
 
-[B1] Diet, fluid, or supplements for secondary prevention of nephrolithiasis: a systematic review and meta-analysis of randomized trials.. 2009.0. 10.1016/j.eururo.2009.03.031
+[B1] Diet, fluid, or supplements for secondary prevention of nephrolithiasis: a systematic review and meta-analysis of randomized trials. 2009. 10.1016/j.eururo.2009.03.031
 
-[B1] Why oral calcium supplements may reduce renal stone disease: report of a clinical pilot study.. 2001.0. 10.1136/jcp.54.1.54
+[B1] Why oral calcium supplements may reduce renal stone disease: report of a clinical pilot study. 2001. 10.1136/jcp.54.1.54
 
-[B1] Effect of dietary treatment and fluid intake on the prevention of recurrent calcium stones and changes in urine composition: A meta-analysis and systematic review.. 2021.0. 10.1371/journal.pone.0250257
+[B1] Effect of dietary treatment and fluid intake on the prevention of recurrent calcium stones and changes in urine composition: A meta-analysis and systematic review. 2021. 10.1371/journal.pone.0250257
 
-[B1] Incidence of hypercalciuria and hypercalcemia during vitamin D and calcium supplementation in older women.. 2014.0. 10.1097/gme.0000000000000270
+[B1] Incidence of hypercalciuria and hypercalcemia during vitamin D and calcium supplementation in older women. 2014. 10.1097/gme.0000000000000270
 
-[B1] Dietary and lifestyle factors for primary prevention of nephrolithiasis: a systematic review and meta-analysis.. 2020.0. 10.1186/s12882-020-01925-3
+[B1] Dietary and lifestyle factors for primary prevention of nephrolithiasis: a systematic review and meta-analysis. 2020. 10.1186/s12882-020-01925-3
 
-[B1] Pathophysiology of renal calcium handling in acromegaly: what lies behind hypercalciuria?. 2012.0. 10.1210/jc.2011-3188
+[B1] Pathophysiology of renal calcium handling in acromegaly: what lies behind hypercalciuria?. 2012. 10.1210/jc.2011-3188
 
-[B1] Risk of calcium oxalate nephrolithiasis in postmenopausal women supplemented with calcium or combined calcium and estrogen.. 2002.0. 10.1016/s0378-5122(01)00277-8
+[B1] Risk of calcium oxalate nephrolithiasis in postmenopausal women supplemented with calcium or combined calcium and estrogen. 2002. 10.1016/s0378-5122(01)00277-8
 
-[B1] Diets with either beef or plant proteins reduce risk of calcium oxalate precipitation in patients with a history of calcium kidney stones.. 2001.0. 10.1016/s0002-8223(01)00085-2
+[B1] Substituting milk for apple juice does not increase kidney stone risk in most normocalciuric adults who form calcium oxalate stones. 1998. 10.1016/s0002-8223(98)00071-6
 
-[B1] Substituting milk for apple juice does not increase kidney stone risk in most normocalciuric adults who form calcium oxalate stones.. 1998.0. 10.1016/s0002-8223(98)00071-6
+[B1] Randomized controlled trial of a low animal protein, high fiber diet in the prevention of recurrent calcium oxalate kidney stones. 1996. 10.1093/oxfordjournals.aje.a008851
 
-[B1] Randomized controlled trial of a low animal protein, high fiber diet in the prevention of recurrent calcium oxalate kidney stones.. 1996.0. 10.1093/oxfordjournals.aje.a008851
+[B1] Hypercalcemia, hypercalciuria, and kidney stones in long-term studies of vitamin D supplementation: a systematic review and meta-analysis. 2016. 10.3945/ajcn.116.134981
 
-[B1] Hypercalcemia, hypercalciuria, and kidney stones in long-term studies of vitamin D supplementation: a systematic review and meta-analysis.. 2016.0. 10.3945/ajcn.116.134981
+[B1] Calcium supplementation and kidney stone risk in osteoporosis: a systematic literature review. 2012. https://pubmed.ncbi.nlm.nih.gov/23137489/
 
-[B1] Calcium supplementation and kidney stone risk in osteoporosis: a systematic literature review.. 2012.0. https://pubmed.ncbi.nlm.nih.gov/23137489/
+[B1] Calcium supplementation and incident kidney stone risk: a systematic review. 2008. 10.1080/07315724.2008.10719734
 
-[B1] Calcium supplementation and incident kidney stone risk: a systematic review.. 2008.0. 10.1080/07315724.2008.10719734
+[B1] Comparison of two diets for the prevention of recurrent stones in idiopathic hypercalciuria. 2002. 10.1056/nejmoa010369
 
-[B1] Schedule of taking calcium supplement and the risk of nephrolithiasis.. 2004.0. 10.1111/j.1523-1755.2004.00587.x
+[B1] Risk of calcium oxalate nephrolithiasis after calcium or combined calcium and calcitriol supplementation in postmenopausal women. 2000. 10.1007/s001980070090
 
-[B1] Effect of dietary calcium on stone forming propensity.. 2003.0. 10.1097/01.ju.0000043669.63989.22
+[B1] Stone-forming potential of milk or calcium-fortified orange juice in idiopathic hypercalciuric adults. 1992. 10.1038/ki.1992.18
 
-[B1] Comparison of two diets for the prevention of recurrent stones in idiopathic hypercalciuria.. 2002.0. 10.1056/nejmoa010369
+[B1] The impact of vitamin D supplementation on vitamin D level, urinary calcium excretion and bone density in patients with hypercalciuria and vitamin D deficiency - preliminary report. 2018. 10.34763/devperiodmed.20182202.144152
 
-[B1] Low-calcium diet in hypercalciuric enuretic children restores AQP2 excretion and improves clinical symptoms.. 2002.0. 10.1152/ajprenal.00354.2001
+[B1] Association between calcium and vitamin D supplementation and increased risk of kidney stone formation in patients with osteoporosis in Southwest China: a cross-sectional study. 2025. 10.1136/bmjopen-2024-092901
 
-[B1] Prolonged dietary calcium restriction: a diagnostic approach in idiopathic hypercalciuria.. 2001.0. 10.1159/000046108
+[B1] Heritability of dietary traits that contribute to nephrolithiasis in a cohort of adult sibships. 2016. 10.1007/s40620-015-0204-2
 
-[B1] Risk of calcium oxalate nephrolithiasis after calcium or combined calcium and calcitriol supplementation in postmenopausal women.. 2000.0. 10.1007/s001980070090
+[B1] Renal response to lithogenic and anti-lithogenic supplement challenges in a stone-free population group. 2004. 10.1053/j.jrn.2004.04.007
 
-[B1] Sensitivity to calcium intake in calcium stone forming patients.. 1996.0. 10.1159/000189031
+[B1] Diets with either beef or plant proteins reduce risk of calcium oxalate precipitation in patients with a history of calcium kidney stones. 2001. 10.1016/s0002-8223(01)00085-2
 
-[B1] Stone-forming potential of milk or calcium-fortified orange juice in idiopathic hypercalciuric adults.. 1992.0. 10.1038/ki.1992.18
+[B1] Magnesium, citrate, magnesium citrate and magnesium-alkali citrate as modulators of calcium oxalate crystallization in urine: observations in patients with recurrent idiopathic calcium urolithiasis. 1999. 10.1007/s002400050097
 
-[B1] The impact of vitamin D supplementation on vitamin D level, urinary calcium excretion and bone density in patients with hypercalciuria and vitamin D deficiency - preliminary report.. 2018.0. 10.34763/devperiodmed.20182202.144152
+[B1] Relationship of hypercalciuria to diet and bladder stone formation in spinal cord injury patients. 1984. https://pubmed.ncbi.nlm.nih.gov/6380301/
 
-[B1] Urinary calcium-to-citrate ratio predicts kidney stone risk in children under the age of two years.. 2026.0. 10.1007/s00467-026-07191-z
+[B1] Lowering urinary oxalate excretion to decrease calcium oxalate stone disease. 2016. 10.1007/s00240-015-0839-4
 
-[B1] Association between calcium and vitamin D supplementation and increased risk of kidney stone formation in patients with osteoporosis in Southwest China: a cross-sectional study.. 2025.0. 10.1136/bmjopen-2024-092901
+[B1] Biochemical control of bone loss and stone-forming propensity by potassium-calcium citrate after bariatric surgery. 2012. 10.1016/j.soard.2011.05.001
 
-[B1] Effectiveness of Subap Plus, a Polyherbal Medicine, on 24-Hour Urinalysis and Early Morning Urine pH in Recurrent Calcium Oxalate Stone Formers: A Pilot Study.. 2025.0. 10.7759/cureus.87764
+[B1] Schedule of taking calcium supplement and the risk of nephrolithiasis. 2004. 10.1111/j.1523-1755.2004.00587.x
 
-[B1] Temporal Trends of Dietary Risk Factors after a Diagnosis of Kidney Stones.. 2022.0. 10.2215/cjn.09200721
+[B1] Effect of dietary calcium on stone forming propensity. 2003. 10.1097/01.ju.0000043669.63989.22
 
-[B1] Heritability of dietary traits that contribute to nephrolithiasis in a cohort of adult sibships.. 2016.0. 10.1007/s40620-015-0204-2
+[B1] Prolonged dietary calcium restriction: a diagnostic approach in idiopathic hypercalciuria. 2001. 10.1159/000046108
 
-[B1] Calcium and vitamin D supplementation and risk of kidney stone formation in postmenopausal women.. 2013.0. https://pubmed.ncbi.nlm.nih.gov/23689153/
+[B1] Effect of mineral water containing calcium and magnesium on calcium oxalate urolithiasis risk factors. 1997. 10.1159/000282958
 
-[B1] Renal response to lithogenic and anti-lithogenic supplement challenges in a stone-free population group.. 2004.0. 10.1053/j.jrn.2004.04.007
+[B1] Sensitivity to calcium intake in calcium stone forming patients. 1996. 10.1159/000189031
 
-[B1] Magnesium, citrate, magnesium citrate and magnesium-alkali citrate as modulators of calcium oxalate crystallization in urine: observations in patients with recurrent idiopathic calcium urolithiasis.. 1999.0. 10.1007/s002400050097
+[B1] Dietary Recommendations for Bariatric Patients to Prevent Kidney Stone Formation. 2020. 10.3390/nu12051442
 
-[B2] Effect of two vitamin D repletion protocols on 24-h urine calcium in patients with recurrent calcium kidney stones and vitamin D deficiency: a randomized clinical trial.. 2023.0. 10.1186/s40001-023-01226-z
+[B2] Effect of two vitamin D repletion protocols on 24-h urine calcium in patients with recurrent calcium kidney stones and vitamin D deficiency: a randomized clinical trial. 2023. 10.1186/s40001-023-01226-z
 
-[B2] Risk of hypercalcemia in blacks taking hydrochlorothiazide and vitamin D.. 2014.0. 10.1016/j.amjmed.2014.02.044
+[B2] Risk of hypercalcemia in blacks taking hydrochlorothiazide and vitamin D. 2014. 10.1016/j.amjmed.2014.02.044
 
-[B2] Incidence of hypercalciuria and hypercalcemia during vitamin D and calcium supplementation in older women.. 2014.0. 10.1097/gme.0000000000000270
+[B2] Incidence of hypercalciuria and hypercalcemia during vitamin D and calcium supplementation in older women. 2014. 10.1097/gme.0000000000000270
 
-[B2] Association Between Vitamin D Supplementation and Urolithiasis Recurrence Outcomes in Known Stone Formers: A Retrospective Cohort Study With Dose-Response Analysis.. 2025.0. 10.7759/cureus.90853
+[B2] A 250 μg/week dose of vitamin D was as effective as a 50 μg/d dose in healthy adults, but a regimen of four weekly followed by monthly doses of 1250 μg raised the risk of hypercalciuria. 2013. 10.1017/s000711451300113x
 
-[B2] A 250 μg/week dose of vitamin D was as effective as a 50 μg/d dose in healthy adults, but a regimen of four weekly followed by monthly doses of 1250 μg raised the risk of hypercalciuria.. 2013.0. 10.1017/s000711451300113x
+[B2] Monthly high-dose vitamin D supplementation does not increase kidney stone risk or serum calcium: results from a randomized controlled trial. 2019. 10.1093/ajcn/nqy378
 
-[B2] Monthly high-dose vitamin D supplementation does not increase kidney stone risk or serum calcium: results from a randomized controlled trial.. 2019.0. 10.1093/ajcn/nqy378
+[B2] Vitamin D Repletion in Kidney Stone Formers: A Randomized Controlled Trial. 2017. 10.1016/j.juro.2016.10.057
 
-[B2] Vitamin D Repletion in Kidney Stone Formers: A Randomized Controlled Trial.. 2017.0. 10.1016/j.juro.2016.10.057
+[B2] No Severe Hypercalcemia with Daily Vitamin D3 Supplementation of up to 30 µg during the First Year of Life. 2017. 10.1159/000477298
 
-[B2] No Severe Hypercalcemia with Daily Vitamin D3 Supplementation of up to 30 µg during the First Year of Life.. 2017.0. 10.1159/000477298
+[B2] Hypercalcemia, hypercalciuria, and kidney stones in long-term studies of vitamin D supplementation: a systematic review and meta-analysis. 2016. 10.3945/ajcn.116.134981
 
-[B2] Hypercalcemia, hypercalciuria, and kidney stones in long-term studies of vitamin D supplementation: a systematic review and meta-analysis.. 2016.0. 10.3945/ajcn.116.134981
+[B2] Association Between Vitamin D Supplementation and Urolithiasis Recurrence Outcomes in Known Stone Formers: A Retrospective Cohort Study With Dose-Response Analysis. 2025. 10.7759/cureus.90853
 
-[B2] Effect of vitamin D repletion on urinary calcium excretion among kidney stone formers.. 2012.0. 10.2215/cjn.11331111
+[B2] The impact of vitamin D supplementation on vitamin D level, urinary calcium excretion and bone density in patients with hypercalciuria and vitamin D deficiency - preliminary report. 2018. 10.34763/devperiodmed.20182202.144152
 
-[B2] The impact of vitamin D supplementation on vitamin D level, urinary calcium excretion and bone density in patients with hypercalciuria and vitamin D deficiency - preliminary report.. 2018.0. 10.34763/devperiodmed.20182202.144152
+[B2] Reduction in Hypercalcemia Following Readjustment of Target Serum 25-Hydroxy Vitamin D Concentration during Cholecalciferol Therapy in Vitamin D-Deficient Critically Ill Patients. 2022. 10.3390/nu14081650
 
-[B2] Association between calcium and vitamin D supplementation and increased risk of kidney stone formation in patients with osteoporosis in Southwest China: a cross-sectional study.. 2025.0. 10.1136/bmjopen-2024-092901
+[B2] Hypercalcemia during pulse vitamin D3 therapy in CAPD patients treated with low calcium dialysate: the role of the decreasing serum parathyroid hormone level. 1997. 10.1681/asn.v8101579
 
-[B2] Reduction in Hypercalcemia Following Readjustment of Target Serum 25-Hydroxy Vitamin D Concentration during Cholecalciferol Therapy in Vitamin D-Deficient Critically Ill Patients.. 2022.0. 10.3390/nu14081650
+[B2] Exacerbated hypercalcemia, nephrolithiasis, and renal impairment after vitamin D supplementation in granulomatous disease: a case report. 2025. 10.1186/s13256-025-05078-5
 
-[B2] Comparison of Treatment Regimens in Management of Severe Hypercalcemia Due to Vitamin D Intoxication in Children.. 2019.0. 10.4274/jcrpe.galenos.2018.2018.0131
+[B2] Vitamin D Intake and the Risk of Incident Kidney Stones. 2017. 10.1016/j.juro.2016.08.084
 
-[B2] Calcium and vitamin D supplementation and risk of kidney stone formation in postmenopausal women.. 2013.0. https://pubmed.ncbi.nlm.nih.gov/23689153/
+[B2] Effect of vitamin D repletion on urinary calcium excretion among kidney stone formers. 2012. 10.2215/cjn.11331111
 
-[B2] Hypercalcemia during pulse vitamin D3 therapy in CAPD patients treated with low calcium dialysate: the role of the decreasing serum parathyroid hormone level.. 1997.0. 10.1681/asn.v8101579
+[B2] Association between calcium and vitamin D supplementation and increased risk of kidney stone formation in patients with osteoporosis in Southwest China: a cross-sectional study. 2025. 10.1136/bmjopen-2024-092901
 
-[B2] Idiopathic infantile hypercalcemia with a CYP24A1 variant triggered by vitamin D supplementation in fortified milk: A case report.. 2025.0. 10.1297/cpe.2024-0049
+[B2] The Safety Profile of Vitamin D Supplements Using Real-World Data from 445,493 Participants of the UK Biobank: Slightly Higher Hypercalcemia Prevalence but Neither Increased Risks of Kidney Stones nor Atherosclerosis. 2024. 10.3390/nu16142251
 
-[B2] Exacerbated hypercalcemia, nephrolithiasis, and renal impairment after vitamin D supplementation in granulomatous disease: a case report.. 2025.0. 10.1186/s13256-025-05078-5
+[B2] Vitamin D and Calcium Supplementation and Urolithiasis: A Controversial and Multifaceted Relationship. 2023. 10.3390/nu15071724
 
-[B2] Successful treatment with denosumab for two cases with hypercalcemia due to vitamin D intoxication and associated acute kidney injury.. 2022.0. 10.1007/s13730-021-00643-5
+[B2] Safety of megadose of vitamin D in patients with nephrolithiasis. 2021. 10.1016/j.nut.2021.111201
 
-[B2] Association of hypercalciuria with vitamin D supplementation in patients undergoing ketogenic dietary therapy.. 2022.0. 10.3389/fnut.2022.970467
+[B2] Calcium and Vitamin D Supplementation and Their Association with Kidney Stone Disease: A Narrative Review. 2021. 10.3390/nu13124363
 
-[B2] Effect of Vitamin D Treatment on Dynamics of Stones Formation in the Urinary Tract and Bone Density in Children with Idiopathic Hypercalciuria.. 2020.0. 10.3390/nu12092521
+[B2] Combined vitamin D and calcium supplementation in vitamin D inadequate patients with urolithiasis: Impact on hypercalciuria and de novo stone formation. 2015. 10.5489/cuaj.3332
 
-[B2] Effect of vitamin D supplementation on 24-hour urine calcium in patients with calcium Urolithiasis and vitamin D deficiency.. 2019.0. 10.1590/s1677-5538.ibju.2018.0522
+[B2] Calcium and vitamin D supplementation and risk of kidney stone formation in postmenopausal women. 2013. https://pubmed.ncbi.nlm.nih.gov/23689153/
 
-[B2] Vitamin D Intake and the Risk of Incident Kidney Stones.. 2017.0. 10.1016/j.juro.2016.08.084
+[B2] Idiopathic infantile hypercalcemia with a CYP24A1 variant triggered by vitamin D supplementation in fortified milk: A case report. 2025. 10.1297/cpe.2024-0049
 
-[B2] The Safety Profile of Vitamin D Supplements Using Real-World Data from 445,493 Participants of the UK Biobank: Slightly Higher Hypercalcemia Prevalence but Neither Increased Risks of Kidney Stones nor Atherosclerosis.. 2024.0. 10.3390/nu16142251
+[B2] Hypercalcemia with the Oral Administration of Active Vitamin D3 and Chinese Herbal Medicine. 2025. 10.2169/internalmedicine.4431-24
 
-[B2] Vitamin D and Calcium Supplementation and Urolithiasis: A Controversial and Multifaceted Relationship.. 2023.0. 10.3390/nu15071724
+[B2] Normal 24-hour urine calcium concentrations after long-term daily oral intake of vitamin D in doses ranging from 5000 to 50,000 international units in 14 adult hospitalized psychiatric patients. 2023. 10.1016/j.jsbmb.2023.106329
 
-[B2] Safety of megadose of vitamin D in patients with nephrolithiasis.. 2021.0. 10.1016/j.nut.2021.111201
+[B2] Successful treatment with denosumab for two cases with hypercalcemia due to vitamin D intoxication and associated acute kidney injury. 2022. 10.1007/s13730-021-00643-5
 
-[B2] Calcium and Vitamin D Supplementation and Their Association with Kidney Stone Disease: A Narrative Review.. 2021.0. 10.3390/nu13124363
+[B2] Association of hypercalciuria with vitamin D supplementation in patients undergoing ketogenic dietary therapy. 2022. 10.3389/fnut.2022.970467
 
-[B2] Combined vitamin D and calcium supplementation in vitamin D inadequate patients with urolithiasis: Impact on hypercalciuria and de novo stone formation.. 2015.0. 10.5489/cuaj.3332
+[B2] Hypercalcemia worsened after vitamin D supplementation in a sarcoidosis patient: A case report. 2022. 10.1097/md.0000000000030883
 
-[B2] Hypercalcemia in children receiving pharmacologic doses of vitamin D.. 2012.0. 10.1542/peds.2011-1663
+[B2] Metabolic effects of cholecalciferol supplementation in patients with calcium nephrolithiasis and vitamin D deficiency. 2021. 10.1007/s00345-020-03222-y
 
-[B2] Effect of combination treatment with a vitamin D analog (OCT) and a bisphosphonate (AHPrBP) in a nude mouse model of cancer-associated hypercalcemia.. 1998.0. 10.1359/jbmr.1998.13.9.1378
+[B2] Hypercalcemia Without Hypervitaminosis D During Cholecalciferol Supplementation in Critically Ill Patients. 2020. 10.1002/ncp.10407
 
-[B3] Ascorbic Acid Supplements and Kidney Stones Incidence Among Men and Women: A systematic review and meta-analysis.. 2019.0. 10.22037/uj.v0i0.4275
+[B3] Ascorbic Acid Supplements and Kidney Stones Incidence Among Men and Women: A systematic review and meta-analysis. 2019. 10.22037/uj.v0i0.4275
 
-[B3] Ascorbate increases human oxaluria and kidney stone risk.. 2005.0. 10.1093/jn/135.7.1673
+[B3] Ascorbic acid-induced oxalate nephropathy: a case report and discussion of pathologic mechanisms. 2019. 10.1007/s13730-018-0366-6
 
-[B3] Ascorbic acid in idiopathic recurrent calcium urolithiasis in humans--does it have an abettor role in oxalate, and calcium oxalate crystallization?. 2000.0. 10.1007/s002400000101
+[B3] No Reported Renal Stones with Intravenous Vitamin C Administration: A Prospective Case Series Study. 2018. 10.3390/antiox7050068
 
-[B3] Ascorbic acid overdosing: a risk factor for calcium oxalate nephrolithiasis.. 1992.0. 10.1016/s0022-5347(17)37521-3
+[B3] A case report of renal oxalosis and secondary hyperoxaluria due to chronic high vitamin C consumption. 2025. 10.5414/cncs111462
 
-[B3] Ascorbic acid-induced oxalate nephropathy: a case report and discussion of pathologic mechanisms.. 2019.0. 10.1007/s13730-018-0366-6
+[B3] Vitamin C-induced hyperoxaluria causing reversible tubulointerstitial nephritis and chronic renal failure: a case report. 2007. 10.1186/1752-1947-1-155
 
-[B3] No Reported Renal Stones with Intravenous Vitamin C Administration: A Prospective Case Series Study.. 2018.0. 10.3390/antiox7050068
+[B3] Ascorbate increases human oxaluria and kidney stone risk. 2005. 10.1093/jn/135.7.1673
 
-[B3] A case report of renal oxalosis and secondary hyperoxaluria due to chronic high vitamin C consumption.. 2025.0. 10.5414/cncs111462
+[B3] Ascorbic acid in idiopathic recurrent calcium urolithiasis in humans--does it have an abettor role in oxalate, and calcium oxalate crystallization?. 2000. 10.1007/s002400000101
 
-[B3] Is it safe to prescribe ascorbic acid for urinary acidification in stone-forming patients with alkaline urine?. 2017.0. 10.5152/tud.2017.02700
+[B3] Ascorbic acid overdosing: a risk factor for calcium oxalate nephrolithiasis. 1992. 10.1016/s0022-5347(17)37521-3
 
-[B3] Total, Dietary, and Supplemental Vitamin C Intake and Risk of Incident Kidney Stones.. 2016.0. 10.1053/j.ajkd.2015.09.005
+[B3] Public Interest in Vitamin C Supplementation During the COVID-19 Pandemic as a Potential Risk for Oxalate Nephrolithiasis. 2025. 10.7759/cureus.79452
 
-[B3] Vitamin C-induced hyperoxaluria causing reversible tubulointerstitial nephritis and chronic renal failure: a case report.. 2007.0. 10.1186/1752-1947-1-155
+[B3] Vitamin C with metabolites reduce oxalate levels compared to ascorbic acid: a preliminary and novel clinical urologic finding. 2009. https://pubmed.ncbi.nlm.nih.gov/19507407/
 
-[B3] Public Interest in Vitamin C Supplementation During the COVID-19 Pandemic as a Potential Risk for Oxalate Nephrolithiasis.. 2025.0. 10.7759/cureus.79452
+[B3] No contribution of ascorbic acid to renal calcium oxalate stones. 1997. 10.1159/000177954
 
-[B3] Vitamin C with metabolites reduce oxalate levels compared to ascorbic acid: a preliminary and novel clinical urologic finding.. 2009.0. https://pubmed.ncbi.nlm.nih.gov/19507407/
+[B3] Acute oxalate nephropathy due to high vitamin C doses and exocrine pancreatic insufficiency. 2019. 10.1136/bcr-2019-231504
 
-[B3] Oxalate absorption and endogenous oxalate synthesis from ascorbate in calcium oxalate stone formers and non-stone formers.. 2004.0. 10.1053/j.ajkd.2004.08.028
+[B3] Is it safe to prescribe ascorbic acid for urinary acidification in stone-forming patients with alkaline urine?. 2017. 10.5152/tud.2017.02700
 
-[B3] The effect of ascorbic acid ingestion on the biochemical and physicochemical risk factors associated with calcium oxalate kidney stone formation.. 1998.0. 10.1515/cclm.1998.027
+[B3] Total, Dietary, and Supplemental Vitamin C Intake and Risk of Incident Kidney Stones. 2016. 10.1053/j.ajkd.2015.09.005
 
-[B3] Postprandial hyperinsulinaemia, insulin resistance and inappropriately high phosphaturia are features of younger males with idiopathic calcium urolithiasis: attenuation by ascorbic acid supplementation of a test meal.. 1997.0. 10.1007/bf00941906
+[B3] A case of reversible hyperoxaluria nephropathy early after roux-en-y-gastric bypass induced by vitamin C intake. 2016. 10.1093/omcr/omw054
 
-[B3] No contribution of ascorbic acid to renal calcium oxalate stones.. 1997.0. 10.1159/000177954
+[B3] Urinary oxalate excretion increases in home parenteral nutrition patients on a higher intravenous ascorbic acid dose. 2004. 10.1177/0148607104028006435
 
-[B3] Acute oxalate nephropathy due to high vitamin C doses and exocrine pancreatic insufficiency.. 2019.0. 10.1136/bcr-2019-231504
+[B3] Effect of megadoses of ascorbic acid on serum and urinary oxalate. 1980. 10.1159/000473318
 
-[B3] A case of reversible hyperoxaluria nephropathy early after roux-en-y-gastric bypass induced by vitamin C intake.. 2016.0. 10.1093/omcr/omw054
+[B3] Vitamin C-induced oxalate nephropathy. 2011. 10.4061/2011/146927
 
-[B3] Urinary oxalate excretion increases in home parenteral nutrition patients on a higher intravenous ascorbic acid dose.. 2004.0. 10.1177/0148607104028006435
+[B3] Ascorbic acid is an abettor in calcium urolithiasis: an experimental study. 1993. https://pubmed.ncbi.nlm.nih.gov/8146605/
 
-[B3] Relation of serum ascorbic acid to serum vitamin B12, serum ferritin, and kidney stones in US adults.. 1999.0. 10.1001/archinte.159.6.619
+[B3] Oxalate absorption and endogenous oxalate synthesis from ascorbate in calcium oxalate stone formers and non-stone formers. 2004. 10.1053/j.ajkd.2004.08.028
 
-[B3] Effect of megadoses of ascorbic acid on serum and urinary oxalate.. 1980.0. 10.1159/000473318
+[B3] The effect of ascorbic acid ingestion on the biochemical and physicochemical risk factors associated with calcium oxalate kidney stone formation. 1998. 10.1515/cclm.1998.027
 
-[B3] Vitamin C-induced oxalate nephropathy.. 2011.0. 10.4061/2011/146927
+[B3] Postprandial hyperinsulinaemia, insulin resistance and inappropriately high phosphaturia are features of younger males with idiopathic calcium urolithiasis: attenuation by ascorbic acid supplementation of a test meal. 1997. 10.1007/bf00941906
 
-[B3] Ascorbic acid is an abettor in calcium urolithiasis: an experimental study.. 1993.0. https://pubmed.ncbi.nlm.nih.gov/8146605/
+[B3] Relation of serum ascorbic acid to serum vitamin B12, serum ferritin, and kidney stones in US adults. 1999. 10.1001/archinte.159.6.619
 
-[B3] High-dose supplementation with vitamin C--induced pediatric urolithiasis: the first case report in a child and literature review.. 2014.0. 10.1016/j.urology.2014.07.021
+[B3] Relative hyperoxaluria, crystalluria and haematuria after megadose ingestion of vitamin C. 1998. 10.1046/j.1365-2362.1998.00349.x
 
-[B3] Relative hyperoxaluria, crystalluria and haematuria after megadose ingestion of vitamin C.. 1998.0. 10.1046/j.1365-2362.1998.00349.x
+[B3] Oxalate metabolism in end-stage renal disease: the effect of ascorbic acid and pyridoxine. 1988. https://pubmed.ncbi.nlm.nih.gov/3132636/
 
-[B3] Oxalate metabolism in end-stage renal disease: the effect of ascorbic acid and pyridoxine.. 1988.0. https://pubmed.ncbi.nlm.nih.gov/3132636/
-
-[B3] The diurnal urinary excretion of oxalate and the effect of pyridoxine and ascorbate on oxalate excretion.. 1977.0. 10.1159/000472053
+[B3] The diurnal urinary excretion of oxalate and the effect of pyridoxine and ascorbate on oxalate excretion. 1977. 10.1159/000472053
 
 ## 부록. 재현 파일

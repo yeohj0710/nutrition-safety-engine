@@ -11,7 +11,10 @@ Q={
 "B2":{"supp":[r"vitamin\s*d",r"cholecalciferol",r"ergocalciferol"],"pop":[r"kidney stone",r"renal stone",r"nephrolith",r"urolith",r"hypercalciur",r"hypercalcemia"],"out":[r"stone",r"nephrolith",r"urolith",r"hypercalciur",r"hypercalcemia",r"urinary calcium"]},
 "B3":{"supp":[r"vitamin\s*c",r"ascorbic acid",r"ascorbate"],"pop":[r"kidney stone",r"renal stone",r"nephrolith",r"urolith",r"hyperoxalur"],"out":[r"stone",r"nephrolith",r"urolith",r"oxalat",r"hyperoxalur"]}}
 DES=[r"random",r"trial",r"cohort",r"case.control",r"cross.section",r"systematic review",r"meta.analysis",r"guideline",r"observational",r"case report"]
-DOSE=re.compile(r"\b(?:\d+(?:\.\d+)?(?:\s*(?:-|to)\s*\d+(?:\.\d+)?)?)\s*(?:mg|mcg|µg|ug|g|IU|international units?|mg/day|g/day|µg/day)\b",re.I)
+DOSE_NUMBER=r"(?:\d{1,3}(?:[ ,]\d{3})+|\d+(?:\.\d+)?)"
+DOSE_UNIT=r"(?:mg|MG|Mg|mcg|MCG|µg|μg|ug|UG|g)(?:/day)?|IU|iu|(?i:international units?)"
+DOSE=re.compile(rf"(?<![\d,]){DOSE_NUMBER}(?:\s*(?:-|to)\s*{DOSE_NUMBER})?\s*(?:{DOSE_UNIT})(?![/A-Za-z])")
+DOSE_CONTEXT=re.compile(r"supplement|intake|dose|administ|receive|given|taking|treatment|daily|per day|randomi[sz]ed|assigned|consum",re.I)
 def hit(text,pats):return any(re.search(p,text,re.I) for p in pats)
 def sentences(text):return [x.strip() for x in re.split(r"(?<=[.!?])\s+",text) if x.strip()]
 d=pd.read_csv(inp,low_memory=False).fillna(""); rows=[]
@@ -30,7 +33,8 @@ for _,r in d.iterrows():
  if q=="A1" and not exposure:continue
  if q in {"B1","B2","B3"} and not re.search(r"supplement|intake|dietary|oral|dose|administ|receive|given|consumption",text,re.I):continue
  if not any(hit(s,spec["supp"]) and hit(s,spec["out"]) for s in ss):continue
- doses=sorted(set(DOSE.findall(text)))
+ dose_sentences=[s for s in ss if hit(s,spec["supp"]) and DOSE_CONTEXT.search(s)]
+ doses=sorted({match.group(0) for sentence in dose_sentences for match in DOSE.finditer(sentence)})
  pop_s=[s for s in ss if hit(s,spec["pop"])][:2]; out_s=[s for s in ss if hit(s,spec["out"])][:3]
  rows.append({"question_id":q,"record_id":r.record_id,"provider_id":r.provider_id,"title":r.title,"year":r.year,"doi":r.doi,"source_url":r.source_url,"publication_types":r.publication_types,"automated_eligibility":"include_candidate" if design else "include_candidate_design_unclear","population_evidence":" | ".join(pop_s),"supplement":Q[q]["supp"][0].replace("\\s*"," ").replace("\\b",""),"dose_extracted":" | ".join(doses),"outcome_evidence":" | ".join(out_s),"evidence_locator":"ABSTRACT: "+" | ".join(ev[:3]),"fulltext_locator":r.fulltext_locator,"human_screened":False,"extraction_authority":"automated_from_observed_title_abstract"})
 o=pd.DataFrame(rows).drop_duplicates(["question_id","provider_id"]); csv=out/"picos_extraction.csv";o.to_csv(csv,index=False,encoding="utf-8")

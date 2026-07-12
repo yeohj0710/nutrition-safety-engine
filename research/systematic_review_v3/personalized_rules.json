@@ -17,7 +17,7 @@
         "doi": "10.1097/md.0000000000002895",
         "url": "https://pubmed.ncbi.nlm.nih.gov/26962786/",
         "locator": "ABSTRACT: Interaction Between Dietary Vitamin K Intake and Anticoagulation by Vitamin K Antagonists: Is It Really True?: A Systematic Review.. | Educational advice is often given to patients starting treatment with vitamin K Antagonists (VKAs). | Common belief is that dietary vitamin K intake could counteract the anticoagulant effect by VKAs and for many years, patients have been discouraged to consume vitamin-K-rich foods, such as green leafy vegetables.The objective of this study is to summarize the current evidence supporting the putative interaction between dietary vitamin K intake and changes in INR with the VKAs.Data sources are MEDLINE via PubMed and Cochrane database.All clinical studies investigating the relationship between dietary vitamin K and measures of anticoagulation were included.",
-        "dose": "150 μg | 76 to 217 μg",
+        "dose": "150 μg/day | 76 to 217 μg/day",
         "outcome": "Interaction Between Dietary Vitamin K Intake and Anticoagulation by Vitamin K Antagonists: Is It Really True?: A Systematic Review.. | Common belief is that dietary vitamin K intake could counteract the anticoagulant effect by VKAs and for many years, patients have been discouraged to consume vitamin-K-rich foods, such as green leafy vegetables.The objective of this study is to summarize the current evidence supporting the putative interaction between dietary vitamin K intake and changes in INR with the VKAs.Data sources are MEDLINE via PubMed and Cochrane database.All clinical studies investigating the relationship between dietary vitamin K and measures of anticoagulation were included. | We excluded all studies of supplementation of vitamin K alone.We performed a systematic review of the literature up to October 2015, searching for a combination of \"food,\" \"diet,\" \"vitamin K,\" \"phylloquinone,\" \"warfarin,\" \"INR,\" \"coagulation,\" and \"anticoagulant.\"Two dietary interventional trials and 9 observational studies were included."
       },
       {
@@ -44,17 +44,17 @@
         "doi": "10.1160/th04-06-0346",
         "url": "https://pubmed.ncbi.nlm.nih.gov/15543329/",
         "locator": "ABSTRACT: Over-the-counter vitamin K1-containing multivitamin supplements disrupt warfarin anticoagulation in vitamin K1-depleted patients. | Most multivitamin supplements contain far less vitamin K(1) than thought to affect warfarin anticoagulation. | Therefore, we compared the effect of a vitamin K(1)-containing multivitamin on warfarin anticoagulation between patients with low versus normal vitamin K(1) status.",
-        "dose": "1.5 mcg | 25 mcg | 4.5 mcg",
+        "dose": "25 mcg",
         "outcome": "Over-the-counter vitamin K1-containing multivitamin supplements disrupt warfarin anticoagulation in vitamin K1-depleted patients. | Most multivitamin supplements contain far less vitamin K(1) than thought to affect warfarin anticoagulation. | Therefore, we compared the effect of a vitamin K(1)-containing multivitamin on warfarin anticoagulation between patients with low versus normal vitamin K(1) status."
       },
       {
-        "record_id": "REC-PUBMED-23928870",
-        "title": "Nutri-pharmacogenomics of warfarin anticoagulation therapy: VKORC1 genotype-dependent influence of dietary vitamin K intake.",
-        "doi": "10.1007/s11239-013-0978-9",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/23928870/",
-        "locator": "ABSTRACT: Nutri-pharmacogenomics of warfarin anticoagulation therapy: VKORC1 genotype-dependent influence of dietary vitamin K intake.. | In subjects with a variant VKORC1-1639 G allele, the mean daily warfarin dose was significantly attenuated by low vitamin K intake compared with medium and high intake after adjustment for covariates (3.4 vs. | The results of the present study suggest that the capacity of dietary vitamin K intake to influence warfarin dose requirements during anticoagulation therapy is VKORC1 genotype-dependent, at least in part.",
-        "dose": "1639 G | 3.91 mg | 4.0 mg",
-        "outcome": "Nutri-pharmacogenomics of warfarin anticoagulation therapy: VKORC1 genotype-dependent influence of dietary vitamin K intake.. | To investigate genotype-nutrient interactions in warfarin anticoagulation therapy, 202 consecutive outpatients (M/F = 142/60, mean age, 69 years) undergoing treatment with warfarin were enrolled. | The results of the present study suggest that the capacity of dietary vitamin K intake to influence warfarin dose requirements during anticoagulation therapy is VKORC1 genotype-dependent, at least in part."
+        "record_id": "REC-PUBMED-21605730",
+        "title": "Reversal of overanticoagulation in very elderly hospitalized patients with an INR above 5.0: 24-hour INR response after vitamin K administration.",
+        "doi": "10.1016/j.amjmed.2011.01.016",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/21605730/",
+        "locator": "ABSTRACT: Reversal of overanticoagulation in very elderly hospitalized patients with an INR above 5.0: 24-hour INR response after vitamin K administration.. | In the subset of Day 0 INRs between 5.0 and 6.0, mean INR decreased from 5.5±0.3 to 2.7±1.0 (P<.0001) on Day 1 after oral administration of 1 mg vitamin K1 (n=121) and from 5.3±0.3 to 5.0±1.6 (P=.149) without vitamin K1 administration (n=48). | CONCLUSION: In elderly inpatients with INR ≥5.0, both vitamin K antagonist dose omission and vitamin K1 administration according to recommendations were effective in reversing overanticoagulation, allowing most INRs to return to the 1.8-3.2 range without excessive overcorrection.",
+        "dose": "1 mg",
+        "outcome": "Reversal of overanticoagulation in very elderly hospitalized patients with an INR above 5.0: 24-hour INR response after vitamin K administration.. | BACKGROUND: Reversal of overanticoagulation to minimize the bleeding risk is important in elderly inpatients receiving vitamin K antagonist therapy. | The objective of this study is to evaluate whether guidelines based on American College of Chest Physicians recommendations for the management of overanticoagulation (international normalized ratio [INR] ≥5.0) can apply to elderly inpatients, and notably allow 24-hour INRs to return to the 1.8-3.2 range in this population."
       }
     ],
     "status": "automated_evidence_linked_personalized_check"
@@ -77,7 +77,7 @@
         "doi": "10.1007/s40256-017-0217-4",
         "url": "https://pubmed.ncbi.nlm.nih.gov/28197979/",
         "locator": "ABSTRACT: No Effect of Omega-3 Carboxylic Acids on Pharmacokinetics/Pharmacodynamics of Warfarin or on Platelet Function When Co-administered with Acetylsalicylic Acid: Results of Two Phase I Studies in Healthy Volunteers.. | In OM-EPA-007, no significant effect of OM3-CA was observed on ASA-dependent or ASA-independent platelet activation.",
-        "dose": "25 mg | 4 g | 40 mg | 81 mg",
+        "dose": "4 g | 40 mg | 81 mg",
         "outcome": "No Effect of Omega-3 Carboxylic Acids on Pharmacokinetics/Pharmacodynamics of Warfarin or on Platelet Function When Co-administered with Acetylsalicylic Acid: Results of Two Phase I Studies in Healthy Volunteers.. | OBJECTIVE: Our objective was to assess the effects of OM3-CA on warfarin pharmacokinetics and pharmacodynamics and on acetylsalicylic acid (ASA)-dependent and independent platelet activation when co-administered with ASA in two phase I studies. | Lack of a drug-drug interaction was indicated when 90% confidence intervals (CIs) fell entirely within the range 80-125% for least-squares mean (LSM) ratios of area under the concentration-time curve (AUC), maximum observed plasma concentration (C max), international normalized ratio (INR) AUC to 168 h and maximum INR."
       },
       {
@@ -108,13 +108,13 @@
         "outcome": "Drug interactions influence the safety of warfarin use and while extensive literature exists regarding the effect on warfarin control and bleeding incidence with many medicines, there is little evidence on the influence of complementary medicines. | The aim of this study was to assess the influence of fish and krill oil supplementation on warfarin control and bleeding incidence in AF and DVT patients. | Overall, it was found that fish and krill oils did not significantly alter warfarin time in therapeutic range (TTR) or bleeding incidence, even when compared by gender."
       },
       {
-        "record_id": "REC-PUBMED-17182793",
-        "title": "Plasma triacylglycerol and coagulation factor concentrations predict the anticoagulant effect of dietary fish oil in overweight subjects.",
-        "doi": "10.1093/jn/137.1.7",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/17182793/",
-        "locator": "ABSTRACT: Plasma triacylglycerol and coagulation factor concentrations predict the anticoagulant effect of dietary fish oil in overweight subjects.. | Fish oil, containing (n-3) PUFA, is associated with a moderate reduction in cardiovascular disease through a multifactorial mechanism involving a decrease in plasma lipids and anticoagulant activity. | In both healthy subjects and diabetes patients, high triacylglycerol concentrations (>1.69 mmol/L) at baseline were closely linked to a strong fish oil-induced lowering of triacylglycerol and coagulation factor V, VII, and X concentrations, and thrombin generation.",
-        "dose": "3.1 g",
-        "outcome": "Plasma triacylglycerol and coagulation factor concentrations predict the anticoagulant effect of dietary fish oil in overweight subjects.. | In both healthy subjects and diabetes patients, high triacylglycerol concentrations (>1.69 mmol/L) at baseline were closely linked to a strong fish oil-induced lowering of triacylglycerol and coagulation factor V, VII, and X concentrations, and thrombin generation."
+        "record_id": "REC-PUBMED-17192169",
+        "title": "Subdural hematoma after a fall in an elderly patient taking high-dose omega-3 fatty acids with warfarin and aspirin: case report and review of the literature.",
+        "doi": "10.1592/phco.27.1.152",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/17192169/",
+        "locator": "ABSTRACT: Subdural hematoma after a fall in an elderly patient taking high-dose omega-3 fatty acids with warfarin and aspirin: case report and review of the literature.. | Few data exist on whether or not fish oil can be used safely with other antiplatelet or anticoagulant drugs. | We report the case of a patient who after a minor fall developed a subdural hematoma requiring craniotomy that likely was precipitated by concomitant use of high-dose omega-3 fatty acids 6 g/day with both aspirin and warfarin.",
+        "dose": "6 g/day",
+        "outcome": "The elderly population is at an increased risk for major bleeding, possibly due to increased sensitivity to anticoagulation, multiple comorbidities, and polypharmacy. | Elderly patients receiving antiplatelet and anticoagulant therapy have an additional risk for bleeding. | The mechanism of action of n-3 PUFA is not completely understood, but a dual antiplatelet and anticoagulant effect has been proposed."
       }
     ],
     "status": "automated_evidence_linked_personalized_check"
@@ -164,7 +164,7 @@
         "doi": "10.1097/gme.0000000000000270",
         "url": "https://pubmed.ncbi.nlm.nih.gov/24937025/",
         "locator": "ABSTRACT: Incidence of hypercalciuria and hypercalcemia during vitamin D and calcium supplementation in older women.. | OBJECTIVE: This study aims to prospectively assess the incidence of hypercalciuria and hypercalcemia with different doses of vitamin D and with a calcium intake of approximately 1,200 mg/day. | Serum and 24-hour urine calcium were collected every 3 months on supplementation, any test result above the upper reference range represented an episode of hypercalcemia or hypercalciuria.",
-        "dose": "10.2 mg | 200 mg | 300 mg | 800 IU",
+        "dose": "1,200 mg | 1,200 mg/day | 200 mg",
         "outcome": "Incidence of hypercalciuria and hypercalcemia during vitamin D and calcium supplementation in older women.. | OBJECTIVE: This study aims to prospectively assess the incidence of hypercalciuria and hypercalcemia with different doses of vitamin D and with a calcium intake of approximately 1,200 mg/day. | Serum and 24-hour urine calcium were collected every 3 months on supplementation, any test result above the upper reference range represented an episode of hypercalcemia or hypercalciuria."
       },
       {
@@ -197,7 +197,7 @@
         "doi": "10.1186/s40001-023-01226-z",
         "url": "https://pubmed.ncbi.nlm.nih.gov/37481570/",
         "locator": "ABSTRACT: Effect of two vitamin D repletion protocols on 24-h urine calcium in patients with recurrent calcium kidney stones and vitamin D deficiency: a randomized clinical trial.. | OBJECTIVES: To evaluate the effects of two vitamin D repletion therapies (cholecalciferol) on serum levels of 25-hydroxyvitamin D (25(OH)D) and 24-h urine calcium in patients with recurrent calcium kidney stones and vitamin D deficiency (VDD).",
-        "dose": "000 IU | 2000 IU",
+        "dose": "2000 IU | 50,000 IU",
         "outcome": "Effect of two vitamin D repletion protocols on 24-h urine calcium in patients with recurrent calcium kidney stones and vitamin D deficiency: a randomized clinical trial.. | OBJECTIVES: To evaluate the effects of two vitamin D repletion therapies (cholecalciferol) on serum levels of 25-hydroxyvitamin D (25(OH)D) and 24-h urine calcium in patients with recurrent calcium kidney stones and vitamin D deficiency (VDD). | DESIGN, SETTING, PARTICIPANTS: A parallel-group randomized controlled clinical trial on patients who referred to Labbafinejad kidney stone prevention clinic, Tehran, Iran."
       },
       {
@@ -206,7 +206,7 @@
         "doi": "10.1016/j.amjmed.2014.02.044",
         "url": "https://pubmed.ncbi.nlm.nih.gov/24657333/",
         "locator": "ABSTRACT: Risk of hypercalcemia in blacks taking hydrochlorothiazide and vitamin D.. | The risk for hypercalcemia among blacks using vitamin D and hydrochlorothiazide is undefined. | METHODS: We assessed the frequency of hypercalcemia in hydrochlorothiazide users in a post hoc analysis of a randomized, double-blind, dose-finding trial of 328 blacks (median age 51 years) assigned to either placebo, or 1000, 2000, or 4000 international units of cholecalciferol (vitamin D3) daily for 3 months during the winter (2007-2010).",
-        "dose": "0.2 mg | 4000 IU | 4000 international units",
+        "dose": "4000 IU | 4000 international units",
         "outcome": "Risk of hypercalcemia in blacks taking hydrochlorothiazide and vitamin D.. | INTRODUCTION: Hydrochlorothiazide, an effective antihypertensive medication commonly prescribed to blacks, decreases urinary calcium excretion. | The risk for hypercalcemia among blacks using vitamin D and hydrochlorothiazide is undefined."
       },
       {
@@ -215,17 +215,8 @@
         "doi": "10.1097/gme.0000000000000270",
         "url": "https://pubmed.ncbi.nlm.nih.gov/24937025/",
         "locator": "ABSTRACT: Incidence of hypercalciuria and hypercalcemia during vitamin D and calcium supplementation in older women.. | OBJECTIVE: This study aims to prospectively assess the incidence of hypercalciuria and hypercalcemia with different doses of vitamin D and with a calcium intake of approximately 1,200 mg/day. | No relationship between hypercalcemia or hypercalciuria and vitamin D dose was found, and hypercalciuria was equally common in the placebo group.",
-        "dose": "10.2 mg | 200 mg | 300 mg | 800 IU",
+        "dose": "1,200 mg | 1,200 mg/day",
         "outcome": "Incidence of hypercalciuria and hypercalcemia during vitamin D and calcium supplementation in older women.. | OBJECTIVE: This study aims to prospectively assess the incidence of hypercalciuria and hypercalcemia with different doses of vitamin D and with a calcium intake of approximately 1,200 mg/day. | Serum and 24-hour urine calcium were collected every 3 months on supplementation, any test result above the upper reference range represented an episode of hypercalcemia or hypercalciuria."
-      },
-      {
-        "record_id": "REC-PUBMED-40995255",
-        "title": "Association Between Vitamin D Supplementation and Urolithiasis Recurrence Outcomes in Known Stone Formers: A Retrospective Cohort Study With Dose-Response Analysis.",
-        "doi": "10.7759/cureus.90853",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/40995255/",
-        "locator": "ABSTRACT: Association Between Vitamin D Supplementation and Urolithiasis Recurrence Outcomes in Known Stone Formers: A Retrospective Cohort Study With Dose-Response Analysis.. | Background Vitamin D supplementation is widely prescribed to correct vitamin D deficiency, but its impact on urinary stone recurrence in patients with a history of urolithiasis (stone formers) remains uncertain. | Conclusions In this retrospective cohort of known stone formers, vitamin D supplementation, particularly at higher doses, was associated with a greater risk of recurrence.",
-        "dose": "000 IU | 800 IU",
-        "outcome": "Association Between Vitamin D Supplementation and Urolithiasis Recurrence Outcomes in Known Stone Formers: A Retrospective Cohort Study With Dose-Response Analysis.. | Background Vitamin D supplementation is widely prescribed to correct vitamin D deficiency, but its impact on urinary stone recurrence in patients with a history of urolithiasis (stone formers) remains uncertain. | A total of 353 adult stone formers were categorized as non-supplemented (n = 235) or supplemented (n = 118), with stratification by dose (≤800 IU daily, 10,000 IU weekly, and 50,000 IU weekly)."
       },
       {
         "record_id": "REC-PUBMED-23595003",
@@ -233,8 +224,17 @@
         "doi": "10.1017/s000711451300113x",
         "url": "https://pubmed.ncbi.nlm.nih.gov/23595003/",
         "locator": "ABSTRACT: A 250 μg/week dose of vitamin D was as effective as a 50 μg/d dose in healthy adults, but a regimen of four weekly followed by monthly doses of 1250 μg raised the risk of hypercalciuria.. | Although vitamin D supplementation remains a controversial issue, these data document that supplementing with ≤ 250 mg/week (≤ 10 000 IU/week) can improve or maintain vitamin D status in healthy populations without the risk of hypercalciuria, but 24 h urinary Ca excretion should be evaluated in healthy persons receiving vitamin D3 supplementation in weekly single doses of 1250 μg (50 000 IU).",
-        "dose": "000 IU | 1250 μg | 1544 μg | 2000 IU | 250 mg | 250 μg | 331 μg | 50 μg | 70 μg",
+        "dose": "1250 μg | 50 000 IU",
         "outcome": "A 250 μg/week dose of vitamin D was as effective as a 50 μg/d dose in healthy adults, but a regimen of four weekly followed by monthly doses of 1250 μg raised the risk of hypercalciuria.. | Subjects in the 1250 μg treatment group, who had a BMI >26 kg/m2, had a steady increase in urinary Ca in the first 3 weeks of supplementation, and, overall, the relative risk of hypercalciuria was higher in the 1250 μg group than in the placebo group (P=0·01). | Although vitamin D supplementation remains a controversial issue, these data document that supplementing with ≤ 250 mg/week (≤ 10 000 IU/week) can improve or maintain vitamin D status in healthy populations without the risk of hypercalciuria, but 24 h urinary Ca excretion should be evaluated in healthy persons receiving vitamin D3 supplementation in weekly single doses of 1250 μg (50 000 IU)."
+      },
+      {
+        "record_id": "REC-PUBMED-31005969",
+        "title": "Monthly high-dose vitamin D supplementation does not increase kidney stone risk or serum calcium: results from a randomized controlled trial.",
+        "doi": "10.1093/ajcn/nqy378",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31005969/",
+        "locator": "ABSTRACT: Monthly high-dose vitamin D supplementation does not increase kidney stone risk or serum calcium: results from a randomized controlled trial.. | OBJECTIVE: We investigated the incidence of kidney stone and hypercalcemia events in a large, population-based RCT of vitamin D supplementation. | RESULTS: During a median follow-up of 3.3 y, 158 participants reported a kidney stone event (76 vitamin D, 82 placebo).",
+        "dose": "100,000 IU",
+        "outcome": "Monthly high-dose vitamin D supplementation does not increase kidney stone risk or serum calcium: results from a randomized controlled trial.. | OBJECTIVE: We investigated the incidence of kidney stone and hypercalcemia events in a large, population-based RCT of vitamin D supplementation. | Participants provided information about recent kidney stone events in regular questionnaires sent to them with study capsules."
       }
     ],
     "status": "automated_evidence_linked_personalized_check"
@@ -257,35 +257,8 @@
         "doi": "10.22037/uj.v0i0.4275",
         "url": "https://pubmed.ncbi.nlm.nih.gov/30178451/",
         "locator": "ABSTRACT: Ascorbic Acid Supplements and Kidney Stones Incidence Among Men and Women: A systematic review and meta-analysis.. | PURPOSE: The relationship of ascorbic acid (AA) supplements and risk of kidney stones among men and women is controversial.",
-        "dose": "1000-1499mg | 1500 mg | 1500mg | 250-499mg | 500-999 mg | 500-999mg",
+        "dose": "",
         "outcome": "Ascorbic Acid Supplements and Kidney Stones Incidence Among Men and Women: A systematic review and meta-analysis.. | PURPOSE: The relationship of ascorbic acid (AA) supplements and risk of kidney stones among men and women is controversial. | This systematic evaluation was performed to obtain comprehensive evidence about the relationship of AA supplements and risk of kidney stones among men and women."
-      },
-      {
-        "record_id": "REC-PUBMED-15987848",
-        "title": "Ascorbate increases human oxaluria and kidney stone risk.",
-        "doi": "10.1093/jn/135.7.1673",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/15987848/",
-        "locator": "ABSTRACT: Ascorbate increases human oxaluria and kidney stone risk..",
-        "dose": "1000 mg | 136 mg | 18 mg | 2000 mg",
-        "outcome": "Ascorbate increases human oxaluria and kidney stone risk.. | However, because AA is endogenously converted to oxalate and appears to increase the absorption of dietary oxalate, supplementation may increase the risk of kidney stones. | The effect of AA supplementation on urinary oxalate was studied in a randomized, crossover, controlled design in which subjects consumed a controlled diet in a university metabolic unit."
-      },
-      {
-        "record_id": "REC-PUBMED-10929425",
-        "title": "Ascorbic acid in idiopathic recurrent calcium urolithiasis in humans--does it have an abettor role in oxalate, and calcium oxalate crystallization?",
-        "doi": "10.1007/s002400000101",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/10929425/",
-        "locator": "ABSTRACT: Ascorbic acid in idiopathic recurrent calcium urolithiasis in humans--does it have an abettor role in oxalate, and calcium oxalate crystallization?. | The role of ascorbic acid (ASC) in the pathophysiology of renal calcium stones is not clear.",
-        "dose": "5 mg",
-        "outcome": "Ascorbic acid in idiopathic recurrent calcium urolithiasis in humans--does it have an abettor role in oxalate, and calcium oxalate crystallization?. | The role of ascorbic acid (ASC) in the pathophysiology of renal calcium stones is not clear. | We evaluated ASC in blood and urine of fasting male patients with idiopathic calcium urolithiasis (ICU) and healthy volunteers."
-      },
-      {
-        "record_id": "REC-PUBMED-1569652",
-        "title": "Ascorbic acid overdosing: a risk factor for calcium oxalate nephrolithiasis.",
-        "doi": "10.1016/s0022-5347(17)37521-3",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/1569652/",
-        "locator": "ABSTRACT: Ascorbic acid overdosing: a risk factor for calcium oxalate nephrolithiasis.. | Before and after administration, successive 6-hour urine specimens were collected from the nephrostomy tube and from the contralateral kidney directly into a preservative to stabilize ascorbic acid and oxalate. | Urinary oxalate was then measured enzymatically after removal of ascorbic acid with sodium nitrite.",
-        "dose": "000 mg | 500 mg | 6 to 13 mg",
-        "outcome": "Ascorbic acid overdosing: a risk factor for calcium oxalate nephrolithiasis.. | Before and after administration, successive 6-hour urine specimens were collected from the nephrostomy tube and from the contralateral kidney directly into a preservative to stabilize ascorbic acid and oxalate. | Urinary oxalate was then measured enzymatically after removal of ascorbic acid with sodium nitrite."
       },
       {
         "record_id": "REC-PUBMED-30276648",
@@ -293,8 +266,35 @@
         "doi": "10.1007/s13730-018-0366-6",
         "url": "https://pubmed.ncbi.nlm.nih.gov/30276648/",
         "locator": "ABSTRACT: Ascorbic acid-induced oxalate nephropathy: a case report and discussion of pathologic mechanisms.. | We present a patient whose intake of vitamin C supplements (2 g/day), exacerbated by predisposing factors of prior small bowel obstruction and resection, and benign prostate hyperplasia (BPH), resulted in acute kidney injury due to oxalate nephropathy. | We review past reports of vitamin C-induced oxalate nephropathy and discuss the underlying precipitating factors.",
-        "dose": "2 g",
+        "dose": "2 g/day",
         "outcome": "Ascorbic acid-induced oxalate nephropathy: a case report and discussion of pathologic mechanisms.. | Oxalate nephropathy is associated with hereditary hyperoxaluria, Crohn disease, and previous gastric or intestinal surgery, especially in the setting of increased oxalate intake or ethylene glycol ingestion. | We present a patient whose intake of vitamin C supplements (2 g/day), exacerbated by predisposing factors of prior small bowel obstruction and resection, and benign prostate hyperplasia (BPH), resulted in acute kidney injury due to oxalate nephropathy."
+      },
+      {
+        "record_id": "REC-PUBMED-29883396",
+        "title": "No Reported Renal Stones with Intravenous Vitamin C Administration: A Prospective Case Series Study.",
+        "doi": "10.3390/antiox7050068",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29883396/",
+        "locator": "ABSTRACT: No Reported Renal Stones with Intravenous Vitamin C Administration: A Prospective Case Series Study.. | A few cases associating high dose intravenous vitamin C (IVC) administration with renal stone formation have been reported in the literature, however, no long-term studies investigating IVC administration and reported renal stones have been carried out.",
+        "dose": "",
+        "outcome": "No Reported Renal Stones with Intravenous Vitamin C Administration: A Prospective Case Series Study.. | A few cases associating high dose intravenous vitamin C (IVC) administration with renal stone formation have been reported in the literature, however, no long-term studies investigating IVC administration and reported renal stones have been carried out. | Our aim was to measure the frequency of reported renal stones in patients receiving IVC therapy."
+      },
+      {
+        "record_id": "REC-PUBMED-40115864",
+        "title": "A case report of renal oxalosis and secondary hyperoxaluria due to chronic high vitamin C consumption.",
+        "doi": "10.5414/cncs111462",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40115864/",
+        "locator": "ABSTRACT: A case report of renal oxalosis and secondary hyperoxaluria due to chronic high vitamin C consumption.. | One of the causes of secondary hyperoxaluria is a high intake of vitamin C, which exceeds the renal excretion capacity, and can induce renal oxalosis. | We present a case involving a 67-year-old patient with chronic kidney disease and proteinuria, associated with secondary hyperoxaluria and renal oxalosis, who reported prolonged, excessive intake of vitamin C supplements.",
+        "dose": "3 g",
+        "outcome": "A case report of renal oxalosis and secondary hyperoxaluria due to chronic high vitamin C consumption.. | Renal oxalosis occurs from supersaturation of the urine with oxalate in the presence of calcium, resulting in deposition of calcium oxalate crystals within renal tissue and, consequently, progressive renal disease. | One of the causes of secondary hyperoxaluria is a high intake of vitamin C, which exceeds the renal excretion capacity, and can induce renal oxalosis."
+      },
+      {
+        "record_id": "REC-PUBMED-18042297",
+        "title": "Vitamin C-induced hyperoxaluria causing reversible tubulointerstitial nephritis and chronic renal failure: a case report.",
+        "doi": "10.1186/1752-1947-1-155",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/18042297/",
+        "locator": "ABSTRACT: Vitamin C-induced hyperoxaluria causing reversible tubulointerstitial nephritis and chronic renal failure: a case report.. | UNLABELLED: Vitamin C is a precursor of oxalate and promoter of its absorption, potentially causing hyperoxaluria. | Given his oxalate-rich diet, chronic diarrhea, and daily 680 mg vitamin C and furosemide, we postulated Ca oxalate-induced nephropathy, a diagnosis confirmed by documenting hyperoxaluria, and finding of diffuse intraluminal crystals and extensive interstitial fibrosis on biopsy.",
+        "dose": "680 mg",
+        "outcome": "Vitamin C-induced hyperoxaluria causing reversible tubulointerstitial nephritis and chronic renal failure: a case report.. | UNLABELLED: Vitamin C is a precursor of oxalate and promoter of its absorption, potentially causing hyperoxaluria. | Malabsorption causes Calcium (Ca) chelation with fatty acids, producing enteric hyperoxaluria."
       }
     ],
     "status": "automated_evidence_linked_personalized_check"

@@ -11,6 +11,10 @@ m=json.loads((D/"manifest.json").read_text(encoding="utf-8"));cm=json.loads((D/"
 title="항응고제 복용자 및 신장 관련 고위험군에서의 영양소 보충제 안전성 체계적 근거 검토와 개인맞춤 조회 시스템 구축"
 qname={"A1":"비타민 K와 항응고제","A2":"오메가-3와 항응고제","B1":"칼슘과 신장결석","B2":"비타민 D와 신장결석","B3":"비타민 C와 신장결석"}
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def clean_title(value):return str(value).strip().rstrip(".")
+def fmt_year(value):
+ try:return str(int(float(value)))
+ except (TypeError,ValueError):return "연도 미상"
 def table(doc,heads,rows):
  t=doc.add_table(rows=1,cols=len(heads));t.style="Table Grid"
  for i,x in enumerate(heads):t.rows[0].cells[i].text=str(x)
@@ -43,14 +47,14 @@ for q,g in core.groupby("question_id"):
  doc.add_heading(f"3.2.{list(qname).index(q)+1} {qname[q]}",2);doc.add_paragraph(f"{q} 질문의 핵심 문헌은 {len(g)}건이었다. 아래 문헌은 연구설계, 직접관련성, 용량·결과 및 원문 접근성을 종합해 우선 배치하였다.")
  doc.add_paragraph(f"이 가운데 명시적 용량이 관찰된 문헌은 {int((g.dose_extracted!='').sum())}건, 공개 원문 위치가 연결된 문헌은 {int((g.fulltext_locator!='').sum())}건이었다. 용량이 공란인 경우 수치가 없다고 단정하지 않고, 현재 확보한 초록에서 명시적 단위를 추출하지 못한 상태로 해석하였다.")
  doc.add_paragraph("핵심 문헌 목록은 임상 권고 순위가 아니라 후속 원문 확인의 우선순위다. 연구설계와 제목의 직접관련성을 우선하되, 실제 효과 방향과 적용 가능성은 대상자 특성, 비교군, 용량 및 결과 정의를 원문에서 확인해야 한다.")
- for _,r in g.head(5).iterrows():doc.add_paragraph(f"{r.title} ({r.year or '연도 미상'}). {('보고 용량: '+r.dose_extracted) if r.dose_extracted else '초록 내 명시적 용량 없음.'}",style="List Bullet")
+ for _,r in g.head(5).iterrows():doc.add_paragraph(f"{clean_title(r.title)} ({fmt_year(r.year)}). {('보고 용량: '+r.dose_extracted) if r.dose_extracted else '초록 내 명시적 용량 없음.'}",style="List Bullet")
 doc.add_heading("3.3 개인맞춤 조회 시스템",2);doc.add_paragraph("사용자는 전문 검색식을 작성하지 않고 다섯 보충제 중 하나를 선택한 뒤 용량, 약물, 병력과 검사값을 입력한다. 결과 화면은 입력 상태의 해석, 확인 이유와 우선 행동을 한 문단으로 제시하며, 세부 확인사항과 영문 원문은 접힌 영역에서 선택적으로 확인한다.")
 doc.add_heading("3.4 소프트웨어와 배포 검증",2);table(doc,["검증 항목","결과"],[["자동 테스트",f"{quality['tests']}개 통과"],["lint",quality["lint"]],["TypeScript",quality["typescript"]],["Production build",quality["production_build"]],["배포 환경","Vercel Production"],["고정 URL","https://nutrition-safety-engine.vercel.app"]])
 doc.add_heading("4. 고찰",1)
 for x in ["본 연구는 연구계획서의 핵심인 체계적 검색, 대상자·용량·안전성 결과 추출과 개인맞춤 조회를 하나의 재현 가능한 흐름으로 연결하였다. 검색 건수 자체보다 어떤 문헌에서 어떤 조건과 수치가 관찰됐는지 확인할 수 있게 한 점이 중요하다.","질문별 핵심 문헌 수를 동일하게 맞추지 않고 직접관련성 기준을 통과한 수만 보고하였다. 특히 오메가-3와 항응고제 질문은 12건으로 다른 질문보다 적어, 근거 규모의 차이를 화면과 논문에 그대로 반영하였다.","AI 요약은 사용자가 입력한 숫자와 단위를 보존하고 구조화된 확인사항만 문장화하도록 제한하였다. 세부 문헌을 기본 접힘으로 배치해 초보자의 인지 부담을 줄이면서도 검증 가능한 원문 경로를 유지하였다.","한계는 독립된 두 명의 사람 선별과 충돌 해결이 없고, 구독 데이터베이스와 일부 원문에 접근하지 못했다는 점이다. 따라서 자동 선별·추출의 오류 가능성이 있으며, 효과크기 통합이나 임상 권고 강도 평가는 수행하지 않았다."]:doc.add_paragraph(x)
 doc.add_heading("5. 결론",1);doc.add_paragraph(f"본 연구는 다섯 영양보충제 안전성 질문에 대해 {m['records']:,}건의 PICOS 직접 후보에서 대상자·용량·안전성 결과와 근거 위치를 구조화하고 핵심 문헌 {cm['core_records']:,}건을 선정하였다. 이를 개인 조건 기반 웹 조회 시스템으로 구현해 Production에 배포하였다. 결과는 임상 처방을 대신하지 않지만 상담 전에 확인할 조건과 근거 문헌을 빠르게 정리하는 재현 가능한 도구를 제공한다.")
 doc.add_heading("참고문헌",1)
-for i,r in core.sort_values(["question_id","priority_score"],ascending=[True,False]).iterrows():doc.add_paragraph(f"[{r.question_id}] {r.title}. {r.year}. {r.doi or r.source_url}",style="List Number")
+for i,r in core.sort_values(["question_id","priority_score"],ascending=[True,False]).iterrows():doc.add_paragraph(f"[{r.question_id}] {clean_title(r.title)}. {fmt_year(r.year)}. {r.doi or r.source_url}",style="List Number")
 doc.add_heading("부록. 재현 파일",1);table(doc,["파일","SHA-256"],[["picos_extraction.csv",sha(D/"picos_extraction.csv")],["core_evidence.csv",sha(D/"core_evidence.csv")],["personalized_rules.json",sha(D/"personalized_rules.json")],["manifest.json",sha(D/"manifest.json")]])
 doc.save(O/"systematic_review_thesis_v3.docx")
 md=[f"# {title}","","## 국문초록","",abstract]

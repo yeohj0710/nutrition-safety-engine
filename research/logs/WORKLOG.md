@@ -765,3 +765,11 @@
 - procedure: compute the 12–30 range from `core_manifest.json`; capture tests/lint/typecheck/build into `software_quality_v3.json`; make thesis builder and validator consume that generated quality record; add pinned Python v3 requirements
 - result: site, Markdown, DOCX, PDF, deployment record, acceptance audit, and G: README now report the same 16 test files/62 tests and question-specific 12–30 core range
 - verification: thesis 16 pages/217 paragraphs/4 tables, validator errors 0
+
+## 2026-07-12 — 용량 추출·성인 PICOS 범위 교정
+
+- phase/task: automated extraction and core eligibility defect correction
+- defects: comma/space thousands could yield `000 IU`; uppercase genotype allele `G` could be read as grams; laboratory `mg/dL` could be read as a dose; pediatric/animal titles could enter the adult core set; bibliography years rendered with `.0`
+- procedure: require ingredient-and-administration context in the same sentence, strengthen numeric/unit boundaries, prohibit laboratory concentration suffixes and uppercase `G`, exclude explicit pediatric/pregnancy/animal titles only from the core set, preserve all raw candidates, normalize bibliography title/year formatting
+- result: dose-observed records changed from the overinclusive 987 to 369; core set changed from 129 to 128 (A1 30/A2 12/B1 30/B2 30/B3 26); raw PICOS candidates remain 4,593
+- verification: malformed dose and out-of-scope title checks added to validators; no `.0` bibliography years remain

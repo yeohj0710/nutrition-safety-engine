@@ -1,12 +1,12 @@
 {
-  "core_records": 129,
+  "core_records": 128,
   "per_question": {
     "A1": 30,
     "A2": 12,
     "B1": 30,
     "B2": 30,
-    "B3": 27
+    "B3": 26
   },
   "rules": 5,
-  "source_sha256": "5668d5ce14f32e6e0cdae405402a2c1efdcdd21ec803bfd1626e9aee1e8de0b0"
+  "source_sha256": "83c8679b8c2baba3b2b235ebba3b596637919d2a410ac90ee0624048aa39efa1"
 }

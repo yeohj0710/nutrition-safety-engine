@@ -14,6 +14,8 @@ if not d.loc[d.doi.astype(bool),"doi"].astype(str).str.match(r"^10\.\d{4,9}/\S+$
 if not d.provider_id.astype(str).str.replace(r"\.0$","",regex=True).str.match(r"^\d+$").all():errors.append("invalid provider ID")
 if not d.extraction_authority.eq("automated_from_observed_title_abstract").all():errors.append("unexpected extraction authority")
 if d.human_screened.astype(str).str.lower().isin(["true","1"]).any():errors.append("unsubstantiated human-screened row")
+bad_dose=d[d.dose_extracted.astype(str).str.contains(r"(?:^|\| )000 IU|\b\d+-\d+\s+G(?:\b|$)|mg/dL",regex=True)]
+if len(bad_dose):errors.append("malformed or non-dose unit extraction:"+",".join(bad_dose.record_id))
 for q,n in m["per_question"].items():
  if len(d[d.question_id==q])!=n:errors.append(f"{q} count mismatch")
  if n<5:errors.append(f"{q} fewer than five core records")
@@ -26,6 +28,7 @@ for rule in rules:
 bad=[]
 for _,r in d.iterrows():
  t=r.title.lower()
+ if re.search(r"\b(infant|infants|child|children|pediatric|paediatric|adolescent|neonat\w*|newborn|pregnan\w*|mouse|mice|murine|rat|rats|canine|dog|dogs|frog|frogs|bovine|swine|pig|pigs)\b",t):bad.append(r.record_id)
  if r.question_id=="A1" and re.search(r"non-vitamin k antagonist|vitamin k antagonist (?:vs|versus)",t) and not re.search(r"dietary|intake|supplement|vitamin k1",t):bad.append(r.record_id)
  if r.question_id=="B2" and not re.search(r"supplement|repletion|intake|dose|administr|taking|therapy|treatment",t):bad.append(r.record_id)
 if bad:errors.append("direct relevance failures:"+",".join(bad))
