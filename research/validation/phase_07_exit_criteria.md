@@ -17,6 +17,7 @@ Safe-empty software boundary: `complete_verified`
 - Expert reviews: 0
 - Synthetic blind expert queue: 120 input-linked rows; engine outputs hidden; human fields 0
 - Independent gold authoring queue: 120 balanced blank rows (24 per question); authored/adjudicated gold 0
+- Independent gold operator guide: readable Korean role separation, JSON shape, U+001F row-hash recipe, balanced boundary coverage, and no-performance conditions; queue schema exact, 120 rows, 24 per question, human-authored rows 0
 - Queue preservation and progression: rebuild initializes or refreshes only queues with no human data; populated bytes are preserved; pending/partial/complete states are validated; preservation 3/3 and progress states 6/6
 - Independent performance path: adjudicated/hash-valid candidates promote to a separate curated JSONL; exactly 120 bundle-matched scenarios are required before sensitivity, precision, exact match, determinism, or critical-FN metrics are emitted; current 0 and `metrics: null`
 - Validated release deployment: none

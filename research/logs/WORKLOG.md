@@ -635,3 +635,9 @@
 - Found that the claim checklist and rule manual existed but were unreadable mojibake, despite valid empty registry headers.
 - Rebuilt both as Korean operator guides aligned to the production fail-closed gate: source byte/locator, verified extraction/RoB/GRADE, validated claim, expert review, and independent scenario requirements.
 - Validator proves active/template header identity at GRADE 22/22, claim 18/18, and rule 19/19; claim-rule mutation contracts pass 11/11 with production rows still 0.
+
+## 2026-07-12 Phase 07 independent-gold authoring guide
+
+- Found no actionable guide for the live 18-column independent-gold queue, while older validation documents were unreadable mojibake.
+- Added a Korean guide specifying two independent authors, a distinct adjudicator, engine-developer separation, JSON contracts, U+001F row hashing, question-balanced boundary coverage, and performance-reporting prohibitions.
+- Validator confirms exact queue schema, 120 rows, 24 per A1–B3 question, and human-authored rows 0; promotion remains 0 and performance remains null.

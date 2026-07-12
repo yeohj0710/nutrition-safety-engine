@@ -45,6 +45,7 @@ jobs:
       - run: python tools/validate_nonpubmed_screening_context.py
       - run: python tools/validate_extraction_data_dictionary.py
       - run: python tools/validate_synthesis_authoring_docs.py
+      - run: python tools/validate_independent_gold_authoring_guide.py
       - run: python tools/validate_clinicaltrials_proxy.py
       - run: python tools/validate_pmc_fulltext_candidates.py
       - run: python tools/validate_pmc_sentinel_fulltext.py

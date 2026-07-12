@@ -494,3 +494,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: treat unreadable claim/rule instructions as failed local readiness even when schemas and empty registries validate
 - rationale: accountable human authoring cannot follow a corrupted manual, and schema-only validation does not prevent overclaiming in prose
 - impact: authoring instructions now encode the same provenance, expert, independent-scenario, and no-legacy boundaries enforced by code
+
+## D-068 — Independent gold needs an executable human procedure
+
+- date: 2026-07-12
+- decision: bind the live queue to a readable role/JSON/hash guide and validate question balance before accepting any authored row
+- rationale: a blank 120-row shell and evaluator code do not tell independent humans how to create reproducible gold without seeing engine outputs
+- impact: external authors can produce hash-valid candidates; zero authored rows still yields null metrics and prohibited release

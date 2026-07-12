@@ -67,6 +67,7 @@
     "validate:nonpubmed-screening-context": "python tools/validate_nonpubmed_screening_context.py",
     "validate:extraction-data-dictionary": "python tools/validate_extraction_data_dictionary.py",
     "validate:synthesis-authoring-docs": "python tools/validate_synthesis_authoring_docs.py",
+    "validate:independent-gold-guide": "python tools/validate_independent_gold_authoring_guide.py",
     "validate:phase04:screening-lineage": "python tools/validate_phase04_screening_lineage.py",
     "typecheck": "npm run prepare:knowledge && tsc --noEmit"
   },
