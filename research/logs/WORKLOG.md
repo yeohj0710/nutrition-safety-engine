@@ -629,3 +629,9 @@
 - Audited the claimed-complete extraction dictionary and found irreversible replacement-character corruption plus fields that did not match the live 55-column extraction template.
 - Reconstructed a natural Korean operator guide and a machine-readable 55-row dictionary in exact template order, with types, allowed values, conditional requirements, and source-locator rules.
 - Added CI validation for 55/55 header identity, contiguous positions, complete definitions, and zero Unicode replacement characters.
+
+## 2026-07-12 Phase 06 authoring-guide repair
+
+- Found that the claim checklist and rule manual existed but were unreadable mojibake, despite valid empty registry headers.
+- Rebuilt both as Korean operator guides aligned to the production fail-closed gate: source byte/locator, verified extraction/RoB/GRADE, validated claim, expert review, and independent scenario requirements.
+- Validator proves active/template header identity at GRADE 22/22, claim 18/18, and rule 19/19; claim-rule mutation contracts pass 11/11 with production rows still 0.

@@ -20,6 +20,7 @@ Phase status: `blocked_external`
 - Thesis bundle builder: production provenance validator runs before output and checks source/report/extraction existence and validation, source-row/hash match, quote hash, question consistency, human verifiers, expert review, and independent scenario evidence
 - Future-safe gate: legitimate upstream human extraction/RoB rows are allowed; validated registry IDs must equal curated IDs, curated IDs/counts must equal the generated bundle, and completion remains only a candidate pending acceptance review
 - GRADE input boundary: `certainty_assessments.csv` exactly matches the 22-field protocol template and requires distinct reviewers, consensus date, rationale, outcome, and final certainty before a row is treated as validated
+- Human authoring guides: corrupted claim/rule manuals replaced with readable UTF-8 Korean guidance; active GRADE/claim/rule headers exactly match protocol templates at 22/18/19 fields; mandatory source→extraction→certainty→claim→rule, expert, independent-scenario, legacy, and thesis-mode safeguards validated in CI
 
 No synthesis or pooling is justified. Empty registries are an enforced safety state, not a null-effect research result. Phase 06 requires human-frozen studies, verified extraction/RoB, question-specific synthesis, and GRADE before any claim or rule can be validated.
 

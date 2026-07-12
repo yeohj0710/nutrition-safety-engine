@@ -487,3 +487,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: replace the unreadable extraction dictionary with a UTF-8 guide and exact machine-readable dictionary, and make encoding/header identity a CI gate
 - rationale: a file's existence or prior completion label does not prove that human extractors can read it or that it matches the current schema
 - impact: every extraction column now has an auditable Korean definition and conditional rule; no research value was inferred or populated
+
+## D-067 — Human-readable guidance is part of the evidence gate
+
+- date: 2026-07-12
+- decision: treat unreadable claim/rule instructions as failed local readiness even when schemas and empty registries validate
+- rationale: accountable human authoring cannot follow a corrupted manual, and schema-only validation does not prevent overclaiming in prose
+- impact: authoring instructions now encode the same provenance, expert, independent-scenario, and no-legacy boundaries enforced by code
