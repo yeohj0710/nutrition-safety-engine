@@ -64,6 +64,8 @@
     "build:ai-exploratory-map": "python tools/build_ai_exploratory_evidence_map.py",
     "validate:ai-exploratory-map": "python tools/validate_ai_exploratory_evidence_map.py",
     "validate:ai-exploratory-bundle": "python tools/validate_ai_exploratory_bundle.py",
+    "evaluate:ai-exploratory-scenarios": "tsx scripts/evaluate-ai-exploratory-scenarios.ts",
+    "validate:ai-exploratory-scenarios": "python tools/validate_ai_exploratory_scenarios.py",
     "validate:phase03:lineage": "python tools/validate_phase03_lineage.py",
     "validate:phase03:preservation": "python tools/validate_phase03_queue_preservation.py",
     "build:duplicate-review-context": "python tools/build_duplicate_review_context.py",

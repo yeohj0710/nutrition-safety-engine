@@ -550,3 +550,6 @@ Registry and KoreaMed records do not inherit PubMed classifier scores. They rema
 ## D-20260712-22 — Evidence-map rows and unique records use separate denominators
 
 Question overlap duplicates a record across record-question rows. V2 reports PMC access as both 5,653 mapped rows and 5,563 unique records and never substitutes either for included reports, studies, or full texts reviewed.
+## D-20260712-23 — V2 scenarios measure software behavior only
+
+The 120 synthetic fixtures may prove deterministic exact-term routing, provenance carriage, and absence of prohibited action/legacy leakage. They cannot estimate clinical sensitivity, precision, false-negative risk, expert agreement, or usability.

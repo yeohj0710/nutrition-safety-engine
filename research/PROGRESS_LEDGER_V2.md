@@ -7,7 +7,7 @@
 | AI 탐색 분류 | complete_verified | PubMed 19,961/19,961: retain 12,330, deprioritize 982, disagreement/uncertain 6,649; ClinicalTrials.gov 207·KoreaMed 62는 unranked 후보로 전량 보존 | 없음 |
 | 탐색 근거지도 | complete_verified | 20,230/20,230 source-bound rows; 초록 18,015, title-only 2,215; PMC locator 5,653 record-question rows/5,563 unique records; raw sources 104개 해시 검증 | 없음 |
 | 잠정 주장·탐색 엔진 | complete_verified | 5개 질문별 source-bound provisional claim, 5개 evidence-navigation rule; 임상행동 0; 53 tests, typecheck/build 통과 | 없음 |
-| 기술 시나리오 검증 | pending | 기존 synthetic fixtures 120개 | v2 금지행동·계보 평가 |
+| 기술 시나리오 검증 | complete_verified | synthetic fixtures 120개×3회; 결정성·정확 question routing·계보 120/120; 임상행동·legacy 누출·8개 near-match 오경로 0 | 없음 |
 | 한국어 논문·manifest | pending | 8쪽 비최종 checkpoint만 존재 | v2 결과 후 DOCX/PDF 생성 |
 
 v1 체계적 문헌고찰은 계속 `blocked_external`이며 v2 완료로 대체되지 않는다.

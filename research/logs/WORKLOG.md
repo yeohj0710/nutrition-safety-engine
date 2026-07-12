@@ -711,3 +711,9 @@
 - Added a separate `ai_exploratory` schema, bundle loader, deterministic engine, and API route.
 - The response schema structurally fixes `clinical_actions` to an empty tuple and excludes all validated-thesis action classes.
 - Tests increased to 53/53; typecheck and production build pass.
+## 2026-07-12 — Protocol v2 synthetic technical validation
+
+- Reused 120 clearly labeled synthetic boundary fixtures and executed each three times through the v2 engine.
+- Determinism, exact question routing, and source-provenance completeness were 120/120.
+- Clinical-action leakage, legacy leakage, and false routes across eight near-match negative cases were all 0.
+- The report explicitly prohibits independent-gold or clinical-performance interpretation.

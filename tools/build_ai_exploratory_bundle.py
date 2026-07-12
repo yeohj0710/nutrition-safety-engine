@@ -5,7 +5,7 @@ from collections import Counter
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]; MAP=ROOT/"data/curated_v2/evidence_map.csv"; MAN=ROOT/"research/synthesis/ai_exploratory_map_manifest.json"
 CLAIMS=ROOT/"data/curated_v2/provisional_claims.jsonl"; RULES=ROOT/"data/curated_v2/exploratory_rules.jsonl"; BUNDLE=ROOT/"src/generated/ai-exploratory-bundle.json"
-TERMS={"A1":["vitamin k","phylloquinone","menaquinone"],"A2":["omega-3","omega 3","fish oil","epa","dha","icosapent"],"B1":["calcium"],"B2":["vitamin d","cholecalciferol","ergocalciferol"],"B3":["vitamin c","ascorbic acid","ascorbate"]}
+TERMS={"A1":["vitamin k","phylloquinone","menaquinone"],"A2":["omega-3","omega-3 epa","omega 3","fish oil","epa","dha","icosapent"],"B1":["calcium"],"B2":["vitamin d","cholecalciferol","ergocalciferol"],"B3":["vitamin c","ascorbic acid","ascorbate"]}
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
  with MAP.open(encoding="utf-8-sig",newline="") as f:rows=list(csv.DictReader(f))

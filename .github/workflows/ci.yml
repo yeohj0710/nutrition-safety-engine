@@ -40,6 +40,8 @@ jobs:
       - run: python tools/build_ai_exploratory_evidence_map.py
       - run: python tools/validate_ai_exploratory_evidence_map.py
       - run: python tools/validate_ai_exploratory_bundle.py
+      - run: npm run evaluate:ai-exploratory-scenarios
+      - run: python tools/validate_ai_exploratory_scenarios.py
       - run: python tools/validate_phase02_evidence_manifest.py
       # Phase 03 full raw-PubMed rehash is local-only because 266 MB XML is not distributed in Git.
       - run: python tools/validate_phase03_queue_preservation.py
