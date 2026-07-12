@@ -559,3 +559,11 @@ The final v2 narrative may report corpus counts, observability, classifier agree
 ## D-20260712-25 — V2 completion never relabels v1 as complete
 
 The final manifest may mark only `2.0-ai-exploratory` complete. It must preserve the human-screened v1 systematic review as `blocked_external_not_relabelled` and must state that systematic-review, human-review, and clinical-recommendation claims are disallowed.
+
+## D-20260712-26 — V3 keeps the planned questions while separating automation from human authority
+
+V3 preserves questions A1–A2 and B1–B3, target populations, supplement exposure, dose extraction, safety outcomes, source locators and personalized lookup. Automated PICOS mapping and direct-evidence prioritization are reported as automated processes, not as human dual screening. Human duplicate screening, full-text double extraction, RoB/GRADE, independent gold and expert review remain external requirements and cannot be inferred from software tests.
+
+## D-20260712-27 — Runtime AI may explain but cannot create evidence or actions
+
+The user-facing API may use a runtime language model only to rewrite the selected structured checks into concise Korean. The model cannot select evidence, add numbers or URLs, diagnose, or direct supplement start, stop, or dose changes. Every generated paragraph is validated against input numbers and the structured payload; rejected, unavailable or failed generation returns a deterministic Korean fallback. Inputs are not persisted by application code and responses use `Cache-Control: no-store`.
