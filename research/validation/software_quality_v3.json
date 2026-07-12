@@ -1,0 +1,12 @@
+{
+  "schema_version": "software-quality-v3.0",
+  "captured_at": "2026-07-12T07:45:49.137Z",
+  "test_files": 16,
+  "tests": 62,
+  "test_failures": 0,
+  "lint": "passed",
+  "typescript": "passed",
+  "production_build": "passed",
+  "test_report": "research/validation/vitest_v3.json",
+  "test_report_sha256": "1435fcf8b65813f281b4f746c0c8313cecc6dfc99cd34b8ebbd1f2cb7c7fbaf4"
+}

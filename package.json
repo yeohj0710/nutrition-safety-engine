@@ -68,6 +68,7 @@
     "validate:ai-exploratory-scenarios": "python tools/validate_ai_exploratory_scenarios.py",
     "validate:ai-exploratory-thesis": "python tools/validate_ai_exploratory_thesis.py",
     "validate:systematic-review-v3": "python tools/validate_core_evidence_v3.py && python tools/validate_systematic_review_thesis_v3.py",
+    "capture:software-quality-v3": "node tools/capture_software_quality_v3.mjs",
     "capture:ai-exploratory-smoke": "python tools/capture_ai_exploratory_smoke.py",
     "validate:ai-exploratory-smoke": "python tools/validate_ai_exploratory_smoke.py",
     "build:ai-exploratory-final-manifest": "python tools/build_ai_exploratory_final_manifest.py",

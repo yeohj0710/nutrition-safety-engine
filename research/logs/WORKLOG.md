@@ -757,3 +757,11 @@
 - browser evidence: Playwright desktop end-to-end calcium example and 390×844 mobile render; no horizontal clipping observed
 - automated evidence: malformed JSON, oversized health text, and non-string field regressions added; 16 files/62 tests, lint, typecheck, and Production build pass
 - limitation: technical accessibility inspection is not a human usability study
+
+## 2026-07-12 — 사이트·논문 품질 수치 단일화
+
+- phase/task: cross-artifact numeric consistency
+- problem: website described all five questions as 30 core records although A2 has 12; thesis still reported the earlier 59-test gate after the suite grew to 62
+- procedure: compute the 12–30 range from `core_manifest.json`; capture tests/lint/typecheck/build into `software_quality_v3.json`; make thesis builder and validator consume that generated quality record; add pinned Python v3 requirements
+- result: site, Markdown, DOCX, PDF, deployment record, acceptance audit, and G: README now report the same 16 test files/62 tests and question-specific 12–30 core range
+- verification: thesis 16 pages/217 paragraphs/4 tables, validator errors 0
