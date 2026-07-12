@@ -816,4 +816,12 @@
 - confirmed the G-drive manifest is valid UTF-8 JSON; an initial PowerShell parse failed because Windows PowerShell decoded UTF-8 as ANSI
 - added a UTF-8-aware validator that compares manifest rows with the recursive file set and checks every recorded byte size and SHA-256
 - validation result before packaging the validator: 70 files, missing/unlisted/size/SHA errors 0
+
+## 2026-07-12 — Final folder flattening and legacy duplicate cleanup
+
+- compared root and nested thesis hashes before cleanup and preserved the current 16-page v3 DOCX/PDF/Markdown
+- removed 23 obsolete or accidental delivery entries: stale v2 thesis/report/data copies, older reproduction scripts, and root files mistakenly named as folders
+- updated `00_먼저_읽기.md` to point directly to the root final thesis and the current v3 data, code and validation folders
+- rebuilt and recursively validated the final manifest: 48 current files, missing/unlisted/size/SHA errors 0
+- confirmed the root final PDF and the submission-folder PDF have identical SHA-256
 - boundary: model output remains wording assistance only and cannot add clinical facts or actions
