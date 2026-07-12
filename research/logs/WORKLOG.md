@@ -599,3 +599,9 @@
 - Added byte-exact preservation, source-drift rejection, pending/in-progress/complete-candidate validation, and CI regression coverage.
 - Verified Phase 02 evidence locally: 21 artifacts, 8 main PRESS rows, 40 Korean PRESS rows; external human completion remains open.
 - Verification: preservation 2/2, Phase 02 validator pass, typecheck pass, Vitest 14 files / 51 tests pass.
+
+## 2026-07-12 Phase 03 duplicate-review context
+
+- Joined every one of 342 exact duplicate candidates to both source records with PMID, DOI, title, first author, year, journal, and raw XML location.
+- Prioritized review without making a duplicate decision: 36 exact DOI, 22 exact title plus author/year, and 284 title-collision manual reviews.
+- Bound the 342-row context to source and output SHA-256; validator confirms exact coverage and `context_only_no_decision` status.

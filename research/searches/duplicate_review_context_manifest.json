@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "status": "synthetic_proxy_context_no_decision_authority",
+  "record_count": 19609,
+  "candidate_count": 342,
+  "output_rows": 342,
+  "priorities": {
+    "critical_exact_doi": 36,
+    "high_title_author_year": 22,
+    "manual_title_collision_review": 284
+  },
+  "inputs": {
+    "records.csv": "a904c9c2a333a30e33898ba46a8099b75f8284d7e97b9f568e30e773a1bdd1ae",
+    "duplicate_candidates.csv": "4350d7dec4527b0b24f389f7c047deab8214ba2a29d084eb205a514c15a17aa7"
+  },
+  "output": {
+    "path": "data/interim/duplicate_review_context.csv",
+    "sha256": "edd1db5cb0374547a079e956bcaf4e7230dc198a7c5e564f10fe592817f55aad"
+  }
+}

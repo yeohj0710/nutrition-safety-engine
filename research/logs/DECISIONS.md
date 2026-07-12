@@ -452,3 +452,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: regenerate the Korean PRESS queue only while human fields are empty; preserve populated bytes when source-bound static fields match and fail on lineage drift
 - rationale: rerunning deterministic builders must not destroy independent human judgments
 - impact: valid human progress can move from pending to in-progress and complete-candidate without being erased or falsely rejected
+
+## D-062 — Enrich duplicate review without deciding it
+
+- date: 2026-07-12
+- decision: expose paired bibliographic and raw-file context plus deterministic review priority, but never an automated duplicate/nonduplicate recommendation
+- rationale: exact titles can be distinct publications, while exact DOI matches deserve first review; both still require accountable human judgment
+- impact: reviewers can assess all 342 pairs from one source-bound file without treating proxy logic as a screening decision

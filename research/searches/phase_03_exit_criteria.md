@@ -17,6 +17,7 @@ Proxy pipeline status: `complete_verified`
 | Normalized records | PubMed: 19,961 retrieval instances/19,609 unique PMIDs; registry: 207 retrieval instances/201 unique NCT IDs | pass_proxy_only |
 | Duplicate candidate generation | 342 exact DOI/title pairs | pass_proxy_only |
 | Duplicate candidate independent recomputation | 342/342 pairs and reasons exact; 5/5 corruption mutations rejected | pass_proxy_only |
+| Human duplicate-review context | 342/342 rows include paired PMID/DOI/title/author/year/journal/raw-file provenance; 36 exact-DOI, 22 title+author+year, 284 manual title-collision priority; no decision field | pass_proxy_only |
 | Human duplicate decisions | 0/342 | blocked_external |
 | Report→study linkage | 19,609 report candidates; 0 human study links | blocked_external |
 | Human queue preservation/progression | normalizer preserves populated dedup/linkage files byte-for-byte; lineage changes fail without write; pending/partial/complete-candidate states validated; preservation 3/3 | pass_local |
