@@ -9,6 +9,7 @@ Proxy queue status: `complete_verified`
 | Screening storage and manual | pass_local | empty human-decision schema, full-text schemas, copied design manual |
 | Priority dry run | pass_proxy_only | two deterministic proxy outputs; 19,961 units; 4,224 disagreements |
 | All retrieval units retained for people | pass_proxy_only | PubMed 19,961 + ClinicalTrials.gov 207 + KoreaMed 62 queues; no prefilled decision |
+| PubMed human review context | pass_proxy_only | 19,961/19,961 rows pair title, abstract, authors, year, journal, publication type, DOI/PMID, two proxy reasons, and raw XML; abstracts present 18,015 and absent 1,946; decision authority none |
 | Retrieval → proxy → human queue lineage | pass_proxy_only | exact record-question key equality across PubMed retrievals, both proxy profiles, review queue, and decision shells; registry/KoreaMed retrieval queues exact |
 | Screening boundary mutations | pass_proxy_only | 6/6 missing-unit, authority, decision, title, pilot-scope, and registry-loss mutations rejected |
 | AI-only exclusions | pass | 0 |

@@ -611,3 +611,9 @@
 - Joined all 500 ClinicalTrials.gov PMID references to trial metadata, exact registry citation text, and raw registry response location.
 - Of 500 links, 146 also occur in the current 19,609-record PubMed proxy corpus and bind to PubMed XML; the other 354 remain explicitly registry-citation-only rather than fabricated as missing search records.
 - Preserved 46 RESULT, 127 DERIVED, and 327 BACKGROUND reference types as review priority only; no report–study linkage decision was generated.
+
+## 2026-07-12 Phase 04 screening review context
+
+- Built a 19,961-row retrieval-level human review file containing title, abstract, authors, year, journal, publication types, DOI/PMID, both proxy explanations, and raw PubMed XML location.
+- Abstracts are available for 18,015 retrieval units; 1,946 remain explicitly title-only. All 4,224 proxy disagreements remain visible.
+- Every row states `decision_authority=none` and `context_only_not_a_screening_decision`; no human decision field or AI exclusion was populated.

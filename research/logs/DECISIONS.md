@@ -466,3 +466,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: use ClinicalTrials.gov citation and raw-response provenance for every PMID reference, and attach PubMed XML metadata only when that PMID is actually present in the current search corpus
 - rationale: a registry reference can be valid linkage evidence without being retrieved by the question-specific PubMed proxy; inventing a PubMed search record would corrupt retrieval lineage
 - impact: 500 candidates are reviewable, while 354 out-of-corpus references remain visibly distinct from the 146 dual-source records
+
+## D-064 — Separate screening context from decisions
+
+- date: 2026-07-12
+- decision: provide one source-bound row per retrieval with complete available bibliographic/abstract context and both proxy explanations, but keep all human decision columns in the separate screening decision ledger
+- rationale: reviewers need the source text and prioritization rationale together; mixing them with decisions risks accidental AI-only exclusion or overwritten judgments
+- impact: 19,961 PubMed units are directly reviewable while proxy outputs retain zero decision authority
