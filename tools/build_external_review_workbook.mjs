@@ -9,6 +9,7 @@ const manifestPath = path.join(root, "research/review_queue/external_review_hand
 const sourceFiles = [
   "research/review_queue/PRESS_review.csv", "research/review_queue/korean_db_PRESS_review.csv",
   "data/interim/duplicate_review_context.csv", "data/interim/registry_link_review_context.csv",
+  "data/interim/deduplication_decisions.csv", "data/interim/registry_linkage_decisions.csv",
   "data/interim/screening_pilot_queue.csv",
 ];
 const digest = (bytes) => crypto.createHash("sha256").update(bytes).digest("hex");
@@ -63,10 +64,31 @@ function addDataSheet(workbook, name, rows, editableHeaders = []) {
     else if (/query|allowed_decisions|reason/i.test(header)) columnWidth = 28;
     else columnWidth = Math.max(13, Math.min(22, header.length + 3));
     range.format.columnWidth = columnWidth;
-    if (editableHeaders.includes(header)) range.format.fill = "#FFF8D6";
+    if (editableHeaders.includes(header)) {
+      const dataRange = sheet.getRange(`${colName(column + 1)}2:${colName(column + 1)}${height}`);
+      dataRange.format.fill = "#FFF8D6";
+      if (header === "decision" && name === "Dedup Context") dataRange.dataValidation = {rule: {type: "list", values: ["duplicate", "not_duplicate", "uncertain"]}};
+      if (header === "decision" && name === "Registry Links") dataRange.dataValidation = {rule: {type: "list", values: ["same_study_report", "not_same_study", "uncertain"]}};
+      if (header === "status") dataRange.dataValidation = {rule: {type: "list", values: ["pending_external_human_review", "in_progress_external_human_review", "complete_candidate_requires_validation"]}};
+    }
   }
   sheet.tables.add(`A1:${colName(width)}${height}`, true, `${name.replace(/[^A-Za-z0-9]/g, "")}Table`);
   return sheet;
+}
+
+function joinRows(left, right, key, appendHeaders) {
+  const rightHeader = right[0];
+  const keyIndex = rightHeader.indexOf(key);
+  const indices = appendHeaders.map(header => rightHeader.indexOf(header));
+  if (keyIndex < 0 || indices.some(index => index < 0)) throw new Error(`join columns missing for ${key}`);
+  const index = new Map(right.slice(1).map(row => [row[keyIndex], row]));
+  const leftKey = left[0].indexOf(key);
+  if (leftKey < 0) throw new Error(`left join key missing: ${key}`);
+  return [left[0].concat(appendHeaders), ...left.slice(1).map(row => {
+    const match = index.get(row[leftKey]);
+    if (!match) throw new Error(`join row missing: ${row[leftKey]}`);
+    return row.concat(indices.map(column => match[column]));
+  })];
 }
 
 const workbook = Workbook.create();
@@ -77,7 +99,7 @@ readme.getRange("A1:F1").merge();
 readme.getRange("A1:F1").format = {fill: "#1B64DA", font: {bold: true, color: "#FFFFFF", size: 18}, rowHeight: 32};
 readme.getRange("A3:B11").values = [
   ["상태", "외부 사람 검토용 복사본 - 연구결과 아님"],
-  ["사용 순서", "PRESS Main → PRESS Korean → Dedup Context → Registry Links → Screening Pilot"],
+  ["사용 순서", "PRESS Main → PRESS Korean → Dedup Context → Registry Links → Registry Decisions → Screening Pilot"],
   ["노란 셀", "사람이 입력할 수 있는 필드. 원본 CSV로 다시 반영한 뒤 validator 실행"],
   ["금지", "AI 단독 제외, proxy를 사람 판정으로 사용, legacy_unverified 승격"],
   ["PRESS", "모든 행에 reviewer/date/allowed decision 필요"],
@@ -92,15 +114,20 @@ readme.getRange("A3:B11").format.autofitRows(); readme.getRange("A:A").format.co
 
 addDataSheet(workbook, "PRESS Main", await csv("research/review_queue/PRESS_review.csv"), ["reviewer_id","reviewed_at","decision","comments","required_revision"]);
 addDataSheet(workbook, "PRESS Korean", await csv("research/review_queue/korean_db_PRESS_review.csv"), ["reviewer_id","reviewed_at","decision","comments","required_revision"]);
-addDataSheet(workbook, "Dedup Context", await csv("data/interim/duplicate_review_context.csv"));
+const dedupEditable = ["decision", "canonical_record_id", "duplicate_cluster_id", "duplicate_reason", "verified_by", "verified_at", "status"];
+const dedupRows = joinRows(await csv("data/interim/duplicate_review_context.csv"), await csv("data/interim/deduplication_decisions.csv"), "candidate_id", dedupEditable);
+addDataSheet(workbook, "Dedup Context", dedupRows, dedupEditable);
 addDataSheet(workbook, "Registry Links", await csv("data/interim/registry_link_review_context.csv"));
+const registryEditable = ["decision", "study_id", "report_id", "reason", "verified_by", "verified_at", "status"];
+addDataSheet(workbook, "Registry Decisions", await csv("data/interim/registry_linkage_decisions.csv"), registryEditable);
 addDataSheet(workbook, "Screening Pilot", await csv("data/interim/screening_pilot_queue.csv"));
 
 await fs.mkdir(path.dirname(output), {recursive: true});
 const blob = await SpreadsheetFile.exportXlsx(workbook); await blob.save(output);
 const checks = [];
-for (const sheetName of ["README", "PRESS Main", "PRESS Korean", "Dedup Context", "Registry Links", "Screening Pilot"]) {
-  const preview = await workbook.render({sheetName, range: sheetName === "README" ? "A1:F11" : "A1:H18", scale: 1, format: "png"});
+for (const sheetName of ["README", "PRESS Main", "PRESS Korean", "Dedup Context", "Registry Links", "Registry Decisions", "Screening Pilot"]) {
+  const previewRange = sheetName === "README" ? "A1:F11" : sheetName === "Dedup Context" ? "Y1:AE18" : sheetName === "Registry Decisions" ? "G1:M18" : "A1:H18";
+  const preview = await workbook.render({sheetName, range: previewRange, scale: 1, format: "png"});
   const previewPath = path.join(root, "work/spreadsheet_qa", `${sheetName.replace(/ /g, "_")}.png`);
   await fs.mkdir(path.dirname(previewPath), {recursive: true});
   await fs.writeFile(previewPath, new Uint8Array(await preview.arrayBuffer()));
@@ -111,9 +138,9 @@ const manifest = {
   status: "external_human_handoff_copy_not_research_results",
   workbook_path: path.relative(root, output).replaceAll("\\", "/"),
   workbook_sha256: digest(await fs.readFile(output)),
-  sheets: {README: 9, PRESS_Main: 8, PRESS_Korean: 40, Dedup_Context: 342, Registry_Links: 500, Screening_Pilot: 50},
+  sheets: {README: 9, PRESS_Main: 8, PRESS_Korean: 40, Dedup_Context: 342, Registry_Links: 500, Registry_Decisions: 500, Screening_Pilot: 50},
   sources: Object.fromEntries(await Promise.all(sourceFiles.map(async relative => [relative, digest(await fs.readFile(path.join(root, relative)))]))),
-  visual_qa: {rendered_sheets: checks.map(item => item.sheetName), inspected_sheets: 6, defects_open: 0},
+  visual_qa: {rendered_sheets: checks.map(item => item.sheetName), inspected_sheets: 7, defects_open: 0},
   authority_note: "Edits must be reconciled to canonical CSV files and pass validators before use.",
 };
 await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2) + "\n", "utf8");

@@ -2,13 +2,14 @@
   "schema_version": "1.0.0",
   "status": "external_human_handoff_copy_not_research_results",
   "workbook_path": "research/review_queue/external_review_handoff.xlsx",
-  "workbook_sha256": "039304696063e76fe397cc21d36e828fa5cae439b2d4fa432c12e540ce51894d",
+  "workbook_sha256": "258d23c66c1c9871075c8160b8d5ba6ae3a4c129f2a7b584b5b710378f1e1aab",
   "sheets": {
     "README": 9,
     "PRESS_Main": 8,
     "PRESS_Korean": 40,
     "Dedup_Context": 342,
     "Registry_Links": 500,
+    "Registry_Decisions": 500,
     "Screening_Pilot": 50
   },
   "sources": {
@@ -16,6 +17,8 @@
     "research/review_queue/korean_db_PRESS_review.csv": "b561d62d7f7eee7e5c18211558db3ac4692d9a0827d0a2914783679784534e4b",
     "data/interim/duplicate_review_context.csv": "edd1db5cb0374547a079e956bcaf4e7230dc198a7c5e564f10fe592817f55aad",
     "data/interim/registry_link_review_context.csv": "9e2c87e208af528ce561ad3829068864d10b812a41911db2ff2345043817c48b",
+    "data/interim/deduplication_decisions.csv": "0aaaa0cdbe4d731e0382285c8aa916af5ab328bbc5719f4cf0a71c3b75ca8b51",
+    "data/interim/registry_linkage_decisions.csv": "55e7706810204b2ce6493fdcc10bbce8ec7fe2b1839332d0256c454f231e8706",
     "data/interim/screening_pilot_queue.csv": "7923a07dbd65b839160e2dfe8cd5275ea5b8b29fce6fd3e01abe9525ffee1305"
   },
   "visual_qa": {
@@ -25,9 +28,10 @@
       "PRESS Korean",
       "Dedup Context",
       "Registry Links",
+      "Registry Decisions",
       "Screening Pilot"
     ],
-    "inspected_sheets": 6,
+    "inspected_sheets": 7,
     "defects_open": 0
   },
   "authority_note": "Edits must be reconciled to canonical CSV files and pass validators before use."

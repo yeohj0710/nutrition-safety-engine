@@ -27,18 +27,21 @@ def main() -> int:
         if not path.is_file() or sha(path) != expected:
             errors.append(f"source hash mismatch: {relative}")
     if manifest.get("sheets") != {"README": 9, "PRESS_Main": 8, "PRESS_Korean": 40,
-                                  "Dedup_Context": 342, "Registry_Links": 500, "Screening_Pilot": 50}:
+                                  "Dedup_Context": 342, "Registry_Links": 500, "Registry_Decisions": 500,
+                                  "Screening_Pilot": 50}:
         errors.append("workbook sheet row-count contract mismatch")
-    if manifest.get("visual_qa") != {"rendered_sheets": ["README", "PRESS Main", "PRESS Korean", "Dedup Context", "Registry Links", "Screening Pilot"],
-                                      "inspected_sheets": 6, "defects_open": 0}:
-        errors.append("six-sheet visual QA evidence missing")
+    if manifest.get("visual_qa") != {"rendered_sheets": ["README", "PRESS Main", "PRESS Korean", "Dedup Context", "Registry Links", "Registry Decisions", "Screening Pilot"],
+                                      "inspected_sheets": 7, "defects_open": 0}:
+        errors.append("seven-sheet visual QA evidence missing")
     try:
         with zipfile.ZipFile(WORKBOOK) as archive:
             workbook_xml = archive.read("xl/workbook.xml").decode("utf-8")
-            if any(name not in workbook_xml for name in ("README", "PRESS Main", "PRESS Korean", "Dedup Context", "Registry Links", "Screening Pilot")):
+            if any(name not in workbook_xml for name in ("README", "PRESS Main", "PRESS Korean", "Dedup Context", "Registry Links", "Registry Decisions", "Screening Pilot")):
                 errors.append("one or more workbook sheets missing")
     except (zipfile.BadZipFile, KeyError):
         errors.append("invalid XLSX package")
+    if len(manifest.get("sources", {})) != 7:
+        errors.append("expected seven canonical workbook sources")
     result = {"errors": errors, "workbook_sha256": sha(WORKBOOK), "sources": len(manifest.get("sources", {})),
               "sheets": len(manifest.get("sheets", {})), "status": "valid" if not errors else "invalid"}
     print(json.dumps(result, ensure_ascii=False, indent=2))

@@ -70,6 +70,9 @@
     "validate:independent-gold-guide": "python tools/validate_independent_gold_authoring_guide.py",
     "validate:thesis-writing-guides": "python tools/validate_thesis_writing_guides.py",
     "validate:external-review-workbook": "python tools/validate_external_review_workbook.py",
+    "build:registry-linkage-decisions": "python tools/build_registry_linkage_decisions.py",
+    "validate:registry-linkage-decisions": "python tools/validate_registry_linkage_decisions.py",
+    "validate:registry-linkage-preservation": "python tools/validate_registry_linkage_preservation.py",
     "validate:phase04:screening-lineage": "python tools/validate_phase04_screening_lineage.py",
     "typecheck": "npm run prepare:knowledge && tsc --noEmit"
   },

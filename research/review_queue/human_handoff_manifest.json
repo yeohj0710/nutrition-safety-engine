@@ -10,8 +10,8 @@
     "independent_validation",
     "finalization"
   ],
-  "queue_count": 31,
-  "total_rows": 40509,
+  "queue_count": 32,
+  "total_rows": 41009,
   "rows_with_any_human_data": 0,
   "rows_complete_candidate": 0,
   "all_actionable_queues_complete_candidate": false,
@@ -77,6 +77,30 @@
       ],
       "minimum_completion_fields": [
         "decision",
+        "verified_by",
+        "verified_at"
+      ],
+      "rows_with_any_human_data": 0,
+      "rows_complete_candidate": 0,
+      "progress_state": "not_started"
+    },
+    {
+      "queue_id": "P3_registry_linkage",
+      "path": "data/interim/registry_linkage_decisions.csv",
+      "sha256": "55e7706810204b2ce6493fdcc10bbce8ec7fe2b1839332d0256c454f231e8706",
+      "size_bytes": 72986,
+      "row_count": 500,
+      "human_entry_fields": [
+        "decision",
+        "study_id",
+        "report_id",
+        "reason",
+        "verified_by",
+        "verified_at"
+      ],
+      "minimum_completion_fields": [
+        "decision",
+        "reason",
         "verified_by",
         "verified_at"
       ],

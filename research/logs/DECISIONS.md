@@ -515,3 +515,10 @@ Status: superseded after live re-access on 2026-07-10.
 - decision: provide one visually checked external-review workbook while requiring all completed values to be reconciled to canonical CSV files and revalidated
 - rationale: a workbook reduces file-switching for human reviewers, but parallel editable authorities would break provenance and regeneration safety
 - impact: external review can start more easily without changing the fail-closed research data model
+
+## D-071 — Registry linkage requires its own canonical human ledger
+
+- date: 2026-07-12
+- decision: store each of 500 registry–PubMed linkage judgments in a preserved CSV ledger and expose it as a separate workbook sheet beside read-only context
+- rationale: context and priority cannot substitute for an accountable same-study/not-same/uncertain decision with verifier and timestamp
+- impact: human linkage can now progress without editing generated context or allowing automated linkage authority

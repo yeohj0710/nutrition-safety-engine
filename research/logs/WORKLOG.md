@@ -653,3 +653,9 @@
 - Packaged the actionable PRESS queues, 342-pair duplicate context, 500-link registry context, and 50-row screening training pilot into a six-sheet XLSX convenience copy.
 - Highlighted editable human fields, froze headers/identifiers, preserved canonical IDs and context, and stated that CSV files remain authoritative.
 - Rendered and visually inspected all six sheets after width/wrap repair; source/workbook SHA-256 manifest and XLSX package validator pass with defects open 0.
+
+## 2026-07-12 actionable deduplication/linkage workbook
+
+- Found that the first workbook revision exposed duplicate and registry context but lacked canonical registry-linkage decision fields.
+- Added a 500-row registry linkage decision queue with allowed human decisions, study/report IDs, reason, verifier/time, future-safe states, source-drift rejection, and byte preservation.
+- Joined dedup decision fields to its context and added a separate Registry Decisions sheet; all seven sheets were re-rendered and visually checked after resolving a renderer defect in the far-right combined layout.
