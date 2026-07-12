@@ -38,6 +38,8 @@ def main() -> int:
     allowed_link = {"", "same_report", "not_same_report", "uncertain"}
     if any(row["human_link_decision"] not in allowed_link for row in links):
         errors.append("KoreaMed links contain invalid human decisions")
+    if any(bool(row["human_link_decision"]) != all(row.get(field, "") for field in ("link_reason", "verified_by", "verified_at")) for row in links):
+        errors.append("KoreaMed link decisions require reason, verifier, and timestamp")
     queue_fields = ("reviewer_1_id", "reviewer_1_decision", "reviewer_2_id", "reviewer_2_decision", "adjudicator_id", "final_decision")
     allowed_screen = {"", "include", "exclude", "uncertain"}
     if any(row["reviewer_1_decision"] not in allowed_screen or row["reviewer_2_decision"] not in allowed_screen or row["final_decision"] not in allowed_screen for row in queue):

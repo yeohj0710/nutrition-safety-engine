@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "external_human_handoff_copy_not_research_results",
   "workbook_path": "research/review_queue/external_review_handoff.xlsx",
-  "workbook_sha256": "9d7b4bbe38c020f37f86ae33c3859eb603a1ae322279f58d8637d65dceb3d8f5",
+  "workbook_sha256": "108f0ce6b662587d666f1bdccc9332170d38b5549e2a5ba3ee13e84ba8be23da",
   "sheets": {
     "README": 9,
     "PRESS_Main": 8,
@@ -10,6 +10,7 @@
     "Dedup_Context": 342,
     "Registry_Links": 500,
     "Registry_Decisions": 500,
+    "KoreaMed_Links": 35,
     "Screening_Pilot": 50,
     "Pilot_Decisions": 50
   },
@@ -21,7 +22,8 @@
     "data/interim/deduplication_decisions.csv": "0aaaa0cdbe4d731e0382285c8aa916af5ab328bbc5719f4cf0a71c3b75ca8b51",
     "data/interim/registry_linkage_decisions.csv": "55e7706810204b2ce6493fdcc10bbce8ec7fe2b1839332d0256c454f231e8706",
     "data/interim/screening_pilot_queue.csv": "bf522a63e14452e3c38aa99a5c7f0f2dd7828672486119f27e655396b3ca5279",
-    "data/interim/screening_review_context.csv": "0cbdbd117d551331d9425fd9e8435012f9c5e6b1f2c5e53860d5e0c15b67a6b4"
+    "data/interim/screening_review_context.csv": "0cbdbd117d551331d9425fd9e8435012f9c5e6b1f2c5e53860d5e0c15b67a6b4",
+    "data/interim/koreamed_pubmed_link_candidates.csv": "4c017df4bf6be3eafcfb6096ba709865b65a0cd1daa90957b3fa8805503e53e9"
   },
   "visual_qa": {
     "rendered_sheets": [
@@ -31,10 +33,11 @@
       "Dedup Context",
       "Registry Links",
       "Registry Decisions",
+      "KoreaMed Links",
       "Screening Pilot",
       "Pilot Decisions"
     ],
-    "inspected_sheets": 8,
+    "inspected_sheets": 9,
     "defects_open": 0
   },
   "authority_note": "Edits must be reconciled to canonical CSV files and pass validators before use."

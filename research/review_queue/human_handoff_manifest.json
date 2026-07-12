@@ -10,8 +10,8 @@
     "independent_validation",
     "finalization"
   ],
-  "queue_count": 33,
-  "total_rows": 41059,
+  "queue_count": 34,
+  "total_rows": 41094,
   "rows_with_any_human_data": 0,
   "rows_complete_candidate": 0,
   "all_actionable_queues_complete_candidate": false,
@@ -232,6 +232,28 @@
         "reviewer_2_id",
         "reviewer_2_decision",
         "final_decision"
+      ],
+      "rows_with_any_human_data": 0,
+      "rows_complete_candidate": 0,
+      "progress_state": "not_started"
+    },
+    {
+      "queue_id": "P4_koreamed_pubmed_linkage",
+      "path": "data/interim/koreamed_pubmed_link_candidates.csv",
+      "sha256": "4c017df4bf6be3eafcfb6096ba709865b65a0cd1daa90957b3fa8805503e53e9",
+      "size_bytes": 4255,
+      "row_count": 35,
+      "human_entry_fields": [
+        "human_link_decision",
+        "link_reason",
+        "verified_by",
+        "verified_at"
+      ],
+      "minimum_completion_fields": [
+        "human_link_decision",
+        "link_reason",
+        "verified_by",
+        "verified_at"
       ],
       "rows_with_any_human_data": 0,
       "rows_complete_candidate": 0,

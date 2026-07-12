@@ -532,3 +532,6 @@ Status: superseded after live re-access on 2026-07-10.
 ## D-20260712-16 — Non-PubMed review queues are append-only with respect to human work
 
 ClinicalTrials.gov screening, KoreaMed screening, and KoreaMed–PubMed linkage generators may refresh an undecided queue. Once a human-authority field is populated, regeneration must preserve the file byte-for-byte unless static source columns match; source drift then fails closed and requires an explicit migration.
+## D-20260712-17 — KoreaMed exact-title matches remain human linkage candidates
+
+An exact normalized title is candidate-generation evidence, not a report identity decision. Every candidate requires an allowed decision plus a written reason, verifier identity, and timestamp before downstream deduplication or study linkage can use it.

@@ -133,14 +133,17 @@ def main() -> int:
                 "pmid": candidate["pmid"],
                 "match_basis": "exact_normalized_title",
                 "human_link_decision": "",
+                "link_reason": "",
+                "verified_by": "",
+                "verified_at": "",
                 "status": "candidate_requires_human_review",
             })
     link_write_status = write_or_preserve(
         ROOT / "data/interim/koreamed_pubmed_link_candidates.csv",
-        ["koreamed_record_id", "kmid", "pubmed_record_id", "pmid", "match_basis", "human_link_decision", "status"],
+        ["koreamed_record_id", "kmid", "pubmed_record_id", "pmid", "match_basis", "human_link_decision", "link_reason", "verified_by", "verified_at", "status"],
         links,
         ("koreamed_record_id", "kmid", "pubmed_record_id", "pmid", "match_basis", "status"),
-        ("human_link_decision",),
+        ("human_link_decision", "link_reason", "verified_by", "verified_at"),
     )
     with (ROOT / "data/interim/koreamed_review_queue.csv").open(encoding="utf-8-sig", newline="") as handle:
         effective_review_queue = list(csv.DictReader(handle))

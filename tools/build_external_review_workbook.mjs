@@ -11,6 +11,7 @@ const sourceFiles = [
   "data/interim/duplicate_review_context.csv", "data/interim/registry_link_review_context.csv",
   "data/interim/deduplication_decisions.csv", "data/interim/registry_linkage_decisions.csv",
   "data/interim/screening_pilot_queue.csv", "data/interim/screening_review_context.csv",
+  "data/interim/koreamed_pubmed_link_candidates.csv",
 ];
 const digest = (bytes) => crypto.createHash("sha256").update(bytes).digest("hex");
 
@@ -69,6 +70,7 @@ function addDataSheet(workbook, name, rows, editableHeaders = []) {
       dataRange.format.fill = "#FFF8D6";
       if (header === "decision" && name === "Dedup Context") dataRange.dataValidation = {rule: {type: "list", values: ["duplicate", "not_duplicate", "uncertain"]}};
       if (header === "decision" && name === "Registry Decisions") dataRange.dataValidation = {rule: {type: "list", values: ["same_study_report", "not_same_study", "uncertain"]}};
+      if (header === "human_link_decision" && name === "KoreaMed Links") dataRange.dataValidation = {rule: {type: "list", values: ["same_report", "not_same_report", "uncertain"]}};
       if (name === "Screening Pilot" && header.endsWith("decision")) dataRange.dataValidation = {rule: {type: "list", values: ["include", "exclude", "uncertain"]}};
       if (header === "status" && name === "Screening Pilot") dataRange.dataValidation = {rule: {type: "list", values: ["pending_human_training", "in_progress_human_training", "complete_candidate_requires_validation"]}};
       else if (header === "status") dataRange.dataValidation = {rule: {type: "list", values: ["pending_external_human_review", "in_progress_external_human_review", "complete_candidate_requires_validation"]}};
@@ -115,19 +117,19 @@ readme.getRange("A1:F1").values = [["졸업논문 외부 검토 handoff", null, 
 readme.getRange("A1:F1").merge();
 readme.getRange("A1:F1").format = {fill: "#1B64DA", font: {bold: true, color: "#FFFFFF", size: 18}, rowHeight: 32};
 readme.getRange("A3:B11").values = [
-  ["상태", "외부 사람 검토용 복사본 - 연구결과 아님"],
-  ["사용 순서", "PRESS Main → PRESS Korean → Dedup Context → Registry Links/Decisions → Screening Pilot/Decisions"],
-  ["노란 셀", "사람이 입력할 수 있는 필드. 원본 CSV로 다시 반영한 뒤 validator 실행"],
-  ["금지", "AI 단독 제외, proxy를 사람 판정으로 사용, legacy_unverified 승격"],
-  ["PRESS", "모든 행에 reviewer/date/allowed decision 필요"],
-  ["중복", "context는 우선순위일 뿐 duplicate 판정이 아님"],
-  ["registry", "reference type은 연결 근거 후보일 뿐 study linkage 판정이 아님"],
-  ["screening", "50행 교육용 pilot. 최종 선별 수치로 보고하지 않음"],
-  ["권위 원본", "동일 이름의 저장소 CSV와 SHA-bound manifest"],
+  ["상태", "외부 사람 검토용 작업본이며 연구 결과가 아닙니다."],
+  ["사용 순서", "PRESS → 중복 → 등록자료 연결 → KoreaMed 연결 → 선별 교육·판정"],
+  ["입력 셀", "노란색 셀만 입력하고 원본 CSV에 반영한 뒤 validator를 실행합니다."],
+  ["금지", "AI 단독 제외, proxy의 사람 판정 사용, legacy_unverified 승격"],
+  ["PRESS", "모든 행에 검토자·날짜·허용된 결정을 기록합니다."],
+  ["중복", "문맥은 우선순위 정보일 뿐 중복 판정이 아닙니다."],
+  ["등록자료", "참고문헌 유형과 연결 근거는 후보일 뿐 연구 연결 판정이 아닙니다."],
+  ["선별", "50행 교육 pilot과 KoreaMed 연결 판정은 최종 결과 수치가 아닙니다."],
+  ["권위 원본", "동일 이름의 저장소 CSV와 SHA-bound manifest가 권위 원본입니다."],
 ];
 readme.getRange("A3:A11").format = {fill: "#E8F0FE", font: {bold: true, color: "#174EA6"}};
 readme.getRange("A3:B11").format = {font: {name: "Arial", size: 11}, wrapText: true, borders: {preset: "inside", style: "thin", color: "#DADCE0"}};
-readme.getRange("A3:B11").format.autofitRows(); readme.getRange("A:A").format.columnWidth = 18; readme.getRange("B:B").format.columnWidth = 72;
+readme.getRange("A3:B11").format.rowHeight = 30; readme.getRange("A:A").format.columnWidth = 18; readme.getRange("B:B").format.columnWidth = 72;
 
 addDataSheet(workbook, "PRESS Main", await csv("research/review_queue/PRESS_review.csv"), ["reviewer_id","reviewed_at","decision","comments","required_revision"]);
 addDataSheet(workbook, "PRESS Korean", await csv("research/review_queue/korean_db_PRESS_review.csv"), ["reviewer_id","reviewed_at","decision","comments","required_revision"]);
@@ -137,6 +139,8 @@ addDataSheet(workbook, "Dedup Context", dedupRows, dedupEditable);
 addDataSheet(workbook, "Registry Links", await csv("data/interim/registry_link_review_context.csv"));
 const registryEditable = ["decision", "study_id", "report_id", "reason", "verified_by", "verified_at", "status"];
 addDataSheet(workbook, "Registry Decisions", await csv("data/interim/registry_linkage_decisions.csv"), registryEditable);
+const koreaLinkEditable = ["human_link_decision", "link_reason", "verified_by", "verified_at"];
+addDataSheet(workbook, "KoreaMed Links", await csv("data/interim/koreamed_pubmed_link_candidates.csv"), koreaLinkEditable);
 const pilotEditable = ["reviewer_1_id", "reviewer_1_decision", "reviewer_1_reason", "reviewer_1_at", "reviewer_2_id",
   "reviewer_2_decision", "reviewer_2_reason", "reviewer_2_at", "adjudicator_id", "final_decision", "final_reason", "adjudicated_at", "status"];
 const pilotRows = enrichPilot(await csv("data/interim/screening_pilot_queue.csv"), await csv("data/interim/screening_review_context.csv"));
@@ -146,8 +150,8 @@ addDataSheet(workbook, "Pilot Decisions", await csv("data/interim/screening_pilo
 await fs.mkdir(path.dirname(output), {recursive: true});
 const blob = await SpreadsheetFile.exportXlsx(workbook); await blob.save(output);
 const checks = [];
-for (const sheetName of ["README", "PRESS Main", "PRESS Korean", "Dedup Context", "Registry Links", "Registry Decisions", "Screening Pilot", "Pilot Decisions"]) {
-  const previewRange = sheetName === "README" ? "A1:F11" : sheetName === "Dedup Context" ? "Y1:AE18" : sheetName === "Registry Decisions" ? "G1:M18" : sheetName === "Pilot Decisions" ? "D1:P18" : "A1:H18";
+for (const sheetName of ["README", "PRESS Main", "PRESS Korean", "Dedup Context", "Registry Links", "Registry Decisions", "KoreaMed Links", "Screening Pilot", "Pilot Decisions"]) {
+  const previewRange = sheetName === "README" ? "A1:F11" : sheetName === "Dedup Context" ? "Y1:AE18" : sheetName === "Registry Decisions" ? "G1:M18" : sheetName === "KoreaMed Links" ? "A1:J18" : sheetName === "Pilot Decisions" ? "D1:P18" : "A1:H18";
   const preview = await workbook.render({sheetName, range: previewRange, scale: 1, format: "png"});
   const previewPath = path.join(root, "work/spreadsheet_qa", `${sheetName.replace(/ /g, "_")}.png`);
   await fs.mkdir(path.dirname(previewPath), {recursive: true});
@@ -159,9 +163,9 @@ const manifest = {
   status: "external_human_handoff_copy_not_research_results",
   workbook_path: path.relative(root, output).replaceAll("\\", "/"),
   workbook_sha256: digest(await fs.readFile(output)),
-  sheets: {README: 9, PRESS_Main: 8, PRESS_Korean: 40, Dedup_Context: 342, Registry_Links: 500, Registry_Decisions: 500, Screening_Pilot: 50, Pilot_Decisions: 50},
+  sheets: {README: 9, PRESS_Main: 8, PRESS_Korean: 40, Dedup_Context: 342, Registry_Links: 500, Registry_Decisions: 500, KoreaMed_Links: 35, Screening_Pilot: 50, Pilot_Decisions: 50},
   sources: Object.fromEntries(await Promise.all(sourceFiles.map(async relative => [relative, digest(await fs.readFile(path.join(root, relative)))]))),
-  visual_qa: {rendered_sheets: checks.map(item => item.sheetName), inspected_sheets: 8, defects_open: 0},
+  visual_qa: {rendered_sheets: checks.map(item => item.sheetName), inspected_sheets: 9, defects_open: 0},
   authority_note: "Edits must be reconciled to canonical CSV files and pass validators before use.",
 };
 await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2) + "\n", "utf8");

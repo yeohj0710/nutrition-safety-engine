@@ -671,3 +671,9 @@
 - Added fail-closed source-drift checks and preservation for 207 ClinicalTrials screening rows, 62 KoreaMed screening rows, and 35 KoreaMed–PubMed link candidates.
 - Added a destructive-in-a-restored-fixture preservation contract; 3/3 mutation cases pass.
 - Kept KoreaMed design-pilot and native-export limitation unchanged; no eligibility or linkage claim was promoted.
+## 2026-07-12 — KoreaMed linkage handoff closure
+
+- Promoted no evidence claim; added the 35 exact-title KoreaMed–PubMed candidates to the external-human workflow only.
+- Added accountable decision fields (`human_link_decision`, reason, verifier, timestamp), future-safe validation, and hash-bound manifest coverage.
+- Expanded the review workbook to nine sheets, repaired its corrupted Korean README text, rendered all nine sheets, and closed two visual defects.
+- Human handoff now inventories 34 queues and 41,094 rows; human decisions remain 0.
