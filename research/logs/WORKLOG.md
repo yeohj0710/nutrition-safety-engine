@@ -824,4 +824,10 @@
 - updated `00_먼저_읽기.md` to point directly to the root final thesis and the current v3 data, code and validation folders
 - rebuilt and recursively validated the final manifest: 48 current files, missing/unlisted/size/SHA errors 0
 - confirmed the root final PDF and the submission-folder PDF have identical SHA-256
+
+## 2026-07-12 — GitHub main and Production lineage closure
+
+- proved `origin/main` commit `33658e3` was an ancestor of the validated release; fast-forwarded main to `4d6198c` without force or history rewrite
+- Vercel Git integration built the main commit as Production deployment `dpl_GQxLsx8dENHUesuxLXbSFrBYPqBD`
+- verified deployment status Ready and fixed alias `https://nutrition-safety-engine.vercel.app`
 - boundary: model output remains wording assistance only and cannot add clinical facts or actions

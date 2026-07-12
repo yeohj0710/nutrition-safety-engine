@@ -15,10 +15,10 @@
 | E. 합성 | partial | 질문별 분리와 비정량 구조화, 임의 메타분석 없음 | GRADE 또는 승인된 대안, 효과크기·CI 기반 합성 |
 | F. AI 평가 | blocked_external | 자동화 코드·입력·산출물과 해시 보존 | 사람 gold 선잠금, 개발/평가 분리, 실제 선별·추출 성능 |
 | G. Claim과 규칙 | partial | v3 개인맞춤 규칙은 질문별 확인사항과 노출 직접성 핵심 문헌 121건을 연결 | 원문 locator 단위의 사람 검증 claim과 임계값 검증 |
-| H. 엔진과 앱 | partial | API contract, 경계, legacy 분리, Production build와 고정 URL, 입력 수치·URL·위험 지시문을 차단하는 AI 출력 검증과 결정적 fallback | 사용자용 문장화만 허용한 변경을 amendment log에 고정하고 commit-deployment 일치 재검증 |
+| H. 엔진과 앱 | pass | API contract, 경계, legacy 분리, 입력 검증, no-store, AI 8초 timeout, 입력 수치·URL·위험 지시문 검증, 결정적 fallback, Production build·고정 URL·main 연동 배포 | AM-003이 런타임 AI를 문장화 전용으로 허용하며 근거 선택·새 수치·진단·복용 지시를 금지함 |
 | I. 시나리오·전문가 검증 | blocked_external | 5개 사용자 예시와 자동 회귀테스트 보존 | 구현 독립 gold, 전문가 검토, sensitivity/precision/CI |
 | J. 논문 | partial | DOCX/PDF 16쪽, 225문단, 표 4개, 전 페이지 시각검사 및 해시 | 학과 최신 양식·참고문헌·전문 내용의 사람 최종 검토 |
-| K. 재현성과 제출 | partial | 재현 코드, G: 재귀 SHA-256 manifest, clean Git status, 공개 branch, `thesis-v3-20260712` tag, Production 고정 URL | 공개 저장소의 최종 제출 branch를 main에 병합할지 결정; 외부 검토 미완료 항목은 계속 공개 |
+| K. 재현성과 제출 | pass | 재현 코드, G: 48파일 재귀 SHA-256 manifest 검증, clean Git status, 공개 `main`, `thesis-v3-20260712` tag, main 연동 Production 고정 URL | 외부 검토 미완료 항목은 A–G·I–J 상태와 blocker 기록에서 계속 공개 |
 
 ## 해석 제한
 

@@ -2,7 +2,10 @@
 
 - 환경: Vercel Production
 - URL: https://nutrition-safety-engine.vercel.app
-- 배포 식별자: Vercel Production 배포 기록에서 관리(고정 주소를 기준 URL로 사용)
+- GitHub 기본 branch: `main`
+- 검증 source commit: `4d6198c`
+- Git 연동 Production deployment: `dpl_GQxLsx8dENHUesuxLXbSFrBYPqBD`
+- 고정 주소: `https://nutrition-safety-engine.vercel.app`
 - 상태: `READY`
 - 프레임워크: Next.js 16.2.1 App Router
 - 배포 지역: Washington, D.C., USA (`iad1`)
