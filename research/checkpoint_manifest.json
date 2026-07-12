@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "checkpoint_not_final_release",
   "generated_at": "2026-07-10",
-  "implementation_head": "0a59333726f02fe2b99f464f9a109e51a437ee85",
+  "implementation_head": "d59f6c2003f97b279b5fc738c21604920a82446b",
   "branch": "thesis-reboot-20260710",
   "project_complete": false,
   "validated_claims": 0,
@@ -10,13 +10,13 @@
   "final_docx": null,
   "final_pdf": null,
   "public_validated_deployment": null,
-  "file_count": 867,
+  "file_count": 868,
   "local_required_file_count": 104,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "size_bytes": 3815,
-      "sha256": "ae2c7e270dc4b35c97a120ccbc92ef8640079d21b079cfaca4444ef7f97a35f5",
+      "size_bytes": 3884,
+      "sha256": "41565a9f33f97d62194e7c5dd3a8a1dcf15a7e4f0c96ce162734590981c6fcfd",
       "distribution": "tracked"
     },
     {
@@ -567,8 +567,8 @@
     },
     {
       "path": "data/interim/screening_pilot_queue.csv",
-      "size_bytes": 3494,
-      "sha256": "7923a07dbd65b839160e2dfe8cd5275ea5b8b29fce6fd3e01abe9525ffee1305",
+      "size_bytes": 4050,
+      "sha256": "bf522a63e14452e3c38aa99a5c7f0f2dd7828672486119f27e655396b3ca5279",
       "distribution": "tracked"
     },
     {
@@ -927,8 +927,8 @@
     },
     {
       "path": "package.json",
-      "size_bytes": 7055,
-      "sha256": "fb543a069ef2e055f5c5ed1d6432a6457cbac7e64bec28d0f42ebddf97fde9e8",
+      "size_bytes": 7161,
+      "sha256": "6b1cb0953cc7c9f2dbee5a6b113fb4a47fd1a3f641e787da4349a5a52f2f19ea",
       "distribution": "tracked"
     },
     {
@@ -2565,8 +2565,8 @@
     },
     {
       "path": "research/logs/DECISIONS.md",
-      "size_bytes": 39351,
-      "sha256": "7334c13b8788288ca104a5804b018ee0a9a3ee1c11b32174b5d202c1f3093d55",
+      "size_bytes": 39858,
+      "sha256": "95b7d092124ff2aab73415e5a1efe5de7e0b52d82b4a8ac8f91a22b5d6c5453d",
       "distribution": "tracked"
     },
     {
@@ -2577,8 +2577,8 @@
     },
     {
       "path": "research/logs/WORKLOG.md",
-      "size_bytes": 60398,
-      "sha256": "fe746026323228f783f5c65c6f57a9980e342fb897e14d69bf13283c2f451e06",
+      "size_bytes": 60980,
+      "sha256": "1e406242f21fec1b0f4c60d8a1f52347b82639e2be762bd57cf2f3e2f6c122ff",
       "distribution": "tracked"
     },
     {
@@ -2643,26 +2643,26 @@
     },
     {
       "path": "research/review_queue/external_review_handoff.xlsx",
-      "size_bytes": 280775,
-      "sha256": "258d23c66c1c9871075c8160b8d5ba6ae3a4c129f2a7b584b5b710378f1e1aab",
+      "size_bytes": 318483,
+      "sha256": "9d7b4bbe38c020f37f86ae33c3859eb603a1ae322279f58d8637d65dceb3d8f5",
       "distribution": "tracked"
     },
     {
       "path": "research/review_queue/external_review_handoff_manifest.json",
-      "size_bytes": 1656,
-      "sha256": "50e9af130179ae21aeaa810524788c0548ac2a02cf5a364a04c4d65a41a2af11",
+      "size_bytes": 1825,
+      "sha256": "d6dff9e9f58486cdec2c989e87ddf3ff7555bb503df3ee84af529225a1f9fe2e",
       "distribution": "tracked"
     },
     {
       "path": "research/review_queue/HUMAN_HANDOFF.md",
-      "size_bytes": 2146,
-      "sha256": "eaccfffe0dd23f8c68d07edc67243b2a603c4ab56b75a6f4c99714aa1b4e3269",
+      "size_bytes": 2195,
+      "sha256": "dfaf007aee4085744810bafcb34ec73b5c4971a39119e08e78065b87317f28a5",
       "distribution": "tracked"
     },
     {
       "path": "research/review_queue/human_handoff_manifest.json",
-      "size_bytes": 24343,
-      "sha256": "f0eb13e48fa4ec6f946962de44e455d4758e67716f1c34ea92d5f16efecbf191",
+      "size_bytes": 25325,
+      "sha256": "a4266bd6dd994714eac6a3121cefc793c2a11c7a12b4908edc72b442e1a6ea84",
       "distribution": "tracked"
     },
     {
@@ -2745,14 +2745,14 @@
     },
     {
       "path": "research/screening/phase04_screening_lineage_validation.json",
-      "size_bytes": 2486,
-      "sha256": "1993bfdc538a5609cb970a99de18bfdac11124c570bd4b07392dc7918acd425c",
+      "size_bytes": 2491,
+      "sha256": "9d3f56023d70f56fca5a3b90b057cc69c889a096ced2e97fd43d0705a1103937",
       "distribution": "tracked"
     },
     {
       "path": "research/screening/phase_04_exit_criteria.md",
-      "size_bytes": 4353,
-      "sha256": "0e1a626b199b6d7437f55844e0702f40521824e0bcd337c89a9d9b5f39f892c1",
+      "size_bytes": 4704,
+      "sha256": "b8c7a7387c73ce11753603ad51114741b43b44184e3d46f7e78d7fa0a60d57b6",
       "distribution": "tracked"
     },
     {
@@ -2769,8 +2769,8 @@
     },
     {
       "path": "research/screening/proxy_run_metadata.json",
-      "size_bytes": 2298,
-      "sha256": "ef58bba02fe90833c7199a131d6168b91948fe16135c5b1d475289fffc63656f",
+      "size_bytes": 2430,
+      "sha256": "39b8fcf2a952a295fec434f3e034ce7b4bcdb2cff88bd1815bca2ce99bfcc255",
       "distribution": "tracked"
     },
     {
@@ -4294,7 +4294,7 @@
     {
       "path": "research/thesis/finalization_readiness.json",
       "size_bytes": 5665,
-      "sha256": "bf2c4801336078ba148f49d33e2e51f0d4da429965546055eaad4cdeb11f7447",
+      "sha256": "8ff1c6b5d4fe8075bffbe0a01822119368c10a14821fb09409b83cbb370ac99e",
       "distribution": "tracked"
     },
     {
@@ -4665,8 +4665,8 @@
     },
     {
       "path": "tools/build_external_review_workbook.mjs",
-      "size_bytes": 9605,
-      "sha256": "e964e2893e1d9962a20a5e1e07f474ed1380e6284edcb2a110e1ccc5d40f790e",
+      "size_bytes": 11474,
+      "sha256": "91ad1f3082847e40a88791591ad884f62da1c9beda5dbdd218643068ae977d4f",
       "distribution": "tracked"
     },
     {
@@ -4689,8 +4689,8 @@
     },
     {
       "path": "tools/build_human_handoff_manifest.py",
-      "size_bytes": 11801,
-      "sha256": "df7985134145f723f0f0c64b3d24a826e3c0625e1a64be373e0ebab826b91f02",
+      "size_bytes": 12240,
+      "sha256": "f0e7b7b9ef5ad56b767546575139a28d186fffdc7ca5aa45d156c32c3e7c5383",
       "distribution": "tracked"
     },
     {
@@ -4797,8 +4797,8 @@
     },
     {
       "path": "tools/generate_screening_proxy.py",
-      "size_bytes": 13927,
-      "sha256": "76069bc10bd3b902659fa19a9a6da3145b98833670f8a6da5101b298518d9690",
+      "size_bytes": 16129,
+      "sha256": "d40bf751b6432f8ce15a2f882dc6fa96892146126a08d3c1b9f89c9a31dd56cf",
       "distribution": "tracked"
     },
     {
@@ -4947,8 +4947,8 @@
     },
     {
       "path": "tools/validate_external_review_workbook.py",
-      "size_bytes": 2589,
-      "sha256": "63a426f58b9c04932faf85006bbbe280fe314142329050d0114669f99904282e",
+      "size_bytes": 2650,
+      "sha256": "6bd0f9f7fdb6b5e8407b0d85376ef92b4c06f8fbaf3de819d3862e4c7f972c9d",
       "distribution": "tracked"
     },
     {
@@ -4996,7 +4996,7 @@
     {
       "path": "tools/validate_human_handoff_manifest.py",
       "size_bytes": 3996,
-      "sha256": "85d99e66350989f4b82c829658334e17779b0b2018aeae42e44aabc70d2cf04a",
+      "sha256": "90597bcb242248238e662be361357273aae9c7b5c83f24782508bfad41122fcf",
       "distribution": "tracked"
     },
     {
@@ -5085,14 +5085,14 @@
     },
     {
       "path": "tools/validate_phase04_proxy.py",
-      "size_bytes": 9227,
-      "sha256": "445c0d0236186e05aa0c95afc744864fa15c491f561652e08d4d4bcdeee9384d",
+      "size_bytes": 9442,
+      "sha256": "de5a5ff68b1cbbdca972f1c409547b5dc211e452e8efc71c3b328e127c7c6252",
       "distribution": "tracked"
     },
     {
       "path": "tools/validate_phase04_screening_lineage.py",
-      "size_bytes": 5833,
-      "sha256": "32fe6d58e5786a363fe7809db3c855a01dd1d6152bc6a8a83f9c314ee80db00b",
+      "size_bytes": 7055,
+      "sha256": "8bcf8bc187c6fce359c93bbc3b49418b38ebe6040167d56c551920442cff1d00",
       "distribution": "tracked"
     },
     {
@@ -5147,6 +5147,12 @@
       "path": "tools/validate_pmc_sentinel_fulltext.py",
       "size_bytes": 6753,
       "sha256": "af402935fba443c1911bcdc1046395ac8af0b76d0d3269396b0dc1a373cf5cee",
+      "distribution": "tracked"
+    },
+    {
+      "path": "tools/validate_primary_screening_preservation.py",
+      "size_bytes": 2709,
+      "sha256": "c06cfd79900161f6690c0f9688954e4675c481b37ede528c22f178ef7cc669f8",
       "distribution": "tracked"
     },
     {
