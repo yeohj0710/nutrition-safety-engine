@@ -6,7 +6,7 @@ T004,1,confirm database/full-text access,T003,access_matrix.csv,all planned sour
 T005,2,develop and peer-review five searches,"T003,T004",searches/final,PRESS recommendations approved; public-source final rerun allowed; licensed platforms remain unavailable,P0,in_progress_public_sources
 T006,2,execute full exports and hash raw files,T005,search_log.csv + raw files,export_count equals obtainable records; no top-N truncation,P0,not_started
 T007,3,deduplicate and link records,T006,record_report_study tables,sample audit passes; reasons logged,P0,not_started
-T008,3,complete title/abstract screening,T007,screening decisions,human decisions complete; agreement reported,P0,not_started
+T008,3,complete title/abstract screening,T007,screening decisions,human decisions complete; agreement reported,P0,agent_triage_rules_approved_human_decisions_open
 T009,3,complete full-text screening,T008,full-text log,all excludes have one primary reason,P0,not_started
 T010,4,extract included studies,T009,extraction table,critical fields double checked,P0,not_started
 T011,4,assess risk of bias,T009,rob table,design-appropriate tool completed,P0,not_started
