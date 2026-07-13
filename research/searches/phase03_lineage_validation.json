@@ -3,10 +3,10 @@
   "status": "proxy_lineage_verified_human_gates_open",
   "errors": [],
   "raw_xml_files_reparsed": 103,
-  "records_verified": 19609,
-  "retrievals_verified": 19961,
+  "records_verified": 19619,
+  "retrievals_verified": 19971,
   "duplicate_candidates_recomputed": 342,
-  "human_dedup_decisions": 0,
+  "human_dedup_decisions": 342,
   "human_study_links": 0,
   "final_search_claim_allowed": false,
   "mutation_tests": {
@@ -19,13 +19,13 @@
   "artifacts": [
     {
       "path": "data/interim/records.csv",
-      "sha256": "a904c9c2a333a30e33898ba46a8099b75f8284d7e97b9f568e30e773a1bdd1ae",
-      "size_bytes": 39320033
+      "sha256": "bd8d4892e8d7009ab8ce1a828f2165805ede8ec06630a3ac997a6ca2a12b1d18",
+      "size_bytes": 39228171
     },
     {
       "path": "data/interim/record_retrievals.csv",
-      "sha256": "2efce65f50fe5bcce939320c7c330df8f0b9522901af5dc3ee383ef667f57892",
-      "size_bytes": 3941612
+      "sha256": "6e789daa277cc3c0dbf5079e37fcd78991845c15174d048fc9834bfa30504687",
+      "size_bytes": 3723911
     },
     {
       "path": "data/interim/duplicate_candidates.csv",
@@ -34,13 +34,13 @@
     },
     {
       "path": "data/interim/deduplication_decisions.csv",
-      "sha256": "0aaaa0cdbe4d731e0382285c8aa916af5ab328bbc5719f4cf0a71c3b75ca8b51",
-      "size_bytes": 16873
+      "sha256": "4b770dced4826cf84af15b345b70d5b51120515752ba4a7074c6e619dd233682",
+      "size_bytes": 66352
     },
     {
       "path": "data/interim/report_candidates.csv",
-      "sha256": "f23b367b14c08808a41d78e5b5e5659169218de69574a9380c0e7418738a0067",
-      "size_bytes": 2581494
+      "sha256": "049e33d803427e77d03327e9fde4f59571d861e7c780c9474d95f2e300c1e68e",
+      "size_bytes": 2582814
     }
   ]
 }

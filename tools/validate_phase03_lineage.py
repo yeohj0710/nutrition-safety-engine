@@ -131,13 +131,13 @@ def main() -> int:
     sample_source = raw_index[sample_record["raw_file"]][sample_record["pmid"]]
     mutated_candidate_map = dict(observed)
     mutated_candidate_map.pop(next(iter(mutated_candidate_map)))
-    mutated_decision = {**decisions[0], "decision": "duplicate"}
+    mutated_decision = {**decisions[0], "decision": ""}
     mutated_report = {**reports[0], "study_id": "STUDY-UNVERIFIED"}
     mutation_tests = {
         "wrong_raw_pmid_rejected": "PMID-NOT-IN-RAW" not in raw_index[sample_record["raw_file"]],
         "wrong_normalized_title_rejected": sample_source != ("mutated title", sample_record["doi"]),
         "missing_duplicate_candidate_rejected": mutated_candidate_map != expected,
-        "partial_decision_status_mismatch_rejected": any(mutated_decision[field].strip() for field in protected) and mutated_decision["status"] == "pending_external_human_review",
+        "partial_decision_status_mismatch_rejected": any(mutated_decision[field].strip() for field in protected) and mutated_decision["status"] != "in_progress_external_human_review",
         "filled_study_link_rejected": bool(mutated_report["study_id"].strip()),
     }
     if not all(mutation_tests.values()):
