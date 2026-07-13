@@ -18,7 +18,7 @@
 | H. 엔진과 앱 | pass | API contract, 경계, legacy 분리, 입력 검증, no-store, AI 8초 timeout, 입력 수치·URL·위험 지시문 검증, 결정적 fallback, Production build·고정 URL·main 연동 배포 | AM-003이 런타임 AI를 문장화 전용으로 허용하며 근거 선택·새 수치·진단·복용 지시를 금지함 |
 | I. 시나리오·전문가 검증 | blocked_external | 5개 사용자 예시와 자동 회귀테스트 보존 | 구현 독립 gold, 전문가 검토, sensitivity/precision/CI |
 | J. 논문 | partial | DOCX/PDF 25쪽, 225문단, 표 4개, 전 페이지 시각검사 및 해시 | 학과 최신 양식·참고문헌·전문 내용의 사람 최종 검토 |
-| K. 재현성과 제출 | pass | 재현 코드, G: 42파일 재귀 SHA-256 manifest 검증, clean Git status, 공개 `main`, `thesis-v3-20260712` tag, main 연동 Production 고정 URL | 외부 검토 미완료 항목은 A–G·I–J 상태와 blocker 기록에서 계속 공개 |
+| K. 재현성과 제출 | pass | C 저장소·GitHub `main`의 권위 있는 재현 코드, G: 42파일 재귀 SHA-256 manifest 검증, clean release Git status, Production 고정 URL | 외부 검토 미완료 항목은 A–G·I–J 상태와 blocker 기록에서 계속 공개 |
 
 ## 해석 제한
 
