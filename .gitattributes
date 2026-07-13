@@ -1,0 +1,2 @@
+research/systematic_review_v3/*.csv -text
+research/validation/*.json text eol=lf

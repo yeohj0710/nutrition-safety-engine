@@ -2,7 +2,7 @@
 from pathlib import Path
 import pandas as pd,json,hashlib
 from docx import Document
-from docx.shared import Inches,Pt
+from docx.shared import Inches,Pt,RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
@@ -24,12 +24,16 @@ def table(doc,heads,rows):
  for row in rows:
   c=t.add_row().cells
   for i,x in enumerate(row):c[i].text=str(x)
+ header_properties=t.rows[0]._tr.get_or_add_trPr();header_repeat=OxmlElement("w:tblHeader");header_repeat.set(qn("w:val"),"true");header_properties.append(header_repeat)
+ for row in t.rows:
+  row_properties=row._tr.get_or_add_trPr();cant_split=OxmlElement("w:cantSplit");cant_split.set(qn("w:val"),"true");row_properties.append(cant_split)
  return t
 doc=Document();s=doc.sections[0];s.page_width=Inches(8.27);s.page_height=Inches(11.69);s.top_margin=s.bottom_margin=Inches(.85);s.left_margin=s.right_margin=Inches(1)
-for n,z in [("Normal",10.5),("Heading 1",15),("Heading 2",12)]:
- st=doc.styles[n];st.font.name="Malgun Gothic";st._element.rPr.rFonts.set(qn("w:eastAsia"),"맑은 고딕");st.font.size=Pt(z);st.paragraph_format.line_spacing=1.5 if n=="Normal" else 1.2;st.paragraph_format.space_after=Pt(6)
-p=doc.add_paragraph();p.alignment=WD_ALIGN_PARAGRAPH.CENTER;p.paragraph_format.space_before=Pt(100);r=p.add_run(title);r.bold=True;r.font.size=Pt(20)
-p=doc.add_paragraph();p.alignment=WD_ALIGN_PARAGRAPH.CENTER;p.paragraph_format.space_before=Pt(65);p.add_run("여형준\n연세대학교 약학대학\n2026년 7월").bold=True
+for n,z,family in [("Normal",10.5,"Pretendard"),("Heading 1",15,"Pretendard ExtraBold"),("Heading 2",12,"Pretendard SemiBold")]:
+ st=doc.styles[n];st.font.name=family;st._element.rPr.rFonts.set(qn("w:eastAsia"),family);st.font.size=Pt(z);st.font.bold=False;st.paragraph_format.line_spacing=1.5 if n=="Normal" else 1.2;st.paragraph_format.space_after=Pt(6)
+ if n.startswith("Heading"):st.font.color.rgb=RGBColor(0,0,0)
+p=doc.add_paragraph();p.alignment=WD_ALIGN_PARAGRAPH.CENTER;p.paragraph_format.space_before=Pt(100);r=p.add_run(title);r.bold=False;r.font.name="Pretendard ExtraBold";r._element.rPr.rFonts.set(qn("w:eastAsia"),"Pretendard ExtraBold");r.font.size=Pt(20)
+p=doc.add_paragraph();p.alignment=WD_ALIGN_PARAGRAPH.CENTER;p.paragraph_format.space_before=Pt(65);r=p.add_run("여형준\n연세대학교 약학대학\n2026년 7월");r.bold=False;r.font.name="Pretendard SemiBold";r._element.rPr.rFonts.set(qn("w:eastAsia"),"Pretendard SemiBold")
 doc.add_page_break();doc.add_heading("국문초록",1)
 abstract=f"본 연구는 항응고제를 복용하는 성인과 신장결석·고칼슘뇨 등 신장 관련 고위험군에서 비타민 K, 오메가-3, 칼슘, 비타민 D 및 비타민 C 보충제의 안전성 근거를 체계적으로 검색·구조화하고, 개인의 복용 조건에 따라 확인사항과 근거 문헌을 제시하는 웹 시스템을 구축하는 것을 목적으로 하였다. PubMed, ClinicalTrials.gov와 KoreaMed에서 수집한 공개 서지자료를 연구계획서의 PICOS에 따라 자동 선별하고 대상자, 보충제, 용량, 안전성 결과와 근거 위치를 추출하였다. 직접 관련 후보는 {m['records']:,}건이었고, 용량 정보가 확인된 문헌은 {m['with_dose']:,}건, 공개 원문 위치가 연결된 문헌은 {m['with_fulltext_locator']:,}건이었다. 제목 직접관련성, 연구설계, 용량·결과 및 원문 접근성을 기준으로 핵심 근거 {cm['core_records']:,}건을 선정하였다. 조회 시스템은 보충제, 일일 용량, 병용 약물, 질환·결석 병력과 검사값을 입력받아 질문별 확인사항, 맞춤형 요약과 근거 원문을 제공하도록 구현하였다. {quality['tests']}개 자동 테스트, TypeScript 검사와 Production 빌드를 통과한 버전을 Vercel 고정 주소에 배포하였다. 본 연구는 체계적인 검색·선별·추출과 소프트웨어 검증을 수행했으나 독립된 두 명의 사람 선별자가 없으므로 자동 선별 결과를 최종 임상 권고로 해석할 수 없다."
 doc.add_paragraph(abstract);doc.add_paragraph("주요어: 영양보충제, 항응고제, 신장결석, 체계적 문헌고찰, 개인맞춤 조회, 인공지능")
@@ -64,7 +68,8 @@ for q,g in core.groupby("question_id"):
 doc.add_heading("3.3 개인맞춤 조회 시스템",2);doc.add_paragraph("사용자는 전문 검색식을 작성하지 않고 다섯 보충제 중 하나를 선택한 뒤 용량, 약물, 병력과 검사값을 입력한다. 결과 화면은 입력 상태의 해석, 확인 이유와 우선 행동을 한 문단으로 제시하며, 세부 확인사항과 영문 원문은 접힌 영역에서 선택적으로 확인한다.")
 doc.add_heading("3.4 소프트웨어와 배포 검증",2);table(doc,["검증 항목","결과"],[["자동 테스트",f"{quality['tests']}개 통과"],["핵심 근거 URL",f"{links['unique_urls']}개 접근 확인"],["lint",quality["lint"]],["TypeScript",quality["typescript"]],["Production build",quality["production_build"]],["배포 환경","Vercel Production"],["고정 URL","https://nutrition-safety-engine.vercel.app"]])
 doc.add_heading("4. 고찰",1)
-for x in ["본 연구는 연구계획서의 핵심인 체계적 검색, 대상자·용량·안전성 결과 추출과 개인맞춤 조회를 하나의 재현 가능한 흐름으로 연결하였다. 검색 건수 자체보다 어떤 문헌에서 어떤 조건과 수치가 관찰됐는지 확인할 수 있게 한 점이 중요하다.","질문별 핵심 문헌 수를 동일하게 맞추지 않고 직접관련성 기준을 통과한 수만 보고하였다. 특히 오메가-3와 항응고제 질문은 12건으로 다른 질문보다 적어, 근거 규모의 차이를 화면과 논문에 그대로 반영하였다.","AI 요약은 사용자가 입력한 숫자와 단위를 보존하고 구조화된 확인사항만 문장화하도록 제한하였다. 세부 문헌을 기본 접힘으로 배치해 초보자의 인지 부담을 줄이면서도 검증 가능한 원문 경로를 유지하였다.","한계는 독립된 두 명의 사람 선별과 충돌 해결이 없고, 구독 데이터베이스와 일부 원문에 접근하지 못했다는 점이다. 따라서 자동 선별·추출의 오류 가능성이 있으며, 효과크기 통합이나 임상 권고 강도 평가는 수행하지 않았다."]:doc.add_paragraph(x)
+a2_count=int((core.question_id=="A2").sum())
+for x in ["본 연구는 연구계획서의 핵심인 체계적 검색, 대상자·용량·안전성 결과 추출과 개인맞춤 조회를 하나의 재현 가능한 흐름으로 연결하였다. 검색 건수 자체보다 어떤 문헌에서 어떤 조건과 수치가 관찰됐는지 확인할 수 있게 한 점이 중요하다.",f"질문별 핵심 문헌 수를 동일하게 맞추지 않고 직접관련성 기준을 통과한 수만 보고하였다. 특히 오메가-3와 항응고제 질문은 {a2_count}건으로 다른 질문보다 적어, 근거 규모의 차이를 화면과 논문에 그대로 반영하였다.","AI 요약은 사용자가 입력한 숫자와 단위를 보존하고 구조화된 확인사항만 문장화하도록 제한하였다. 세부 문헌을 기본 접힘으로 배치해 초보자의 인지 부담을 줄이면서도 검증 가능한 원문 경로를 유지하였다.","한계는 독립된 두 명의 사람 선별과 충돌 해결이 없고, 구독 데이터베이스와 일부 원문에 접근하지 못했다는 점이다. 따라서 자동 선별·추출의 오류 가능성이 있으며, 효과크기 통합이나 임상 권고 강도 평가는 수행하지 않았다."]:doc.add_paragraph(x)
 doc.add_heading("5. 결론",1);doc.add_paragraph(f"본 연구는 다섯 영양보충제 안전성 질문에 대해 {m['records']:,}건의 PICOS 직접 후보에서 대상자·용량·안전성 결과와 근거 위치를 구조화하고 핵심 문헌 {cm['core_records']:,}건을 선정하였다. 이를 개인 조건 기반 웹 조회 시스템으로 구현해 Production에 배포하였다. 결과는 임상 처방을 대신하지 않지만 상담 전에 확인할 조건과 근거 문헌을 빠르게 정리하는 재현 가능한 도구를 제공한다.")
 doc.add_heading("참고문헌",1)
 for i,r in core.sort_values(["question_id","priority_score"],ascending=[True,False]).iterrows():doc.add_paragraph(f"[{r.question_id}] {fmt_authors(r.authors)}. {clean_title(r.title)}. {r.venue}. {fmt_year(r.year)}. {('doi: '+r.doi) if r.doi else r.source_url}",style="List Number")
