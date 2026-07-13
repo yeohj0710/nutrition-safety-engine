@@ -29,7 +29,7 @@
   --page-shell-max: 54rem;
   --page-shell-narrow-max: 48rem;
   --font-fallback-sans:
-    "Apple SD Gothic Neo", "Malgun Gothic", "Segoe UI", "Noto Sans KR",
+    Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Segoe UI",
     sans-serif;
   --font-fallback-display: var(--font-fallback-sans);
   color-scheme: light;
@@ -49,8 +49,8 @@
   --color-warning: var(--warning);
   --color-danger: var(--danger);
   --color-success: var(--success);
-  --font-sans: var(--font-app-sans), var(--font-fallback-sans);
-  --font-display: var(--font-app-sans), var(--font-fallback-display);
+  --font-sans: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Segoe UI", sans-serif;
+  --font-display: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Segoe UI", sans-serif;
 }
 
 html,
@@ -61,10 +61,10 @@ body {
 
 body {
   color: var(--foreground);
-  font-family: var(--font-app-sans), var(--font-fallback-sans);
+  font-family: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Segoe UI", sans-serif;
   font-kerning: normal;
   line-height: 1.5;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
