@@ -1,7 +1,7 @@
 # v3 최종 승인 기준 감사
 
-감사일: 2026-07-12  
-기준: `research/design/20260710/10_QA/acceptance_criteria.md`  
+감사일: 2026-07-13
+기준: `research/design/20260710/10_QA/acceptance_criteria.md`
 상태값: `pass`, `partial`, `blocked_external`, `fail`
 
 ## 요약
@@ -17,8 +17,8 @@
 | G. Claim과 규칙 | partial | v3 개인맞춤 규칙은 질문별 확인사항과 노출 직접성 핵심 문헌 121건을 연결 | 원문 locator 단위의 사람 검증 claim과 임계값 검증 |
 | H. 엔진과 앱 | pass | API contract, 경계, legacy 분리, 입력 검증, no-store, AI 8초 timeout, 입력 수치·URL·위험 지시문 검증, 결정적 fallback, Production build·고정 URL·main 연동 배포 | AM-003이 런타임 AI를 문장화 전용으로 허용하며 근거 선택·새 수치·진단·복용 지시를 금지함 |
 | I. 시나리오·전문가 검증 | blocked_external | 5개 사용자 예시와 자동 회귀테스트 보존 | 구현 독립 gold, 전문가 검토, sensitivity/precision/CI |
-| J. 논문 | partial | DOCX/PDF 16쪽, 225문단, 표 4개, 전 페이지 시각검사 및 해시 | 학과 최신 양식·참고문헌·전문 내용의 사람 최종 검토 |
-| K. 재현성과 제출 | pass | 재현 코드, G: 48파일 재귀 SHA-256 manifest 검증, clean Git status, 공개 `main`, `thesis-v3-20260712` tag, main 연동 Production 고정 URL | 외부 검토 미완료 항목은 A–G·I–J 상태와 blocker 기록에서 계속 공개 |
+| J. 논문 | partial | DOCX/PDF 25쪽, 225문단, 표 4개, 전 페이지 시각검사 및 해시 | 학과 최신 양식·참고문헌·전문 내용의 사람 최종 검토 |
+| K. 재현성과 제출 | pass | 재현 코드, G: 42파일 재귀 SHA-256 manifest 검증, clean Git status, 공개 `main`, `thesis-v3-20260712` tag, main 연동 Production 고정 URL | 외부 검토 미완료 항목은 A–G·I–J 상태와 blocker 기록에서 계속 공개 |
 
 ## 해석 제한
 
@@ -29,7 +29,7 @@
 - 핵심 근거 validator: 121건, A1 30/A2 5/B1 30/B2 30/B3 26, 오류 0
 - 웹 회귀검사: 16 test files, 67 tests
 - lint, TypeScript, Next.js Production build 통과
-- 논문 validator: 16쪽, 225문단, 표 4개, 오류 0
+- 논문 validator: 25쪽, 225문단, 표 4개, 오류 0
 - Production 모바일 브라우저: 예시 펼침·자동입력·조회·맞춤 요약·근거 접기 정상, 콘솔 오류 0, 가로 overflow 0
 - 핵심 근거 링크: 121개 레코드의 고유 URL 118개 전수 접근 확인, broken/network error 0
 - Production 고정 URL: https://nutrition-safety-engine.vercel.app
