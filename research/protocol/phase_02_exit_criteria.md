@@ -1,6 +1,6 @@
 # Phase 02 gate status
 
-Date: 2026-07-10  
+Date: 2026-07-13
 Phase status: `blocked_external`  
 Project status: `in_progress`
 
@@ -15,12 +15,12 @@ Project status: `in_progress`
 | Human/AI roles and metrics frozen | pass_local | `human_ai_role_matrix.md` |
 | Independent PRESS review | blocked_external | main queue 8 rows plus checksum-bound KMbase/RISS detail queue 40 rows; human decisions 0 |
 | PRESS decision storage | pass_local | both main and Korean queues contain reviewer/date/allowed-decision fields; partial or invalid decisions rejected |
-| Dated protocol approval | blocked_external | no supervisor decision |
+| Dated protocol approval | pass_operational_identity_metadata_open | review portal 3/3 completion and user confirmation recorded in AM-004; approver name was not captured |
 | Authenticated database/full-text access | blocked_external | CENTRAL public hit counts available but full content/export authentication-blocked; Embase/Scopus unavailable |
 | Registration/public URL | blocked_external | protocol intentionally not represented as registered |
 | Phase 02 evidence byte integrity | complete_verified | 21 protocol/search/review artifacts SHA-256-bound; external-gate flags false; validator errors 0 |
 
-Do not label Phase 02 complete and do not label any search final. Public-source retrieval may continue as `synthetic_proxy`/`design_pilot` so later tooling can be verified without replacing human approvals.
+Protocol execution is approved. Do not label Phase 02 complete or any search final until PRESS and source-access gates close. Public-source retrieval and queue generation may continue without replacing independent human decisions.
 
 KMbase/RISS split-query design pilot captured 20 question-specific short queries on each platform. KMbase returned 20 HTTP-200 zero results despite a prior 5-hit one-word control; RISS returned nonzero counts for 19/20 queries. This is syntax/recall evidence for PRESS review only. Counts overlap, are not summable, and are not final-search or PRISMA totals.
 

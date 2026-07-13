@@ -1,0 +1,26 @@
+{
+  "schema": "research-progress-approval-v1",
+  "decision": "approved_for_execution",
+  "confirmed_at": "2026-07-13",
+  "approved_bundles": [
+    "research_scope_and_execution_principles",
+    "literature_review_and_evidence_appraisal_process",
+    "expert_review_and_usability_study_conditions"
+  ],
+  "evidence": {
+    "type": "user_confirmation_and_portal_completion_screenshot",
+    "portal_status": "3_of_3_complete",
+    "source_image": "codex-clipboard-3e49757b-f338-4ecd-9551-56902380e482.png"
+  },
+  "approver": {
+    "reported_role": "supervisor",
+    "identity_captured": false,
+    "note": "The portal stored approval timestamps in the user's browser but did not collect an approver name. Do not represent this record as a signed identifiable approval without the exported portal JSON or separate confirmation."
+  },
+  "boundaries": [
+    "This approval does not create PRESS decisions.",
+    "This approval does not establish licensed database access.",
+    "This approval does not substitute for independent screening extraction RoB GRADE or scenario authorship.",
+    "This approval does not constitute an IRB or non-human-subject determination."
+  ]
+}

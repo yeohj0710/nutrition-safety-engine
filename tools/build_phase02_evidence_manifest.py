@@ -8,6 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "research/protocol/phase_02_evidence_manifest.json"
 PATHS = [
+    "research/approvals/research_progress_approval.json",
     "research/protocol/protocol-v1.0.md", "research/protocol/amendments.csv",
     "research/protocol/access_matrix.csv", "research/protocol/outcome_priority.csv",
     "research/protocol/workload_forecast.csv", "research/protocol/human_ai_role_matrix.md",
@@ -38,7 +39,8 @@ def main() -> int:
         entries.append({"path": relative, "size_bytes": path.stat().st_size, "sha256": sha256(path)})
     payload = {"schema_version": "1.0.0", "phase": "02_protocol_and_search_design",
                "status": "local_evidence_verified_external_gates_open",
-               "final_search_allowed": False, "protocol_human_approved": False,
+               "final_search_allowed": False, "protocol_execution_approved": True,
+               "protocol_approver_identity_captured": False,
                "independent_press_complete": False, "registered": False,
                "artifact_count": len(entries), "artifacts": entries}
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

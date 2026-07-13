@@ -27,13 +27,14 @@ def main() -> int:
     errors: list[str] = []
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     expected = {"status": "local_evidence_verified_external_gates_open",
-                "final_search_allowed": False, "protocol_human_approved": False,
+                "final_search_allowed": False, "protocol_execution_approved": True,
+                "protocol_approver_identity_captured": False,
                 "independent_press_complete": False, "registered": False}
     for key, value in expected.items():
         if manifest.get(key) != value:
             errors.append(f"manifest {key}: expected {value!r}, got {manifest.get(key)!r}")
     artifacts = manifest.get("artifacts", [])
-    if manifest.get("artifact_count") != len(artifacts) or len(artifacts) != 21:
+    if manifest.get("artifact_count") != len(artifacts) or len(artifacts) != 22:
         errors.append("Phase 02 evidence artifact count mismatch")
     if len({entry.get("path") for entry in artifacts}) != len(artifacts):
         errors.append("duplicate artifact paths")

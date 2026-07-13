@@ -12,6 +12,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 QUESTIONS = {"A1", "A2", "B1", "B2", "B3"}
 REQUIRED = [
+    "research/approvals/research_progress_approval.json",
     "research/protocol/protocol-v1.0.md",
     "research/protocol/amendments.csv",
     "research/protocol/access_matrix.csv",
@@ -54,18 +55,18 @@ def main() -> int:
         print(json.dumps({"errors": errors}, ensure_ascii=False, indent=2))
         return 1
 
-    protocol = (REPO / REQUIRED[0]).read_text(encoding="utf-8-sig")
+    protocol = (REPO / "research/protocol/protocol-v1.0.md").read_text(encoding="utf-8-sig")
     exit_gate = (REPO / "research/protocol/phase_02_exit_criteria.md").read_text(
         encoding="utf-8-sig"
     )
     registration = (REPO / "research/protocol/registration_status.md").read_text(
         encoding="utf-8-sig"
     )
-    if "pending_human_approval" not in protocol:
-        errors.append("protocol approval status is not explicitly pending")
+    if "approved_for_execution" not in protocol:
+        errors.append("protocol execution approval is not recorded")
     if "Phase status: `blocked_external`" not in exit_gate:
         errors.append("Phase 02 must remain blocked_external until human gates close")
-    if "not_registered_pending_human_approval" not in registration:
+    if "not_registered_approved_for_execution" not in registration:
         errors.append("registration status is missing or overstated")
 
     pilot = json.loads(
@@ -125,8 +126,12 @@ def main() -> int:
             errors.append(f"partial PRESS identity without decision: {row['review_id']}")
 
     review = csv_rows("research/review_queue/phase_02_external_review.csv")
-    if len(review) < 5 or not all(row["status"] == "blocked_external" for row in review):
+    allowed_review_states = {"blocked_external", "approved_for_execution_identity_metadata_open"}
+    if len(review) < 5 or not all(row["status"] in allowed_review_states for row in review):
         errors.append("Phase 02 external review queue is incomplete")
+    protocol_rows = [row for row in review if row["area"] == "protocol"]
+    if len(protocol_rows) != 1 or protocol_rows[0]["status"] != "approved_for_execution_identity_metadata_open":
+        errors.append("protocol approval queue state is missing")
 
     result = {
         "errors": errors,

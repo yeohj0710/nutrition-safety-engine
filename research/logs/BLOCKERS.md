@@ -1,13 +1,13 @@
 # BLOCKERS
 
-## B-001 — Protocol freeze and research identity
+## B-001 — Protocol execution approval recorded; formal identity metadata open
 
-- exact block point: Gate 1 approval; final searches cannot begin under an unapproved protocol
+- exact block point: execution is no longer blocked; only formal submission-grade approver identity metadata remains open
 - already attempted: located and verified the signed historical plan; read both professor feedback notes; compared the signed `종설논문` label with feedback `종설논문 아님`; drafted protocol v1.0 exists but is marked unapproved
-- minimum input needed: dated supervisor decision approving protocol v1.0 or exact amendment text, including administrative treatment of the old thesis-type label
-- affected artifacts: final title/scope, protocol registration/publication, all final searches and downstream screening
-- work that can continue: access mapping, search syntax drafting, schemas, audit fixes, test infrastructure
-- status: `blocked_external`
+- minimum input needed: downloaded portal approval JSON or separate named/dated confirmation if the institution requires identifiable approval evidence
+- affected artifacts: formal protocol appendix and administrative audit trail only
+- work that can continue: approved protocol execution; PRESS review; public retrieval; queue generation; technical validation
+- status: `resolved_for_execution_formal_identity_metadata_open`
 
 ## B-014 — Independent PRESS decisions absent
 

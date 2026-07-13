@@ -831,3 +831,11 @@
 - Vercel Git integration built the main commit as Production deployment `dpl_GQxLsx8dENHUesuxLXbSFrBYPqBD`
 - verified deployment status Ready and fixed alias `https://nutrition-safety-engine.vercel.app`
 - boundary: model output remains wording assistance only and cannot add clinical facts or actions
+
+## 2026-07-13 — Gate 1 execution approval recorded
+
+- input: user confirmation and review-portal screenshot showing `3 / 3 완료`
+- action: recorded protocol execution approval as AM-004; advanced project state to Gate 2; marked access mapping complete with explicit external limits
+- provenance limit: portal did not collect the approver name; formal identity metadata remains open and is not represented as a signed approval
+- validation: Phase 02 validator errors 0; hash-bound evidence manifest contains 22 artifacts; PubMed pilot 5 runs/19,961 hits and sentinel recall 9/9 remain verified
+- remaining gate: independent PRESS decisions are 0/8 main rows and 0/40 Korean-database rows; licensed database access and independent human research decisions remain external
