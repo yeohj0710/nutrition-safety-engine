@@ -47,7 +47,6 @@ export function ResearchReviewClient({ tasks }: { tasks: ReviewTask[] }) {
   }).map((task) => task.id)), [records, tasks]);
   const completed = completedIds.size;
   const activeNumber = Math.max(tasks.findIndex((task) => task.id === activeTask.id) + 1, 1);
-  const currentComplete = completedIds.has(activeTask.id);
 
   function selectTask(task: ReviewTask) {
     setActiveId(task.id);
@@ -105,12 +104,20 @@ export function ResearchReviewClient({ tasks }: { tasks: ReviewTask[] }) {
           <p className="mt-5 text-base font-medium leading-7 text-[#6b7684] sm:text-lg">검토할 내용을 미리 묶어 정리했습니다. 내용을 읽고 아래 승인 버튼만 누르면 다음 항목으로 넘어갑니다.</p>
         </header>
 
+        {completed === tasks.length ? (
+          <section className="mx-auto max-w-[760px] rounded-[28px] bg-white px-6 py-14 text-center sm:px-10 sm:py-20" role="status" aria-live="polite">
+            <span className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#e8f8f2] text-4xl font-bold text-[#008c63]">✓</span>
+            <p className="mt-7 text-lg font-bold text-[#008c63]">3 / 3 완료</p>
+            <h2 className="mt-3 text-[30px] font-bold tracking-[-0.02em] sm:text-[38px]">연구 진행 승인이 완료됐습니다.</h2>
+            <p className="mx-auto mt-4 max-w-lg text-base font-medium leading-7 text-[#6b7684]">세 항목의 승인 기록과 승인 시각이 이 브라우저에 저장됐습니다. 아래 버튼으로 기록 파일을 보관할 수 있습니다.</p>
+            <button type="button" onClick={exportRecords} className="mt-8 rounded-2xl bg-[#191f28] px-7 py-4 text-base font-bold text-white hover:bg-[#333d4b]">승인 기록 내려받기</button>
+          </section>
+        ) : (
+        <>
         <div className="mb-5 flex items-center gap-4" aria-label={`${tasks.length}개 중 ${activeNumber}번째`}>
           <div className="h-2 flex-1 overflow-hidden rounded-full bg-[#e5e8eb]"><div className="h-full rounded-full bg-[#3182f6] transition-all" style={{ width: `${(activeNumber / tasks.length) * 100}%` }} /></div>
           <strong className="text-sm text-[#4e5968]">{activeNumber} / {tasks.length}</strong>
         </div>
-
-        {completed === tasks.length ? <div className="mb-5 rounded-2xl bg-[#e8f8f2] p-5 text-center font-bold text-[#008c63]">세 항목의 승인 기록이 모두 저장됐습니다.</div> : null}
 
         <section className="mx-auto max-w-[760px] rounded-[28px] bg-white p-6 sm:p-9">
             <div className="border-b border-[#e5e8eb] pb-7">
@@ -138,9 +145,11 @@ export function ResearchReviewClient({ tasks }: { tasks: ReviewTask[] }) {
             {message ? <p role="status" className="mt-5 text-sm font-bold text-[#1b64da]">{message}</p> : null}
             <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
               <button type="button" onClick={exportRecords} disabled={!records.length} className="rounded-2xl px-5 py-3.5 text-sm font-bold text-[#4e5968] disabled:opacity-40">기록 JSON 내보내기</button>
-              <button type="button" onClick={saveRecord} disabled={currentComplete && completed === tasks.length} className="rounded-2xl bg-[#3182f6] px-7 py-4 text-base font-bold text-white hover:bg-[#1b64da] disabled:bg-[#b0b8c1]">{currentComplete && completed === tasks.length ? "승인 완료" : "이 내용으로 승인하고 다음"}</button>
+              <button type="button" onClick={saveRecord} className="rounded-2xl bg-[#3182f6] px-7 py-4 text-base font-bold text-white hover:bg-[#1b64da]">이 내용으로 승인하고 다음</button>
             </div>
         </section>
+        </>
+        )}
       </div>
     </main>
   );
