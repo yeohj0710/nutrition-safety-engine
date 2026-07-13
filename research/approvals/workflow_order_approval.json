@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0.0",
+  "approval_type": "workflow_order_amendment",
+  "approved_at": "2026-07-13",
+  "reviewer_identity": "portal_reviewer_identity_not_captured",
+  "decision": "approve_screening_before_study_linkage",
+  "rationale": "Screen all deduplicated records first, then perform report-to-study linkage only for retained candidates.",
+  "preservation_requirements": ["retain original records", "retain exclusion reasons", "link retained reports before synthesis"]
+}
