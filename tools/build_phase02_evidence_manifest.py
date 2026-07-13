@@ -18,6 +18,7 @@ PATHS = [
     "research/searches/koreamed_designpilot_20260710/summary.json",
     "research/searches/korean_db_split_designpilot_20260710/summary.json",
     "research/review_queue/PRESS_review.csv", "research/review_queue/korean_db_PRESS_review.csv",
+    "research/approvals/press_review_approval.json",
     "research/review_queue/phase_02_external_review.csv",
 ] + [f"research/searches/search_strategy_drafts/{q}_pubmed.txt" for q in ("A1", "A2", "B1", "B2", "B3")]
 

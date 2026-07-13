@@ -34,7 +34,7 @@ def main() -> int:
         if manifest.get(key) != value:
             errors.append(f"manifest {key}: expected {value!r}, got {manifest.get(key)!r}")
     artifacts = manifest.get("artifacts", [])
-    if manifest.get("artifact_count") != len(artifacts) or len(artifacts) != 22:
+    if manifest.get("artifact_count") != len(artifacts) or len(artifacts) != 23:
         errors.append("Phase 02 evidence artifact count mismatch")
     if len({entry.get("path") for entry in artifacts}) != len(artifacts):
         errors.append("duplicate artifact paths")

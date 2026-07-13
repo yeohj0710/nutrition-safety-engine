@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "pubmed_a1_final_20260713",
+  "question_id": "A1",
+  "database": "PubMed",
+  "platform": "NCBI E-utilities",
+  "search_datetime_iso": "2026-07-13T11:24:14.784Z",
+  "timezone": "UTC",
+  "status": "final_public_source_search",
+  "peer_review_status": "approved_identity_metadata_open",
+  "protocol_status": "approved_for_execution_identity_metadata_open",
+  "query_sha256": "1c8cf631d80cafe6979690e2e346d0b713ec4ede510d68ecd675c3d7f02e6d66",
+  "total_hits_reported": 12234,
+  "records_exported": 12234,
+  "top_n_truncation": false,
+  "partition_count": 14,
+  "efetch_batch_count": 62,
+  "notes": "Full PubMed final-search export after protocol and PRESS portal approvals; licensed databases remain outstanding."
+}

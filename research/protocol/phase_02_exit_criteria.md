@@ -13,14 +13,14 @@ Project status: `in_progress`
 | Sentinel recall | pass_local | 9/9 PubMed sentinel checks after B1 correction |
 | Workload forecast | pass_local | 19,961 PubMed pilot hits; estimated 266.15 title/abstract reviewer-hours before dedup |
 | Human/AI roles and metrics frozen | pass_local | `human_ai_role_matrix.md` |
-| Independent PRESS review | blocked_external | main queue 8 rows plus checksum-bound KMbase/RISS detail queue 40 rows; human decisions 0 |
+| Independent PRESS review | complete_candidate_requires_validation | portal approval completed for 6 bundles covering 48 rows; reviewer identity/role not captured |
 | PRESS decision storage | pass_local | both main and Korean queues contain reviewer/date/allowed-decision fields; partial or invalid decisions rejected |
 | Dated protocol approval | pass_operational_identity_metadata_open | review portal 3/3 completion and user confirmation recorded in AM-004; approver name was not captured |
 | Authenticated database/full-text access | blocked_external | CENTRAL public hit counts available but full content/export authentication-blocked; Embase/Scopus unavailable |
 | Registration/public URL | blocked_external | protocol intentionally not represented as registered |
 | Phase 02 evidence byte integrity | complete_verified | 21 protocol/search/review artifacts SHA-256-bound; external-gate flags false; validator errors 0 |
 
-Protocol execution is approved. Do not label Phase 02 complete or any search final until PRESS and source-access gates close. Public-source retrieval and queue generation may continue without replacing independent human decisions.
+Protocol execution and PRESS recommendations are approved. Public-source final retrieval may proceed. Do not label Phase 02 complete while licensed-source access, KMbase syntax validation, and reviewer identity metadata remain open.
 
 KMbase/RISS split-query design pilot captured 20 question-specific short queries on each platform. KMbase returned 20 HTTP-200 zero results despite a prior 5-hit one-word control; RISS returned nonzero counts for 19/20 queries. This is syntax/recall evidence for PRESS review only. Counts overlap, are not summable, and are not final-search or PRISMA totals.
 

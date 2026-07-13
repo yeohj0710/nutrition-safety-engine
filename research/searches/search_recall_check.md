@@ -1,12 +1,12 @@
-# Search recall check — design pilot
+# Search recall check — PubMed final search
 
-Status: `synthetic_proxy_unreviewed`; not a final-search or PRISMA result.
+Status: `final_search_normalized_pending_human_screening`; not a PRISMA result.
 
 - Sentinel retrieval: 9/9
 - Legacy unique PMIDs: 235
 - Retrieved legacy PMIDs: 202
 - Legacy PMIDs not retrieved: 33
-- Interpretation: legacy pilots used different broad questions and relevance-capped exports; non-overlap is a review signal, not proof of current-search failure.
+- Interpretation: legacy searches used different broad questions and relevance-capped exports; non-overlap is a review signal, not proof of current-search failure.
 
 ## Sentinel details
 

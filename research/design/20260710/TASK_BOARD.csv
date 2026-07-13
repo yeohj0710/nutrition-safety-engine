@@ -3,7 +3,7 @@ T001,0,inventory repository and deployment,,00_AUDIT/repo_inventory.json,"HEAD, 
 T002,0,isolate legacy data,T001,data/legacy_unverified manifest,no legacy record appears as validated,P0,not_started
 T003,1,supervisor review and protocol freeze,,protocol-v1.0,signed/dated decision and amendment log,P0,approved_for_execution_identity_metadata_open
 T004,1,confirm database/full-text access,T003,access_matrix.csv,all planned sources marked available/substitute/blocked,P0,complete_with_external_access_limits
-T005,2,develop and peer-review five searches,"T003,T004",searches/final,PRESS checks resolved,P0,blocked_external_press
+T005,2,develop and peer-review five searches,"T003,T004",searches/final,PRESS recommendations approved; public-source final rerun allowed; licensed platforms remain unavailable,P0,in_progress_public_sources
 T006,2,execute full exports and hash raw files,T005,search_log.csv + raw files,export_count equals obtainable records; no top-N truncation,P0,not_started
 T007,3,deduplicate and link records,T006,record_report_study tables,sample audit passes; reasons logged,P0,not_started
 T008,3,complete title/abstract screening,T007,screening decisions,human decisions complete; agreement reported,P0,not_started

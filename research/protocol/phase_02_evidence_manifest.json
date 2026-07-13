@@ -7,12 +7,17 @@
   "protocol_approver_identity_captured": false,
   "independent_press_complete": false,
   "registered": false,
-  "artifact_count": 22,
+  "artifact_count": 23,
   "artifacts": [
     {
+      "path": "research/approvals/press_review_approval.json",
+      "size_bytes": 1048,
+      "sha256": "379b33c20c23308131c83e2f682710f2622a7d6e81cc971d7212604a32bffda4"
+    },
+    {
       "path": "research/approvals/research_progress_approval.json",
-      "size_bytes": 1169,
-      "sha256": "2e55d971361fc71bbfe735be1501941ea14f02b0d7b41b5791a91fa1f8afc091"
+      "size_bytes": 1195,
+      "sha256": "fdf8d10b0b82e92fc7a26426a83087232b865d7eaf41294a89f79563f94d94f6"
     },
     {
       "path": "research/protocol/access_matrix.csv",
@@ -21,8 +26,8 @@
     },
     {
       "path": "research/protocol/amendments.csv",
-      "size_bytes": 2461,
-      "sha256": "113db150be0e3b0306c45303ebe5fdb65532b812f4540f573216bf0520186a56"
+      "size_bytes": 2463,
+      "sha256": "fcc6c9b0d29d07ec9f33fb665c728945c8878e9539f3a8b14cb30192f2acaa36"
     },
     {
       "path": "research/protocol/human_ai_role_matrix.md",
@@ -36,13 +41,13 @@
     },
     {
       "path": "research/protocol/protocol-v1.0.md",
-      "size_bytes": 11474,
-      "sha256": "7615b194eeb51dfafa617111fffba7ea1846ed67be2ff1c2a4d182654103b5b2"
+      "size_bytes": 11480,
+      "sha256": "204c46961abcc04fe803e45ad161ce7c2fbfed14b5ccabeb72ce86d64e93dd23"
     },
     {
       "path": "research/protocol/registration_status.md",
-      "size_bytes": 702,
-      "sha256": "b7f12783c4d9808ac68afe764bd89db8b117b64f5bba662b872865c18174f583"
+      "size_bytes": 707,
+      "sha256": "a2300bde8bb159d800fff56569e74c49566be883582cc20fc55e9ecacdc74727"
     },
     {
       "path": "research/protocol/workload_forecast.csv",
@@ -51,18 +56,18 @@
     },
     {
       "path": "research/review_queue/PRESS_review.csv",
-      "size_bytes": 3048,
-      "sha256": "905dc0fa155692d78e0c0328d511104e785125ad73909660423e532fcf3ce3ab"
+      "size_bytes": 4551,
+      "sha256": "34a8dc5d3d9548f514c22bdaa8739d101ed4af5b6b129b2afbae8f13e83b6a99"
     },
     {
       "path": "research/review_queue/korean_db_PRESS_review.csv",
-      "size_bytes": 17945,
-      "sha256": "62b050081bfeb1126e7a346e10f4859e4c2b8572d7bbdfe0e9143ede9da2b806"
+      "size_bytes": 26398,
+      "sha256": "f381f36e47403780f1705a16a05a1e6e65d04f910ba933568c0a15aed6541ec7"
     },
     {
       "path": "research/review_queue/phase_02_external_review.csv",
-      "size_bytes": 1395,
-      "sha256": "0c9aa68f3c6028837b20a87326c431e9fcce4c035226785848289ac53b7a38a1"
+      "size_bytes": 1410,
+      "sha256": "0d463e8a6a97b12c9136e2faeef8df85a57413ba05d4f590229b5c81c0b8c5d7"
     },
     {
       "path": "research/searches/central_hitcount_log.csv",

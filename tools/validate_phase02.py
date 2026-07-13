@@ -108,7 +108,7 @@ def main() -> int:
 
     press = csv_rows("research/review_queue/PRESS_review.csv")
     if len(press) < 7 or not all(
-        row["status"] in {"pending_external_human_review", "blocked_external"} for row in press
+        row["status"] in {"pending_external_human_review", "blocked_external", "complete_candidate_requires_validation"} for row in press
     ):
         errors.append("PRESS queue is incomplete or falsely closed")
     press_human_fields = {"reviewer_id", "reviewed_at", "decision", "comments", "required_revision"}
@@ -126,7 +126,7 @@ def main() -> int:
             errors.append(f"partial PRESS identity without decision: {row['review_id']}")
 
     review = csv_rows("research/review_queue/phase_02_external_review.csv")
-    allowed_review_states = {"blocked_external", "approved_for_execution_identity_metadata_open"}
+    allowed_review_states = {"blocked_external", "approved_for_execution_identity_metadata_open", "complete_candidate_requires_validation"}
     if len(review) < 5 or not all(row["status"] in allowed_review_states for row in review):
         errors.append("Phase 02 external review queue is incomplete")
     protocol_rows = [row for row in review if row["area"] == "protocol"]

@@ -110,22 +110,30 @@ async function efetch(ids) {
     tool: "nutrition_safety_thesis_reboot",
     id: ids.join(","),
   });
-  return (
-    await request("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi", {
-      method: "POST",
-      headers: {
-        accept: "application/xml",
-        "content-type": "application/x-www-form-urlencoded",
-      },
-      body,
-    })
-  ).text();
+  let lastError;
+  for (let attempt = 1; attempt <= 5; attempt += 1) {
+    try {
+      const response = await request("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi", {
+        method: "POST",
+        headers: {
+          accept: "application/xml",
+          "content-type": "application/x-www-form-urlencoded",
+        },
+        body,
+      });
+      return await response.text();
+    } catch (error) {
+      lastError = error;
+      if (attempt < 5) await delay(750 * 2 ** (attempt - 1));
+    }
+  }
+  throw lastError;
 }
 
 for (const questionId of questions) {
   const queryFile = path.join(queryRoot, `${questionId}_pubmed.txt`);
   const query = (await readFile(queryFile, "utf8")).trim();
-  const runId = `pubmed_${questionId.toLowerCase()}_designpilot_${runDate}`;
+  const runId = `pubmed_${questionId.toLowerCase()}_final_${runDate}`;
   const outputDir = path.join(repo, "research", "searches", questionId, "pubmed", runId);
   await mkdir(outputDir, { recursive: true });
 
@@ -138,7 +146,7 @@ for (const questionId of questions) {
       {
         database: "PubMed",
         endpoint: "NCBI E-utilities ESearch",
-        status: "design_pilot_full_export_not_final_search",
+        status: "final_public_source_search",
         total_hits_reported: search.total,
         pmids_exported: search.ids.length,
         query_translation: search.query_translation,
@@ -170,16 +178,16 @@ for (const questionId of questions) {
     platform: "NCBI E-utilities",
     search_datetime_iso: new Date().toISOString(),
     timezone: "UTC",
-    status: "design_pilot_full_export_not_final_search",
-    peer_review_status: "pending_external_human_review",
-    protocol_status: "pending_human_approval",
+    status: "final_public_source_search",
+    peer_review_status: "approved_identity_metadata_open",
+    protocol_status: "approved_for_execution_identity_metadata_open",
     query_sha256: sha256(`${query}\n`),
     total_hits_reported: search.total,
     records_exported: search.ids.length,
     top_n_truncation: false,
     partition_count: search.partitions.length,
     efetch_batch_count: batchNumber,
-    notes: "Full public-source design-pilot export; prohibited from PRISMA/final-result use.",
+    notes: "Full PubMed final-search export after protocol and PRESS portal approvals; licensed databases remain outstanding.",
   };
   await writeFile(
     path.join(outputDir, "response_metadata.json"),

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Normalize checksum-verified PubMed design-pilot exports without making human decisions."""
+"""Normalize checksum-verified PubMed final-search exports without making screening decisions."""
 
 from __future__ import annotations
 
@@ -16,7 +16,7 @@ from typing import Any
 
 REPO = Path(__file__).resolve().parents[1]
 QUESTIONS = ("A1", "A2", "B1", "B2", "B3")
-RUN_DATE = "20260710"
+RUN_DATE = "20260713"
 
 
 def sha256(path: Path) -> str:
@@ -110,7 +110,7 @@ def article_record(article: ET.Element, raw_file: str) -> dict[str, str]:
         "publication_types": "|".join(publication_types),
         "url": f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/",
         "raw_file": raw_file,
-        "status": "design_pilot_unreviewed",
+        "status": "final_search_unreviewed",
     }
 
 
@@ -154,7 +154,7 @@ def book_record(article: ET.Element, raw_file: str) -> dict[str, str]:
         "publication_types": "|".join(publication_types),
         "url": f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/",
         "raw_file": raw_file,
-        "status": "design_pilot_unreviewed",
+        "status": "final_search_unreviewed",
     }
 
 
@@ -206,7 +206,7 @@ def main() -> int:
     question_pmids: dict[str, set[str]] = {}
 
     for question in QUESTIONS:
-        run_id = f"pubmed_{question.lower()}_designpilot_{RUN_DATE}"
+        run_id = f"pubmed_{question.lower()}_final_{RUN_DATE}"
         run_dir = REPO / "research" / "searches" / question / "pubmed" / run_id
         metadata = json.loads((run_dir / "response_metadata.json").read_text(encoding="utf-8"))
         raw_files_checked += verify_checksum_file(run_dir)
@@ -240,7 +240,7 @@ def main() -> int:
                         "database": "PubMed",
                         "pmid": pmid,
                         "raw_file": relative_raw,
-                        "status": "design_pilot_not_final_search",
+                        "status": "final_search_pending_screening",
                     }
                 )
         if parsed_pmids != expected_ids:
@@ -257,7 +257,7 @@ def main() -> int:
                 "question_id": question,
                 "database": "PubMed",
                 "platform": "NCBI E-utilities",
-                "coverage_notes": "full public-source design-pilot export",
+                "coverage_notes": "full PubMed final-search export after protocol and PRESS approval",
                 "search_datetime_iso": metadata["search_datetime_iso"],
                 "timezone": metadata["timezone"],
                 "query_file": query_path.relative_to(REPO).as_posix(),
@@ -396,7 +396,7 @@ def main() -> int:
 
     summary = {
         "schema_version": "1.0.0",
-        "status": "synthetic_proxy_unreviewed",
+        "status": "final_search_normalized_pending_human_screening",
         "raw_files_checksum_verified": raw_files_checked,
         "retrieval_instances": len(retrievals),
         "unique_pubmed_records": len(records),
@@ -409,22 +409,22 @@ def main() -> int:
         "legacy_unique_pmids": len(legacy_pmids),
         "legacy_pmids_retrieved_by_current_drafts": len(legacy_overlap),
         "legacy_pmids_not_retrieved_by_current_drafts": len(legacy_pmids - current_pmids),
-        "limitation": "No human duplicate or study-linkage decision has been made; pilot scope differs from legacy searches.",
+        "limitation": "No human duplicate, study-linkage, or eligibility-screening decision has been made; licensed databases remain outstanding.",
     }
     (interim / "dedup_summary.json").write_text(
         json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
 
     recall_lines = [
-        "# Search recall check — design pilot",
+        "# Search recall check — PubMed final search",
         "",
-        "Status: `synthetic_proxy_unreviewed`; not a final-search or PRISMA result.",
+        "Status: `final_search_normalized_pending_human_screening`; not a PRISMA result.",
         "",
         f"- Sentinel retrieval: {sum(item['retrieved'] for item in sentinel_results)}/{len(sentinel_results)}",
         f"- Legacy unique PMIDs: {len(legacy_pmids)}",
         f"- Retrieved legacy PMIDs: {len(legacy_overlap)}",
         f"- Legacy PMIDs not retrieved: {len(legacy_pmids - current_pmids)}",
-        "- Interpretation: legacy pilots used different broad questions and relevance-capped exports; non-overlap is a review signal, not proof of current-search failure.",
+        "- Interpretation: legacy searches used different broad questions and relevance-capped exports; non-overlap is a review signal, not proof of current-search failure.",
         "",
         "## Sentinel details",
         "",
