@@ -116,7 +116,13 @@ function isGroundedSummary(
     next: string[];
   },
 ) {
-  if (!text || text.length > 200 || /https?:\/\//i.test(text)) return false;
+  if (
+    !text ||
+    text.length > 200 ||
+    /https?:\/\//i.test(text) ||
+    /입력(?:되|하|된)|입력값|프로필|대상자|사용자|검사값/.test(text)
+  )
+    return false;
   const required = numericTokens(input.profile.join(" "));
   const actual = numericTokens(text);
   if ([...required].some((token) => !actual.has(token))) return false;
@@ -155,19 +161,29 @@ function normalizeCondition(value: string) {
   if (/병력$/.test(value)) return `${value}이 있습니다`;
   return value.endsWith("다") ? value : `${value}이 있습니다`;
 }
+function withObjectParticle(value: string) {
+  const last = value.at(-1) ?? "";
+  const code = last.charCodeAt(0);
+  const hasFinalConsonant =
+    code >= 0xac00 && code <= 0xd7a3 && (code - 0xac00) % 28 !== 0;
+  return `${value}${hasFinalConsonant ? "을" : "를"}`;
+}
 function buildProfileSentence(input: SummaryInput) {
   const sentences: string[] = [];
   if (input.dose)
-    sentences.push(`${input.ingredient} ${input.dose}를 복용 중입니다.`);
+    sentences.push(
+      `${withObjectParticle(input.ingredient)} ${input.dose} 복용하고 있습니다.`,
+    );
   if (input.medication && input.condition)
     sentences.push(
-      `${input.medication}을 함께 복용하며 ${normalizeCondition(input.condition)}.`,
+      `${input.medication}도 함께 복용하고 있으며, ${normalizeCondition(input.condition)}.`,
     );
   else if (input.medication)
-    sentences.push(`${input.medication}을 함께 복용합니다.`);
+    sentences.push(`${input.medication}도 함께 복용하고 있습니다.`);
   else if (input.condition)
     sentences.push(`${normalizeCondition(input.condition)}.`);
-  if (input.labs) sentences.push(`검사 결과는 ${input.labs}입니다.`);
+  if (input.labs)
+    sentences.push(`최근 검사에서는 ${input.labs}이 확인됐습니다.`);
   return sentences.join(" ");
 }
 export async function summarize(input: SummaryInput) {
@@ -195,7 +211,7 @@ export async function summarize(input: SummaryInput) {
           {
             role: "system",
             content:
-              "일반 사용자가 한 번에 이해할 수 있는 건강정보 안내문을 쓴다. 제공된 사실만 사용한다. 문장은 3개 이하, 전체 180자 이하로 쓴다. 첫 문장에는 복용량·병용약·병력·검사값 중 입력된 내용을 자연스럽게 요약한다. 둘째 문장은 지금 확인할 핵심 한 가지만 말한다. 마지막 문장은 상담할 때 준비할 항목 한 가지만 말한다. 한 문장에 정보를 몰아넣지 않는다. '종합하면', '핵심은', '상담 전에는', '현재 입력한 조건', '입력값', '프로필'은 쓰지 않는다. 입력된 숫자와 단위는 그대로 포함한다. 진단, 위험 단정, 복용 시작·중단·용량 변경 지시는 하지 않는다.",
+              "건강정보를 안내받는 사람의 실제 상황을 자연스러운 한국어로 설명한다. 필드나 양식을 읽어주지 말고, 사람이 복용하고 있는 것·겪고 있는 증상·가지고 있는 병력·최근 검사에서 확인된 내용을 직접 서술한다. 예: '비타민 C를 1000 mg/day 복용하고 있습니다. 고옥살산뇨와 결석 병력이 있으며, 최근 검사에서는 요중 옥살산 상승이 확인됐습니다.' 제공된 사실만 사용한다. 문장은 3개 이하, 전체 180자 이하로 쓴다. 마지막 문장은 지금 확인할 핵심 한 가지만 말한다. '입력되었습니다', '입력한 내용', '입력값', '대상자', '사용자', '프로필', '검사값', '종합하면', '핵심은', '상담 전에는', '현재 입력한 조건'은 쓰지 않는다. 숫자와 단위는 그대로 포함한다. 진단, 위험 단정, 복용 시작·중단·용량 변경 지시는 하지 않는다.",
           },
           { role: "user", content: JSON.stringify(modelInput) },
         ],

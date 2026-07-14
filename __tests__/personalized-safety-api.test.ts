@@ -55,13 +55,13 @@ describe("personalized safety API", () => {
       }),
     );
     const body = await response.json();
-    expect(body.ai_summary).toContain("칼슘 600 mg/day를 복용 중입니다.");
+    expect(body.ai_summary).toContain("칼슘을 600 mg/day 복용하고 있습니다.");
     expect(body.ai_summary).toContain("칼슘옥살산 신장결석 병력이 있습니다.");
     expect(body.ai_summary).toContain(
-      "검사 결과는 24시간 요중 칼슘 280 mg/day입니다.",
+      "최근 검사에서는 24시간 요중 칼슘 280 mg/day이 확인됐습니다.",
     );
     expect(body.ai_summary).not.toMatch(
-      /현재 입력한 조건|종합하면|핵심은|상담 전에는|이시군요|살펴볼게요|적어주셨네요/,
+      /입력(?:되|하|된)|입력값|대상자|사용자|프로필|검사값|현재 입력한 조건|종합하면|핵심은|상담 전에는|이시군요|살펴볼게요|적어주셨네요/,
     );
   });
   it("rejects unsupported ingredients", async () => {
@@ -101,6 +101,10 @@ describe("personalized safety API", () => {
     [
       "direct medication instruction",
       "입력 상태를 확인했습니다. 지금 복용을 중단하세요.",
+    ],
+    [
+      "robotic input acknowledgement",
+      "복용량 600 mg/day, 병력 신장결석이 입력되었습니다.",
     ],
   ])("falls back when AI returns %s", async (_caseName, output_text) => {
     process.env.OPENAI_API_KEY = "test-key";
