@@ -886,3 +886,10 @@
 - created an evidence-backed audit of 17 research completion gates covering searches, screening, linkage, full text, extraction, RoB, GRADE, synthesis, expert review, usability, engine gold, thesis, and final manifest
 - all 17 gates remain open at the full-research level; agent prereview progress is recorded separately from the required human or authenticated external work
 - expanded population-context recognition to sex-specific cohorts, record sets, and case reports; all 144 numeric candidates now have an observable group/exposure plus outcome context window, while effect usability remains unverified
+
+## 2026-07-14 Consolidated external handoff refresh
+
+- rebuilt the human handoff manifest across 34 queues and 41,104 rows; 390 rows contain existing human data and no incomplete queue was represented as finished
+- regenerated the nine-sheet external review workbook from current authoritative CSV sources using the bundled spreadsheet runtime
+- validated all nine source hashes and workbook structure; visually inspected the README and registry-link sheets, then removed temporary renders and runtime junctions
+- this is a single batch handoff artifact for eventual external work, not another approval request and not evidence that human review occurred

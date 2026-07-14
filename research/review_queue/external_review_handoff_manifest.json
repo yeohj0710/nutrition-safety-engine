@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "external_human_handoff_copy_not_research_results",
   "workbook_path": "research/review_queue/external_review_handoff.xlsx",
-  "workbook_sha256": "108f0ce6b662587d666f1bdccc9332170d38b5549e2a5ba3ee13e84ba8be23da",
+  "workbook_sha256": "7e4f767ccddbca9b5a069954cec47de8ea7e8bc8e34ce186000c9f14188e023d",
   "sheets": {
     "README": 9,
     "PRESS_Main": 8,
@@ -15,14 +15,14 @@
     "Pilot_Decisions": 50
   },
   "sources": {
-    "research/review_queue/PRESS_review.csv": "ffff061a66bdc2c14b72f66ff683cfd3ae1d5aed396c32d3926238e1373ac127",
-    "research/review_queue/korean_db_PRESS_review.csv": "b561d62d7f7eee7e5c18211558db3ac4692d9a0827d0a2914783679784534e4b",
-    "data/interim/duplicate_review_context.csv": "edd1db5cb0374547a079e956bcaf4e7230dc198a7c5e564f10fe592817f55aad",
-    "data/interim/registry_link_review_context.csv": "9e2c87e208af528ce561ad3829068864d10b812a41911db2ff2345043817c48b",
-    "data/interim/deduplication_decisions.csv": "0aaaa0cdbe4d731e0382285c8aa916af5ab328bbc5719f4cf0a71c3b75ca8b51",
-    "data/interim/registry_linkage_decisions.csv": "55e7706810204b2ce6493fdcc10bbce8ec7fe2b1839332d0256c454f231e8706",
+    "research/review_queue/PRESS_review.csv": "34a8dc5d3d9548f514c22bdaa8739d101ed4af5b6b129b2afbae8f13e83b6a99",
+    "research/review_queue/korean_db_PRESS_review.csv": "f381f36e47403780f1705a16a05a1e6e65d04f910ba933568c0a15aed6541ec7",
+    "data/interim/duplicate_review_context.csv": "41281a96bf3ba72348698fa8f3a02fe8271df9b288d5dccbef4bbd4c831751bb",
+    "data/interim/registry_link_review_context.csv": "7c70e91bf484d6eca8ea6eb680dfbefe3dc4aca8de673b878216ca9574227ba6",
+    "data/interim/deduplication_decisions.csv": "4b770dced4826cf84af15b345b70d5b51120515752ba4a7074c6e619dd233682",
+    "data/interim/registry_linkage_decisions.csv": "06f4540171b66b8ebeedfcc5a77dc38185f7e573f6b13d838dcc1f8a7e75ee26",
     "data/interim/screening_pilot_queue.csv": "bf522a63e14452e3c38aa99a5c7f0f2dd7828672486119f27e655396b3ca5279",
-    "data/interim/screening_review_context.csv": "0cbdbd117d551331d9425fd9e8435012f9c5e6b1f2c5e53860d5e0c15b67a6b4",
+    "data/interim/screening_review_context.csv": "038993c6875bef361c89f1685fcd6ec805673097efbd26c1dff20f72188e32f3",
     "data/interim/koreamed_pubmed_link_candidates.csv": "4c017df4bf6be3eafcfb6096ba709865b65a0cd1daa90957b3fa8805503e53e9"
   },
   "visual_qa": {
