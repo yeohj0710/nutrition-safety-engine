@@ -839,3 +839,11 @@
 - provenance limit: portal did not collect the approver name; formal identity metadata remains open and is not represented as a signed approval
 - validation: Phase 02 validator errors 0; hash-bound evidence manifest contains 22 artifacts; PubMed pilot 5 runs/19,961 hits and sentinel recall 9/9 remain verified
 - remaining gate: independent PRESS decisions are 0/8 main rows and 0/40 Korean-database rows; licensed database access and independent human research decisions remain external
+
+## 2026-07-14 Agent research continuation and core full-text capture
+
+- narrowed 10,506 broad `advance_to_human_screening` record-question recommendations to 3,245 PICOS-aligned research-priority units without creating human eligibility decisions
+- stratified the queue by core directness, public full-text availability, study-design signal, and observed dose information
+- identified 42 tier-1 record-question units representing 39 unique PMC records; retrieved all 39 through NCBI EFetch (HTTP 200), with article body XML present for 30
+- fixed raw XML and compressed-file checksums and retained source-record lineage, duplicate-cluster references, and evidence locators
+- boundary: title/abstract decisions, full-text eligibility, independent review, RoB, GRADE, PRISMA final counts, and clinical conclusions remain open

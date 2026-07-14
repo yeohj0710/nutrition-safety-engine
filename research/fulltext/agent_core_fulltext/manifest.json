@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "status": "agent_core_fulltext_capture_complete_eligibility_open",
+  "endpoint": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi",
+  "requested": 39,
+  "returned": 39,
+  "http_status": 200,
+  "body_present": 30,
+  "raw_file": "pmc_core_batch.xml.gz",
+  "raw_gzip_sha256": "797214aae7db4f82d359b22932eebd292903834933660c9440f24686d21402c5",
+  "raw_xml_sha256": "aed04073a887d833d6f51de39a89d1c238fd0ddc3b734dcebbd26065257cb0a2",
+  "human_fulltext_verified": 0,
+  "human_eligibility_decisions": 0,
+  "final_inclusion_claim_allowed": false
+}
