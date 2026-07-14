@@ -1,14 +1,19 @@
 {
   "schema_version": "1.0.0",
   "status": "agent_fulltext_sentence_extraction_complete_human_verification_open",
-  "source_articles_with_body": 30,
-  "articles_with_evidence": 30,
-  "evidence_sentences": 621,
+  "source_articles_with_body": 35,
+  "articles_with_evidence": 35,
+  "evidence_sentences": 673,
   "by_question": {
     "A1": {
       "exposure_dose": 11,
       "exposure_outcome": 47,
       "exposure_population": 44
+    },
+    "A2": {
+      "exposure_dose": 13,
+      "exposure_outcome": 28,
+      "exposure_population": 11
     },
     "B1": {
       "exposure_dose": 4,
@@ -23,18 +28,18 @@
       "exposure_outcome": 82
     }
   },
-  "sentences_with_dose": 164,
+  "sentences_with_dose": 184,
   "human_verified_sentences": 0,
   "human_eligibility_decisions": 0,
   "rob_completed": 0,
   "grade_completed": 0,
   "clinical_conclusion_allowed": false,
   "inputs": {
-    "articles_sha256": "219d49722d78ab81ac233a20048fb1d659baf5952f27d42292034ee33fbdb8ab",
-    "raw_xml_sha256": "aed04073a887d833d6f51de39a89d1c238fd0ddc3b734dcebbd26065257cb0a2"
+    "articles_sha256": "8b7d377d0cdf1224504dcea6c22b20c87b8601983b01f743daf592b91c2b7081",
+    "raw_xml_sha256": "6e1257be7d819ee71701ec448288b5c05e8106b264bdd685f824baa7fde0b9ec"
   },
   "output": {
     "path": "research/fulltext/agent_core_fulltext/agent_fulltext_evidence.csv",
-    "sha256": "6692b9e37fd248867f22fca61515759d95849fa32f28e3f833be1a6b5f5e63a4"
+    "sha256": "37d9e6cfd8dc20e40b09f22d50380153bfe4f320283160db415f9a4103a292e8"
   }
 }

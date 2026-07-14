@@ -855,3 +855,11 @@
 - 164 extracted sentences contain dose expressions; the evidence table covers A1, B1, B2, and B3
 - no A2 tier-1 article body was available in the captured public PMC set, so the A2 full-text evidence gap remains explicit
 - boundary: extracted sentences are AI research notes, not human-verified facts, eligibility decisions, effect estimates, RoB, GRADE, or clinical conclusions
+
+## 2026-07-14 Structured full-text extraction and A2 gap recovery
+
+- expanded public full-text capture to the seven A2 tier-3 PMC candidates; retrieved 46 unique PMC records in total and observed article body XML for 35
+- rebuilt the sentence evidence table to 673 sentences across all five questions, including 52 A2 sentences and 184 sentences with dose expressions
+- produced article-level structured extraction for 35 articles: 6 randomized-trial, 8 cohort, 7 systematic-review, 5 case-report/series, and 9 design-unclear candidates
+- identified comparator signals in 15 articles and numeric result candidate sentences in 19; these values remain unverified extraction targets
+- mapped synthesis readiness for A1-A2-B1-B2-B3 while preserving open human eligibility, effect verification, RoB, GRADE, and final-conclusion gates

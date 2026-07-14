@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "status": "agent_article_extraction_complete_human_verification_open",
+  "articles": 35,
+  "by_question": {
+    "A1": 4,
+    "A2": 5,
+    "B1": 4,
+    "B2": 15,
+    "B3": 7
+  },
+  "study_designs": {
+    "case_report_or_series": 5,
+    "cohort": 8,
+    "design_unclear": 9,
+    "randomized_trial": 6,
+    "systematic_review": 7
+  },
+  "articles_with_dose": 32,
+  "articles_with_comparator_signal": 15,
+  "articles_with_numeric_result_candidates": 19,
+  "human_verified_articles": 0,
+  "eligible_studies": 0,
+  "verified_effect_estimates": 0,
+  "rob_completed": 0,
+  "grade_completed": 0,
+  "meta_analysis_allowed": false,
+  "clinical_conclusion_allowed": false,
+  "inputs": {
+    "research/fulltext/agent_core_fulltext/articles.csv": "8b7d377d0cdf1224504dcea6c22b20c87b8601983b01f743daf592b91c2b7081",
+    "research/fulltext/agent_core_fulltext/agent_fulltext_evidence.csv": "37d9e6cfd8dc20e40b09f22d50380153bfe4f320283160db415f9a4103a292e8",
+    "research/systematic_review_v3/core_evidence.csv": "da75a7c88738548402c3fdbae8bf801bd2270932bb6447600ff9b4bb07953fe9"
+  },
+  "output": {
+    "path": "research/fulltext/agent_core_fulltext/agent_structured_extraction.csv",
+    "sha256": "57b22f1a5a3bc31331c6d506e9618cedf9374a697e9687f501b3def3bf1db957"
+  }
+}

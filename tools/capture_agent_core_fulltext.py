@@ -12,7 +12,8 @@ ENDPOINT="https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
 def text(node): return " ".join("".join(node.itertext()).split()) if node is not None else ""
 def sha(b): return hashlib.sha256(b).hexdigest()
 def main():
-    with QUEUE.open(encoding="utf-8-sig",newline="") as f: tier=[r for r in csv.DictReader(f) if r["priority_tier"]=="tier_1_public_fulltext_core"]
+    with QUEUE.open(encoding="utf-8-sig",newline="") as f:
+        tier=[r for r in csv.DictReader(f) if r["priority_tier"]=="tier_1_public_fulltext_core" or (r["question_id"]=="A2" and r["priority_tier"]=="tier_3_public_fulltext_picos")]
     with PMC.open(encoding="utf-8-sig",newline="") as f: pmc_index={r["record_id"]:r for r in csv.DictReader(f)}
     expected={pmc_index[r["record_id"]]["pmcid"]:r for r in tier}; ids=[x.removeprefix("PMC") for x in expected]
     query=urllib.parse.urlencode({"db":"pmc","id":",".join(ids),"retmode":"xml","tool":"nutrition_safety_research"})
@@ -37,7 +38,8 @@ def main():
     rows.sort(key=lambda r:(r["question_id"],r["pmid"]))
     with (OUT/"articles.csv").open("w",encoding="utf-8",newline="") as f:
         w=csv.DictWriter(f,fieldnames=list(rows[0]),lineterminator="\n");w.writeheader();w.writerows(rows)
-    manifest={"schema_version":"1.0.0","status":"agent_core_fulltext_capture_complete_eligibility_open","endpoint":ENDPOINT,
+    manifest={"schema_version":"1.0.0","status":"agent_core_and_a2_gap_fulltext_capture_complete_eligibility_open","endpoint":ENDPOINT,
+      "selection":"all tier_1_public_fulltext_core plus A2 tier_3_public_fulltext_picos",
       "requested":len(ids),"returned":len(rows),"http_status":status,"body_present":sum(r["body_present"]=="true" for r in rows),
       "raw_file":"pmc_core_batch.xml.gz","raw_gzip_sha256":sha(stored),"raw_xml_sha256":sha(raw),
       "human_fulltext_verified":0,"human_eligibility_decisions":0,"final_inclusion_claim_allowed":False}
