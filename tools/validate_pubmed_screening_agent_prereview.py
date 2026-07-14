@@ -44,6 +44,8 @@ def main() -> int:
     retrievals = read_csv(ROOT / "data/interim/record_retrievals.csv")
     sentinels = read_csv(ROOT / "research/searches/sentinel_set.csv")
     summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
+    approval_path = ROOT / "research/approvals/pubmed_screening_agent_prereview_approval.json"
+    approval = json.loads(approval_path.read_text(encoding="utf-8")) if approval_path.is_file() else None
 
     keys = [(row["record_id"], row["question_id"]) for row in rows]
     source_keys = [(row["record_id"], row["question_id"]) for row in retrievals]
@@ -85,6 +87,13 @@ def main() -> int:
         errors.append("summary output hash mismatch")
     if summary.get("human_screening_decisions") != 0 or summary.get("independent_reviewers_completed") != 0 or summary.get("prisma_final_counts_allowed") is not False:
         errors.append("summary overstates human review or PRISMA readiness")
+    if approval is not None:
+        expected_bundles = {f"PUBMED-PREREVIEW-{question}" for question in EXPECTED}
+        observed_bundles = {event.get("bundleId") for event in approval.get("validation_events", [])}
+        if approval.get("bundles_validated") != 5 or observed_bundles != expected_bundles:
+            errors.append("portal approval does not cover five prereview bundles")
+        if approval.get("human_individual_screening_decisions_recorded") != 0 or approval.get("independent_reviewers_completed") != 0:
+            errors.append("portal approval overstates human screening")
 
     strata: dict[str, list[dict[str, str]]] = defaultdict(list)
     for row in rows:
@@ -103,6 +112,7 @@ def main() -> int:
         "sentinels_verified": [{"question_id": row["question_id"], "pmid": row["pmid"], "recommendation": row["agent_recommendation"]} for row in sentinel_rows],
         "random_stratified_samples": random_samples, "boundary_case_samples": boundary,
         "human_screening_claim_allowed": False, "prisma_final_counts_allowed": False, "errors": errors,
+        "portal_bundle_validation_recorded": approval is not None,
     }
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "status": "agent_linkage_prereview_complete_human_links_open",
+  "authority": "agent_prereview_only",
+  "screening_basis": "advance_to_human_screening_not_human_inclusion",
+  "advanced_record_question_units": 10506,
+  "unique_reports": 10385,
+  "agent_provisional_study_components": 10276,
+  "multi_report_components": 49,
+  "reports_in_multi_report_components": 158,
+  "components_by_report_count": {
+    "1": 10227,
+    "2": 31,
+    "3": 7,
+    "4": 2,
+    "5": 3,
+    "6": 2,
+    "7": 1,
+    "9": 1,
+    "12": 2
+  },
+  "registration_ids_detected": 221,
+  "human_link_decisions": 0,
+  "independent_reviewers_completed": 0,
+  "synthesis_allowed": false,
+  "inputs": {
+    "screening_sha256": "44c6e43662e88077f2d8cbd5824df36ea98d91f338b5af602452e2dab93cadaa",
+    "screening_approval_sha256": "5bfee0c84c8705200b44277e6d0f35a6c0336e60499a14ee6b4856761b6666c7",
+    "reports_sha256": "049e33d803427e77d03327e9fde4f59571d861e7c780c9474d95f2e300c1e68e"
+  },
+  "output_sha256": "e5d3b34226202d374d78ed0729657f79d1e9232926bde3a732ec3530fee19fd1"
+}

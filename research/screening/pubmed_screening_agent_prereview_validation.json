@@ -1050,5 +1050,6 @@
   },
   "human_screening_claim_allowed": false,
   "prisma_final_counts_allowed": false,
-  "errors": []
+  "errors": [],
+  "portal_bundle_validation_recorded": true
 }

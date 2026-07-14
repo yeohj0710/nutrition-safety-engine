@@ -1,0 +1,378 @@
+{
+  "schema_version": "1.0.0",
+  "status": "pass",
+  "unique_reports_verified": 10385,
+  "provisional_components_verified": 10276,
+  "multi_report_components_verified": 49,
+  "reports_in_multi_report_components": 158,
+  "component_sizes": {
+    "1": 10227,
+    "2": 31,
+    "3": 7,
+    "4": 2,
+    "5": 3,
+    "12": 2,
+    "6": 2,
+    "9": 1,
+    "7": 1
+  },
+  "samples": {
+    "multi_report": [
+      {
+        "record_id": "REC-PUBMED-24552831",
+        "pmid": "24552831",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-C7E7EF92F69E",
+        "linkage_evidence": "shared_trial_registration"
+      },
+      {
+        "record_id": "REC-PUBMED-25104527",
+        "pmid": "25104527",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-5D557C89C6E3",
+        "linkage_evidence": "shared_trial_registration"
+      },
+      {
+        "record_id": "REC-PUBMED-30586727",
+        "pmid": "30586727",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-5D557C89C6E3",
+        "linkage_evidence": "shared_trial_registration"
+      },
+      {
+        "record_id": "REC-PUBMED-23525418",
+        "pmid": "23525418",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-C7E7EF92F69E",
+        "linkage_evidence": "shared_trial_registration"
+      },
+      {
+        "record_id": "REC-PUBMED-32171760",
+        "pmid": "32171760",
+        "question_ids": "A2",
+        "agent_provisional_study_id": "AGENT-STUDY-9790095418F6",
+        "linkage_evidence": "shared_trial_registration"
+      },
+      {
+        "record_id": "REC-PUBMED-28508916",
+        "pmid": "28508916",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-9FB07D96A837",
+        "linkage_evidence": "approved_duplicate_report_cluster"
+      },
+      {
+        "record_id": "REC-PUBMED-35172988",
+        "pmid": "35172988",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-FC872513B873",
+        "linkage_evidence": "shared_trial_registration"
+      },
+      {
+        "record_id": "REC-PUBMED-23723250",
+        "pmid": "23723250",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-C7E7EF92F69E",
+        "linkage_evidence": "shared_trial_registration"
+      },
+      {
+        "record_id": "REC-PUBMED-22084332",
+        "pmid": "22084332",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-68890DE7CCD8",
+        "linkage_evidence": "shared_trial_registration"
+      },
+      {
+        "record_id": "REC-PUBMED-27792741",
+        "pmid": "27792741",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-B8A467EAC355",
+        "linkage_evidence": "shared_trial_registration"
+      },
+      {
+        "record_id": "REC-PUBMED-25736441",
+        "pmid": "25736441",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-C7E7EF92F69E",
+        "linkage_evidence": "shared_trial_registration"
+      },
+      {
+        "record_id": "REC-PUBMED-31651951",
+        "pmid": "31651951",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-42614E31468B",
+        "linkage_evidence": "shared_trial_registration"
+      },
+      {
+        "record_id": "REC-PUBMED-38939675",
+        "pmid": "38939675",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-DA5FD0D38F12",
+        "linkage_evidence": "shared_trial_registration"
+      },
+      {
+        "record_id": "REC-PUBMED-24897382",
+        "pmid": "24897382",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-DC0B6937C057",
+        "linkage_evidence": "approved_duplicate_report_cluster"
+      },
+      {
+        "record_id": "REC-PUBMED-21328283",
+        "pmid": "21328283",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-CEB3D742A82B",
+        "linkage_evidence": "approved_duplicate_report_cluster"
+      },
+      {
+        "record_id": "REC-PUBMED-28457013",
+        "pmid": "28457013",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-574866862E35",
+        "linkage_evidence": "shared_trial_registration"
+      },
+      {
+        "record_id": "REC-PUBMED-24315894",
+        "pmid": "24315894",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-C7E7EF92F69E",
+        "linkage_evidence": "shared_trial_registration"
+      },
+      {
+        "record_id": "REC-PUBMED-28625380",
+        "pmid": "28625380",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-A27F9457C880",
+        "linkage_evidence": "shared_trial_registration"
+      },
+      {
+        "record_id": "REC-PUBMED-34337905",
+        "pmid": "34337905",
+        "question_ids": "B2",
+        "agent_provisional_study_id": "AGENT-STUDY-6029268C4E7A",
+        "linkage_evidence": "shared_trial_registration"
+      },
+      {
+        "record_id": "REC-PUBMED-40492254",
+        "pmid": "40492254",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-F89443ACC135",
+        "linkage_evidence": "shared_trial_registration"
+      },
+      {
+        "record_id": "REC-PUBMED-30873623",
+        "pmid": "30873623",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-B8A467EAC355",
+        "linkage_evidence": "shared_trial_registration"
+      },
+      {
+        "record_id": "REC-PUBMED-27358435",
+        "pmid": "27358435",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-C7E7EF92F69E",
+        "linkage_evidence": "shared_trial_registration"
+      },
+      {
+        "record_id": "REC-PUBMED-36166340",
+        "pmid": "36166340",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-190D9DE9A6D0",
+        "linkage_evidence": "shared_trial_registration"
+      },
+      {
+        "record_id": "REC-PUBMED-30151820",
+        "pmid": "30151820",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-F5F70D9FF9B2",
+        "linkage_evidence": "approved_duplicate_report_cluster"
+      },
+      {
+        "record_id": "REC-PUBMED-33549557",
+        "pmid": "33549557",
+        "question_ids": "A2",
+        "agent_provisional_study_id": "AGENT-STUDY-9790095418F6",
+        "linkage_evidence": "shared_trial_registration"
+      }
+    ],
+    "singleton": [
+      {
+        "record_id": "REC-PUBMED-29028119",
+        "pmid": "29028119",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-912A0EB02B4B",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      },
+      {
+        "record_id": "REC-PUBMED-38999413",
+        "pmid": "38999413",
+        "question_ids": "B2",
+        "agent_provisional_study_id": "AGENT-STUDY-864E9DDD6251",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      },
+      {
+        "record_id": "REC-PUBMED-28214485",
+        "pmid": "28214485",
+        "question_ids": "A2",
+        "agent_provisional_study_id": "AGENT-STUDY-090DE06C16E5",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      },
+      {
+        "record_id": "REC-PUBMED-15934970",
+        "pmid": "15934970",
+        "question_ids": "B2",
+        "agent_provisional_study_id": "AGENT-STUDY-AB0105870C16",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      },
+      {
+        "record_id": "REC-PUBMED-34684165",
+        "pmid": "34684165",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-FC81C0D382B2",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      },
+      {
+        "record_id": "REC-PUBMED-25882889",
+        "pmid": "25882889",
+        "question_ids": "B2",
+        "agent_provisional_study_id": "AGENT-STUDY-9B6ACEFA6F3C",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      },
+      {
+        "record_id": "REC-PUBMED-26202836",
+        "pmid": "26202836",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-651F34EFBDF3",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      },
+      {
+        "record_id": "REC-PUBMED-25717286",
+        "pmid": "25717286",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-B3ABC5EF97D1",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      },
+      {
+        "record_id": "REC-PUBMED-26972708",
+        "pmid": "26972708",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-AF4DB821D87C",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      },
+      {
+        "record_id": "REC-PUBMED-16123911",
+        "pmid": "16123911",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-E939F2555378",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      },
+      {
+        "record_id": "REC-PUBMED-33837680",
+        "pmid": "33837680",
+        "question_ids": "B2",
+        "agent_provisional_study_id": "AGENT-STUDY-BCD89D8C0E66",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      },
+      {
+        "record_id": "REC-PUBMED-40917545",
+        "pmid": "40917545",
+        "question_ids": "A2",
+        "agent_provisional_study_id": "AGENT-STUDY-1555C5D6DDDA",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      },
+      {
+        "record_id": "REC-PUBMED-3738224",
+        "pmid": "3738224",
+        "question_ids": "B1",
+        "agent_provisional_study_id": "AGENT-STUDY-393AA3737555",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      },
+      {
+        "record_id": "REC-PUBMED-30139010",
+        "pmid": "30139010",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-98C4F90727F2",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      },
+      {
+        "record_id": "REC-PUBMED-10321413",
+        "pmid": "10321413",
+        "question_ids": "B2",
+        "agent_provisional_study_id": "AGENT-STUDY-8165CDB09D29",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      },
+      {
+        "record_id": "REC-PUBMED-10598186",
+        "pmid": "10598186",
+        "question_ids": "B2",
+        "agent_provisional_study_id": "AGENT-STUDY-469D29A6BC04",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      },
+      {
+        "record_id": "REC-PUBMED-15205858",
+        "pmid": "15205858",
+        "question_ids": "B2",
+        "agent_provisional_study_id": "AGENT-STUDY-CD0CD95316E0",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      },
+      {
+        "record_id": "REC-PUBMED-26923792",
+        "pmid": "26923792",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-47DBEAB16E16",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      },
+      {
+        "record_id": "REC-PUBMED-17587727",
+        "pmid": "17587727",
+        "question_ids": "B2",
+        "agent_provisional_study_id": "AGENT-STUDY-D1A7D028EECC",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      },
+      {
+        "record_id": "REC-PUBMED-20051286",
+        "pmid": "20051286",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-206F134DAEF6",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      },
+      {
+        "record_id": "REC-PUBMED-9869191",
+        "pmid": "9869191",
+        "question_ids": "B2",
+        "agent_provisional_study_id": "AGENT-STUDY-274002090D57",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      },
+      {
+        "record_id": "REC-PUBMED-2265249",
+        "pmid": "2265249",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-2B470962B8DA",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      },
+      {
+        "record_id": "REC-PUBMED-19193909",
+        "pmid": "19193909",
+        "question_ids": "B2",
+        "agent_provisional_study_id": "AGENT-STUDY-4832154C074E",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      },
+      {
+        "record_id": "REC-PUBMED-36056538",
+        "pmid": "36056538",
+        "question_ids": "B2",
+        "agent_provisional_study_id": "AGENT-STUDY-09F83539F3A9",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      },
+      {
+        "record_id": "REC-PUBMED-14680724",
+        "pmid": "14680724",
+        "question_ids": "A1",
+        "agent_provisional_study_id": "AGENT-STUDY-C0C2D5BE245E",
+        "linkage_evidence": "no_explicit_cross_report_link_detected"
+      }
+    ]
+  },
+  "human_link_claim_allowed": false,
+  "synthesis_allowed": false,
+  "errors": []
+}
