@@ -19,12 +19,25 @@ type Result = {
   checks: string[];
   why: string;
   next_steps: string[];
+  evidence_selection: {
+    selected: number;
+    total_candidates: number;
+    direct_medication_matches: number;
+    method: string;
+  };
   evidence: Array<{
     title: string;
     url: string;
     doi: string;
     dose: string;
     outcome: string;
+    selection_reason: string;
+  }>;
+  all_evidence: Array<{
+    title: string;
+    url: string;
+    year?: number;
+    selection_reason: string;
   }>;
   interpretation: string;
 };
@@ -488,14 +501,18 @@ export function PersonalizedSafetyQuery() {
               </details>
               <details className="mt-3 rounded-xl border border-stone-200">
                 <summary className="flex min-h-12 list-none items-center justify-between px-4 py-3 font-semibold">
-                  <span>논문과 세부 근거 보기</span>
+                  <span>핵심 근거와 전체 후보 보기</span>
                   <span className="flex items-center gap-2 text-sm text-stone-500">
-                    {result.evidence.length}건{" "}
+                    핵심 {result.evidence_selection.selected}건 · 전체{" "}
+                    {result.evidence_selection.total_candidates}건{" "}
                     <span className="collapsible-chevron">
                       <Chevron />
                     </span>
                   </span>
                 </summary>
+                <div className="border-t border-stone-200 bg-blue-50/50 px-4 py-3 text-xs leading-5 text-stone-600">
+                  선정 방식: {result.evidence_selection.method} · 입력 약물 직접 일치 {result.evidence_selection.direct_medication_matches}건
+                </div>
                 <div className="divide-y divide-stone-200 border-t border-stone-200 px-4">
                   {result.evidence.map((x, i) => (
                     <div key={i} className="py-4">
@@ -512,9 +529,44 @@ export function PersonalizedSafetyQuery() {
                           문헌 보고 용량: {x.dose}
                         </p>
                       )}
+                      <p className="mt-2 text-xs font-medium text-blue-700">
+                        선정 이유: {x.selection_reason}
+                      </p>
                     </div>
                   ))}
                 </div>
+                <details className="border-t border-stone-200 bg-stone-50/70">
+                  <summary className="flex min-h-12 list-none items-center justify-between px-4 py-3 text-sm font-semibold text-stone-700">
+                    <span>
+                      전체 관련 후보{" "}
+                      {result.evidence_selection.total_candidates}건
+                    </span>
+                    <span className="collapsible-chevron text-stone-500">
+                      <Chevron />
+                    </span>
+                  </summary>
+                  <div className="max-h-96 overflow-y-auto border-t border-stone-200 px-4">
+                    {result.all_evidence.map((item, index) => (
+                      <div
+                        key={`${item.url}-${index}`}
+                        className="border-b border-stone-200 py-3 last:border-0"
+                      >
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-sm font-semibold leading-6 text-blue-700 hover:underline"
+                        >
+                          {item.title}
+                        </a>
+                        <p className="mt-1 text-xs text-stone-500">
+                          {item.year ? `${item.year} · ` : ""}
+                          {item.selection_reason}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </details>
               </details>
               <p className="mt-4 text-xs leading-5 text-stone-500">
                 {result.interpretation}

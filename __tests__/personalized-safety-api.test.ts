@@ -37,6 +37,10 @@ describe("personalized safety API", () => {
       expect(body.ai_summary.length).toBeLessThanOrEqual(700);
       expect(body.ai_summary).toContain("그래서 지금 볼 것은");
       expect(body.evidence).toHaveLength(5);
+      expect(body.all_evidence.length).toBeGreaterThanOrEqual(body.evidence.length);
+      expect(body.evidence_selection.selected).toBe(5);
+      expect(body.evidence_selection.total_candidates).toBe(body.all_evidence.length);
+      expect(body.evidence[0].selection_reason).toBeTruthy();
       expect(body.ai_summary).not.toMatch(
         /supplement dose|kidney stone|dietary calcium/,
       );
@@ -100,6 +104,8 @@ describe("personalized safety API", () => {
     expect(body.ai_summary).toContain("아픽사반 복용자에게 안전한 EPA+DHA 상한을 직접 정하지 않았으므로");
     expect(body.assessment.verdict).toContain("일반 성인 기준으로는 안전 범위 안");
     expect(body.assessment.interaction).toContain("아픽사반과 오메가-3");
+    expect(body.evidence_selection.total_candidates).toBe(5);
+    expect(body.evidence_selection.direct_medication_matches).toBe(0);
   });
   it("prioritizes abdominal-pain triage for an anticoagulant user", async () => {
     delete process.env.OPENAI_API_KEY;
