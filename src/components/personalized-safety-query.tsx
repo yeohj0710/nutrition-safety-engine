@@ -50,29 +50,36 @@ function Chevron() {
     </svg>
   );
 }
-function EvidenceLinks({
+function EvidenceSentence({
+  children,
   references,
 }: {
+  children: string;
   references: Result["assessment"]["references"];
 }) {
   return (
-    <span className="ml-1 inline-flex flex-wrap gap-1 align-middle">
-      {references.map((reference) => (
-        <a
-          key={`${reference.label}-${reference.url}`}
-          href={reference.url}
-          target="_blank"
-          rel="noreferrer"
-          aria-label={`${reference.label}: ${reference.title}`}
-          className="group relative inline-flex rounded-md bg-white/80 px-1.5 py-0.5 text-[11px] font-bold text-blue-700 ring-1 ring-blue-200 hover:bg-blue-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          {reference.label}
-          <span className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 hidden w-64 -translate-x-1/2 rounded-xl bg-stone-950 px-3 py-2 text-left text-xs font-medium leading-5 text-white shadow-xl group-hover:block group-focus:block">
-            {reference.title}
-          </span>
-        </a>
-      ))}
-    </span>
+    <details className="group relative inline">
+      <summary className="inline cursor-pointer list-none rounded-md px-0.5 transition-colors hover:bg-blue-100 focus:bg-blue-100 focus:outline-none [&::-webkit-details-marker]:hidden">
+        {children}
+        <sup className="ml-1 text-[10px] font-bold text-blue-600">근거</sup>
+      </summary>
+      <span className="absolute left-0 top-full z-30 mt-2 hidden w-72 rounded-xl bg-stone-950 p-3 text-left text-xs font-medium leading-5 text-white shadow-xl group-hover:block group-open:block">
+        <span className="mb-2 block text-[11px] font-bold text-blue-200">
+          이 문장의 근거
+        </span>
+        {references.map((reference) => (
+          <a
+            key={`${reference.label}-${reference.url}`}
+            href={reference.url}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-1 block rounded-lg px-2 py-1.5 hover:bg-white/10 hover:text-blue-200"
+          >
+            <b>{reference.label}</b> · {reference.title}
+          </a>
+        ))}
+      </span>
+    </details>
   );
 }
 export function PersonalizedSafetyQuery() {
@@ -413,31 +420,32 @@ export function PersonalizedSafetyQuery() {
               </h3>
             </header>
             <div className="p-5 pt-3">
-              <section className="rounded-2xl bg-[#f2f6ff] p-4 sm:p-5">
-                <div className="rounded-xl bg-white px-4 py-4 shadow-sm ring-1 ring-blue-100">
-                  <p className="text-xs font-bold text-blue-700">현재 판단</p>
-                  <p className="mt-1 break-keep text-lg font-bold leading-7 text-stone-950">
+              <section className="break-keep rounded-2xl bg-[#f2f6ff] px-5 py-5 text-[15px] font-medium leading-7 text-[#333d4b]">
+                <p>{result.ai_summary.split("\n\n")[0]}</p>
+                <p className="mt-5 font-semibold text-stone-950">
+                  <EvidenceSentence references={result.assessment.references}>
                     {result.assessment.verdict}
-                    <EvidenceLinks references={result.assessment.references} />
-                  </p>
-                </div>
-                <div className="mt-3 grid gap-3 md:grid-cols-3">
-                  {[
-                    ["용량", result.assessment.dose],
-                    ["상호작용", result.assessment.interaction],
-                    ["주의할 점", result.assessment.watch],
-                  ].map(([label, value]) => (
-                    <div key={label} className="rounded-xl bg-white/75 p-4">
-                      <p className="text-xs font-bold text-stone-500">{label}</p>
-                      <p className="mt-1 break-keep text-sm font-semibold leading-6 text-[#333d4b]">
-                        {value}
-                      </p>
-                      <div className="mt-2">
-                        <EvidenceLinks references={result.assessment.references} />
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                  </EvidenceSentence>
+                </p>
+                <p className="mt-5">
+                  <EvidenceSentence
+                    references={result.assessment.references.slice(0, 1)}
+                  >
+                    {result.assessment.dose}
+                  </EvidenceSentence>{" "}
+                  <EvidenceSentence
+                    references={result.assessment.references.slice(0, 2)}
+                  >
+                    {result.assessment.interaction}
+                  </EvidenceSentence>
+                </p>
+                <p className="mt-5">
+                  <EvidenceSentence
+                    references={result.assessment.references.slice(1)}
+                  >
+                    {result.assessment.watch}
+                  </EvidenceSentence>
+                </p>
               </section>
               <div className="mt-4 flex flex-wrap gap-2">
                 {result.profile.map((x) => (
