@@ -10,6 +10,7 @@ from tools.search_pipeline.pubmed_adapter import parse_pubmed_xml
 from tools.search_pipeline.ris_parser import parse_ris_file
 from tools.search_pipeline.schemas import RETRIEVED_RECORD_COLUMNS
 from tools.search_pipeline.storage import write_csv_rows
+from tools.build_pubmed_screening_agent_prereview import classify
 
 
 class PubMedParserTest(unittest.TestCase):
@@ -103,6 +104,38 @@ class CurationTermMatchTest(unittest.TestCase):
 
         self.assertEqual(_matched_terms(text, ("rat", "cat")), [])
         self.assertEqual(_matched_terms("rat model and cat study", ("rat", "cat")), ["rat", "cat"])
+
+
+class PubMedAgentPrereviewTest(unittest.TestCase):
+    def record(self, *, title: str, abstract: str, publication_types: str = "Journal Article") -> dict[str, str]:
+        return {"title": title, "abstract": abstract, "publication_types": publication_types}
+
+    def test_missing_abstract_always_requires_manual_review(self) -> None:
+        result = classify(self.record(title="Mouse vitamin D study", abstract=""), "B2", False)
+        self.assertEqual(result["agent_recommendation"], "uncertain_manual_review")
+        self.assertIn("abstract_missing", result["uncertainty_flags"])
+
+    def test_question_specific_exposure_and_outcome_advance(self) -> None:
+        record = self.record(
+            title="Vitamin C supplements and kidney stones",
+            abstract="Adults taking ascorbic acid were followed for incident nephrolithiasis.",
+        )
+        result = classify(record, "B3", False)
+        self.assertEqual(result["agent_recommendation"], "advance_to_human_screening")
+        self.assertIn("vitamin c", result["matched_exposure_terms"])
+        self.assertIn("stone", result["matched_outcome_terms"])
+
+    def test_animal_only_is_recommendation_not_final_exclusion(self) -> None:
+        record = self.record(title="Vitamin D in mice", abstract="Murine cell line experiment without human data.")
+        result = classify(record, "B2", False)
+        self.assertEqual(result["agent_recommendation"], "likely_exclude_needs_validation")
+        self.assertIn("possible_animal_only", result["uncertainty_flags"])
+
+    def test_sentinel_is_never_likely_exclude(self) -> None:
+        record = self.record(title="Ambiguous safety report", abstract="Details remain unclear.")
+        result = classify(record, "A1", True)
+        self.assertEqual(result["agent_recommendation"], "uncertain_manual_review")
+        self.assertIn("sentinel_record", result["uncertainty_flags"])
 
 
 if __name__ == "__main__":
