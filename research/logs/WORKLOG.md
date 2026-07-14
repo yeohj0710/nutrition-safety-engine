@@ -900,3 +900,10 @@
 - reduced design-unclear records from nine to one and explicitly recognized pharmacovigilance-database and retrospective-survey designs
 - refreshed all downstream synthesis-readiness, result-context, RoB-tool, GRADE-preparation, context-window, and completion-audit hashes
 - remaining design ambiguity is preserved for human confirmation rather than guessed
+
+## 2026-07-14 Single-event final agent recommendation validation
+
+- consolidated screening prereview, full-text extraction, linkage/non-PubMed work, RoB/GRADE preparation, and role boundaries into one final portal page
+- the page requires one approval click for five visible bundles and exports one canonical JSON event
+- the event is explicitly a single-reviewer portal validation with identity not captured; it records zero individual human decisions and zero independent reviewers
+- browser verification passed for desktop content, the approval transition, Korean copy, and a 390 x 844 mobile viewport
