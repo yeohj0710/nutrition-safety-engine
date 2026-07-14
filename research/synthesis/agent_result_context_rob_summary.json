@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "status": "agent_result_context_and_rob_signals_complete_human_judgment_open",
+  "numeric_context_rows": 144,
+  "context_complete_candidates": 92,
+  "context_incomplete_candidates": 52,
+  "rob_signal_rows": 35,
+  "rob_tool_candidates": {
+    "AMSTAR 2": 7,
+    "JBI case report/series checklist": 5,
+    "ROBINS-I": 8,
+    "RoB 2": 6,
+    "design_confirmation_required": 9
+  },
+  "human_verified_effect_estimates": 0,
+  "human_rob_domain_judgments": 0,
+  "completed_rob_assessments": 0,
+  "meta_analysis_allowed": false,
+  "grade_allowed": false,
+  "inputs": {
+    "research/fulltext/agent_core_fulltext/agent_numeric_result_candidates.csv": "a27eb6bedb586c4f50a7c2401680bb8a02879e366aa9258ad15781cc3668a135",
+    "research/fulltext/agent_core_fulltext/agent_structured_extraction.csv": "57b22f1a5a3bc31331c6d506e9618cedf9374a697e9687f501b3def3bf1db957",
+    "research/fulltext/agent_core_fulltext/agent_fulltext_evidence.csv": "37d9e6cfd8dc20e40b09f22d50380153bfe4f320283160db415f9a4103a292e8"
+  },
+  "outputs": {
+    "research/fulltext/agent_core_fulltext/agent_numeric_result_context.csv": "73e102fb2840cf3a69d457edbb00fd6eca496e4e1953fa805f8c2856dcde0b25",
+    "research/fulltext/agent_core_fulltext/agent_rob_signal_map.csv": "e8f2f76f8950aada8439f2be4c84080331fdd9866dd014740199fcde30cae636"
+  }
+}

@@ -870,3 +870,11 @@
 - preserved measure type, observed token, p-value operator, confidence-interval signal, comparison signal, outcome terms, sentence text, XML locator, and sentence hash
 - observed candidate types: 90 percentages, 35 p-values, 13 odds ratios, and 6 hazard ratios; 43 candidates carry a confidence-interval signal
 - boundary: all numeric rows remain unverified candidates and are explicitly prohibited from effect synthesis, meta-analysis, or clinical conclusions
+
+## 2026-07-14 Result context, RoB signals, and GRADE preparation
+
+- linked all 144 numeric candidates to study-design, group/exposure, timepoint, outcome-definition, comparison, and XML-locator signals
+- 92 candidates have both group/exposure and outcome context; 52 remain context-incomplete and require source review
+- created 35 design-aware RoB signal rows with tool candidates: RoB 2 (6), ROBINS-I (8), AMSTAR 2 (7), JBI case report/series (5), and design confirmation required (9)
+- created five question-level GRADE preparation rows and an AI descriptive synthesis draft without assigning certainty ratings or recommendations
+- updated the task board to reflect partial agent full-text, extraction, RoB-signal, and descriptive-synthesis progress while keeping every human gate open
