@@ -69,7 +69,7 @@ describe("personalized safety API", () => {
     expect(body.ai_summary).not.toMatch(
       /입력(?:되|하|된)|입력값|대상자|사용자|프로필|검사값|현재 입력한 조건|종합하면|핵심은|상담 전에는|이시군요|살펴볼게요|적어주셨네요/,
     );
-    expect(body.assessment.verdict).toContain("감량을 검토할 근거");
+    expect(body.assessment.verdict).toContain("줄이는 방향을 검토할 근거");
     expect(body.assessment.dose).toContain("2,000–2,500 mg/day");
     expect(body.assessment.interaction).toContain("레보티록신");
     expect(body.assessment.watch).toContain("280 mg/day");
@@ -98,7 +98,7 @@ describe("personalized safety API", () => {
     expect(body.ai_summary).toContain("오메가-3 카복실산 4 g");
     expect(body.ai_summary).toContain("INR 8.06");
     expect(body.ai_summary).toContain("아픽사반 복용자에게 안전한 EPA+DHA 상한을 직접 정하지 않았으므로");
-    expect(body.assessment.verdict).toContain("일반 성인 안전 범위 안");
+    expect(body.assessment.verdict).toContain("일반 성인 기준으로는 안전 범위 안");
     expect(body.assessment.interaction).toContain("아픽사반과 오메가-3");
   });
   it("prioritizes abdominal-pain triage for an anticoagulant user", async () => {

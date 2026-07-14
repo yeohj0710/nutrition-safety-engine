@@ -8,6 +8,7 @@ type Result = {
   summary: string;
   ai_summary: string;
   assessment: {
+    context: string;
     verdict: string;
     dose: string;
     interaction: string;
@@ -58,28 +59,30 @@ function EvidenceSentence({
   references: Result["assessment"]["references"];
 }) {
   return (
-    <details className="group relative inline">
-      <summary className="inline cursor-pointer list-none rounded-md px-0.5 transition-colors hover:bg-blue-100 focus:bg-blue-100 focus:outline-none [&::-webkit-details-marker]:hidden">
-        {children}
-        <sup className="ml-1 text-[10px] font-bold text-blue-600">근거</sup>
-      </summary>
-      <span className="absolute left-0 top-full z-30 mt-2 hidden w-72 rounded-xl bg-stone-950 p-3 text-left text-xs font-medium leading-5 text-white shadow-xl group-hover:block group-open:block">
+    <span className="group relative inline rounded-md px-0.5 transition-colors hover:bg-blue-100">
+      {children}
+      <a
+        href={references[0]?.url}
+        target="_blank"
+        rel="noreferrer"
+        className="ml-1 align-super text-[10px] font-bold text-blue-600 hover:underline"
+      >
+        근거
+      </a>
+      <span className="pointer-events-none absolute left-0 top-full z-30 mt-2 hidden w-72 rounded-xl bg-stone-950 p-3 text-left text-xs font-medium leading-5 text-white shadow-xl group-hover:block">
         <span className="mb-2 block text-[11px] font-bold text-blue-200">
           이 문장의 근거
         </span>
         {references.map((reference) => (
-          <a
+          <span
             key={`${reference.label}-${reference.url}`}
-            href={reference.url}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-1 block rounded-lg px-2 py-1.5 hover:bg-white/10 hover:text-blue-200"
+            className="mt-1 block rounded-lg px-2 py-1.5"
           >
             <b>{reference.label}</b> · {reference.title}
-          </a>
+          </span>
         ))}
       </span>
-    </details>
+    </span>
   );
 }
 export function PersonalizedSafetyQuery() {
@@ -421,7 +424,7 @@ export function PersonalizedSafetyQuery() {
             </header>
             <div className="p-5 pt-3">
               <section className="break-keep rounded-2xl bg-[#f2f6ff] px-5 py-5 text-[15px] font-medium leading-7 text-[#333d4b]">
-                <p>{result.ai_summary.split("\n\n")[0]}</p>
+                <p>{result.assessment.context}</p>
                 <p className="mt-5 font-semibold text-stone-950">
                   <EvidenceSentence references={result.assessment.references}>
                     {result.assessment.verdict}

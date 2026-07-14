@@ -349,6 +349,14 @@ function buildAssessment(
 ) {
   const dose = numberFrom(input.dose);
   const lab = numberFrom(input.labs);
+  const context = [
+    `말씀해 주신 내용으로는 ${withObjectParticle(input.ingredient)}${input.dose ? ` ${input.dose} 복용 중입니다` : " 복용 중입니다"}.`,
+    input.medication ? `${input.medication}도 함께 복용 중입니다.` : "",
+    input.condition ? `${input.condition}도 함께 있습니다.` : "",
+    input.labs ? `최근 확인된 값은 ${input.labs}입니다.` : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
   const study = (index: number) =>
     reference(
       `논문 ${index + 1}`,
@@ -384,6 +392,7 @@ function buildAssessment(
   };
   if (questionId === "A1")
     return {
+      context,
       verdict:
         "현재 용량을 갑자기 줄이는 쪽보다 매일 비슷하게 유지하는 쪽이 맞습니다.",
       dose: `${Number.isFinite(dose) ? `${dose} mcg/day는` : "현재 용량은"} 독성 상한보다 와파린 효과의 변동이 핵심입니다.`,
@@ -395,7 +404,8 @@ function buildAssessment(
     };
   if (questionId === "A2")
     return {
-      verdict: `${Number.isFinite(dose) && dose <= 5000 ? "현재 용량은 일반 성인 안전 범위 안입니다." : "현재 용량은 일반 안전 범위와 비교가 필요합니다."} 다만 아픽사반 병용까지 안전하다는 뜻은 아닙니다.`,
+      context,
+      verdict: `${Number.isFinite(dose) && dose <= 5000 ? "현재 용량은 일반 성인 기준으로는 안전 범위 안에 있습니다." : "현재 용량은 일반 안전 범위와 비교가 필요합니다."} 다만 아픽사반을 함께 복용할 때는 용량 자체보다 출혈 증상이 있는지가 더 중요합니다.`,
       dose: `${Number.isFinite(dose) ? `${dose.toLocaleString()} mg/day` : "입력 용량"}는 일반 기준 5,000 mg/day보다 낮지만, 출혈이 있다면 용량보다 증상이 우선입니다.`,
       interaction:
         "아픽사반과 오메가-3는 모두 출혈과 관련될 수 있습니다. 아스피린·NSAID·항혈소판제가 더해지면 주의가 커집니다.",
@@ -406,8 +416,9 @@ function buildAssessment(
   if (questionId === "B1") {
     const highUrineCalcium = Number.isFinite(lab) && lab > 275;
     return {
+      context,
       verdict: highUrineCalcium
-        ? "현재 600 mg/day를 그대로 적합하다고 보기 어렵고, 감량을 검토할 근거가 있습니다."
+        ? "현재 600 mg/day는 그대로 유지하기에 적합하다고 보기 어렵습니다. 요중 칼슘과 결석 병력을 고려하면 줄이는 방향을 검토할 근거가 있습니다."
         : "600 mg/day 자체는 성인 총섭취 상한보다 낮지만, 식이 칼슘을 더한 총량이 없어 적합 여부는 확정하기 어렵습니다.",
       dose: "성인 칼슘 상한은 음식과 보충제를 합쳐 2,000–2,500 mg/day입니다. 보충제 600 mg/day만으로 상한을 넘지는 않습니다.",
       interaction:
@@ -420,9 +431,10 @@ function buildAssessment(
   }
   if (questionId === "B2")
     return {
+      context,
       verdict:
         Number.isFinite(dose) && dose >= 4000
-          ? "현재 용량은 성인 상한에 해당해 증량에는 적합하지 않고, 결석·고칼슘뇨가 있으면 감량 검토 쪽입니다."
+          ? "현재 4,000 IU/day는 성인 상한선에 해당합니다. 결석이나 고칼슘뇨 병력이 있다면 늘리기보다 줄이는 방향이 더 적절합니다."
           : "현재 용량은 성인 상한 아래이지만 결석·고칼슘뇨가 있으면 칼슘 검사와 함께 판단합니다.",
       dose: "성인 비타민 D 상한은 4,000 IU/day입니다. 상한은 권장량이 아니라 넘기지 말아야 할 총량 기준입니다.",
       interaction:
@@ -432,9 +444,10 @@ function buildAssessment(
       references: [ods.vitaminD, study(0), study(1)],
     };
   return {
+    context,
     verdict:
       Number.isFinite(dose) && dose >= 1000
-        ? "일반 성인 상한보다는 낮지만, 결석·고옥살산뇨 병력에서는 감량 검토 쪽이 더 타당합니다."
+        ? "일반 성인 상한보다는 낮지만, 결석이나 고옥살산뇨 병력이 있다면 현재 용량을 유지하기보다 줄이는 방향이 더 적절합니다."
         : "일반 성인 상한 아래이지만 결석·고옥살산뇨 병력에서는 낮은 용량도 별도로 봅니다.",
     dose: "성인 비타민 C 상한은 2,000 mg/day이지만, 결석 위험군의 안전선이 2,000 mg/day라는 뜻은 아닙니다.",
     interaction:
