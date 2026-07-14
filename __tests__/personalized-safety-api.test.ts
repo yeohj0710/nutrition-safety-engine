@@ -106,11 +106,10 @@ describe("personalized safety API", () => {
       }),
     );
     const body = await response.json();
-    expect(body.ai_summary).toContain("배가 아픈 원인은 이 결과만으로 판단할 수 없습니다");
+    expect(body.ai_summary).toContain("배가 아픈 증상은 오메가-3 근거와 별도로 봐야 합니다");
     expect(body.ai_summary).toContain("검은변·혈변·토혈");
-    expect(body.ai_summary).toContain("바로 119에 연락하거나 응급실로 가세요");
-    expect(body.ai_summary).toContain("가급적 오늘 처방기관이나 의료기관에 연락");
-    expect(body.ai_summary).toContain("약은 임의로 중단하지 마세요");
+    expect(body.ai_summary).toContain("통증이 계속되거나 심해지면 처방기관에 문의하세요");
+    expect(body.ai_summary).not.toMatch(/119|응급실|가급적 오늘/);
   });
   it("sends severe abdominal-pain red flags directly to emergency care", async () => {
     delete process.env.OPENAI_API_KEY;
@@ -126,7 +125,7 @@ describe("personalized safety API", () => {
       }),
     );
     const body = await response.json();
-    expect(body.ai_summary).toContain("지금 바로 119에 연락하거나 응급실로 가세요");
+    expect(body.ai_summary).toContain("바로 진료받으세요");
   });
   it("rejects unsupported ingredients", async () => {
     const response = await POST(
