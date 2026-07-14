@@ -220,9 +220,24 @@ function buildProfileSentence(input: SummaryInput) {
     sentences.push(`최근 검사에서는 ${withSubjectParticle(input.labs)} 확인됐고요.`);
   return sentences.join(" ");
 }
+function buildSymptomAdvice(input: SummaryInput) {
+  const symptom = input.condition;
+  if (!/(?:배가\s*아|복통|배\s*아픔)/.test(symptom)) return "";
+  const urgent =
+    /(?:갑자기|극심|심한|참기\s*힘|악화|검은\s*변|혈변|피\s*섞인\s*변|토혈|피를?\s*토|커피색\s*구토|실신|의식|식은땀)/.test(
+      symptom,
+    );
+  if (urgent)
+    return "증상부터 확인하면, 지금 적어 주신 복통에는 응급 신호가 포함될 수 있습니다. 아픽사반 같은 항응고제를 복용 중이라면 내부 출혈 가능성도 배제할 수 없으므로 지금 바로 119에 연락하거나 응급실로 가세요. 약은 임의로 중단하지 말고 복용 중인 제품과 약 목록을 가져가세요.";
+  if (/(?:아픽사반|엘리퀴스|와파린|리바록사반|자렐토|에독사반|다비가트란)/i.test(input.medication))
+    return "증상부터 확인하면, 배가 아픈 원인은 이 결과만으로 판단할 수 없습니다. 항응고제를 복용 중이므로 검은변·혈변·토혈, 심한 어지럼이나 실신, 갑자기 심해지는 복통이 있는지 먼저 확인하세요. 하나라도 있으면 바로 119에 연락하거나 응급실로 가세요. 그런 증상이 없어도 복통이 새로 생겼거나 계속되면 가급적 오늘 처방기관이나 의료기관에 연락하고, 약은 임의로 중단하지 마세요.";
+  return "증상부터 확인하면, 배가 아픈 원인은 이 결과만으로 판단할 수 없습니다. 통증이 갑자기 심해지거나 검은변·혈변·토혈, 실신이 동반되면 바로 119에 연락하거나 응급실로 가세요. 그렇지 않아도 통증이 계속되거나 악화되면 의료기관에 연락하세요.";
+}
 export async function summarize(input: SummaryInput) {
   const conciseSummary = conciseSummaries[input.ingredient] ?? input.summary;
+  const symptomAdvice = buildSymptomAdvice(input);
   const fallback = [
+    symptomAdvice,
     buildProfileSentence(input),
     `연구 결과를 같이 보면, ${input.evidenceSummary}`,
     `다만 ${evidenceLimits[input.questionId]}`,
@@ -269,7 +284,7 @@ export async function summarize(input: SummaryInput) {
       ).trim() || fallback;
     if (!isGroundedSummary(text, { ...input, summary: conciseSummary }))
       return fallback;
-    return text;
+    return symptomAdvice ? `${symptomAdvice}\n\n${text}` : text;
   } catch {
     return fallback;
   }
@@ -322,7 +337,8 @@ export async function POST(req: Request) {
   const entered = [
     b.dose && `복용량 ${b.dose}`,
     b.medication && `병용약 ${b.medication}`,
-    b.condition && `병력 ${b.condition}`,
+    b.condition &&
+      `${/(?:아파|통증|출혈|어지|구토|설사|코피|멍)/.test(b.condition) ? "증상" : "병력"} ${b.condition}`,
     b.labs && `검사값 ${b.labs}`,
   ].filter(Boolean) as string[];
   const ai_summary = await summarize({

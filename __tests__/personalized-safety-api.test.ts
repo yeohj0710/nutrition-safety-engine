@@ -92,6 +92,42 @@ describe("personalized safety API", () => {
     expect(body.ai_summary).toContain("INR 8.06");
     expect(body.ai_summary).toContain("아픽사반 복용자에게 안전한 EPA+DHA 상한을 직접 정하지 않았으므로");
   });
+  it("prioritizes abdominal-pain triage for an anticoagulant user", async () => {
+    delete process.env.OPENAI_API_KEY;
+    const response = await POST(
+      new Request("http://local/api/personalized-safety", {
+        method: "POST",
+        body: JSON.stringify({
+          ingredient: "오메가-3",
+          dose: "EPA+DHA 2000 mg/day",
+          medication: "아픽사반",
+          condition: "배가 아파요",
+        }),
+      }),
+    );
+    const body = await response.json();
+    expect(body.ai_summary).toContain("배가 아픈 원인은 이 결과만으로 판단할 수 없습니다");
+    expect(body.ai_summary).toContain("검은변·혈변·토혈");
+    expect(body.ai_summary).toContain("바로 119에 연락하거나 응급실로 가세요");
+    expect(body.ai_summary).toContain("가급적 오늘 처방기관이나 의료기관에 연락");
+    expect(body.ai_summary).toContain("약은 임의로 중단하지 마세요");
+  });
+  it("sends severe abdominal-pain red flags directly to emergency care", async () => {
+    delete process.env.OPENAI_API_KEY;
+    const response = await POST(
+      new Request("http://local/api/personalized-safety", {
+        method: "POST",
+        body: JSON.stringify({
+          ingredient: "오메가-3",
+          dose: "EPA+DHA 2000 mg/day",
+          medication: "아픽사반",
+          condition: "갑자기 심한 복통과 검은변",
+        }),
+      }),
+    );
+    const body = await response.json();
+    expect(body.ai_summary).toContain("지금 바로 119에 연락하거나 응급실로 가세요");
+  });
   it("rejects unsupported ingredients", async () => {
     const response = await POST(
       new Request("http://local/api/personalized-safety", {
