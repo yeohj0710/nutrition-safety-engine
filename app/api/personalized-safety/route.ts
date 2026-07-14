@@ -23,7 +23,7 @@ const guidance: Record<
   }
 > = {
   A1: {
-    title: "비타민 K 섭취 변화와 항응고 상태를 함께 확인하세요",
+    title: "비타민 K 섭취 변화와 항응고 상태",
     summary:
       "핵심은 비타민 K를 무조건 줄이는 것이 아니라 식사와 보충제에서 섭취하는 양을 가능한 일정하게 유지하고, 식단이나 제품을 바꾼 시점과 INR 변화를 함께 확인하는 것입니다.",
     checks: [
@@ -39,7 +39,7 @@ const guidance: Record<
     ],
   },
   A2: {
-    title: "오메가-3 용량과 출혈 관련 조건을 확인하세요",
+    title: "오메가-3 용량과 출혈 관련 조건",
     summary:
       "핵심은 제품의 오메가-3 총량만 보지 않고 EPA+DHA 합산량, 최근 멍·코피·잇몸출혈, 다른 출혈 위험 약물과 시술 계획을 함께 확인하는 것입니다.",
     checks: [
@@ -55,7 +55,7 @@ const guidance: Record<
     ],
   },
   B1: {
-    title: "보충제 칼슘과 식이 칼슘을 구분해 확인하세요",
+    title: "보충제 칼슘·식이 칼슘과 결석 위험",
     summary:
       "핵심은 식이 칼슘과 보충제 칼슘을 같은 방식으로 보지 않고, 보충제의 원소 칼슘 함량·복용 시점과 음식 섭취량·결석 성분·24시간 요중 칼슘을 구분해 확인하는 것입니다.",
     checks: [
@@ -71,7 +71,7 @@ const guidance: Record<
     ],
   },
   B2: {
-    title: "비타민 D 용량과 칼슘 대사 지표를 함께 확인하세요",
+    title: "비타민 D 용량과 칼슘 대사 지표",
     summary:
       "핵심은 비타민 D 용량만으로 판단하지 않고 복용 기간, 25(OH)D, 혈청 칼슘, 24시간 요중 칼슘과 고칼슘뇨 병력을 함께 확인하는 것입니다.",
     checks: [
@@ -87,7 +87,7 @@ const guidance: Record<
     ],
   },
   B3: {
-    title: "비타민 C 고용량 노출과 옥살산 위험을 확인하세요",
+    title: "비타민 C 고용량 노출과 옥살산 위험",
     summary:
       "핵심은 비타민 C 일일 총량과 복용 기간만이 아니라 결석 성분, 신장기능, 고옥살산뇨 병력과 요중 옥살산 결과를 함께 확인하는 것입니다.",
     checks: [
@@ -125,7 +125,11 @@ function isGroundedSummary(
   )
     return false;
   if (!text.includes("그래서 지금")) return false;
-  if (/(?:확인|기록|비교|계산|문의|상의)(?:하세요|해 ?주세요|해 ?두세요|받으세요)/.test(text))
+  if (
+    /(?:확인|기록|비교|계산|문의|상의)(?:하세요|해 ?주세요|해 ?두세요|받으세요)/.test(
+      text,
+    )
+  )
     return false;
   const required = numericTokens(
     `${input.profile.join(" ")} ${input.evidenceSummary}`,
@@ -219,7 +223,9 @@ function buildProfileSentence(input: SummaryInput) {
   else if (input.condition)
     sentences.push(`${describeConditionInCounseling(input.condition)}.`);
   if (input.labs)
-    sentences.push(`최근 검사에서는 ${withSubjectParticle(input.labs)} 확인됐고요.`);
+    sentences.push(
+      `최근 검사에서는 ${withSubjectParticle(input.labs)} 확인됐고요.`,
+    );
   return sentences.join(" ");
 }
 function buildSymptomAdvice(input: SummaryInput) {
@@ -231,7 +237,11 @@ function buildSymptomAdvice(input: SummaryInput) {
     );
   if (urgent)
     return "복통이 매우 심하거나 검은변·혈변·토혈이 함께 있으면 바로 진료받으세요.";
-  if (/(?:아픽사반|엘리퀴스|와파린|리바록사반|자렐토|에독사반|다비가트란)/i.test(input.medication))
+  if (
+    /(?:아픽사반|엘리퀴스|와파린|리바록사반|자렐토|에독사반|다비가트란)/i.test(
+      input.medication,
+    )
+  )
     return "배가 아픈 증상은 오메가-3 근거와 별도로 봐야 합니다. 검은변·혈변·토혈이 함께 있으면 바로 진료가 필요한 신호입니다.";
   return "배가 아픈 증상은 보충제 근거와 별도로 봐야 합니다.";
 }
@@ -318,6 +328,122 @@ function parseInput(value: unknown) {
   }
   return parsed;
 }
+type AssessmentReference = { label: string; title: string; url: string };
+function reference(
+  label: string,
+  title: string,
+  url: string,
+): AssessmentReference {
+  return { label, title, url };
+}
+function numberFrom(value: string) {
+  const matches = value.match(/[\d,]+(?:\.\d+)?/g);
+  return Number(matches?.at(-1)?.replaceAll(",", "") ?? NaN);
+}
+function buildAssessment(
+  questionId: string,
+  input: ReturnType<typeof parseInput> extends infer T
+    ? Exclude<T, null>
+    : never,
+  evidence: Array<{ title: string; url: string }>,
+) {
+  const dose = numberFrom(input.dose);
+  const lab = numberFrom(input.labs);
+  const study = (index: number) =>
+    reference(
+      `논문 ${index + 1}`,
+      evidence[index]?.title ?? "근거 문헌",
+      evidence[index]?.url ?? "#",
+    );
+  const ods = {
+    calcium: reference(
+      "NIH 기준",
+      "NIH ODS Calcium Fact Sheet",
+      "https://ods.od.nih.gov/factsheets/calcium-HealthProfessional/",
+    ),
+    omega: reference(
+      "NIH 기준",
+      "NIH ODS Omega-3 Fatty Acids Fact Sheet",
+      "https://ods.od.nih.gov/factsheets/Omega3FattyAcids-HealthProfessional/",
+    ),
+    vitaminK: reference(
+      "NIH 기준",
+      "NIH ODS Vitamin K Fact Sheet",
+      "https://ods.od.nih.gov/factsheets/VitaminK-HealthProfessional/",
+    ),
+    vitaminD: reference(
+      "NIH 기준",
+      "NIH ODS Vitamin D Fact Sheet",
+      "https://ods.od.nih.gov/factsheets/VitaminD-HealthProfessional/",
+    ),
+    vitaminC: reference(
+      "NIH 기준",
+      "NIH ODS Vitamin C Fact Sheet",
+      "https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/",
+    ),
+  };
+  if (questionId === "A1")
+    return {
+      verdict:
+        "현재 용량을 갑자기 줄이는 쪽보다 매일 비슷하게 유지하는 쪽이 맞습니다.",
+      dose: `${Number.isFinite(dose) ? `${dose} mcg/day는` : "현재 용량은"} 독성 상한보다 와파린 효과의 변동이 핵심입니다.`,
+      interaction:
+        "와파린과 직접 상호작용합니다. 비타민 K 섭취가 갑자기 늘거나 줄면 INR이 달라질 수 있습니다.",
+      watch:
+        "최근 INR이 흔들렸다면 제품·식사에서 비타민 K가 바뀐 시점이 우선 확인 대상입니다.",
+      references: [ods.vitaminK, study(0), study(1)],
+    };
+  if (questionId === "A2")
+    return {
+      verdict: `${Number.isFinite(dose) && dose <= 5000 ? "현재 용량은 일반 성인 안전 범위 안입니다." : "현재 용량은 일반 안전 범위와 비교가 필요합니다."} 다만 아픽사반 병용까지 안전하다는 뜻은 아닙니다.`,
+      dose: `${Number.isFinite(dose) ? `${dose.toLocaleString()} mg/day` : "입력 용량"}는 일반 기준 5,000 mg/day보다 낮지만, 출혈이 있다면 용량보다 증상이 우선입니다.`,
+      interaction:
+        "아픽사반과 오메가-3는 모두 출혈과 관련될 수 있습니다. 아스피린·NSAID·항혈소판제가 더해지면 주의가 커집니다.",
+      watch:
+        "복통 자체는 이 상호작용을 뜻하지 않습니다. 멍·코피·잇몸출혈·혈변 여부가 더 직접적인 신호입니다.",
+      references: [ods.omega, study(0), study(4)],
+    };
+  if (questionId === "B1") {
+    const highUrineCalcium = Number.isFinite(lab) && lab > 275;
+    return {
+      verdict: highUrineCalcium
+        ? "현재 600 mg/day를 그대로 적합하다고 보기 어렵고, 감량을 검토할 근거가 있습니다."
+        : "600 mg/day 자체는 성인 총섭취 상한보다 낮지만, 식이 칼슘을 더한 총량이 없어 적합 여부는 확정하기 어렵습니다.",
+      dose: "성인 칼슘 상한은 음식과 보충제를 합쳐 2,000–2,500 mg/day입니다. 보충제 600 mg/day만으로 상한을 넘지는 않습니다.",
+      interaction:
+        "레보티록신, 퀴놀론계 항생제, 돌루테그라비르의 흡수를 떨어뜨릴 수 있어 복용 시간 간격이 중요합니다.",
+      watch: highUrineCalcium
+        ? `${lab} mg/day는 NIH가 제시한 고칼슘뇨 기준보다 높습니다. 결석 병력까지 있어 총 칼슘량과 복용 시점 조정이 핵심입니다.`
+        : "결석 병력에서는 보충제 양보다 결석 성분, 식이 칼슘, 24시간 요중 칼슘을 함께 봅니다.",
+      references: [ods.calcium, study(0), study(1)],
+    };
+  }
+  if (questionId === "B2")
+    return {
+      verdict:
+        Number.isFinite(dose) && dose >= 4000
+          ? "현재 용량은 성인 상한에 해당해 증량에는 적합하지 않고, 결석·고칼슘뇨가 있으면 감량 검토 쪽입니다."
+          : "현재 용량은 성인 상한 아래이지만 결석·고칼슘뇨가 있으면 칼슘 검사와 함께 판단합니다.",
+      dose: "성인 비타민 D 상한은 4,000 IU/day입니다. 상한은 권장량이 아니라 넘기지 말아야 할 총량 기준입니다.",
+      interaction:
+        "티아지드 이뇨제는 고칼슘혈증 위험을 높일 수 있고, 올리스타트는 비타민 D 흡수를 낮출 수 있습니다.",
+      watch:
+        "25(OH)D뿐 아니라 혈청 칼슘과 24시간 요중 칼슘이 함께 올라가는지가 핵심입니다.",
+      references: [ods.vitaminD, study(0), study(1)],
+    };
+  return {
+    verdict:
+      Number.isFinite(dose) && dose >= 1000
+        ? "일반 성인 상한보다는 낮지만, 결석·고옥살산뇨 병력에서는 감량 검토 쪽이 더 타당합니다."
+        : "일반 성인 상한 아래이지만 결석·고옥살산뇨 병력에서는 낮은 용량도 별도로 봅니다.",
+    dose: "성인 비타민 C 상한은 2,000 mg/day이지만, 결석 위험군의 안전선이 2,000 mg/day라는 뜻은 아닙니다.",
+    interaction:
+      "철 과다증에서는 철 흡수를 늘릴 수 있고, 일부 검사 결과에도 영향을 줄 수 있습니다.",
+    watch:
+      "요중 옥살산 상승, 칼슘옥살산 결석, 신장기능 저하가 있으면 고용량 유지에 불리한 조건입니다.",
+    references: [ods.vitaminC, study(0), study(1)],
+  };
+}
 export async function POST(req: Request) {
   const b = parseInput(await req.json().catch(() => null));
   if (!b)
@@ -357,6 +483,7 @@ export async function POST(req: Request) {
     why: g.why,
     next: g.next,
   });
+  const assessment = buildAssessment(q, b, r.evidence);
   return NextResponse.json(
     {
       question_id: q,
@@ -364,6 +491,7 @@ export async function POST(req: Request) {
       title: g.title,
       summary: g.summary,
       ai_summary,
+      assessment,
       profile: entered,
       checks: g.checks,
       why: g.why,
