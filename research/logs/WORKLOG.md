@@ -863,3 +863,10 @@
 - produced article-level structured extraction for 35 articles: 6 randomized-trial, 8 cohort, 7 systematic-review, 5 case-report/series, and 9 design-unclear candidates
 - identified comparator signals in 15 articles and numeric result candidate sentences in 19; these values remain unverified extraction targets
 - mapped synthesis readiness for A1-A2-B1-B2-B3 while preserving open human eligibility, effect verification, RoB, GRADE, and final-conclusion gates
+
+## 2026-07-14 Numeric result candidate extraction
+
+- decomposed outcome-bearing full-text sentences into 144 numeric candidates from 19 articles across all five questions
+- preserved measure type, observed token, p-value operator, confidence-interval signal, comparison signal, outcome terms, sentence text, XML locator, and sentence hash
+- observed candidate types: 90 percentages, 35 p-values, 13 odds ratios, and 6 hazard ratios; 43 candidates carry a confidence-interval signal
+- boundary: all numeric rows remain unverified candidates and are explicitly prohibited from effect synthesis, meta-analysis, or clinical conclusions

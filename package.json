@@ -98,6 +98,8 @@
     "validate:agent-fulltext-structured": "python tools/validate_agent_fulltext_structured_extraction.py",
     "build:agent-synthesis-readiness": "python tools/build_agent_synthesis_readiness.py",
     "validate:agent-synthesis-readiness": "python tools/validate_agent_synthesis_readiness.py",
+    "build:agent-numeric-candidates": "python tools/build_agent_numeric_result_candidates.py",
+    "validate:agent-numeric-candidates": "python tools/validate_agent_numeric_result_candidates.py",
     "build:duplicate-review-context": "python tools/build_duplicate_review_context.py",
     "validate:duplicate-review-context": "python tools/validate_duplicate_review_context.py",
     "build:registry-link-review-context": "python tools/build_registry_link_review_context.py",
