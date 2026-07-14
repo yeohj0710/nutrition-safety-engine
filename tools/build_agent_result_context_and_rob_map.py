@@ -42,7 +42,7 @@ def main():
   signals={name:("signal_observed" if pat.search(text) else "signal_not_observed_in_extracted_sentences") for name,pat in DOMAINS.items()}
   if design not in {"randomized_trial"}:signals["randomization_signal"]="not_applicable_or_design_unconfirmed";signals["blinding_signal"]="not_applicable_or_design_unconfirmed"
   rob.append({"record_id":article["record_id"],"question_id":article["question_id"],"pmid":article["pmid"],"pmcid":article["pmcid"],"study_design_candidate":design,**signals,
-   "rob_tool_candidate":"RoB 2" if design=="randomized_trial" else "ROBINS-I" if design in {"cohort","case_control","cross_sectional"} else "JBI case report/series checklist" if design=="case_report_or_series" else "AMSTAR 2" if design=="systematic_review" else "design_confirmation_required",
+   "rob_tool_candidate":"RoB 2" if design=="randomized_trial" else "ROBINS-I" if design in {"cohort","case_control","cross_sectional","pharmacovigilance_database"} else "JBI analytical cross-sectional checklist" if design=="retrospective_survey" else "JBI case report/series checklist" if design=="case_report_or_series" else "AMSTAR 2" if design=="systematic_review" else "design_confirmation_required",
    "rob_authority":"agent_signal_map_only","human_domain_judgment":"","overall_rob_judgment":"","rob_completed":"false"})
  with ROB.open("w",encoding="utf-8-sig",newline="") as f:w=csv.DictWriter(f,fieldnames=list(rob[0]));w.writeheader();w.writerows(rob)
  payload={"schema_version":"1.0.0","status":"agent_result_context_and_rob_signals_complete_human_judgment_open","numeric_context_rows":len(context),

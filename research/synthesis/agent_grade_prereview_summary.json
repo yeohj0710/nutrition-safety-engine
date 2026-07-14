@@ -8,12 +8,12 @@
   "final_certainty_ratings": 0,
   "clinical_recommendations": 0,
   "inputs": {
-    "research/fulltext/agent_core_fulltext/agent_structured_extraction.csv": "57b22f1a5a3bc31331c6d506e9618cedf9374a697e9687f501b3def3bf1db957",
-    "research/fulltext/agent_core_fulltext/agent_numeric_result_context.csv": "73e102fb2840cf3a69d457edbb00fd6eca496e4e1953fa805f8c2856dcde0b25",
-    "research/fulltext/agent_core_fulltext/agent_rob_signal_map.csv": "e8f2f76f8950aada8439f2be4c84080331fdd9866dd014740199fcde30cae636"
+    "research/fulltext/agent_core_fulltext/agent_structured_extraction.csv": "a40b154eb8821319fa39893ba5322bead3f622b9d3f76d8d80a55a9c332c705f",
+    "research/fulltext/agent_core_fulltext/agent_numeric_result_context.csv": "bf282c334f427e09c670e4e306bf890b62ceb914d569d76a5723475bb7236519",
+    "research/fulltext/agent_core_fulltext/agent_rob_signal_map.csv": "6733ee29504848c58aa6a41212c55a61a365ab410f32a784ef8c22fdaa9d68fa"
   },
   "outputs": {
-    "research/synthesis/agent_grade_prereview.csv": "bdcc80c29816a1c9ecbf0d257723d30751e6fbb397c07ad287733a536d8b01f0",
-    "research/synthesis/agent_descriptive_synthesis.md": "a7632985059e9ffc780d113cbcb42d68f5a3b6b4d3441d7a6ecb284a3bc1e086"
+    "research/synthesis/agent_grade_prereview.csv": "d99a797d25c1b83b2e4de000777c267273a886404f70e231f5d87e3b23ecd303",
+    "research/synthesis/agent_descriptive_synthesis.md": "e244ef58374863d061a9db83cbff399fb00de4eaeccc75ddefffbf0807eb7536"
   }
 }

@@ -19,7 +19,7 @@ def main():
   gaps=[]
   if not subset:gaps.append("공개 PMC 본문 기반 구조화 추출 없음")
   if not numeric:gaps.append("수치 결과 후보 문장 없음")
-  if not any(r["agent_study_design"] in {"randomized_trial","cohort","case_control","cross_sectional"} for r in subset):gaps.append("일차 비교 연구설계 후보 없음")
+  if not any(r["agent_study_design"] in {"randomized_trial","cohort","case_control","cross_sectional","pharmacovigilance_database","retrospective_survey"} for r in subset):gaps.append("일차 비교 연구설계 후보 없음")
   if any(r["agent_study_design"]=="design_unclear" for r in subset):gaps.append("연구설계 불명확 문헌 확인 필요")
   gaps.extend(["사람의 원문 적격성 판정 없음","효과추정치 검증 없음","RoB 및 GRADE 미수행"])
   questions[q]={"label":label,"structured_articles":len(subset),"design_candidates":dict(sorted(designs.items())),

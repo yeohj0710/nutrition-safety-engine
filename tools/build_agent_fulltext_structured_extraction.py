@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Create article-level, agent-only structured extraction from PMC evidence sentences."""
 from __future__ import annotations
-import csv, hashlib, json, re
+import csv, gzip, hashlib, json, re
+import xml.etree.ElementTree as ET
 from collections import Counter
 from pathlib import Path
 
@@ -9,16 +10,19 @@ ROOT=Path(__file__).resolve().parents[1]
 BASE=ROOT/"research/fulltext/agent_core_fulltext"
 ARTICLES=BASE/"articles.csv"; EVIDENCE=BASE/"agent_fulltext_evidence.csv"
 CORE=ROOT/"research/systematic_review_v3/core_evidence.csv"
+RAW=BASE/"pmc_core_batch.xml.gz"
 OUT=BASE/"agent_structured_extraction.csv"
 SUMMARY=ROOT/"research/synthesis/agent_structured_extraction_summary.json"
 EXPOSURES={"A1":"vitamin K","A2":"omega-3 EPA/DHA","B1":"calcium","B2":"vitamin D","B3":"vitamin C"}
 DESIGNS=[
  ("systematic_review",re.compile(r"systematic review|meta-analysis",re.I)),
  ("randomized_trial",re.compile(r"randomi[sz]ed|random allocation|placebo-controlled",re.I)),
+ ("pharmacovigilance_database",re.compile(r"VigiBase|pharmacovigilance|disproportionality analysis",re.I)),
+ ("retrospective_survey",re.compile(r"retrospective survey",re.I)),
  ("cohort",re.compile(r"cohort|prospective study|follow-up",re.I)),
  ("case_control",re.compile(r"case.control",re.I)),
  ("cross_sectional",re.compile(r"cross.section",re.I)),
- ("case_report_or_series",re.compile(r"case report|case series",re.I)),
+ ("case_report_or_series",re.compile(r"case report|case series|we report (?:a|an) ",re.I)),
 ]
 COMPARATOR=re.compile(r"placebo|control group|compared with|versus| vs\.? |comparison group",re.I)
 RESULT_NUMBER=re.compile(r"(?:\b\d+(?:\.\d+)?\s*%|\b(?:RR|OR|HR)\s*[=:]?\s*\d+(?:\.\d+)?|\b95%\s*CI\b|\bp\s*[<=>]\s*0?\.\d+)",re.I)
@@ -31,15 +35,22 @@ def compact(values,limit=4):
   value=value.strip()
   if value and value not in seen:seen.append(value)
  return " || ".join(seen[:limit])
+def node_text(node):return " ".join("".join(node.itertext()).split())
 def main():
  articles=read(ARTICLES); evidence=read(EVIDENCE); core=read(CORE)
+ root=ET.fromstring(gzip.decompress(RAW.read_bytes()));full_body={}
+ for node in root.findall(".//article") if root.tag!="article" else [root]:
+  ids={x.get("pub-id-type",""):node_text(x) for x in node.findall(".//article-id")};pmcid=ids.get("pmcid") or ids.get("pmc") or ""
+  if pmcid and not pmcid.startswith("PMC"):pmcid="PMC"+pmcid
+  body=node.find("body")
+  if body is not None:full_body[pmcid]=node_text(body)
  ev_by={}
  for row in evidence:ev_by.setdefault((row["record_id"],row["question_id"]),[]).append(row)
  core_by={(r["record_id"],r["question_id"]):r for r in core}; rows=[]
  for article in articles:
   if article["body_present"]!="true":continue
   key=(article["record_id"],article["question_id"]); ev=ev_by.get(key,[]); source=core_by.get(key)
-  text=" ".join([article["title"]]+[r["evidence_sentence"] for r in ev])
+  text=" ".join([article["title"],full_body.get(article["pmcid"],"")])
   design=next((name for name,pat in DESIGNS if pat.search(text)),"design_unclear")
   populations=[r["evidence_sentence"] for r in ev if r["matched_population_terms"]]
   doses=[r["dose_mentions"] for r in ev if r["dose_mentions"]]
@@ -62,7 +73,7 @@ def main():
   "articles_with_numeric_result_candidates":sum(bool(r["numeric_result_candidate_sentences"]) for r in rows),
   "human_verified_articles":0,"eligible_studies":0,"verified_effect_estimates":0,"rob_completed":0,"grade_completed":0,
   "meta_analysis_allowed":False,"clinical_conclusion_allowed":False,
-  "inputs":{p.relative_to(ROOT).as_posix():sha(p) for p in (ARTICLES,EVIDENCE,CORE)},"output":{"path":OUT.relative_to(ROOT).as_posix(),"sha256":sha(OUT)}}
+  "inputs":{p.relative_to(ROOT).as_posix():sha(p) for p in (ARTICLES,EVIDENCE,CORE,RAW)},"output":{"path":OUT.relative_to(ROOT).as_posix(),"sha256":sha(OUT)}}
  SUMMARY.write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
  print(json.dumps(payload,ensure_ascii=False,indent=2));return 0
 if __name__=="__main__":raise SystemExit(main())

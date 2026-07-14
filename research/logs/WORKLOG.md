@@ -893,3 +893,10 @@
 - regenerated the nine-sheet external review workbook from current authoritative CSV sources using the bundled spreadsheet runtime
 - validated all nine source hashes and workbook structure; visually inspected the README and registry-link sheets, then removed temporary renders and runtime junctions
 - this is a single batch handoff artifact for eventual external work, not another approval request and not evidence that human review occurred
+
+## 2026-07-14 Full-body study-design refinement
+
+- replaced filtered-evidence-only design detection with classification over the complete captured PMC article body
+- reduced design-unclear records from nine to one and explicitly recognized pharmacovigilance-database and retrospective-survey designs
+- refreshed all downstream synthesis-readiness, result-context, RoB-tool, GRADE-preparation, context-window, and completion-audit hashes
+- remaining design ambiguity is preserved for human confirmation rather than guessed

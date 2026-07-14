@@ -10,7 +10,7 @@
   "effect_estimates_usable": 0,
   "input": {
     "path": "research/fulltext/agent_core_fulltext/agent_numeric_result_context.csv",
-    "sha256": "73e102fb2840cf3a69d457edbb00fd6eca496e4e1953fa805f8c2856dcde0b25"
+    "sha256": "bf282c334f427e09c670e4e306bf890b62ceb914d569d76a5723475bb7236519"
   },
   "raw": {
     "path": "research/fulltext/agent_core_fulltext/pmc_core_batch.xml.gz",
@@ -18,6 +18,6 @@
   },
   "output": {
     "path": "research/fulltext/agent_core_fulltext/agent_numeric_context_windows.csv",
-    "sha256": "38190d6d921fd1ee513f0e0fef56281595ffa49cf1c9b633c55e5e087ebfae8d"
+    "sha256": "2afafaf3a92f947872facf2da8d835b2d22743a0e9d81a8ca9ce653a47b44b8d"
   }
 }
