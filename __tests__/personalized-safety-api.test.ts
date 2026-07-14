@@ -35,7 +35,7 @@ describe("personalized safety API", () => {
       expect(body.ai_summary).toContain("3.1");
       expect(body.ai_summary).not.toMatch(/종합하면|핵심은|상담 전에는/);
       expect(body.ai_summary.length).toBeLessThanOrEqual(700);
-      expect(body.ai_summary).toContain("그래서 지금은");
+      expect(body.ai_summary).toContain("그래서 지금 볼 것은");
       expect(body.evidence).toHaveLength(5);
       expect(body.ai_summary).not.toMatch(
         /supplement dose|kidney stone|dietary calcium/,
@@ -63,9 +63,7 @@ describe("personalized safety API", () => {
     expect(body.ai_summary).toContain(
       "최근 검사에서는 24시간 요중 칼슘 280 mg/day가 확인됐고요.",
     );
-    expect(body.ai_summary).toContain(
-      "제품 라벨의 원소 칼슘과 음식으로 먹는 칼슘을 나누어 계산하면 됩니다",
-    );
+    expect(body.ai_summary).toContain("그래서 지금 볼 것은 제품 라벨의 원소 칼슘");
     expect(body.ai_summary).toContain("600 mg/day라는 숫자만으로 많고 적음을 정할 수는 없습니다");
     expect(body.ai_summary).not.toMatch(/확인받으세요|보여 주세요|상의하세요/);
     expect(body.ai_summary).not.toMatch(
