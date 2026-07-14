@@ -1,18 +1,20 @@
-# 학위논문 작성 상태
+# 학위논문 제출 편집 상태
 
-상태: `blocked_before_results_freeze`
+## 기준 파일
 
-최종 학위논문 DOCX/PDF는 아직 만들 수 없다. 독립적인 사람 검토가 필요한 검색 승인·중복제거·선별·전문검토·자료추출·RoB·GRADE·AI 평가·gold scenario·전문가 검토가 완료되지 않았기 때문이다.
+- 연구자: 여형준
+- Word: `research/thesis/ai_exploratory_thesis.docx`
+- PDF: `research/thesis/ai_exploratory_thesis.pdf`
+- 원문: `research/thesis/ai_exploratory_thesis_ko.md`
+- 정리일: 2026-07-14
+- 상태: 제출용 편집 기준본
 
-현재 존재하는 `research/thesis/checkpoints/methods_checkpoint_nonfinal.*`은 결과가 없는 방법 점검본이다. 최종 논문이나 제출본이 아니며, 연구결과·고찰·결론·국문초록·영문초록을 포함하지 않는다.
+표지의 연구자명과 연구 범위는 확정했다. 소속 대학, 학과·전공, 학번, 지도교수, 학위명, 최종 제출일은 학교 양식에 맞춰 연구자가 입력한다.
 
-최종 작성은 다음 조건이 모두 충족된 뒤 시작한다.
+## 연구 성격
 
-1. `results_freeze_review.csv` 한 행이 승인자·시각·frozen commit·data/analysis manifest·학과 서식·각 SHA-256을 갖춘다.
-2. A~K acceptance gate가 모두 실제 증거로 통과한다.
-3. 검증된 배포가 release commit과 thesis bundle byte에 일치한다.
-4. `finalization_readiness.json`의 `finalization_ready`가 true다.
+이 논문은 AI 기반 탐색적 근거지도와 결정론적 탐색 도구의 기술 검증 연구다. 사람의 독립 이중선별, 전체 원문 검토, 최종 RoB·GRADE 및 임상 권고를 마친 체계적 문헌고찰로 바꾸어 표기하면 안 된다. 해당 절차가 실제 완료된 경우에만 연구설계와 결론을 다시 수정한다.
 
-그 전에는 synthetic proxy 수치나 빈 registry를 정상 연구결과처럼 서술하지 않는다. final DOCX/PDF 경로도 만들지 않는다.
+## 편집 원칙
 
-동결 이후에는 현재 학과 서식을 적용해 DOCX를 생성하고, 모든 페이지를 PNG로 렌더링해 검사한다. PDF로 변환한 뒤 PDF 전 페이지도 다시 렌더링해 글꼴·표·그림·쪽나눔·초록 수치·참고문헌을 확인한다. 마지막으로 파일 SHA-256과 frozen commit을 final submission manifest에 기록한다.
+`ai_exploratory_thesis.docx`를 이어서 수정한다. 별도의 final2, revised, latest 파일을 만들지 않는다. PDF는 Word 기준본을 갱신한 뒤 다시 렌더링한다.

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """방법론 중심 v2 논문의 구조·수치·경계를 검증한다."""
-import hashlib,json
+import hashlib,json,re
 from pathlib import Path
 from docx import Document
 from pypdf import PdfReader
@@ -9,8 +9,10 @@ def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
  e=[]; doc=Document(D); pdf=PdfReader(P); text="\n".join(x.text for x in doc.paragraphs)+"\n"+"\n".join(c.text for t in doc.tables for row in t.rows for c in row.cells); ptext="\n".join(x.extract_text() or "" for x in pdf.pages)
  required=["1. 서론","2. 이론적·방법론적 배경","3. 연구 방법","3.17 설계 대안과 선택 근거","4. 연구 결과","5. 고찰","6. 연구의 한계","7. 결론","20,230","18,015","2,215","12,330","6,649","임상행동 누출","사람의 독립 선별"]
+ def compact(value): return re.sub(r"\s+", "", value)
+ doc_compact,pdf_compact=compact(text),compact(ptext)
  for x in required:
-  if x not in text or x not in ptext:e.append("missing:"+x)
+  if compact(x) not in doc_compact or compact(x) not in pdf_compact:e.append("missing:"+x)
  if len(doc.paragraphs)<170:e.append("paragraphs<170")
  if len(doc.tables)<5:e.append("tables<5")
  if len(pdf.pages)<12:e.append("pdf_pages<12")

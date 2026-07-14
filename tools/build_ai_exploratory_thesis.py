@@ -12,6 +12,8 @@ from docx.shared import Inches, Pt, RGBColor
 
 ROOT=Path(__file__).resolve().parents[1]; OUT=ROOT/"research/thesis"; OUT.mkdir(exist_ok=True)
 DOCX=OUT/"ai_exploratory_thesis.docx"; MD=OUT/"ai_exploratory_thesis_ko.md"
+AUTHOR="여형준"
+SUBMISSION_DATE="2026년 7월"
 P={"map":ROOT/"research/synthesis/ai_exploratory_map_manifest.json","screen":ROOT/"research/screening/ai_exploratory_screening_manifest.json","nonpub":ROOT/"research/screening/ai_exploratory_nonpubmed_manifest.json","perf":ROOT/"research/validation/ai_exploratory_performance.json","protocol":ROOT/"research/protocol/protocol-v2.0-ai-exploratory.md","bundle":ROOT/"src/generated/ai-exploratory-bundle.json"}
 D={k:json.loads(v.read_text(encoding="utf-8")) for k,v in P.items() if k not in {"protocol"}}
 M,S,N,V=D["map"],D["screen"],D["nonpub"],D["perf"]
@@ -75,13 +77,17 @@ def table(doc,headers,rows):
     return t
 
 doc=Document(); sec=doc.sections[0]; sec.page_width=Inches(8.27); sec.page_height=Inches(11.69); sec.top_margin=sec.bottom_margin=Inches(.85); sec.left_margin=sec.right_margin=Inches(1)
-for name,size,color in [("Normal",10.5,"222222"),("Title",20,"15314B"),("Heading 1",16,"1F4E79"),("Heading 2",13,"1F4E79"),("Heading 3",11.5,"365F7D")]:
-    s=doc.styles[name]; s.font.name="Malgun Gothic"; s._element.rPr.rFonts.set(qn("w:eastAsia"),"맑은 고딕"); s.font.size=Pt(size); s.font.color.rgb=RGBColor.from_string(color); s.paragraph_format.line_spacing=1.55 if name=="Normal" else 1.2; s.paragraph_format.space_after=Pt(7)
+for name,size,color,font in [("Normal",10.5,"222222","Pretendard"),("Title",20,"15314B","Pretendard ExtraBold"),("Heading 1",16,"1F4E79","Pretendard Bold"),("Heading 2",13,"1F4E79","Pretendard SemiBold"),("Heading 3",11.5,"365F7D","Pretendard Medium")]:
+    s=doc.styles[name]; s.font.name=font; s._element.rPr.rFonts.set(qn("w:ascii"),font); s._element.rPr.rFonts.set(qn("w:hAnsi"),font); s._element.rPr.rFonts.set(qn("w:eastAsia"),font); s.font.size=Pt(size); s.font.color.rgb=RGBColor.from_string(color); s.paragraph_format.line_spacing=1.55 if name=="Normal" else 1.2; s.paragraph_format.space_after=Pt(7)
 sec.header.paragraphs[0].text="고위험 임상상황의 영양보충제 안전성 문헌 탐색 연구"; add_page_number(sec.footer.paragraphs[0])
 p=doc.add_paragraph(); p.alignment=WD_ALIGN_PARAGRAPH.CENTER; p.paragraph_format.space_before=Pt(90); p.add_run("학위논문").bold=True
 p=doc.add_paragraph(); p.alignment=WD_ALIGN_PARAGRAPH.CENTER; p.paragraph_format.space_before=Pt(35); r=p.add_run("고위험 임상상황의 영양보충제 안전성 문헌을 위한\nAI 기반 탐색적 근거지도 구축과\n결정론적 탐색 도구의 기술 검증"); r.bold=True; r.font.size=Pt(20)
 p=doc.add_paragraph(); p.alignment=WD_ALIGN_PARAGRAPH.CENTER; p.add_run("AI-Based Exploratory Evidence Mapping of Dietary Supplement Safety in High-Risk Clinical Contexts").italic=True
-p=doc.add_paragraph(); p.alignment=WD_ALIGN_PARAGRAPH.CENTER; p.paragraph_format.space_before=Pt(80); p.add_run("여형준\n2026년 7월").bold=True
+p=doc.add_paragraph(); p.alignment=WD_ALIGN_PARAGRAPH.CENTER; p.paragraph_format.space_before=Pt(80); p.add_run(f"{AUTHOR}\n{SUBMISSION_DATE}").bold=True
+doc.add_page_break(); doc.add_heading("제출 정보",1)
+doc.add_paragraph("이 문서는 여형준의 졸업논문 제출용 편집 기준본이다. 연구 내용과 검증된 수치는 본문에 반영되어 있으며, 아래 행정 정보는 소속 기관의 공식 양식에 맞춰 제출 전에 입력한다.")
+table(doc,["항목","내용"],[["연구자",AUTHOR],["소속 대학","[입력]"],["학과·전공","[입력]"],["학번","[입력]"],["지도교수","[입력]"],["학위명","[입력]"],["최종 제출일","[입력]"]])
+doc.add_paragraph("연구 성격: AI 기반 탐색적 근거지도 및 결정론적 탐색 도구의 기술 검증. 사람의 독립 이중선별, 최종 RoB·GRADE, 임상 권고를 완료한 체계적 문헌고찰로 표시하지 않는다.")
 doc.add_page_break(); doc.add_heading("국문초록",1)
 abstract=f"본 연구는 항응고제 병용과 신장결석 위험에 관련된 다섯 영양보충제 질문의 공개 서지자료를 AI 기반 탐색적 근거지도로 구조화하고, 임상행동을 출력하지 않는 결정론적 탐색 도구의 기술적 경계를 검증하였다. 초기 체계적 문헌고찰 프로토콜은 사람의 독립 선별과 원문 접근 조건을 충족하지 못해 완료로 간주하지 않았으며, 연구 질문을 공개 자료의 관찰 가능성, 자동 분류의 합의·불일치, 출처 계보와 소프트웨어 반복성으로 제한한 v2 프로토콜로 개정하였다. 총 {M['row_count']:,}개 record-question unit을 확보했으며 PubMed {M['source_counts']['pubmed']:,}개, ClinicalTrials.gov {M['source_counts']['clinicaltrials']:,}개, KoreaMed {M['source_counts']['koreamed']:,}개였다. 초록 관찰 행은 {M['abstract_observed']:,}개, 제목·메타데이터만 관찰된 행은 {M['title_metadata_only']:,}개였다. PubMed 이중 자동 분류는 유지 합의 {S['classifications']['ai_agreement_retain']:,}개, 후순위 합의 {S['classifications']['ai_agreement_deprioritize']:,}개, 불일치 불확실 {S['classifications']['ai_disagreement_uncertain']:,}개였다. 120개 합성 시나리오의 360회 실행에서 결정성, 정확 라우팅과 계보 완전성은 모두 120/120이었고 임상행동·legacy 누출과 near-match 오경로는 0건이었다. 본 결과는 임상 권고나 사람 선별을 거친 체계적 문헌고찰이 아니며, 후속 사람 검토를 위한 재현 가능한 탐색 기반을 제시한다."
 doc.add_paragraph(abstract); doc.add_paragraph("주요어: 영양보충제, 항응고제, 신장결석, 탐색적 근거지도, 인공지능, 출처 계보, 결정론적 검증")
