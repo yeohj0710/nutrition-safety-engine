@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "status": "agent_registry_prereview_complete_human_decisions_open",
+  "authority": "agent_prereview_only",
+  "records": 207,
+  "questions": {
+    "A1": {
+      "records": 139,
+      "recommendations": {
+        "likely_exclude_needs_validation": 131,
+        "advance_to_human_registry_screening": 6,
+        "uncertain_manual_review": 2
+      }
+    },
+    "A2": {
+      "records": 23,
+      "recommendations": {
+        "likely_exclude_needs_validation": 3,
+        "uncertain_manual_review": 20
+      }
+    },
+    "B1": {
+      "records": 23,
+      "recommendations": {
+        "uncertain_manual_review": 17,
+        "likely_exclude_needs_validation": 5,
+        "advance_to_human_registry_screening": 1
+      }
+    },
+    "B2": {
+      "records": 14,
+      "recommendations": {
+        "uncertain_manual_review": 6,
+        "likely_exclude_needs_validation": 1,
+        "advance_to_human_registry_screening": 7
+      }
+    },
+    "B3": {
+      "records": 8,
+      "recommendations": {
+        "uncertain_manual_review": 5,
+        "advance_to_human_registry_screening": 3
+      }
+    }
+  },
+  "human_registry_decisions": 0,
+  "independent_reviewers_completed": 0,
+  "final_registry_screening_claim_allowed": false,
+  "inputs": {
+    "context_sha256": "c04e82bc1e54e4627c71198da6cbe1310030240547803e7220b20cc9c982b6f8",
+    "queue_sha256": "238a8cbb0ed54b59f707f9c4ba52b1beec456a313159672c1be1b212bc763a07"
+  },
+  "output_sha256": "35596a4dedc0591f0a16131df2a06a4878cb0619ab7067bd164f9358ec813f92"
+}

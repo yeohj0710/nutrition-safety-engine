@@ -63,12 +63,20 @@ def main() -> int:
             errors.append(f"multi-report component lacks explicit evidence: {provisional_id}")
 
     summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
+    approval_path = ROOT / "research/approvals/report_study_linkage_agent_prereview_approval.json"
+    approval = json.loads(approval_path.read_text(encoding="utf-8")) if approval_path.is_file() else None
     if summary["output_sha256"] != sha(OUTPUT):
         errors.append("summary output hash mismatch")
     if summary["human_link_decisions"] != 0 or summary["independent_reviewers_completed"] != 0 or summary["synthesis_allowed"] is not False:
         errors.append("summary overstates linkage or synthesis readiness")
     if summary["screening_basis"] != "advance_to_human_screening_not_human_inclusion":
         errors.append("screening basis does not preserve eligibility boundary")
+    if approval is not None:
+        expected = {"LINKAGE-MULTI-REPORT", "LINKAGE-SINGLE-REPORT", "LINKAGE-ROLE-BOUNDARY"}
+        if approval.get("bundles_validated") != 3 or {event.get("bundleId") for event in approval.get("validation_events", [])} != expected:
+            errors.append("portal approval does not cover three linkage bundles")
+        if approval.get("human_individual_linkage_decisions_recorded") != 0 or approval.get("independent_reviewers_completed") != 0:
+            errors.append("portal approval overstates human linkage")
 
     rng = random.Random(20260714)
     multi = [row for row in linkage if int(row["component_report_count"]) > 1]
@@ -82,6 +90,7 @@ def main() -> int:
         "component_sizes": dict(Counter(len(group) for group in components.values())),
         "samples": {"multi_report": sample(multi, 25), "singleton": sample(singleton, 25)},
         "human_link_claim_allowed": False, "synthesis_allowed": False, "errors": errors,
+        "portal_bundle_validation_recorded": approval is not None,
     }
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     REPORT.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

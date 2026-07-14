@@ -374,5 +374,6 @@
   },
   "human_link_claim_allowed": false,
   "synthesis_allowed": false,
-  "errors": []
+  "errors": [],
+  "portal_bundle_validation_recorded": true
 }
