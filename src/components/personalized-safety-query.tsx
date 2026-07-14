@@ -82,17 +82,20 @@ function EvidenceSentence({
       >
         근거
       </a>
-      <span className="pointer-events-none absolute bottom-full left-0 z-50 mb-2 hidden w-80 max-w-[calc(100vw-2rem)] rounded-xl border border-blue-100 bg-white p-3 text-left text-xs font-medium leading-5 text-stone-700 shadow-[0_12px_36px_rgba(15,23,42,0.16)] group-hover:block">
+      <span className="pointer-events-auto absolute bottom-[calc(100%-0.25rem)] left-0 z-50 hidden w-80 max-w-[calc(100vw-2rem)] rounded-xl border border-blue-100 bg-white p-3 text-left text-xs font-medium leading-5 text-stone-700 shadow-[0_12px_36px_rgba(15,23,42,0.16)] group-hover:block group-focus-within:block">
         <span className="mb-2 block text-[11px] font-bold text-blue-600">
           이 문장의 근거
         </span>
         {references.map((reference) => (
-          <span
+          <a
             key={`${reference.label}-${reference.url}`}
-            className="mt-1 block rounded-lg bg-blue-50/60 px-2 py-1.5"
+            href={reference.url}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-1 block rounded-lg bg-blue-50/60 px-2 py-1.5 transition hover:bg-blue-100 hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <b>{reference.label}</b> · {reference.title}
-          </span>
+          </a>
         ))}
       </span>
     </span>
