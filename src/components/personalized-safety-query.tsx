@@ -82,14 +82,14 @@ function EvidenceSentence({
       >
         근거
       </a>
-      <span className="pointer-events-none absolute left-0 top-full z-30 mt-2 hidden w-72 rounded-xl bg-stone-950 p-3 text-left text-xs font-medium leading-5 text-white shadow-xl group-hover:block">
-        <span className="mb-2 block text-[11px] font-bold text-blue-200">
+      <span className="pointer-events-none absolute bottom-full left-0 z-50 mb-2 hidden w-80 max-w-[calc(100vw-2rem)] rounded-xl border border-blue-100 bg-white p-3 text-left text-xs font-medium leading-5 text-stone-700 shadow-[0_12px_36px_rgba(15,23,42,0.16)] group-hover:block">
+        <span className="mb-2 block text-[11px] font-bold text-blue-600">
           이 문장의 근거
         </span>
         {references.map((reference) => (
           <span
             key={`${reference.label}-${reference.url}`}
-            className="mt-1 block rounded-lg px-2 py-1.5"
+            className="mt-1 block rounded-lg bg-blue-50/60 px-2 py-1.5"
           >
             <b>{reference.label}</b> · {reference.title}
           </span>
@@ -594,7 +594,7 @@ export function PersonalizedSafetyQuery() {
           </p>
         )}
         {result && (
-          <article className="mt-6 overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm">
+          <article className="relative mt-6 overflow-visible rounded-2xl border border-stone-200 bg-white shadow-sm">
             <header className="px-5 pb-2 pt-6">
               <p className="text-xs font-bold text-blue-600">
                 한눈에 보는 결과
