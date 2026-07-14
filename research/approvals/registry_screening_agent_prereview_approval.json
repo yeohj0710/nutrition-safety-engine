@@ -1,0 +1,12 @@
+{
+  "schema_version":"1.0.0","approval_type":"registry_screening_agent_prereview_bundle_validation","reviewer_identity":"portal_reviewer_identity_not_captured","identity_status":"identity_not_captured",
+  "validation_events":[
+    {"bundleId":"REGISTRY-A1","decision":"approve_registry_agent_prereview_for_human_workflow","validatedAt":"2026-07-14T01:22:28.740Z"},
+    {"bundleId":"REGISTRY-A2","decision":"approve_registry_agent_prereview_for_human_workflow","validatedAt":"2026-07-14T01:22:28.910Z"},
+    {"bundleId":"REGISTRY-B1","decision":"approve_registry_agent_prereview_for_human_workflow","validatedAt":"2026-07-14T01:22:29.075Z"},
+    {"bundleId":"REGISTRY-B2","decision":"approve_registry_agent_prereview_for_human_workflow","validatedAt":"2026-07-14T01:22:29.220Z"},
+    {"bundleId":"REGISTRY-B3","decision":"approve_registry_agent_prereview_for_human_workflow","validatedAt":"2026-07-14T01:22:29.406Z"}
+  ],
+  "bundles_validated":5,"records_in_scope":207,"human_individual_registry_decisions_recorded":0,"independent_reviewers_completed":0,
+  "limitation":"Bundle validation is not individual registry screening or independent dual review.","exported_at":"2026-07-14T01:22:30.630Z","recorded_at":"2026-07-14","source":"downloaded_review_portal_json"
+}

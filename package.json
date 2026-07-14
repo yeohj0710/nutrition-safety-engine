@@ -84,6 +84,8 @@
     "validate:study-linkage-prereview": "python tools/validate_report_study_linkage_agent_prereview.py",
     "build:registry-screening-prereview": "python tools/build_registry_screening_agent_prereview.py",
     "validate:registry-screening-prereview": "python tools/validate_registry_screening_agent_prereview.py",
+    "build:registry-link-prereview": "python tools/build_registry_pubmed_link_agent_prereview.py",
+    "validate:registry-link-prereview": "python tools/validate_registry_pubmed_link_agent_prereview.py",
     "build:duplicate-review-context": "python tools/build_duplicate_review_context.py",
     "validate:duplicate-review-context": "python tools/validate_duplicate_review_context.py",
     "build:registry-link-review-context": "python tools/build_registry_link_review_context.py",

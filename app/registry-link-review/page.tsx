@@ -1,0 +1,1 @@
+import type{Metadata}from"next";import{RegistryLinkReviewClient}from"@/src/components/registry-link-review-client";import{registryLinkBundles}from"@/src/lib/registry-link-review";export const metadata:Metadata={title:"등록자료–논문 연결 검토",robots:{index:false,follow:false}};export default function Page(){return <RegistryLinkReviewClient bundles={registryLinkBundles}/>}

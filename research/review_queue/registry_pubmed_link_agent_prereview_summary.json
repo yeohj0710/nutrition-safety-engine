@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "status": "agent_registry_pubmed_link_prereview_complete_human_decisions_open",
+  "authority": "agent_prereview_only",
+  "candidates": 500,
+  "reference_types": {
+    "DERIVED": 127,
+    "BACKGROUND": 327,
+    "RESULT": 46
+  },
+  "recommendations": {
+    "probable_link_candidate_needs_validation": 127,
+    "likely_background_not_study_report_needs_validation": 327,
+    "strong_link_candidate_needs_validation": 46
+  },
+  "human_link_decisions": 0,
+  "independent_reviewers_completed": 0,
+  "registry_study_links_claim_allowed": false,
+  "input_sha256": "7c70e91bf484d6eca8ea6eb680dfbefe3dc4aca8de673b878216ca9574227ba6",
+  "output_sha256": "53f79ace126543d4c074f370a0d6f6f26541e4c0b2a9a2864f3b79c83ac61dfd"
+}
