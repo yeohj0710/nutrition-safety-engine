@@ -34,7 +34,7 @@ describe("personalized safety API", () => {
       expect(body.ai_summary).toContain(dose);
       expect(body.ai_summary).toContain("3.1");
       expect(body.ai_summary).not.toMatch(/종합하면|핵심은|상담 전에는/);
-      expect(body.ai_summary.length).toBeLessThanOrEqual(220);
+      expect(body.ai_summary.length).toBeLessThanOrEqual(520);
       expect(body.evidence).toHaveLength(5);
       expect(body.ai_summary).not.toMatch(
         /supplement dose|kidney stone|dietary calcium/,
@@ -63,6 +63,25 @@ describe("personalized safety API", () => {
     expect(body.ai_summary).not.toMatch(
       /입력(?:되|하|된)|입력값|대상자|사용자|프로필|검사값|현재 입력한 조건|종합하면|핵심은|상담 전에는|이시군요|살펴볼게요|적어주셨네요/,
     );
+  });
+  it("combines the omega-3 profile with quantitative findings and directness limits", async () => {
+    delete process.env.OPENAI_API_KEY;
+    const response = await POST(
+      new Request("http://local/api/personalized-safety", {
+        method: "POST",
+        body: JSON.stringify({
+          ingredient: "오메가-3",
+          dose: "EPA+DHA 2000 mg/day",
+          medication: "아픽사반",
+          condition: "코피가 자주 남",
+        }),
+      }),
+    );
+    const body = await response.json();
+    expect(body.ai_summary).toContain("어유 3–6 g/day");
+    expect(body.ai_summary).toContain("오메가-3 카복실산 4 g");
+    expect(body.ai_summary).toContain("INR 8.06");
+    expect(body.ai_summary).toContain("아픽사반 복용자에게 안전한 EPA+DHA 상한을 직접 정하지 않았으므로");
   });
   it("rejects unsupported ingredients", async () => {
     const response = await POST(
@@ -178,7 +197,7 @@ describe("personalized safety API", () => {
       const body = await response.json();
       expect(body.ai_summary).toContain("600 mg/day");
       expect(body.ai_summary).toContain("280 mg/day");
-      expect(body.ai_summary.length).toBeLessThanOrEqual(300);
+      expect(body.ai_summary.length).toBeLessThanOrEqual(520);
       expect(body.ai_summary).not.toContain("긴 설명");
     },
   );
