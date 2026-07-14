@@ -156,7 +156,7 @@ type SummaryInput = {
 const evidenceSummaries: Record<string, string> = {
   A1: "관련 연구에서는 비타민 K 25 mcg이 든 종합비타민이 비타민 K 상태가 낮은 와파린 복용자의 항응고 조절에 영향을 준 사례가 있었고, INR 안정화를 위한 시험에서는 비타민 K 100·150·200 μg/day가 비교됐습니다. 이는 일정한 섭취의 중요성을 보여주지만 개인별 적정량을 정한 기준은 아닙니다.",
   A2: "와파린 환자 연구에서는 어유 3–6 g/day가 INR에 통계적으로 유의한 변화를 보이지 않았고, 건강한 지원자 연구에서는 오메가-3 카복실산 4 g에서도 뚜렷한 와파린 상호작용이 관찰되지 않았습니다. 반면 와파린·트라조돈·오메가-3 병용 후 INR 8.06이 보고된 단일 증례도 있습니다.",
-  B1: "결석 환자 연구에서는 칼슘 500 mg/day와 식사 중 칼슘 섭취가 평가됐고, 골다공증 환자 대상 문헌고찰에서는 보충제 칼슘이 신장결석 위험을 유의하게 높이지 않았습니다. 다만 약 1,200 mg/day를 사용한 연구에서는 혈청과 24시간 요중 칼슘을 반복 측정했습니다.",
+  B1: "결석 환자 연구에서는 칼슘 500 mg/day와 식사 중 칼슘 섭취가 평가됐고, 골다공증 환자 대상 문헌고찰에서는 보충제 칼슘이 신장결석 위험을 유의하게 높이지 않았습니다. 약 1,200 mg/day를 사용한 연구에서는 혈청과 24시간 요중 칼슘을 반복 측정했습니다.",
   B2: "무작위시험에서는 비타민 D 100,000 IU를 매달 투여해 3.3년 추적했을 때 결석이 비타민 D군 76명, 위약군 82명에서 보고됐습니다. 다른 연구에서는 50,000 IU의 반복 투여가 고칼슘뇨와 관련됐으며, 결석 재발 환자에서는 2,000 IU/day와 50,000 IU/week가 비교됐습니다.",
   B3: "비타민 C 관련 증례에서는 680 mg/day, 2 g/day, 장기간 3 g/day 복용 후 고옥살산뇨·옥살산 신병증이 보고됐습니다. 이는 위험이 시작되는 확정 기준이 아니라, 신장질환·장질환·탈수 같은 취약 조건이 있던 개별 사례입니다.",
 };
@@ -175,10 +175,10 @@ const conciseSummaries: Record<string, string> = {
   "비타민 D": "비타민 D 복용량과 칼슘 관련 검사값을 함께 확인해야 합니다.",
   "비타민 C": "비타민 C 총량과 결석·신장 관련 정보를 함께 확인해야 합니다.",
 };
-function normalizeCondition(value: string) {
-  if (/자주 남$/.test(value)) return value.replace(/자주 남$/, "자주 납니다");
-  if (/병력$/.test(value)) return `${value}이 있습니다`;
-  return value.endsWith("다") ? value : `${value}이 있습니다`;
+function describeConditionInCounseling(value: string) {
+  if (/자주 남$/.test(value)) return value.replace(/자주 남$/, "자주 나고요");
+  if (/병력$/.test(value)) return `${value}도 있으시고요`;
+  return `${value}도 확인되고요`;
 }
 function withObjectParticle(value: string) {
   const last = value.at(-1) ?? "";
@@ -187,33 +187,40 @@ function withObjectParticle(value: string) {
     code >= 0xac00 && code <= 0xd7a3 && (code - 0xac00) % 28 !== 0;
   return `${value}${hasFinalConsonant ? "을" : "를"}`;
 }
+function withSubjectParticle(value: string) {
+  const last = value.at(-1) ?? "";
+  const code = last.charCodeAt(0);
+  const hasFinalConsonant =
+    code >= 0xac00 && code <= 0xd7a3 && (code - 0xac00) % 28 !== 0;
+  return `${value}${hasFinalConsonant ? "이" : "가"}`;
+}
 function buildProfileSentence(input: SummaryInput) {
   const sentences: string[] = [];
   if (input.dose)
     sentences.push(
-      `${withObjectParticle(input.ingredient)} ${input.dose} 복용하고 있습니다.`,
+      `말씀해 주신 내용을 보면, ${withObjectParticle(input.ingredient)} ${input.dose} 복용하고 계십니다.`,
     );
   if (input.medication && input.condition)
     sentences.push(
-      `${input.medication}도 함께 복용하고 있으며, ${normalizeCondition(input.condition)}.`,
+      `${input.medication}도 함께 복용하고 계시고, ${describeConditionInCounseling(input.condition)}.`,
     );
   else if (input.medication)
-    sentences.push(`${input.medication}도 함께 복용하고 있습니다.`);
+    sentences.push(`${input.medication}도 함께 복용하고 계십니다.`);
   else if (input.condition)
-    sentences.push(`${normalizeCondition(input.condition)}.`);
+    sentences.push(`${describeConditionInCounseling(input.condition)}.`);
   if (input.labs)
-    sentences.push(`최근 검사에서는 ${input.labs}이 확인됐습니다.`);
+    sentences.push(`최근 검사에서는 ${withSubjectParticle(input.labs)} 확인됐고요.`);
   return sentences.join(" ");
 }
 export async function summarize(input: SummaryInput) {
   const conciseSummary = conciseSummaries[input.ingredient] ?? input.summary;
   const fallback = [
     buildProfileSentence(input),
-    input.evidenceSummary,
-    evidenceLimits[input.questionId],
+    `연구 결과를 같이 보면, ${input.evidenceSummary}`,
+    `다만 ${evidenceLimits[input.questionId]}`,
   ]
     .filter(Boolean)
-    .join(" ");
+    .join("\n\n");
   if (!process.env.OPENAI_API_KEY) return fallback;
   try {
     const modelInput = { ...input, summary: conciseSummary };
@@ -231,7 +238,7 @@ export async function summarize(input: SummaryInput) {
           {
             role: "system",
             content:
-              "건강정보를 안내받는 사람의 실제 상황과 제공된 논문 결과를 자연스러운 한국어로 함께 설명한다. 필드나 양식을 읽어주지 않는다. 첫 부분에는 복용 중인 성분·용량, 병용약, 증상·병력과 검사 결과를 직접 서술한다. 이어서 evidenceSummary의 연구 설계, 비교 용량과 수치 결과를 빠뜨리지 말고 3~4문장으로 취합한다. 마지막에는 해당 연구가 현재 사람에게 직접 답하는 범위와 답하지 못하는 범위를 구분한다. 전체 520자 이하로 쓴다. '입력되었습니다', '입력한 내용', '입력값', '대상자', '사용자', '프로필', '검사값', '종합하면', '핵심은', '상담 전에는', '현재 입력한 조건'은 쓰지 않는다. 모든 숫자와 단위는 그대로 포함한다. 서로 다른 연구 결과를 하나의 안전 상한처럼 합치지 않는다. 진단, 위험 단정, 복용 시작·중단·용량 변경 지시는 하지 않는다.",
+              "약사가 상담실에서 차분하게 설명하듯 쓴다. 첫 문단은 '말씀해 주신 내용을 보면'으로 시작해 복용 중인 성분·용량, 병용약, 증상·병력과 최근 검사 결과를 존댓말로 자연스럽게 되짚는다. 둘째 문단은 '연구 결과를 같이 보면'으로 시작해 evidenceSummary의 연구 설계, 비교 용량과 수치를 빠뜨리지 않고 설명한다. 셋째 문단은 '다만'으로 시작해 현재 상황에 직접 적용할 수 있는 범위와 아직 답할 수 없는 범위를 설명한다. 문단 사이는 빈 줄로 나눈다. 전체 520자 이하로 쓴다. 필드나 양식을 읽듯 쓰지 않는다. '입력되었습니다', '입력한 내용', '입력값', '대상자', '사용자', '프로필', '검사값', '종합하면', '핵심은', '상담 전에는', '현재 입력한 조건'은 쓰지 않는다. 모든 숫자와 단위는 그대로 포함한다. 서로 다른 연구 결과를 하나의 안전 상한처럼 합치지 않는다. 진단, 위험 단정, 복용 시작·중단·용량 변경 지시는 하지 않는다.",
           },
           { role: "user", content: JSON.stringify(modelInput) },
         ],

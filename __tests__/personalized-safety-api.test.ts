@@ -55,10 +55,12 @@ describe("personalized safety API", () => {
       }),
     );
     const body = await response.json();
-    expect(body.ai_summary).toContain("칼슘을 600 mg/day 복용하고 있습니다.");
-    expect(body.ai_summary).toContain("칼슘옥살산 신장결석 병력이 있습니다.");
     expect(body.ai_summary).toContain(
-      "최근 검사에서는 24시간 요중 칼슘 280 mg/day이 확인됐습니다.",
+      "말씀해 주신 내용을 보면, 칼슘을 600 mg/day 복용하고 계십니다.",
+    );
+    expect(body.ai_summary).toContain("칼슘옥살산 신장결석 병력도 있으시고요.");
+    expect(body.ai_summary).toContain(
+      "최근 검사에서는 24시간 요중 칼슘 280 mg/day가 확인됐고요.",
     );
     expect(body.ai_summary).not.toMatch(
       /입력(?:되|하|된)|입력값|대상자|사용자|프로필|검사값|현재 입력한 조건|종합하면|핵심은|상담 전에는|이시군요|살펴볼게요|적어주셨네요/,
