@@ -64,11 +64,10 @@ describe("personalized safety API", () => {
       "최근 검사에서는 24시간 요중 칼슘 280 mg/day가 확인됐고요.",
     );
     expect(body.ai_summary).toContain(
-      "제품 라벨에서 원소 칼슘이 하루에 실제로 얼마인지 확인하고",
+      "제품 라벨의 원소 칼슘과 음식으로 먹는 칼슘을 나누어 계산하면 됩니다",
     );
-    expect(body.ai_summary).toContain(
-      "결석 성분 결과와 이번 24시간 소변검사를 비뇨의학과나 처방기관에 가져가",
-    );
+    expect(body.ai_summary).toContain("600 mg/day라는 숫자만으로 많고 적음을 정할 수는 없습니다");
+    expect(body.ai_summary).not.toMatch(/확인받으세요|보여 주세요|상의하세요/);
     expect(body.ai_summary).not.toMatch(
       /입력(?:되|하|된)|입력값|대상자|사용자|프로필|검사값|현재 입력한 조건|종합하면|핵심은|상담 전에는|이시군요|살펴볼게요|적어주셨네요/,
     );
@@ -108,7 +107,7 @@ describe("personalized safety API", () => {
     const body = await response.json();
     expect(body.ai_summary).toContain("배가 아픈 증상은 오메가-3 근거와 별도로 봐야 합니다");
     expect(body.ai_summary).toContain("검은변·혈변·토혈");
-    expect(body.ai_summary).toContain("통증이 계속되거나 심해지면 처방기관에 문의하세요");
+    expect(body.ai_summary).toContain("바로 진료가 필요한 신호입니다");
     expect(body.ai_summary).not.toMatch(/119|응급실|가급적 오늘/);
   });
   it("sends severe abdominal-pain red flags directly to emergency care", async () => {
