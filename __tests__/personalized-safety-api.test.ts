@@ -34,7 +34,8 @@ describe("personalized safety API", () => {
       expect(body.ai_summary).toContain(dose);
       expect(body.ai_summary).toContain("3.1");
       expect(body.ai_summary).not.toMatch(/종합하면|핵심은|상담 전에는/);
-      expect(body.ai_summary.length).toBeLessThanOrEqual(520);
+      expect(body.ai_summary.length).toBeLessThanOrEqual(700);
+      expect(body.ai_summary).toContain("그래서 지금은");
       expect(body.evidence).toHaveLength(5);
       expect(body.ai_summary).not.toMatch(
         /supplement dose|kidney stone|dietary calcium/,
@@ -61,6 +62,12 @@ describe("personalized safety API", () => {
     expect(body.ai_summary).toContain("칼슘옥살산 신장결석 병력도 있으시고요.");
     expect(body.ai_summary).toContain(
       "최근 검사에서는 24시간 요중 칼슘 280 mg/day가 확인됐고요.",
+    );
+    expect(body.ai_summary).toContain(
+      "제품 라벨에서 원소 칼슘이 하루에 실제로 얼마인지 확인하고",
+    );
+    expect(body.ai_summary).toContain(
+      "결석 성분 결과와 이번 24시간 소변검사를 비뇨의학과나 처방기관에 가져가",
     );
     expect(body.ai_summary).not.toMatch(
       /입력(?:되|하|된)|입력값|대상자|사용자|프로필|검사값|현재 입력한 조건|종합하면|핵심은|상담 전에는|이시군요|살펴볼게요|적어주셨네요/,
@@ -199,7 +206,7 @@ describe("personalized safety API", () => {
       const body = await response.json();
       expect(body.ai_summary).toContain("600 mg/day");
       expect(body.ai_summary).toContain("280 mg/day");
-      expect(body.ai_summary.length).toBeLessThanOrEqual(520);
+      expect(body.ai_summary.length).toBeLessThanOrEqual(700);
       expect(body.ai_summary).not.toContain("긴 설명");
     },
   );
