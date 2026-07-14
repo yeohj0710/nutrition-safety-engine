@@ -142,6 +142,40 @@ describe("personalized safety API", () => {
     const body = await response.json();
     expect(body.ai_summary).toContain("바로 진료받으세요");
   });
+  it("accepts a consumer who does not know the dose", async () => {
+    delete process.env.OPENAI_API_KEY;
+    const response = await POST(
+      new Request("http://local/api/personalized-safety", {
+        method: "POST",
+        body: JSON.stringify({
+          ingredient: "칼슘",
+          dose: "잘 모르겠어요",
+          medication: "복용 약 없음",
+          condition: "특별한 증상 없음",
+        }),
+      }),
+    );
+    const body = await response.json();
+    expect(response.status).toBe(200);
+    expect(body.assessment.context).toContain("하루 양은 아직 모릅니다");
+    expect(body.assessment.verdict).toContain("복용량을 모르는 상태");
+    expect(body.assessment.context).not.toContain("복용 약 없음도");
+  });
+  it("converts vitamin D micrograms before comparing the upper limit", async () => {
+    delete process.env.OPENAI_API_KEY;
+    const response = await POST(
+      new Request("http://local/api/personalized-safety", {
+        method: "POST",
+        body: JSON.stringify({
+          ingredient: "비타민 D",
+          dose: "100 μg",
+          condition: "신장결석 병력",
+        }),
+      }),
+    );
+    const body = await response.json();
+    expect(body.assessment.verdict).toContain("성인 상한선 4,000 IU/day");
+  });
   it("rejects unsupported ingredients", async () => {
     const response = await POST(
       new Request("http://local/api/personalized-safety", {

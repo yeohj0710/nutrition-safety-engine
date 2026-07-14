@@ -350,11 +350,21 @@ function numberFrom(value: string) {
   const matches = value.match(/[\d,]+(?:\.\d+)?/g);
   return Number(matches?.at(-1)?.replaceAll(",", "") ?? NaN);
 }
+function normalizedDose(questionId: string, value: string) {
+  const amount = numberFrom(value);
+  if (!Number.isFinite(amount)) return amount;
+  if (questionId === "B2" && /(?:μg|µg|mcg)/i.test(value)) return amount * 40;
+  if (questionId === "A2" && /\bg\b/i.test(value) && !/mg/i.test(value))
+    return amount * 1000;
+  return amount;
+}
 function selectEvidence(
   all: RuntimeEvidence[],
   input: Exclude<ReturnType<typeof parseInput>, null>,
 ) {
-  const medication = input.medication.toLowerCase();
+  const medication = /없음|모르겠/.test(input.medication)
+    ? ""
+    : input.medication.toLowerCase();
   const condition = input.condition.toLowerCase();
   const ranked = all.map((item) => {
     const text =
@@ -435,12 +445,19 @@ function buildAssessment(
     : never,
   evidence: Array<{ title: string; url: string }>,
 ) {
-  const dose = numberFrom(input.dose);
+  const dose = normalizedDose(questionId, input.dose);
   const lab = numberFrom(input.labs);
+  const doseLabel = Number.isFinite(dose) ? input.dose : "현재 복용량";
   const context = [
-    `말씀해 주신 내용으로는 ${withObjectParticle(input.ingredient)}${input.dose ? ` ${input.dose} 복용 중입니다` : " 복용 중입니다"}.`,
-    input.medication ? `${input.medication}도 함께 복용 중입니다.` : "",
-    input.condition ? `${input.condition}도 함께 있습니다.` : "",
+    `말씀해 주신 내용으로는 ${withObjectParticle(input.ingredient)} 복용 중${/모르겠/.test(input.dose) ? "이며 하루 양은 아직 모릅니다" : input.dose ? `이며 제품에 적힌 양은 ${input.dose}입니다` : "입니다"}.`,
+    input.medication && !/없음|모르겠/.test(input.medication)
+      ? `${input.medication}도 함께 복용 중입니다.`
+      : "",
+    input.condition === "특별한 증상 없음"
+      ? "현재 불편한 증상은 없습니다."
+      : input.condition
+        ? `${input.condition}도 함께 있습니다.`
+        : "",
     input.labs ? `최근 확인된 값은 ${input.labs}입니다.` : "",
   ]
     .filter(Boolean)
@@ -506,9 +523,13 @@ function buildAssessment(
     return {
       context,
       verdict: highUrineCalcium
-        ? "현재 600 mg/day는 그대로 유지하기에 적합하다고 보기 어렵습니다. 요중 칼슘과 결석 병력을 고려하면 줄이는 방향을 검토할 근거가 있습니다."
-        : "600 mg/day 자체는 성인 총섭취 상한보다 낮지만, 식이 칼슘을 더한 총량이 없어 적합 여부는 확정하기 어렵습니다.",
-      dose: "성인 칼슘 상한은 음식과 보충제를 합쳐 2,000–2,500 mg/day입니다. 보충제 600 mg/day만으로 상한을 넘지는 않습니다.",
+        ? `${doseLabel}은 그대로 유지하기에 적합하다고 보기 어렵습니다. 요중 칼슘과 결석 병력을 고려하면 줄이는 방향을 검토할 근거가 있습니다.`
+        : Number.isFinite(dose)
+          ? `${doseLabel} 자체는 성인 총섭취 상한보다 낮지만, 식이 칼슘을 더한 총량이 없어 적합 여부는 확정하기 어렵습니다.`
+          : "복용량을 모르는 상태에서는 적합 여부를 정할 수 없습니다. 제품 라벨의 원소 칼슘 양과 식이 칼슘을 합친 총량이 판단 기준입니다.",
+      dose: Number.isFinite(dose)
+        ? `성인 칼슘 상한은 음식과 보충제를 합쳐 2,000–2,500 mg/day입니다. 보충제 ${input.dose}만으로 상한을 넘지는 않습니다.`
+        : "성인 칼슘 상한은 음식과 보충제를 합쳐 2,000–2,500 mg/day입니다.",
       interaction:
         "레보티록신, 퀴놀론계 항생제, 돌루테그라비르의 흡수를 떨어뜨릴 수 있어 복용 시간 간격이 중요합니다.",
       watch: highUrineCalcium
@@ -522,7 +543,7 @@ function buildAssessment(
       context,
       verdict:
         Number.isFinite(dose) && dose >= 4000
-          ? "현재 4,000 IU/day는 성인 상한선에 해당합니다. 결석이나 고칼슘뇨 병력이 있다면 늘리기보다 줄이는 방향이 더 적절합니다."
+          ? `현재 ${input.dose}는 성인 상한선 4,000 IU/day에 해당하거나 그보다 높습니다. 결석이나 고칼슘뇨 병력이 있다면 늘리기보다 줄이는 방향이 더 적절합니다.`
           : "현재 용량은 성인 상한 아래이지만 결석·고칼슘뇨가 있으면 칼슘 검사와 함께 판단합니다.",
       dose: "성인 비타민 D 상한은 4,000 IU/day입니다. 상한은 권장량이 아니라 넘기지 말아야 할 총량 기준입니다.",
       interaction:
@@ -565,7 +586,9 @@ export async function POST(req: Request) {
   const g = guidance[q];
   const entered = [
     b.dose && `복용량 ${b.dose}`,
-    b.medication && `병용약 ${b.medication}`,
+    b.medication &&
+      !/없음|모르겠/.test(b.medication) &&
+      `병용약 ${b.medication}`,
     b.condition &&
       `${/(?:아파|통증|출혈|어지|구토|설사|코피|멍)/.test(b.condition) ? "증상" : "병력"} ${b.condition}`,
     b.labs && `검사값 ${b.labs}`,

@@ -105,6 +105,73 @@ export function PersonalizedSafetyQuery() {
   const [result, setResult] = useState<Result | null>(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [draft, setDraft] = useState<QueryInput>({
+    ingredient: "",
+    dose: "",
+    medication: "",
+    condition: "",
+    labs: "",
+  });
+  const ingredientOptions = [
+    "비타민 K",
+    "오메가-3",
+    "칼슘",
+    "비타민 D",
+    "비타민 C",
+  ];
+  const medicationOptions: Record<string, string[]> = {
+    "비타민 K": ["와파린", "항생제", "잘 모르겠어요"],
+    "오메가-3": [
+      "아픽사반",
+      "와파린",
+      "아스피린",
+      "진통소염제",
+      "잘 모르겠어요",
+    ],
+    칼슘: ["갑상선약", "항생제", "리튬", "없어요", "잘 모르겠어요"],
+    "비타민 D": [
+      "이뇨제",
+      "올리스타트",
+      "스테로이드",
+      "없어요",
+      "잘 모르겠어요",
+    ],
+    "비타민 C": ["철분제", "항암제", "없어요", "잘 모르겠어요"],
+  };
+  const conditionOptions: Record<string, string[]> = {
+    "비타민 K": [
+      "INR이 자주 바뀜",
+      "멍이 잘 듦",
+      "코피가 남",
+      "특별한 증상 없음",
+    ],
+    "오메가-3": [
+      "멍이 잘 듦",
+      "코피가 남",
+      "잇몸 출혈",
+      "배가 아픔",
+      "특별한 증상 없음",
+    ],
+    칼슘: [
+      "신장결석 병력",
+      "소변 칼슘이 높다고 들음",
+      "변비",
+      "특별한 증상 없음",
+    ],
+    "비타민 D": [
+      "신장결석 병력",
+      "칼슘 수치가 높다고 들음",
+      "소변 칼슘이 높다고 들음",
+      "특별한 증상 없음",
+    ],
+    "비타민 C": [
+      "신장결석 병력",
+      "소변 옥살산이 높다고 들음",
+      "신장기능 저하",
+      "배가 아픔",
+      "특별한 증상 없음",
+    ],
+  };
   const examples = [
     {
       title: "와파린 + 비타민 K",
@@ -191,13 +258,13 @@ export function PersonalizedSafetyQuery() {
     }
   }
   function fillExample(x: (typeof examples)[number]) {
-    const f = formRef.current;
-    if (!f) return;
-    for (const [k, v] of Object.entries(x)) {
-      const el = f.elements.namedItem(k);
-      if (el instanceof HTMLInputElement || el instanceof HTMLSelectElement)
-        el.value = v;
-    }
+    setDraft({
+      ingredient: x.ingredient,
+      dose: x.dose,
+      medication: x.medication,
+      condition: x.condition,
+      labs: x.labs,
+    });
     examplesRef.current?.removeAttribute("open");
     void runQuery({
       ingredient: x.ingredient,
@@ -209,13 +276,7 @@ export function PersonalizedSafetyQuery() {
   }
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const values = Object.fromEntries(
-      [...new FormData(e.currentTarget)].map(([key, value]) => [
-        key,
-        String(value),
-      ]),
-    ) as QueryInput;
-    await runQuery(values);
+    await runQuery(draft);
   }
   return (
     <section className="mx-auto px-4 py-5 sm:px-5 sm:py-6" id="query">
@@ -224,10 +285,11 @@ export function PersonalizedSafetyQuery() {
           개인 특성 기반 안전성 조회
         </p>
         <h2 className="mt-2 text-xl font-semibold tracking-[-0.025em]">
-          복용 조건을 입력하세요
+          아는 내용만 골라도 충분해요
         </h2>
         <p className="mt-2 text-sm leading-6 text-muted">
-          성분, 용량, 약물, 질환과 검사값을 함께 조회합니다.
+          제품 라벨과 약 봉투를 보면서 순서대로 선택하세요. 용량이나 검사 이름을
+          몰라도 결과를 확인할 수 있습니다.
         </p>
         <p className="mt-2 text-xs leading-5 text-stone-500">
           적어주신 내용은 결과를 정리하는 데만 사용됩니다.
@@ -284,96 +346,202 @@ export function PersonalizedSafetyQuery() {
       <form
         ref={formRef}
         onSubmit={submit}
-        className="mt-6 grid gap-5 rounded-3xl border border-stone-200 bg-white p-6 shadow-sm sm:grid-cols-2 sm:p-8"
+        className="mt-6 rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-8"
       >
-        <label className="grid gap-2 text-sm font-semibold">
-          보충제
-          <select
-            required
-            name="ingredient"
-            autoComplete="off"
-            className="rounded-xl border border-stone-300 bg-white px-4 py-3 text-stone-950"
-          >
-            <option value="">선택</option>
-            <option>비타민 K</option>
-            <option>오메가-3</option>
-            <option>칼슘</option>
-            <option>비타민 D</option>
-            <option>비타민 C</option>
-          </select>
-        </label>
-        <label className="grid gap-2 text-sm font-semibold">
-          일일 복용량
-          <input
-            name="dose"
-            maxLength={80}
-            autoComplete="off"
-            placeholder="예: 1000 mg/day…"
-            className="rounded-xl border border-stone-300 px-4 py-3"
-          />
-        </label>
-        <label className="grid gap-2 text-sm font-semibold">
-          병용 약물
-          <input
-            name="medication"
-            maxLength={120}
-            autoComplete="off"
-            placeholder="예: 와파린…"
-            className="rounded-xl border border-stone-300 px-4 py-3"
-          />
-        </label>
-        <label className="grid gap-2 text-sm font-semibold">
-          질환·병력·증상
-          <input
-            name="condition"
-            maxLength={200}
-            autoComplete="off"
-            placeholder="예: 신장결석, 고칼슘뇨, 배가 아파요…"
-            className="rounded-xl border border-stone-300 px-4 py-3"
-          />
-        </label>
-        <label className="grid gap-2 text-sm font-semibold sm:col-span-2">
-          관련 검사값
-          <input
-            name="labs"
-            maxLength={200}
-            autoComplete="off"
-            placeholder="예: INR 3.1, 혈청 칼슘 10.4 mg/dL…"
-            className="rounded-xl border border-stone-300 px-4 py-3"
-          />
-        </label>
+        <fieldset>
+          <legend className="text-lg font-bold text-stone-950">
+            1. 어떤 보충제를 드시나요?
+          </legend>
+          <p className="mt-1 text-sm leading-6 text-stone-500">
+            제품 앞면에 적힌 이름과 같은 것을 고르면 됩니다.
+          </p>
+          <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-5">
+            {ingredientOptions.map((ingredient) => (
+              <button
+                key={ingredient}
+                type="button"
+                onClick={() =>
+                  setDraft({
+                    ...draft,
+                    ingredient,
+                    medication: "",
+                    condition: "",
+                    labs: "",
+                  })
+                }
+                className={`min-h-12 rounded-xl border px-3 text-sm font-bold transition ${draft.ingredient === ingredient ? "border-blue-600 bg-blue-50 text-blue-700 ring-2 ring-blue-100" : "border-stone-200 bg-white text-stone-700 hover:border-blue-300"}`}
+              >
+                {ingredient}
+              </button>
+            ))}
+          </div>
+        </fieldset>
+
+        {draft.ingredient && (
+          <div className="mt-7 grid gap-7">
+            <fieldset>
+              <legend className="text-lg font-bold text-stone-950">
+                2. 제품 라벨에 적힌 양은 얼마인가요?
+              </legend>
+              <p className="mt-1 text-sm leading-6 text-stone-500">
+                `1일 섭취량`이나 `하루 섭취량` 옆 숫자와 단위를 그대로 옮겨
+                적으면 됩니다.
+              </p>
+              <div className="mt-3 flex gap-2">
+                <input
+                  value={draft.dose}
+                  onChange={(e) => setDraft({ ...draft, dose: e.target.value })}
+                  maxLength={80}
+                  placeholder={
+                    draft.ingredient === "비타민 D"
+                      ? "예: 4,000 IU 또는 100 μg"
+                      : draft.ingredient === "오메가-3"
+                        ? "예: EPA 600 mg + DHA 400 mg"
+                        : "예: 600 mg"
+                  }
+                  className="min-h-12 min-w-0 flex-1 rounded-xl border border-stone-300 px-4"
+                />
+                <button
+                  type="button"
+                  onClick={() => setDraft({ ...draft, dose: "잘 모르겠어요" })}
+                  className={`rounded-xl border px-4 text-sm font-semibold ${draft.dose === "잘 모르겠어요" ? "border-blue-600 bg-blue-50 text-blue-700" : "border-stone-200"}`}
+                >
+                  모르겠어요
+                </button>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend className="text-lg font-bold text-stone-950">
+                3. 함께 먹는 약이 있나요?
+              </legend>
+              <p className="mt-1 text-sm leading-6 text-stone-500">
+                정확한 이름을 몰라도 약 봉투에 적힌 이름이나 용도를 고르면
+                됩니다.
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {(medicationOptions[draft.ingredient] ?? []).map((item) => (
+                  <button
+                    key={item}
+                    type="button"
+                    onClick={() =>
+                      setDraft({
+                        ...draft,
+                        medication: item === "없어요" ? "복용 약 없음" : item,
+                      })
+                    }
+                    className={`rounded-full border px-4 py-2 text-sm font-semibold ${draft.medication === item || (item === "없어요" && draft.medication === "복용 약 없음") ? "border-blue-600 bg-blue-50 text-blue-700" : "border-stone-200 bg-white"}`}
+                  >
+                    {item}
+                  </button>
+                ))}
+              </div>
+              <input
+                value={draft.medication}
+                onChange={(e) =>
+                  setDraft({ ...draft, medication: e.target.value })
+                }
+                maxLength={120}
+                placeholder="약 봉투의 이름을 그대로 적어도 됩니다"
+                className="mt-3 min-h-12 w-full rounded-xl border border-stone-300 px-4"
+              />
+            </fieldset>
+
+            <fieldset>
+              <legend className="text-lg font-bold text-stone-950">
+                4. 해당되는 내용이 있나요?
+              </legend>
+              <p className="mt-1 text-sm leading-6 text-stone-500">
+                아는 것만 고르면 됩니다. 여러 내용은 아래 칸에 함께 적어도
+                됩니다.
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {(conditionOptions[draft.ingredient] ?? []).map((item) => (
+                  <button
+                    key={item}
+                    type="button"
+                    onClick={() => setDraft({ ...draft, condition: item })}
+                    className={`rounded-full border px-4 py-2 text-sm font-semibold ${draft.condition === item ? "border-blue-600 bg-blue-50 text-blue-700" : "border-stone-200 bg-white"}`}
+                  >
+                    {item}
+                  </button>
+                ))}
+              </div>
+              <input
+                value={draft.condition}
+                onChange={(e) =>
+                  setDraft({ ...draft, condition: e.target.value })
+                }
+                maxLength={200}
+                placeholder="예: 작년에 신장결석이 있었어요"
+                className="mt-3 min-h-12 w-full rounded-xl border border-stone-300 px-4"
+              />
+            </fieldset>
+
+            <details className="rounded-2xl border border-stone-200 bg-stone-50/70">
+              <summary className="flex min-h-12 list-none items-center justify-between px-4 py-3 font-semibold">
+                <span>
+                  검사 결과를 알고 있다면 추가하기{" "}
+                  <small className="ml-1 font-normal text-stone-500">
+                    선택사항
+                  </small>
+                </span>
+                <span className="collapsible-chevron">
+                  <Chevron />
+                </span>
+              </summary>
+              <div className="border-t border-stone-200 p-4">
+                <p className="text-sm leading-6 text-stone-500">
+                  검사표의 이름과 숫자를 그대로 적으면 됩니다. 해석하거나 단위를
+                  외울 필요는 없습니다.
+                </p>
+                <input
+                  value={draft.labs}
+                  onChange={(e) => setDraft({ ...draft, labs: e.target.value })}
+                  maxLength={200}
+                  placeholder="예: 비타민 D 48, 소변 칼슘 280"
+                  className="mt-3 min-h-12 w-full rounded-xl border border-stone-300 bg-white px-4"
+                />
+              </div>
+            </details>
+          </div>
+        )}
         <button
           type="submit"
-          disabled={loading}
-          className="min-h-12 rounded-xl bg-stone-950 px-5 font-semibold text-white sm:col-span-2 disabled:cursor-wait disabled:bg-stone-700"
+          disabled={loading || !draft.ingredient}
+          className="mt-7 min-h-12 w-full rounded-xl bg-stone-950 px-5 font-semibold text-white disabled:cursor-not-allowed disabled:bg-stone-300"
         >
           {loading ? (
             <span className="inline-flex items-center gap-2">
               <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/35 border-t-white" />
               결과를 정리하고 있어요
             </span>
+          ) : draft.ingredient ? (
+            "이 내용으로 확인하기"
           ) : (
-            "내 조건으로 확인하기"
+            "먼저 보충제를 골라 주세요"
           )}
         </button>
       </form>
       <aside className="mt-6 grid gap-4 rounded-2xl bg-blue-50 p-5 text-sm text-blue-950 sm:grid-cols-3">
         <div>
-          <strong className="block">1. 예시 고르기</strong>
+          <strong className="block">제품 이름부터</strong>
           <span className="mt-1 block leading-6">
-            비슷한 예시를 고르면 결과가 바로 나옵니다.
+            보충제 이름만 선택하면 다음 질문이 열립니다.
           </span>
         </div>
         <div>
-          <strong className="block">2. 내 정보 반영하기</strong>
+          <strong className="block">모르면 그대로</strong>
           <span className="mt-1 block leading-6">
-            필요하면 용량·약물·검사값을 바꿔 다시 확인하세요.
+            단위를 몰라도 라벨 문구를 그대로 적거나 ‘모르겠어요’를 고를 수
+            있습니다.
           </span>
         </div>
         <div>
-          <strong className="block">3. 근거 확인하기</strong>
+          <strong className="block">결론부터 확인</strong>
           <span className="mt-1 block leading-6">
-            확인사항과 관련 논문을 함께 볼 수 있습니다.
+            현재 용량 판단과 상호작용을 먼저 보고, 필요한 경우 근거를 펼칠 수
+            있습니다.
           </span>
         </div>
       </aside>
@@ -511,7 +679,8 @@ export function PersonalizedSafetyQuery() {
                   </span>
                 </summary>
                 <div className="border-t border-stone-200 bg-blue-50/50 px-4 py-3 text-xs leading-5 text-stone-600">
-                  선정 방식: {result.evidence_selection.method} · 입력 약물 직접 일치 {result.evidence_selection.direct_medication_matches}건
+                  선정 방식: {result.evidence_selection.method} · 입력 약물 직접
+                  일치 {result.evidence_selection.direct_medication_matches}건
                 </div>
                 <div className="divide-y divide-stone-200 border-t border-stone-200 px-4">
                   {result.evidence.map((x, i) => (
