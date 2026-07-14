@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0.0",
+  "study_id": "nutrition-safety-engine-agent-assisted-research-2026",
+  "status": "agent_assisted_workstream_closed_single_reviewer_portal_validation",
+  "closed_at": "2026-07-14",
+  "implementation_head_before_closure_commit": "1338953fdd818b874ffa7306b93ec341752f2040",
+  "agent_assisted_workstream_complete": true,
+  "systematic_review_complete": false,
+  "research_complete_claim_allowed": false,
+  "approval_decision": "approve_agent_recommendations_as_provisional_research_working_basis",
+  "approval_identity_status": "identity_not_captured",
+  "portal_validation_events": 1,
+  "human_individual_decisions_recorded": 0,
+  "independent_reviewers_completed": 0,
+  "final_search_claim_allowed": false,
+  "verified_scope": {
+    "pubmed_unique_records": 19619,
+    "fulltext_articles_captured": 46,
+    "fulltext_articles_with_body": 35,
+    "evidence_sentences": 673,
+    "numeric_candidates": 144,
+    "numeric_candidates_with_context": 144,
+    "rob_signal_rows": 35,
+    "grade_preparation_questions": 5
+  },
+  "open_systematic_review_gates": 17,
+  "closure_interpretation": "The approved AI recommendations are frozen as the completed agent-assisted work product. External human and access-dependent systematic-review requirements remain unfulfilled and are not relabelled as complete.",
+  "artifacts": [
+    {
+      "path": "research/approvals/final_agent_research_recommendations_approval.json",
+      "size_bytes": 1336,
+      "sha256": "5397e7a463a089c93f992b4af07cb2b4b09123aab36eee9cf9ccf1181908e3d4"
+    },
+    {
+      "path": "research/screening/pubmed_screening_agent_prereview_validation.json",
+      "size_bytes": 34546,
+      "sha256": "5c026c513d28f7b53ef7d39000a167a4baac4cf9381c230d36669e63554f89aa"
+    },
+    {
+      "path": "research/fulltext/agent_core_fulltext/manifest.json",
+      "size_bytes": 697,
+      "sha256": "8e3e0c455f919045eeb658cb8fb06dae88944e0dcb0d405e865b025022c0f194"
+    },
+    {
+      "path": "research/fulltext/agent_core_fulltext/articles.csv",
+      "size_bytes": 11634,
+      "sha256": "8b7d377d0cdf1224504dcea6c22b20c87b8601983b01f743daf592b91c2b7081"
+    },
+    {
+      "path": "research/fulltext/agent_core_fulltext/agent_fulltext_evidence.csv",
+      "size_bytes": 343720,
+      "sha256": "37d9e6cfd8dc20e40b09f22d50380153bfe4f320283160db415f9a4103a292e8"
+    },
+    {
+      "path": "research/fulltext/agent_core_fulltext/agent_structured_extraction.csv",
+      "size_bytes": 131139,
+      "sha256": "a40b154eb8821319fa39893ba5322bead3f622b9d3f76d8d80a55a9c332c705f"
+    },
+    {
+      "path": "research/fulltext/agent_core_fulltext/agent_numeric_result_candidates.csv",
+      "size_bytes": 88648,
+      "sha256": "a27eb6bedb586c4f50a7c2401680bb8a02879e366aa9258ad15781cc3668a135"
+    },
+    {
+      "path": "research/fulltext/agent_core_fulltext/agent_numeric_context_windows.csv",
+      "size_bytes": 180413,
+      "sha256": "2afafaf3a92f947872facf2da8d835b2d22743a0e9d81a8ca9ce653a47b44b8d"
+    },
+    {
+      "path": "research/fulltext/agent_core_fulltext/agent_rob_signal_map.csv",
+      "size_bytes": 11822,
+      "sha256": "6733ee29504848c58aa6a41212c55a61a365ab410f32a784ef8c22fdaa9d68fa"
+    },
+    {
+      "path": "research/synthesis/agent_synthesis_readiness.json",
+      "size_bytes": 4235,
+      "sha256": "188bad4a23caa1bd1536d3e4b674f03450f96fcf1f65305e6bbb8f50938bbd98"
+    },
+    {
+      "path": "research/synthesis/agent_grade_prereview.csv",
+      "size_bytes": 1983,
+      "sha256": "d99a797d25c1b83b2e4de000777c267273a886404f70e231f5d87e3b23ecd303"
+    },
+    {
+      "path": "research/synthesis/agent_descriptive_synthesis.md",
+      "size_bytes": 2458,
+      "sha256": "e244ef58374863d061a9db83cbff399fb00de4eaeccc75ddefffbf0807eb7536"
+    },
+    {
+      "path": "research/audit/research_completion_audit.json",
+      "size_bytes": 9309,
+      "sha256": "84e3bc91f869e7377fb90ee503b3df865c9c918c85f85f42fa18765d42f5fe76"
+    },
+    {
+      "path": "research/review_queue/human_handoff_manifest.json",
+      "size_bytes": 26092,
+      "sha256": "d9d73777d4226db85abef9e1594b7f37f69ca925b0acd8863e58de68c4bf0b18"
+    },
+    {
+      "path": "research/review_queue/external_review_handoff.xlsx",
+      "size_bytes": 324499,
+      "sha256": "7e4f767ccddbca9b5a069954cec47de8ea7e8bc8e34ce186000c9f14188e023d"
+    }
+  ]
+}

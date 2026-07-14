@@ -907,3 +907,11 @@
 - the page requires one approval click for five visible bundles and exports one canonical JSON event
 - the event is explicitly a single-reviewer portal validation with identity not captured; it records zero individual human decisions and zero independent reviewers
 - browser verification passed for desktop content, the approval transition, Korean copy, and a 390 x 844 mobile viewport
+
+## 2026-07-14 Approved agent-assisted research closure
+
+- imported the downloaded one-click portal approval as `final_agent_research_recommendations_approval.json`
+- froze 15 authoritative research artifacts in a SHA-256 closure manifest and generated a Korean closure report
+- closed the agent-assisted workstream under one portal validation event with reviewer identity not captured
+- preserved zero individual human decisions, zero independent reviewers, 17 open systematic-review gates, and `systematic_review_complete: false`
+- did not run the legacy final-delivery scripts because they target the prohibited G drive; the repository-scoped closure manifest is the authoritative freeze for this workstream

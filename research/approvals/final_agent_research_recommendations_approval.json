@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "approval_type": "single_reviewer_portal_validation_of_agent_research_recommendations",
+  "reviewer_identity": "portal_reviewer_identity_not_captured",
+  "identity_status": "identity_not_captured",
+  "decision": "approve_agent_recommendations_as_provisional_research_working_basis",
+  "bundles_validated": [
+    "SCREENING-PREREVIEW",
+    "FULLTEXT-EXTRACTION",
+    "LINKAGE-NONPUBMED",
+    "ROB-GRADE-SYNTHESIS",
+    "ROLE-BOUNDARY"
+  ],
+  "evidence": {
+    "pubmed_records": 19619,
+    "fulltext_articles": 35,
+    "evidence_sentences": 673,
+    "numeric_candidates": 144,
+    "numeric_context_complete": 144,
+    "rob_signal_rows": 35,
+    "grade_questions": 5,
+    "open_completion_gates": 17,
+    "independent_reviewers_completed": 0,
+    "human_individual_decisions_recorded": 0,
+    "final_search_claim_allowed": false,
+    "research_complete": false
+  },
+  "approved_at": "2026-07-14T02:09:30.889Z",
+  "human_individual_decisions_recorded": 0,
+  "independent_reviewers_completed": 0,
+  "final_search_claim_allowed": false,
+  "research_complete": false,
+  "limitation": "One portal validation event does not establish individual screening, independent dual review, final RoB, GRADE, expert review, usability completion, or final search completion.",
+  "exported_at": "2026-07-14T02:09:31.853Z"
+}
