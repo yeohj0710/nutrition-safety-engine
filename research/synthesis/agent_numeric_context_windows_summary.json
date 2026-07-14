@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "status": "adjacent_context_windows_complete_human_verification_open",
+  "candidates": 144,
+  "complete_before": 92,
+  "complete_after": 144,
+  "newly_contextualized": 52,
+  "still_incomplete": 0,
+  "human_verified": 0,
+  "effect_estimates_usable": 0,
+  "input": {
+    "path": "research/fulltext/agent_core_fulltext/agent_numeric_result_context.csv",
+    "sha256": "73e102fb2840cf3a69d457edbb00fd6eca496e4e1953fa805f8c2856dcde0b25"
+  },
+  "raw": {
+    "path": "research/fulltext/agent_core_fulltext/pmc_core_batch.xml.gz",
+    "sha256": "af4821e58778693e2d37d3e992521d17fe9607d1c4ac1ab69851e1fc79b2a898"
+  },
+  "output": {
+    "path": "research/fulltext/agent_core_fulltext/agent_numeric_context_windows.csv",
+    "sha256": "38190d6d921fd1ee513f0e0fef56281595ffa49cf1c9b633c55e5e087ebfae8d"
+  }
+}

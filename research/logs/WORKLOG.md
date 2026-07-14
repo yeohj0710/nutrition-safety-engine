@@ -878,3 +878,11 @@
 - created 35 design-aware RoB signal rows with tool candidates: RoB 2 (6), ROBINS-I (8), AMSTAR 2 (7), JBI case report/series (5), and design confirmation required (9)
 - created five question-level GRADE preparation rows and an AI descriptive synthesis draft without assigning certainty ratings or recommendations
 - updated the task board to reflect partial agent full-text, extraction, RoB-signal, and descriptive-synthesis progress while keeping every human gate open
+
+## 2026-07-14 Adjacent context recovery and completion-gate audit
+
+- reconstructed the preceding and following PMC sentences for all 144 numeric candidates using the raw XML and exact paragraph/sentence locators
+- increased candidates with observable group/exposure plus outcome context from 92 to 138; six candidates remain context-incomplete
+- created an evidence-backed audit of 17 research completion gates covering searches, screening, linkage, full text, extraction, RoB, GRADE, synthesis, expert review, usability, engine gold, thesis, and final manifest
+- all 17 gates remain open at the full-research level; agent prereview progress is recorded separately from the required human or authenticated external work
+- expanded population-context recognition to sex-specific cohorts, record sets, and case reports; all 144 numeric candidates now have an observable group/exposure plus outcome context window, while effect usability remains unverified
