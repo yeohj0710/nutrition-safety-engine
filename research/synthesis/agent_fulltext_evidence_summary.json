@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "status": "agent_fulltext_sentence_extraction_complete_human_verification_open",
+  "source_articles_with_body": 30,
+  "articles_with_evidence": 30,
+  "evidence_sentences": 621,
+  "by_question": {
+    "A1": {
+      "exposure_dose": 11,
+      "exposure_outcome": 47,
+      "exposure_population": 44
+    },
+    "B1": {
+      "exposure_dose": 4,
+      "exposure_outcome": 93
+    },
+    "B2": {
+      "exposure_dose": 68,
+      "exposure_outcome": 247
+    },
+    "B3": {
+      "exposure_dose": 25,
+      "exposure_outcome": 82
+    }
+  },
+  "sentences_with_dose": 164,
+  "human_verified_sentences": 0,
+  "human_eligibility_decisions": 0,
+  "rob_completed": 0,
+  "grade_completed": 0,
+  "clinical_conclusion_allowed": false,
+  "inputs": {
+    "articles_sha256": "219d49722d78ab81ac233a20048fb1d659baf5952f27d42292034ee33fbdb8ab",
+    "raw_xml_sha256": "aed04073a887d833d6f51de39a89d1c238fd0ddc3b734dcebbd26065257cb0a2"
+  },
+  "output": {
+    "path": "research/fulltext/agent_core_fulltext/agent_fulltext_evidence.csv",
+    "sha256": "6692b9e37fd248867f22fca61515759d95849fa32f28e3f833be1a6b5f5e63a4"
+  }
+}

@@ -847,3 +847,11 @@
 - identified 42 tier-1 record-question units representing 39 unique PMC records; retrieved all 39 through NCBI EFetch (HTTP 200), with article body XML present for 30
 - fixed raw XML and compressed-file checksums and retained source-record lineage, duplicate-cluster references, and evidence locators
 - boundary: title/abstract decisions, full-text eligibility, independent review, RoB, GRADE, PRISMA final counts, and clinical conclusions remain open
+
+## 2026-07-14 Agent full-text evidence sentence extraction
+
+- parsed the 30 captured PMC article bodies and extracted 621 source-bound exposure/population/outcome/dose sentences from all 30 articles
+- retained PMCID, paragraph and sentence positions, XML locators, normalized sentence hashes, matched terms, and observed dose strings
+- 164 extracted sentences contain dose expressions; the evidence table covers A1, B1, B2, and B3
+- no A2 tier-1 article body was available in the captured public PMC set, so the A2 full-text evidence gap remains explicit
+- boundary: extracted sentences are AI research notes, not human-verified facts, eligibility decisions, effect estimates, RoB, GRADE, or clinical conclusions
