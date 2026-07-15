@@ -378,6 +378,213 @@ function parseInput(value: unknown) {
   }
   return parsed;
 }
+type ParsedInput = Exclude<ReturnType<typeof parseInput>, null>;
+type InputInterpretation = {
+  input: ParsedInput;
+  aiUsed: boolean;
+  changed: boolean;
+};
+const interpretedInputKeys = [
+  "dose",
+  "medication",
+  "condition",
+  "labs",
+] as const;
+type GroundedConcept = { candidate: RegExp; source: RegExp };
+const medicationConcepts: GroundedConcept[] = [
+  {
+    candidate: /아픽사반|엘리퀴스/i,
+    source: /아픽사반|엘리퀴스|apixaban|eliquis/i,
+  },
+  {
+    candidate: /리바록사반|자렐토/i,
+    source: /리바록사반|자렐토|rivaroxaban|xarelto/i,
+  },
+  {
+    candidate: /와파린|쿠마딘/i,
+    source: /와파린|쿠마딘|warfarin|coumadin/i,
+  },
+  { candidate: /아스피린/i, source: /아스피린|aspirin|ASA/i },
+  {
+    candidate: /클로피도그렐|플라빅스/i,
+    source: /클로피도그렐|플라빅스|clopidogrel|plavix/i,
+  },
+  {
+    candidate: /진통소염제|NSAID|이부프로펜|나프록센/i,
+    source: /진통소염제|NSAID|이부프로펜|나프록센|ibuprofen|naproxen/i,
+  },
+  {
+    candidate: /레보티록신|씬지로이드|신지로이드/i,
+    source: /레보티록신|씬지로이드|신지로이드|levothyroxine|synthroid/i,
+  },
+  {
+    candidate: /퀴놀론|레보플록사신|시프로플록사신|목시플록사신/i,
+    source: /퀴놀론|레보플록사신|시프로플록사신|목시플록사신|levofloxacin|ciprofloxacin|moxifloxacin/i,
+  },
+  { candidate: /돌루테그라비르/i, source: /돌루테그라비르|dolutegravir/i },
+  { candidate: /리튬/i, source: /리튬|lithium/i },
+  { candidate: /티아지드/i, source: /티아지드|thiazide/i },
+  { candidate: /올리스타트/i, source: /올리스타트|orlistat/i },
+  {
+    candidate: /스테로이드|프레드니|덱사메타손/i,
+    source: /스테로이드|프레드니|덱사메타손|steroid|predni|dexamethasone/i,
+  },
+  {
+    candidate: /스타틴|아토르바스타틴|로수바스타틴|심바스타틴/i,
+    source: /스타틴|아토르바스타틴|로수바스타틴|심바스타틴|statin|atorvastatin|rosuvastatin|simvastatin/i,
+  },
+];
+const conditionConcepts: GroundedConcept[] = [
+  { candidate: /코피|비출혈/, source: /코피|비출혈|코.{0,6}피/ },
+  { candidate: /멍|반상출혈/, source: /멍|반상출혈/ },
+  { candidate: /잇몸.*출혈|잇몸.*피/, source: /잇몸.{0,6}(?:출혈|피)/ },
+  { candidate: /검은변|혈변/, source: /검은\s*변|혈변|피.{0,6}변/ },
+  { candidate: /신장결석|요로결석/, source: /신장결석|요로결석|결석|콩팥.{0,6}돌/ },
+  { candidate: /신장기능|콩팥기능/, source: /신장|콩팥|eGFR|크레아티닌/i },
+  { candidate: /옥살산/, source: /옥살산/ },
+  { candidate: /칼슘/, source: /칼슘/ },
+];
+const labConcepts: GroundedConcept[] = [
+  { candidate: /INR/i, source: /INR/i },
+  { candidate: /칼슘/, source: /칼슘/ },
+  { candidate: /옥살산/, source: /옥살산/ },
+  {
+    candidate: /25\s*\(OH\)\s*D|비타민\s*D/i,
+    source: /25\s*\(OH\)\s*D|비타민\s*D/i,
+  },
+  { candidate: /eGFR|사구체/i, source: /eGFR|사구체/i },
+];
+function conceptsAreGrounded(
+  source: string,
+  candidate: string,
+  concepts: GroundedConcept[],
+) {
+  return concepts.every(
+    (concept) => !concept.candidate.test(candidate) || concept.source.test(source),
+  );
+}
+function exactNumericTokens(value: string) {
+  return (value.match(/\d[\d,]*(?:\.\d+)?/g) ?? [])
+    .map((token) => token.replaceAll(",", ""))
+    .sort();
+}
+function isGroundedInterpretation(source: ParsedInput, candidate: ParsedInput) {
+  if (candidate.ingredient !== source.ingredient) return false;
+  if (
+    !conceptsAreGrounded(
+      source.medication,
+      candidate.medication,
+      medicationConcepts,
+    ) ||
+    !conceptsAreGrounded(
+      source.condition,
+      candidate.condition,
+      conditionConcepts,
+    ) ||
+    !conceptsAreGrounded(source.labs, candidate.labs, labConcepts)
+  )
+    return false;
+  for (const key of interpretedInputKeys) {
+    const before = source[key];
+    const after = candidate[key];
+    if (!before && after) return false;
+    if (before && !after) return false;
+    if (
+      exactNumericTokens(before).join("|") !==
+      exactNumericTokens(after).join("|")
+    )
+      return false;
+    if (
+      /(?:복용을?\s*(?:중단|시작)|증량|감량|진단|처방|안전하(?:다|다고)|위험하(?:다|다고))/.test(
+        after,
+      )
+    )
+      return false;
+  }
+  return true;
+}
+function normalizeInterpretedCondition(value: unknown) {
+  return String(value ?? "")
+    .replace(/(?:코피|비출혈)\s*빈발/g, "코피가 자주 남")
+    .replace(/(^|[ ·,;])오심(?=$|[ ·,;])/g, "$1메스꺼움")
+    .trim();
+}
+async function interpretFreeText(input: ParsedInput): Promise<InputInterpretation> {
+  const fallback = { input, aiUsed: false, changed: false };
+  if (!process.env.OPENAI_API_KEY) return fallback;
+  if (!interpretedInputKeys.some((key) => input[key])) return fallback;
+  try {
+    const response = await fetch("https://api.openai.com/v1/responses", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      signal: AbortSignal.timeout(8000),
+      body: JSON.stringify({
+        model: process.env.OPENAI_SUMMARY_MODEL ?? "gpt-5-mini",
+        reasoning: { effort: "minimal" },
+        input: [
+          {
+            role: "system",
+            content:
+              "보충제 안전성 입력을 판정하지 말고 구조화만 한다. 사용자가 쓴 사실을 유지하면서 일상 표현과 띄어쓰기를 표준화한다. dose는 숫자와 단위를 보존한다. medication은 상품명이 분명할 때만 '상품명(성분명)'으로 보강하고 여러 약은 ' · '로 구분한다. condition은 '코피가 자주 남', '멍이 잘 듦', '메스꺼움'처럼 일반인이 읽는 자연스러운 표현으로 정리하고 여러 항목은 ' · '로 구분한다. '빈발', '오심' 같은 의무기록 축약은 쓰지 않는다. labs는 검사 이름, 수치, 단위를 원래 순서대로 보존하고 여러 검사는 ' · '로 구분한다. 원문에 없는 약, 증상, 검사, 숫자, 단위, 진단 또는 복용 지시를 만들지 않는다. 불확실하면 원문을 그대로 반환한다.",
+          },
+          { role: "user", content: JSON.stringify(input) },
+        ],
+        text: {
+          format: {
+            type: "json_schema",
+            name: "supplement_input_interpretation",
+            strict: true,
+            schema: {
+              type: "object",
+              additionalProperties: false,
+              properties: {
+                dose: { type: "string" },
+                medication: { type: "string" },
+                condition: { type: "string" },
+                labs: { type: "string" },
+              },
+              required: ["dose", "medication", "condition", "labs"],
+            },
+          },
+        },
+        max_output_tokens: 400,
+      }),
+    });
+    if (!response.ok) return fallback;
+    const data = await response.json();
+    const outputText = String(
+      data.output_text ??
+        data.output
+          ?.flatMap(
+            (item: { content?: Array<{ text?: string }> }) =>
+              item.content ?? [],
+          )
+          .map((item: { text?: string }) => item.text ?? "")
+          .join("") ??
+        "",
+    ).trim();
+    const interpreted = JSON.parse(outputText) as Record<string, unknown>;
+    const candidate = parseInput({
+      ingredient: input.ingredient,
+      dose: interpreted.dose,
+      medication: interpreted.medication,
+      condition: normalizeInterpretedCondition(interpreted.condition),
+      labs: interpreted.labs,
+    });
+    if (!candidate || !isGroundedInterpretation(input, candidate))
+      return fallback;
+    return {
+      input: candidate,
+      aiUsed: true,
+      changed: interpretedInputKeys.some((key) => candidate[key] !== input[key]),
+    };
+  } catch {
+    return fallback;
+  }
+}
 type AssessmentReference = { label: string; title: string; url: string };
 type RuntimeEvidence = {
   title: string;
@@ -617,7 +824,12 @@ function buildAssessment(
     };
   }
   if (questionId === "B1") {
-    const highUrineCalcium = Number.isFinite(lab) && lab > 275;
+    const hasUrineCalciumLab =
+      /(?:(?:요중|소변|24시간).{0,16}칼슘|칼슘.{0,16}(?:요중|소변|24시간))/.test(
+        input.labs,
+      );
+    const highUrineCalcium =
+      hasUrineCalciumLab && Number.isFinite(lab) && lab > 275;
     const interactions: string[] = [];
     if (hasMedication(/갑상선약|레보티록신/))
       interactions.push(
@@ -710,8 +922,8 @@ function buildAssessment(
   };
 }
 export async function POST(req: Request) {
-  const b = parseInput(await req.json().catch(() => null));
-  if (!b)
+  const submitted = parseInput(await req.json().catch(() => null));
+  if (!submitted)
     return NextResponse.json(
       {
         error:
@@ -719,7 +931,7 @@ export async function POST(req: Request) {
       },
       { status: 400, headers: { "Cache-Control": "no-store" } },
     );
-  const q = map[b.ingredient];
+  const q = map[submitted.ingredient];
   if (!q)
     return NextResponse.json(
       { error: "지원하는 다섯 보충제 중 하나를 선택하세요." },
@@ -727,6 +939,33 @@ export async function POST(req: Request) {
     );
   const r = rules.find((x) => x.question_id === q)!;
   const g = guidance[q];
+  const submittedProfile = [
+    submitted.dose && `하루 섭취량 ${submitted.dose}`,
+    submitted.medication &&
+      !/없음|모르겠/.test(submitted.medication) &&
+      `함께 먹는 약 ${submitted.medication}`,
+    submitted.condition &&
+      `${/(?:아파|통증|출혈|어지|구토|설사|코피|멍)/.test(submitted.condition) ? "현재 증상" : "증상·병력"} ${submitted.condition}`,
+    submitted.labs && `검사 결과 ${submitted.labs}`,
+  ].filter(Boolean) as string[];
+  const [inputInterpretation, ai_summary] = await Promise.all([
+    interpretFreeText(submitted),
+    summarize({
+      questionId: q,
+      ingredient: submitted.ingredient,
+      dose: submitted.dose,
+      medication: submitted.medication,
+      condition: submitted.condition,
+      labs: submitted.labs,
+      summary: g.summary,
+      evidenceSummary: evidenceSummaries[q],
+      profile: submittedProfile,
+      checks: g.checks,
+      why: g.why,
+      next: g.next,
+    }),
+  ]);
+  const b = inputInterpretation.input;
   const entered = [
     b.dose && `하루 섭취량 ${b.dose}`,
     b.medication &&
@@ -736,20 +975,6 @@ export async function POST(req: Request) {
       `${/(?:아파|통증|출혈|어지|구토|설사|코피|멍)/.test(b.condition) ? "현재 증상" : "증상·병력"} ${b.condition}`,
     b.labs && `검사 결과 ${b.labs}`,
   ].filter(Boolean) as string[];
-  const ai_summary = await summarize({
-    questionId: q,
-    ingredient: b.ingredient,
-    dose: b.dose,
-    medication: b.medication,
-    condition: b.condition,
-    labs: b.labs,
-    summary: g.summary,
-    evidenceSummary: evidenceSummaries[q],
-    profile: entered,
-    checks: g.checks,
-    why: g.why,
-    next: g.next,
-  });
   const evidenceSelection = selectEvidence(r.all_evidence, b);
   const assessment = buildAssessment(q, b, evidenceSelection.selected);
   return NextResponse.json(
@@ -759,6 +984,10 @@ export async function POST(req: Request) {
       title: g.title,
       summary: g.summary,
       ai_summary,
+      input_interpretation: {
+        ai_used: inputInterpretation.aiUsed,
+        changed: inputInterpretation.changed,
+      },
       assessment,
       profile: entered,
       checks: g.checks,

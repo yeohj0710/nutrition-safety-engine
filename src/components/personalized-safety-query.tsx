@@ -16,6 +16,10 @@ type Result = {
   title: string;
   summary: string;
   ai_summary: string;
+  input_interpretation: {
+    ai_used: boolean;
+    changed: boolean;
+  };
   assessment: {
     context: string;
     verdict: string;
@@ -281,6 +285,13 @@ export function PersonalizedSafetyQuery() {
       <h2 className="text-xl font-semibold tracking-[-0.025em]">
         복용 조건에 따른 보충제 안전성 확인
       </h2>
+      <div className="mt-4 border-l-2 border-blue-500 pl-3.5">
+        <p className="text-xs font-bold text-blue-600">AI 입력 해석</p>
+        <p className="mt-1 break-keep text-sm leading-6 text-stone-600">
+          약 이름·증상·검사 결과는 평소 표현대로 적어도 됩니다. AI가
+          표현을 정리하고, 안전성 판단은 검증된 기준과 문헌을 사용합니다.
+        </p>
+      </div>
       <details
         ref={examplesRef}
         className="mt-5 overflow-hidden rounded-xl bg-stone-50"
@@ -366,7 +377,8 @@ export function PersonalizedSafetyQuery() {
                 2. 제품 라벨의 하루 섭취량
               </legend>
               <p className="mt-1 text-sm leading-6 text-stone-500">
-                제품 라벨에 적힌 숫자와 단위를 그대로 적습니다.
+                라벨 문구를 그대로 적으세요. 숫자와 단위를 정리해
+                비교합니다.
               </p>
               <div className="mt-3 flex gap-2">
                 <input
@@ -400,7 +412,8 @@ export function PersonalizedSafetyQuery() {
                 3. 함께 먹는 약
               </legend>
               <p className="mt-1 text-sm leading-6 text-stone-500">
-                함께 먹는 약을 모두 고르세요. 여러 개를 고를 수 있습니다.
+                목록을 고르거나 약 봉투에 적힌 이름을 편한 표현으로
+                적으세요. 여러 개를 고를 수 있습니다.
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {(medicationOptions[draft.ingredient] ?? []).map((item) => {
@@ -447,7 +460,8 @@ export function PersonalizedSafetyQuery() {
                 4. 병력 또는 현재 증상
               </legend>
               <p className="mt-1 text-sm leading-6 text-stone-500">
-                해당하는 병력과 증상을 모두 고르세요. 여러 개를 고를 수 있습니다.
+                목록을 고르거나 증상을 평소 표현대로 적으세요. 여러 개를
+                고를 수 있습니다.
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {(conditionOptions[draft.ingredient] ?? []).map((item) => {
@@ -488,34 +502,29 @@ export function PersonalizedSafetyQuery() {
               />
             </fieldset>
 
-            <details className="rounded-2xl border border-stone-200 bg-stone-50/70">
-              <summary className="flex min-h-12 list-none items-center justify-between px-4 py-3 font-semibold">
-                <span>
-                  최근 검사 결과{" "}
-                  <small className="ml-1 font-normal text-stone-500">
-                    선택 입력
-                  </small>
+            <fieldset>
+              <legend className="flex items-center gap-2 text-lg font-bold text-stone-950">
+                5. 최근 검사 결과
+                <span className="rounded-full bg-stone-100 px-2 py-1 text-[11px] font-semibold text-stone-500">
+                  선택
                 </span>
-                <span className="collapsible-chevron">
-                  <Chevron />
-                </span>
-              </summary>
-              <div className="border-t border-stone-200 p-4">
-                <p className="text-sm leading-6 text-stone-500">
-                  검사표에 적힌 이름, 수치, 단위를 그대로 적습니다.
-                </p>
-                <input
-                  aria-label="최근 검사 결과"
-                  name="lab-results"
-                  autoComplete="off"
-                  value={draft.labs}
-                  onChange={(e) => setDraft({ ...draft, labs: e.target.value })}
-                  maxLength={200}
-                  placeholder="예: 비타민 D 48, 소변 칼슘 280"
-                  className="mt-3 min-h-12 w-full rounded-xl border border-stone-300 bg-white px-4"
-                />
-              </div>
-            </details>
+              </legend>
+              <p className="mt-1 break-keep text-sm leading-6 text-stone-500">
+                검사표 문구를 그대로 옮겨 적으세요. 단위가 빠지거나 표현이
+                달라도 AI가 검사 이름과 수치를 구분합니다.
+              </p>
+              <textarea
+                aria-label="최근 검사 결과"
+                name="lab-results"
+                autoComplete="off"
+                value={draft.labs}
+                onChange={(e) => setDraft({ ...draft, labs: e.target.value })}
+                maxLength={200}
+                rows={2}
+                placeholder="예: 비타민 D 48, 소변 칼슘은 280 정도…"
+                className="mt-3 min-h-20 w-full resize-y rounded-xl border border-stone-300 bg-white px-4 py-3 leading-6"
+              />
+            </fieldset>
           </div>
         )}
         <button
@@ -553,10 +562,10 @@ export function PersonalizedSafetyQuery() {
               </span>
               <div>
                 <p className="font-bold text-stone-950">
-                  근거 문헌을 확인하고 있습니다
+                  입력 내용을 해석하고 있습니다
                 </p>
                 <p className="mt-1 text-sm leading-6 text-stone-500">
-                  복용량, 함께 먹는 약, 병력과 검사 결과를 문헌과 비교합니다.
+                  약 이름·증상·검사 결과를 정리한 뒤 관련 문헌과 비교합니다.
                 </p>
               </div>
             </div>
@@ -570,9 +579,16 @@ export function PersonalizedSafetyQuery() {
         {result && (
           <article className="relative mt-6 overflow-visible rounded-2xl border border-stone-200 bg-white shadow-sm">
             <header className="px-5 pb-2 pt-6">
-              <p className="text-xs font-bold text-blue-600">
-                안전성 검토 결과
-              </p>
+              <div className="flex flex-wrap items-center gap-2">
+                <p className="text-xs font-bold text-blue-600">
+                  안전성 검토 결과
+                </p>
+                {result.input_interpretation.ai_used && (
+                  <span className="rounded-full bg-blue-50 px-2 py-1 text-[10px] font-bold text-blue-700">
+                    AI 입력 해석
+                  </span>
+                )}
+              </div>
               <h3 className="mt-2 break-keep text-xl font-bold leading-7 text-stone-950">
                 {result.title}
               </h3>

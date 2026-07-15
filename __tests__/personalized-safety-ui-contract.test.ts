@@ -56,6 +56,23 @@ describe("personalized safety UI contract", () => {
     }
   });
 
+  it("explains AI interpretation without presenting it as the safety rule", () => {
+    expect(component).toContain("AI 입력 해석");
+    expect(component).toContain(
+      "안전성 판단은 검증된 기준과 문헌을 사용합니다.",
+    );
+    expect(component).toContain("result.input_interpretation.ai_used");
+  });
+
+  it("shows lab results as the fifth optional field instead of a nested card", () => {
+    expect(component).toContain("5. 최근 검사 결과");
+    expect(component).toContain("<textarea");
+    expect(component).toContain("단위가 빠지거나 표현이");
+    expect(component).not.toContain(
+      '<details className="rounded-2xl border border-stone-200 bg-stone-50/70">',
+    );
+  });
+
   it("allows multiple medicine and condition choices", () => {
     expect(component).toContain("toggleMultiValue");
     expect(component).toContain("hasMultiValue");
@@ -110,9 +127,9 @@ describe("personalized safety UI contract", () => {
       "복용량과 함께 먹는 약, 결석·신장 병력, 검사 결과를 문헌에 보고된 용량과 상호작용 결과와 비교합니다.",
     );
     expect(component).toContain(
-      "제품 라벨에 적힌 숫자와 단위를 그대로 적습니다.",
+      "라벨 문구를 그대로 적으세요. 숫자와 단위를 정리해",
     );
-    expect(component).toContain("근거 문헌을 확인하고 있습니다");
+    expect(component).toContain("입력 내용을 해석하고 있습니다");
     expect(component).toContain("판단 기준과 추가 확인 사항");
     expect(component).toContain("결과에 사용한 문헌");
     expect(component).toContain("검색된 후보 문헌");

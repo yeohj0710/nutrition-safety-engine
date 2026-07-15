@@ -456,6 +456,139 @@ describe("personalized safety API", () => {
       expect.objectContaining({ signal: expect.any(AbortSignal) }),
     );
   });
+  it("uses a grounded AI interpretation before applying evidence rules", async () => {
+    process.env.OPENAI_API_KEY = "test-key";
+    vi.spyOn(globalThis, "fetch").mockImplementation(async (_url, init) => {
+      const request = JSON.parse(String(init?.body ?? "{}"));
+      if (
+        request.text?.format?.name === "supplement_input_interpretation"
+      ) {
+        return new Response(
+          JSON.stringify({
+            output_text: JSON.stringify({
+              dose: "EPA+DHA 2,000 mg/day",
+              medication: "엘리퀴스(아픽사반) · 아스피린",
+              condition: "코피 빈발",
+              labs: "",
+            }),
+          }),
+          { status: 200, headers: { "content-type": "application/json" } },
+        );
+      }
+      throw new DOMException("timed out", "TimeoutError");
+    });
+    const response = await POST(
+      new Request("http://local/api/personalized-safety", {
+        method: "POST",
+        body: JSON.stringify({
+          ingredient: "오메가-3",
+          dose: "EPA랑 DHA 합쳐서 2,000 mg",
+          medication: "엘리퀴스랑 아스피린",
+          condition: "요즘 코피가 자주 나요",
+        }),
+      }),
+    );
+    const body = await response.json();
+    expect(response.status).toBe(200);
+    expect(body.input_interpretation).toEqual({
+      ai_used: true,
+      changed: true,
+    });
+    expect(body.assessment.context).toContain("아픽사반");
+    expect(body.assessment.context).toContain("현재 코피가 자주 납니다.");
+    expect(body.assessment.context).toContain("2,000 mg/day");
+  });
+  it("rejects an AI interpretation that adds a number", async () => {
+    process.env.OPENAI_API_KEY = "test-key";
+    vi.spyOn(globalThis, "fetch").mockImplementation(async (_url, init) => {
+      const request = JSON.parse(String(init?.body ?? "{}"));
+      if (
+        request.text?.format?.name === "supplement_input_interpretation"
+      ) {
+        return new Response(
+          JSON.stringify({
+            output_text: JSON.stringify({
+              dose: "600 mg/day",
+              medication: "",
+              condition: "",
+              labs: "요중 칼슘 280 · 안전 기준 300",
+            }),
+          }),
+          { status: 200, headers: { "content-type": "application/json" } },
+        );
+      }
+      throw new DOMException("timed out", "TimeoutError");
+    });
+    const response = await POST(
+      new Request("http://local/api/personalized-safety", {
+        method: "POST",
+        body: JSON.stringify({
+          ingredient: "칼슘",
+          dose: "600 mg/day",
+          labs: "요중 칼슘 280",
+        }),
+      }),
+    );
+    const body = await response.json();
+    expect(body.input_interpretation).toEqual({
+      ai_used: false,
+      changed: false,
+    });
+    expect(body.assessment.context).toContain("요중 칼슘 280입니다");
+    expect(body.assessment.context).not.toContain("300");
+  });
+  it("rejects an AI interpretation that changes a medicine concept", async () => {
+    process.env.OPENAI_API_KEY = "test-key";
+    vi.spyOn(globalThis, "fetch").mockImplementation(async (_url, init) => {
+      const request = JSON.parse(String(init?.body ?? "{}"));
+      if (
+        request.text?.format?.name === "supplement_input_interpretation"
+      ) {
+        return new Response(
+          JSON.stringify({
+            output_text: JSON.stringify({
+              dose: "2,000 mg/day",
+              medication: "엘리퀴스(와파린)",
+              condition: "",
+              labs: "",
+            }),
+          }),
+          { status: 200, headers: { "content-type": "application/json" } },
+        );
+      }
+      throw new DOMException("timed out", "TimeoutError");
+    });
+    const response = await POST(
+      new Request("http://local/api/personalized-safety", {
+        method: "POST",
+        body: JSON.stringify({
+          ingredient: "오메가-3",
+          dose: "2,000 mg/day",
+          medication: "엘리퀴스",
+        }),
+      }),
+    );
+    const body = await response.json();
+    expect(body.input_interpretation.ai_used).toBe(false);
+    expect(body.assessment.context).toContain("엘리퀴스");
+    expect(body.assessment.context).not.toContain("와파린");
+  });
+  it("applies the urine-calcium threshold only to a urine-calcium result", async () => {
+    delete process.env.OPENAI_API_KEY;
+    const response = await POST(
+      new Request("http://local/api/personalized-safety", {
+        method: "POST",
+        body: JSON.stringify({
+          ingredient: "칼슘",
+          dose: "600 mg/day",
+          labs: "비타민 D 280",
+        }),
+      }),
+    );
+    const body = await response.json();
+    expect(body.assessment.verdict).toContain("성인 총섭취 상한보다 낮습니다");
+    expect(body.assessment.verdict).not.toContain("요중 칼슘");
+  });
   it.each([
     [
       "missing input number",
