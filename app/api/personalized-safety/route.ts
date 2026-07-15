@@ -553,15 +553,19 @@ function buildAssessment(
     const baseVerdict =
       Number.isFinite(dose) && dose <= 5000
         ? "현재 용량은 일반 성인 기준으로는 안전 범위 안에 있습니다."
-        : "하루 섭취량을 일반 성인 기준과 비교해야 합니다.";
+        : Number.isFinite(dose)
+          ? "현재 용량은 일반 기준 5,000 mg/day보다 높습니다. 유지하기보다 줄이는 편이 낫습니다."
+          : "하루 섭취량을 일반 성인 기준과 비교해야 합니다.";
     const bleedingPriority = medicationName
       ? `${withObjectParticle(medicationName)} 함께 복용 중이므로 오메가-3 용량보다 출혈 증상을 먼저 봐야 합니다.`
       : "멍·코피·잇몸출혈이 있다면 오메가-3 용량보다 출혈 증상을 먼저 봐야 합니다.";
     return {
       context,
       verdict: `${baseVerdict} ${bleedingPriority}`,
-      dose: Number.isFinite(dose)
+      dose: Number.isFinite(dose) && dose <= 5000
         ? `${dose.toLocaleString()} mg/day는 일반 기준 5,000 mg/day보다 낮습니다. 출혈 증상이 있으면 용량보다 증상을 먼저 봐야 합니다.`
+        : Number.isFinite(dose)
+          ? `${dose.toLocaleString()} mg/day는 일반 기준 5,000 mg/day보다 높습니다. 출혈 관련 약을 함께 먹거나 출혈 증상이 있으면 이 용량을 유지하지 않아야 합니다.`
         : "하루 섭취량을 모르면 일반 기준 5,000 mg/day와 비교할 수 없습니다.",
       interaction: medicationName
         ? `${withAndParticle(medicationName)} 오메가-3는 모두 출혈과 관련될 수 있습니다. 아스피린·NSAID·항혈소판제를 더 복용하면 출혈 위험이 커질 수 있습니다.`

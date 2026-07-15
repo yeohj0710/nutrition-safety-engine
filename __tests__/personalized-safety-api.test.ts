@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { POST } from "@/app/api/personalized-safety/route";
+import { personalizedSafetyExamples } from "@/src/lib/personalized-safety-examples";
 const original = process.env.OPENAI_API_KEY;
 afterEach(() => {
   vi.restoreAllMocks();
@@ -7,6 +8,74 @@ afterEach(() => {
   else delete process.env.OPENAI_API_KEY;
 });
 describe("personalized safety API", () => {
+  it("returns a complete assessment for every public input example", async () => {
+    delete process.env.OPENAI_API_KEY;
+    const expectedQuestionByIngredient: Record<string, string> = {
+      "비타민 K": "A1",
+      "오메가-3": "A2",
+      칼슘: "B1",
+      "비타민 D": "B2",
+      "비타민 C": "B3",
+    };
+    const expectedVerdictById: Record<string, string> = {
+      "vitamin-k-warfarin-inr": "매일 비슷한 양을 섭취",
+      "vitamin-k-unknown-dose": "매일 비슷한 양을 섭취",
+      "vitamin-k-bruising": "갑자기 줄이지 말고",
+      "omega3-apixaban-nosebleed": "출혈 증상을 먼저 봐야",
+      "omega3-warfarin-high-dose": "일반 기준 5,000 mg/day보다 높습니다",
+      "omega3-aspirin-no-symptoms": "안전 범위 안",
+      "calcium-stone-high-urine-calcium": "줄이는 편이 낫습니다",
+      "calcium-levothyroxine": "성인 총섭취 상한보다 낮습니다",
+      "calcium-unknown-antibiotic": "복용량을 모르면",
+      "vitamin-d-upper-limit-stone": "성인 상한 4,000 IU/day와 같습니다",
+      "vitamin-d-microgram-thiazide": "성인 상한 4,000 IU/day와 같습니다",
+      "vitamin-d-moderate-no-risk": "성인 상한 아래",
+      "vitamin-c-high-oxalate": "줄이는 쪽이 맞습니다",
+      "vitamin-c-kidney-function": "줄이는 쪽이 맞습니다",
+      "vitamin-c-low-dose-no-risk": "고위험 조건은 확인되지 않았습니다",
+    };
+    expect(personalizedSafetyExamples).toHaveLength(15);
+    expect(
+      personalizedSafetyExamples.reduce<Record<string, number>>((counts, example) => {
+        counts[example.input.ingredient] =
+          (counts[example.input.ingredient] ?? 0) + 1;
+        return counts;
+      }, {}),
+    ).toEqual({
+      "비타민 K": 3,
+      "오메가-3": 3,
+      칼슘: 3,
+      "비타민 D": 3,
+      "비타민 C": 3,
+    });
+
+    for (const example of personalizedSafetyExamples) {
+      const response = await POST(
+        new Request("http://local/api/personalized-safety", {
+          method: "POST",
+          body: JSON.stringify(example.input),
+        }),
+      );
+      const body = await response.json();
+
+      expect(response.status, example.title).toBe(200);
+      expect(body.question_id, example.title).toBe(
+        expectedQuestionByIngredient[example.input.ingredient],
+      );
+      expect(body.ingredient, example.title).toBe(example.input.ingredient);
+      expect(body.assessment.context, example.title).toContain(
+        example.input.ingredient,
+      );
+      expect(
+        `${body.assessment.verdict} ${body.assessment.dose}`,
+        example.title,
+      ).toContain(expectedVerdictById[example.id]);
+      expect(body.assessment.dose, example.title).toMatch(/[가-힣]/);
+      expect(body.assessment.watch, example.title).toMatch(/[가-힣]/);
+      expect(body.evidence, example.title).toHaveLength(5);
+    }
+  });
+
   it.each([
     ["비타민 K", "A1", "100 mcg/day"],
     ["오메가-3", "A2", "2000 mg/day"],

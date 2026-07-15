@@ -1,5 +1,10 @@
 "use client";
 import { FormEvent, useRef, useState } from "react";
+import {
+  personalizedSafetyExamples,
+  personalizedSafetyIngredientOrder,
+  type PersonalizedSafetyExample,
+} from "@/src/lib/personalized-safety-examples";
 
 type Result = {
   question_id: string;
@@ -179,53 +184,14 @@ export function PersonalizedSafetyQuery() {
       "특별한 증상 없음",
     ],
   };
-  const examples = [
-    {
-      title: "와파린 + 비타민 K",
-      description: "비타민 K 섭취량과 INR 변화 비교",
-      ingredient: "비타민 K",
-      dose: "100 mcg/day",
-      medication: "와파린",
-      condition: "항응고 치료 중",
-      labs: "INR 3.1",
-    },
-    {
-      title: "항응고제 + 오메가-3",
-      description: "EPA+DHA 용량과 출혈 증상 비교",
-      ingredient: "오메가-3",
-      dose: "EPA+DHA 2000 mg/day",
-      medication: "아픽사반",
-      condition: "코피가 자주 남",
-      labs: "",
-    },
-    {
-      title: "결석 병력 + 칼슘",
-      description: "음식과 보충제의 칼슘 양 비교",
-      ingredient: "칼슘",
-      dose: "600 mg/day",
-      medication: "",
-      condition: "칼슘옥살산 신장결석 병력",
-      labs: "24시간 요중 칼슘 280 mg/day",
-    },
-    {
-      title: "결석 병력 + 비타민 D",
-      description: "비타민 D와 혈청·요중 칼슘 비교",
-      ingredient: "비타민 D",
-      dose: "4000 IU/day",
-      medication: "",
-      condition: "신장결석 및 고칼슘뇨",
-      labs: "25(OH)D 48 ng/mL",
-    },
-    {
-      title: "고옥살산뇨 + 비타민 C",
-      description: "비타민 C 용량과 요중 옥살산 비교",
-      ingredient: "비타민 C",
-      dose: "1000 mg/day",
-      medication: "",
-      condition: "고옥살산뇨 및 결석 병력",
-      labs: "요중 옥살산 상승",
-    },
-  ];
+  const examplesByIngredient = personalizedSafetyIngredientOrder.map(
+    (ingredient) => ({
+      ingredient,
+      examples: personalizedSafetyExamples.filter(
+        (example) => example.input.ingredient === ingredient,
+      ),
+    }),
+  );
   function scrollToResultRegion() {
     requestAnimationFrame(() => {
       const reduce = window.matchMedia(
@@ -264,22 +230,10 @@ export function PersonalizedSafetyQuery() {
       setLoading(false);
     }
   }
-  function fillExample(x: (typeof examples)[number]) {
-    setDraft({
-      ingredient: x.ingredient,
-      dose: x.dose,
-      medication: x.medication,
-      condition: x.condition,
-      labs: x.labs,
-    });
+  function fillExample(example: PersonalizedSafetyExample) {
+    setDraft(example.input);
     examplesRef.current?.removeAttribute("open");
-    void runQuery({
-      ingredient: x.ingredient,
-      dose: x.dose,
-      medication: x.medication,
-      condition: x.condition,
-      labs: x.labs,
-    });
+    void runQuery(example.input);
   }
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -295,7 +249,7 @@ export function PersonalizedSafetyQuery() {
         className="mt-5 overflow-hidden rounded-2xl border border-stone-200 bg-stone-50/70"
       >
         <summary className="flex min-h-12 list-none items-center justify-between gap-4 px-4 py-3 text-left hover:bg-white/60">
-          <span className="text-sm font-bold text-stone-900">입력 예시</span>
+          <span className="text-sm font-bold text-stone-900">입력 예시 15개</span>
           <span className="collapsible-chevron flex h-7 w-7 items-center justify-center rounded-full border border-stone-200 bg-white text-stone-600">
             <Chevron />
           </span>
@@ -303,22 +257,31 @@ export function PersonalizedSafetyQuery() {
         <div className="collapsible-panel">
           <div className="collapsible-panel-inner">
             <div className="collapsible-panel-body border-t border-stone-200 p-3">
-              <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
-                {examples.map((x) => (
-                  <button
-                    type="button"
-                    key={x.title}
-                    onClick={() => fillExample(x)}
-                    disabled={loading}
-                    className="rounded-xl border border-stone-200 bg-white p-3 text-left transition hover:border-blue-300 hover:shadow-sm disabled:cursor-wait disabled:opacity-60"
-                  >
-                    <span className="block text-sm font-bold text-stone-950">
-                      {x.title}
-                    </span>
-                    <span className="mt-1 block text-xs leading-5 text-stone-600">
-                      {x.description}
-                    </span>
-                  </button>
+              <div className="grid gap-5">
+                {examplesByIngredient.map((group) => (
+                  <section key={group.ingredient}>
+                    <h3 className="text-sm font-bold text-stone-900">
+                      {group.ingredient}
+                    </h3>
+                    <div className="mt-2 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+                      {group.examples.map((example) => (
+                        <button
+                          type="button"
+                          key={example.id}
+                          onClick={() => fillExample(example)}
+                          disabled={loading}
+                          className="rounded-xl border border-stone-200 bg-white p-3 text-left transition hover:border-blue-300 hover:shadow-sm disabled:cursor-wait disabled:opacity-60"
+                        >
+                          <span className="block text-sm font-bold text-stone-950">
+                            {example.title}
+                          </span>
+                          <span className="mt-1 block text-xs leading-5 text-stone-600">
+                            {example.description}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  </section>
                 ))}
               </div>
             </div>

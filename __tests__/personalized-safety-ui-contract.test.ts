@@ -24,6 +24,12 @@ describe("personalized safety UI contract", () => {
     }
   });
 
+  it("groups fifteen public examples by supplement", () => {
+    expect(component).toContain("personalizedSafetyExamples");
+    expect(component).toContain("examplesByIngredient");
+    expect(component).not.toContain("const examples = [");
+  });
+
   it("rotates only the chevron owned by an open disclosure", () => {
     expect(styles).toContain(
       "details[open] > summary .collapsible-chevron",
