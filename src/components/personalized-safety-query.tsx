@@ -1,14 +1,15 @@
 "use client";
 import { FormEvent, useRef, useState } from "react";
 import {
+  AnimatedDetails,
+  type AnimatedDetailsHandle,
+} from "@/src/components/animated-details";
+import {
   personalizedSafetyExamples,
   personalizedSafetyIngredientOrder,
   type PersonalizedSafetyExample,
 } from "@/src/lib/personalized-safety-examples";
-import {
-  hasMultiValue,
-  toggleMultiValue,
-} from "@/src/lib/multi-value-input";
+import { hasMultiValue, toggleMultiValue } from "@/src/lib/multi-value-input";
 import { toHaeyoStyle } from "@/src/lib/korean-ui-copy";
 
 type Result = {
@@ -94,6 +95,7 @@ function Chevron() {
     </svg>
   );
 }
+
 function EvidenceSentence({
   children,
   references,
@@ -133,7 +135,7 @@ function EvidenceSentence({
 }
 export function PersonalizedSafetyQuery() {
   const formRef = useRef<HTMLFormElement>(null);
-  const examplesRef = useRef<HTMLDetailsElement>(null);
+  const examplesRef = useRef<AnimatedDetailsHandle>(null);
   const resultRegionRef = useRef<HTMLDivElement>(null);
   const [result, setResult] = useState<Result | null>(null);
   const [error, setError] = useState("");
@@ -285,7 +287,7 @@ export function PersonalizedSafetyQuery() {
   }
   function fillExample(example: PersonalizedSafetyExample) {
     setDraft(example.input);
-    examplesRef.current?.removeAttribute("open");
+    examplesRef.current?.close();
     void runQuery(example.input);
   }
   async function submit(e: FormEvent<HTMLFormElement>) {
@@ -302,58 +304,58 @@ export function PersonalizedSafetyQuery() {
           자유 입력을 구조화하는 AI
         </p>
         <p className="mt-1 break-keep text-sm leading-6 text-stone-600">
-          정해진 형식이나 순서 없이 적어도 돼요. AI 해석 엔진이 약
-          이름·복용량, 병력·증상, 검사 수치를 자동으로 구조화하고, 검증된
-          기준과 근거 문헌에 연결해 안전성 결과를 정리해요.
+          정해진 형식이나 순서 없이 적어도 돼요. AI 해석 엔진이 약 이름·복용량,
+          병력·증상, 검사 수치를 자동으로 구조화하고, 검증된 기준과 근거 문헌에
+          연결해 안전성 결과를 정리해요.
         </p>
       </div>
-      <details
+      <AnimatedDetails
         ref={examplesRef}
         className="mt-5 overflow-hidden rounded-xl bg-stone-50"
+        summaryClassName="flex min-h-12 list-none items-center justify-between gap-4 rounded-xl px-4 py-3 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-inset"
+        bodyClassName="border-t border-stone-200 px-4 pb-2"
+        summary={
+          <>
+            <span className="text-sm font-bold text-stone-900">
+              입력 예시 15개
+            </span>
+            <span className="collapsible-chevron flex h-7 w-7 items-center justify-center text-stone-500">
+              <Chevron />
+            </span>
+          </>
+        }
       >
-        <summary className="flex min-h-12 list-none items-center justify-between gap-4 rounded-xl px-4 py-3 text-left transition-colors hover:bg-stone-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-inset">
-          <span className="text-sm font-bold text-stone-900">입력 예시 15개</span>
-          <span className="collapsible-chevron flex h-7 w-7 items-center justify-center text-stone-500">
-            <Chevron />
-          </span>
-        </summary>
-        <div className="collapsible-panel">
-          <div className="collapsible-panel-inner">
-            <div className="collapsible-panel-body border-t border-stone-200 px-4 pb-2">
-              <div>
-                {examplesByIngredient.map((group) => (
-                  <section
-                    key={group.ingredient}
-                    className="grid gap-2 border-b border-stone-200 py-4 last:border-b-0 sm:grid-cols-[5.5rem_minmax(0,1fr)] sm:gap-3"
+        <div>
+          {examplesByIngredient.map((group) => (
+            <section
+              key={group.ingredient}
+              className="grid gap-2 border-b border-stone-200 py-4 last:border-b-0 sm:grid-cols-[5.5rem_minmax(0,1fr)] sm:gap-3"
+            >
+              <h3 className="px-1 pt-2 text-sm font-bold text-stone-900">
+                {group.ingredient}
+              </h3>
+              <div className="grid min-w-0 sm:grid-cols-3">
+                {group.examples.map((example) => (
+                  <button
+                    type="button"
+                    key={example.id}
+                    onClick={() => fillExample(example)}
+                    disabled={loading}
+                    className="min-w-0 touch-manipulation rounded-lg px-3 py-2.5 text-left transition-colors hover:bg-blue-50 active:bg-blue-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 disabled:cursor-wait disabled:opacity-60 sm:rounded-none sm:border-l sm:border-stone-200 sm:first:border-l-0"
                   >
-                    <h3 className="px-1 pt-2 text-sm font-bold text-stone-900">
-                      {group.ingredient}
-                    </h3>
-                    <div className="grid min-w-0 sm:grid-cols-3">
-                      {group.examples.map((example) => (
-                        <button
-                          type="button"
-                          key={example.id}
-                          onClick={() => fillExample(example)}
-                          disabled={loading}
-                          className="min-w-0 touch-manipulation rounded-lg px-3 py-2.5 text-left transition-colors hover:bg-blue-50 active:bg-blue-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 disabled:cursor-wait disabled:opacity-60 sm:rounded-none sm:border-l sm:border-stone-200 sm:first:border-l-0"
-                        >
-                          <span className="block text-sm font-bold text-stone-950">
-                            {example.title}
-                          </span>
-                          <span className="mt-1 block text-xs leading-5 text-stone-600">
-                            {example.description}
-                          </span>
-                        </button>
-                      ))}
-                    </div>
-                  </section>
+                    <span className="block text-sm font-bold text-stone-950">
+                      {example.title}
+                    </span>
+                    <span className="mt-1 block text-xs leading-5 text-stone-600">
+                      {example.description}
+                    </span>
+                  </button>
                 ))}
               </div>
-            </div>
-          </div>
+            </section>
+          ))}
         </div>
-      </details>
+      </AnimatedDetails>
       <form
         ref={formRef}
         onSubmit={submit}
@@ -426,8 +428,8 @@ export function PersonalizedSafetyQuery() {
                 3. 함께 먹는 약
               </legend>
               <p className="mt-1 text-sm leading-6 text-stone-500">
-                목록을 고르거나 약 봉투에 적힌 이름을 편한 표현으로
-                적으세요. 여러 개를 고를 수 있어요.
+                목록을 고르거나 약 봉투에 적힌 이름을 편한 표현으로 적으세요.
+                여러 개를 고를 수 있어요.
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {(medicationOptions[draft.ingredient] ?? []).map((item) => {
@@ -474,8 +476,8 @@ export function PersonalizedSafetyQuery() {
                 4. 병력 또는 현재 증상
               </legend>
               <p className="mt-1 text-sm leading-6 text-stone-500">
-                목록을 고르거나 증상을 평소 표현대로 적으세요. 여러 개를
-                고를 수 있어요.
+                목록을 고르거나 증상을 평소 표현대로 적으세요. 여러 개를 고를 수
+                있어요.
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {(conditionOptions[draft.ingredient] ?? []).map((item) => {
@@ -567,7 +569,7 @@ export function PersonalizedSafetyQuery() {
         {loading && (
           <section
             role="status"
-            className="mt-6 overflow-hidden rounded-2xl border border-blue-100 bg-white shadow-sm"
+            className="motion-enter mt-6 overflow-hidden rounded-2xl border border-blue-100 bg-white shadow-sm"
           >
             <div className="flex items-center gap-4 px-5 py-5">
               <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-50">
@@ -586,12 +588,12 @@ export function PersonalizedSafetyQuery() {
           </section>
         )}
         {error && (
-          <p className="mt-5 rounded-xl bg-red-50 p-4 text-sm text-red-700">
+          <p className="motion-enter mt-5 rounded-xl bg-red-50 p-4 text-sm text-red-700">
             {error}
           </p>
         )}
         {result && (
-          <article className="relative mt-6 overflow-visible rounded-2xl border border-stone-200 bg-white shadow-sm">
+          <article className="motion-enter relative mt-6 overflow-visible rounded-2xl border border-stone-200 bg-white shadow-sm">
             <header className="px-5 pb-2 pt-6">
               <div className="flex flex-wrap items-center gap-2">
                 <p className="text-xs font-bold text-blue-600">
@@ -619,9 +621,7 @@ export function PersonalizedSafetyQuery() {
                   {toHaeyoStyle(result.narrative_assessment.context)}
                 </p>
                 <p className="mt-5">
-                  <EvidenceSentence
-                    references={result.assessment.references}
-                  >
+                  <EvidenceSentence references={result.assessment.references}>
                     {toHaeyoStyle(result.narrative_assessment.explanation)}
                   </EvidenceSentence>
                 </p>
@@ -643,65 +643,74 @@ export function PersonalizedSafetyQuery() {
                   </span>
                 ))}
               </div>
-              <details className="mt-5 rounded-xl border border-stone-200">
-                <summary className="flex min-h-12 list-none items-center justify-between px-4 py-3 font-semibold">
-                  <span>판단 기준과 추가 확인 사항</span>
-                  <span className="collapsible-chevron text-stone-500">
-                    <Chevron />
-                  </span>
-                </summary>
-                <div className="grid gap-5 border-t border-stone-200 p-4 md:grid-cols-2">
-                  <div>
-                    <p className="mb-2 text-sm font-bold text-stone-900">
-                      판단 기준
-                    </p>
-                    <ol className="grid gap-2">
-                      {result.checks.map((x, i) => (
-                        <li key={x} className="flex gap-3 text-sm leading-6">
-                          <b className="text-blue-700">{i + 1}</b>
-                          <span>{toHaeyoStyle(x)}</span>
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
-                  <div>
-                    <p className="mb-2 text-sm font-bold text-stone-900">
-                      추가 확인 사항
-                    </p>
-                    <ul className="grid gap-2 text-sm leading-6">
-                      {result.next_steps.map((x) => (
-                        <li key={x} className="flex gap-2">
-                          <span className="text-emerald-600">✓</span>
-                          <span>{toHaeyoStyle(x)}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </details>
-              <details className="mt-3 rounded-xl border border-stone-200">
-                <summary className="flex min-h-12 list-none items-center justify-between px-4 py-3 font-semibold">
-                  <span>결과에 사용한 문헌</span>
-                  <span className="flex items-center gap-2 text-sm text-stone-500">
-                    {result.evidence_selection.selected}건 · 후보{" "}
-                    {result.evidence_selection.total_candidates}건{" "}
-                    <span className="collapsible-chevron">
+              <AnimatedDetails
+                className="mt-5 rounded-xl border border-stone-200"
+                summaryClassName="flex min-h-12 list-none items-center justify-between px-4 py-3 font-semibold"
+                bodyClassName="grid gap-5 border-t border-stone-200 p-4 md:grid-cols-2"
+                summary={
+                  <>
+                    <span>판단 기준과 추가 확인 사항</span>
+                    <span className="collapsible-chevron text-stone-500">
                       <Chevron />
                     </span>
-                  </span>
-                </summary>
+                  </>
+                }
+              >
+                <div>
+                  <p className="mb-2 text-sm font-bold text-stone-900">
+                    판단 기준
+                  </p>
+                  <ol className="grid gap-2">
+                    {result.checks.map((x, i) => (
+                      <li key={x} className="flex gap-3 text-sm leading-6">
+                        <b className="text-blue-700">{i + 1}</b>
+                        <span>{toHaeyoStyle(x)}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+                <div>
+                  <p className="mb-2 text-sm font-bold text-stone-900">
+                    추가 확인 사항
+                  </p>
+                  <ul className="grid gap-2 text-sm leading-6">
+                    {result.next_steps.map((x) => (
+                      <li key={x} className="flex gap-2">
+                        <span className="text-emerald-600">✓</span>
+                        <span>{toHaeyoStyle(x)}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </AnimatedDetails>
+              <AnimatedDetails
+                className="mt-3 rounded-xl border border-stone-200"
+                summaryClassName="flex min-h-12 list-none items-center justify-between px-4 py-3 font-semibold"
+                summary={
+                  <>
+                    <span>결과에 사용한 문헌</span>
+                    <span className="flex items-center gap-2 text-sm text-stone-500">
+                      {result.evidence_selection.selected}건 · 후보{" "}
+                      {result.evidence_selection.total_candidates}건{" "}
+                      <span className="collapsible-chevron">
+                        <Chevron />
+                      </span>
+                    </span>
+                  </>
+                }
+              >
                 <div className="border-t border-stone-200 bg-blue-50/50 px-4 py-3 text-xs leading-5 text-stone-600">
                   <p>{toHaeyoStyle(result.evidence_selection.method)}</p>
                   {result.evidence_selection.medication_name && (
                     <p className="mt-1">
                       {result.evidence_selection.medication_name}을 직접 언급한
-                      문헌은 {" "}
-                      {result.evidence_selection.direct_medication_matches}건이에요.
+                      문헌은{" "}
+                      {result.evidence_selection.direct_medication_matches}
+                      건이에요.
                     </p>
                   )}
                   <p className="mt-1 text-stone-500">
-                    각 한글 문장은 바로 아래 영문 초록 문장의 자동
-                    번역이에요.
+                    각 한글 문장은 바로 아래 영문 초록 문장의 자동 번역이에요.
                   </p>
                 </div>
                 <div className="divide-y divide-stone-200 border-t border-stone-200 px-4">
@@ -735,48 +744,52 @@ export function PersonalizedSafetyQuery() {
                     </div>
                   ))}
                 </div>
-                <details className="border-t border-stone-200 bg-stone-50/70">
-                  <summary className="flex min-h-12 list-none items-center justify-between px-4 py-3 text-sm font-semibold text-stone-700">
-                    <span>
-                      검색된 후보 문헌{" "}
-                      {result.evidence_selection.total_candidates}건
-                    </span>
-                    <span className="collapsible-chevron text-stone-500">
-                      <Chevron />
-                    </span>
-                  </summary>
-                  <div className="max-h-96 overflow-y-auto border-t border-stone-200 px-4">
-                    {result.all_evidence.map((item, index) => (
-                      <div
-                        key={`${item.url}-${index}`}
-                        className="border-b border-stone-200 py-3 last:border-0"
+                <AnimatedDetails
+                  className="border-t border-stone-200 bg-stone-50/70"
+                  summaryClassName="flex min-h-12 list-none items-center justify-between px-4 py-3 text-sm font-semibold text-stone-700"
+                  bodyClassName="max-h-96 overflow-y-auto border-t border-stone-200 px-4"
+                  summary={
+                    <>
+                      <span>
+                        검색된 후보 문헌{" "}
+                        {result.evidence_selection.total_candidates}건
+                      </span>
+                      <span className="collapsible-chevron text-stone-500">
+                        <Chevron />
+                      </span>
+                    </>
+                  }
+                >
+                  {result.all_evidence.map((item, index) => (
+                    <div
+                      key={`${item.url}-${index}`}
+                      className="border-b border-stone-200 py-3 last:border-0"
+                    >
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-sm font-semibold leading-6 text-blue-700 hover:underline"
                       >
-                        <a
-                          href={item.url}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-sm font-semibold leading-6 text-blue-700 hover:underline"
-                        >
-                          {item.title}
-                        </a>
-                        <p className="mt-1 text-xs font-medium leading-5 text-stone-700">
-                          {toHaeyoStyle(item.key_finding_ko)}
-                        </p>
-                        <p
-                          lang="en"
-                          className="mt-1 text-xs leading-5 text-stone-500"
-                        >
-                          {item.key_finding}
-                        </p>
-                        <p className="mt-1 text-xs text-stone-500">
-                          {item.year ? `${item.year} · ` : ""}
-                          {toHaeyoStyle(item.selection_reason)}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </details>
-              </details>
+                        {item.title}
+                      </a>
+                      <p className="mt-1 text-xs font-medium leading-5 text-stone-700">
+                        {toHaeyoStyle(item.key_finding_ko)}
+                      </p>
+                      <p
+                        lang="en"
+                        className="mt-1 text-xs leading-5 text-stone-500"
+                      >
+                        {item.key_finding}
+                      </p>
+                      <p className="mt-1 text-xs text-stone-500">
+                        {item.year ? `${item.year} · ` : ""}
+                        {toHaeyoStyle(item.selection_reason)}
+                      </p>
+                    </div>
+                  ))}
+                </AnimatedDetails>
+              </AnimatedDetails>
             </div>
           </article>
         )}

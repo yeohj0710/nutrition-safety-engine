@@ -25,12 +25,11 @@
   --ease-snappy: cubic-bezier(0.16, 1, 0.3, 1);
   --duration-toggle-fast: 180ms;
   --duration-toggle: 280ms;
-  --duration-expand: 380ms;
+  --duration-expand: 320ms;
   --page-shell-max: 54rem;
   --page-shell-narrow-max: 48rem;
   --font-fallback-sans:
-    Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Segoe UI",
-    sans-serif;
+    Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Segoe UI", sans-serif;
   --font-fallback-display: var(--font-fallback-sans);
   color-scheme: light;
 }
@@ -49,8 +48,10 @@
   --color-warning: var(--warning);
   --color-danger: var(--danger);
   --color-success: var(--success);
-  --font-sans: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Segoe UI", sans-serif;
-  --font-display: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Segoe UI", sans-serif;
+  --font-sans:
+    Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Segoe UI", sans-serif;
+  --font-display:
+    Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Segoe UI", sans-serif;
 }
 
 html,
@@ -61,7 +62,8 @@ body {
 
 body {
   color: var(--foreground);
-  font-family: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Segoe UI", sans-serif;
+  font-family:
+    Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Segoe UI", sans-serif;
   font-kerning: normal;
   line-height: 1.5;
   letter-spacing: 0;
@@ -238,7 +240,38 @@ summary:focus-visible {
   max-width: 54ch;
 }
 
+.animated-details {
+  overflow: clip;
+}
+
+.animated-details > summary {
+  transition:
+    background-color var(--duration-toggle) var(--ease-soft),
+    color var(--duration-toggle) var(--ease-soft);
+}
+
+.animated-details > summary::marker,
+.animated-details > summary::-webkit-details-marker {
+  display: none;
+  content: "";
+}
+
+.animated-details > summary:hover {
+  background: color-mix(in oklab, var(--foreground) 4%, transparent);
+}
+
+.animated-details > summary:active {
+  background: color-mix(in oklab, var(--foreground) 7%, transparent);
+}
+
 .collapsible-chevron {
+  display: inline-flex;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
   transition:
     transform var(--duration-expand) var(--ease-emphasized),
     color var(--duration-toggle) var(--ease-soft),
@@ -247,9 +280,13 @@ summary:focus-visible {
   transform-origin: center;
 }
 
-[data-open="true"] .collapsible-chevron,
-details[open] > summary .collapsible-chevron {
+.animated-details[data-open="true"] > summary .collapsible-chevron {
   transform: rotate(180deg);
+}
+
+.animated-details > summary:hover .collapsible-chevron {
+  background: color-mix(in oklab, var(--foreground) 5%, transparent);
+  color: var(--foreground);
 }
 
 .collapsible-panel {
@@ -264,8 +301,7 @@ details[open] > summary .collapsible-chevron {
     visibility var(--duration-toggle) var(--ease-soft);
 }
 
-.collapsible-panel[data-open="true"],
-details[open] > .collapsible-panel {
+.collapsible-panel[data-open="true"] {
   grid-template-rows: 1fr;
   opacity: 1;
   pointer-events: auto;
@@ -297,8 +333,7 @@ details[open] > .collapsible-panel {
   will-change: transform, opacity;
 }
 
-.collapsible-panel[data-open="true"] .collapsible-panel-body,
-details[open] > .collapsible-panel .collapsible-panel-body {
+.collapsible-panel[data-open="true"] .collapsible-panel-body {
   transform: translate3d(0, 0, 0);
   opacity: 1;
 }
@@ -314,13 +349,17 @@ details[open] > .collapsible-panel .collapsible-panel-body {
 @keyframes rise-in {
   from {
     opacity: 0;
-    transform: translate3d(0, 18px, 0);
+    transform: translate3d(0, 12px, 0);
   }
 
   to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
+}
+
+.motion-enter {
+  animation: rise-in 440ms var(--ease-emphasized) both;
 }
 
 @keyframes glow-pulse {

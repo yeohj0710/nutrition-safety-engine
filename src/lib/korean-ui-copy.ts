@@ -28,6 +28,7 @@ export function toHaeyoStyle(value: string) {
     .replace(new RegExp(`다릅니다${sentenceEnd}`, "g"), "달라요")
     .replace(new RegExp(`어렵습니다${sentenceEnd}`, "g"), "어려워요")
     .replace(new RegExp(`같습니다${sentenceEnd}`, "g"), "같아요")
+    .replace(new RegExp(`맞습니다${sentenceEnd}`, "g"), "맞아요")
     .replace(new RegExp(`낫습니다${sentenceEnd}`, "g"), "나아요")
     .replace(new RegExp(`보입니다${sentenceEnd}`, "g"), "보여요")
     .replace(new RegExp(`높습니다${sentenceEnd}`, "g"), "높아요")

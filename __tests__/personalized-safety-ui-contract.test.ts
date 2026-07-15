@@ -5,6 +5,10 @@ const component = readFileSync(
   "src/components/personalized-safety-query.tsx",
   "utf8",
 );
+const animatedDetails = readFileSync(
+  "src/components/animated-details.tsx",
+  "utf8",
+);
 const page = readFileSync("app/page.tsx", "utf8");
 const frame = readFileSync("src/components/site-frame.tsx", "utf8");
 const styles = readFileSync("app/globals.css", "utf8");
@@ -37,9 +41,7 @@ describe("personalized safety UI contract", () => {
     expect(component).not.toContain(
       'className="mt-6 rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-8"',
     );
-    expect(component).toContain(
-      "sm:grid-cols-[5.5rem_minmax(0,1fr)]",
-    );
+    expect(component).toContain("sm:grid-cols-[5.5rem_minmax(0,1fr)]");
     expect(component).not.toContain(
       'className="rounded-xl border border-stone-200 bg-white p-3 text-left',
     );
@@ -58,14 +60,12 @@ describe("personalized safety UI contract", () => {
 
   it("explains AI interpretation without presenting it as the safety rule", () => {
     expect(component).toContain("자유 입력을 구조화하는 AI");
-    expect(component).toContain(
-      "정해진 형식이나 순서 없이 적어도 돼요.",
-    );
+    expect(component).toContain("정해진 형식이나 순서 없이 적어도 돼요.");
     expect(component).toContain("AI 해석 엔진이 약");
     expect(component).toContain("검사 수치를 자동으로 구조화하고");
     expect(component).toContain("검증된");
-    expect(component).toContain("기준과 근거 문헌에 연결해");
-    expect(component).toContain("문헌에 연결해 안전성 결과를 정리해요.");
+    expect(component).toMatch(/기준과 근거 문헌에\s+연결해/);
+    expect(component).toMatch(/문헌에\s+연결해 안전성 결과를 정리해요\./);
     expect(component).toContain("AI 해석 적용");
     expect(component).toContain("result.input_interpretation.ai_used");
   });
@@ -98,11 +98,17 @@ describe("personalized safety UI contract", () => {
     expect(component).toContain("철 과다증");
   });
 
-  it("rotates only the chevron owned by an open disclosure", () => {
+  it("animates both directions without rotating nested chevrons", () => {
     expect(styles).toContain(
-      "details[open] > summary .collapsible-chevron",
+      '.animated-details[data-open="true"] > summary .collapsible-chevron',
     );
-    expect(styles).not.toContain("details[open] .collapsible-chevron");
+    expect(styles).not.toContain("details[open]");
+    expect(animatedDetails).toContain("forwardRef<");
+    expect(animatedDetails).toContain("aria-expanded={expanded}");
+    expect(animatedDetails).toContain("summaryRef.current?.focus()");
+    expect(component).toContain("examplesRef.current?.close()");
+    expect(styles).toContain(".motion-enter");
+    expect(styles).toContain("@media (prefers-reduced-motion: reduce)");
   });
 
   it("shows a Korean interpretation and the source sentence for each evidence item", () => {
