@@ -5,6 +5,10 @@ import {
   personalizedSafetyIngredientOrder,
   type PersonalizedSafetyExample,
 } from "@/src/lib/personalized-safety-examples";
+import {
+  hasMultiValue,
+  toggleMultiValue,
+} from "@/src/lib/multi-value-input";
 
 type Result = {
   question_id: string;
@@ -57,6 +61,11 @@ type QueryInput = {
   condition: string;
   labs: string;
 };
+const exclusiveMedicationChoices = ["복용 약 없음", "잘 모르겠어요"];
+const exclusiveConditionChoices = ["특별한 증상 없음"];
+function medicationChoiceValue(label: string) {
+  return label === "없어요" ? "복용 약 없음" : label;
+}
 function Chevron() {
   return (
     <svg
@@ -132,19 +141,37 @@ export function PersonalizedSafetyQuery() {
     "비타민 C",
   ];
   const medicationOptions: Record<string, string[]> = {
-    "비타민 K": ["와파린", "항생제", "잘 모르겠어요"],
+    "비타민 K": [
+      "와파린",
+      "항생제",
+      "담즙산결합수지",
+      "올리스타트",
+      "없어요",
+      "잘 모르겠어요",
+    ],
     "오메가-3": [
       "아픽사반",
       "와파린",
+      "리바록사반",
       "아스피린",
+      "클로피도그렐",
       "진통소염제",
+      "없어요",
       "잘 모르겠어요",
     ],
-    칼슘: ["갑상선약", "항생제", "리튬", "없어요", "잘 모르겠어요"],
+    칼슘: [
+      "갑상선약",
+      "퀴놀론계 항생제",
+      "돌루테그라비르",
+      "리튬",
+      "없어요",
+      "잘 모르겠어요",
+    ],
     "비타민 D": [
-      "이뇨제",
+      "티아지드 이뇨제",
       "올리스타트",
       "스테로이드",
+      "스타틴",
       "없어요",
       "잘 모르겠어요",
     ],
@@ -155,12 +182,15 @@ export function PersonalizedSafetyQuery() {
       "INR이 자주 바뀜",
       "멍이 잘 듦",
       "코피가 남",
+      "잇몸 출혈",
+      "검은변 또는 혈변",
       "특별한 증상 없음",
     ],
     "오메가-3": [
       "멍이 잘 듦",
       "코피가 남",
       "잇몸 출혈",
+      "검은변 또는 혈변",
       "배가 아픔",
       "특별한 증상 없음",
     ],
@@ -168,12 +198,16 @@ export function PersonalizedSafetyQuery() {
       "신장결석 병력",
       "소변 칼슘이 높다고 들음",
       "변비",
+      "메스꺼움",
+      "갈증이 심하고 소변이 잦음",
       "특별한 증상 없음",
     ],
     "비타민 D": [
       "신장결석 병력",
       "칼슘 수치가 높다고 들음",
       "소변 칼슘이 높다고 들음",
+      "메스꺼움",
+      "갈증이 심하고 소변이 잦음",
       "특별한 증상 없음",
     ],
     "비타민 C": [
@@ -181,6 +215,9 @@ export function PersonalizedSafetyQuery() {
       "소변 옥살산이 높다고 들음",
       "신장기능 저하",
       "배가 아픔",
+      "설사",
+      "메스꺼움",
+      "철 과다증",
       "특별한 증상 없음",
     ],
   };
@@ -357,24 +394,33 @@ export function PersonalizedSafetyQuery() {
                 3. 함께 먹는 약
               </legend>
               <p className="mt-1 text-sm leading-6 text-stone-500">
-                약 봉투에 적힌 약 이름을 고르거나 직접 적습니다.
+                함께 먹는 약을 모두 고르세요. 여러 개를 고를 수 있습니다.
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
-                {(medicationOptions[draft.ingredient] ?? []).map((item) => (
-                  <button
-                    key={item}
-                    type="button"
-                    onClick={() =>
-                      setDraft({
-                        ...draft,
-                        medication: item === "없어요" ? "복용 약 없음" : item,
-                      })
-                    }
-                    className={`rounded-full border px-4 py-2 text-sm font-semibold ${draft.medication === item || (item === "없어요" && draft.medication === "복용 약 없음") ? "border-blue-600 bg-blue-50 text-blue-700" : "border-stone-200 bg-white"}`}
-                  >
-                    {item}
-                  </button>
-                ))}
+                {(medicationOptions[draft.ingredient] ?? []).map((item) => {
+                  const value = medicationChoiceValue(item);
+                  const selected = hasMultiValue(draft.medication, value);
+                  return (
+                    <button
+                      key={item}
+                      type="button"
+                      aria-pressed={selected}
+                      onClick={() =>
+                        setDraft({
+                          ...draft,
+                          medication: toggleMultiValue(
+                            draft.medication,
+                            value,
+                            exclusiveMedicationChoices,
+                          ),
+                        })
+                      }
+                      className={`rounded-full border px-4 py-2 text-sm font-semibold ${selected ? "border-blue-600 bg-blue-50 text-blue-700" : "border-stone-200 bg-white"}`}
+                    >
+                      {item}
+                    </button>
+                  );
+                })}
               </div>
               <input
                 value={draft.medication}
@@ -382,7 +428,7 @@ export function PersonalizedSafetyQuery() {
                   setDraft({ ...draft, medication: e.target.value })
                 }
                 maxLength={120}
-                placeholder="목록에 없으면 약 이름을 적으세요"
+                placeholder="목록에 없으면 약 이름을 쉼표로 구분해 적으세요"
                 className="mt-3 min-h-12 w-full rounded-xl border border-stone-300 px-4"
               />
             </fieldset>
@@ -392,19 +438,32 @@ export function PersonalizedSafetyQuery() {
                 4. 병력 또는 현재 증상
               </legend>
               <p className="mt-1 text-sm leading-6 text-stone-500">
-                아래 항목 중 맞는 것을 고르거나 직접 적습니다.
+                해당하는 병력과 증상을 모두 고르세요. 여러 개를 고를 수 있습니다.
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
-                {(conditionOptions[draft.ingredient] ?? []).map((item) => (
-                  <button
-                    key={item}
-                    type="button"
-                    onClick={() => setDraft({ ...draft, condition: item })}
-                    className={`rounded-full border px-4 py-2 text-sm font-semibold ${draft.condition === item ? "border-blue-600 bg-blue-50 text-blue-700" : "border-stone-200 bg-white"}`}
-                  >
-                    {item}
-                  </button>
-                ))}
+                {(conditionOptions[draft.ingredient] ?? []).map((item) => {
+                  const selected = hasMultiValue(draft.condition, item);
+                  return (
+                    <button
+                      key={item}
+                      type="button"
+                      aria-pressed={selected}
+                      onClick={() =>
+                        setDraft({
+                          ...draft,
+                          condition: toggleMultiValue(
+                            draft.condition,
+                            item,
+                            exclusiveConditionChoices,
+                          ),
+                        })
+                      }
+                      className={`rounded-full border px-4 py-2 text-sm font-semibold ${selected ? "border-blue-600 bg-blue-50 text-blue-700" : "border-stone-200 bg-white"}`}
+                    >
+                      {item}
+                    </button>
+                  );
+                })}
               </div>
               <input
                 value={draft.condition}
@@ -412,7 +471,7 @@ export function PersonalizedSafetyQuery() {
                   setDraft({ ...draft, condition: e.target.value })
                 }
                 maxLength={200}
-                placeholder="예: 작년에 신장결석이 있었어요"
+                placeholder="목록에 없으면 병력과 증상을 쉼표로 구분해 적으세요"
                 className="mt-3 min-h-12 w-full rounded-xl border border-stone-300 px-4"
               />
             </fieldset>

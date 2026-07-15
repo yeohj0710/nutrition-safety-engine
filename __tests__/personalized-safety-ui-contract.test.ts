@@ -30,6 +30,17 @@ describe("personalized safety UI contract", () => {
     expect(component).not.toContain("const examples = [");
   });
 
+  it("allows multiple medicine and condition choices", () => {
+    expect(component).toContain("toggleMultiValue");
+    expect(component).toContain("hasMultiValue");
+    expect(component).toContain("aria-pressed");
+    expect(component).toContain("여러 개를 고를 수 있습니다.");
+    expect(component).toContain("리바록사반");
+    expect(component).toContain("돌루테그라비르");
+    expect(component).toContain("검은변 또는 혈변");
+    expect(component).toContain("철 과다증");
+  });
+
   it("rotates only the chevron owned by an open disclosure", () => {
     expect(styles).toContain(
       "details[open] > summary .collapsible-chevron",

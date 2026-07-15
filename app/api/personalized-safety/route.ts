@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import rules from "@/research/systematic_review_v3/personalized_rules.json";
+import { splitMultiValue } from "@/src/lib/multi-value-input";
 const map: Record<string, string> = {
   "비타민 K": "A1",
   "vitamin k": "A1",
@@ -215,6 +216,17 @@ function withAndParticle(value: string) {
     code >= 0xac00 && code <= 0xd7a3 && (code - 0xac00) % 28 !== 0;
   return `${value}${hasFinalConsonant ? "과" : "와"}`;
 }
+function medicationValues(value: string) {
+  return splitMultiValue(value).filter((item) => !/없음|모르겠/.test(item));
+}
+function conditionValues(value: string) {
+  const values = splitMultiValue(value);
+  const specificValues = values.filter((item) => item !== "특별한 증상 없음");
+  return specificValues.length ? specificValues : values;
+}
+function compactMultiValue(values: string[]) {
+  return values.join("·");
+}
 function describeConditionForAssessment(value: string) {
   if (!value) return "";
   if (value === "특별한 증상 없음") return "현재 불편한 증상은 없습니다.";
@@ -222,7 +234,13 @@ function describeConditionForAssessment(value: string) {
   if (/코피가 남/.test(value)) return "현재 코피가 납니다.";
   if (/멍이 잘 듦/.test(value)) return "현재 멍이 잘 듭니다.";
   if (/잇몸 출혈/.test(value)) return "현재 잇몸에서 피가 납니다.";
+  if (/검은변 또는 혈변/.test(value))
+    return "현재 검은변 또는 혈변이 있습니다.";
   if (/(?:배가 아픔|배가 아파요)/.test(value)) return "현재 배가 아픕니다.";
+  if (/메스꺼움/.test(value)) return "현재 메스꺼움이 있습니다.";
+  if (/갈증이 심하고 소변이 잦음/.test(value))
+    return "현재 갈증이 심하고 소변이 자주 나옵니다.";
+  if (/설사/.test(value)) return "현재 설사가 있습니다.";
   if (/INR이 자주 바뀜/.test(value)) return "INR이 자주 바뀝니다.";
   if (/소변 칼슘이 높다고 들음/.test(value))
     return "소변 칼슘이 높다는 말을 들었습니다.";
@@ -235,18 +253,25 @@ function describeConditionForAssessment(value: string) {
 }
 function buildProfileSentence(input: SummaryInput) {
   const sentences: string[] = [];
+  const medicines = medicationValues(input.medication);
+  const conditions = conditionValues(input.condition);
+  const medicineName = compactMultiValue(medicines);
   if (input.dose)
     sentences.push(
       `말씀해 주신 내용을 보면, ${withObjectParticle(input.ingredient)} ${input.dose} 복용하고 계십니다.`,
     );
-  if (input.medication && input.condition)
+  if (medicineName && conditions.length === 1)
     sentences.push(
-      `${input.medication}도 함께 복용하고 계시고, ${describeConditionInCounseling(input.condition)}.`,
+      `${medicineName}도 함께 복용하고 계시고, ${describeConditionInCounseling(conditions[0])}.`,
     );
-  else if (input.medication)
-    sentences.push(`${input.medication}도 함께 복용하고 계십니다.`);
-  else if (input.condition)
-    sentences.push(`${describeConditionInCounseling(input.condition)}.`);
+  else {
+    if (medicineName)
+      sentences.push(`${medicineName}도 함께 복용하고 계십니다.`);
+    if (conditions.length === 1)
+      sentences.push(`${describeConditionInCounseling(conditions[0])}.`);
+    else if (conditions.length > 1)
+      sentences.push(...conditions.map(describeConditionForAssessment));
+  }
   if (input.labs)
     sentences.push(
       `최근 검사에서는 ${withSubjectParticle(input.labs)} 확인됐고요.`,
@@ -387,9 +412,7 @@ function selectEvidence(
   all: RuntimeEvidence[],
   input: Exclude<ReturnType<typeof parseInput>, null>,
 ) {
-  const medication = /없음|모르겠/.test(input.medication)
-    ? ""
-    : input.medication.toLowerCase();
+  const medication = medicationValues(input.medication).join(" ").toLowerCase();
   const condition = input.condition.toLowerCase();
   const ranked = all.map((item) => {
     const text =
@@ -483,11 +506,13 @@ function buildAssessment(
   const dose = normalizedDose(questionId, input.dose);
   const lab = numberFrom(input.labs);
   const doseLabel = Number.isFinite(dose) ? input.dose : "현재 복용량";
-  const medicationName =
-    input.medication && !/없음|모르겠/.test(input.medication)
-      ? input.medication
-      : "";
-  const conditionText = describeConditionForAssessment(input.condition);
+  const medicines = medicationValues(input.medication);
+  const medicationName = compactMultiValue(medicines);
+  const hasMedication = (pattern: RegExp) =>
+    medicines.some((medicine) => pattern.test(medicine));
+  const conditionText = conditionValues(input.condition)
+    .map(describeConditionForAssessment)
+    .join(" ");
   const context = [
     `${withObjectParticle(input.ingredient)} 복용 중입니다.`,
     /모르겠/.test(input.dose)
@@ -536,18 +561,33 @@ function buildAssessment(
       "https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/",
     ),
   };
-  if (questionId === "A1")
+  if (questionId === "A1") {
+    const interactions: string[] = [];
+    if (hasMedication(/와파린|쿠마딘/))
+      interactions.push(
+        "와파린의 효과는 비타민 K 섭취량에 따라 달라질 수 있습니다. 섭취량이 갑자기 늘거나 줄면 INR도 변할 수 있습니다.",
+      );
+    if (hasMedication(/항생제/))
+      interactions.push(
+        "항생제를 장기간 복용하면 장내 비타민 K 생성이 줄어 비타민 K 상태를 낮출 수 있습니다.",
+      );
+    if (hasMedication(/담즙산결합수지/))
+      interactions.push("담즙산결합수지는 비타민 K 흡수를 낮출 수 있습니다.");
+    if (hasMedication(/올리스타트/))
+      interactions.push("올리스타트는 비타민 K 흡수를 낮출 수 있습니다.");
     return {
       context,
       verdict:
         "비타민 K는 갑자기 줄이지 말고 매일 비슷한 양을 섭취하는 편이 낫습니다.",
       dose: `${Number.isFinite(dose) ? `${dose} mcg/day라는 양` : "현재 복용량"} 자체보다 섭취량이 갑자기 바뀌는지가 INR에 더 큰 영향을 줄 수 있습니다.`,
       interaction:
+        interactions.join(" ") ||
         "와파린의 효과는 비타민 K 섭취량에 따라 달라질 수 있습니다. 섭취량이 갑자기 늘거나 줄면 INR도 변할 수 있습니다.",
       watch:
         "최근 INR이 달라졌다면 제품이나 식사에서 비타민 K 섭취량이 바뀐 시점과 비교해야 합니다.",
       references: [ods.vitaminK, study(0), study(1)],
     };
+  }
   if (questionId === "A2") {
     const hasAbdominalPain = /(?:배가\s*아|복통)/.test(input.condition);
     const baseVerdict =
@@ -578,6 +618,23 @@ function buildAssessment(
   }
   if (questionId === "B1") {
     const highUrineCalcium = Number.isFinite(lab) && lab > 275;
+    const interactions: string[] = [];
+    if (hasMedication(/갑상선약|레보티록신/))
+      interactions.push(
+        "칼슘은 레보티록신의 흡수를 떨어뜨릴 수 있어 복용 시간 간격이 중요합니다.",
+      );
+    if (hasMedication(/퀴놀론|항생제/))
+      interactions.push(
+        "칼슘은 퀴놀론계 항생제의 흡수를 떨어뜨릴 수 있어 복용 시간 간격이 중요합니다.",
+      );
+    if (hasMedication(/돌루테그라비르/))
+      interactions.push(
+        "칼슘은 돌루테그라비르의 흡수를 떨어뜨릴 수 있어 복용 시간 간격이 중요합니다.",
+      );
+    if (hasMedication(/리튬/))
+      interactions.push(
+        "리튬은 혈중 칼슘을 높일 수 있어 칼슘 보충제와 함께 먹을 때 칼슘 수치를 봐야 합니다.",
+      );
     return {
       context,
       verdict: highUrineCalcium
@@ -589,6 +646,7 @@ function buildAssessment(
         ? `성인 칼슘 상한은 음식과 보충제를 합쳐 2,000–2,500 mg/day입니다. 보충제 ${input.dose}만으로 상한을 넘지는 않습니다.`
         : "성인 칼슘 상한은 음식과 보충제를 합쳐 2,000–2,500 mg/day입니다.",
       interaction:
+        interactions.join(" ") ||
         "레보티록신, 퀴놀론계 항생제, 돌루테그라비르의 흡수를 떨어뜨릴 수 있어 복용 시간 간격이 중요합니다.",
       watch: highUrineCalcium
         ? `${lab} mg/day는 NIH가 제시한 고칼슘뇨 기준보다 높습니다. 결석 병력까지 있으므로 총 칼슘 섭취량과 복용 시점을 조정할 근거가 됩니다.`
@@ -596,7 +654,22 @@ function buildAssessment(
       references: [ods.calcium, study(0), study(1)],
     };
   }
-  if (questionId === "B2")
+  if (questionId === "B2") {
+    const interactions: string[] = [];
+    if (hasMedication(/티아지드|이뇨제/))
+      interactions.push(
+        "티아지드 이뇨제는 소변으로 배출되는 칼슘을 줄여 고칼슘혈증 위험을 높일 수 있습니다.",
+      );
+    if (hasMedication(/올리스타트/))
+      interactions.push("올리스타트는 비타민 D 흡수를 낮출 수 있습니다.");
+    if (hasMedication(/스테로이드|프레드니/))
+      interactions.push(
+        "스테로이드는 칼슘 흡수와 비타민 D 대사에 영향을 줄 수 있습니다.",
+      );
+    if (hasMedication(/스타틴/))
+      interactions.push(
+        "고용량 비타민 D는 일부 스타틴의 작용에 영향을 줄 수 있습니다.",
+      );
     return {
       context,
       verdict:
@@ -605,11 +678,13 @@ function buildAssessment(
           : "현재 용량은 성인 상한 아래이지만 결석·고칼슘뇨가 있으면 칼슘 검사와 함께 판단합니다.",
       dose: "성인 비타민 D 상한은 4,000 IU/day입니다. 상한은 권장량이 아니라 넘기지 말아야 할 총량 기준입니다.",
       interaction:
+        interactions.join(" ") ||
         "티아지드 이뇨제는 고칼슘혈증 위험을 높일 수 있고, 올리스타트는 비타민 D 흡수를 낮출 수 있습니다.",
       watch:
         "25(OH)D만 보지 말고 혈청 칼슘과 24시간 요중 칼슘도 함께 봐야 합니다.",
       references: [ods.vitaminD, study(0), study(1)],
     };
+  }
   const vitaminCHighRisk = /(옥살산|결석|신장기능|신장 질환|신장질환)/.test(
     `${input.condition} ${input.labs}`,
   );
@@ -695,10 +770,7 @@ export async function POST(req: Request) {
         selected: evidenceSelection.selected.length,
         total_candidates: evidenceSelection.all.length,
         direct_medication_matches: evidenceSelection.directMedicationMatches,
-        medication_name:
-          b.medication && !/없음|모르겠/.test(b.medication)
-            ? b.medication
-            : "",
+        medication_name: compactMultiValue(medicationValues(b.medication)),
         method:
           "체계적 문헌고찰·메타분석·임상시험을 먼저 보고, 복용 중인 약과 병력·증상을 직접 다룬 문헌을 위에 배치했습니다.",
       },

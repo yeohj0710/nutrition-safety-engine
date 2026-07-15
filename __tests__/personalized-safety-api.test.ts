@@ -208,6 +208,77 @@ describe("personalized safety API", () => {
     expect(body.assessment.interaction).not.toContain("아픽사반");
     expect(body.assessment.context).toContain("현재 불편한 증상은 없습니다.");
   });
+  it("describes multiple medicines and symptoms without collapsing them", async () => {
+    delete process.env.OPENAI_API_KEY;
+    const response = await POST(
+      new Request("http://local/api/personalized-safety", {
+        method: "POST",
+        body: JSON.stringify({
+          ingredient: "오메가-3",
+          dose: "2000 mg/day",
+          medication: "와파린 · 아스피린",
+          condition: "코피가 남 · 멍이 잘 듦",
+        }),
+      }),
+    );
+    const body = await response.json();
+
+    expect(response.status).toBe(200);
+    expect(body.assessment.context).toContain(
+      "와파린·아스피린을 함께 복용 중입니다.",
+    );
+    expect(body.assessment.context).toContain("현재 코피가 납니다.");
+    expect(body.assessment.context).toContain("현재 멍이 잘 듭니다.");
+    expect(body.assessment.interaction).toContain(
+      "와파린·아스피린과 오메가-3",
+    );
+    expect(body.ai_summary).not.toContain("멍이 잘 듦도 확인되고요");
+  });
+  it.each([
+    [
+      "비타민 K",
+      "100 mcg/day",
+      "항생제 · 올리스타트",
+      [
+        "장내 비타민 K 생성이 줄어 비타민 K 상태를 낮출 수",
+        "비타민 K 흡수를 낮출 수",
+      ],
+    ],
+    [
+      "칼슘",
+      "500 mg/day",
+      "갑상선약 · 리튬",
+      ["레보티록신의 흡수를 떨어뜨릴 수", "혈중 칼슘을 높일 수"],
+    ],
+    [
+      "비타민 D",
+      "2000 IU/day",
+      "스테로이드 · 스타틴",
+      ["비타민 D 대사에 영향을 줄 수", "일부 스타틴의 작용에 영향을 줄 수"],
+    ],
+  ])(
+    "explains each selected medicine for %s",
+    async (ingredient, dose, medication, expectedPhrases) => {
+      delete process.env.OPENAI_API_KEY;
+      const response = await POST(
+        new Request("http://local/api/personalized-safety", {
+          method: "POST",
+          body: JSON.stringify({
+            ingredient,
+            dose,
+            medication,
+            condition: "특별한 증상 없음",
+          }),
+        }),
+      );
+      const body = await response.json();
+
+      expect(response.status).toBe(200);
+      for (const phrase of expectedPhrases) {
+        expect(body.assessment.interaction).toContain(phrase);
+      }
+    },
+  );
   it("prioritizes abdominal-pain triage for an anticoagulant user", async () => {
     delete process.env.OPENAI_API_KEY;
     const response = await POST(
