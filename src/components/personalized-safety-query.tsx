@@ -298,11 +298,13 @@ export function PersonalizedSafetyQuery() {
         복용 조건에 따른 보충제 안전성 확인
       </h2>
       <div className="mt-4 border-l-2 border-blue-500 pl-3.5">
-        <p className="text-xs font-bold text-blue-600">AI 입력 해석</p>
+        <p className="text-xs font-bold text-blue-600">
+          자유 입력을 구조화하는 AI
+        </p>
         <p className="mt-1 break-keep text-sm leading-6 text-stone-600">
-          약 이름·증상·검사 결과는 평소 표현대로 적어도 돼요. AI가 전체
-          의미를 파악해 결과 문장을 정리하고, 안전성 판단에는 검증된 기준과
-          문헌을 사용해요.
+          정해진 형식이나 순서 없이 적어도 돼요. AI 해석 엔진이 약
+          이름·복용량, 병력·증상, 검사 수치를 자동으로 구조화하고, 검증된
+          기준과 근거 문헌에 연결해 안전성 결과를 정리해요.
         </p>
       </div>
       <details
@@ -598,9 +600,7 @@ export function PersonalizedSafetyQuery() {
                 {(result.narrative_assessment.ai_used ||
                   result.input_interpretation.ai_used) && (
                   <span className="rounded-full bg-blue-50 px-2 py-1 text-[10px] font-bold text-blue-700">
-                    {result.narrative_assessment.ai_used
-                      ? "AI 문장 정리"
-                      : "AI 입력 해석"}
+                    AI 해석 적용
                   </span>
                 )}
               </div>

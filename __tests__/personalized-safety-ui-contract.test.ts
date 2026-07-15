@@ -57,10 +57,16 @@ describe("personalized safety UI contract", () => {
   });
 
   it("explains AI interpretation without presenting it as the safety rule", () => {
-    expect(component).toContain("AI 입력 해석");
+    expect(component).toContain("자유 입력을 구조화하는 AI");
     expect(component).toContain(
-      "안전성 판단에는 검증된 기준과",
+      "정해진 형식이나 순서 없이 적어도 돼요.",
     );
+    expect(component).toContain("AI 해석 엔진이 약");
+    expect(component).toContain("검사 수치를 자동으로 구조화하고");
+    expect(component).toContain("검증된");
+    expect(component).toContain("기준과 근거 문헌에 연결해");
+    expect(component).toContain("문헌에 연결해 안전성 결과를 정리해요.");
+    expect(component).toContain("AI 해석 적용");
     expect(component).toContain("result.input_interpretation.ai_used");
   });
 
