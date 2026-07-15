@@ -107,46 +107,6 @@ const guidance: Record<
 function numericTokens(value: string) {
   return new Set(value.match(/\d+(?:[.,]\d+)?/g) ?? []);
 }
-function isGroundedSummary(
-  text: string,
-  input: {
-    summary: string;
-    evidenceSummary: string;
-    profile: string[];
-    checks: string[];
-    why: string;
-    next: string[];
-  },
-) {
-  if (
-    !text ||
-    text.length > 700 ||
-    /https?:\/\//i.test(text) ||
-    /입력(?:되|하|된)|입력값|프로필|대상자|사용자|검사값/.test(text)
-  )
-    return false;
-  if (!text.includes("그래서 지금")) return false;
-  if (
-    /(?:확인|기록|비교|계산|문의|상의)(?:하세요|해 ?주세요|해 ?두세요|받으세요)/.test(
-      text,
-    )
-  )
-    return false;
-  const required = numericTokens(
-    `${input.profile.join(" ")} ${input.evidenceSummary}`,
-  );
-  const actual = numericTokens(text);
-  if ([...required].some((token) => !actual.has(token))) return false;
-  const allowed = numericTokens(JSON.stringify(input));
-  if ([...actual].some((token) => !allowed.has(token))) return false;
-  if (
-    /(?:복용|용량).{0,12}(?:시작|중단|증량|감량)(?:하세요|하십시오)|안전합니다|금지합니다|진단됩니다/.test(
-      text,
-    )
-  )
-    return false;
-  return true;
-}
 type SummaryInput = {
   questionId: string;
   ingredient: string;
@@ -181,14 +141,6 @@ const actionPlans: Record<string, string> = {
   B1: "그래서 지금 볼 것은 제품 라벨의 원소 칼슘, 음식으로 먹는 칼슘, 결석 성분과 24시간 요중 칼슘입니다. 600 mg/day라는 숫자만으로 많고 적음을 정할 수는 없습니다.",
   B2: "그래서 지금 볼 것은 모든 제품의 비타민 D 총량과 복용 기간, 같은 시점의 25(OH)D·혈청 칼슘·24시간 요중 칼슘 변화입니다.",
   B3: "그래서 지금 볼 것은 여러 제품에 든 비타민 C의 하루 총량과 복용 기간, 결석 성분·신장기능·요중 옥살산의 변화입니다.",
-};
-const conciseSummaries: Record<string, string> = {
-  "비타민 K":
-    "비타민 K는 무조건 줄이기보다 섭취량을 일정하게 유지하는 것이 중요합니다.",
-  "오메가-3": "EPA와 DHA 합산량과 출혈 증상을 함께 확인해야 합니다.",
-  칼슘: "음식으로 먹는 칼슘과 보충제 칼슘을 나누어 확인해야 합니다.",
-  "비타민 D": "비타민 D 복용량과 칼슘 관련 검사값을 함께 확인해야 합니다.",
-  "비타민 C": "비타민 C 총량과 결석·신장 관련 정보를 함께 확인해야 합니다.",
 };
 function describeConditionInCounseling(value: string) {
   if (/자주 남$/.test(value)) return value.replace(/자주 남$/, "자주 나고요");
@@ -227,6 +179,11 @@ function conditionValues(value: string) {
 function compactMultiValue(values: string[]) {
   return values.join("·");
 }
+function isSentenceLikeFreeText(value: string) {
+  return /(?:다|요|죠|음|함|같아|같음|모름|들음)\s*[.!?。！？]*$/.test(
+    value.trim(),
+  );
+}
 function describeConditionForAssessment(value: string) {
   if (!value) return "";
   if (value === "특별한 증상 없음") return "현재 불편한 증상은 없습니다.";
@@ -249,7 +206,10 @@ function describeConditionForAssessment(value: string) {
   if (/칼슘 수치가 높다고 들음/.test(value))
     return "혈중 칼슘 수치가 높다는 말을 들었습니다.";
   if (/중$/.test(value)) return `${value}입니다.`;
-  return `${withSubjectParticle(value)} 있습니다.`;
+  if (!isSentenceLikeFreeText(value))
+    return `${withSubjectParticle(value)} 있습니다.`;
+  const quoted = value.replace(/[.!?。！？]+$/, "").trim();
+  return `증상·병력으로 “${quoted}”라고 적은 내용을 반영했습니다.`;
 }
 function buildProfileSentence(input: SummaryInput) {
   const sentences: string[] = [];
@@ -295,10 +255,9 @@ function buildSymptomAdvice(input: SummaryInput) {
     return "배가 아픈 증상은 오메가-3 근거와 별도로 봐야 합니다. 검은변·혈변·토혈이 함께 있으면 바로 진료가 필요한 신호입니다.";
   return "배가 아픈 증상은 보충제 근거와 별도로 봐야 합니다.";
 }
-export async function summarize(input: SummaryInput) {
-  const conciseSummary = conciseSummaries[input.ingredient] ?? input.summary;
+function buildSummaryFallback(input: SummaryInput) {
   const symptomAdvice = buildSymptomAdvice(input);
-  const fallback = [
+  return [
     symptomAdvice,
     buildProfileSentence(input),
     `연구 결과를 같이 보면, ${input.evidenceSummary}`,
@@ -307,49 +266,6 @@ export async function summarize(input: SummaryInput) {
   ]
     .filter(Boolean)
     .join("\n\n");
-  if (!process.env.OPENAI_API_KEY) return fallback;
-  try {
-    const modelInput = { ...input, summary: conciseSummary };
-    const res = await fetch("https://api.openai.com/v1/responses", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      signal: AbortSignal.timeout(8000),
-      body: JSON.stringify({
-        model: process.env.OPENAI_SUMMARY_MODEL ?? "gpt-5-mini",
-        reasoning: { effort: "minimal" },
-        input: [
-          {
-            role: "system",
-            content:
-              "약사가 상담실에서 차분하게 설명하듯 쓴다. 첫 문단은 '말씀해 주신 내용을 보면'으로 시작해 복용 중인 성분·용량, 병용약, 증상·병력과 최근 검사 결과를 존댓말로 자연스럽게 되짚는다. 둘째 문단은 '연구 결과를 같이 보면'으로 시작해 evidenceSummary의 연구 설계, 비교 용량과 수치를 빠뜨리지 않고 설명한다. 셋째 문단은 '다만'으로 시작해 현재 상황에 직접 적용할 수 있는 범위와 아직 답할 수 없는 범위를 설명한다. 마지막 문단은 '그래서 지금 볼 것은'으로 시작해 판단에 필요한 항목과 그 의미를 평서문으로 요약한다. '확인하세요', '기록하세요', '비교하세요', '보여 주세요', '확인받으세요', '상의하세요' 같은 지시형 문장으로 끝내지 않는다. 실제 위험 신호가 명시된 경우에만 진료 필요성을 말한다. 임의로 복용 시작·중단·증량·감량을 지시하지 않는다. 문단 사이는 빈 줄로 나눈다. 전체 700자 이하로 쓴다. 필드나 양식을 읽듯 쓰지 않는다. '입력되었습니다', '입력한 내용', '입력값', '대상자', '사용자', '프로필', '검사값', '종합하면', '핵심은', '상담 전에는', '현재 입력한 조건'은 쓰지 않는다. 모든 숫자와 단위는 그대로 포함한다. 서로 다른 연구 결과를 하나의 안전 상한처럼 합치지 않는다. 진단이나 위험을 단정하지 않는다.",
-          },
-          { role: "user", content: JSON.stringify(modelInput) },
-        ],
-        max_output_tokens: 700,
-      }),
-    });
-    if (!res.ok) return fallback;
-    const data = await res.json();
-    const text =
-      String(
-        data.output_text ??
-          data.output
-            ?.flatMap(
-              (x: { content?: Array<{ text?: string }> }) => x.content ?? [],
-            )
-            .map((x: { text?: string }) => x.text ?? "")
-            .join("") ??
-          fallback,
-      ).trim() || fallback;
-    if (!isGroundedSummary(text, { ...input, summary: conciseSummary }))
-      return fallback;
-    return symptomAdvice ? `${symptomAdvice}\n\n${text}` : text;
-  } catch {
-    return fallback;
-  }
 }
 const inputLimits = {
   ingredient: 20,
@@ -731,7 +647,11 @@ function buildAssessment(
       ? `${withObjectParticle(medicationName)} 함께 복용 중입니다.`
       : "",
     conditionText,
-    input.labs ? `최근 검사 결과는 ${input.labs}입니다.` : "",
+    input.labs
+      ? isSentenceLikeFreeText(input.labs)
+        ? `최근 검사 결과로 “${input.labs.replace(/[.!?。！？]+$/, "").trim()}”라고 적은 내용을 반영했습니다.`
+        : `최근 검사 결과는 ${input.labs}입니다.`
+      : "",
   ]
     .filter(Boolean)
     .join(" ");
@@ -921,6 +841,227 @@ function buildAssessment(
     references: [ods.vitaminC, study(0), study(1)],
   };
 }
+type RuleAssessment = ReturnType<typeof buildAssessment>;
+type NarrativeAssessment = {
+  ai_used: boolean;
+  conclusion: string;
+  context: string;
+  explanation: string;
+  next: string;
+};
+const narrativeKeys = [
+  "conclusion",
+  "context",
+  "explanation",
+  "next",
+] as const;
+const narrativeClinicalConcepts: GroundedConcept[] = [
+  {
+    candidate: /복통|복부.{0,5}통증|배.{0,5}아프|통증/,
+    source: /복통|복부.{0,5}통증|배.{0,5}아프|통증/,
+  },
+  { candidate: /혈뇨|소변.{0,6}피/, source: /혈뇨|소변.{0,6}피/ },
+  { candidate: /고열|발열/, source: /고열|발열/ },
+  { candidate: /오심|메스꺼|구토/, source: /오심|메스꺼|구토/ },
+  { candidate: /옆구리/, source: /옆구리/ },
+  { candidate: /크레아티닌/, source: /크레아티닌/ },
+  { candidate: /설사/, source: /설사/ },
+  { candidate: /어지|실신|의식/, source: /어지|실신|의식/ },
+  { candidate: /응급|119/, source: /응급|119/ },
+  { candidate: /진료|의료기관/, source: /진료|의료기관/ },
+  { candidate: /즉시/, source: /즉시/ },
+];
+function assessmentCopy(assessment: RuleAssessment) {
+  return {
+    context: assessment.context,
+    verdict: assessment.verdict,
+    dose: assessment.dose,
+    interaction: assessment.interaction,
+    watch: assessment.watch,
+  };
+}
+function preservesDecision(verdict: string, conclusion: string) {
+  const checks: Array<[RegExp, RegExp]> = [
+    [
+      /판단할 수 없습니다/,
+      /판단할 수 없|판단하기 어렵|판단할 근거가 부족/,
+    ],
+    [
+      /줄이는 (?:편|쪽)|유지하지|피해야/,
+      /줄이|감량|낮추|유지하지|피해야|피하는/,
+    ],
+    [
+      /안전 범위 안|상한 아래|상한보다 낮/,
+      /안전 범위|상한(?:보다)? (?:아래|미만|낮)|기준 (?:안|이내)/,
+    ],
+    [/상한.{0,20}보다 높|기준.{0,20}보다 높/, /높|초과/],
+    [/매일 비슷한 양|일정하게/, /비슷한|일정/],
+    [/와 같습니다/, /같|동일|상한선/],
+  ];
+  return checks.every(
+    ([sourcePattern, outputPattern]) =>
+      !sourcePattern.test(verdict) || outputPattern.test(conclusion),
+  );
+}
+function isGroundedNarrative(
+  candidate: Omit<NarrativeAssessment, "ai_used">,
+  source: Record<string, unknown>,
+) {
+  const combined = narrativeKeys.map((key) => candidate[key]).join(" ");
+  if (
+    narrativeKeys.some(
+      (key) =>
+        typeof candidate[key] !== "string" ||
+        !candidate[key].trim() ||
+        candidate[key].length > 320,
+    ) ||
+    combined.length > 950 ||
+    /https?:\/\//i.test(combined) ||
+    /입력(?:되|하|된)|입력값|프로필|대상자|사용자|같아(?:요)?입니다|같다고.{0,12}입니다|원래 조건|조건대로|작성 규칙|요청대로|지침|제시했습니다/.test(
+      combined,
+    ) ||
+    /확인해야.{0,24}판단할 수 없습니다|\/day으로/.test(combined) ||
+    /(?:복용|용량).{0,12}(?:시작|중단|증량)(?:하세요|하십시오)|안전합니다|진단됩니다/.test(
+      combined,
+    )
+  )
+    return false;
+  const submittedInput = source.submitted_input as Partial<ParsedInput>;
+  if (
+    /같아|같은|기억|들었|정확하지|확실하지/.test(
+      String(submittedInput.labs ?? ""),
+    ) &&
+    !/같|기억|들었|정확하지|확실하지|추정/.test(candidate.context)
+  )
+    return false;
+  const sourceText = JSON.stringify(source);
+  const actualNumbers = numericTokens(combined);
+  const allowedNumbers = numericTokens(sourceText);
+  const requiredNumbers = numericTokens(
+    JSON.stringify({
+      rule_assessment: source.rule_assessment,
+      symptom_note: source.symptom_note,
+    }),
+  );
+  if ([...actualNumbers].some((token) => !allowedNumbers.has(token)))
+    return false;
+  if ([...requiredNumbers].some((token) => !actualNumbers.has(token)))
+    return false;
+  if (
+    !conceptsAreGrounded(sourceText, combined, medicationConcepts) ||
+    !conceptsAreGrounded(sourceText, combined, conditionConcepts) ||
+    !conceptsAreGrounded(sourceText, combined, labConcepts) ||
+    !conceptsAreGrounded(sourceText, combined, narrativeClinicalConcepts)
+  )
+    return false;
+  if (
+    ["근접", "초과", "중단", "증량", "시작", "권장", "규정"].some(
+      (term) => combined.includes(term) && !sourceText.includes(term),
+    ) ||
+    (/철 흡수/.test(combined) &&
+      /철 과다증/.test(sourceText) &&
+      !/철 과다증/.test(combined)) ||
+    (/(?:하세요|마세요|하십시오)/.test(combined) &&
+      !/(?:하세요|마세요|하십시오)/.test(String(source.symptom_note ?? "")))
+  )
+    return false;
+  const ruleAssessment = source.rule_assessment as { verdict?: string };
+  return preservesDecision(
+    String(ruleAssessment.verdict ?? ""),
+    candidate.conclusion,
+  );
+}
+async function generateNarrativeAssessment({
+  submitted,
+  interpreted,
+  assessment,
+  symptomNote,
+  evidenceLimit,
+}: {
+  submitted: ParsedInput;
+  interpreted: ParsedInput;
+  assessment: RuleAssessment;
+  symptomNote: string;
+  evidenceLimit: string;
+}): Promise<NarrativeAssessment> {
+  const fallback: NarrativeAssessment = {
+    ai_used: false,
+    conclusion: assessment.verdict,
+    context: assessment.context,
+    explanation: `${assessment.dose} ${assessment.interaction}`,
+    next: [symptomNote, assessment.watch].filter(Boolean).join(" "),
+  };
+  if (!process.env.OPENAI_API_KEY) return fallback;
+  const source = {
+    submitted_input: submitted,
+    interpreted_input: interpreted,
+    rule_assessment: assessmentCopy(assessment),
+    symptom_note: symptomNote,
+    evidence_limit: evidenceLimit,
+  };
+  try {
+    const response = await fetch("https://api.openai.com/v1/responses", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      signal: AbortSignal.timeout(8000),
+      body: JSON.stringify({
+        model: process.env.OPENAI_SUMMARY_MODEL ?? "gpt-5-mini",
+        reasoning: { effort: "minimal" },
+        input: [
+          {
+            role: "system",
+            content:
+              "보충제 안전성 결과를 일반인이 바로 이해할 수 있는 한국어로 작성한다. submitted_input과 interpreted_input을 통째로 읽고, rule_assessment의 판단을 결론으로 사용한다. AI가 새 판단을 만들거나 판단 방향을 바꾸지 않는다. 단어 뒤에 조사나 '-입니다'를 기계적으로 붙이지 말고 전체 의미를 파악해 자연스러운 문장으로 다시 쓴다. conclusion은 유지·감량·총량 확인 중 필요한 결론을 첫 문장에 명확히 쓴다. 복용량을 모르는 경우에는 '하루 총량을 확인하기 전에는 유지 여부를 판단할 수 없습니다'처럼 조건과 결론의 순서를 분명히 쓴다. context는 판단에 필요한 현재 복용 상황, 약, 증상, 검사 결과만 자연스럽게 연결한다. 사용자가 '같다', '기억한다', '잘 모르겠다'고 쓴 내용은 확정된 기록으로 바꾸지 말고 '낮았던 것으로 기억합니다'처럼 불확실성을 유지한다. explanation은 rule_assessment의 용량 기준과 상호작용, evidence_limit의 직접성 한계만 연결해 설명한다. 숫자와 단위 뒤에 억지로 조사를 붙이지 말고 '상한은 2,000 mg/day입니다'처럼 문장을 끝낸다. 철 흡수 영향을 쓰려면 '철 과다증에서는'이라는 조건을 같은 문장에 둔다. next는 rule_assessment.watch와 symptom_note만 자연스럽게 다시 쓴다. 원문에 없는 증상·검사·진료 긴급도나 별도 의학 지식을 추가하지 않는다. 단순히 의료진과 상의하라는 말로 끝내지 않는다. symptom_note에 긴급 진료 문구가 있을 때만 그 긴급도를 그대로 유지한다. 원문과 rule_assessment에 없는 약, 질환, 수치, 단위, 진단, 복용 지시를 만들지 않는다. 상한 수치를 임의로 위험이 시작되는 기준이나 '근접한 고용량'으로 바꾸지 않는다. 제품 라벨의 총량을 권장량이라고 부르지 않는다. 모든 수치와 단위를 그대로 보존한다. 긴급 진료 문구를 그대로 옮기는 경우 외에는 '하세요', '마세요' 같은 명령형을 쓰지 않는다. 작성 규칙을 지켰다는 설명이나 '원래 조건대로', '제시했습니다' 같은 내부 작업 문구를 결과에 쓰지 않는다. '입력되었습니다', '사용자', '대상자', '프로필', '같아요입니다', '종합하면', '핵심은'은 쓰지 않는다. 네 항목 전체는 950자 이하로 쓴다.",
+          },
+          { role: "user", content: JSON.stringify(source) },
+        ],
+        text: {
+          format: {
+            type: "json_schema",
+            name: "personalized_safety_narrative",
+            strict: true,
+            schema: {
+              type: "object",
+              additionalProperties: false,
+              properties: {
+                conclusion: { type: "string" },
+                context: { type: "string" },
+                explanation: { type: "string" },
+                next: { type: "string" },
+              },
+              required: narrativeKeys,
+            },
+          },
+        },
+        max_output_tokens: 700,
+      }),
+    });
+    if (!response.ok) return fallback;
+    const data = await response.json();
+    const outputText = String(
+      data.output_text ??
+        data.output
+          ?.flatMap(
+            (item: { content?: Array<{ text?: string }> }) =>
+              item.content ?? [],
+          )
+          .map((item: { text?: string }) => item.text ?? "")
+          .join("") ??
+        "",
+    ).trim();
+    const parsed = JSON.parse(outputText) as Omit<
+      NarrativeAssessment,
+      "ai_used"
+    >;
+    if (!isGroundedNarrative(parsed, source)) return fallback;
+    return { ai_used: true, ...parsed };
+  } catch {
+    return fallback;
+  }
+}
 export async function POST(req: Request) {
   const submitted = parseInput(await req.json().catch(() => null));
   if (!submitted)
@@ -939,32 +1080,7 @@ export async function POST(req: Request) {
     );
   const r = rules.find((x) => x.question_id === q)!;
   const g = guidance[q];
-  const submittedProfile = [
-    submitted.dose && `하루 섭취량 ${submitted.dose}`,
-    submitted.medication &&
-      !/없음|모르겠/.test(submitted.medication) &&
-      `함께 먹는 약 ${submitted.medication}`,
-    submitted.condition &&
-      `${/(?:아파|통증|출혈|어지|구토|설사|코피|멍)/.test(submitted.condition) ? "현재 증상" : "증상·병력"} ${submitted.condition}`,
-    submitted.labs && `검사 결과 ${submitted.labs}`,
-  ].filter(Boolean) as string[];
-  const [inputInterpretation, ai_summary] = await Promise.all([
-    interpretFreeText(submitted),
-    summarize({
-      questionId: q,
-      ingredient: submitted.ingredient,
-      dose: submitted.dose,
-      medication: submitted.medication,
-      condition: submitted.condition,
-      labs: submitted.labs,
-      summary: g.summary,
-      evidenceSummary: evidenceSummaries[q],
-      profile: submittedProfile,
-      checks: g.checks,
-      why: g.why,
-      next: g.next,
-    }),
-  ]);
+  const inputInterpretation = await interpretFreeText(submitted);
   const b = inputInterpretation.input;
   const entered = [
     b.dose && `하루 섭취량 ${b.dose}`,
@@ -977,6 +1093,33 @@ export async function POST(req: Request) {
   ].filter(Boolean) as string[];
   const evidenceSelection = selectEvidence(r.all_evidence, b);
   const assessment = buildAssessment(q, b, evidenceSelection.selected);
+  const summaryInput: SummaryInput = {
+    questionId: q,
+    ingredient: b.ingredient,
+    dose: b.dose,
+    medication: b.medication,
+    condition: b.condition,
+    labs: b.labs,
+    summary: g.summary,
+    evidenceSummary: evidenceSummaries[q],
+    profile: entered,
+    checks: g.checks,
+    why: g.why,
+    next: g.next,
+  };
+  const narrativeAssessment = await generateNarrativeAssessment({
+    submitted,
+    interpreted: b,
+    assessment,
+    symptomNote: buildSymptomAdvice(summaryInput),
+    evidenceLimit: evidenceLimits[q],
+  });
+  const ai_summary = narrativeAssessment.ai_used
+    ? narrativeKeys
+        .map((key) => narrativeAssessment[key])
+        .filter(Boolean)
+        .join("\n\n")
+    : buildSummaryFallback(summaryInput);
   return NextResponse.json(
     {
       question_id: q,
@@ -984,6 +1127,7 @@ export async function POST(req: Request) {
       title: g.title,
       summary: g.summary,
       ai_summary,
+      narrative_assessment: narrativeAssessment,
       input_interpretation: {
         ai_used: inputInterpretation.aiUsed,
         changed: inputInterpretation.changed,

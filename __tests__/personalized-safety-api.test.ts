@@ -498,6 +498,136 @@ describe("personalized safety API", () => {
     expect(body.assessment.context).toContain("현재 코피가 자주 납니다.");
     expect(body.assessment.context).toContain("2,000 mg/day");
   });
+  it("writes the displayed assessment from the full interpreted context", async () => {
+    process.env.OPENAI_API_KEY = "test-key";
+    let narrativeRequest: Record<string, unknown> | null = null;
+    vi.spyOn(globalThis, "fetch").mockImplementation(async (_url, init) => {
+      const request = JSON.parse(String(init?.body ?? "{}"));
+      const formatName = request.text?.format?.name;
+      if (formatName === "supplement_input_interpretation") {
+        return new Response(
+          JSON.stringify({
+            output_text: JSON.stringify({
+              dose: "잘 모르겠어요",
+              medication: "",
+              condition: "배가 아픔",
+              labs: "비타민 D 수치가 낮았다고 들음",
+            }),
+          }),
+          { status: 200, headers: { "content-type": "application/json" } },
+        );
+      }
+      if (formatName === "personalized_safety_narrative") {
+        narrativeRequest = JSON.parse(request.input[1].content);
+        return new Response(
+          JSON.stringify({
+            output_text: JSON.stringify({
+              conclusion:
+                "하루 섭취량을 모르는 상태라 지금 복용량을 유지해도 되는지는 판단할 수 없습니다. 제품 라벨에서 비타민 C 총량을 먼저 확인해야 합니다.",
+              context:
+                "비타민 C를 복용 중이고 현재 배가 아픕니다. 최근 검사에서는 비타민 D 수치가 낮다는 설명을 들었습니다.",
+              explanation:
+                "성인 비타민 C 상한은 2,000 mg/day이지만, 이 수치만으로 현재 복용량의 안전성을 판단할 수는 없습니다. 철 과다증이 있다면 비타민 C가 철 흡수를 늘릴 수 있습니다.",
+              next:
+                "복통은 비타민 C 근거와 별도로 살펴야 합니다. 요중 옥살산 상승, 칼슘옥살산 결석 또는 신장기능 저하가 확인되면 고용량을 유지하지 않는 편이 낫습니다.",
+            }),
+          }),
+          { status: 200, headers: { "content-type": "application/json" } },
+        );
+      }
+      throw new Error(`unexpected model request: ${formatName}`);
+    });
+
+    const response = await POST(
+      new Request("http://local/api/personalized-safety", {
+        method: "POST",
+        body: JSON.stringify({
+          ingredient: "비타민 C",
+          dose: "잘 모르겠어요",
+          condition: "배가 아프다.",
+          labs: "비타민D가 낮다고했던거같아요",
+        }),
+      }),
+    );
+    const body = await response.json();
+
+    expect(response.status).toBe(200);
+    expect(narrativeRequest).toEqual(
+      expect.objectContaining({
+        submitted_input: expect.objectContaining({
+          condition: "배가 아프다.",
+          labs: "비타민D가 낮다고했던거같아요",
+        }),
+        interpreted_input: expect.objectContaining({
+          condition: "배가 아픔",
+          labs: "비타민 D 수치가 낮았다고 들음",
+        }),
+        rule_assessment: expect.objectContaining({
+          verdict: expect.stringContaining("판단할 수 없습니다"),
+        }),
+      }),
+    );
+    expect(body.narrative_assessment.ai_used).toBe(true);
+    expect(body.narrative_assessment.context).toBe(
+      "비타민 C를 복용 중이고 현재 배가 아픕니다. 최근 검사에서는 비타민 D 수치가 낮다는 설명을 들었습니다.",
+    );
+    expect(JSON.stringify(body.narrative_assessment)).not.toContain(
+      "낮다고했던거같아요입니다",
+    );
+  });
+  it("rejects a narrative that invents symptoms or emergency guidance", async () => {
+    process.env.OPENAI_API_KEY = "test-key";
+    vi.spyOn(globalThis, "fetch").mockImplementation(async (_url, init) => {
+      const request = JSON.parse(String(init?.body ?? "{}"));
+      const formatName = request.text?.format?.name;
+      if (formatName === "supplement_input_interpretation") {
+        return new Response(
+          JSON.stringify({
+            output_text: JSON.stringify({
+              dose: "잘 모르겠어요",
+              medication: "",
+              condition: "배가 아픔",
+              labs: "비타민 D 수치가 낮았다고 들음",
+            }),
+          }),
+          { status: 200, headers: { "content-type": "application/json" } },
+        );
+      }
+      return new Response(
+        JSON.stringify({
+          output_text: JSON.stringify({
+            conclusion:
+              "하루 섭취량을 몰라 현재 용량을 유지해도 되는지는 판단할 수 없습니다.",
+            context:
+              "비타민 C를 복용 중이고 배가 아프며 비타민 D 수치가 낮았다는 설명을 들었습니다.",
+            explanation:
+              "성인 비타민 C 상한은 2,000 mg/day이지만 결석 위험군의 안전선이라는 뜻은 아닙니다. 철 과다증에서는 철 흡수를 늘릴 수 있습니다.",
+            next:
+              "혈뇨·고열·오심이 나타나면 즉시 응급실로 가야 합니다. 요중 옥살산 상승도 살펴야 합니다.",
+          }),
+        }),
+        { status: 200, headers: { "content-type": "application/json" } },
+      );
+    });
+
+    const response = await POST(
+      new Request("http://local/api/personalized-safety", {
+        method: "POST",
+        body: JSON.stringify({
+          ingredient: "비타민 C",
+          dose: "잘 모르겠어요",
+          condition: "배가 아프다.",
+          labs: "비타민D가 낮다고했던거같아요",
+        }),
+      }),
+    );
+    const body = await response.json();
+
+    expect(body.narrative_assessment.ai_used).toBe(false);
+    expect(JSON.stringify(body.narrative_assessment)).not.toMatch(
+      /혈뇨|고열|오심|응급실/,
+    );
+  });
   it("rejects an AI interpretation that adds a number", async () => {
     process.env.OPENAI_API_KEY = "test-key";
     vi.spyOn(globalThis, "fetch").mockImplementation(async (_url, init) => {

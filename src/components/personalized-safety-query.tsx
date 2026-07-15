@@ -16,6 +16,13 @@ type Result = {
   title: string;
   summary: string;
   ai_summary: string;
+  narrative_assessment: {
+    ai_used: boolean;
+    conclusion: string;
+    context: string;
+    explanation: string;
+    next: string;
+  };
   input_interpretation: {
     ai_used: boolean;
     changed: boolean;
@@ -104,7 +111,7 @@ function EvidenceSentence({
       >
         근거
       </a>
-      <span className="pointer-events-auto absolute bottom-[calc(100%+0.375rem)] left-0 z-50 hidden w-80 max-w-[calc(100vw-2rem)] rounded-xl border border-blue-100 bg-white p-3 text-left text-xs font-medium leading-5 text-stone-700 shadow-[0_12px_36px_rgba(15,23,42,0.16)] after:absolute after:left-0 after:top-full after:h-2 after:w-full after:content-[''] group-hover:block group-focus-within:block">
+      <span className="pointer-events-auto absolute bottom-[calc(100%+0.375rem)] left-1/2 z-50 hidden w-80 max-w-[calc(100vw-2rem)] -translate-x-1/2 rounded-xl border border-blue-100 bg-white p-3 text-left text-xs font-medium leading-5 text-stone-700 shadow-[0_12px_36px_rgba(15,23,42,0.16)] after:absolute after:left-0 after:top-full after:h-2 after:w-full after:content-[''] group-hover:block group-focus-within:block sm:left-0 sm:translate-x-0">
         <span className="mb-2 block text-[11px] font-bold text-blue-600">
           이 문장의 근거
         </span>
@@ -288,8 +295,9 @@ export function PersonalizedSafetyQuery() {
       <div className="mt-4 border-l-2 border-blue-500 pl-3.5">
         <p className="text-xs font-bold text-blue-600">AI 입력 해석</p>
         <p className="mt-1 break-keep text-sm leading-6 text-stone-600">
-          약 이름·증상·검사 결과는 평소 표현대로 적어도 됩니다. AI가
-          표현을 정리하고, 안전성 판단은 검증된 기준과 문헌을 사용합니다.
+          약 이름·증상·검사 결과는 평소 표현대로 적어도 됩니다. AI가 전체
+          의미를 파악해 결과 문장을 정리하고, 안전성 판단에는 검증된 기준과
+          문헌을 사용합니다.
         </p>
       </div>
       <details
@@ -583,9 +591,12 @@ export function PersonalizedSafetyQuery() {
                 <p className="text-xs font-bold text-blue-600">
                   안전성 검토 결과
                 </p>
-                {result.input_interpretation.ai_used && (
+                {(result.narrative_assessment.ai_used ||
+                  result.input_interpretation.ai_used) && (
                   <span className="rounded-full bg-blue-50 px-2 py-1 text-[10px] font-bold text-blue-700">
-                    AI 입력 해석
+                    {result.narrative_assessment.ai_used
+                      ? "AI 문장 정리"
+                      : "AI 입력 해석"}
                   </span>
                 )}
               </div>
@@ -595,29 +606,24 @@ export function PersonalizedSafetyQuery() {
             </header>
             <div className="p-5 pt-3">
               <section className="break-keep rounded-2xl bg-[#f2f6ff] px-5 py-5 text-[15px] font-medium leading-7 text-[#333d4b]">
-                <p>{result.assessment.context}</p>
-                <p className="mt-5 font-semibold text-stone-950">
+                <p className="font-semibold text-stone-950">
                   <EvidenceSentence references={result.assessment.references}>
-                    {result.assessment.verdict}
+                    {result.narrative_assessment.conclusion}
                   </EvidenceSentence>
                 </p>
+                <p className="mt-5">{result.narrative_assessment.context}</p>
                 <p className="mt-5">
                   <EvidenceSentence
-                    references={result.assessment.references.slice(0, 1)}
+                    references={result.assessment.references}
                   >
-                    {result.assessment.dose}
-                  </EvidenceSentence>{" "}
-                  <EvidenceSentence
-                    references={result.assessment.references.slice(0, 2)}
-                  >
-                    {result.assessment.interaction}
+                    {result.narrative_assessment.explanation}
                   </EvidenceSentence>
                 </p>
                 <p className="mt-5">
                   <EvidenceSentence
                     references={result.assessment.references.slice(1)}
                   >
-                    {result.assessment.watch}
+                    {result.narrative_assessment.next}
                   </EvidenceSentence>
                 </p>
               </section>

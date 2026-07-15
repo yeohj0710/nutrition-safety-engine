@@ -59,9 +59,17 @@ describe("personalized safety UI contract", () => {
   it("explains AI interpretation without presenting it as the safety rule", () => {
     expect(component).toContain("AI 입력 해석");
     expect(component).toContain(
-      "안전성 판단은 검증된 기준과 문헌을 사용합니다.",
+      "안전성 판단에는 검증된 기준과",
     );
     expect(component).toContain("result.input_interpretation.ai_used");
+  });
+
+  it("renders the AI-written narrative instead of inserting raw fields into templates", () => {
+    expect(component).toContain("result.narrative_assessment.conclusion");
+    expect(component).toContain("result.narrative_assessment.context");
+    expect(component).toContain("result.narrative_assessment.explanation");
+    expect(component).toContain("result.narrative_assessment.next");
+    expect(component).not.toContain("{result.assessment.context}</p>");
   });
 
   it("shows lab results as the fifth optional field instead of a nested card", () => {
