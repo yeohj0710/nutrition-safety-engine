@@ -30,6 +30,32 @@ describe("personalized safety UI contract", () => {
     expect(component).not.toContain("const examples = [");
   });
 
+  it("uses one page surface instead of nested form and example cards", () => {
+    expect(component).toContain(
+      'className="mt-7 border-t border-stone-200 pt-7"',
+    );
+    expect(component).not.toContain(
+      'className="mt-6 rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-8"',
+    );
+    expect(component).toContain(
+      "sm:grid-cols-[5.5rem_minmax(0,1fr)]",
+    );
+    expect(component).not.toContain(
+      'className="rounded-xl border border-stone-200 bg-white p-3 text-left',
+    );
+  });
+
+  it("gives every free-text input an accessible name", () => {
+    for (const name of [
+      "제품 라벨의 하루 섭취량",
+      "함께 먹는 약 이름",
+      "병력 또는 현재 증상",
+      "최근 검사 결과",
+    ]) {
+      expect(component).toContain(`aria-label="${name}"`);
+    }
+  });
+
   it("allows multiple medicine and condition choices", () => {
     expect(component).toContain("toggleMultiValue");
     expect(component).toContain("hasMultiValue");

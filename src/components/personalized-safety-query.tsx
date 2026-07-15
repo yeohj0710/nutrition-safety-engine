@@ -283,31 +283,34 @@ export function PersonalizedSafetyQuery() {
       </h2>
       <details
         ref={examplesRef}
-        className="mt-5 overflow-hidden rounded-2xl border border-stone-200 bg-stone-50/70"
+        className="mt-5 overflow-hidden rounded-xl bg-stone-50"
       >
-        <summary className="flex min-h-12 list-none items-center justify-between gap-4 px-4 py-3 text-left hover:bg-white/60">
+        <summary className="flex min-h-12 list-none items-center justify-between gap-4 rounded-xl px-4 py-3 text-left transition-colors hover:bg-stone-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-inset">
           <span className="text-sm font-bold text-stone-900">입력 예시 15개</span>
-          <span className="collapsible-chevron flex h-7 w-7 items-center justify-center rounded-full border border-stone-200 bg-white text-stone-600">
+          <span className="collapsible-chevron flex h-7 w-7 items-center justify-center text-stone-500">
             <Chevron />
           </span>
         </summary>
         <div className="collapsible-panel">
           <div className="collapsible-panel-inner">
-            <div className="collapsible-panel-body border-t border-stone-200 p-3">
-              <div className="grid gap-5">
+            <div className="collapsible-panel-body border-t border-stone-200 px-4 pb-2">
+              <div>
                 {examplesByIngredient.map((group) => (
-                  <section key={group.ingredient}>
-                    <h3 className="text-sm font-bold text-stone-900">
+                  <section
+                    key={group.ingredient}
+                    className="grid gap-2 border-b border-stone-200 py-4 last:border-b-0 sm:grid-cols-[5.5rem_minmax(0,1fr)] sm:gap-3"
+                  >
+                    <h3 className="px-1 pt-2 text-sm font-bold text-stone-900">
                       {group.ingredient}
                     </h3>
-                    <div className="mt-2 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+                    <div className="grid min-w-0 sm:grid-cols-3">
                       {group.examples.map((example) => (
                         <button
                           type="button"
                           key={example.id}
                           onClick={() => fillExample(example)}
                           disabled={loading}
-                          className="rounded-xl border border-stone-200 bg-white p-3 text-left transition hover:border-blue-300 hover:shadow-sm disabled:cursor-wait disabled:opacity-60"
+                          className="min-w-0 touch-manipulation rounded-lg px-3 py-2.5 text-left transition-colors hover:bg-blue-50 active:bg-blue-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 disabled:cursor-wait disabled:opacity-60 sm:rounded-none sm:border-l sm:border-stone-200 sm:first:border-l-0"
                         >
                           <span className="block text-sm font-bold text-stone-950">
                             {example.title}
@@ -328,7 +331,7 @@ export function PersonalizedSafetyQuery() {
       <form
         ref={formRef}
         onSubmit={submit}
-        className="mt-6 rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-8"
+        className="mt-7 border-t border-stone-200 pt-7"
       >
         <fieldset>
           <legend className="text-lg font-bold text-stone-950">
@@ -367,6 +370,9 @@ export function PersonalizedSafetyQuery() {
               </p>
               <div className="mt-3 flex gap-2">
                 <input
+                  aria-label="제품 라벨의 하루 섭취량"
+                  name="daily-dose"
+                  autoComplete="off"
                   value={draft.dose}
                   onChange={(e) => setDraft({ ...draft, dose: e.target.value })}
                   maxLength={80}
@@ -423,6 +429,9 @@ export function PersonalizedSafetyQuery() {
                 })}
               </div>
               <input
+                aria-label="함께 먹는 약 이름"
+                name="medication-names"
+                autoComplete="off"
                 value={draft.medication}
                 onChange={(e) =>
                   setDraft({ ...draft, medication: e.target.value })
@@ -466,6 +475,9 @@ export function PersonalizedSafetyQuery() {
                 })}
               </div>
               <input
+                aria-label="병력 또는 현재 증상"
+                name="conditions"
+                autoComplete="off"
                 value={draft.condition}
                 onChange={(e) =>
                   setDraft({ ...draft, condition: e.target.value })
@@ -493,6 +505,9 @@ export function PersonalizedSafetyQuery() {
                   검사표에 적힌 이름, 수치, 단위를 그대로 적습니다.
                 </p>
                 <input
+                  aria-label="최근 검사 결과"
+                  name="lab-results"
+                  autoComplete="off"
                   value={draft.labs}
                   onChange={(e) => setDraft({ ...draft, labs: e.target.value })}
                   maxLength={200}
