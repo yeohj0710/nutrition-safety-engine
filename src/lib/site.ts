@@ -1,7 +1,8 @@
 export const siteName = "영양성분 안전성 근거 연구";
-export const siteTagline = "검증된 근거만 연결하는 졸업논문 연구 시스템";
+export const siteTagline =
+  "보충제 복용 조건을 근거 문헌과 비교하는 졸업논문 연구";
 export const siteDescription =
-  "문헌 검색, 선별, 추출, 근거평가, 규칙 검증의 계보를 보존하고 검증된 연구 결과만 제공하는 영양성분 안전성 연구 시스템입니다.";
+  "항응고제를 복용하거나 신장질환 위험이 있는 사람이 보충제를 먹을 때, 용량·상호작용·주의할 증상을 근거 문헌과 비교하는 졸업논문 연구 사이트입니다.";
 export const siteKeywords = [
   "영양성분 안전성",
   "근거중심 약료",

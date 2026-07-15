@@ -23,9 +23,9 @@ const guidance: Record<
   }
 > = {
   A1: {
-    title: "비타민 K 섭취 변화와 항응고 상태",
+    title: "비타민 K 섭취량과 와파린 효과",
     summary:
-      "핵심은 비타민 K를 무조건 줄이는 것이 아니라 식사와 보충제에서 섭취하는 양을 가능한 일정하게 유지하고, 식단이나 제품을 바꾼 시점과 INR 변화를 함께 확인하는 것입니다.",
+      "비타민 K는 무조건 줄이기보다 식사와 보충제로 먹는 양을 일정하게 유지해야 합니다. 식단이나 제품을 바꾼 시점과 INR이 달라진 시점을 함께 비교합니다.",
     checks: [
       "최근 식사·보충제 변경으로 비타민 K 섭취량이 달라졌는지",
       "현재 제품의 비타민 K 함량과 복용 빈도",
@@ -39,25 +39,25 @@ const guidance: Record<
     ],
   },
   A2: {
-    title: "오메가-3 용량과 출혈 관련 조건",
+    title: "오메가-3 복용량과 출혈 위험",
     summary:
-      "핵심은 제품의 오메가-3 총량만 보지 않고 EPA+DHA 합산량, 최근 멍·코피·잇몸출혈, 다른 출혈 위험 약물과 시술 계획을 함께 확인하는 것입니다.",
+      "제품의 오메가-3 총량만으로 판단하지 않습니다. EPA와 DHA의 합산량, 최근 멍·코피·잇몸출혈, 함께 먹는 약과 시술 계획을 봅니다.",
     checks: [
       "하루 EPA+DHA 합산량",
       "멍·코피·잇몸출혈 등 최근 출혈 증상",
       "아스피린·NSAID·항혈소판제 병용 여부",
     ],
-    why: "오메가-3와 항응고·항혈소판 치료를 함께 사용할 때 출혈 관련 맥락을 확인할 필요가 있습니다.",
+    why: "오메가-3와 항응고제·항혈소판제를 함께 복용하면 최근 출혈 증상과 다른 약을 확인해야 합니다.",
     next: [
       "제품 라벨에서 EPA와 DHA 합산량을 계산하세요.",
-      "최근 출혈 증상과 병용약을 기록하세요.",
+      "최근 출혈 증상과 함께 먹는 약을 적어 두세요.",
       "시술 일정과 출혈 증상은 따로 기록해 두세요.",
     ],
   },
   B1: {
-    title: "보충제 칼슘·식이 칼슘과 결석 위험",
+    title: "칼슘 섭취량과 신장결석 위험",
     summary:
-      "핵심은 식이 칼슘과 보충제 칼슘을 같은 방식으로 보지 않고, 보충제의 원소 칼슘 함량·복용 시점과 음식 섭취량·결석 성분·24시간 요중 칼슘을 구분해 확인하는 것입니다.",
+      "음식으로 먹는 칼슘과 보충제 칼슘은 따로 계산합니다. 보충제의 원소 칼슘 함량과 복용 시점, 결석 성분, 24시간 요중 칼슘을 함께 봅니다.",
     checks: [
       "보충제로 섭취하는 칼슘의 일일량",
       "음식에서 섭취하는 칼슘과 복용 시점",
@@ -71,15 +71,15 @@ const guidance: Record<
     ],
   },
   B2: {
-    title: "비타민 D 용량과 칼슘 대사 지표",
+    title: "비타민 D 복용량과 칼슘 수치",
     summary:
-      "핵심은 비타민 D 용량만으로 판단하지 않고 복용 기간, 25(OH)D, 혈청 칼슘, 24시간 요중 칼슘과 고칼슘뇨 병력을 함께 확인하는 것입니다.",
+      "비타민 D 용량만으로 판단하지 않습니다. 복용 기간, 25(OH)D, 혈청 칼슘, 24시간 요중 칼슘과 고칼슘뇨 병력을 함께 봅니다.",
     checks: [
       "비타민 D 일일 용량과 복용 기간",
       "25(OH)D와 혈청 칼슘",
       "24시간 요중 칼슘 또는 고칼슘뇨 병력",
     ],
-    why: "비타민 D는 칼슘 대사와 관련되므로 고용량 또는 위험군에서는 관련 검사값이 중요합니다.",
+    why: "비타민 D를 고용량으로 복용하거나 결석 병력이 있으면 혈청 칼슘과 24시간 요중 칼슘 결과가 중요합니다.",
     next: [
       "모든 제품의 비타민 D 총량을 합산하세요.",
       "최근 25(OH)D·칼슘 검사 결과를 준비하세요.",
@@ -87,9 +87,9 @@ const guidance: Record<
     ],
   },
   B3: {
-    title: "비타민 C 고용량 노출과 옥살산 위험",
+    title: "비타민 C 복용량과 옥살산·결석 위험",
     summary:
-      "핵심은 비타민 C 일일 총량과 복용 기간만이 아니라 결석 성분, 신장기능, 고옥살산뇨 병력과 요중 옥살산 결과를 함께 확인하는 것입니다.",
+      "비타민 C의 하루 총량과 복용 기간뿐 아니라 결석 성분, 신장기능, 고옥살산뇨 병력과 요중 옥살산 결과를 함께 봅니다.",
     checks: [
       "비타민 C 일일 총량과 복용 기간",
       "칼슘옥살산 결석 또는 고옥살산뇨 병력",
@@ -207,6 +207,31 @@ function withSubjectParticle(value: string) {
   const hasFinalConsonant =
     code >= 0xac00 && code <= 0xd7a3 && (code - 0xac00) % 28 !== 0;
   return `${value}${hasFinalConsonant ? "이" : "가"}`;
+}
+function withAndParticle(value: string) {
+  const last = value.at(-1) ?? "";
+  const code = last.charCodeAt(0);
+  const hasFinalConsonant =
+    code >= 0xac00 && code <= 0xd7a3 && (code - 0xac00) % 28 !== 0;
+  return `${value}${hasFinalConsonant ? "과" : "와"}`;
+}
+function describeConditionForAssessment(value: string) {
+  if (!value) return "";
+  if (value === "특별한 증상 없음") return "현재 불편한 증상은 없습니다.";
+  if (/코피가 자주 남/.test(value)) return "현재 코피가 자주 납니다.";
+  if (/코피가 남/.test(value)) return "현재 코피가 납니다.";
+  if (/멍이 잘 듦/.test(value)) return "현재 멍이 잘 듭니다.";
+  if (/잇몸 출혈/.test(value)) return "현재 잇몸에서 피가 납니다.";
+  if (/(?:배가 아픔|배가 아파요)/.test(value)) return "현재 배가 아픕니다.";
+  if (/INR이 자주 바뀜/.test(value)) return "INR이 자주 바뀝니다.";
+  if (/소변 칼슘이 높다고 들음/.test(value))
+    return "소변 칼슘이 높다는 말을 들었습니다.";
+  if (/소변 옥살산이 높다고 들음/.test(value))
+    return "소변 옥살산이 높다는 말을 들었습니다.";
+  if (/칼슘 수치가 높다고 들음/.test(value))
+    return "혈중 칼슘 수치가 높다는 말을 들었습니다.";
+  if (/중$/.test(value)) return `${value}입니다.`;
+  return `${withSubjectParticle(value)} 있습니다.`;
 }
 function buildProfileSentence(input: SummaryInput) {
   const sentences: string[] = [];
@@ -377,7 +402,7 @@ function selectEvidence(
       )
     ) {
       score += 12;
-      reasons.push("여러 연구의 결과를 종합한 문헌입니다.");
+      reasons.push("체계적 문헌고찰 또는 메타분석입니다.");
     } else if (
       /random|clinical trial/.test(
         `${item.title} ${item.publication_types}`.toLowerCase(),
@@ -385,7 +410,7 @@ function selectEvidence(
     ) {
       score += 8;
       reasons.push(
-        "사람을 대상으로 보충제나 약물의 영향을 비교한 연구입니다.",
+        "사람을 대상으로 한 임상시험입니다.",
       );
     }
     const medicationTerms = medication
@@ -393,14 +418,14 @@ function selectEvidence(
       .filter((term) => term.length >= 3);
     if (medicationTerms.some((term) => text.includes(term))) {
       score += 40;
-      reasons.push("작성한 약 이름이 제목이나 초록에 직접 나옵니다.");
+      reasons.push("복용 중인 약 이름이 제목이나 초록에 나옵니다.");
     } else if (
       medication &&
       /anticoag|warfarin|platelet|bleed|inr/.test(text)
     ) {
       score += 8;
       reasons.push(
-        "작성한 약을 직접 다룬 연구는 아니지만, 항응고 작용이나 출혈 결과를 확인한 문헌입니다.",
+        "같은 약을 직접 연구하지는 않았지만 항응고 작용이나 출혈 결과를 다뤘습니다.",
       );
     }
     if (
@@ -409,7 +434,7 @@ function selectEvidence(
     ) {
       score += 12;
       reasons.push(
-        "작성한 출혈 증상과 관련된 출혈·응고 지표를 다뤘습니다.",
+        "현재 증상과 관련된 출혈·응고 지표를 보고했습니다.",
       );
     }
     if (
@@ -418,7 +443,7 @@ function selectEvidence(
     ) {
       score += 12;
       reasons.push(
-        "작성한 결석·칼슘·옥살산 병력과 관련된 결과를 다뤘습니다.",
+        "현재 병력과 관련된 결석·칼슘·옥살산 결과를 보고했습니다.",
       );
     }
     return {
@@ -426,7 +451,7 @@ function selectEvidence(
       relevance_score: score,
       selection_reason:
         reasons.join(" ") ||
-        "이 질문의 보충제 안전성과 직접 관련된 결과를 다룬 문헌입니다.",
+        "이 보충제의 안전성 결과를 보고한 문헌입니다.",
     };
   });
   ranked.sort(
@@ -458,17 +483,23 @@ function buildAssessment(
   const dose = normalizedDose(questionId, input.dose);
   const lab = numberFrom(input.labs);
   const doseLabel = Number.isFinite(dose) ? input.dose : "현재 복용량";
-  const context = [
-    `${input.ingredient} 복용 중${/모르겠/.test(input.dose) ? "이며 하루 양은 아직 모릅니다" : input.dose ? `이며 제품에 적힌 양은 ${input.dose}입니다` : "입니다"}.`,
+  const medicationName =
     input.medication && !/없음|모르겠/.test(input.medication)
-      ? `${input.medication}도 함께 복용 중입니다.`
-      : "",
-    input.condition === "특별한 증상 없음"
-      ? "현재 불편한 증상은 없습니다."
-      : input.condition
-        ? `${input.condition}도 함께 있습니다.`
+      ? input.medication
+      : "";
+  const conditionText = describeConditionForAssessment(input.condition);
+  const context = [
+    `${withObjectParticle(input.ingredient)} 복용 중입니다.`,
+    /모르겠/.test(input.dose)
+      ? "제품 라벨의 하루 양은 아직 모릅니다."
+      : input.dose
+        ? `제품 라벨의 하루 섭취량은 ${input.dose}입니다.`
         : "",
-    input.labs ? `최근 확인된 값은 ${input.labs}입니다.` : "",
+    medicationName
+      ? `${withObjectParticle(medicationName)} 함께 복용 중입니다.`
+      : "",
+    conditionText,
+    input.labs ? `최근 검사 결과는 ${input.labs}입니다.` : "",
   ]
     .filter(Boolean)
     .join(" ");
@@ -509,41 +540,54 @@ function buildAssessment(
     return {
       context,
       verdict:
-        "현재 용량을 갑자기 줄이는 쪽보다 매일 비슷하게 유지하는 쪽이 맞습니다.",
-      dose: `${Number.isFinite(dose) ? `${dose} mcg/day는` : "현재 용량은"} 독성 상한보다 와파린 효과의 변동이 핵심입니다.`,
+        "비타민 K는 갑자기 줄이지 말고 매일 비슷한 양을 섭취하는 편이 낫습니다.",
+      dose: `${Number.isFinite(dose) ? `${dose} mcg/day라는 양` : "현재 복용량"} 자체보다 섭취량이 갑자기 바뀌는지가 INR에 더 큰 영향을 줄 수 있습니다.`,
       interaction:
-        "와파린과 직접 상호작용합니다. 비타민 K 섭취가 갑자기 늘거나 줄면 INR이 달라질 수 있습니다.",
+        "와파린의 효과는 비타민 K 섭취량에 따라 달라질 수 있습니다. 섭취량이 갑자기 늘거나 줄면 INR도 변할 수 있습니다.",
       watch:
-        "최근 INR이 흔들렸다면 제품·식사에서 비타민 K가 바뀐 시점이 우선 확인 대상입니다.",
+        "최근 INR이 달라졌다면 제품이나 식사에서 비타민 K 섭취량이 바뀐 시점과 비교해야 합니다.",
       references: [ods.vitaminK, study(0), study(1)],
     };
-  if (questionId === "A2")
+  if (questionId === "A2") {
+    const hasAbdominalPain = /(?:배가\s*아|복통)/.test(input.condition);
+    const baseVerdict =
+      Number.isFinite(dose) && dose <= 5000
+        ? "현재 용량은 일반 성인 기준으로는 안전 범위 안에 있습니다."
+        : "하루 섭취량을 일반 성인 기준과 비교해야 합니다.";
+    const bleedingPriority = medicationName
+      ? `${withObjectParticle(medicationName)} 함께 복용 중이므로 오메가-3 용량보다 출혈 증상을 먼저 봐야 합니다.`
+      : "멍·코피·잇몸출혈이 있다면 오메가-3 용량보다 출혈 증상을 먼저 봐야 합니다.";
     return {
       context,
-      verdict: `${Number.isFinite(dose) && dose <= 5000 ? "현재 용량은 일반 성인 기준으로는 안전 범위 안에 있습니다." : "현재 용량은 일반 안전 범위와 비교가 필요합니다."} 다만 아픽사반을 함께 복용할 때는 용량 자체보다 출혈 증상이 있는지가 더 중요합니다.`,
-      dose: `${Number.isFinite(dose) ? `${dose.toLocaleString()} mg/day` : "입력 용량"}는 일반 기준 5,000 mg/day보다 낮지만, 출혈이 있다면 용량보다 증상이 우선입니다.`,
-      interaction:
-        "아픽사반과 오메가-3는 모두 출혈과 관련될 수 있습니다. 아스피린·NSAID·항혈소판제가 더해지면 주의가 커집니다.",
-      watch:
-        "복통 자체는 이 상호작용을 뜻하지 않습니다. 멍·코피·잇몸출혈·혈변 여부가 더 직접적인 신호입니다.",
+      verdict: `${baseVerdict} ${bleedingPriority}`,
+      dose: Number.isFinite(dose)
+        ? `${dose.toLocaleString()} mg/day는 일반 기준 5,000 mg/day보다 낮습니다. 출혈 증상이 있으면 용량보다 증상을 먼저 봐야 합니다.`
+        : "하루 섭취량을 모르면 일반 기준 5,000 mg/day와 비교할 수 없습니다.",
+      interaction: medicationName
+        ? `${withAndParticle(medicationName)} 오메가-3는 모두 출혈과 관련될 수 있습니다. 아스피린·NSAID·항혈소판제를 더 복용하면 출혈 위험이 커질 수 있습니다.`
+        : "오메가-3는 출혈과 관련될 수 있습니다. 아스피린·NSAID·항혈소판제를 함께 복용하면 출혈 위험이 커질 수 있습니다.",
+      watch: hasAbdominalPain
+        ? "복통만으로 출혈을 판단할 수는 없습니다. 검은변·혈변·토혈이 함께 나타나는지가 더 중요합니다."
+        : "멍·코피·잇몸출혈·혈변이 새로 생기거나 심해지는지 봐야 합니다.",
       references: [ods.omega, study(0), study(4)],
     };
+  }
   if (questionId === "B1") {
     const highUrineCalcium = Number.isFinite(lab) && lab > 275;
     return {
       context,
       verdict: highUrineCalcium
-        ? `${doseLabel} 용량은 그대로 유지하기에 적합하지 않습니다. 요중 칼슘과 결석 병력을 고려하면 줄이는 방향이 타당합니다.`
+          ? `현재 ${doseLabel}를 그대로 유지하기에는 적합하지 않습니다. 요중 칼슘과 결석 병력을 고려하면 줄이는 편이 낫습니다.`
         : Number.isFinite(dose)
-          ? `${doseLabel} 자체는 성인 총섭취 상한보다 낮지만, 식이 칼슘을 더한 총량이 없어 적합 여부는 확정하기 어렵습니다.`
-          : "복용량을 모르는 상태에서는 적합 여부를 정할 수 없습니다. 제품 라벨의 원소 칼슘 양과 식이 칼슘을 합친 총량이 판단 기준입니다.",
+          ? `${doseLabel} 자체는 성인 총섭취 상한보다 낮습니다. 음식으로 먹는 칼슘까지 더해야 현재 용량을 유지해도 되는지 판단할 수 있습니다.`
+          : "복용량을 모르면 현재 용량을 유지해도 되는지 판단할 수 없습니다. 제품 라벨의 원소 칼슘과 음식으로 먹는 칼슘을 더한 양이 필요합니다.",
       dose: Number.isFinite(dose)
         ? `성인 칼슘 상한은 음식과 보충제를 합쳐 2,000–2,500 mg/day입니다. 보충제 ${input.dose}만으로 상한을 넘지는 않습니다.`
         : "성인 칼슘 상한은 음식과 보충제를 합쳐 2,000–2,500 mg/day입니다.",
       interaction:
         "레보티록신, 퀴놀론계 항생제, 돌루테그라비르의 흡수를 떨어뜨릴 수 있어 복용 시간 간격이 중요합니다.",
       watch: highUrineCalcium
-        ? `${lab} mg/day는 NIH가 제시한 고칼슘뇨 기준보다 높습니다. 결석 병력까지 있어 총 칼슘량과 복용 시점 조정이 핵심입니다.`
+        ? `${lab} mg/day는 NIH가 제시한 고칼슘뇨 기준보다 높습니다. 결석 병력까지 있으므로 총 칼슘 섭취량과 복용 시점을 조정할 근거가 됩니다.`
         : "결석 병력에서는 보충제 양보다 결석 성분, 식이 칼슘, 24시간 요중 칼슘을 함께 봅니다.",
       references: [ods.calcium, study(0), study(1)],
     };
@@ -553,13 +597,13 @@ function buildAssessment(
       context,
       verdict:
         Number.isFinite(dose) && dose >= 4000
-          ? `현재 ${input.dose}는 성인 상한선 4,000 IU/day에 해당하거나 그보다 높습니다. 결석이나 고칼슘뇨 병력이 있다면 늘리기보다 줄이는 방향이 더 적절합니다.`
+          ? `현재 ${input.dose}는 ${dose === 4000 ? "성인 상한 4,000 IU/day와 같습니다" : "성인 상한 4,000 IU/day보다 높습니다"}. 결석이나 고칼슘뇨 병력이 있다면 늘리기보다 줄이는 편이 낫습니다.`
           : "현재 용량은 성인 상한 아래이지만 결석·고칼슘뇨가 있으면 칼슘 검사와 함께 판단합니다.",
       dose: "성인 비타민 D 상한은 4,000 IU/day입니다. 상한은 권장량이 아니라 넘기지 말아야 할 총량 기준입니다.",
       interaction:
         "티아지드 이뇨제는 고칼슘혈증 위험을 높일 수 있고, 올리스타트는 비타민 D 흡수를 낮출 수 있습니다.",
       watch:
-        "25(OH)D뿐 아니라 혈청 칼슘과 24시간 요중 칼슘이 함께 올라가는지가 핵심입니다.",
+        "25(OH)D만 보지 말고 혈청 칼슘과 24시간 요중 칼슘도 함께 봐야 합니다.",
       references: [ods.vitaminD, study(0), study(1)],
     };
   const vitaminCHighRisk = /(옥살산|결석|신장기능|신장 질환|신장질환)/.test(
@@ -592,7 +636,7 @@ export async function POST(req: Request) {
     return NextResponse.json(
       {
         error:
-          "입력 형식이나 길이가 올바르지 않습니다. 값을 줄여 다시 시도하세요.",
+          "작성한 내용이 너무 길거나 형식에 맞지 않습니다. 각 입력란을 확인한 뒤 다시 시도하세요.",
       },
       { status: 400, headers: { "Cache-Control": "no-store" } },
     );
@@ -605,13 +649,13 @@ export async function POST(req: Request) {
   const r = rules.find((x) => x.question_id === q)!;
   const g = guidance[q];
   const entered = [
-    b.dose && `복용량 ${b.dose}`,
+    b.dose && `하루 섭취량 ${b.dose}`,
     b.medication &&
       !/없음|모르겠/.test(b.medication) &&
-      `병용약 ${b.medication}`,
+      `함께 먹는 약 ${b.medication}`,
     b.condition &&
-      `${/(?:아파|통증|출혈|어지|구토|설사|코피|멍)/.test(b.condition) ? "증상" : "병력"} ${b.condition}`,
-    b.labs && `검사값 ${b.labs}`,
+      `${/(?:아파|통증|출혈|어지|구토|설사|코피|멍)/.test(b.condition) ? "현재 증상" : "증상·병력"} ${b.condition}`,
+    b.labs && `검사 결과 ${b.labs}`,
   ].filter(Boolean) as string[];
   const ai_summary = await summarize({
     questionId: q,
@@ -647,8 +691,12 @@ export async function POST(req: Request) {
         selected: evidenceSelection.selected.length,
         total_candidates: evidenceSelection.all.length,
         direct_medication_matches: evidenceSelection.directMedicationMatches,
+        medication_name:
+          b.medication && !/없음|모르겠/.test(b.medication)
+            ? b.medication
+            : "",
         method:
-          "연구 방법의 신뢰도와 작성한 약·증상·병력의 관련성을 함께 비교했습니다.",
+          "체계적 문헌고찰·메타분석·임상시험을 먼저 보고, 복용 중인 약과 병력·증상을 직접 다룬 문헌을 위에 배치했습니다.",
       },
       interpretation:
         "이 결과는 상담 준비를 위한 근거 요약입니다. 복용 시작·중단·용량 변경을 직접 지시하지 않습니다.",

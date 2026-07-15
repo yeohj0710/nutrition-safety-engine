@@ -23,6 +23,7 @@ type Result = {
     selected: number;
     total_candidates: number;
     direct_medication_matches: number;
+    medication_name: string;
     method: string;
   };
   evidence: Array<{
@@ -181,7 +182,7 @@ export function PersonalizedSafetyQuery() {
   const examples = [
     {
       title: "와파린 + 비타민 K",
-      description: "INR 변동과 섭취량 변화 확인",
+      description: "비타민 K 섭취량과 INR 변화 비교",
       ingredient: "비타민 K",
       dose: "100 mcg/day",
       medication: "와파린",
@@ -190,7 +191,7 @@ export function PersonalizedSafetyQuery() {
     },
     {
       title: "항응고제 + 오메가-3",
-      description: "고용량·출혈 병력 확인",
+      description: "EPA+DHA 용량과 출혈 증상 비교",
       ingredient: "오메가-3",
       dose: "EPA+DHA 2000 mg/day",
       medication: "아픽사반",
@@ -199,7 +200,7 @@ export function PersonalizedSafetyQuery() {
     },
     {
       title: "결석 병력 + 칼슘",
-      description: "식이량과 보충제 용량 구분",
+      description: "음식과 보충제의 칼슘 양 비교",
       ingredient: "칼슘",
       dose: "600 mg/day",
       medication: "",
@@ -208,7 +209,7 @@ export function PersonalizedSafetyQuery() {
     },
     {
       title: "결석 병력 + 비타민 D",
-      description: "혈청·요중 칼슘 확인",
+      description: "비타민 D와 혈청·요중 칼슘 비교",
       ingredient: "비타민 D",
       dose: "4000 IU/day",
       medication: "",
@@ -217,7 +218,7 @@ export function PersonalizedSafetyQuery() {
     },
     {
       title: "고옥살산뇨 + 비타민 C",
-      description: "고용량 노출과 옥살산 확인",
+      description: "비타민 C 용량과 요중 옥살산 비교",
       ingredient: "비타민 C",
       dose: "1000 mg/day",
       medication: "",
@@ -251,14 +252,14 @@ export function PersonalizedSafetyQuery() {
       if (!res.ok) {
         setError(
           body.error ??
-            "결과를 불러오지 못했습니다. 적어주신 내용을 확인하고 다시 시도해 주세요.",
+            "안전성 결과를 불러오지 못했습니다. 내용을 확인한 뒤 다시 시도하세요.",
         );
         return;
       }
       setResult(body);
       scrollToResultRegion();
     } catch {
-      setError("연결이 원활하지 않습니다. 잠시 후 다시 시도해 주세요.");
+      setError("안전성 결과를 불러오지 못했습니다. 잠시 후 다시 시도하세요.");
     } finally {
       setLoading(false);
     }
@@ -287,14 +288,14 @@ export function PersonalizedSafetyQuery() {
   return (
     <section className="mx-auto px-4 py-5 sm:px-5 sm:py-6" id="query">
       <h2 className="text-xl font-semibold tracking-[-0.025em]">
-        개인별 보충제 안전성 평가
+        복용 조건에 따른 보충제 안전성 확인
       </h2>
       <details
         ref={examplesRef}
         className="mt-5 overflow-hidden rounded-2xl border border-stone-200 bg-stone-50/70"
       >
         <summary className="flex min-h-12 list-none items-center justify-between gap-4 px-4 py-3 text-left hover:bg-white/60">
-          <span className="text-sm font-bold text-stone-900">예시 사례</span>
+          <span className="text-sm font-bold text-stone-900">입력 예시</span>
           <span className="collapsible-chevron flex h-7 w-7 items-center justify-center rounded-full border border-stone-200 bg-white text-stone-600">
             <Chevron />
           </span>
@@ -331,7 +332,7 @@ export function PersonalizedSafetyQuery() {
       >
         <fieldset>
           <legend className="text-lg font-bold text-stone-950">
-            1. 보충제 선택
+            1. 보충제
           </legend>
           <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-5">
             {ingredientOptions.map((ingredient) => (
@@ -359,10 +360,10 @@ export function PersonalizedSafetyQuery() {
           <div className="mt-7 grid gap-7">
             <fieldset>
               <legend className="text-lg font-bold text-stone-950">
-                2. 제품 라벨의 1일 섭취량
+                2. 제품 라벨의 하루 섭취량
               </legend>
               <p className="mt-1 text-sm leading-6 text-stone-500">
-                라벨의 `1일 섭취량`에 표시된 숫자와 단위를 입력합니다.
+                제품 라벨에 적힌 숫자와 단위를 그대로 적습니다.
               </p>
               <div className="mt-3 flex gap-2">
                 <input
@@ -390,10 +391,10 @@ export function PersonalizedSafetyQuery() {
 
             <fieldset>
               <legend className="text-lg font-bold text-stone-950">
-                3. 함께 복용하는 약
+                3. 함께 먹는 약
               </legend>
               <p className="mt-1 text-sm leading-6 text-stone-500">
-                약 봉투에 표시된 약 이름 또는 용도를 선택합니다.
+                약 봉투에 적힌 약 이름을 고르거나 직접 적습니다.
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {(medicationOptions[draft.ingredient] ?? []).map((item) => (
@@ -418,17 +419,17 @@ export function PersonalizedSafetyQuery() {
                   setDraft({ ...draft, medication: e.target.value })
                 }
                 maxLength={120}
-                placeholder="약 이름 직접 입력"
+                placeholder="목록에 없으면 약 이름을 적으세요"
                 className="mt-3 min-h-12 w-full rounded-xl border border-stone-300 px-4"
               />
             </fieldset>
 
             <fieldset>
               <legend className="text-lg font-bold text-stone-950">
-                4. 병력 및 증상
+                4. 병력 또는 현재 증상
               </legend>
               <p className="mt-1 text-sm leading-6 text-stone-500">
-                해당 항목을 선택하거나 아래 칸에 직접 입력합니다.
+                아래 항목 중 맞는 것을 고르거나 직접 적습니다.
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {(conditionOptions[draft.ingredient] ?? []).map((item) => (
@@ -456,9 +457,9 @@ export function PersonalizedSafetyQuery() {
             <details className="rounded-2xl border border-stone-200 bg-stone-50/70">
               <summary className="flex min-h-12 list-none items-center justify-between px-4 py-3 font-semibold">
                 <span>
-                  검사 결과{" "}
+                  최근 검사 결과{" "}
                   <small className="ml-1 font-normal text-stone-500">
-                    선택사항
+                    선택 입력
                   </small>
                 </span>
                 <span className="collapsible-chevron">
@@ -467,7 +468,7 @@ export function PersonalizedSafetyQuery() {
               </summary>
               <div className="border-t border-stone-200 p-4">
                 <p className="text-sm leading-6 text-stone-500">
-                  검사표에 표시된 이름, 수치, 단위를 입력합니다.
+                  검사표에 적힌 이름, 수치, 단위를 그대로 적습니다.
                 </p>
                 <input
                   value={draft.labs}
@@ -488,12 +489,12 @@ export function PersonalizedSafetyQuery() {
           {loading ? (
             <span className="inline-flex items-center gap-2">
               <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/35 border-t-white" />
-              결과 분석 중
+              문헌 확인 중
             </span>
           ) : draft.ingredient ? (
-            "결과 확인"
+            "안전성 결과 보기"
           ) : (
-            "보충제를 선택하세요"
+            "먼저 보충제를 고르세요"
           )}
         </button>
       </form>
@@ -515,28 +516,12 @@ export function PersonalizedSafetyQuery() {
               </span>
               <div>
                 <p className="font-bold text-stone-950">
-                  입력 정보와 근거 문헌을 대조하고 있습니다
+                  근거 문헌을 확인하고 있습니다
                 </p>
                 <p className="mt-1 text-sm leading-6 text-stone-500">
-                  용량 판단, 상호작용 및 주의 신호를 분석합니다.
+                  복용량, 함께 먹는 약, 병력과 검사 결과를 문헌과 비교합니다.
                 </p>
               </div>
-            </div>
-            <div className="grid grid-cols-3 border-t border-stone-100 bg-stone-50/80 px-5 py-4">
-              {["입력 내용 확인", "근거 문헌 연결", "결과 정리"].map(
-                (label, index) => (
-                  <div
-                    key={label}
-                    className="flex items-center gap-2 text-xs font-semibold text-stone-600"
-                  >
-                    <span
-                      className="h-1.5 w-1.5 animate-pulse rounded-full bg-blue-500"
-                      style={{ animationDelay: `${index * 180}ms` }}
-                    />
-                    <span>{label}</span>
-                  </div>
-                ),
-              )}
             </div>
           </section>
         )}
@@ -549,7 +534,7 @@ export function PersonalizedSafetyQuery() {
           <article className="relative mt-6 overflow-visible rounded-2xl border border-stone-200 bg-white shadow-sm">
             <header className="px-5 pb-2 pt-6">
               <p className="text-xs font-bold text-blue-600">
-                안전성 평가 결과
+                안전성 검토 결과
               </p>
               <h3 className="mt-2 break-keep text-xl font-bold leading-7 text-stone-950">
                 {result.title}
@@ -595,35 +580,45 @@ export function PersonalizedSafetyQuery() {
               </div>
               <details className="mt-5 rounded-xl border border-stone-200">
                 <summary className="flex min-h-12 list-none items-center justify-between px-4 py-3 font-semibold">
-                  <span>확인할 내용과 다음 단계</span>
+                  <span>판단 기준과 추가 확인 사항</span>
                   <span className="collapsible-chevron text-stone-500">
                     <Chevron />
                   </span>
                 </summary>
                 <div className="grid gap-5 border-t border-stone-200 p-4 md:grid-cols-2">
-                  <ol className="grid gap-2">
-                    {result.checks.map((x, i) => (
-                      <li key={x} className="flex gap-3 text-sm leading-6">
-                        <b className="text-blue-700">{i + 1}</b>
-                        <span>{x}</span>
-                      </li>
-                    ))}
-                  </ol>
-                  <ul className="grid gap-2 text-sm leading-6">
-                    {result.next_steps.map((x) => (
-                      <li key={x} className="flex gap-2">
-                        <span className="text-emerald-600">✓</span>
-                        <span>{x}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div>
+                    <p className="mb-2 text-sm font-bold text-stone-900">
+                      판단 기준
+                    </p>
+                    <ol className="grid gap-2">
+                      {result.checks.map((x, i) => (
+                        <li key={x} className="flex gap-3 text-sm leading-6">
+                          <b className="text-blue-700">{i + 1}</b>
+                          <span>{x}</span>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                  <div>
+                    <p className="mb-2 text-sm font-bold text-stone-900">
+                      추가 확인 사항
+                    </p>
+                    <ul className="grid gap-2 text-sm leading-6">
+                      {result.next_steps.map((x) => (
+                        <li key={x} className="flex gap-2">
+                          <span className="text-emerald-600">✓</span>
+                          <span>{x}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </details>
               <details className="mt-3 rounded-xl border border-stone-200">
                 <summary className="flex min-h-12 list-none items-center justify-between px-4 py-3 font-semibold">
-                  <span>핵심 근거와 전체 후보 보기</span>
+                  <span>결과에 사용한 문헌</span>
                   <span className="flex items-center gap-2 text-sm text-stone-500">
-                    핵심 {result.evidence_selection.selected}건 · 전체{" "}
+                    {result.evidence_selection.selected}건 · 후보{" "}
                     {result.evidence_selection.total_candidates}건{" "}
                     <span className="collapsible-chevron">
                       <Chevron />
@@ -632,13 +627,16 @@ export function PersonalizedSafetyQuery() {
                 </summary>
                 <div className="border-t border-stone-200 bg-blue-50/50 px-4 py-3 text-xs leading-5 text-stone-600">
                   <p>{result.evidence_selection.method}</p>
-                  <p className="mt-1">
-                    작성한 약 이름이 제목이나 초록에 직접 나온 문헌은 {" "}
-                    {result.evidence_selection.direct_medication_matches}건입니다.
-                  </p>
+                  {result.evidence_selection.medication_name && (
+                    <p className="mt-1">
+                      {result.evidence_selection.medication_name}을 직접 언급한
+                      문헌은 {" "}
+                      {result.evidence_selection.direct_medication_matches}건입니다.
+                    </p>
+                  )}
                   <p className="mt-1 text-stone-500">
-                    한글 문장은 영문 초록에서 뽑은 문장을 자동 번역한
-                    내용입니다.
+                    각 한글 문장은 바로 아래 영문 초록 문장의 자동
+                    번역입니다.
                   </p>
                 </div>
                 <div className="divide-y divide-stone-200 border-t border-stone-200 px-4">
@@ -663,7 +661,7 @@ export function PersonalizedSafetyQuery() {
                       </p>
                       {x.dose && (
                         <p className="mt-2 text-xs text-stone-600">
-                          문헌 보고 용량: {x.dose}
+                          논문에 보고된 용량: {x.dose}
                         </p>
                       )}
                       <p className="mt-2 text-xs leading-5 text-stone-600">
@@ -675,7 +673,7 @@ export function PersonalizedSafetyQuery() {
                 <details className="border-t border-stone-200 bg-stone-50/70">
                   <summary className="flex min-h-12 list-none items-center justify-between px-4 py-3 text-sm font-semibold text-stone-700">
                     <span>
-                      전체 관련 후보{" "}
+                      검색된 후보 문헌{" "}
                       {result.evidence_selection.total_candidates}건
                     </span>
                     <span className="collapsible-chevron text-stone-500">

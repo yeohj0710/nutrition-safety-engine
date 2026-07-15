@@ -47,7 +47,7 @@ describe("personalized safety API", () => {
       expect(body.evidence[0].key_finding_ko).toBeTruthy();
       expect(body.evidence[0].key_finding.length).toBeLessThanOrEqual(280);
       expect(body.evidence_selection.method).toBe(
-        "연구 방법의 신뢰도와 작성한 약·증상·병력의 관련성을 함께 비교했습니다.",
+        "체계적 문헌고찰·메타분석·임상시험을 먼저 보고, 복용 중인 약과 병력·증상을 직접 다룬 문헌을 위에 배치했습니다.",
       );
       expect(body.ai_summary).not.toMatch(
         /supplement dose|kidney stone|dietary calcium/,
@@ -81,7 +81,11 @@ describe("personalized safety API", () => {
     expect(body.ai_summary).not.toMatch(
       /입력(?:되|하|된)|입력값|대상자|사용자|프로필|검사값|현재 입력한 조건|종합하면|핵심은|상담 전에는|이시군요|살펴볼게요|적어주셨네요/,
     );
-    expect(body.assessment.verdict).toContain("줄이는 방향이 타당합니다");
+    expect(body.assessment.verdict).toContain("줄이는 편이 낫습니다");
+    expect(body.assessment.context).toContain(
+      "칼슘옥살산 신장결석 병력이 있습니다.",
+    );
+    expect(body.assessment.context).not.toContain("병력도 함께 있습니다");
     expect(body.assessment.dose).toContain("2,000–2,500 mg/day");
     expect(body.assessment.interaction).toContain("레보티록신");
     expect(body.assessment.watch).toContain("280 mg/day");
@@ -112,8 +116,28 @@ describe("personalized safety API", () => {
     expect(body.ai_summary).toContain("아픽사반 복용자에게 안전한 EPA+DHA 상한을 직접 정하지 않았으므로");
     expect(body.assessment.verdict).toContain("일반 성인 기준으로는 안전 범위 안");
     expect(body.assessment.interaction).toContain("아픽사반과 오메가-3");
+    expect(body.assessment.context).toContain("현재 코피가 자주 납니다.");
+    expect(body.assessment.context).not.toContain("코피가 자주 남도 함께 있습니다");
     expect(body.evidence_selection.total_candidates).toBe(5);
     expect(body.evidence_selection.direct_medication_matches).toBe(0);
+  });
+  it("uses the medicine actually entered in omega-3 results", async () => {
+    delete process.env.OPENAI_API_KEY;
+    const response = await POST(
+      new Request("http://local/api/personalized-safety", {
+        method: "POST",
+        body: JSON.stringify({
+          ingredient: "오메가-3",
+          dose: "2000 mg/day",
+          medication: "와파린",
+          condition: "특별한 증상 없음",
+        }),
+      }),
+    );
+    const body = await response.json();
+    expect(body.assessment.interaction).toContain("와파린과 오메가-3");
+    expect(body.assessment.interaction).not.toContain("아픽사반");
+    expect(body.assessment.context).toContain("현재 불편한 증상은 없습니다.");
   });
   it("prioritizes abdominal-pain triage for an anticoagulant user", async () => {
     delete process.env.OPENAI_API_KEY;
@@ -166,7 +190,7 @@ describe("personalized safety API", () => {
     const body = await response.json();
     expect(response.status).toBe(200);
     expect(body.assessment.context).toContain("하루 양은 아직 모릅니다");
-    expect(body.assessment.verdict).toContain("복용량을 모르는 상태");
+    expect(body.assessment.verdict).toContain("복용량을 모르면");
     expect(body.assessment.context).not.toContain("복용 약 없음도");
   });
   it("converts vitamin D micrograms before comparing the upper limit", async () => {
@@ -182,7 +206,7 @@ describe("personalized safety API", () => {
       }),
     );
     const body = await response.json();
-    expect(body.assessment.verdict).toContain("성인 상한선 4,000 IU/day");
+    expect(body.assessment.verdict).toContain("성인 상한 4,000 IU/day");
   });
   it("gives a direct vitamin C decision when urine oxalate is elevated and dose is unknown", async () => {
     delete process.env.OPENAI_API_KEY;
