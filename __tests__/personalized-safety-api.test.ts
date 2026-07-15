@@ -41,6 +41,8 @@ describe("personalized safety API", () => {
       expect(body.evidence_selection.selected).toBe(5);
       expect(body.evidence_selection.total_candidates).toBe(body.all_evidence.length);
       expect(body.evidence[0].selection_reason).toBeTruthy();
+      expect(body.evidence[0].key_finding).toBeTruthy();
+      expect(body.evidence[0].key_finding.length).toBeLessThanOrEqual(280);
       expect(body.ai_summary).not.toMatch(
         /supplement dose|kidney stone|dietary calcium/,
       );
@@ -73,7 +75,7 @@ describe("personalized safety API", () => {
     expect(body.ai_summary).not.toMatch(
       /입력(?:되|하|된)|입력값|대상자|사용자|프로필|검사값|현재 입력한 조건|종합하면|핵심은|상담 전에는|이시군요|살펴볼게요|적어주셨네요/,
     );
-    expect(body.assessment.verdict).toContain("줄이는 방향을 검토할 근거");
+    expect(body.assessment.verdict).toContain("줄이는 방향이 타당합니다");
     expect(body.assessment.dose).toContain("2,000–2,500 mg/day");
     expect(body.assessment.interaction).toContain("레보티록신");
     expect(body.assessment.watch).toContain("280 mg/day");
@@ -175,6 +177,29 @@ describe("personalized safety API", () => {
     );
     const body = await response.json();
     expect(body.assessment.verdict).toContain("성인 상한선 4,000 IU/day");
+  });
+  it("gives a direct vitamin C decision when urine oxalate is elevated and dose is unknown", async () => {
+    delete process.env.OPENAI_API_KEY;
+    const response = await POST(
+      new Request("http://local/api/personalized-safety", {
+        method: "POST",
+        body: JSON.stringify({
+          ingredient: "비타민 C",
+          dose: "잘 모르겠어요",
+          condition: "특별한 증상 없음",
+          labs: "요중 옥살산 상승",
+        }),
+      }),
+    );
+    const body = await response.json();
+    expect(response.status).toBe(200);
+    expect(body.assessment.verdict).toContain(
+      "고용량 비타민 C를 유지하지 않는 쪽이 맞습니다",
+    );
+    expect(body.assessment.watch).toContain(
+      "제품 라벨에서 하루 총량을 확인해야 합니다",
+    );
+    expect(body.assessment.watch).not.toContain("불리한 조건입니다");
   });
   it("rejects unsupported ingredients", async () => {
     const response = await POST(

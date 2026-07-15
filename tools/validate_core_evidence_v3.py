@@ -25,6 +25,9 @@ for rule in rules:
  ids=set(d[d.question_id==rule["question_id"]].record_id)
  for e in rule["evidence"]:
   if e["record_id"] not in ids:errors.append(f"rule evidence outside core:{e['record_id']}")
+ for e in rule.get("all_evidence",[]):
+  if not str(e.get("key_finding","")).strip():errors.append(f"rule evidence without key finding:{e.get('record_id','unknown')}")
+  if len(str(e.get("key_finding","")))>280:errors.append(f"key finding too long:{e.get('record_id','unknown')}")
 bad=[]
 for _,r in d.iterrows():
  t=r.title.lower()

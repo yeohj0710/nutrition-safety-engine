@@ -248,7 +248,7 @@ summary:focus-visible {
 }
 
 [data-open="true"] .collapsible-chevron,
-details[open] .collapsible-chevron {
+details[open] > summary .collapsible-chevron {
   transform: rotate(180deg);
 }
 

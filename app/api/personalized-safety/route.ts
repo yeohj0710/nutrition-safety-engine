@@ -449,7 +449,7 @@ function buildAssessment(
   const lab = numberFrom(input.labs);
   const doseLabel = Number.isFinite(dose) ? input.dose : "현재 복용량";
   const context = [
-    `말씀해 주신 내용으로는 ${withObjectParticle(input.ingredient)} 복용 중${/모르겠/.test(input.dose) ? "이며 하루 양은 아직 모릅니다" : input.dose ? `이며 제품에 적힌 양은 ${input.dose}입니다` : "입니다"}.`,
+    `${input.ingredient} 복용 중${/모르겠/.test(input.dose) ? "이며 하루 양은 아직 모릅니다" : input.dose ? `이며 제품에 적힌 양은 ${input.dose}입니다` : "입니다"}.`,
     input.medication && !/없음|모르겠/.test(input.medication)
       ? `${input.medication}도 함께 복용 중입니다.`
       : "",
@@ -523,7 +523,7 @@ function buildAssessment(
     return {
       context,
       verdict: highUrineCalcium
-        ? `${doseLabel}은 그대로 유지하기에 적합하다고 보기 어렵습니다. 요중 칼슘과 결석 병력을 고려하면 줄이는 방향을 검토할 근거가 있습니다.`
+        ? `${doseLabel} 용량은 그대로 유지하기에 적합하지 않습니다. 요중 칼슘과 결석 병력을 고려하면 줄이는 방향이 타당합니다.`
         : Number.isFinite(dose)
           ? `${doseLabel} 자체는 성인 총섭취 상한보다 낮지만, 식이 칼슘을 더한 총량이 없어 적합 여부는 확정하기 어렵습니다.`
           : "복용량을 모르는 상태에서는 적합 여부를 정할 수 없습니다. 제품 라벨의 원소 칼슘 양과 식이 칼슘을 합친 총량이 판단 기준입니다.",
@@ -552,17 +552,27 @@ function buildAssessment(
         "25(OH)D뿐 아니라 혈청 칼슘과 24시간 요중 칼슘이 함께 올라가는지가 핵심입니다.",
       references: [ods.vitaminD, study(0), study(1)],
     };
+  const vitaminCHighRisk = /(옥살산|결석|신장기능|신장 질환|신장질환)/.test(
+    `${input.condition} ${input.labs}`,
+  );
   return {
     context,
     verdict:
-      Number.isFinite(dose) && dose >= 1000
-        ? "일반 성인 상한보다는 낮지만, 결석이나 고옥살산뇨 병력이 있다면 현재 용량을 유지하기보다 줄이는 방향이 더 적절합니다."
-        : "일반 성인 상한 아래이지만 결석·고옥살산뇨 병력에서는 낮은 용량도 별도로 봅니다.",
+      vitaminCHighRisk && !Number.isFinite(dose)
+        ? "복용량은 아직 모르지만 요중 옥살산 상승 또는 결석·신장 관련 조건이 있으므로, 고용량 비타민 C를 유지하지 않는 쪽이 맞습니다."
+        : vitaminCHighRisk
+          ? "일반 성인 상한 아래라도 결석·고옥살산뇨·신장기능 저하가 있으면 현재 용량을 유지하기보다 줄이는 쪽이 맞습니다."
+          : Number.isFinite(dose) && dose >= 1000
+            ? "현재 용량은 일반 성인 상한 아래이지만 고용량에 해당하므로, 장기 유지보다 총량과 복용 기간을 다시 판단해야 합니다."
+            : Number.isFinite(dose)
+              ? "현재 용량은 일반 성인 상한 아래입니다. 결석·고옥살산뇨·신장기능 저하가 없다면 고위험 조건은 확인되지 않았습니다."
+              : "복용량을 모르면 유지 여부를 판단할 수 없습니다. 제품 라벨의 하루 비타민 C 총량을 먼저 확인해야 합니다.",
     dose: "성인 비타민 C 상한은 2,000 mg/day이지만, 결석 위험군의 안전선이 2,000 mg/day라는 뜻은 아닙니다.",
     interaction:
       "철 과다증에서는 철 흡수를 늘릴 수 있고, 일부 검사 결과에도 영향을 줄 수 있습니다.",
-    watch:
-      "요중 옥살산 상승, 칼슘옥살산 결석, 신장기능 저하가 있으면 고용량 유지에 불리한 조건입니다.",
+    watch: vitaminCHighRisk
+      ? "제품 라벨에서 하루 총량을 확인해야 합니다. 요중 옥살산 상승, 칼슘옥살산 결석 또는 신장기능 저하가 확인되면 고용량을 피해야 합니다."
+      : "요중 옥살산 상승, 칼슘옥살산 결석 또는 신장기능 저하가 새로 확인되면 고용량을 유지하지 않아야 합니다.",
     references: [ods.vitaminC, study(0), study(1)],
   };
 }

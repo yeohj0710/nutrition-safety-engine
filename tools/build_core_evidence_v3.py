@@ -1,7 +1,48 @@
 #!/usr/bin/env python3
 from pathlib import Path
+from xml.etree import ElementTree as ET
 import pandas as pd,json,hashlib,re
 R=Path(__file__).resolve().parents[1]; D=R/"research/systematic_review_v3"; d=pd.read_csv(D/"picos_extraction.csv").fillna("")
+
+def clean_text(value):
+ return re.sub(r"\s+"," ",value or "").strip()
+
+def excerpt(value):
+ text=clean_text(value)
+ sentences=[clean_text(x) for x in re.split(r"(?<=[.!?])\s+",text) if len(clean_text(x))>=30]
+ finding=re.compile(r"\b(?:associated|correlated|increased|decreased|higher|lower|significant|risk|incidence|effect|found|observed|showed|returned|improved|reduced|predict\w*|result\w*|caus\w*|develop\w*|report\w*|induc\w*|led)\b",re.I)
+ exposure=re.compile(r"\b(?:vitamin|ascorb|calcium|fish oil|omega.?3|warfarin|anticoag)\b",re.I)
+ outcome=re.compile(r"\b(?:stone|oxalat|bleed|hemorrhag|inr|hypercalci|kidney|renal|coagulat)\w*\b",re.I)
+ methods=re.compile(r"\b(?:objective|purpose|aim|methods?|participants?|randomized|evaluate|assess|investigate|determine)\b",re.I)
+ def score(sentence):
+  return 6*bool(re.search(r"\b(?:in conclusion|we conclude|concluded)\b",sentence,re.I))+4*bool(finding.search(sentence))+3*bool(exposure.search(sentence))+2*bool(outcome.search(sentence))+2*bool(re.search(r"\b(?:no|not)\b",sentence,re.I))+bool(re.search(r"\d",sentence))-5*bool(methods.search(sentence))
+ selected=max(sentences,key=score) if sentences else text
+ return selected if len(selected)<=280 else selected[:277].rstrip()+"…"
+
+def pubmed_key_findings():
+ findings={}
+ for path in R.glob("research/searches/*/pubmed/**/*.xml"):
+  try: root=ET.parse(path).getroot()
+  except ET.ParseError: continue
+  for article in root.findall(".//PubmedArticle"):
+   pmid=clean_text(article.findtext(".//MedlineCitation/PMID"))
+   if not pmid: continue
+   sections=[]
+   for node in article.findall(".//MedlineCitation/Article/Abstract/AbstractText"):
+    text=clean_text("".join(node.itertext()))
+    if text: sections.append((str(node.attrib.get("Label","")).upper(),text))
+   preferred=next((text for label,text in sections if "CONCL" in label),"")
+   rank=3 if preferred else 0
+   if not preferred:
+    preferred=next((text for label,text in sections if "RESULT" in label),"")
+    rank=2 if preferred else 0
+   if not preferred:
+    preferred=" ".join(text for _,text in sections)
+    rank=1 if preferred else 0
+   if preferred and (pmid not in findings or rank>findings[pmid][0]): findings[pmid]=(rank,excerpt(preferred))
+ return {pmid:value for pmid,(_,value) in findings.items()}
+
+key_findings=pubmed_key_findings()
 def score(r):
  t=(r.title+" "+r.publication_types).lower();s=0
  s+=8 if "systematic review" in t or "meta-analysis" in t else 0
@@ -36,7 +77,10 @@ core.to_csv(D/"core_evidence.csv",index=False,encoding="utf-8")
 rules=[]
 meta={"A1":{"ingredient":"vitamin K","medication":"warfarin or vitamin K antagonist","condition":"anticoagulation","checks":["recent vitamin K intake change","dose and formulation","recent INR and stability"]},"A2":{"ingredient":"omega-3/fish oil","medication":"oral anticoagulant","condition":"bleeding risk","checks":["daily EPA+DHA dose","bleeding history","concurrent antiplatelet or NSAID"]},"B1":{"ingredient":"calcium","medication":"","condition":"kidney stone or hypercalciuria","checks":["supplement dose","dietary calcium","stone type and urine calcium"]},"B2":{"ingredient":"vitamin D","medication":"","condition":"kidney stone, hypercalciuria, or hypercalcemia","checks":["daily dose","25(OH)D","serum and urine calcium"]},"B3":{"ingredient":"vitamin C","medication":"","condition":"kidney stone or hyperoxaluria","checks":["daily dose","stone history","urine oxalate or renal impairment"]}}
 for q,g in core.groupby("question_id"):
- def cite(x): return {"record_id":x.record_id,"title":x.title,"authors":x.authors,"venue":x.venue,"year":int(float(x.year)) if x.year!="" else None,"doi":x.doi,"url":x.source_url,"locator":x.evidence_locator,"dose":x.dose_extracted,"outcome":x.outcome_evidence,"publication_types":x.publication_types,"population":x.population_evidence,"priority_score":int(x.priority_score)}
+ def cite(x):
+  pmid=re.sub(r"\D","",str(x.provider_id))
+  key_finding=key_findings.get(pmid) or excerpt(x.outcome_evidence)
+  return {"record_id":x.record_id,"title":x.title,"authors":x.authors,"venue":x.venue,"year":int(float(x.year)) if x.year!="" else None,"doi":x.doi,"url":x.source_url,"locator":x.evidence_locator,"dose":x.dose_extracted,"outcome":x.outcome_evidence,"key_finding":key_finding,"publication_types":x.publication_types,"population":x.population_evidence,"priority_score":int(x.priority_score)}
  all_cites=[cite(x) for _,x in g.iterrows()]
  rules.append({"question_id":q,**meta[q],"output":"전체 핵심 후보를 보존하고 입력 연관도로 상위 근거를 동적으로 선정한다.","evidence":all_cites[:5],"all_evidence":all_cites,"status":"automated_evidence_linked_personalized_check"})
 (D/"personalized_rules.json").write_text(json.dumps(rules,ensure_ascii=False,indent=2),encoding="utf-8")
