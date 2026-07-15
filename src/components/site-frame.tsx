@@ -42,7 +42,7 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
 
       <footer className="border-t border-stone-200 bg-white px-6 py-7">
         <div className="mx-auto flex max-w-[1049px] flex-col gap-1 text-xs leading-5 text-stone-500 sm:flex-row sm:items-center sm:justify-between">
-          <p>졸업논문 연구용 · 의료적 진단이나 처방을 대신하지 않습니다.</p>
+          <p>졸업논문 연구용 · 의료적 진단이나 처방을 대신하지 않아요.</p>
           <p>
             {projectAffiliation} · {projectAuthor}
           </p>

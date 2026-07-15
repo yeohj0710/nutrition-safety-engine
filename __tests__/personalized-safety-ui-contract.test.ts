@@ -85,7 +85,7 @@ describe("personalized safety UI contract", () => {
     expect(component).toContain("toggleMultiValue");
     expect(component).toContain("hasMultiValue");
     expect(component).toContain("aria-pressed");
-    expect(component).toContain("여러 개를 고를 수 있습니다.");
+    expect(component).toContain("여러 개를 고를 수 있어요.");
     expect(component).toContain("리바록사반");
     expect(component).toContain("돌루테그라비르");
     expect(component).toContain("검은변 또는 혈변");
@@ -101,8 +101,10 @@ describe("personalized safety UI contract", () => {
 
   it("shows a Korean interpretation and the source sentence for each evidence item", () => {
     expect(component).not.toContain("초록 핵심 문장");
-    expect(component).toContain("x.key_finding_ko");
-    expect(component).toContain("item.key_finding_ko");
+    expect(component).toContain("toHaeyoStyle(x.key_finding_ko)");
+    expect(component).toContain("toHaeyoStyle(item.key_finding_ko)");
+    expect(component).toContain("toHaeyoStyle(x.selection_reason)");
+    expect(component).toContain("toHaeyoStyle(item.selection_reason)");
     expect(component).toContain("x.key_finding");
     expect(component).toContain("item.key_finding");
   });
@@ -132,12 +134,12 @@ describe("personalized safety UI contract", () => {
     }
 
     expect(page).toContain(
-      "복용량과 함께 먹는 약, 결석·신장 병력, 검사 결과를 문헌에 보고된 용량과 상호작용 결과와 비교합니다.",
+      "복용량과 함께 먹는 약, 결석·신장 병력, 검사 결과를 문헌에 보고된 용량과 상호작용 결과와 비교해요.",
     );
     expect(component).toContain(
       "라벨 문구를 그대로 적으세요. 숫자와 단위를 정리해",
     );
-    expect(component).toContain("입력 내용을 해석하고 있습니다");
+    expect(component).toContain("입력 내용을 해석하고 있어요");
     expect(component).toContain("판단 기준과 추가 확인 사항");
     expect(component).toContain("결과에 사용한 문헌");
     expect(component).toContain("검색된 후보 문헌");

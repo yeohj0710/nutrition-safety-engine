@@ -9,6 +9,7 @@ import {
   hasMultiValue,
   toggleMultiValue,
 } from "@/src/lib/multi-value-input";
+import { toHaeyoStyle } from "@/src/lib/korean-ui-copy";
 
 type Result = {
   question_id: string;
@@ -265,15 +266,19 @@ export function PersonalizedSafetyQuery() {
       const body = await res.json();
       if (!res.ok) {
         setError(
-          body.error ??
-            "안전성 결과를 불러오지 못했습니다. 내용을 확인한 뒤 다시 시도하세요.",
+          toHaeyoStyle(
+            String(
+              body.error ??
+                "안전성 결과를 불러오지 못했어요. 내용을 확인한 뒤 다시 시도해 주세요.",
+            ),
+          ),
         );
         return;
       }
       setResult(body);
       scrollToResultRegion();
     } catch {
-      setError("안전성 결과를 불러오지 못했습니다. 잠시 후 다시 시도하세요.");
+      setError("안전성 결과를 불러오지 못했어요. 잠시 후 다시 시도해 주세요.");
     } finally {
       setLoading(false);
     }
@@ -295,9 +300,9 @@ export function PersonalizedSafetyQuery() {
       <div className="mt-4 border-l-2 border-blue-500 pl-3.5">
         <p className="text-xs font-bold text-blue-600">AI 입력 해석</p>
         <p className="mt-1 break-keep text-sm leading-6 text-stone-600">
-          약 이름·증상·검사 결과는 평소 표현대로 적어도 됩니다. AI가 전체
+          약 이름·증상·검사 결과는 평소 표현대로 적어도 돼요. AI가 전체
           의미를 파악해 결과 문장을 정리하고, 안전성 판단에는 검증된 기준과
-          문헌을 사용합니다.
+          문헌을 사용해요.
         </p>
       </div>
       <details
@@ -385,8 +390,7 @@ export function PersonalizedSafetyQuery() {
                 2. 제품 라벨의 하루 섭취량
               </legend>
               <p className="mt-1 text-sm leading-6 text-stone-500">
-                라벨 문구를 그대로 적으세요. 숫자와 단위를 정리해
-                비교합니다.
+                라벨 문구를 그대로 적으세요. 숫자와 단위를 정리해 비교해요.
               </p>
               <div className="mt-3 flex gap-2">
                 <input
@@ -421,7 +425,7 @@ export function PersonalizedSafetyQuery() {
               </legend>
               <p className="mt-1 text-sm leading-6 text-stone-500">
                 목록을 고르거나 약 봉투에 적힌 이름을 편한 표현으로
-                적으세요. 여러 개를 고를 수 있습니다.
+                적으세요. 여러 개를 고를 수 있어요.
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {(medicationOptions[draft.ingredient] ?? []).map((item) => {
@@ -469,7 +473,7 @@ export function PersonalizedSafetyQuery() {
               </legend>
               <p className="mt-1 text-sm leading-6 text-stone-500">
                 목록을 고르거나 증상을 평소 표현대로 적으세요. 여러 개를
-                고를 수 있습니다.
+                고를 수 있어요.
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {(conditionOptions[draft.ingredient] ?? []).map((item) => {
@@ -519,7 +523,7 @@ export function PersonalizedSafetyQuery() {
               </legend>
               <p className="mt-1 break-keep text-sm leading-6 text-stone-500">
                 검사표 문구를 그대로 옮겨 적으세요. 단위가 빠지거나 표현이
-                달라도 AI가 검사 이름과 수치를 구분합니다.
+                달라도 AI가 검사 이름과 수치를 구분해요.
               </p>
               <textarea
                 aria-label="최근 검사 결과"
@@ -570,10 +574,10 @@ export function PersonalizedSafetyQuery() {
               </span>
               <div>
                 <p className="font-bold text-stone-950">
-                  입력 내용을 해석하고 있습니다
+                  입력 내용을 해석하고 있어요
                 </p>
                 <p className="mt-1 text-sm leading-6 text-stone-500">
-                  약 이름·증상·검사 결과를 정리한 뒤 관련 문헌과 비교합니다.
+                  약 이름·증상·검사 결과를 정리한 뒤 관련 문헌과 비교해요.
                 </p>
               </div>
             </div>
@@ -608,22 +612,24 @@ export function PersonalizedSafetyQuery() {
               <section className="break-keep rounded-2xl bg-[#f2f6ff] px-5 py-5 text-[15px] font-medium leading-7 text-[#333d4b]">
                 <p className="font-semibold text-stone-950">
                   <EvidenceSentence references={result.assessment.references}>
-                    {result.narrative_assessment.conclusion}
+                    {toHaeyoStyle(result.narrative_assessment.conclusion)}
                   </EvidenceSentence>
                 </p>
-                <p className="mt-5">{result.narrative_assessment.context}</p>
+                <p className="mt-5">
+                  {toHaeyoStyle(result.narrative_assessment.context)}
+                </p>
                 <p className="mt-5">
                   <EvidenceSentence
                     references={result.assessment.references}
                   >
-                    {result.narrative_assessment.explanation}
+                    {toHaeyoStyle(result.narrative_assessment.explanation)}
                   </EvidenceSentence>
                 </p>
                 <p className="mt-5">
                   <EvidenceSentence
                     references={result.assessment.references.slice(1)}
                   >
-                    {result.narrative_assessment.next}
+                    {toHaeyoStyle(result.narrative_assessment.next)}
                   </EvidenceSentence>
                 </p>
               </section>
@@ -653,7 +659,7 @@ export function PersonalizedSafetyQuery() {
                       {result.checks.map((x, i) => (
                         <li key={x} className="flex gap-3 text-sm leading-6">
                           <b className="text-blue-700">{i + 1}</b>
-                          <span>{x}</span>
+                          <span>{toHaeyoStyle(x)}</span>
                         </li>
                       ))}
                     </ol>
@@ -666,7 +672,7 @@ export function PersonalizedSafetyQuery() {
                       {result.next_steps.map((x) => (
                         <li key={x} className="flex gap-2">
                           <span className="text-emerald-600">✓</span>
-                          <span>{x}</span>
+                          <span>{toHaeyoStyle(x)}</span>
                         </li>
                       ))}
                     </ul>
@@ -685,17 +691,17 @@ export function PersonalizedSafetyQuery() {
                   </span>
                 </summary>
                 <div className="border-t border-stone-200 bg-blue-50/50 px-4 py-3 text-xs leading-5 text-stone-600">
-                  <p>{result.evidence_selection.method}</p>
+                  <p>{toHaeyoStyle(result.evidence_selection.method)}</p>
                   {result.evidence_selection.medication_name && (
                     <p className="mt-1">
                       {result.evidence_selection.medication_name}을 직접 언급한
                       문헌은 {" "}
-                      {result.evidence_selection.direct_medication_matches}건입니다.
+                      {result.evidence_selection.direct_medication_matches}건이에요.
                     </p>
                   )}
                   <p className="mt-1 text-stone-500">
                     각 한글 문장은 바로 아래 영문 초록 문장의 자동
-                    번역입니다.
+                    번역이에요.
                   </p>
                 </div>
                 <div className="divide-y divide-stone-200 border-t border-stone-200 px-4">
@@ -710,7 +716,7 @@ export function PersonalizedSafetyQuery() {
                         {x.title}
                       </a>
                       <p className="mt-2 text-sm font-medium leading-6 text-stone-800">
-                        {x.key_finding_ko}
+                        {toHaeyoStyle(x.key_finding_ko)}
                       </p>
                       <p
                         lang="en"
@@ -724,7 +730,7 @@ export function PersonalizedSafetyQuery() {
                         </p>
                       )}
                       <p className="mt-2 text-xs leading-5 text-stone-600">
-                        {x.selection_reason}
+                        {toHaeyoStyle(x.selection_reason)}
                       </p>
                     </div>
                   ))}
@@ -754,7 +760,7 @@ export function PersonalizedSafetyQuery() {
                           {item.title}
                         </a>
                         <p className="mt-1 text-xs font-medium leading-5 text-stone-700">
-                          {item.key_finding_ko}
+                          {toHaeyoStyle(item.key_finding_ko)}
                         </p>
                         <p
                           lang="en"
@@ -764,7 +770,7 @@ export function PersonalizedSafetyQuery() {
                         </p>
                         <p className="mt-1 text-xs text-stone-500">
                           {item.year ? `${item.year} · ` : ""}
-                          {item.selection_reason}
+                          {toHaeyoStyle(item.selection_reason)}
                         </p>
                       </div>
                     ))}
