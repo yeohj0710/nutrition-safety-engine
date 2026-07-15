@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from pathlib import Path
 import pandas as pd,json,re,hashlib
-R=Path(__file__).resolve().parents[1];D=R/"research/systematic_review_v3";d=pd.read_csv(D/"core_evidence.csv").fillna("");m=json.loads((D/"core_manifest.json").read_text(encoding="utf-8"));rules=json.loads((D/"personalized_rules.json").read_text(encoding="utf-8"));errors=[]
+R=Path(__file__).resolve().parents[1];D=R/"research/systematic_review_v3";d=pd.read_csv(D/"core_evidence.csv").fillna("");m=json.loads((D/"core_manifest.json").read_text(encoding="utf-8"));rules=json.loads((D/"personalized_rules.json").read_text(encoding="utf-8"));translations_payload=json.loads((D/"key_finding_translations_ko.json").read_text(encoding="utf-8"));translations=translations_payload.get("translations",{});source_overrides=translations_payload.get("source_overrides",{});errors=[]
 required={"question_id","record_id","provider_id","title","authors","venue","year","doi","source_url","publication_types","automated_eligibility","population_evidence","supplement","dose_extracted","outcome_evidence","evidence_locator","fulltext_locator","human_screened","extraction_authority","priority_score"}
 missing=required-set(d.columns)
 if missing:errors.append("missing columns:"+",".join(sorted(missing)))
@@ -28,6 +28,10 @@ for rule in rules:
  for e in rule.get("all_evidence",[]):
   if not str(e.get("key_finding","")).strip():errors.append(f"rule evidence without key finding:{e.get('record_id','unknown')}")
   if len(str(e.get("key_finding","")))>280:errors.append(f"key finding too long:{e.get('record_id','unknown')}")
+  if not str(e.get("key_finding_ko","")).strip():errors.append(f"rule evidence without Korean key finding:{e.get('record_id','unknown')}")
+  if len(str(e.get("key_finding_ko","")))>220:errors.append(f"Korean key finding too long:{e.get('record_id','unknown')}")
+  if e.get("record_id") not in translations:errors.append(f"missing Korean translation:{e.get('record_id','unknown')}")
+  if e.get("record_id") in source_overrides and e.get("key_finding")!=source_overrides[e.get("record_id")]:errors.append(f"source override mismatch:{e.get('record_id','unknown')}")
 bad=[]
 for _,r in d.iterrows():
  t=r.title.lower()

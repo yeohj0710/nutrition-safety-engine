@@ -3,6 +3,9 @@ from pathlib import Path
 from xml.etree import ElementTree as ET
 import pandas as pd,json,hashlib,re
 R=Path(__file__).resolve().parents[1]; D=R/"research/systematic_review_v3"; d=pd.read_csv(D/"picos_extraction.csv").fillna("")
+translations_payload=json.loads((D/"key_finding_translations_ko.json").read_text(encoding="utf-8"))
+key_finding_translations=translations_payload["translations"]
+key_finding_overrides=translations_payload.get("source_overrides",{})
 
 def clean_text(value):
  return re.sub(r"\s+"," ",value or "").strip()
@@ -79,8 +82,8 @@ meta={"A1":{"ingredient":"vitamin K","medication":"warfarin or vitamin K antagon
 for q,g in core.groupby("question_id"):
  def cite(x):
   pmid=re.sub(r"\D","",str(x.provider_id))
-  key_finding=key_findings.get(pmid) or excerpt(x.outcome_evidence)
-  return {"record_id":x.record_id,"title":x.title,"authors":x.authors,"venue":x.venue,"year":int(float(x.year)) if x.year!="" else None,"doi":x.doi,"url":x.source_url,"locator":x.evidence_locator,"dose":x.dose_extracted,"outcome":x.outcome_evidence,"key_finding":key_finding,"publication_types":x.publication_types,"population":x.population_evidence,"priority_score":int(x.priority_score)}
+  key_finding=key_finding_overrides.get(x.record_id) or key_findings.get(pmid) or excerpt(x.outcome_evidence)
+  return {"record_id":x.record_id,"title":x.title,"authors":x.authors,"venue":x.venue,"year":int(float(x.year)) if x.year!="" else None,"doi":x.doi,"url":x.source_url,"locator":x.evidence_locator,"dose":x.dose_extracted,"outcome":x.outcome_evidence,"key_finding":key_finding,"key_finding_ko":key_finding_translations.get(x.record_id,"").strip(),"publication_types":x.publication_types,"population":x.population_evidence,"priority_score":int(x.priority_score)}
  all_cites=[cite(x) for _,x in g.iterrows()]
  rules.append({"question_id":q,**meta[q],"output":"전체 핵심 후보를 보존하고 입력 연관도로 상위 근거를 동적으로 선정한다.","evidence":all_cites[:5],"all_evidence":all_cites,"status":"automated_evidence_linked_personalized_check"})
 (D/"personalized_rules.json").write_text(json.dumps(rules,ensure_ascii=False,indent=2),encoding="utf-8")

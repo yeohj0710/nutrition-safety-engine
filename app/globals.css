@@ -105,7 +105,7 @@ summary:focus-visible {
 }
 
 ::selection {
-  background: color-mix(in oklab, var(--accent-soft) 78%, white);
+  background: #dbeafe;
   color: var(--foreground);
 }
 

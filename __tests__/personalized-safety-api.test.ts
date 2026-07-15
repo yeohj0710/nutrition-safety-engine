@@ -41,8 +41,14 @@ describe("personalized safety API", () => {
       expect(body.evidence_selection.selected).toBe(5);
       expect(body.evidence_selection.total_candidates).toBe(body.all_evidence.length);
       expect(body.evidence[0].selection_reason).toBeTruthy();
+      expect(body.evidence[0].selection_reason).not.toContain(" · ");
+      expect(body.evidence[0].selection_reason).toMatch(/(?:입니다|습니다)\.$/);
       expect(body.evidence[0].key_finding).toBeTruthy();
+      expect(body.evidence[0].key_finding_ko).toBeTruthy();
       expect(body.evidence[0].key_finding.length).toBeLessThanOrEqual(280);
+      expect(body.evidence_selection.method).toBe(
+        "연구 방법의 신뢰도와 작성한 약·증상·병력의 관련성을 함께 비교했습니다.",
+      );
       expect(body.ai_summary).not.toMatch(
         /supplement dose|kidney stone|dietary calcium/,
       );

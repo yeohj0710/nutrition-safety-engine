@@ -29,9 +29,22 @@ describe("personalized safety UI contract", () => {
     expect(styles).not.toContain("details[open] .collapsible-chevron");
   });
 
-  it("shows a source-derived key finding for each evidence item", () => {
-    expect(component).toContain("초록 핵심 문장");
+  it("shows a Korean interpretation and the source sentence for each evidence item", () => {
+    expect(component).not.toContain("초록 핵심 문장");
+    expect(component).toContain("x.key_finding_ko");
+    expect(component).toContain("item.key_finding_ko");
     expect(component).toContain("x.key_finding");
     expect(component).toContain("item.key_finding");
+  });
+
+  it("separates evidence popovers from the sentence without breaking the hover bridge", () => {
+    expect(component).toContain("bottom-[calc(100%+0.375rem)]");
+    expect(component).toContain("after:h-2");
+  });
+
+  it("uses a calm blue text-selection color", () => {
+    const selectionRule = styles.match(/::selection\s*\{[^}]+\}/)?.[0] ?? "";
+    expect(selectionRule).toContain("#dbeafe");
+    expect(selectionRule).not.toContain("var(--accent-soft)");
   });
 });

@@ -32,6 +32,7 @@ type Result = {
     dose: string;
     outcome: string;
     key_finding: string;
+    key_finding_ko: string;
     selection_reason: string;
   }>;
   all_evidence: Array<{
@@ -39,6 +40,7 @@ type Result = {
     url: string;
     year?: number;
     key_finding: string;
+    key_finding_ko: string;
     selection_reason: string;
   }>;
 };
@@ -83,7 +85,7 @@ function EvidenceSentence({
       >
         근거
       </a>
-      <span className="pointer-events-auto absolute bottom-[calc(100%-0.25rem)] left-0 z-50 hidden w-80 max-w-[calc(100vw-2rem)] rounded-xl border border-blue-100 bg-white p-3 text-left text-xs font-medium leading-5 text-stone-700 shadow-[0_12px_36px_rgba(15,23,42,0.16)] group-hover:block group-focus-within:block">
+      <span className="pointer-events-auto absolute bottom-[calc(100%+0.375rem)] left-0 z-50 hidden w-80 max-w-[calc(100vw-2rem)] rounded-xl border border-blue-100 bg-white p-3 text-left text-xs font-medium leading-5 text-stone-700 shadow-[0_12px_36px_rgba(15,23,42,0.16)] after:absolute after:left-0 after:top-full after:h-2 after:w-full after:content-[''] group-hover:block group-focus-within:block">
         <span className="mb-2 block text-[11px] font-bold text-blue-600">
           이 문장의 근거
         </span>
@@ -629,8 +631,15 @@ export function PersonalizedSafetyQuery() {
                   </span>
                 </summary>
                 <div className="border-t border-stone-200 bg-blue-50/50 px-4 py-3 text-xs leading-5 text-stone-600">
-                  선정 방식: {result.evidence_selection.method} · 입력 약물 직접
-                  일치 {result.evidence_selection.direct_medication_matches}건
+                  <p>{result.evidence_selection.method}</p>
+                  <p className="mt-1">
+                    작성한 약 이름이 제목이나 초록에 직접 나온 문헌은 {" "}
+                    {result.evidence_selection.direct_medication_matches}건입니다.
+                  </p>
+                  <p className="mt-1 text-stone-500">
+                    한글 문장은 영문 초록에서 뽑은 문장을 자동 번역한
+                    내용입니다.
+                  </p>
                 </div>
                 <div className="divide-y divide-stone-200 border-t border-stone-200 px-4">
                   {result.evidence.map((x, i) => (
@@ -643,19 +652,22 @@ export function PersonalizedSafetyQuery() {
                       >
                         {x.title}
                       </a>
-                      <p className="mt-2 text-sm leading-6 text-stone-700">
-                        <b className="mr-1 font-semibold text-stone-900">
-                          초록 핵심 문장:
-                        </b>
-                        <span lang="en">{x.key_finding}</span>
+                      <p className="mt-2 text-sm font-medium leading-6 text-stone-800">
+                        {x.key_finding_ko}
+                      </p>
+                      <p
+                        lang="en"
+                        className="mt-1 text-xs leading-5 text-stone-500"
+                      >
+                        {x.key_finding}
                       </p>
                       {x.dose && (
                         <p className="mt-2 text-xs text-stone-600">
                           문헌 보고 용량: {x.dose}
                         </p>
                       )}
-                      <p className="mt-2 text-xs font-medium text-blue-700">
-                        선정 이유: {x.selection_reason}
+                      <p className="mt-2 text-xs leading-5 text-stone-600">
+                        {x.selection_reason}
                       </p>
                     </div>
                   ))}
@@ -684,11 +696,14 @@ export function PersonalizedSafetyQuery() {
                         >
                           {item.title}
                         </a>
-                        <p className="mt-1 text-xs leading-5 text-stone-600">
-                          <b className="mr-1 font-semibold text-stone-800">
-                            초록 핵심 문장:
-                          </b>
-                          <span lang="en">{item.key_finding}</span>
+                        <p className="mt-1 text-xs font-medium leading-5 text-stone-700">
+                          {item.key_finding_ko}
+                        </p>
+                        <p
+                          lang="en"
+                          className="mt-1 text-xs leading-5 text-stone-500"
+                        >
+                          {item.key_finding}
                         </p>
                         <p className="mt-1 text-xs text-stone-500">
                           {item.year ? `${item.year} · ` : ""}

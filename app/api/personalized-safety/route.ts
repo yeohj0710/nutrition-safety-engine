@@ -377,46 +377,56 @@ function selectEvidence(
       )
     ) {
       score += 12;
-      reasons.push("종합 근거");
+      reasons.push("여러 연구의 결과를 종합한 문헌입니다.");
     } else if (
       /random|clinical trial/.test(
         `${item.title} ${item.publication_types}`.toLowerCase(),
       )
     ) {
       score += 8;
-      reasons.push("임상시험");
+      reasons.push(
+        "사람을 대상으로 보충제나 약물의 영향을 비교한 연구입니다.",
+      );
     }
     const medicationTerms = medication
       .split(/[^a-z0-9가-힣]+/)
       .filter((term) => term.length >= 3);
     if (medicationTerms.some((term) => text.includes(term))) {
       score += 40;
-      reasons.push("입력 약물 직접 일치");
+      reasons.push("작성한 약 이름이 제목이나 초록에 직접 나옵니다.");
     } else if (
       medication &&
       /anticoag|warfarin|platelet|bleed|inr/.test(text)
     ) {
       score += 8;
-      reasons.push("항응고·출혈 간접 근거");
+      reasons.push(
+        "작성한 약을 직접 다룬 연구는 아니지만, 항응고 작용이나 출혈 결과를 확인한 문헌입니다.",
+      );
     }
     if (
       /(코피|멍|출혈|혈변|토혈)/.test(condition) &&
       /bleed|hemorrhag|platelet|inr/.test(text)
     ) {
       score += 12;
-      reasons.push("입력 증상 일치");
+      reasons.push(
+        "작성한 출혈 증상과 관련된 출혈·응고 지표를 다뤘습니다.",
+      );
     }
     if (
       /(결석|고칼슘뇨|옥살산)/.test(condition) &&
       /stone|calcul|hypercalciur|oxalat/.test(text)
     ) {
       score += 12;
-      reasons.push("입력 병력 일치");
+      reasons.push(
+        "작성한 결석·칼슘·옥살산 병력과 관련된 결과를 다뤘습니다.",
+      );
     }
     return {
       ...item,
       relevance_score: score,
-      selection_reason: reasons.join(" · ") || "질문 핵심 근거",
+      selection_reason:
+        reasons.join(" ") ||
+        "이 질문의 보충제 안전성과 직접 관련된 결과를 다룬 문헌입니다.",
     };
   });
   ranked.sort(
@@ -637,7 +647,8 @@ export async function POST(req: Request) {
         selected: evidenceSelection.selected.length,
         total_candidates: evidenceSelection.all.length,
         direct_medication_matches: evidenceSelection.directMedicationMatches,
-        method: "연구설계·입력 약물·증상·병력 연관도 순",
+        method:
+          "연구 방법의 신뢰도와 작성한 약·증상·병력의 관련성을 함께 비교했습니다.",
       },
       interpretation:
         "이 결과는 상담 준비를 위한 근거 요약입니다. 복용 시작·중단·용량 변경을 직접 지시하지 않습니다.",
