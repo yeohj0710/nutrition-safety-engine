@@ -47,6 +47,12 @@ describe("personalized safety UI contract", () => {
     );
   });
 
+  it("leaves enough scroll room below the home result", () => {
+    expect(page).toContain("pt-4 pb-24");
+    expect(page).toContain("sm:pb-36");
+    expect(page).toContain("lg:pb-52");
+  });
+
   it("gives every free-text input an accessible name", () => {
     for (const name of [
       "제품 라벨의 하루 섭취량",
