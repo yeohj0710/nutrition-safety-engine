@@ -1,7 +1,17 @@
 #!/usr/bin/env python3
 from pathlib import Path
+from xml.etree import ElementTree as ET
 import pandas as pd,json,re,hashlib
 R=Path(__file__).resolve().parents[1];D=R/"research/systematic_review_v3";d=pd.read_csv(D/"core_evidence.csv").fillna("");m=json.loads((D/"core_manifest.json").read_text(encoding="utf-8"));rules=json.loads((D/"personalized_rules.json").read_text(encoding="utf-8"));translations_payload=json.loads((D/"key_finding_translations_ko.json").read_text(encoding="utf-8"));translations=translations_payload.get("translations",{});source_overrides=translations_payload.get("source_overrides",{});errors=[]
+def clean_source(value):return re.sub(r"\s+"," ",str(value or "")).strip()
+pubmed_abstracts={}
+for path in R.glob("research/searches/*/pubmed/**/*.xml"):
+ try:root=ET.parse(path).getroot()
+ except ET.ParseError:continue
+ for article in root.findall(".//PubmedArticle"):
+  pmid=clean_source(article.findtext(".//MedlineCitation/PMID"))
+  abstract=clean_source(" ".join(clean_source("".join(node.itertext())) for node in article.findall(".//MedlineCitation/Article/Abstract/AbstractText")))
+  if pmid and abstract:pubmed_abstracts.setdefault(pmid,[]).append(abstract)
 required={"question_id","record_id","provider_id","title","authors","venue","year","doi","source_url","publication_types","automated_eligibility","population_evidence","supplement","dose_extracted","outcome_evidence","evidence_locator","fulltext_locator","human_screened","extraction_authority","priority_score"}
 missing=required-set(d.columns)
 if missing:errors.append("missing columns:"+",".join(sorted(missing)))
@@ -23,6 +33,9 @@ for rule in rules:
  if rule["question_id"] not in set(d.question_id):errors.append(f"unknown rule question:{rule['question_id']}")
  if not rule.get("evidence"):errors.append(f"rule without evidence:{rule['question_id']}")
  ids=set(d[d.question_id==rule["question_id"]].record_id)
+ all_evidence_ids=[e.get("record_id") for e in rule.get("all_evidence",[])]
+ if len(all_evidence_ids)!=len(set(all_evidence_ids)):errors.append(f"duplicate all_evidence ID:{rule['question_id']}")
+ if set(all_evidence_ids)!=ids:errors.append(f"all_evidence ID set mismatch:{rule['question_id']}")
  for e in rule["evidence"]:
   if e["record_id"] not in ids:errors.append(f"rule evidence outside core:{e['record_id']}")
  for e in rule.get("all_evidence",[]):
@@ -32,6 +45,9 @@ for rule in rules:
   if len(str(e.get("key_finding_ko","")))>220:errors.append(f"Korean key finding too long:{e.get('record_id','unknown')}")
   if e.get("record_id") not in translations:errors.append(f"missing Korean translation:{e.get('record_id','unknown')}")
   if e.get("record_id") in source_overrides and e.get("key_finding")!=source_overrides[e.get("record_id")]:errors.append(f"source override mismatch:{e.get('record_id','unknown')}")
+  pmid=re.sub(r"\D","",str(e.get("record_id","")));finding=clean_source(e.get("key_finding",""));needle=finding[:-1] if finding.endswith("…") else finding
+  structured_source=clean_source(" ".join(str(e.get(field,"")) for field in ["locator","outcome","population"]))
+  if needle and not any(needle in source for source in [structured_source,*pubmed_abstracts.get(pmid,[])]):errors.append(f"key finding outside PubMed source:{e.get('record_id','unknown')}")
 bad=[]
 for _,r in d.iterrows():
  t=r.title.lower()

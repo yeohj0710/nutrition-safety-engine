@@ -3,7 +3,9 @@
   "source_field": "key_finding",
   "source_override_authority": "automated_curation_from_same_pubmed_abstract",
   "source_overrides": {
-    "REC-PUBMED-17923275": "Coadministration of warfarin with omega-3 fatty acids can lead to additional anticoagulation."
+    "REC-PUBMED-17923275": "Coadministration of warfarin with omega-3 fatty acids can lead to additional anticoagulation.",
+    "REC-PUBMED-26962786": "Median dietary intake of vitamin K1 ranged from 76 to 217 μg/day among studies, and an effect on coagulation may be detected only for high amount of vitamin intake (>150 μg/day).",
+    "REC-PUBMED-23595003": "Subjects in the 1250 μg treatment group, who had a BMI >26 kg/m2, had a steady increase in urinary Ca in the first 3 weeks of supplementation, and, overall, the relative risk of hypercalciuria was higher in the 1250 μg group than in the placebo group (P=0·01)."
   },
   "translations": {
     "REC-PUBMED-26962786": "연구들에서 식이 비타민 K1의 중앙값 섭취량은 하루 76~217 μg였고, 응고에 대한 영향은 고용량 섭취(>150 μg/일)에서만 검출될 수 있습니다.",
@@ -41,7 +43,7 @@
     "REC-PUBMED-17182793": "높은 공복 중성지방 농도는 높은 응고 촉진 활성과 식이성 어유에 의한 트롬빈 생성능 감소를 예측했습니다.",
     "REC-PUBMED-17923275": "와파린과 오메가-3 지방산을 함께 복용하면 항응고 효과가 더해질 수 있습니다.",
     "REC-PUBMED-10767122": "하루 3–6 g의 어유 보충은 만성 와파린 치료 중인 환자의 항응고 상태에 통계적으로 유의한 영향을 미치지 않는 것으로 보입니다.",
-    "REC-PUBMED-11271790": "규칙적인 칼슘 보충은 소변의 칼슘과 옥살레이트 곱을 증가시키지 않으며 옥살레이트에 대한 칼슘의 비율이 감소합니다.",
+    "REC-PUBMED-11271790": "규칙적인 칼슘 보충은 소변의 칼슘과 옥살레이트 곱을 증가시키지 않았고, 칼슘에 대한 옥살레이트의 비율은 낮아졌습니다.",
     "REC-PUBMED-24937025": "과칼슘뇨증과 고칼슘혈증이 칼슘, 비타민 D, 또는 둘 중 어느 것에 의해 발생하는지는 명확하지 않습니다.",
     "REC-PUBMED-11836046": "식사와 함께 칼슘 보충 또는 칼슘 보충과 에스트로겐 병용은 대부분의 폐경후 골다공증 환자에서 칼슘 옥살레이트 결석 형성 위험을 유의하게 증가시키지 않습니다.",
     "REC-PUBMED-9508013": "칼슘 배설은 우유 식단에서 주스 식단보다 17% 더 높았으며(P<.05), 각각 4.7 vs 3.9 mmol이었습니다.",
@@ -73,7 +75,7 @@
     "REC-PUBMED-9337641": "식이 칼슘 제한은 요중 칼슘 배설을 줄이는 효과적인 방법이지만 옥살레이트 배설을 증가시키거나 변화시키지 않는 것으로 보고되어 고칼슘뇨 결석 환자에서 그 사용에 의문을 제기합니다.",
     "REC-PUBMED-37481570": "두 가지 비타민 D 보충 프로토콜 모두 24시간 요중 칼슘을 증가시켰지만 칼슘 옥살레이트 또는 칼슘 인산염의 과포화 상태를 증가시키지는 않았습니다.",
     "REC-PUBMED-24657333": "요약하면 히드로클로로티아지드 사용자의 경우 비타민 D3 보충(최대 4000 IU)은 혈중 칼슘을 증가시키지만 고칼슘혈증의 빈도는 낮습니다.",
-    "REC-PUBMED-23595003": "비타민 D 보충은 논란의 여지가 있으나 주당 ≤250 μg(≤10,000 IU/week)까지 투여하면 건강한 인구에서 비타민 D 상태를 개선하거나 유지할 수 있으며 고칼슘뇨의 위험은 없지만 24시간 요중 칼슘 배설은 모니터링해야 한다는 자료입니다.",
+    "REC-PUBMED-23595003": "BMI가 26 kg/m²를 초과한 1,250 μg 투여군에서는 보충 첫 3주 동안 요중 칼슘이 꾸준히 증가했고, 전체적으로 고칼슘뇨 상대위험이 위약군보다 높았습니다(P = 0.01).",
     "REC-PUBMED-31005969": "중앙값 3.3년 동안 매월 100,000 IU 비타민 D3를 보충했을 때 신장 결석 발생률이나 고칼슘혈증에는 영향을 미치지 않았습니다.",
     "REC-PUBMED-27765695": "고용량 및 저용량 비타민 D 보충은 알려진 결석 환자에서 요중 칼슘 배설이나 칼슘 염의 과포화에 영향을 미치지 않았습니다.",
     "REC-PUBMED-27604776": "장기 비타민 D 보충은 고칼슘혈증 및 고칼슘뇨의 위험을 증가시켰으며 이는 용량 관련성은 없었습니다.",

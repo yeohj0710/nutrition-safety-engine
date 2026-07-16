@@ -7,6 +7,18 @@ afterEach(() => {
   if (original) process.env.OPENAI_API_KEY = original;
   else delete process.env.OPENAI_API_KEY;
 });
+
+async function requestAssessment(input: Record<string, string>) {
+  delete process.env.OPENAI_API_KEY;
+  const response = await POST(
+    new Request("http://local/api/personalized-safety", {
+      method: "POST",
+      body: JSON.stringify(input),
+    }),
+  );
+  return { response, body: await response.json() };
+}
+
 describe("personalized safety API", () => {
   it("returns a complete assessment for every public input example", async () => {
     delete process.env.OPENAI_API_KEY;
@@ -116,7 +128,7 @@ describe("personalized safety API", () => {
       expect(body.evidence[0].key_finding_ko).toBeTruthy();
       expect(body.evidence[0].key_finding.length).toBeLessThanOrEqual(280);
       expect(body.evidence_selection.method).toBe(
-        "체계적 문헌고찰·메타분석·임상시험을 먼저 보고, 복용 중인 약과 병력·증상을 직접 다룬 문헌을 위에 배치했습니다.",
+        "연구 설계와 입력한 약·증상·병력·검사 결과·용량을 문헌의 대상과 결과에 대조해 관련도가 높은 순서로 배치했습니다.",
       );
       expect(body.ai_summary).not.toMatch(
         /supplement dose|kidney stone|dietary calcium/,
@@ -208,6 +220,203 @@ describe("personalized safety API", () => {
     expect(body.assessment.interaction).not.toContain("아픽사반");
     expect(body.assessment.context).toContain("현재 불편한 증상은 없습니다.");
   });
+
+  it("matches Korean medicine names to the exact English medicine in evidence", async () => {
+    const vitaminK = await requestAssessment({
+      ingredient: "비타민 K",
+      dose: "100 mcg/day",
+      medication: "와파린",
+      condition: "항응고 치료 중",
+      labs: "INR 3.1",
+    });
+    const aspirin = await requestAssessment({
+      ingredient: "오메가-3",
+      dose: "EPA+DHA 1000 mg/day",
+      medication: "아스피린",
+      condition: "특별한 증상 없음",
+    });
+
+    expect(vitaminK.body.evidence_selection.direct_medication_matches).toBeGreaterThan(0);
+    expect(
+      vitaminK.body.evidence.some((item: { selection_reason: string }) =>
+        item.selection_reason.includes("입력한 약을 직접 다룬 문헌입니다"),
+      ),
+    ).toBe(true);
+    expect(aspirin.body.evidence_selection.direct_medication_matches).toBeGreaterThan(0);
+    expect(aspirin.body.evidence[0].record_id).toBe("REC-PUBMED-28197979");
+  });
+
+  it("keeps apixaban evidence explicitly indirect", async () => {
+    const { body } = await requestAssessment({
+      ingredient: "오메가-3",
+      dose: "EPA+DHA 2000 mg/day",
+      medication: "아픽사반",
+      condition: "코피가 자주 남",
+    });
+
+    expect(body.evidence_selection.direct_medication_matches).toBe(0);
+    expect(
+      body.evidence.every((item: { selection_reason: string }) =>
+        !item.selection_reason.includes("입력한 약을 직접 다룬 문헌입니다"),
+      ),
+    ).toBe(true);
+  });
+
+  it.each([
+    [
+      "thiazide and high serum calcium",
+      {
+        ingredient: "비타민 D",
+        dose: "100 μg/day",
+        medication: "티아지드 이뇨제",
+        condition: "칼슘 수치가 높다고 들음",
+        labs: "혈청 칼슘 10.7 mg/dL",
+      },
+      "REC-PUBMED-24657333",
+      ["입력한 약을 직접 다룬 문헌입니다", "혈중 칼슘"],
+    ],
+    [
+      "warfarin and 6 g omega-3",
+      {
+        ingredient: "오메가-3",
+        dose: "EPA+DHA 6000 mg/day",
+        medication: "와파린",
+        condition: "멍이 잘 듦",
+      },
+      "REC-PUBMED-10767122",
+      ["입력한 약을 직접 다룬 문헌입니다", "입력한 용량"],
+    ],
+    [
+      "reduced kidney function and 2 g vitamin C",
+      {
+        ingredient: "비타민 C",
+        dose: "2000 mg/day",
+        condition: "신장기능 저하",
+        labs: "eGFR 48 mL/min/1.73m²",
+      },
+      "REC-PUBMED-30276648",
+      ["신장기능", "입력한 용량"],
+    ],
+    [
+      "calcium stone history and high urine calcium",
+      {
+        ingredient: "칼슘",
+        dose: "600 mg/day",
+        condition: "칼슘옥살산 신장결석 병력",
+        labs: "24시간 요중 칼슘 280 mg/day",
+      },
+      "REC-PUBMED-1593849",
+      ["현재 병력", "요중 칼슘"],
+    ],
+    [
+      "vitamin D upper limit with stone history",
+      {
+        ingredient: "비타민 D",
+        dose: "4000 IU/day",
+        condition: "신장결석 및 고칼슘뇨 병력",
+        labs: "25(OH)D 48 ng/mL",
+      },
+      "REC-PUBMED-27604776",
+      ["체계적 문헌고찰", "현재 병력", "요중 칼슘"],
+    ],
+    [
+      "vitamin D without a risk modifier",
+      {
+        ingredient: "비타민 D",
+        dose: "2000 IU/day",
+        medication: "복용 약 없음",
+        condition: "특별한 증상 없음",
+        labs: "25(OH)D 28 ng/mL",
+      },
+      "REC-PUBMED-27604776",
+      ["체계적 문헌고찰"],
+    ],
+  ])(
+    "ranks the closest paper first for %s",
+    async (_name, input, expectedRecordId, expectedReasons) => {
+      const { body } = await requestAssessment(input);
+
+      expect(body.evidence[0].record_id).toBe(expectedRecordId);
+      for (const reason of expectedReasons) {
+        expect(body.evidence[0].selection_reason).toContain(reason);
+      }
+    },
+  );
+
+  it("does not mistake parathyroid text for levothyroxine evidence", async () => {
+    const { body } = await requestAssessment({
+      ingredient: "칼슘",
+      dose: "500 mg/day",
+      medication: "레보티록신",
+      condition: "특별한 증상 없음",
+    });
+
+    expect(body.evidence_selection.direct_medication_matches).toBe(0);
+    expect(
+      body.evidence.every((item: { selection_reason: string }) =>
+        !item.selection_reason.includes("같은 약물 계열"),
+      ),
+    ).toBe(true);
+  });
+
+  it("does not treat co-medication doses as the omega-3 dose", async () => {
+    const lowDose = await requestAssessment({
+      ingredient: "오메가-3",
+      dose: "40 mg/day",
+      medication: "와파린",
+      condition: "특별한 증상 없음",
+    });
+    const omegaDose = await requestAssessment({
+      ingredient: "오메가-3",
+      dose: "4000 mg/day",
+      medication: "와파린",
+      condition: "특별한 증상 없음",
+    });
+    const lowDoseStudy = lowDose.body.all_evidence.find(
+      (item: { record_id: string }) => item.record_id === "REC-PUBMED-28197979",
+    );
+    const omegaDoseStudy = omegaDose.body.all_evidence.find(
+      (item: { record_id: string }) => item.record_id === "REC-PUBMED-28197979",
+    );
+
+    expect(lowDoseStudy.selection_reason).not.toContain("입력한 용량");
+    expect(omegaDoseStudy.selection_reason).toContain("입력한 용량");
+  });
+
+  it("matches an unknown medicine as a whole phrase instead of generic tokens", async () => {
+    const { body } = await requestAssessment({
+      ingredient: "칼슘",
+      dose: "500 mg/day",
+      medication: "calcium channel blocker",
+      condition: "특별한 증상 없음",
+    });
+
+    expect(body.evidence_selection.direct_medication_matches).toBe(0);
+    expect(
+      body.evidence.every((item: { selection_reason: string }) =>
+        !item.selection_reason.includes("입력한 약을 직접 다룬 문헌입니다"),
+      ),
+    ).toBe(true);
+  });
+
+  it.each([
+    ["spaced thousands", "600000 IU/day", "REC-PUBMED-33744642"],
+    ["lower range endpoint", "4000 IU/day", "REC-PUBMED-37182752"],
+  ])(
+    "matches vitamin D doses written with %s",
+    async (_name, dose, recordId) => {
+      const { body } = await requestAssessment({
+        ingredient: "비타민 D",
+        dose,
+        condition: "신장결석 병력",
+      });
+      const study = body.all_evidence.find(
+        (item: { record_id: string }) => item.record_id === recordId,
+      );
+
+      expect(study.selection_reason).toContain("입력한 용량");
+    },
+  );
   it("describes multiple medicines and symptoms without collapsing them", async () => {
     delete process.env.OPENAI_API_KEY;
     const response = await POST(

@@ -114,7 +114,7 @@ function EvidenceSentence({
       >
         근거
       </a>
-      <span className="pointer-events-auto absolute bottom-[calc(100%+0.375rem)] left-1/2 z-50 hidden w-80 max-w-[calc(100vw-2rem)] -translate-x-1/2 rounded-xl border border-blue-100 bg-white p-3 text-left text-xs font-medium leading-5 text-stone-700 shadow-[0_12px_36px_rgba(15,23,42,0.16)] after:absolute after:left-0 after:top-full after:h-2 after:w-full after:content-[''] group-hover:block group-focus-within:block sm:left-0 sm:translate-x-0">
+      <span className="pointer-events-auto absolute bottom-[calc(100%+0.75rem)] left-1/2 z-50 hidden w-80 max-w-[calc(100vw-2rem)] -translate-x-1/2 rounded-xl border border-blue-100 bg-white p-3 text-left text-xs font-medium leading-5 text-stone-700 shadow-[0_12px_36px_rgba(15,23,42,0.16)] after:absolute after:left-0 after:top-full after:h-3 after:w-full after:content-[''] group-hover:block group-focus-within:block sm:left-0 sm:translate-x-0">
         <span className="mb-2 block text-[11px] font-bold text-blue-600">
           이 문장의 근거
         </span>

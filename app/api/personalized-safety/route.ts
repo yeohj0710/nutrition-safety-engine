@@ -507,6 +507,8 @@ type RuntimeEvidence = {
   url: string;
   dose?: string;
   outcome?: string;
+  locator?: string;
+  key_finding?: string;
   publication_types?: string;
   population?: string;
   priority_score?: number;
@@ -531,15 +533,158 @@ function normalizedDose(questionId: string, value: string) {
     return amount * 1000;
   return amount;
 }
+
+type EvidenceMedicationAlias = {
+  input: RegExp;
+  direct: RegExp[];
+  related: RegExp[];
+};
+
+const evidenceMedicationAliases: EvidenceMedicationAlias[] = [
+  {
+    input: /와파린|쿠마딘|warfarin/i,
+    direct: [/\bwarfarin\b/i],
+    related: [/vitamin k antagonist|\bvka\b|anticoag/i],
+  },
+  {
+    input: /아픽사반|엘리퀴스|apixaban|eliquis/i,
+    direct: [/\bapixaban\b|\beliquis\b/i],
+    related: [/anticoag|warfarin|bleed|hemorrhag|\binr\b/i],
+  },
+  {
+    input: /리바록사반|자렐토|rivaroxaban|xarelto/i,
+    direct: [/\brivaroxaban\b|\bxarelto\b/i],
+    related: [/anticoag|warfarin|bleed|hemorrhag|\binr\b/i],
+  },
+  {
+    input: /다비가트란|프라닥사|dabigatran|pradaxa/i,
+    direct: [/\bdabigatran\b|\bpradaxa\b/i],
+    related: [/anticoag|warfarin|bleed|hemorrhag|\binr\b/i],
+  },
+  {
+    input: /아스피린|aspirin|acetylsalicylic|\basa\b/i,
+    direct: [/\baspirin\b|acetylsalicylic|\basa\b/i],
+    related: [/antiplatelet|platelet/i],
+  },
+  {
+    input: /클로피도그렐|clopidogrel|plavix/i,
+    direct: [/\bclopidogrel\b|\bplavix\b/i],
+    related: [/antiplatelet|platelet/i],
+  },
+  {
+    input: /티아지드|히드로클로로티아지드|hydrochlorothiazide|thiazide/i,
+    direct: [/hydrochlorothiazide|thiazide/i],
+    related: [/diuretic|hypercalcem|serum calcium/i],
+  },
+  {
+    input: /레보티록신|갑상선약|levothyroxine|synthroid/i,
+    direct: [/levothyroxine|synthroid/i],
+    related: [/\bthyroid\b/i],
+  },
+  {
+    input: /퀴놀론|ciprofloxacin|levofloxacin|quinolone/i,
+    direct: [/quinolone|ciprofloxacin|levofloxacin/i],
+    related: [/antibiotic/i],
+  },
+  {
+    input: /돌루테그라비르|dolutegravir|tivicay/i,
+    direct: [/dolutegravir|tivicay/i],
+    related: [/antiretroviral|integrase inhibitor/i],
+  },
+  {
+    input: /리튬|lithium/i,
+    direct: [/\blithium\b/i],
+    related: [/hypercalcem|serum calcium/i],
+  },
+];
+
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function evidenceMedicationPatterns(value: string) {
+  const direct: RegExp[] = [];
+  const related: RegExp[] = [];
+  for (const medicine of medicationValues(value)) {
+    const alias = evidenceMedicationAliases.find((candidate) =>
+      candidate.input.test(medicine),
+    );
+    if (alias) {
+      direct.push(...alias.direct);
+      related.push(...alias.related);
+      continue;
+    }
+    const words = medicine.trim().split(/\s+/).filter(Boolean);
+    if (words.join("").length < 3) continue;
+    const phrase = words.map(escapeRegExp).join("\\s+");
+    const boundaries = /^[a-z0-9]/i.test(medicine) ? "\\b" : "";
+    direct.push(new RegExp(`${boundaries}${phrase}${boundaries}`, "i"));
+  }
+  return { direct, related };
+}
+
+function evidenceDoseAmounts(questionId: string, value: string) {
+  const amounts: number[] = [];
+  const gramAmounts: number[] = [];
+  const pattern =
+    /(?:(\d[\d, ]*(?:\.\d+)?)\s*(?:-|–|—|to)\s*)?(\d[\d, ]*(?:\.\d+)?)\s*(international units?|iu|μg|µg|mcg|milligrams?|mg|grams?|g)\b/gi;
+  for (const match of value.matchAll(pattern)) {
+    const unit = match[3].toLowerCase().replace("µ", "μ");
+    for (const rawAmount of [match[1], match[2]].filter(Boolean)) {
+      const amount = Number(rawAmount.replace(/[\s,]/g, ""));
+      if (!Number.isFinite(amount)) continue;
+      if (questionId === "A1" && /^(?:μg|mcg)$/.test(unit)) {
+        amounts.push(amount);
+      } else if (questionId === "B2") {
+        if (/^(?:iu|international unit)/.test(unit)) amounts.push(amount);
+        else if (/^(?:μg|mcg)$/.test(unit)) amounts.push(amount * 40);
+      } else if (["A2", "B1", "B3"].includes(questionId)) {
+        if (/^(?:g|gram)/.test(unit)) {
+          amounts.push(amount * 1000);
+          if (questionId === "A2") gramAmounts.push(amount * 1000);
+        } else if (/^(?:mg|milligram)/.test(unit)) amounts.push(amount);
+      }
+    }
+  }
+  if (questionId === "A2" && gramAmounts.length) return gramAmounts;
+  return amounts;
+}
+
+function reportsComparableDose(
+  questionId: string,
+  inputDose: string,
+  evidence: RuntimeEvidence,
+) {
+  const target = normalizedDose(questionId, inputDose);
+  if (!Number.isFinite(target) || target <= 0) return false;
+  const amounts = [
+    ...new Set(
+      evidenceDoseAmounts(
+        questionId,
+        `${evidence.dose ?? ""} ${evidence.key_finding ?? ""}`,
+      ),
+    ),
+  ];
+  if (questionId === "B1" && amounts.length !== 1) return false;
+  const tolerance = questionId === "B1" ? 0.2 : 0.1;
+  return amounts.some((amount) => Math.abs(amount - target) / target <= tolerance);
+}
+
 function selectEvidence(
+  questionId: string,
   all: RuntimeEvidence[],
   input: Exclude<ReturnType<typeof parseInput>, null>,
 ) {
   const medication = medicationValues(input.medication).join(" ").toLowerCase();
-  const condition = input.condition.toLowerCase();
+  const clinicalInput = `${input.condition} ${input.labs}`.toLowerCase();
+  const hasClinicalRiskModifier =
+    /(코피|멍|출혈|혈변|토혈|잇몸|결석|고칼슘뇨|고칼슘혈증|요중.{0,12}칼슘|소변.{0,12}칼슘|혈청.{0,12}칼슘|혈중.{0,12}칼슘|옥살산|옥살레이트|신장기능|신기능|egfr|신부전|콩팥|inr)/.test(
+      clinicalInput,
+    );
+  const medicationPatterns = evidenceMedicationPatterns(input.medication);
   const ranked = all.map((item) => {
     const text =
-      `${item.title} ${item.outcome ?? ""} ${item.population ?? ""}`.toLowerCase();
+      `${item.title} ${item.outcome ?? ""} ${item.population ?? ""} ${item.locator ?? ""} ${item.key_finding ?? ""}`.toLowerCase();
     let score = Number(item.priority_score ?? 0);
     const reasons: string[] = [];
     if (
@@ -547,7 +692,7 @@ function selectEvidence(
         `${item.title} ${item.publication_types}`.toLowerCase(),
       )
     ) {
-      score += 12;
+      score += 16;
       reasons.push("체계적 문헌고찰 또는 메타분석입니다.");
     } else if (
       /random|clinical trial/.test(
@@ -559,23 +704,23 @@ function selectEvidence(
         "사람을 대상으로 한 임상시험입니다.",
       );
     }
-    const medicationTerms = medication
-      .split(/[^a-z0-9가-힣]+/)
-      .filter((term) => term.length >= 3);
-    if (medicationTerms.some((term) => text.includes(term))) {
+    const directlyMatchesMedication = medicationPatterns.direct.some((pattern) =>
+      pattern.test(text),
+    );
+    if (directlyMatchesMedication) {
       score += 40;
-      reasons.push("복용 중인 약 이름이 제목이나 초록에 나옵니다.");
+      reasons.push("입력한 약을 직접 다룬 문헌입니다.");
     } else if (
       medication &&
-      /anticoag|warfarin|platelet|bleed|inr/.test(text)
+      medicationPatterns.related.some((pattern) => pattern.test(text))
     ) {
       score += 8;
       reasons.push(
-        "같은 약을 직접 연구하지는 않았지만 항응고 작용이나 출혈 결과를 다뤘습니다.",
+        "입력한 약을 직접 연구하지는 않았지만 같은 약물 계열이나 관련 안전성 결과를 다뤘습니다.",
       );
     }
     if (
-      /(코피|멍|출혈|혈변|토혈)/.test(condition) &&
+      /(코피|멍|출혈|혈변|토혈|잇몸)/.test(clinicalInput) &&
       /bleed|hemorrhag|platelet|inr/.test(text)
     ) {
       score += 12;
@@ -584,13 +729,52 @@ function selectEvidence(
       );
     }
     if (
-      /(결석|고칼슘뇨|옥살산)/.test(condition) &&
+      /결석/.test(clinicalInput) &&
       /stone|calcul|hypercalciur|oxalat/.test(text)
     ) {
-      score += 12;
+      score += 24;
       reasons.push(
         "현재 병력과 관련된 결석·칼슘·옥살산 결과를 보고했습니다.",
       );
+    }
+    if (
+      /(고칼슘혈증|혈청\s*칼슘|혈중\s*칼슘|칼슘\s*수치가\s*높)/.test(
+        clinicalInput,
+      ) && /hypercalcem|serum calcium|calcium level/.test(text)
+    ) {
+      score += 18;
+      reasons.push("입력한 혈중 칼슘 결과와 관련된 고칼슘혈증을 보고했습니다.");
+    }
+    if (
+      /(고칼슘뇨|요중.{0,12}칼슘|소변.{0,12}칼슘|24시간.{0,12}칼슘)/.test(
+        clinicalInput,
+      ) && /hypercalciur|urinary calcium|urine calcium|24(?:-h| hour) urine calcium/.test(text)
+    ) {
+      score += 18;
+      reasons.push("입력한 요중 칼슘 결과와 관련된 고칼슘뇨를 보고했습니다.");
+    }
+    if (
+      /(옥살산|옥살레이트)/.test(clinicalInput) &&
+      /oxalat/.test(text)
+    ) {
+      score += 18;
+      reasons.push("입력한 옥살산 결과와 관련된 요중 옥살산을 보고했습니다.");
+    }
+    if (
+      /(신장기능|신기능|egfr|신부전|콩팥)/.test(clinicalInput) &&
+      /renal failure|kidney (?:injury|disease|function)|renal (?:disease|insufficiency|function)|nephropath|oxalosis/.test(
+        text,
+      )
+    ) {
+      score += 24;
+      reasons.push("입력한 신장기능 저하와 관련된 신손상·신병증을 보고했습니다.");
+    }
+    if (
+      (medication || hasClinicalRiskModifier) &&
+      reportsComparableDose(questionId, input.dose, item)
+    ) {
+      score += 20;
+      reasons.push("입력한 용량과 같거나 가까운 용량을 보고했습니다.");
     }
     return {
       ...item,
@@ -605,13 +789,12 @@ function selectEvidence(
       b.relevance_score - a.relevance_score ||
       Number(b.priority_score ?? 0) - Number(a.priority_score ?? 0),
   );
-  const medicationTerms = medication
-    .split(/[^a-z0-9가-힣]+/)
-    .filter((term) => term.length >= 3);
   const directMedicationMatches = ranked.filter((item) =>
-    medicationTerms.some((term) =>
-      `${item.title} ${item.outcome ?? ""}`.toLowerCase().includes(term),
-    ),
+    medicationPatterns.direct.some((pattern) =>
+      pattern.test(
+        `${item.title} ${item.outcome ?? ""} ${item.population ?? ""} ${item.locator ?? ""} ${item.key_finding ?? ""}`,
+      ),
+    )
   ).length;
   return {
     selected: ranked.slice(0, 5),
@@ -1091,7 +1274,7 @@ export async function POST(req: Request) {
       `${/(?:아파|통증|출혈|어지|구토|설사|코피|멍)/.test(b.condition) ? "현재 증상" : "증상·병력"} ${b.condition}`,
     b.labs && `검사 결과 ${b.labs}`,
   ].filter(Boolean) as string[];
-  const evidenceSelection = selectEvidence(r.all_evidence, b);
+  const evidenceSelection = selectEvidence(q, r.all_evidence, b);
   const assessment = buildAssessment(q, b, evidenceSelection.selected);
   const summaryInput: SummaryInput = {
     questionId: q,
@@ -1145,7 +1328,7 @@ export async function POST(req: Request) {
         direct_medication_matches: evidenceSelection.directMedicationMatches,
         medication_name: compactMultiValue(medicationValues(b.medication)),
         method:
-          "체계적 문헌고찰·메타분석·임상시험을 먼저 보고, 복용 중인 약과 병력·증상을 직접 다룬 문헌을 위에 배치했습니다.",
+          "연구 설계와 입력한 약·증상·병력·검사 결과·용량을 문헌의 대상과 결과에 대조해 관련도가 높은 순서로 배치했습니다.",
       },
       interpretation:
         "이 결과는 상담 준비를 위한 근거 요약입니다. 복용 시작·중단·용량 변경을 직접 지시하지 않습니다.",

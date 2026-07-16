@@ -122,8 +122,8 @@ describe("personalized safety UI contract", () => {
   });
 
   it("separates evidence popovers from the sentence without breaking the hover bridge", () => {
-    expect(component).toContain("bottom-[calc(100%+0.375rem)]");
-    expect(component).toContain("after:h-2");
+    expect(component).toContain("bottom-[calc(100%+0.75rem)]");
+    expect(component).toContain("after:h-3");
   });
 
   it("uses a calm blue text-selection color", () => {
