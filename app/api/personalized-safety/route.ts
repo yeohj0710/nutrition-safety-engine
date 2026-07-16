@@ -211,6 +211,37 @@ function describeConditionForAssessment(value: string) {
   const quoted = value.replace(/[.!?。！？]+$/, "").trim();
   return `증상·병력으로 “${quoted}”라고 적은 내용을 반영했습니다.`;
 }
+function describeConditionForCounselingContext(value: string) {
+  if (!value) return "";
+  if (value === "특별한 증상 없음")
+    return "현재 불편한 증상은 없다고 하셨어요.";
+  if (/코피가 자주 남/.test(value))
+    return "현재 코피가 자주 난다고 하셨어요.";
+  if (/코피가 남/.test(value)) return "현재 코피가 난다고 하셨어요.";
+  if (/멍이 잘 듦/.test(value)) return "현재 멍이 잘 든다고 하셨어요.";
+  if (/잇몸 출혈/.test(value))
+    return "현재 잇몸에서 피가 난다고 하셨어요.";
+  if (/검은변 또는 혈변/.test(value))
+    return "현재 검은변 또는 혈변이 있다고 하셨어요.";
+  if (/(?:배가 아픔|배가 아파요)/.test(value))
+    return "현재 배가 아프다고 하셨어요.";
+  if (/메스꺼움/.test(value)) return "현재 메스꺼움이 있다고 하셨어요.";
+  if (/갈증이 심하고 소변이 잦음/.test(value))
+    return "현재 갈증이 심하고 소변이 자주 나온다고 하셨어요.";
+  if (/설사/.test(value)) return "현재 설사가 있다고 하셨어요.";
+  if (/INR이 자주 바뀜/.test(value)) return "INR이 자주 바뀐다고 하셨어요.";
+  if (/소변 칼슘이 높다고 들음/.test(value))
+    return "소변 칼슘이 높다는 말을 들으셨네요.";
+  if (/소변 옥살산이 높다고 들음/.test(value))
+    return "소변 옥살산이 높다는 말을 들으셨네요.";
+  if (/칼슘 수치가 높다고 들음/.test(value))
+    return "혈중 칼슘 수치가 높다는 말을 들으셨네요.";
+  if (/병력$/.test(value)) return `${withSubjectParticle(value)} 있다고 하셨어요.`;
+  if (/중$/.test(value)) return `${value}이라고 하셨어요.`;
+  if (!isSentenceLikeFreeText(value)) return `${value}도 있다고 하셨어요.`;
+  const quoted = value.replace(/[.!?。！？]+$/, "").trim();
+  return `증상이나 병력은 “${quoted}”이라고 말씀하셨어요.`;
+}
 function buildProfileSentence(input: SummaryInput) {
   const sentences: string[] = [];
   const medicines = medicationValues(input.medication);
@@ -824,23 +855,23 @@ function buildAssessment(
   const hasMedication = (pattern: RegExp) =>
     medicines.some((medicine) => pattern.test(medicine));
   const conditionText = conditionValues(input.condition)
-    .map(describeConditionForAssessment)
+    .map(describeConditionForCounselingContext)
     .join(" ");
   const context = [
-    `${withObjectParticle(input.ingredient)} 복용 중입니다.`,
+    `${withObjectParticle(input.ingredient)} 복용하고 계시네요.`,
     /모르겠/.test(input.dose)
-      ? "제품 라벨의 하루 양은 아직 모릅니다."
+      ? "제품 라벨의 하루 양은 아직 모르겠다고 하셨고요."
       : input.dose
-        ? `제품 라벨의 하루 섭취량은 ${input.dose}입니다.`
+        ? `제품 라벨에는 하루 ${input.dose}로 적혀 있다고 하셨고요.`
         : "",
     medicationName
-      ? `${withObjectParticle(medicationName)} 함께 복용 중입니다.`
+      ? `${medicationName}도 함께 복용하고 계시고요.`
       : "",
     conditionText,
     input.labs
       ? isSentenceLikeFreeText(input.labs)
-        ? `최근 검사 결과로 “${input.labs.replace(/[.!?。！？]+$/, "").trim()}”라고 적은 내용을 반영했습니다.`
-        : `최근 검사 결과는 ${input.labs}입니다.`
+        ? `최근 검사와 관련해서는 “${input.labs.replace(/[.!?。！？]+$/, "").trim()}”이라는 내용도 말씀하셨어요.`
+        : `최근 검사 결과는 ${input.labs}이라고 하셨어요.`
       : "",
   ]
     .filter(Boolean)
@@ -1253,7 +1284,7 @@ async function generateNarrativeAssessment({
       "ai_used"
     >;
     if (!isGroundedNarrative(parsed, source)) return fallback;
-    return { ai_used: true, ...parsed };
+    return { ai_used: true, ...parsed, context: assessment.context };
   } catch {
     return fallback;
   }

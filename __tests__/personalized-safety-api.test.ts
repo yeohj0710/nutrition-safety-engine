@@ -78,6 +78,15 @@ describe("personalized safety API", () => {
       expect(body.assessment.context, example.title).toContain(
         example.input.ingredient,
       );
+      expect(body.assessment.context, example.title).toContain(
+        "복용하고 계시네요",
+      );
+      expect(body.narrative_assessment.context, example.title).toBe(
+        body.assessment.context,
+      );
+      expect(body.assessment.context, example.title).not.toMatch(
+        /복용 중입니다|현재 불편한 증상은 없습니다|반영했습니다/,
+      );
       expect(
         `${body.assessment.verdict} ${body.assessment.dose}`,
         example.title,
@@ -164,7 +173,7 @@ describe("personalized safety API", () => {
     );
     expect(body.assessment.verdict).toContain("줄이는 편이 낫습니다");
     expect(body.assessment.context).toContain(
-      "칼슘옥살산 신장결석 병력이 있습니다.",
+      "칼슘옥살산 신장결석 병력이 있다고 하셨어요.",
     );
     expect(body.assessment.context).not.toContain("병력도 함께 있습니다");
     expect(body.assessment.dose).toContain("2,000–2,500 mg/day");
@@ -195,6 +204,21 @@ describe("personalized safety API", () => {
     expect(paperReferences[1].summary_ko).toBe(body.evidence[1].key_finding_ko);
     expect(body.assessment.references[0].summary_ko).toMatch(/[가-힣]/);
   });
+
+  it("reflects the entered profile in a conversational counseling tone", async () => {
+    const { body } = await requestAssessment({
+      ingredient: "칼슘",
+      dose: "500 mg/day",
+      medication: "레보티록신(성분명 알려지지 않음)",
+      condition: "특별한 증상 없음",
+    });
+    const expectedContext =
+      "칼슘을 복용하고 계시네요. 제품 라벨에는 하루 500 mg/day로 적혀 있다고 하셨고요. 레보티록신(성분명 알려지지 않음)도 함께 복용하고 계시고요. 현재 불편한 증상은 없다고 하셨어요.";
+
+    expect(body.assessment.context).toBe(expectedContext);
+    expect(body.narrative_assessment.context).toBe(expectedContext);
+    expect(expectedContext).not.toMatch(/복용 중이에요|섭취량은 .*이에요/);
+  });
   it("combines the omega-3 profile with quantitative findings and directness limits", async () => {
     delete process.env.OPENAI_API_KEY;
     const response = await POST(
@@ -215,7 +239,9 @@ describe("personalized safety API", () => {
     expect(body.ai_summary).toContain("아픽사반 복용자에게 안전한 EPA+DHA 상한을 직접 정하지 않았으므로");
     expect(body.assessment.verdict).toContain("일반 성인 기준으로는 안전 범위 안");
     expect(body.assessment.interaction).toContain("아픽사반과 오메가-3");
-    expect(body.assessment.context).toContain("현재 코피가 자주 납니다.");
+    expect(body.assessment.context).toContain(
+      "현재 코피가 자주 난다고 하셨어요.",
+    );
     expect(body.assessment.context).not.toContain("코피가 자주 남도 함께 있습니다");
     expect(body.evidence_selection.total_candidates).toBe(5);
     expect(body.evidence_selection.direct_medication_matches).toBe(0);
@@ -236,7 +262,9 @@ describe("personalized safety API", () => {
     const body = await response.json();
     expect(body.assessment.interaction).toContain("와파린과 오메가-3");
     expect(body.assessment.interaction).not.toContain("아픽사반");
-    expect(body.assessment.context).toContain("현재 불편한 증상은 없습니다.");
+    expect(body.assessment.context).toContain(
+      "현재 불편한 증상은 없다고 하셨어요.",
+    );
   });
 
   it("matches Korean medicine names to the exact English medicine in evidence", async () => {
@@ -452,10 +480,12 @@ describe("personalized safety API", () => {
 
     expect(response.status).toBe(200);
     expect(body.assessment.context).toContain(
-      "와파린·아스피린을 함께 복용 중입니다.",
+      "와파린·아스피린도 함께 복용하고 계시고요.",
     );
-    expect(body.assessment.context).toContain("현재 코피가 납니다.");
-    expect(body.assessment.context).toContain("현재 멍이 잘 듭니다.");
+    expect(body.assessment.context).toContain("현재 코피가 난다고 하셨어요.");
+    expect(body.assessment.context).toContain(
+      "현재 멍이 잘 든다고 하셨어요.",
+    );
     expect(body.assessment.interaction).toContain(
       "와파린·아스피린과 오메가-3",
     );
@@ -556,7 +586,9 @@ describe("personalized safety API", () => {
     );
     const body = await response.json();
     expect(response.status).toBe(200);
-    expect(body.assessment.context).toContain("하루 양은 아직 모릅니다");
+    expect(body.assessment.context).toContain(
+      "하루 양은 아직 모르겠다고 하셨고요",
+    );
     expect(body.assessment.verdict).toContain("복용량을 모르면");
     expect(body.assessment.context).not.toContain("복용 약 없음도");
   });
@@ -722,7 +754,9 @@ describe("personalized safety API", () => {
       changed: true,
     });
     expect(body.assessment.context).toContain("아픽사반");
-    expect(body.assessment.context).toContain("현재 코피가 자주 납니다.");
+    expect(body.assessment.context).toContain(
+      "현재 코피가 자주 난다고 하셨어요.",
+    );
     expect(body.assessment.context).toContain("2,000 mg/day");
   });
   it("writes the displayed assessment from the full interpreted context", async () => {
@@ -796,7 +830,7 @@ describe("personalized safety API", () => {
     );
     expect(body.narrative_assessment.ai_used).toBe(true);
     expect(body.narrative_assessment.context).toBe(
-      "비타민 C를 복용 중이고 현재 배가 아픕니다. 최근 검사에서는 비타민 D 수치가 낮다는 설명을 들었습니다.",
+      "비타민 C를 복용하고 계시네요. 제품 라벨의 하루 양은 아직 모르겠다고 하셨고요. 현재 배가 아프다고 하셨어요. 최근 검사와 관련해서는 “비타민 D 수치가 낮았다고 들음”이라는 내용도 말씀하셨어요.",
     );
     expect(JSON.stringify(body.narrative_assessment)).not.toContain(
       "낮다고했던거같아요입니다",
@@ -891,7 +925,9 @@ describe("personalized safety API", () => {
       ai_used: false,
       changed: false,
     });
-    expect(body.assessment.context).toContain("요중 칼슘 280입니다");
+    expect(body.assessment.context).toContain(
+      "요중 칼슘 280이라고 하셨어요",
+    );
     expect(body.assessment.context).not.toContain("300");
   });
   it("rejects an AI interpretation that changes a medicine concept", async () => {
