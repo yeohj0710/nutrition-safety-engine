@@ -35,7 +35,12 @@ type Result = {
     dose: string;
     interaction: string;
     watch: string;
-    references: Array<{ label: string; title: string; url: string }>;
+    references: Array<{
+      label: string;
+      title: string;
+      url: string;
+      summary_ko?: string;
+    }>;
   };
   profile: string[];
   checks: string[];
@@ -114,7 +119,7 @@ function EvidenceSentence({
       >
         근거
       </a>
-      <span className="pointer-events-auto absolute bottom-[calc(100%+0.75rem)] left-1/2 z-50 hidden w-80 max-w-[calc(100vw-2rem)] -translate-x-1/2 rounded-xl border border-blue-100 bg-white p-3 text-left text-xs font-medium leading-5 text-stone-700 shadow-[0_12px_36px_rgba(15,23,42,0.16)] after:absolute after:left-0 after:top-full after:h-3 after:w-full after:content-[''] group-hover:block group-focus-within:block sm:left-0 sm:translate-x-0">
+      <span className="pointer-events-none invisible absolute -left-12 bottom-[calc(100%+0.75rem)] z-50 block w-[22rem] max-w-[calc(100vw-2rem)] rounded-xl border border-blue-100 bg-white p-3 text-left opacity-0 shadow-[0_12px_36px_rgba(15,23,42,0.16)] transition-opacity duration-150 after:absolute after:left-0 after:top-full after:h-3 after:w-full after:content-[''] group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100 sm:left-0">
         <span className="mb-2 block text-[11px] font-bold text-blue-600">
           이 문장의 근거
         </span>
@@ -124,9 +129,23 @@ function EvidenceSentence({
             href={reference.url}
             target="_blank"
             rel="noreferrer"
-            className="mt-1 block rounded-lg bg-blue-50/60 px-2 py-1.5 transition hover:bg-blue-100 hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="mt-1 block rounded-lg bg-blue-50/60 px-2.5 py-2 transition hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
-            <b>{reference.label}</b> · {reference.title}
+            <span className="block text-[11px] font-bold leading-4 text-blue-700">
+              {reference.label}
+            </span>
+            {reference.summary_ko && (
+              <span className="mt-0.5 line-clamp-2 text-[11px] font-medium leading-[1.55] text-stone-700">
+                {toHaeyoStyle(reference.summary_ko)}
+              </span>
+            )}
+            <span
+              lang="en"
+              title={reference.title}
+              className="mt-0.5 line-clamp-1 text-[10px] leading-4 text-stone-500"
+            >
+              {reference.title}
+            </span>
           </a>
         ))}
       </span>

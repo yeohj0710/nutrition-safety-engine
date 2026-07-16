@@ -177,6 +177,24 @@ describe("personalized safety API", () => {
       ]),
     );
   });
+
+  it("includes Korean findings in sentence-level evidence references", async () => {
+    const { body } = await requestAssessment({
+      ingredient: "비타민 D",
+      dose: "100 μg/day",
+      medication: "티아지드 이뇨제",
+      condition: "칼슘 수치가 높다고 들음",
+      labs: "혈청 칼슘 10.7 mg/dL",
+    });
+    const paperReferences = body.assessment.references.filter(
+      (item: { label: string }) => item.label.startsWith("논문"),
+    );
+
+    expect(paperReferences).toHaveLength(2);
+    expect(paperReferences[0].summary_ko).toBe(body.evidence[0].key_finding_ko);
+    expect(paperReferences[1].summary_ko).toBe(body.evidence[1].key_finding_ko);
+    expect(body.assessment.references[0].summary_ko).toMatch(/[가-힣]/);
+  });
   it("combines the omega-3 profile with quantitative findings and directness limits", async () => {
     delete process.env.OPENAI_API_KEY;
     const response = await POST(

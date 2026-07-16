@@ -124,6 +124,23 @@ describe("personalized safety UI contract", () => {
   it("separates evidence popovers from the sentence without breaking the hover bridge", () => {
     expect(component).toContain("bottom-[calc(100%+0.75rem)]");
     expect(component).toContain("after:h-3");
+    expect(component).toContain("-left-12");
+    expect(component).toContain("sm:left-0");
+  });
+
+  it("keeps sentence wrapping stable while the evidence popover opens", () => {
+    expect(component).toContain("invisible absolute");
+    expect(component).toContain("group-hover:visible");
+    expect(component).toContain("group-hover:opacity-100");
+    expect(component).not.toContain("group-hover:block");
+  });
+
+  it("shows a compact Korean finding before the English citation title", () => {
+    expect(component).toContain("reference.summary_ko");
+    expect(component).toContain("toHaeyoStyle(reference.summary_ko)");
+    expect(component).toContain("line-clamp-2");
+    expect(component).toContain("line-clamp-1");
+    expect(component).not.toMatch(/line-clamp-[12] block/);
   });
 
   it("uses a calm blue text-selection color", () => {

@@ -501,7 +501,12 @@ async function interpretFreeText(input: ParsedInput): Promise<InputInterpretatio
     return fallback;
   }
 }
-type AssessmentReference = { label: string; title: string; url: string };
+type AssessmentReference = {
+  label: string;
+  title: string;
+  url: string;
+  summary_ko?: string;
+};
 type RuntimeEvidence = {
   title: string;
   url: string;
@@ -509,6 +514,7 @@ type RuntimeEvidence = {
   outcome?: string;
   locator?: string;
   key_finding?: string;
+  key_finding_ko?: string;
   publication_types?: string;
   population?: string;
   priority_score?: number;
@@ -518,8 +524,9 @@ function reference(
   label: string,
   title: string,
   url: string,
+  summary_ko?: string,
 ): AssessmentReference {
-  return { label, title, url };
+  return { label, title, url, summary_ko };
 }
 function numberFrom(value: string) {
   const matches = value.match(/[\d,]+(?:\.\d+)?/g);
@@ -807,7 +814,7 @@ function buildAssessment(
   input: ReturnType<typeof parseInput> extends infer T
     ? Exclude<T, null>
     : never,
-  evidence: Array<{ title: string; url: string }>,
+  evidence: RuntimeEvidence[],
 ) {
   const dose = normalizedDose(questionId, input.dose);
   const lab = numberFrom(input.labs);
@@ -843,32 +850,38 @@ function buildAssessment(
       `논문 ${index + 1}`,
       evidence[index]?.title ?? "근거 문헌",
       evidence[index]?.url ?? "#",
+      evidence[index]?.key_finding_ko,
     );
   const ods = {
     calcium: reference(
       "NIH 기준",
       "NIH ODS Calcium Fact Sheet",
       "https://ods.od.nih.gov/factsheets/calcium-HealthProfessional/",
+      "칼슘의 권장 섭취량과 상한, 약물 상호작용을 정리한 기준 자료입니다.",
     ),
     omega: reference(
       "NIH 기준",
       "NIH ODS Omega-3 Fatty Acids Fact Sheet",
       "https://ods.od.nih.gov/factsheets/Omega3FattyAcids-HealthProfessional/",
+      "오메가-3의 섭취 기준과 출혈·약물 상호작용을 정리한 기준 자료입니다.",
     ),
     vitaminK: reference(
       "NIH 기준",
       "NIH ODS Vitamin K Fact Sheet",
       "https://ods.od.nih.gov/factsheets/VitaminK-HealthProfessional/",
+      "비타민 K의 섭취 기준과 와파린 상호작용을 정리한 기준 자료입니다.",
     ),
     vitaminD: reference(
       "NIH 기준",
       "NIH ODS Vitamin D Fact Sheet",
       "https://ods.od.nih.gov/factsheets/VitaminD-HealthProfessional/",
+      "비타민 D의 섭취 기준과 상한, 약물 상호작용을 정리한 기준 자료입니다.",
     ),
     vitaminC: reference(
       "NIH 기준",
       "NIH ODS Vitamin C Fact Sheet",
       "https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/",
+      "비타민 C의 섭취 기준과 상한, 건강 위험을 정리한 기준 자료입니다.",
     ),
   };
   if (questionId === "A1") {
