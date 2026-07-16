@@ -12,7 +12,7 @@ import {
 
 const disclosureCloseDuration = 340;
 
-export type AnimatedDetailsHandle = { close: () => void };
+export type AnimatedDetailsHandle = { close: () => void; open: () => void };
 
 type AnimatedDetailsProps = {
   children: ReactNode;
@@ -83,6 +83,10 @@ export const AnimatedDetails = forwardRef<
     close() {
       summaryRef.current?.focus();
       closeDisclosure();
+    },
+    open() {
+      summaryRef.current?.focus();
+      openDisclosure();
     },
   }));
 

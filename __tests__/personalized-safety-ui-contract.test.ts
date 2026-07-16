@@ -141,12 +141,16 @@ describe("personalized safety UI contract", () => {
     expect(component).not.toContain("group-hover:block");
   });
 
-  it("shows a compact Korean finding before the English citation title", () => {
+  it("shows complete citation text and opens all selected evidence", () => {
     expect(component).toContain("reference.summary_ko");
     expect(component).toContain("toHaeyoStyle(reference.summary_ko)");
-    expect(component).toContain("line-clamp-2");
-    expect(component).toContain("line-clamp-1");
-    expect(component).not.toMatch(/line-clamp-[12] block/);
+    expect(component).not.toContain("line-clamp-");
+    expect(component).toContain("현재 문장을 뒷받침하는 자료만 보여요.");
+    expect(component).toContain("showAllEvidence");
+    expect(component).toContain("evidenceRef.current?.open()");
+    expect(component).toContain("result.evidence_selection.selected");
+    expect(animatedDetails).toContain("open: () => void");
+    expect(animatedDetails).toContain("open() {");
   });
 
   it("uses a calm blue text-selection color", () => {

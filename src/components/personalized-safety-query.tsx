@@ -104,9 +104,13 @@ function Chevron() {
 function EvidenceSentence({
   children,
   references,
+  evidenceCount,
+  onShowAllEvidence,
 }: {
   children: string;
   references: Result["assessment"]["references"];
+  evidenceCount: number;
+  onShowAllEvidence: () => void;
 }) {
   return (
     <span className="group relative inline rounded-md px-0.5 transition-colors hover:bg-blue-100">
@@ -119,9 +123,12 @@ function EvidenceSentence({
       >
         근거
       </a>
-      <span className="pointer-events-none invisible absolute -left-12 bottom-[calc(100%+0.75rem)] z-50 block w-[22rem] max-w-[calc(100vw-2rem)] rounded-xl border border-blue-100 bg-white p-3 text-left opacity-0 shadow-[0_12px_36px_rgba(15,23,42,0.16)] transition-opacity duration-150 after:absolute after:left-0 after:top-full after:h-3 after:w-full after:content-[''] group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100 sm:left-0">
-        <span className="mb-2 block text-[11px] font-bold text-blue-600">
-          이 문장의 근거
+      <span className="pointer-events-none invisible absolute -left-12 bottom-[calc(100%+0.75rem)] z-50 block max-h-[70vh] w-96 max-w-[calc(100vw-2rem)] overflow-y-auto overscroll-contain rounded-xl border border-blue-100 bg-white p-3 text-left opacity-0 shadow-[0_12px_36px_rgba(15,23,42,0.16)] transition-opacity duration-150 after:absolute after:left-0 after:top-full after:h-3 after:w-full after:content-[''] group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100 sm:left-0">
+        <span className="block text-[11px] font-bold text-blue-600">
+          이 문장의 근거 {references.length}건
+        </span>
+        <span className="mb-2 mt-0.5 block text-[10px] leading-4 text-stone-500">
+          현재 문장을 뒷받침하는 자료만 보여요.
         </span>
         {references.map((reference) => (
           <a
@@ -135,19 +142,27 @@ function EvidenceSentence({
               {reference.label}
             </span>
             {reference.summary_ko && (
-              <span className="mt-0.5 line-clamp-2 text-[11px] font-medium leading-[1.55] text-stone-700">
+              <span className="mt-0.5 block text-[11px] font-medium leading-[1.55] text-stone-700">
                 {toHaeyoStyle(reference.summary_ko)}
               </span>
             )}
             <span
               lang="en"
               title={reference.title}
-              className="mt-0.5 line-clamp-1 text-[10px] leading-4 text-stone-500"
+              className="mt-1 block break-words text-[10px] leading-4 text-stone-500"
             >
               {reference.title}
             </span>
           </a>
         ))}
+        <button
+          type="button"
+          onClick={onShowAllEvidence}
+          className="mt-2 flex w-full items-center justify-between rounded-lg border border-blue-100 bg-white px-2.5 py-2 text-[11px] font-bold text-blue-700 transition hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          <span>결과에 사용한 문헌 {evidenceCount}건 모두 보기</span>
+          <span aria-hidden="true">↓</span>
+        </button>
       </span>
     </span>
   );
@@ -155,6 +170,8 @@ function EvidenceSentence({
 export function PersonalizedSafetyQuery() {
   const formRef = useRef<HTMLFormElement>(null);
   const examplesRef = useRef<AnimatedDetailsHandle>(null);
+  const evidenceRef = useRef<AnimatedDetailsHandle>(null);
+  const evidenceSectionRef = useRef<HTMLDivElement>(null);
   const resultRegionRef = useRef<HTMLDivElement>(null);
   const [result, setResult] = useState<Result | null>(null);
   const [error, setError] = useState("");
@@ -268,6 +285,18 @@ export function PersonalizedSafetyQuery() {
         "(prefers-reduced-motion: reduce)",
       ).matches;
       resultRegionRef.current?.scrollIntoView({
+        behavior: reduce ? "auto" : "smooth",
+        block: "start",
+      });
+    });
+  }
+  function showAllEvidence() {
+    evidenceRef.current?.open();
+    requestAnimationFrame(() => {
+      const reduce = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      evidenceSectionRef.current?.scrollIntoView({
         behavior: reduce ? "auto" : "smooth",
         block: "start",
       });
@@ -632,7 +661,11 @@ export function PersonalizedSafetyQuery() {
             <div className="p-5 pt-3">
               <section className="break-keep rounded-2xl bg-[#f2f6ff] px-5 py-5 text-[15px] font-medium leading-7 text-[#333d4b]">
                 <p className="font-semibold text-stone-950">
-                  <EvidenceSentence references={result.assessment.references}>
+                  <EvidenceSentence
+                    references={result.assessment.references}
+                    evidenceCount={result.evidence_selection.selected}
+                    onShowAllEvidence={showAllEvidence}
+                  >
                     {toHaeyoStyle(result.narrative_assessment.conclusion)}
                   </EvidenceSentence>
                 </p>
@@ -640,13 +673,19 @@ export function PersonalizedSafetyQuery() {
                   {toHaeyoStyle(result.narrative_assessment.context)}
                 </p>
                 <p className="mt-5">
-                  <EvidenceSentence references={result.assessment.references}>
+                  <EvidenceSentence
+                    references={result.assessment.references}
+                    evidenceCount={result.evidence_selection.selected}
+                    onShowAllEvidence={showAllEvidence}
+                  >
                     {toHaeyoStyle(result.narrative_assessment.explanation)}
                   </EvidenceSentence>
                 </p>
                 <p className="mt-5">
                   <EvidenceSentence
                     references={result.assessment.references.slice(1)}
+                    evidenceCount={result.evidence_selection.selected}
+                    onShowAllEvidence={showAllEvidence}
                   >
                     {toHaeyoStyle(result.narrative_assessment.next)}
                   </EvidenceSentence>
@@ -702,22 +741,24 @@ export function PersonalizedSafetyQuery() {
                   </ul>
                 </div>
               </AnimatedDetails>
-              <AnimatedDetails
-                className="mt-3 rounded-xl border border-stone-200"
-                summaryClassName="flex min-h-12 list-none items-center justify-between px-4 py-3 font-semibold"
-                summary={
-                  <>
-                    <span>결과에 사용한 문헌</span>
-                    <span className="flex items-center gap-2 text-sm text-stone-500">
-                      {result.evidence_selection.selected}건 · 후보{" "}
-                      {result.evidence_selection.total_candidates}건{" "}
-                      <span className="collapsible-chevron">
-                        <Chevron />
+              <div ref={evidenceSectionRef} className="mt-3 scroll-mt-6">
+                <AnimatedDetails
+                  ref={evidenceRef}
+                  className="rounded-xl border border-stone-200"
+                  summaryClassName="flex min-h-12 list-none items-center justify-between px-4 py-3 font-semibold"
+                  summary={
+                    <>
+                      <span>결과에 사용한 문헌</span>
+                      <span className="flex items-center gap-2 text-sm text-stone-500">
+                        {result.evidence_selection.selected}건 · 후보{" "}
+                        {result.evidence_selection.total_candidates}건{" "}
+                        <span className="collapsible-chevron">
+                          <Chevron />
+                        </span>
                       </span>
-                    </span>
-                  </>
-                }
-              >
+                    </>
+                  }
+                >
                 <div className="border-t border-stone-200 bg-blue-50/50 px-4 py-3 text-xs leading-5 text-stone-600">
                   <p>{toHaeyoStyle(result.evidence_selection.method)}</p>
                   {result.evidence_selection.medication_name && (
@@ -808,7 +849,8 @@ export function PersonalizedSafetyQuery() {
                     </div>
                   ))}
                 </AnimatedDetails>
-              </AnimatedDetails>
+                  </AnimatedDetails>
+              </div>
             </div>
           </article>
         )}
