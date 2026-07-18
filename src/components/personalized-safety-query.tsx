@@ -1,5 +1,5 @@
 "use client";
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import {
   AnimatedDetails,
   type AnimatedDetailsHandle,
@@ -112,8 +112,33 @@ function EvidenceSentence({
   evidenceCount: number;
   onShowAllEvidence: () => void;
 }) {
+  // CSS group-hover만으로는 문장에서 툴팁까지 마우스를 옮기는 사이(특히 문장이
+  // 여러 줄로 감길 때 툴팁과 커서 사이 빈 구간) hover가 끊겨 툴팁이 닫힌다.
+  // 상태 + 닫힘 유예시간으로 이동 중에도 열림을 유지한다.
+  const [open, setOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const show = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setOpen(true);
+  };
+  const hide = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setOpen(false), 200);
+  };
+  useEffect(
+    () => () => {
+      if (closeTimer.current) clearTimeout(closeTimer.current);
+    },
+    [],
+  );
   return (
-    <span className="group relative inline rounded-md px-0.5 transition-colors hover:bg-blue-100">
+    <span
+      className="group relative inline rounded-md px-0.5 transition-colors hover:bg-blue-100"
+      onMouseEnter={show}
+      onMouseLeave={hide}
+      onFocus={show}
+      onBlur={hide}
+    >
       {children}
       <a
         href={references[0]?.url}
@@ -123,7 +148,13 @@ function EvidenceSentence({
       >
         근거
       </a>
-      <span className="pointer-events-none invisible absolute -left-12 bottom-[calc(100%+0.75rem)] z-50 block max-h-[70vh] w-96 max-w-[calc(100vw-2rem)] overflow-y-auto overscroll-contain rounded-xl border border-blue-100 bg-white p-3 text-left opacity-0 shadow-[0_12px_36px_rgba(15,23,42,0.16)] transition-opacity duration-150 after:absolute after:left-0 after:top-full after:h-3 after:w-full after:content-[''] group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100 sm:left-0">
+      <span
+        className={`absolute -left-12 bottom-[calc(100%+0.75rem)] z-50 block max-h-[70vh] w-96 max-w-[calc(100vw-2rem)] overflow-y-auto overscroll-contain rounded-xl border border-blue-100 bg-white p-3 text-left shadow-[0_12px_36px_rgba(15,23,42,0.16)] transition-opacity duration-150 after:absolute after:left-0 after:top-full after:h-3 after:w-full after:content-[''] sm:left-0 ${
+          open
+            ? "pointer-events-auto visible opacity-100"
+            : "pointer-events-none invisible opacity-0"
+        }`}
+      >
         <span className="block text-[11px] font-bold text-blue-600">
           이 문장의 근거 {references.length}건
         </span>
