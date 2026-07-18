@@ -3,6 +3,16 @@ function hasBatchim(character: string) {
   return code >= 0xac00 && code <= 0xd7a3 && (code - 0xac00) % 28 !== 0;
 }
 
+export function withObjectParticle(word: string) {
+  const trimmed = word.trim();
+  if (!trimmed) return trimmed;
+  const last = trimmed.charAt(trimmed.length - 1);
+  const lastCode = last.charCodeAt(0);
+  const isHangul = lastCode >= 0xac00 && lastCode <= 0xd7a3;
+  if (isHangul) return `${trimmed}${hasBatchim(last) ? "을" : "를"}`;
+  return `${trimmed}${/[aeiou]/i.test(last) ? "를" : "을"}`;
+}
+
 const sentenceEnd = "(?=[.!?…]|$)";
 
 export function toHaeyoStyle(value: string) {

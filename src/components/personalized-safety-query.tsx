@@ -10,7 +10,7 @@ import {
   type PersonalizedSafetyExample,
 } from "@/src/lib/personalized-safety-examples";
 import { hasMultiValue, toggleMultiValue } from "@/src/lib/multi-value-input";
-import { toHaeyoStyle } from "@/src/lib/korean-ui-copy";
+import { toHaeyoStyle, withObjectParticle } from "@/src/lib/korean-ui-copy";
 
 type Result = {
   question_id: string;
@@ -464,7 +464,7 @@ export function PersonalizedSafetyQuery() {
                 <button
                   type="button"
                   onClick={() => setDraft({ ...draft, dose: "잘 모르겠어요" })}
-                  className={`rounded-xl border px-4 text-sm font-semibold ${draft.dose === "잘 모르겠어요" ? "border-blue-600 bg-blue-50 text-blue-700" : "border-stone-200"}`}
+                  className={`rounded-xl border px-4 text-sm font-semibold transition ${draft.dose === "잘 모르겠어요" ? "border-blue-600 bg-blue-50 text-blue-700" : "border-stone-200 hover:border-blue-300"}`}
                 >
                   모르겠어요
                 </button>
@@ -498,7 +498,7 @@ export function PersonalizedSafetyQuery() {
                           ),
                         })
                       }
-                      className={`rounded-full border px-4 py-2 text-sm font-semibold ${selected ? "border-blue-600 bg-blue-50 text-blue-700" : "border-stone-200 bg-white"}`}
+                      className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${selected ? "border-blue-600 bg-blue-50 text-blue-700" : "border-stone-200 bg-white hover:border-blue-300"}`}
                     >
                       {item}
                     </button>
@@ -545,7 +545,7 @@ export function PersonalizedSafetyQuery() {
                           ),
                         })
                       }
-                      className={`rounded-full border px-4 py-2 text-sm font-semibold ${selected ? "border-blue-600 bg-blue-50 text-blue-700" : "border-stone-200 bg-white"}`}
+                      className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${selected ? "border-blue-600 bg-blue-50 text-blue-700" : "border-stone-200 bg-white hover:border-blue-300"}`}
                     >
                       {item}
                     </button>
@@ -763,8 +763,10 @@ export function PersonalizedSafetyQuery() {
                   <p>{toHaeyoStyle(result.evidence_selection.method)}</p>
                   {result.evidence_selection.medication_name && (
                     <p className="mt-1">
-                      {result.evidence_selection.medication_name}을 직접 언급한
-                      문헌은{" "}
+                      {withObjectParticle(
+                        result.evidence_selection.medication_name,
+                      )}{" "}
+                      직접 언급한 문헌은{" "}
                       {result.evidence_selection.direct_medication_matches}
                       건이에요.
                     </p>
