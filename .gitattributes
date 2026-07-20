@@ -1,2 +1,21 @@
+# ---------------------------------------------------------------------------
+# Provenance-critical research data: store byte-exact, never newline-convert.
+#
+# Every path below has a SHA-256 recorded in a checksum.sha256 or a *manifest*.json.
+# With core.autocrlf=true (Git for Windows default) an unmarked text file is
+# committed as LF and checked out as CRLF, which rewrites *every* LF in the file --
+# including newlines embedded inside quoted CSV fields. That silently breaks the
+# recorded-hash audit chain even though no content was edited.
+#
+# Diagnosis and recovery record: research/logs/reproducibility_diagnosis_20260720.md
+# ---------------------------------------------------------------------------
+data/curated_v2/**                        -text
+data/interim/**                           -text
+research/searches/**                      -text
+research/fulltext/**                       -text
+research/synthesis/**                     -text
+src/generated/ai-exploratory-bundle.json  -text
+
+# pre-existing rules
 research/systematic_review_v3/*.csv -text
 research/validation/*.json text eol=lf
