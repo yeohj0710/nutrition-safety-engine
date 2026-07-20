@@ -14,8 +14,8 @@
   - 전역 스타일, 폰트 변수, 기본 테마.
 - `app/api/rules/query/route.ts`
   - 결정적 규칙 엔진 API.
-- `app/api/ai-explain/route.ts`
-  - 선택적 AI 요약 API.
+- `app/api/personalized-safety/route.ts`
+  - 개인화 안전성 API. AI는 선택적 입력 구조화에만 쓰고 판정은 결정적.
 - `app/sources/page.tsx`
   - 출처 브라우저 목록 페이지.
 - `app/sources/[id]/page.tsx`
@@ -44,21 +44,21 @@
   - 서버 전용 knowledge index 로더와 browse/detail helper.
 - `src/lib/knowledge/normalize.ts`
   - `data/` 원본을 런타임용 index로 정규화.
-- `src/lib/ai/config.ts`
-  - AI 사용 가능 여부, 환경 변수 설정.
-- `src/lib/ai/schema.ts`
-  - AI 요청/응답 schema.
-- `src/lib/ai/explainSafetyResults.ts`
-  - deterministic 결과를 AI 설명용 payload로 요약.
+- `src/lib/multi-value-input.ts`
+  - 개인화 안전성 API가 쓰는 다중 값 입력 파싱 helper.
+- `src/lib/personalized-safety-examples.ts`
+  - 개인화 안전성 예시 입력 데이터.
+- `research/systematic_review_v3/personalized_rules.json`
+  - 개인화 안전성 규칙/근거 데이터(A1~B3).
 
 ## 4. 타입 / 생성물
 
 - `src/types/knowledge.ts`
   - Zod schema와 핵심 타입 정의.
   - `EngineQuery`, `RuleMatch`, `EngineResponse`, `KnowledgeIndex` 등.
-- `src/generated/knowledge-index.json`
+- `src/generated/legacy/knowledge-index.json`
   - 앱이 실제로 읽는 단일 런타임 인덱스.
-  - 수정하지 말고 `npm run prepare:knowledge`로 재생성.
+  - 저장소에 커밋되어 있으며 `next build`는 재생성하지 않음. 수정하지 말고 `npm run prepare:knowledge`로 재생성.
   - `npm run dev` 중에는 `data/knowledge_pack.json` 저장 시 자동으로 다시 생성됨.
 
 ## 5. 데이터 원본
@@ -96,8 +96,8 @@
   - 대표 규칙 매칭 회귀 테스트.
 - `__tests__/fixture-scenarios.test.ts`
   - fixture 기반 시나리오 테스트.
-- `__tests__/ai-explain.test.ts`
-  - AI 설명 계층 테스트.
+- `__tests__/personalized-safety-api.test.ts`
+  - 개인화 안전성 API(AI 설명 계층) 테스트.
 - `__tests__/fixtures/*.json`
   - 임신, 수유, 흡연, warfarin, quinolone 등 시나리오 fixture.
 
@@ -121,7 +121,7 @@
 3. 출처/근거 수정: 보통 `data/knowledge_pack.json` -> `src/lib/knowledge/normalize.ts`
    - 개발 서버에서는 저장 즉시 자동 반영, 수동 검증/배포 전에는 `npm run prepare:knowledge`
 4. 출처 화면 수정: `app/sources/page.tsx` -> `src/components/source-browser-client.tsx` -> `app/sources/[id]/page.tsx`
-5. AI 설명 수정: `app/api/ai-explain/route.ts` -> `src/lib/ai/*`
+5. AI 설명 수정: `app/api/personalized-safety/route.ts` -> `src/lib/personalized-safety-examples.ts`, `src/lib/multi-value-input.ts`
 
 ## 10. 작업 후 기본 확인
 

@@ -13,8 +13,8 @@ Before exploring the repo from scratch, check `docs/project_map.md`.
 - Result card UI: `src/components/rule-card.tsx`
 - Safety engine: `src/lib/safety-engine/index.ts`
 - Knowledge loader/normalizer: `src/lib/knowledge/`
-- Primary data source: `data/knowledge_pack.json`
-- Runtime index: `src/generated/knowledge-index.json`
+- Primary data source: `data/knowledge_pack.json` (exploratory; index builds read `data/legacy_unverified/baseline-33658e3/`)
+- Runtime index: `src/generated/legacy/knowledge-index.json`
 
 ## Research Search Pipeline Context
 

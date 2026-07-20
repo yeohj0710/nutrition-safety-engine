@@ -36,8 +36,10 @@
 
 - 원본 데이터 위치: `data/`
 - 정규화 스크립트: `scripts/build-knowledge-index.ts`
-- 런타임 인덱스: `src/generated/knowledge-index.json`
-  - `npm run dev` 중에는 `data/knowledge_pack.json` 저장 시 자동 재생성되고 화면에도 바로 반영됩니다.
+- 런타임 인덱스: `src/generated/legacy/knowledge-index.json`
+  - 이 인덱스 파일은 저장소에 커밋되어 있으며, `build` 스크립트(`next build`)는 이 파일을 다시 생성하지 않습니다.
+  - `data/`를 수정했다면 빌드 전에 반드시 `npm run prepare:knowledge`를 실행해 인덱스를 재생성하세요. 그러지 않으면 빌드된 앱이 오래된 인덱스를 그대로 서빙합니다.
+  - `npm run dev`의 감시자는 `data/knowledge_pack.json` 저장 시 재생성을 트리거하지만, 실제 입력은 `data/legacy_unverified/baseline-33658e3/` 스냅샷으로 고정되어 있습니다. 앱에 반영하려면 이 스냅샷 쪽을 수정해야 합니다.
 - 타입과 검증: `src/types/knowledge.ts`
 
 정규화 결과는 아래 엔터티를 포함합니다.
@@ -72,10 +74,10 @@
 
 ### 3. AI 설명 계층
 
-- 위치: `src/lib/ai/`
-- 서버 라우트: `app/api/ai-explain/route.ts`
-- 사용 SDK: 공식 `openai` 패키지
-- API: Responses API + Structured Outputs
+- 서버 라우트: `app/api/personalized-safety/route.ts`
+- 지원 모듈: `src/lib/multi-value-input.ts`, `src/lib/personalized-safety-examples.ts`, `research/systematic_review_v3/personalized_rules.json`
+- 사용 방식: 별도 SDK 없이 `fetch`로 OpenAI Responses API(`https://api.openai.com/v1/responses`)를 직접 호출합니다. `openai` npm 패키지는 의존성에 없습니다.
+- API: Responses API + Structured Outputs(json_schema)
 
 AI 계층은 이미 계산된 `EngineResponse`의 축약본만 입력으로 받습니다.
 
@@ -97,19 +99,19 @@ AI가 실패하면 앱은 그대로 결정적 결과만 보여 줍니다.
 ## 데이터 흐름
 
 1. `data/`의 원본 파일을 정규화 스크립트가 읽습니다.
-2. 스크립트가 `src/generated/knowledge-index.json`을 생성합니다.
+2. 스크립트가 `src/generated/legacy/knowledge-index.json`을 생성합니다.
    - 개발 서버(`npm run dev`)에서는 이 생성 과정이 자동 감시됩니다.
 3. 서버 전용 로더가 인덱스를 Zod로 검증합니다.
 4. `/api/rules/query`가 `EngineQuery`를 받아 결정적 엔진을 실행합니다.
 5. 클라이언트는 결과 카드, 근거 패널, 필터를 렌더링합니다.
-6. 사용자가 AI 설명을 켜면 `/api/ai-explain`이 최소 payload만 모델에 전달합니다.
+6. 사용자가 AI 설명을 켜면 `/api/personalized-safety`가 최소 payload만 모델에 전달합니다.
 
 ## 폴더 가이드
 
 ```text
 app/
   api/
-    ai-explain/
+    personalized-safety/
     rules/query/
   rules/[id]/
   sources/
@@ -118,9 +120,10 @@ src/
   components/
   generated/
   lib/
-    ai/
     knowledge/
     safety-engine/
+    personalized-safety-examples.ts
+    multi-value-input.ts
   types/
 scripts/
 __tests__/
@@ -151,13 +154,21 @@ npm run test
 npm run build
 ```
 
+### Python 환경
+
+Python 리서치/검색 파이프라인(`tools/`, `tools/search_pipeline/`)은 Next.js 앱과 분리되어 동작합니다.
+
+- `requirements.txt`: 체계적 문헌 검색 파이프라인의 기본 의존성(`requests`, `rispy`, `playwright` 등). 파이프라인을 실행하려면 이 파일을 설치합니다.
+- `requirements-research.lock.txt`: 리서치/논문 검증 도구 체인을 재현하기 위한 고정(pinned) 잠금 파일.
+- `requirements-v3.txt`: systematic review v3 산출물(문서·PDF 생성 등) 검증용 고정 의존성.
+
 ## 정규화 플로우
 
 1. `data/knowledge_pack.json`이 있으면 그 파일만 단일 원본으로 사용합니다.
 2. `knowledge_pack.json`이 깨져 있거나 필수 섹션이 빠져 있으면 즉시 실패합니다.
 3. `knowledge_pack.json`이 아예 없을 때만 개별 source / evidence / rules 파일을 레거시 fallback으로 읽습니다.
 4. 스크립트가 공통 스키마로 정규화합니다.
-5. Zod 검증 후 `src/generated/knowledge-index.json`을 생성합니다.
+5. Zod 검증 후 `src/generated/legacy/knowledge-index.json`을 생성합니다.
 6. 앱 런타임은 이 생성된 단일 JSON 인덱스만 사용합니다.
 
 ## 테스트 전략
