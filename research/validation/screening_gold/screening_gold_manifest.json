@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "purpose": "human gold standard for measuring automated screening performance",
+  "protocol_version": "2.0-ai-exploratory",
+  "created_for": "protocol amendment: AI-only screening with measured error",
+  "seed": 20260727,
+  "sampling": "stratified simple random, without replacement, abstract-available rows only",
+  "sample_unit": "record-question pair",
+  "eligible_frame_note": "초록이 있는 행만 표본 대상. 제목만 있는 행은 별도 한계로 보고한다.",
+  "total_sampled": 420,
+  "strata": {
+    "ai_agreement_retain": {
+      "frame_size": 12074,
+      "sampled": 150,
+      "weight": 80.4933
+    },
+    "ai_disagreement_uncertain": {
+      "frame_size": 5421,
+      "sampled": 180,
+      "weight": 30.1167
+    },
+    "ai_agreement_deprioritize": {
+      "frame_size": 520,
+      "sampled": 90,
+      "weight": 5.7778
+    }
+  },
+  "source_file": "data/curated_v2/evidence_map.csv",
+  "source_sha256": "7fbd8cab64c7ba874ec95c759c9597684151b020e4fdc4f708afbbdabf5aa7c2",
+  "blind_sha256": "7a2187e90203bccdfd528202c2bba78ca1ad881858643e3295c8151aa858b42c",
+  "key_sha256": "857f36cb08cce8edf611b9ad9ccf3e91b931213d7c10633acade09a2f10b1ce2",
+  "frozen_before_llm_run": true
+}
