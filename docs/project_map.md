@@ -63,6 +63,21 @@
 
 ## 5. 데이터 원본
 
+### 5-1. 연구 코퍼스 (protocol v2.1, 메인 페이지가 쓰는 계보)
+
+- `data/curated_v2/evidence_map.csv`
+  - 근거지도 원본. 20,230 레코드-질문 / 초록 보유 18,015. 아래 산출물의 입력 해시 기준.
+- `data/curated_v2/ai_screening_classifications.csv`
+  - 규칙 기반 이중 프로파일 분류(`deterministic_dual_profile_v1`). 키워드 reason code + 0~4점.
+- `data/curated_v2/llm_screening_classifications.csv`
+  - LLM 탐색 분류. `tools/llm_screening.py` 생성. `retain`/`deprioritize`/`uncertain`.
+- `research/synthesis/screening_method_comparison.json`
+  - 두 자동 방식의 일치도·교차표. 정확도 지표는 산출하지 않음(프로토콜 §9).
+- `research/systematic_review_v3/picos_extraction.csv` → `core_evidence.csv` → `personalized_rules.json`
+  - 정규식 PICOS 추출에 LLM 게이트를 적용한 결과. 메인 페이지 통계와 조회 결과의 출처.
+
+### 5-2. 레거시 스냅샷 (`/legacy` 브라우저 전용, 격리 유지)
+
 - `data/knowledge_pack.json`
   - 기본 단일 원본. 있으면 이 파일만 읽음.
   - 깨져 있거나 필수 섹션이 없으면 정규화가 실패함.

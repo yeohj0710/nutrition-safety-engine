@@ -30,6 +30,39 @@
 - reference data = local versioned assets
 - no hidden magic
 
+여기서 말하는 AI는 **런타임 설명 계층**입니다. 실행 중에 규칙을 바꾸거나 판정을 내리지
+않습니다. 문헌을 고르는 **빌드 시점의 LLM 분류 층**은 아래 연구 파이프라인에 따로 있습니다.
+
+## 연구 파이프라인 (protocol v2.1)
+
+```
+PubMed 검색 (질문 5개, 확정 2026-07-13, 원본 XML + 체크섬 보존)
+  └ data/curated_v2/evidence_map.csv            20,230 레코드-질문 / 초록 보유 18,015
+       ├─ 규칙 기반 이중 프로파일 분류            ai_screening_classifications.csv
+       │     tools/build_ai_exploratory_screening.py   (deterministic_dual_profile_v1)
+       └─ LLM 탐색 분류                          llm_screening_classifications.csv
+             tools/llm_screening.py
+                  └ 방식 간 일치·불일치 비교      tools/compare_screening_methods.py
+                       └ 정규식 PICOS 추출 + LLM 게이트   tools/build_systematic_review_v3.py
+                            └ core evidence      tools/build_core_evidence_v3.py
+                                 └ 개인화 규칙 → 웹 UI
+```
+
+- 라벨은 `retain` / `deprioritize` / `uncertain` 입니다. 사람의 include·exclude가 아닙니다.
+- 사람 gold standard가 없으므로 **민감도·특이도 등 정확도 지표를 산출하지 않습니다**
+  (`research/protocol/protocol-v2.0-ai-exploratory.md` §9). 자동 방식 간 일치도만 보고합니다.
+- 자세한 내용은 `research/protocol/v2.1-measured-screening-plan.md`를 보세요.
+
+재생성 명령:
+
+```bash
+python tools/llm_screening.py                  # LLM 분류 (재개 가능)
+python tools/compare_screening_methods.py      # 방식 간 일치도
+python tools/build_systematic_review_v3.py     # PICOS 추출 + LLM 게이트
+python tools/build_core_evidence_v3.py         # core evidence
+npm run prepare:knowledge                      # 앱이 읽는 번들 재생성
+```
+
 ## 아키텍처
 
 ### 1. 데이터 레이어
