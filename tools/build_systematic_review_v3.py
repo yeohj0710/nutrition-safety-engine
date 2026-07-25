@@ -18,6 +18,21 @@ DOSE_CONTEXT=re.compile(r"supplement|intake|dose|administ|receive|given|taking|t
 def hit(text,pats):return any(re.search(p,text,re.I) for p in pats)
 def sentences(text):return [x.strip() for x in re.split(r"(?<=[.!?])\s+",text) if x.strip()]
 d=pd.read_csv(inp,low_memory=False).fillna(""); rows=[]
+# protocol v2.1: LLM 탐색 분류를 추가 게이트로 둔다. 정규식 PICOS 필터가 문장 locator·용량을
+# 뽑는 역할을 계속 맡고, LLM 은 주제 적합성 판정을 맡는다. 파일이 없으면 게이트를 건너뛴다.
+LLM=R/"data/curated_v2/llm_screening_classifications.csv"
+LLM_MAN=R/"research/screening/llm_screening_manifest.json"
+llm_map={}
+if LLM.exists():
+ for _,x in pd.read_csv(LLM).fillna("").iterrows():
+  llm_map[(x.record_id,x.question_id)]=(x.llm_decision,x.llm_confidence,x.llm_reason_codes)
+ # 부분 실행 결과로 게이트를 적용하면 대부분의 근거가 조용히 사라진다. 커버리지를 확인한다.
+ if LLM_MAN.exists():
+  _m=json.loads(LLM_MAN.read_text(encoding="utf-8")); _frame=_m.get("frame_rows_with_abstract",0)
+  if _frame and len(llm_map)/_frame<0.95:
+   raise SystemExit(f"LLM 분류가 {len(llm_map):,}/{_frame:,} ({len(llm_map)/_frame:.1%}) 밖에 없습니다. "
+                    "`python tools/llm_screening.py` 를 끝까지 실행한 뒤 다시 빌드하세요.")
+llm_gate=bool(llm_map); llm_dropped=0; regex_passed=0
 for _,r in d.iterrows():
  q=r.question_id
  if q not in Q or not r.abstract:continue
@@ -25,6 +40,10 @@ for _,r in d.iterrows():
  if re.search(r"\b(canine|dog|dogs|rat|rats|mouse|mice|murine|bovine|swine|pig|veterinary)\b",text,re.I) and not re.search(r"\b(human|patient|patients|men|women|adult|adults|participant|participants)\b",text,re.I):continue
  signals={k:hit(text,v) for k,v in spec.items()}; design=hit(text,DES)
  if not all(signals.values()):continue
+ regex_passed+=1
+ llm_decision,llm_conf,llm_codes=llm_map.get((r.record_id,q),("","",""))
+ if llm_gate and llm_decision!="retain":
+  llm_dropped+=1; continue
  ss=sentences(text); ev=[s for s in ss if hit(s,spec["supp"]) and (hit(s,spec["pop"]) or hit(s,spec["out"]))]
  if q=="A1":
   exposure=[s for s in ss if re.search(r"vitamin\s*k",s,re.I) and re.search(r"supplement|intake|diet|dose|administ|oral|daily|receive|given|status|deficien",s,re.I)]
@@ -36,7 +55,9 @@ for _,r in d.iterrows():
  dose_sentences=[s for s in ss if hit(s,spec["supp"]) and DOSE_CONTEXT.search(s)]
  doses=sorted({match.group(0) for sentence in dose_sentences for match in DOSE.finditer(sentence)})
  pop_s=[s for s in ss if hit(s,spec["pop"])][:2]; out_s=[s for s in ss if hit(s,spec["out"])][:3]
- rows.append({"question_id":q,"record_id":r.record_id,"provider_id":r.provider_id,"title":r.title,"authors":r.authors,"venue":r.venue,"year":r.year,"doi":r.doi,"source_url":r.source_url,"publication_types":r.publication_types,"automated_eligibility":"include_candidate" if design else "include_candidate_design_unclear","population_evidence":" | ".join(pop_s),"supplement":Q[q]["supp"][0].replace("\\s*"," ").replace("\\b",""),"dose_extracted":" | ".join(doses),"outcome_evidence":" | ".join(out_s),"evidence_locator":"ABSTRACT: "+" | ".join(ev[:3]),"fulltext_locator":r.fulltext_locator,"human_screened":False,"extraction_authority":"automated_from_observed_title_abstract"})
+ rows.append({"question_id":q,"record_id":r.record_id,"provider_id":r.provider_id,"title":r.title,"authors":r.authors,"venue":r.venue,"year":r.year,"doi":r.doi,"source_url":r.source_url,"publication_types":r.publication_types,"automated_eligibility":"include_candidate" if design else "include_candidate_design_unclear","population_evidence":" | ".join(pop_s),"supplement":Q[q]["supp"][0].replace("\\s*"," ").replace("\\b",""),"dose_extracted":" | ".join(doses),"outcome_evidence":" | ".join(out_s),"evidence_locator":"ABSTRACT: "+" | ".join(ev[:3]),"fulltext_locator":r.fulltext_locator,"human_screened":False,"extraction_authority":"automated_from_observed_title_abstract","llm_decision":llm_decision,"llm_confidence":llm_conf,"llm_reason_codes":llm_codes})
 o=pd.DataFrame(rows).drop_duplicates(["question_id","provider_id"]); csv=out/"picos_extraction.csv";o.to_csv(csv,index=False,encoding="utf-8")
-summary={"protocol":"research-plan-aligned systematic evidence review v3","input":str(inp.relative_to(R)),"input_sha256":hashlib.sha256(inp.read_bytes()).hexdigest(),"records":len(o),"by_question":o.groupby('question_id').size().to_dict(),"with_dose":int((o.dose_extracted!='').sum()),"with_fulltext_locator":int((o.fulltext_locator!='').sum()),"human_screened":False,"limitations":["Automated title/abstract screening; no independent human duplicate screening","Extracted evidence must retain sentence locator","No effect estimate is imputed"]}
+summary={"protocol":"research-plan-aligned systematic evidence review v3","input":str(inp.relative_to(R)),"input_sha256":hashlib.sha256(inp.read_bytes()).hexdigest(),"records":len(o),"by_question":o.groupby('question_id').size().to_dict(),"with_dose":int((o.dose_extracted!='').sum()),"with_fulltext_locator":int((o.fulltext_locator!='').sum()),"human_screened":False,
+ "llm_gate":{"applied":llm_gate,"input_path":str(LLM.relative_to(R)) if llm_gate else None,"input_sha256":hashlib.sha256(LLM.read_bytes()).hexdigest() if llm_gate else None,"regex_passed":regex_passed,"dropped_by_llm":llm_dropped,"kept":regex_passed-llm_dropped},
+ "limitations":["Automated title/abstract screening; no independent human duplicate screening","LLM exploratory classification used as an additional topical gate; no human gold standard, so sensitivity/specificity are not reported (protocol v2.0 §9)","Extracted evidence must retain sentence locator","No effect estimate is imputed"]}
 (out/"manifest.json").write_text(json.dumps(summary,ensure_ascii=False,indent=2),encoding="utf-8");print(json.dumps(summary,ensure_ascii=False))
