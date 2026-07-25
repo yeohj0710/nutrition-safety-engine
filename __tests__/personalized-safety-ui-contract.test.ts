@@ -135,10 +135,13 @@ describe("personalized safety UI contract", () => {
   });
 
   it("keeps sentence wrapping stable while the evidence popover opens", () => {
-    expect(component).toContain("invisible absolute");
-    expect(component).toContain("group-hover:visible");
-    expect(component).toContain("group-hover:opacity-100");
+    // 팝오버는 absolute 로 띄우고 visibility/opacity 로만 토글한다.
+    // display 를 토글하면 문장이 다시 흐르면서 줄바꿈이 흔들린다.
+    expect(component).toContain("absolute -left-12");
+    expect(component).toContain("pointer-events-auto visible opacity-100");
+    expect(component).toContain("pointer-events-none invisible opacity-0");
     expect(component).not.toContain("group-hover:block");
+    expect(component).not.toContain("hidden group-hover");
   });
 
   it("shows complete citation text and opens all selected evidence", () => {

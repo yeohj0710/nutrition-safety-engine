@@ -5,12 +5,32 @@ import { watch } from "node:fs";
 import { writeKnowledgeIndex } from "@/src/lib/knowledge/normalize";
 
 const projectRoot = path.resolve(__dirname, "..");
+// build-knowledge-index.ts 와 같은 입력·출력을 써야 한다. 기본값(data/)을 쓰면
+// data/source_registry.json 을 찾다가 매번 ENOENT 로 실패한다.
+const legacyRoot = path.join(
+  projectRoot,
+  "data",
+  "legacy_unverified",
+  "baseline-33658e3",
+);
+const knowledgeIndexOutputPath = path.join(
+  projectRoot,
+  "src",
+  "generated",
+  "legacy",
+  "knowledge-index.json",
+);
+const legacyRelative = path.join(
+  "data",
+  "legacy_unverified",
+  "baseline-33658e3",
+);
 const watchedRelativePaths = new Set([
-  path.join("data", "knowledge_pack.json"),
-  path.join("data", "source_registry.json"),
-  path.join("data", "ingredients.json"),
-  path.join("data", "evidence_chunks.json"),
-  path.join("data", "safety_rules.json"),
+  path.join(legacyRelative, "knowledge_pack.json"),
+  path.join(legacyRelative, "source_registry.json"),
+  path.join(legacyRelative, "ingredients.json"),
+  path.join(legacyRelative, "evidence_chunks.json"),
+  path.join(legacyRelative, "safety_rules.json"),
 ]);
 
 let pendingTimer: NodeJS.Timeout | null = null;
@@ -26,7 +46,10 @@ async function rebuildKnowledgeIndex(reason: string) {
   rebuildInFlight = true;
 
   try {
-    const knowledgeIndex = await writeKnowledgeIndex(projectRoot);
+    const knowledgeIndex = await writeKnowledgeIndex(projectRoot, {
+      dataRoot: legacyRoot,
+      outputPath: knowledgeIndexOutputPath,
+    });
     console.log(
       `[knowledge-watch] ${reason}: ${knowledgeIndex.meta.safetyRuleCount} rules, ${knowledgeIndex.meta.evidenceChunkCount} evidence chunks`,
     );
@@ -55,16 +78,14 @@ function scheduleRebuild(reason: string) {
 }
 
 function startWatchers() {
-  const dataDirectoryPath = path.join(projectRoot, "data");
-
   return [
-    watch(dataDirectoryPath, (_eventType, filename) => {
+    watch(legacyRoot, (_eventType, filename) => {
       if (!filename) {
-        scheduleRebuild("data directory changed");
+        scheduleRebuild("legacy snapshot changed");
         return;
       }
 
-      const relativePath = path.join("data", filename.toString());
+      const relativePath = path.join(legacyRelative, filename.toString());
 
       if (!watchedRelativePaths.has(relativePath)) {
         return;

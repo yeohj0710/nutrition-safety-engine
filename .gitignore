@@ -60,3 +60,6 @@ data/full_texts/
 # large/copyright-sensitive public search payloads stay local; hashes and metadata are tracked
 research/searches/*/pubmed/*/efetch_*.xml
 data/interim/records.csv
+
+# Claude Code local tooling config
+/.claude/
