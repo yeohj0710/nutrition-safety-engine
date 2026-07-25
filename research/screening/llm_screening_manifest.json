@@ -10,7 +10,7 @@
   "model": "gpt-5-mini",
   "reasoning_effort": "low",
   "prompt_sha256": "ecbb00c766e7ff9bea2a9779f36c9f8e3ead65c94aeeee119355af925b86f9d0",
-  "generated_at": "2026-07-25T09:12:06+00:00",
+  "generated_at": "2026-07-25T09:31:16+00:00",
   "frame_rows_with_abstract": 18015,
   "row_count": 11850,
   "classifications": {
@@ -26,6 +26,19 @@
     "retries": 0,
     "failures": 0,
     "codes": {}
+  },
+  "token_usage_from_checkpoint": {
+    "rows_with_token_data": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "input_per_row": null,
+    "output_per_row": null
+  },
+  "pilot_measurement": {
+    "rows": 30,
+    "input_tokens": 21101,
+    "output_tokens": 6556,
+    "note": "초기 파일럿 실측. 체크포인트에 토큰이 없는 구간의 추정 근거."
   },
   "input_path": "data/curated_v2/evidence_map.csv",
   "input_sha256": "7fbd8cab64c7ba874ec95c759c9597684151b020e4fdc4f708afbbdabf5aa7c2",

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """연구계획서 PICOS에 맞춘 재현 가능한 자동 선별·근거 추출 v3."""
 from pathlib import Path
-import pandas as pd, re, json, hashlib
+import pandas as pd, re, json, hashlib, os
 
 R=Path(__file__).resolve().parents[1]; inp=R/"data/curated_v2/evidence_map.csv"; out=R/"research/systematic_review_v3"; out.mkdir(exist_ok=True)
 Q={
@@ -29,7 +29,9 @@ if LLM.exists():
  # 부분 실행 결과로 게이트를 적용하면 대부분의 근거가 조용히 사라진다. 커버리지를 확인한다.
  if LLM_MAN.exists():
   _m=json.loads(LLM_MAN.read_text(encoding="utf-8")); _frame=_m.get("frame_rows_with_abstract",0)
-  if _frame and len(llm_map)/_frame<0.95:
+  # LLM_GATE_MIN_COVERAGE 는 파이프라인 점검용 탈출구다. 실제 산출물 생성에는 쓰지 않는다.
+  _min=float(os.environ.get("LLM_GATE_MIN_COVERAGE","0.95"))
+  if _frame and len(llm_map)/_frame<_min:
    raise SystemExit(f"LLM 분류가 {len(llm_map):,}/{_frame:,} ({len(llm_map)/_frame:.1%}) 밖에 없습니다. "
                     "`python tools/llm_screening.py` 를 끝까지 실행한 뒤 다시 빌드하세요.")
 llm_gate=bool(llm_map); llm_dropped=0; regex_passed=0

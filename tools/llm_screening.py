@@ -132,7 +132,10 @@ def classify(row: dict) -> dict:
             return {'record_id': row['record_id'], 'question_id': qid,
                     'decision': parsed['decision'],
                     'reason_codes': '|'.join(parsed['reason_codes']),
-                    'confidence': parsed['confidence'], 'status': 'ok'}
+                    'confidence': parsed['confidence'], 'status': 'ok',
+                    # 토큰을 체크포인트에 같이 남긴다. --finalize 를 별도 프로세스로
+                    # 돌려도 사용량이 사라지지 않는다.
+                    'in_tok': u.get('input_tokens', 0), 'out_tok': u.get('output_tokens', 0)}
         except urllib.error.HTTPError as e:                      # 429 rate limit / 5xx
             wait = None
             try:
@@ -222,8 +225,17 @@ def finalize(total_frame: int):
                         d['confidence'], MODEL, EFFORT, 'ai_exploratory_only', d['status']])
 
     dist = {}
+    tok_in = tok_out = tok_rows = 0
     for d in recs:
         dist[d['decision']] = dist.get(d['decision'], 0) + 1
+        if d.get('in_tok'):
+            tok_in += d['in_tok']
+            tok_out += d.get('out_tok', 0)
+            tok_rows += 1
+    measured = {'rows_with_token_data': tok_rows, 'input_tokens': tok_in,
+                'output_tokens': tok_out,
+                'input_per_row': round(tok_in / tok_rows, 1) if tok_rows else None,
+                'output_per_row': round(tok_out / tok_rows, 1) if tok_rows else None}
     coverage = round(len(recs) / total_frame, 4) if total_frame else None
     complete = coverage is not None and coverage >= 0.999
     man = {
@@ -247,6 +259,9 @@ def finalize(total_frame: int):
         'classifications': dist,
         'failures': sum(1 for d in recs if d['status'] != 'ok'),
         'usage': dict(_usage),
+        'token_usage_from_checkpoint': measured,
+        'pilot_measurement': {'rows': 30, 'input_tokens': 21101, 'output_tokens': 6556,
+                              'note': '초기 파일럿 실측. 체크포인트에 토큰이 없는 구간의 추정 근거.'},
         'input_path': 'data/curated_v2/evidence_map.csv',
         'input_sha256': sha256(SRC),
         'output_path': 'data/curated_v2/llm_screening_classifications.csv',
