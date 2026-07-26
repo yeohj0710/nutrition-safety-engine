@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0.0",
+  "track": "v3.0_full_ai_autonomy",
+  "generated_at": "2026-07-27T01:32:00+09:00",
+  "generated_by": {
+    "execution_mode": "agent_local",
+    "model": "OpenAI Codex GPT-5",
+    "human_decisions": 0
+  },
+  "input": {
+    "topic": "고위험 임상상황에서의 영양보충제 안전성",
+    "source_constraint": "PubMed only",
+    "prompt_path": "research/searches_v3/ai_picos/prompt.txt",
+    "excluded_inputs": [
+      "기존 질문 목록",
+      "기존 검색식 초안",
+      "기존 검색 결과 수치"
+    ]
+  },
+  "derivation": "환자 위해의 심각성이 커질 수 있는 임상상태를 먼저 나눈 뒤, 보충제 노출과 안전성 결과를 관찰할 수 있고 서로 임상적으로 구별되는 질문을 선택했다.",
+  "questions": [
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "question": "수술 또는 침습적 시술을 받는 성인에서 수술 전 식이·허브 보충제 노출은 비노출 또는 통상 관리와 비교해 출혈, 수혈, 마취 상호작용 또는 수술주위 합병증과 관련되는가?",
+      "P": "수술 또는 침습적 시술을 받는 성인",
+      "I": "수술 전 식이보충제 또는 허브 보충제 노출",
+      "C": "비노출, 중단, 또는 통상 수술주위 관리",
+      "O": "출혈, 수혈, 마취 상호작용, 수술주위 합병증",
+      "S": "무작위시험, 코호트, 환자-대조군, 단면연구, 증례군, 체계적 고찰",
+      "rationale": "수술주위에는 작은 응고·마취 상호작용도 즉각적인 위해로 이어질 수 있어 별도 질문이 필요하다.",
+      "pubmed_query": "((\"Surgical Procedures, Operative\"[Mesh] OR perioperative[tiab] OR preoperative[tiab]) AND (\"Dietary Supplements\"[Mesh] OR \"Phytotherapy\"[Mesh] OR herbal supplement*[tiab] OR dietary supplement*[tiab]) AND (\"Hemorrhage\"[Mesh] OR bleed*[tiab] OR transfusion*[tiab] OR anesthe*[tiab] OR perioperative complication*[tiab]) AND humans[Mesh])"
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "question": "만성콩팥병 또는 투석 환자에서 비처방 비타민·무기질·허브 보충제 노출은 비노출 또는 통상 관리와 비교해 전해질 이상, 신독성 또는 심혈관 이상반응과 관련되는가?",
+      "P": "만성콩팥병 또는 투석 환자",
+      "I": "비처방 비타민, 무기질 또는 허브 보충제 노출",
+      "C": "비노출, 위약 또는 통상 관리",
+      "O": "고칼륨혈증, 고칼슘혈증, 신독성, 심혈관 이상반응",
+      "S": "무작위시험, 코호트, 환자-대조군, 약물감시 연구, 증례군, 체계적 고찰",
+      "rationale": "콩팥 기능이 저하되면 보충제 성분과 대사산물이 축적되고 전해질 변화의 임상 영향이 커질 수 있다.",
+      "pubmed_query": "((\"Renal Insufficiency, Chronic\"[Mesh] OR \"Kidney Failure, Chronic\"[Mesh] OR chronic kidney disease[tiab] OR dialysis[tiab]) AND (\"Dietary Supplements\"[Mesh] OR \"Phytotherapy\"[Mesh] OR vitamin supplement*[tiab] OR mineral supplement*[tiab] OR herbal supplement*[tiab]) AND (\"Hyperkalemia\"[Mesh] OR \"Hypercalcemia\"[Mesh] OR nephrotoxic*[tiab] OR adverse event*[tiab] OR cardiovascular event*[tiab]) AND humans[Mesh])"
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "question": "임신 중 식이·허브 보충제 노출은 비노출 또는 통상 산전관리와 비교해 산모 독성, 임신 합병증, 태아 이상 또는 신생아 이상반응과 관련되는가?",
+      "P": "임신부와 태아 또는 신생아",
+      "I": "임신 중 식이보충제 또는 허브 보충제 노출",
+      "C": "비노출, 위약 또는 통상 산전관리",
+      "O": "산모 독성, 임신 합병증, 선천성 이상, 태아·신생아 이상반응",
+      "S": "무작위시험, 임신 코호트, 환자-대조군, 등록자료 연구, 증례군, 체계적 고찰",
+      "rationale": "임신은 산모와 태아가 동시에 영향을 받고 안전성 허용범위가 좁아지는 고위험 상태다.",
+      "pubmed_query": "(\"Pregnancy\"[Mesh] AND (\"Dietary Supplements\"[Mesh] OR \"Phytotherapy\"[Mesh] OR dietary supplement*[tiab] OR herbal supplement*[tiab]) AND (\"Drug-Related Side Effects and Adverse Reactions\"[Mesh] OR toxic*[tiab] OR adverse event*[tiab] OR teratogen*[tiab] OR congenital anomal*[tiab] OR pregnancy complication*[tiab]) AND humans[Mesh])"
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "question": "기존 간질환이 있는 환자에서 식이·허브 보충제 노출은 비노출 또는 통상 관리와 비교해 간손상, 간기능 악화 또는 입원과 관련되는가?",
+      "P": "기존 간질환이 있는 성인 또는 소아 환자",
+      "I": "식이보충제 또는 허브 보충제 노출",
+      "C": "비노출 또는 통상 관리",
+      "O": "약인성 간손상, 간기능 악화, 간부전, 입원",
+      "S": "코호트, 환자-대조군, 약물감시 연구, 증례군, 체계적 고찰",
+      "rationale": "기존 간질환에서는 추가 간손상의 예후 영향이 크고 보충제 관련 간독성의 인과평가가 특히 어렵다.",
+      "pubmed_query": "((\"Liver Diseases\"[Mesh] OR chronic liver disease[tiab] OR cirrhosis[tiab] OR hepatitis[tiab]) AND (\"Dietary Supplements\"[Mesh] OR \"Phytotherapy\"[Mesh] OR dietary supplement*[tiab] OR herbal supplement*[tiab]) AND (\"Chemical and Drug Induced Liver Injury\"[Mesh] OR hepatotoxic*[tiab] OR liver injur*[tiab] OR hepatic failure[tiab] OR hospitali*[tiab]) AND humans[Mesh])"
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "question": "항응고제를 사용하는 환자에서 식이·허브 보충제 병용은 비병용과 비교해 출혈, 혈전, 응고검사 변화 또는 약물 상호작용과 관련되는가?",
+      "P": "비타민 K 길항제, 직접경구항응고제 또는 헤파린을 사용하는 환자",
+      "I": "식이보충제 또는 허브 보충제 병용",
+      "C": "보충제 비병용 또는 기준 기간",
+      "O": "주요·경미 출혈, 혈전색전증, 응고검사 변화, 약물 상호작용",
+      "S": "무작위시험, 코호트, 환자-대조군, 자기대조 연구, 증례군, 체계적 고찰",
+      "rationale": "항응고 치료는 치료범위가 좁고 보충제 상호작용이 출혈 또는 혈전 위험으로 직접 이어질 수 있다.",
+      "pubmed_query": "((\"Anticoagulants\"[Mesh] OR anticoagulan*[tiab] OR warfarin[tiab] OR apixaban[tiab] OR rivaroxaban[tiab] OR dabigatran[tiab]) AND (\"Dietary Supplements\"[Mesh] OR \"Phytotherapy\"[Mesh] OR dietary supplement*[tiab] OR herbal supplement*[tiab]) AND (\"Drug Interactions\"[Mesh] OR \"Hemorrhage\"[Mesh] OR bleed*[tiab] OR thrombo*[tiab] OR INR[tiab] OR interaction*[tiab]) AND humans[Mesh])"
+    }
+  ]
+}

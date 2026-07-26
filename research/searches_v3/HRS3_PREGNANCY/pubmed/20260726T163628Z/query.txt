@@ -1,0 +1,1 @@
+("Pregnancy"[Mesh] AND ("Dietary Supplements"[Mesh] OR "Phytotherapy"[Mesh] OR dietary supplement*[tiab] OR herbal supplement*[tiab]) AND ("Drug-Related Side Effects and Adverse Reactions"[Mesh] OR toxic*[tiab] OR adverse event*[tiab] OR teratogen*[tiab] OR congenital anomal*[tiab] OR pregnancy complication*[tiab]) AND humans[Mesh])

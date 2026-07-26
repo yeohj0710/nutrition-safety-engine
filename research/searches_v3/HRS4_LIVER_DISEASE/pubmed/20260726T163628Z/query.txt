@@ -1,0 +1,1 @@
+(("Liver Diseases"[Mesh] OR chronic liver disease[tiab] OR cirrhosis[tiab] OR hepatitis[tiab]) AND ("Dietary Supplements"[Mesh] OR "Phytotherapy"[Mesh] OR dietary supplement*[tiab] OR herbal supplement*[tiab]) AND ("Chemical and Drug Induced Liver Injury"[Mesh] OR hepatotoxic*[tiab] OR liver injur*[tiab] OR hepatic failure[tiab] OR hospitali*[tiab]) AND humans[Mesh])

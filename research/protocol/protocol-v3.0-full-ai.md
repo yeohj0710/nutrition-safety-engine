@@ -1,8 +1,11 @@
 # 연구 프로토콜 v3.0 — 전 과정 AI 자율 PubMed 문헌지도
 
-채택일: 2026-07-27  
-상태: `adopted_full_ai_autonomy`  
-적용 범위: `data/curated_v3/`와 `research/searches_v3/`에 기록되는 신규 트랙  
+채택일: 2026-07-27
+
+상태: `adopted_full_ai_autonomy`
+
+적용 범위: `data/curated_v3/`와 `research/searches_v3/`에 기록되는 신규 트랙
+
 이전 프로토콜: `research/protocol/protocol-v2.0-ai-exploratory.md` — v2.1 비교 트랙에 계속 적용하며 소급 수정하지 않음
 
 ## 1. 연구 정체성과 분리 원칙

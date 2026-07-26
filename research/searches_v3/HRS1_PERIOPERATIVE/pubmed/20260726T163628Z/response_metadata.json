@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "20260726T163628Z",
+  "question_id": "HRS1_PERIOPERATIVE",
+  "executed_at": "2026-07-26T16:36:28+00:00",
+  "source": "pubmed",
+  "database": "pubmed",
+  "eutils_tool": "nutrition_safety_engine_v30",
+  "api_key_used": false,
+  "request_rate_limit_per_second": 3,
+  "query_sha256": "9041ce18420c853366efdf5e3d199e1d1cbb49f5f257c327df64bb5ba2e010b7",
+  "hit_count": 296,
+  "retrieved_count": 296,
+  "efetch_batch_size": 200,
+  "efetch_files": [
+    "efetch_001.xml",
+    "efetch_002.xml"
+  ],
+  "status": "completed"
+}

@@ -1,0 +1,167 @@
+{
+  "schema_version": "1.0.0",
+  "track": "v3.0_full_ai_autonomy",
+  "generated_at": "2026-07-26T16:37:01+00:00",
+  "source_constraint": "pubmed_only",
+  "human_decisions": 0,
+  "picos": {
+    "path": "research/searches_v3/ai_picos/picos_definition.json",
+    "sha256": "70e4749529fb2ad9db6bf7c7c45456b9761d7958a27ee728371ae68015f3912f",
+    "prompt_path": "research/searches_v3/ai_picos/prompt.txt",
+    "prompt_sha256": "b8fd37a2463eab37b24e45174ae29c06f45450d92d9606cbdc50e82a6838e510",
+    "question_count": 5
+  },
+  "search": {
+    "combined_hit_count": 2209,
+    "cap": 10000,
+    "question_runs": [
+      {
+        "schema_version": "1.0.0",
+        "run_id": "20260726T163628Z",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "executed_at": "2026-07-26T16:36:28+00:00",
+        "source": "pubmed",
+        "database": "pubmed",
+        "eutils_tool": "nutrition_safety_engine_v30",
+        "api_key_used": false,
+        "request_rate_limit_per_second": 3,
+        "query_sha256": "9041ce18420c853366efdf5e3d199e1d1cbb49f5f257c327df64bb5ba2e010b7",
+        "hit_count": 296,
+        "retrieved_count": 296,
+        "efetch_batch_size": 200,
+        "efetch_files": [
+          "efetch_001.xml",
+          "efetch_002.xml"
+        ],
+        "status": "completed",
+        "raw_path": "research/searches_v3/HRS1_PERIOPERATIVE/pubmed/20260726T163628Z"
+      },
+      {
+        "schema_version": "1.0.0",
+        "run_id": "20260726T163628Z",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "executed_at": "2026-07-26T16:36:28+00:00",
+        "source": "pubmed",
+        "database": "pubmed",
+        "eutils_tool": "nutrition_safety_engine_v30",
+        "api_key_used": false,
+        "request_rate_limit_per_second": 3,
+        "query_sha256": "ea6edce29ece7528bbbdce6b57a92eb245cb2a81088b9501e38231336db8d3f4",
+        "hit_count": 138,
+        "retrieved_count": 138,
+        "efetch_batch_size": 200,
+        "efetch_files": [
+          "efetch_001.xml"
+        ],
+        "status": "completed",
+        "raw_path": "research/searches_v3/HRS2_KIDNEY_DISEASE/pubmed/20260726T163628Z"
+      },
+      {
+        "schema_version": "1.0.0",
+        "run_id": "20260726T163628Z",
+        "question_id": "HRS3_PREGNANCY",
+        "executed_at": "2026-07-26T16:36:28+00:00",
+        "source": "pubmed",
+        "database": "pubmed",
+        "eutils_tool": "nutrition_safety_engine_v30",
+        "api_key_used": false,
+        "request_rate_limit_per_second": 3,
+        "query_sha256": "50ec0ff0b41e9d779b15e2eca3b4ebf36ccd0e0feb3537fb759604ef0653ef81",
+        "hit_count": 515,
+        "retrieved_count": 515,
+        "efetch_batch_size": 200,
+        "efetch_files": [
+          "efetch_001.xml",
+          "efetch_002.xml",
+          "efetch_003.xml"
+        ],
+        "status": "completed",
+        "raw_path": "research/searches_v3/HRS3_PREGNANCY/pubmed/20260726T163628Z"
+      },
+      {
+        "schema_version": "1.0.0",
+        "run_id": "20260726T163628Z",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "executed_at": "2026-07-26T16:36:28+00:00",
+        "source": "pubmed",
+        "database": "pubmed",
+        "eutils_tool": "nutrition_safety_engine_v30",
+        "api_key_used": false,
+        "request_rate_limit_per_second": 3,
+        "query_sha256": "927f69a7f7f79d8b6ced72915c879189e317496b248882fce4b2f134fc7b9287",
+        "hit_count": 967,
+        "retrieved_count": 967,
+        "efetch_batch_size": 200,
+        "efetch_files": [
+          "efetch_001.xml",
+          "efetch_002.xml",
+          "efetch_003.xml",
+          "efetch_004.xml",
+          "efetch_005.xml"
+        ],
+        "status": "completed",
+        "raw_path": "research/searches_v3/HRS4_LIVER_DISEASE/pubmed/20260726T163628Z"
+      },
+      {
+        "schema_version": "1.0.0",
+        "run_id": "20260726T163628Z",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "executed_at": "2026-07-26T16:36:28+00:00",
+        "source": "pubmed",
+        "database": "pubmed",
+        "eutils_tool": "nutrition_safety_engine_v30",
+        "api_key_used": false,
+        "request_rate_limit_per_second": 3,
+        "query_sha256": "edf9ade2d828e0102c2e2e1ba4cf49be0939f77944c23f96e01f34ae4cc2fd04",
+        "hit_count": 293,
+        "retrieved_count": 293,
+        "efetch_batch_size": 200,
+        "efetch_files": [
+          "efetch_001.xml",
+          "efetch_002.xml"
+        ],
+        "status": "completed",
+        "raw_path": "research/searches_v3/HRS5_ANTICOAGULATION/pubmed/20260726T163628Z"
+      }
+    ]
+  },
+  "corpus": {
+    "path": "data/curated_v3/evidence_map.csv",
+    "sha256": "3142e5259bd44acec1eb270aa66f9ff4d791e8c78013525a666f65a8bdc5b4d3",
+    "row_count": 2209,
+    "unique_record_count": 2168,
+    "source_distribution": {
+      "pubmed": 2209
+    },
+    "observability_distribution": {
+      "abstract_available": 1968,
+      "title_only": 241
+    },
+    "schema": [
+      "source",
+      "record_id",
+      "question_id",
+      "provider_id",
+      "title",
+      "abstract",
+      "authors",
+      "year",
+      "venue",
+      "publication_types",
+      "doi",
+      "source_url",
+      "classification",
+      "observability",
+      "fulltext_locator_status",
+      "fulltext_locator",
+      "raw_source_path",
+      "raw_source_sha256",
+      "extracted_effect_value",
+      "extracted_effect_status",
+      "decision_authority",
+      "clinical_claim_allowed",
+      "status"
+    ]
+  },
+  "status": "complete"
+}
