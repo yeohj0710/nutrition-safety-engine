@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "track": "v3.0_full_ai_autonomy",
+  "generated_at": "2026-07-26T23:14:14+00:00",
+  "sampling_design": "stratified_random_equal_allocation",
+  "seed": 20260727,
+  "sample_size": 300,
+  "strata": [
+    {
+      "stratum": "deprioritize",
+      "frame_size": 1548,
+      "sample_size": 100,
+      "weight": 15.48,
+      "sampling_fraction": 0.06459948320413436
+    },
+    {
+      "stratum": "retain",
+      "frame_size": 334,
+      "sample_size": 100,
+      "weight": 3.34,
+      "sampling_fraction": 0.2994011976047904
+    },
+    {
+      "stratum": "uncertain",
+      "frame_size": 327,
+      "sample_size": 100,
+      "weight": 3.27,
+      "sampling_fraction": 0.3058103975535168
+    }
+  ],
+  "blind_path": "research/validation/screening_ai_reference_v3/sample_blind.csv",
+  "blind_sha256": "593bafa391af33958865886973e6e1e633e1a4ebd856f1b45121a410586d8075",
+  "key_path": "research/validation/screening_ai_reference_v3/sample_key.csv",
+  "key_sha256": "e8110788ef906c10052df7bd94796057db78ea6c382c53069469ae51977eadf4",
+  "source_screening_path": "data/curated_v3/llm_screening_classifications.csv",
+  "source_screening_sha256": "0fe8de6a34aeda151728f4730091ce9a225c35746764eeb17aa329b47e5bd56f",
+  "p2_labels_present_in_blind_file": false,
+  "human_decisions": 0
+}

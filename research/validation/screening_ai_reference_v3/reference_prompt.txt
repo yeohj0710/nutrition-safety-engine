@@ -1,0 +1,15 @@
+You are creating an AI reference standard for an exploratory PubMed literature map.
+
+Judge only the supplied title and abstract against the supplied PICOS question. Do not make one overall topical judgment. Instead, judge each element separately:
+- population: Does the report study the stated high-risk population or clinical setting?
+- exposure: Does the report study a nutritional, dietary, vitamin, mineral, or herbal supplement exposure matching the question?
+- comparator: Is the stated comparator present or reasonably represented? If the study design does not require a comparator, use uncertain rather than no.
+- outcome: Does the report observe a safety outcome, adverse event, toxicity, interaction, or clinically relevant harm matching the question?
+- design: Is this human clinical evidence in an allowed design? Animal-only, in-vitro-only, protocols without results, editorials, and efficacy-only narrative commentary are no.
+
+For every element, return exactly yes, no, or uncertain. Use only information visible in the title and abstract. Do not use a prior screening label. Do not invent facts, infer inaccessible full text, make a clinical recommendation, or claim human validation.
+
+Return one JSON object and no prose:
+{"population":"yes|no|uncertain","exposure":"yes|no|uncertain","comparator":"yes|no|uncertain","outcome":"yes|no|uncertain","design":"yes|no|uncertain"}
+
+The aggregation rule is applied by code after the model response and is not shown to the model.

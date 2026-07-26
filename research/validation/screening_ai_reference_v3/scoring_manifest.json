@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-07-26T23:20:39+00:00",
+  "model": "Qwen/Qwen2.5-3B-Instruct",
+  "model_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+  "prompt_path": "research/validation/screening_ai_reference_v3/reference_prompt.txt",
+  "prompt_sha256": "abd7e2dbaa59ac80a8925b84a8b007eb0a2eb15f92f1b53e8f4776dd70e207b8",
+  "blind_input_sha256": "593bafa391af33958865886973e6e1e633e1a4ebd856f1b45121a410586d8075",
+  "scores_path": "research/validation/screening_ai_reference_v3/ai_reference_scores.csv",
+  "scores_sha256": "fe478454b096742b618d8522bd440c6bdea9e6608cdd1e9bd44cb4a0808a60c0",
+  "synthesis_path": "research/synthesis/screener_vs_ai_reference_v3.json",
+  "synthesis_sha256": "1d0b65789f94dbf226006ffd157392832872d928c7e11454528a6972a815cfed",
+  "round_order_seeds": {
+    "1": 202607271,
+    "2": 202607272,
+    "3": 202607273
+  },
+  "round_generation_seeds": {
+    "1": 202607281,
+    "2": 202607282,
+    "3": 202607283
+  },
+  "human_decisions": 0,
+  "run_complete": true
+}
