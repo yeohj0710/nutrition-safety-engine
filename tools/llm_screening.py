@@ -21,6 +21,7 @@ protocol-v2.0-ai-exploratory.md 를 그대로 따른다.
 """
 from __future__ import annotations
 import argparse, csv, hashlib, json, os, random, sys, io, time, threading
+from collections import Counter, defaultdict
 import urllib.request, urllib.error
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
@@ -34,6 +35,7 @@ OUT_CSV = os.path.join(ROOT, 'data', 'curated_v2', 'llm_screening_classification
 OUTDIR = os.path.join(ROOT, 'research', 'screening')
 CKPT = os.path.join(OUTDIR, 'llm_screening_runs.jsonl')
 MANIFEST = os.path.join(OUTDIR, 'llm_screening_manifest.json')
+AGENT_AUDIT = os.path.join(OUTDIR, 'agent_local_runs.jsonl')
 
 MODEL = os.environ.get('LLM_SCREENING_MODEL', 'gpt-5-mini')
 EFFORT = os.environ.get('LLM_SCREENING_EFFORT', 'low')
@@ -132,10 +134,7 @@ def classify(row: dict) -> dict:
             return {'record_id': row['record_id'], 'question_id': qid,
                     'decision': parsed['decision'],
                     'reason_codes': '|'.join(parsed['reason_codes']),
-                    'confidence': parsed['confidence'], 'status': 'ok',
-                    # 토큰을 체크포인트에 같이 남긴다. --finalize 를 별도 프로세스로
-                    # 돌려도 사용량이 사라지지 않는다.
-                    'in_tok': u.get('input_tokens', 0), 'out_tok': u.get('output_tokens', 0)}
+                    'confidence': parsed['confidence'], 'status': 'ok'}
         except urllib.error.HTTPError as e:                      # 429 rate limit / 5xx
             wait = None
             try:
@@ -177,6 +176,36 @@ def load_rows():
     return rows
 
 
+def load_frame_metadata():
+    frame = {}
+    with open(SRC, encoding='utf-8-sig', newline='') as f:
+        for r in csv.DictReader(f):
+            if r['question_id'] not in QUESTIONS:
+                continue
+            key = (r['record_id'], r['question_id'])
+            frame[key] = {
+                'evidence_basis': 'abstract' if r['abstract'].strip() else 'title_only',
+                'source': r['source'],
+            }
+    return frame
+
+
+def load_agent_metadata():
+    metadata = {}
+    if not os.path.exists(AGENT_AUDIT):
+        return metadata
+    with open(AGENT_AUDIT, encoding='utf-8') as f:
+        for line_number, line in enumerate(f, 1):
+            if not line.strip():
+                continue
+            d = json.loads(line)
+            key = (d['record_id'], d['question_id'])
+            if key in metadata:
+                raise SystemExit(f'agent_local 감사 로그 중복 키: {key} ({line_number}행)')
+            metadata[key] = d
+    return metadata
+
+
 def done_keys():
     keys = set()
     if os.path.exists(CKPT):
@@ -199,19 +228,29 @@ def sha256(path):
     return h.hexdigest()
 
 
-def finalize(total_frame: int):
-    seen, recs = set(), []
+def finalize(incomplete_reason=None):
+    frame = load_frame_metadata()
+    agent_metadata = load_agent_metadata()
+    seen, recs, duplicate_keys = set(), [], []
     with open(CKPT, encoding='utf-8') as f:
-        for line in f:
+        for line_number, line in enumerate(f, 1):
             try:
                 d = json.loads(line)
-            except Exception:
-                continue
+            except Exception as exc:
+                raise SystemExit(f'체크포인트 {line_number}행 JSON 오류: {exc}') from exc
+            required = {'record_id', 'question_id', 'decision', 'reason_codes', 'confidence', 'status'}
+            if set(d) != required:
+                raise SystemExit(f'체크포인트 {line_number}행 스키마 불일치: {sorted(d)}')
             k = (d['record_id'], d['question_id'])
             if k in seen:
+                duplicate_keys.append(k)
                 continue
+            if k not in frame:
+                raise SystemExit(f'입력 프레임에 없는 체크포인트 키: {k}')
             seen.add(k)
             recs.append(d)
+    if duplicate_keys:
+        raise SystemExit(f'체크포인트 중복 키 {len(duplicate_keys)}건: run_complete 산출 중단')
     recs.sort(key=lambda d: (d['record_id'], d['question_id']))
 
     os.makedirs(os.path.dirname(OUT_CSV), exist_ok=True)
@@ -219,15 +258,31 @@ def finalize(total_frame: int):
         w = csv.writer(f)
         w.writerow(['record_id', 'question_id', 'llm_decision', 'llm_reason_codes',
                     'llm_confidence', 'llm_model', 'llm_reasoning_effort',
-                    'decision_authority', 'status'])
+                    'decision_authority', 'status', 'evidence_basis', 'source',
+                    'execution_mode', 'batch_id', 'batch_sha256', 'judged_at'])
         for d in recs:
+            key = (d['record_id'], d['question_id'])
+            meta = agent_metadata.get(key)
+            execution_mode = 'agent_local' if meta else 'api_batch'
             w.writerow([d['record_id'], d['question_id'], d['decision'], d['reason_codes'],
-                        d['confidence'], MODEL, EFFORT, 'ai_exploratory_only', d['status']])
+                        d['confidence'], meta.get('model') if meta else MODEL,
+                        'agent_local' if meta else EFFORT,
+                        'ai_exploratory_only', d['status'], frame[key]['evidence_basis'],
+                        frame[key]['source'], execution_mode,
+                        meta.get('batch_id') if meta else '',
+                        meta.get('batch_sha256') if meta else '',
+                        meta.get('judged_at') if meta else ''])
 
-    dist = {}
+    dist = Counter()
+    by_basis = defaultdict(Counter)
+    by_mode = Counter()
     tok_in = tok_out = tok_rows = 0
     for d in recs:
-        dist[d['decision']] = dist.get(d['decision'], 0) + 1
+        key = (d['record_id'], d['question_id'])
+        mode = 'agent_local' if key in agent_metadata else 'api_batch'
+        dist[d['decision']] += 1
+        by_basis[frame[key]['evidence_basis']][d['decision']] += 1
+        by_mode[mode] += 1
         if d.get('in_tok'):
             tok_in += d['in_tok']
             tok_out += d.get('out_tok', 0)
@@ -236,27 +291,37 @@ def finalize(total_frame: int):
                 'output_tokens': tok_out,
                 'input_per_row': round(tok_in / tok_rows, 1) if tok_rows else None,
                 'output_per_row': round(tok_out / tok_rows, 1) if tok_rows else None}
-    coverage = round(len(recs) / total_frame, 4) if total_frame else None
-    complete = coverage is not None and coverage >= 0.999
+    total_frame = len(frame)
+    coverage = round(len(recs) / total_frame, 6) if total_frame else None
+    complete = coverage == 1.0 and seen == set(frame)
+    if not complete and not incomplete_reason:
+        incomplete_reason = '체크포인트에 미분류 record-question 키가 남아 있다.'
     man = {
-        'schema_version': '1.0.0',
-        'protocol_version': '2.1-ai-exploratory-llm',
+        'schema_version': '2.0.0',
+        'protocol_version': '3.0-full-ai',
         'status': ('complete_llm_exploratory_classification_no_human_authority' if complete
                    else 'partial_llm_exploratory_classification_run_incomplete'),
         'run_complete': complete,
         'coverage': coverage,
-        'resume_command': None if complete else 'python tools/llm_screening.py',
-        'incomplete_reason': None if complete else
-            'OpenAI API quota exhausted (HTTP 429 insufficient_quota) partway through the run. '
-            'Add credit and rerun; the checkpoint resumes from where it stopped.',
-        'note': 'protocol §5·§9 준수. include/exclude 가 아니며 사람 gold 가 없어 민감도·특이도를 산출하지 않는다.',
+        'resume_command': None if complete else
+            'python tools/agent_screening/make_batches.py --frame abstract --count 5',
+        'incomplete_reason': None if complete else incomplete_reason,
+        'note': 'retain/deprioritize/uncertain은 탐색지도용 AI 판정이며 사람 판정이 아니다.',
         'model': MODEL,
         'reasoning_effort': EFFORT,
         'prompt_sha256': PROMPT_SHA,
         'generated_at': datetime.now(timezone.utc).isoformat(timespec='seconds'),
-        'frame_rows_with_abstract': total_frame,
+        'frame_rows_total': total_frame,
+        'frame_rows_with_abstract': sum(1 for value in frame.values()
+                                        if value['evidence_basis'] == 'abstract'),
+        'frame_rows_title_only': sum(1 for value in frame.values()
+                                     if value['evidence_basis'] == 'title_only'),
         'row_count': len(recs),
-        'classifications': dist,
+        'classifications': dict(dist),
+        'classifications_by_evidence_basis': {
+            basis: dict(counts) for basis, counts in sorted(by_basis.items())
+        },
+        'execution_mode_distribution': dict(by_mode),
         'failures': sum(1 for d in recs if d['status'] != 'ok'),
         'usage': dict(_usage),
         'token_usage_from_checkpoint': measured,
@@ -266,6 +331,8 @@ def finalize(total_frame: int):
         'input_sha256': sha256(SRC),
         'output_path': 'data/curated_v2/llm_screening_classifications.csv',
         'output_sha256': sha256(OUT_CSV),
+        'agent_local_audit_path': ('research/screening/agent_local_runs.jsonl'
+                                   if agent_metadata else None),
         'human_screening_decisions': 0,
     }
     with open(MANIFEST, 'w', encoding='utf-8') as f:
@@ -284,6 +351,7 @@ def main():
     ap.add_argument('--workers', type=int, default=10,
                     help='높이면 429 가 늘어 오히려 느려진다')
     ap.add_argument('--finalize', action='store_true', help='체크포인트만 확정')
+    ap.add_argument('--incomplete-reason', help='부분 실행의 실제 중단 사유')
     a = ap.parse_args()
 
     os.makedirs(OUTDIR, exist_ok=True)
@@ -291,7 +359,7 @@ def main():
     print(f'초록 보유 대상 {len(rows):,}행')
 
     if a.finalize:
-        finalize(len(rows))
+        finalize(a.incomplete_reason)
         return
 
     KEY = api_key()
@@ -301,7 +369,7 @@ def main():
         todo = todo[:a.limit]
     print(f'완료 {len(have):,} · 이번 실행 {len(todo):,} · 모델 {MODEL}(effort={EFFORT}) · 동시 {a.workers}\n')
     if not todo:
-        finalize(len(rows))
+        finalize(a.incomplete_reason)
         return
 
     t0 = time.time()
@@ -322,7 +390,7 @@ def main():
                           f'남은 {eta/60:5.1f}분  실패 {_usage["failures"]}')
     print(f'\n입력토큰 {_usage["input_tokens"]:,} · 출력토큰 {_usage["output_tokens"]:,} '
           f'· 호출 {_usage["calls"]:,} · 재시도 {_usage["retries"]:,}')
-    finalize(len(rows))
+    finalize(a.incomplete_reason)
 
 
 if __name__ == '__main__':
