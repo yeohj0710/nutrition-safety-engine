@@ -112,3 +112,21 @@ P3 는 P2 와 다른 과업이다. 레코드를 통째로 판단하지 않고 P�
 이 한계는 산출물에도 남겼다: `screener_vs_ai_reference_v3.json` 의
 `rounds.identical_round_pairs` 와 `rounds.agreement_interpretation`.
 논문·발표 원고에서 이 수치를 쓸 때 같은 단서를 반드시 붙인다.
+
+## 2026-07-27 P3.5 코퍼스 충분성 판단 — 보강 불필요
+
+`tools/v30/build_site_v3.py all` 의 build 단계를 P2 재선별 결과로 재실행했다.
+
+- 정규식 게이트 통과 1,627행, LLM 게이트에서 274행 제외, 최종 kept 1,353행
+- 질문별 kept: HRS1 123 / HRS2 119 / HRS3 372 / HRS4 541 / HRS5 198
+- core evidence 는 질문당 상한 15건이 모두 채워져 75건 (5×15)
+
+질문당 core 근거가 10건 이상이라는 P3.5 기준을 다섯 질문 모두 충족했다.
+검색식 확장과 추가 PubMed 검색은 하지 않는다. 패딩도 하지 않았다.
+
+### build_site_v3.py 수정 두 건
+1. 선별 CSV 컬럼명: v3.0 에이전트 산출물은 `decision`, 구 스키마는 `llm_decision` 이다.
+   해시가 이미 P2 매니페스트·P3 산출물에 기록돼 있으므로 CSV 를 고치지 않고
+   `screening_decision()` 헬퍼로 두 스키마를 모두 읽게 했다.
+2. 번역 작성자 검증값을 상수 `TRANSLATION_AUTHOR = "Claude"` 로 바꿨다.
+   번역은 외부·로컬 번역 모델 없이 에이전트가 직접 작성한다.

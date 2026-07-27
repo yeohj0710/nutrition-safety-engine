@@ -24,6 +24,7 @@ RULES_OUT = OUT / "personalized_rules.json"
 MANIFEST_OUT = OUT / "manifest.json"
 CORE_MANIFEST_OUT = OUT / "core_manifest.json"
 TRANSLATION_PARTS_DIR = OUT / "etc" / "translation_parts"
+TRANSLATION_AUTHOR = "Claude"
 MAX_CORE_PER_QUESTION = 15
 
 QUESTION_CONFIG: dict[str, dict[str, str]] = {
@@ -196,6 +197,13 @@ def extract_observed_axes(row: dict[str, str]) -> list[str]:
     return axes
 
 
+def screening_decision(row: dict[str, str]) -> str:
+    """v3.0 에이전트 선별 CSV 는 `decision`, 구 스키마는 `llm_decision` 을 쓴다."""
+    if "decision" in row:
+        return row["decision"]
+    return row["llm_decision"]
+
+
 def build() -> dict[str, Any]:
     corpus = read_csv(CORPUS_PATH)
     screening_rows = read_csv(SCREENING_PATH)
@@ -211,15 +219,15 @@ def build() -> dict[str, Any]:
         if decision is None:
             raise RuntimeError(f"screening row missing: {key}")
         passed, signals = regex_passes(row)
-        if passed and decision["llm_decision"] != "retain":
+        if passed and screening_decision(decision) != "retain":
             dropped_by_llm += 1
         regex_rows.append({
             "question_id": row["question_id"], "record_id": row["record_id"],
             "regex_passed": str(passed).lower(), "regex_signals": signals,
-            "llm_decision": decision["llm_decision"],
-            "kept": str(passed and decision["llm_decision"] == "retain").lower(),
+            "llm_decision": screening_decision(decision),
+            "kept": str(passed and screening_decision(decision) == "retain").lower(),
         })
-        if not passed or decision["llm_decision"] != "retain":
+        if not passed or screening_decision(decision) != "retain":
             continue
         locator, key_finding = choose_key_finding(row)
         scope = "abstract_only" if row["abstract"].strip() else "title_only"
@@ -240,7 +248,7 @@ def build() -> dict[str, Any]:
             "title": row["title"], "abstract": row["abstract"], "authors": row["authors"],
             "year": row["year"], "venue": row["venue"],
             "publication_types": row["publication_types"], "doi": row["doi"],
-            "url": row["source_url"], "screening_decision": decision["llm_decision"],
+            "url": row["source_url"], "screening_decision": screening_decision(decision),
             "regex_passed": "true", "source_scope": scope, "locator": locator,
             "locator_text": key_finding, "dose": " | ".join(doses),
             "outcome": " | ".join(outcome_sentences), "key_finding": key_finding,
@@ -411,7 +419,7 @@ def translate() -> dict[str, Any]:
             raise RuntimeError(f"duplicate translation part question_id: {question_id}")
         if part.get("translation_authorship") != "ai_generated":
             raise RuntimeError(f"invalid translation_authorship in {path.name}")
-        if part.get("author") != "OpenAI Codex":
+        if part.get("author") != TRANSLATION_AUTHOR:
             raise RuntimeError(f"invalid translation author in {path.name}")
         part_translations = part.get("translations")
         if not isinstance(part_translations, dict):
@@ -465,13 +473,14 @@ def translate() -> dict[str, Any]:
             "question_id": row["question_id"], "record_id": row["record_id"],
             "source_text": row["key_finding"], "source_sha256": source_sha,
             "translation_ko": candidate, "translation_authorship": "ai_generated",
-            "author": "OpenAI Codex",
+            "author": TRANSLATION_AUTHOR,
             "numeric_unit_validation": "passed", "direction_validation": "passed",
         })
     payload = {
         "schema_version": "1.0.0", "track": "v3.0_full_ai_autonomy",
         "generated_at": now(), "translation_authorship": "ai_generated",
-        "author": "OpenAI Codex", "source": "Codex-authored translation parts",
+        "author": TRANSLATION_AUTHOR,
+        "source": "agent-authored translation parts (no external or local translation model)",
         "parts": part_manifest,
         "records": len(translations), "translations": translations,
     }
@@ -603,7 +612,7 @@ def validate() -> dict[str, Any]:
         if source is None:
             errors.append(f"absent corpus key: {key}")
             continue
-        if screening[key]["llm_decision"] != "retain" or regex_map[key]["regex_passed"] != "true":
+        if screening_decision(screening[key]) != "retain" or regex_map[key]["regex_passed"] != "true":
             errors.append(f"gate violation: {key}")
         haystack = source["abstract"] if row["source_scope"] == "abstract_only" else source["title"]
         if row["locator_text"] not in haystack or row["key_finding"] != row["locator_text"]:

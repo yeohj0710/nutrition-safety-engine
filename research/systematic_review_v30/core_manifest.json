@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0.0",
+  "track": "v3.0_full_ai_autonomy",
+  "generated_at": "2026-07-27T02:21:47+00:00",
+  "core_records": 75,
+  "per_question": {
+    "HRS1_PERIOPERATIVE": 15,
+    "HRS2_KIDNEY_DISEASE": 15,
+    "HRS3_PREGNANCY": 15,
+    "HRS4_LIVER_DISEASE": 15,
+    "HRS5_ANTICOAGULATION": 15
+  },
+  "rules": 35,
+  "source_sha256": "19cf68710ef87e4b76f75687fe2e6ce53db44f65850c1ecffb5cfaf626dcec64",
+  "core_sha256": "bc9912c4fa79976fb1780b3bade0eadcecef6fd6bbe99620e333382e91fd1d44",
+  "translation_sha256": "cd06576c06a051d9b6998f8ee9364e05df4e1eafac91ca18e94b7a8ac2f66aff",
+  "translation_authorship": "ai_generated",
+  "personalization": {
+    "axes": [
+      "age_group",
+      "concomitant_medication",
+      "dose_range",
+      "sex",
+      "underlying_condition"
+    ],
+    "evidence_rows_by_question_and_axis": {
+      "HRS1_PERIOPERATIVE": {
+        "age_group": 8,
+        "concomitant_medication": 5,
+        "dose_range": 8,
+        "sex": 3,
+        "underlying_condition": 13
+      },
+      "HRS2_KIDNEY_DISEASE": {
+        "age_group": 11,
+        "concomitant_medication": 9,
+        "dose_range": 10,
+        "sex": 1,
+        "underlying_condition": 15
+      },
+      "HRS3_PREGNANCY": {
+        "age_group": 12,
+        "concomitant_medication": 2,
+        "dose_range": 10,
+        "sex": 13,
+        "underlying_condition": 14
+      },
+      "HRS4_LIVER_DISEASE": {
+        "age_group": 5,
+        "concomitant_medication": 7,
+        "dose_range": 1,
+        "sex": 1,
+        "underlying_condition": 15
+      },
+      "HRS5_ANTICOAGULATION": {
+        "age_group": 7,
+        "concomitant_medication": 15,
+        "dose_range": 4,
+        "sex": 3,
+        "underlying_condition": 6
+      }
+    },
+    "compatibility_aliases": {
+      "A1": {
+        "source_question_id": "HRS5_ANTICOAGULATION",
+        "ingredient": "비타민 K"
+      },
+      "A2": {
+        "source_question_id": "HRS5_ANTICOAGULATION",
+        "ingredient": "오메가-3"
+      },
+      "B1": {
+        "source_question_id": "HRS2_KIDNEY_DISEASE",
+        "ingredient": "칼슘"
+      },
+      "B2": {
+        "source_question_id": "HRS2_KIDNEY_DISEASE",
+        "ingredient": "비타민 D"
+      },
+      "B3": {
+        "source_question_id": "HRS2_KIDNEY_DISEASE",
+        "ingredient": "비타민 C"
+      }
+    }
+  },
+  "llm_gate": {
+    "applied": true,
+    "regex_passed": 1627,
+    "dropped_by_llm": 274,
+    "kept": 1353,
+    "decision_source": "data/curated_v3/llm_screening_classifications.csv"
+  }
+}
