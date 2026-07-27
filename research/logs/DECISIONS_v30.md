@@ -15,3 +15,37 @@
 - 2026-07-27 09:50 KST — [P2] 허브 유래 지혈제(운남백약, Ankaferd 등)를 수술·시술 중 투여하고 출혈량을 보고한 연구는 `retain`으로 본다. 노출이 허브 제제이고 결과가 질문의 출혈 결과이므로, 효과 방향이 지혈이라는 이유만으로 배제하지 않는다.
 - 2026-07-27 11:05 KST — [P2] v3.0 신규 산출물의 SHA-256 은 줄바꿈을 LF 로 정규화한 바이트에 대해 계산하고 매니페스트에 `hash_method: sha256_over_lf_normalized_bytes` 로 명시한다. `.gitattributes` 는 보호 대상이라 v3.0 경로를 `-text` 로 추가할 수 없는데, 저장소의 `core.autocrlf=true` 때문에 체크아웃 시 LF 가 CRLF 로 바뀌어 원시 바이트 해시가 플랫폼마다 달라지기 때문이다. `data/curated_v3/evidence_map.csv`와 `research/searches_v3/`의 기존 원시 바이트 해시 13건은 재검증해 전부 일치함을 확인했다.
 - 2026-07-27 01:45 KST — 로컬 Qwen 선별 500행 시점에 긴 초록이 JSON 출력 지시를 밀어내는 토큰 절단 결함을 확인했다. append-only 원칙을 지키기 위해 500행 체크포인트와 5개 배치 감사 로그를 `research/screening/v3/aborted/20260727T1645Z/`에 그대로 보존하고, 입력 길이 제한을 고친 새 canonical 실행을 시작한다.
+
+## 2026-07-27 P2 완료: 에이전트 직접 선별 2,209행
+
+- 43개 배치 전량을 내가 직접 읽고 판정했다. 로컬 언어모델·외부 API·서브에이전트를
+  전혀 쓰지 않았고, 매니페스트에 `model_invocations: 0`, `external_api_calls: 0`,
+  `human_decisions: 0`, `execution_mode: agent_direct` 로 기록된다.
+- 커버리지 2,209/2,209(1.0), 중복 0, 누락 0. `verify` 통과.
+- 최종 분포: retain 1,705 / deprioritize 461 / uncertain 43.
+  초록 있는 1,968행은 retain 1,525 / deprioritize 437 / uncertain 6,
+  제목만 있는 241행은 retain 180 / deprioritize 24 / uncertain 37 로,
+  근거가 부족한 쪽에 uncertain 이 몰리도록 프롬프트 규칙이 작동했다.
+- 질문별 retain: HRS1 194/296, HRS2 126/138, HRS3 428/515, HRS4 721/967,
+  HRS5 236/293.
+
+### 판정 중 굳힌 경계 규칙 (프롬프트 동결 상태에서 일관 적용)
+- 동물·세포 전용 연구(설치류 간보호 실험, HepG2/LX-2 단독 실험 등)는
+  `deprioritize` + `animal_term_present`. 사람 조직·세포만 쓴 in vitro 도
+  사람 집단이 없으므로 `population`/`off_topic` 으로 deprioritize 했다.
+- 약물만 다루고 보충제 언급이 없는 DILI 리뷰는 `exposure` + `off_topic`.
+  반대로 초록에 herbal/dietary supplement 가 원인 물질로 명시되면 retain.
+- HRS5 는 항응고제(와파린·DOAC·헤파린) 맥락을 요구했다. 항혈소판제만 다루는
+  연구라도 출혈 위험 프레이밍이 두 축을 함께 포괄하면 retain 했다.
+- 항트롬빈 농축제·피브리노겐 농축제·크라이오·구연산 투석 회로 칼슘처럼
+  혈액제제·회로 보충은 식이보충제가 아니므로 `exposure` + `off_topic`.
+- 제목만 있는 레코드는 `evidence_basis: title_only`, confidence 는 low 로 고정하고
+  `insufficient_abstract` 를 반드시 포함시켰다. 노출·결과가 제목에서 명확하면
+  retain(low), 노출조차 불명확하면 uncertain 으로 보냈다.
+
+### 산출물
+- `data/curated_v3/llm_screening_classifications.csv` (2,209행)
+  SHA-256 `5305c69437114b9f157ff6fb10bf1dc0308b2fca1ddacb2d02fc3b6848450393`
+- `research/screening/v30_agent/checkpoints.jsonl`
+  SHA-256 `085ad6346ddbeaf3133b00f3503316e814d93c67c9ed23bb60c0aa399ce3497a`
+- 해시는 모두 LF 정규화 후 계산(`hash_method` 필드 참조).
