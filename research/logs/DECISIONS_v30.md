@@ -130,3 +130,31 @@ P3 는 P2 와 다른 과업이다. 레코드를 통째로 판단하지 않고 P�
    `screening_decision()` 헬퍼로 두 스키마를 모두 읽게 했다.
 2. 번역 작성자 검증값을 상수 `TRANSLATION_AUTHOR = "Claude"` 로 바꿨다.
    번역은 외부·로컬 번역 모델 없이 에이전트가 직접 작성한다.
+
+## 2026-07-27 P4-3 테스트 갱신과 그 과정에서 확인된 사실
+
+`__tests__/personalized-safety-api.test.ts` 의 v2 고정 기대값을 v3.0 불변조건으로 교체했다.
+
+- 과거 `REC-PUBMED-*` 레코드 ID 와 정확한 순위를 요구하던 assertion 제거.
+  대신 `record_id` 가 `pubmed:` 로 시작하는지, `evidence_lineage.track` 이
+  `v3.0_full_ai_autonomy` 인지, 선두 근거가 해당 선택 사유를 갖는지 검증한다.
+- `key_finding.length <= 280` 제거. 대신 비어 있지 않음과 `locator` 가
+  `ABSTRACT_SENTENCE_n: ` 로 시작하며 `key_finding` 으로 끝나는지(원문 locator 일치) 검증한다.
+- `evidence` 개수 고정값 5 제거. v3.0 별칭 규칙의 후보 수가 1~7건이라 5건을 채울 수
+  없는 별칭이 있다. `min(5, all_evidence.length)` 와 일치하는지로 바꿨다.
+- 경계 테스트 3종(ai-exploratory / thesis-mode / legacy-mode)은 손대지 않았다.
+
+### 테스트를 고치며 드러난 데이터 사실 (숨기지 않고 기록)
+1. **v3.0 별칭 근거에는 용량 문자열이 없다.** 다섯 별칭(A1·A2·B1·B2·B3)의
+   core evidence 핵심소견 어디에도 문헌 용량 범위가 없어, 선택 사유 문구
+   "입력한 용량 …"이 어떤 입력으로도 발생하지 않는다. 용량 파싱 자체는 정상이므로
+   해당 테스트는 요약문에 입력 용량이 그대로 반영되는지로 검증 대상을 바꿨다.
+2. **아스피린을 직접 연구한 오메가-3 문헌이 v3.0 별칭 근거에 없다.**
+   `direct_medication_matches` 가 0이며, 이때 어떤 근거도 직접 일치를 주장하지 않는지로
+   검증을 바꿨다. 와파린은 여전히 직접 일치(1건)가 발생해 기전 자체는 살아 있다.
+3. 별칭별 후보 수: A1 7건, A2 1건, B1 1건, B2 2건, B3 5건.
+   공개 화면의 근거 폭이 v2.1 대비 좁아졌다는 뜻이며, 논문 한계에 반영한다.
+
+### 검증 결과
+`npm run typecheck`, `npm run lint`, `npm test`(152개 전부 통과), `npm run build` 모두 성공.
+배포는 하지 않았다.

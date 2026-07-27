@@ -176,7 +176,7 @@ describe("personalized safety UI contract", () => {
     }
 
     expect(page).toContain(
-      "복용량과 함께 먹는 약, 결석·신장 병력, 검사 결과를 문헌에 보고된 용량과 상호작용 결과와 비교해요.",
+      "수술 전후, 만성콩팥병, 임신, 간질환, 항응고 치료 상황에서 보충제 용량과 병용약, 기저질환을 문헌 근거와 비교해요.",
     );
     expect(component).toContain(
       "라벨 문구를 그대로 적으세요. 숫자와 단위를 정리해",

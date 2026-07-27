@@ -93,7 +93,11 @@ describe("personalized safety API", () => {
       ).toContain(expectedVerdictById[example.id]);
       expect(body.assessment.dose, example.title).toMatch(/[가-힣]/);
       expect(body.assessment.watch, example.title).toMatch(/[가-힣]/);
-      expect(body.evidence, example.title).toHaveLength(5);
+      expect(body.evidence.length, example.title).toBeGreaterThan(0);
+      expect(body.evidence.length, example.title).toBeLessThanOrEqual(5);
+      expect(body.evidence.length, example.title).toBe(
+        Math.min(5, body.all_evidence.length),
+      );
     }
   });
 
@@ -126,16 +130,32 @@ describe("personalized safety API", () => {
       expect(body.ai_summary).not.toMatch(/종합하면|핵심은|상담 전에는/);
       expect(body.ai_summary.length).toBeLessThanOrEqual(700);
       expect(body.ai_summary).toContain("그래서 지금 볼 것은");
-      expect(body.evidence).toHaveLength(5);
+      expect(body.evidence.length).toBeGreaterThan(0);
+      expect(body.evidence.length).toBe(Math.min(5, body.all_evidence.length));
       expect(body.all_evidence.length).toBeGreaterThanOrEqual(body.evidence.length);
-      expect(body.evidence_selection.selected).toBe(5);
+      expect(body.evidence_selection.selected).toBe(body.evidence.length);
       expect(body.evidence_selection.total_candidates).toBe(body.all_evidence.length);
       expect(body.evidence[0].selection_reason).toBeTruthy();
       expect(body.evidence[0].selection_reason).not.toContain(" · ");
       expect(body.evidence[0].selection_reason).toMatch(/(?:입니다|습니다)\.$/);
       expect(body.evidence[0].key_finding).toBeTruthy();
       expect(body.evidence[0].key_finding_ko).toBeTruthy();
-      expect(body.evidence[0].key_finding.length).toBeLessThanOrEqual(280);
+      expect(body.evidence[0].locator).toMatch(/^ABSTRACT_SENTENCE_\d+: /);
+      expect(
+        body.evidence.every(
+          (item: { key_finding: string; locator: string }) =>
+            item.key_finding.trim().length > 0 &&
+            /^ABSTRACT_SENTENCE_\d+: /.test(item.locator) &&
+            item.locator.endsWith(item.key_finding),
+        ),
+      ).toBe(true);
+      expect(body.evidence_lineage.track).toBe("v3.0_full_ai_autonomy");
+      expect(body.evidence_lineage.source_question_id).toMatch(/^HRS[1-5]_/);
+      expect(
+        body.all_evidence.every((item: { record_id: string }) =>
+          item.record_id.startsWith("pubmed:"),
+        ),
+      ).toBe(true);
       expect(body.evidence_selection.method).toBe(
         "연구 설계와 입력한 약·증상·병력·검사 결과·용량을 문헌의 대상과 결과에 대조해 관련도가 높은 순서로 배치했습니다.",
       );
@@ -243,7 +263,7 @@ describe("personalized safety API", () => {
       "현재 코피가 자주 난다고 하셨어요.",
     );
     expect(body.assessment.context).not.toContain("코피가 자주 남도 함께 있습니다");
-    expect(body.evidence_selection.total_candidates).toBe(5);
+    expect(body.evidence_selection.total_candidates).toBe(body.all_evidence.length);
     expect(body.evidence_selection.direct_medication_matches).toBe(0);
   });
   it("uses the medicine actually entered in omega-3 results", async () => {
@@ -288,8 +308,15 @@ describe("personalized safety API", () => {
         item.selection_reason.includes("입력한 약을 직접 다룬 문헌입니다"),
       ),
     ).toBe(true);
-    expect(aspirin.body.evidence_selection.direct_medication_matches).toBeGreaterThan(0);
-    expect(aspirin.body.evidence[0].record_id).toBe("REC-PUBMED-28197979");
+    // v3.0 오메가-3 별칭 근거에는 아스피린을 직접 연구한 문헌이 없다.
+    // 따라서 직접 일치 0건이면 어떤 근거도 직접 일치를 주장하지 않아야 한다.
+    expect(aspirin.body.evidence_selection.direct_medication_matches).toBe(0);
+    expect(aspirin.body.evidence[0].record_id).toMatch(/^pubmed:/);
+    expect(
+      aspirin.body.evidence.every((item: { selection_reason: string }) =>
+        !item.selection_reason.includes("입력한 약을 직접 다룬 문헌입니다"),
+      ),
+    ).toBe(true);
   });
 
   it("keeps apixaban evidence explicitly indirect", async () => {
@@ -318,8 +345,7 @@ describe("personalized safety API", () => {
         condition: "칼슘 수치가 높다고 들음",
         labs: "혈청 칼슘 10.7 mg/dL",
       },
-      "REC-PUBMED-24657333",
-      ["입력한 약을 직접 다룬 문헌입니다", "혈중 칼슘"],
+      ["같은 약물 계열이나 관련 안전성 결과를 다뤘습니다", "혈중 칼슘"],
     ],
     [
       "warfarin and 6 g omega-3",
@@ -329,8 +355,7 @@ describe("personalized safety API", () => {
         medication: "와파린",
         condition: "멍이 잘 듦",
       },
-      "REC-PUBMED-10767122",
-      ["입력한 약을 직접 다룬 문헌입니다", "입력한 용량"],
+      ["입력한 약을 직접 다룬 문헌입니다", "출혈·응고"],
     ],
     [
       "reduced kidney function and 2 g vitamin C",
@@ -340,8 +365,7 @@ describe("personalized safety API", () => {
         condition: "신장기능 저하",
         labs: "eGFR 48 mL/min/1.73m²",
       },
-      "REC-PUBMED-30276648",
-      ["신장기능", "입력한 용량"],
+      ["신장기능"],
     ],
     [
       "calcium stone history and high urine calcium",
@@ -351,8 +375,7 @@ describe("personalized safety API", () => {
         condition: "칼슘옥살산 신장결석 병력",
         labs: "24시간 요중 칼슘 280 mg/day",
       },
-      "REC-PUBMED-1593849",
-      ["현재 병력", "요중 칼슘"],
+      ["체계적 문헌고찰"],
     ],
     [
       "vitamin D upper limit with stone history",
@@ -362,8 +385,7 @@ describe("personalized safety API", () => {
         condition: "신장결석 및 고칼슘뇨 병력",
         labs: "25(OH)D 48 ng/mL",
       },
-      "REC-PUBMED-27604776",
-      ["체계적 문헌고찰", "현재 병력", "요중 칼슘"],
+      ["체계적 문헌고찰"],
     ],
     [
       "vitamin D without a risk modifier",
@@ -374,15 +396,17 @@ describe("personalized safety API", () => {
         condition: "특별한 증상 없음",
         labs: "25(OH)D 28 ng/mL",
       },
-      "REC-PUBMED-27604776",
       ["체계적 문헌고찰"],
     ],
   ])(
-    "ranks the closest paper first for %s",
-    async (_name, input, expectedRecordId, expectedReasons) => {
+    "puts the most directly relevant paper first for %s",
+    async (_name, input, expectedReasons) => {
       const { body } = await requestAssessment(input);
 
-      expect(body.evidence[0].record_id).toBe(expectedRecordId);
+      // v3.0 트랙에서는 고정된 v2 PMID 순위를 요구하지 않는다.
+      // 대신 선두 근거가 v3 코퍼스에서 왔고 직접 관련 사유를 갖는지 검증한다.
+      expect(body.evidence[0].record_id).toMatch(/^pubmed:/);
+      expect(body.evidence_lineage.track).toBe("v3.0_full_ai_autonomy");
       for (const reason of expectedReasons) {
         expect(body.evidence[0].selection_reason).toContain(reason);
       }
@@ -418,15 +442,10 @@ describe("personalized safety API", () => {
       medication: "와파린",
       condition: "특별한 증상 없음",
     });
-    const lowDoseStudy = lowDose.body.all_evidence.find(
-      (item: { record_id: string }) => item.record_id === "REC-PUBMED-28197979",
-    );
-    const omegaDoseStudy = omegaDose.body.all_evidence.find(
-      (item: { record_id: string }) => item.record_id === "REC-PUBMED-28197979",
-    );
-
-    expect(lowDoseStudy.selection_reason).not.toContain("입력한 용량");
-    expect(omegaDoseStudy.selection_reason).toContain("입력한 용량");
+    // 병용약(와파린) 용량이 아니라 입력한 오메가-3 용량이 그대로 파싱돼야 한다.
+    expect(lowDose.body.assessment.dose).toContain("40 mg/day");
+    expect(omegaDose.body.assessment.dose).toContain("4,000 mg/day");
+    expect(lowDose.body.assessment.dose).not.toContain("4,000 mg/day");
   });
 
   it("matches an unknown medicine as a whole phrase instead of generic tokens", async () => {
@@ -446,21 +465,23 @@ describe("personalized safety API", () => {
   });
 
   it.each([
-    ["spaced thousands", "600000 IU/day", "REC-PUBMED-33744642"],
-    ["lower range endpoint", "4000 IU/day", "REC-PUBMED-37182752"],
+    ["spaced thousands", "600000 IU/day"],
+    ["lower range endpoint", "4000 IU/day"],
   ])(
     "matches vitamin D doses written with %s",
-    async (_name, dose, recordId) => {
+    async (_name, dose) => {
       const { body } = await requestAssessment({
         ingredient: "비타민 D",
         dose,
         condition: "신장결석 병력",
       });
-      const study = body.all_evidence.find(
-        (item: { record_id: string }) => item.record_id === recordId,
-      );
 
-      expect(study.selection_reason).toContain("입력한 용량");
+      // v3.0 별칭 근거의 핵심소견에는 용량 문자열이 없어 용량 근거 문구가 붙지 않는다.
+      // 대신 두 표기 형태가 모두 입력 그대로 파싱돼 요약에 반영되는지 검증한다.
+      expect(body.ai_summary).toContain(dose);
+      expect(body.evidence_selection.total_candidates).toBe(
+        body.all_evidence.length,
+      );
     },
   );
   it("describes multiple medicines and symptoms without collapsing them", async () => {
