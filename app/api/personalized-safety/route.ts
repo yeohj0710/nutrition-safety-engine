@@ -104,8 +104,14 @@ const guidance: Record<
     ],
   },
 };
-function numericTokens(value: string) {
-  return new Set(value.match(/\d+(?:[.,]\d+)?/g) ?? []);
+// 2000 과 2,000 은 같은 수다. 천 단위 구분자만 다른 표기를 서로 다른 수로 세면
+// 근거 검사가 멀쩡한 문장을 거부한다. 자릿수 구분자를 없앤 뒤 비교한다.
+function comparableNumericTokens(value: string) {
+  return new Set(
+    (value.match(/\d[\d,]*(?:\.\d+)?/g) ?? []).map((token) =>
+      token.replace(/,/g, ""),
+    ),
+  );
 }
 type SummaryInput = {
   questionId: string;
@@ -1242,9 +1248,9 @@ function narrativeGroundingFailure(
   )
     return "uncertainty_dropped";
   const sourceText = JSON.stringify(source);
-  const actualNumbers = numericTokens(combined);
-  const allowedNumbers = numericTokens(sourceText);
-  const requiredNumbers = numericTokens(
+  const actualNumbers = comparableNumericTokens(combined);
+  const allowedNumbers = comparableNumericTokens(sourceText);
+  const requiredNumbers = comparableNumericTokens(
     JSON.stringify({
       rule_assessment: source.rule_assessment,
       symptom_note: source.symptom_note,
