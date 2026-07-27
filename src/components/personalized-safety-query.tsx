@@ -214,13 +214,7 @@ export function PersonalizedSafetyQuery() {
     condition: "",
     labs: "",
   });
-  const ingredientOptions = [
-    "비타민 K",
-    "오메가-3",
-    "칼슘",
-    "비타민 D",
-    "비타민 C",
-  ];
+  const ingredientOptions = [...personalizedSafetyIngredientOrder];
   const medicationOptions: Record<string, string[]> = {
     "비타민 K": [
       "와파린",
@@ -396,7 +390,7 @@ export function PersonalizedSafetyQuery() {
         summary={
           <>
             <span className="text-sm font-bold text-stone-900">
-              입력 예시 15개
+              입력 예시 {personalizedSafetyExamples.length}개
             </span>
             <span className="collapsible-chevron flex h-7 w-7 items-center justify-center text-stone-500">
               <Chevron />
