@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "track": "v3.0_full_ai_autonomy",
+  "generated_at": "2026-07-27T00:01:46+00:00",
+  "protocol": "protocol-v3.0-full-ai",
+  "input": "data/curated_v3/evidence_map.csv",
+  "input_sha256": "3142e5259bd44acec1eb270aa66f9ff4d791e8c78013525a666f65a8bdc5b4d3",
+  "screening_input": "data/curated_v3/llm_screening_classifications.csv",
+  "screening_sha256": "0fe8de6a34aeda151728f4730091ce9a225c35746764eeb17aa329b47e5bd56f",
+  "records": 302,
+  "by_question": {
+    "HRS1_PERIOPERATIVE": 42,
+    "HRS2_KIDNEY_DISEASE": 23,
+    "HRS3_PREGNANCY": 105,
+    "HRS4_LIVER_DISEASE": 107,
+    "HRS5_ANTICOAGULATION": 25
+  },
+  "with_dose": 82,
+  "with_fulltext_locator": 0,
+  "source_scope": {
+    "abstract_only": 302
+  },
+  "effect_status": {
+    "not_observed": 302
+  },
+  "llm_gate": {
+    "applied": true,
+    "regex_passed": 1627,
+    "dropped_by_llm": 1325,
+    "kept": 302,
+    "decision_source": "data/curated_v3/llm_screening_classifications.csv"
+  },
+  "core_limit_per_question": 15,
+  "human_decisions": 0,
+  "limitations": [
+    "AI-only title/abstract screening and extraction; no human reference decisions",
+    "PubMed title/abstract scope only; all retained records are abstract_only or title_only",
+    "No effect estimate is imputed; unobserved values remain not_observed"
+  ]
+}
