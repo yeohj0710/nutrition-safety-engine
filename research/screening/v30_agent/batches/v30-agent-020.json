@@ -1,0 +1,332 @@
+{
+ "batch_id": "v30-agent-020",
+ "question_id": "HRS4_LIVER_DISEASE",
+ "row_count": 54,
+ "input_sha256": "89cae551be41173970175867748e7888d1280998a416aa5965f0aa35bb5df75e",
+ "rows": [
+  {
+   "record_id": "pubmed:10347134",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Effects of iron loading on pathogenicity in hepatitis C virus-infected chimpanzees.",
+   "abstract": "Elevated iron levels have been associated with raised serum alanine transaminase (ALT) levels in hepatitis C virus (HCV)-infected humans. However, it is not clear if HCV infection causes increased iron accumulation by the liver or if the severity of HCV infection is actually worsened by higher iron levels in the host. To better understand the relationship between iron and persistent HCV infections, we examined the effect of excess dietary iron on disease severity in HCV-infected chimpanzees. Iron was supplemented in the diets of four HCV-infected and two uninfected chimpanzees for 29 weeks to achieve iron loading. Iron loading was confirmed by increases in serum iron levels, percentages of transferrin saturation, ferritin levels, elevations in hepatic iron concentration (HIC), and by histological examination. The majority of HCV-infected chimpanzees had higher iron levels before iron feeding than the uninfected animals. Although various degrees of iron loading occurred in all chimpanzees, HCV-infected animals exhibited increased loading in comparison with uninfected animals. The effects of iron loading on HCV disease expression was determined by comparing disease parameters during an extended baseline period before iron loading with the period during iron loading and immediately following iron loading. Iron loading did not influence the viral load, but did exacerbate liver injury in HCV-infected chimpanzees, as evidenced by elevated ALT and histological changes. Because all chimpanzees on high iron diets experienced iron loading, but pathological effects were only observed in HCV-infected chimpanzees, HCV infection appears to increase the susceptibility of the liver to injury following iron loading. These results confirm and extend previous observations made in human populations and serve to further validate the chimpanzee model of chronic hepatitis C."
+  },
+  {
+   "record_id": "pubmed:10366933",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "[Acute hepatitis after phytotherapy].",
+   "abstract": ""
+  },
+  {
+   "record_id": "pubmed:10462287",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Simultaneous acute renal and hepatic failure after ingesting raw carp gall bladder.",
+   "abstract": ""
+  },
+  {
+   "record_id": "pubmed:10584584",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Three new herbal hepatotoxic syndromes.",
+   "abstract": ""
+  },
+  {
+   "record_id": "pubmed:10586838",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Acute hepatitis after ingestion of herbs.",
+   "abstract": "Herbal preparations are marketed as natural and safe alternatives to conventional medicines for the prevention and treatment of a variety of ailments. However, consumers may not be fully aware of their potential side effects. We report two cases of acute hepatitis after the ingestion of herbal preparations. One of the mixtures included chaparral and bee pollen; the other was pure bee pollen. Chaparral has been reported to have similar effects in other patients, but we found no reports of acute hepatitis from bee pollen. We discuss chaparral and several other hepatotoxic herbs and review the literature. Our case reports remind primary care physicians to ask their patients about herbal use and discuss their potential toxicities."
+  },
+  {
+   "record_id": "pubmed:10589261",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "[Phytotherapy and hepatitis].",
+   "abstract": ""
+  },
+  {
+   "record_id": "pubmed:10802502",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Talking with families about herbal therapies.",
+   "abstract": ""
+  },
+  {
+   "record_id": "pubmed:10946563",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Nutrition support for individuals with liver failure.",
+   "abstract": "The prevalence of liver diseases is increasing in the United States, particularly as a result of the recent hepatitis C epidemic. In the past, patients who developed fulminant hepatic failure or cirrhosis owing to a chronic liver disease were likely to expire. During the last 15-20 years, liver transplantation has given these patients a chance at survival. Progressive nutrition deficiencies and muscle wasting are universal problems in these patients. Left untreated, the progressive wasting of liver disease leads to infection and an increased risk of death owing to infection both before and after transplantation. Aggressive nutritional support is essential to optimize the care of these patients and to enable them to obtain and survive a liver transplant and gain access to a new life following a successful liver engraftment."
+  },
+  {
+   "record_id": "pubmed:11106086",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Herbal hepatotoxicity: an expanding but poorly defined problem.",
+   "abstract": "Alternative therapies, including herbal remedies, are popular in the general population and even more so among patients with liver disease. The use of such products is now well established in western society and is no longer confined to traditional medicine practitioners in Asia, Africa and the Middle-East. Their perceived benefits remain generally unproven and concern about adverse effects is leading to closer scrutiny of these products. Herbal hepatotoxicity has been recognized for many years, but new agents are constantly being identified. The varied manifestations of liver injury include steatosis, acute and chronic hepatitis, hepatic fibrosis, zonal or diffuse hepatic necrosis, bile duct injury, veno-occlusive disease, acute liver failure requiring liver transplantation and carcinogenesis. Potential interactions between herbal medicines and conventional drugs may interfere with patient management. Concurrent use of such products is not often disclosed unless specifically sought after and can lead to perpetuation of the liver injury. The present review focuses on emerging herbal hepatotoxins, newer patterns of liver injury among the older agents and provides an updated tabulation of the adverse effects of major herbal hepatotoxins. Key issues of diagnosis and prevention of this growing problem are addressed. Continued public education, physician awareness and more stringent licensing are required to tackle this growing problem."
+  },
+  {
+   "record_id": "pubmed:11151906",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Cascara sagrada-induced intrahepatic cholestasis causing portal hypertension: case report and review of herbal hepatotoxicity.",
+   "abstract": "Herbal medicines are gaining widespread popularity. Much of the public believes that botanical herbs are both harmless and useful for the treatment of a variety of symptoms. This belief stands in contrast with the fact that many herbal therapies have been shown to be toxic. In the present case report, cascara sagrada (CS) has been associated with the development of cholestatic hepatitis, complicated by portal hypertension. CS is a mixture of ingredients, among which is anthracene glycoside--an herbal agent that previously has been associated with chronic hepatitis. The liver injury in the case herein reported is believed to be related to either anthracene glycoside or one of the other constituents of CS."
+  },
+  {
+   "record_id": "pubmed:11276298",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "The efficacy and safety of comfrey.",
+   "abstract": "Herbal medication has gathered increasing recognition in recent years with regard to both treatment options and health hazards. Pyrrolizidine alkaloids have been associated with substantial toxicity after their ingestion as tea and in the setting of contaminated cereals have led to endemic outbreaks in Jamaica, India and Afghanistan. In Western Europe, comfrey has been applied for inflammatory disorders such as arthritis, thrombophlebitis and gout and as a treatment for diarrhoea. Only recently was the use of comfrey leaves recognized as a substantial health hazard with hepatic toxicity in humans and carcinogenic potential in rodents. These effects are most likely due to various hepatotoxic pyrrolizidine alkaloids such as lasiocarpine and symphytine, and their related N-oxides. The mechanisms by which toxicity and mutagenicity are conveyed are still not fully understood, but seem to be mediated through a toxic mechanism related to the biotransformation of alkaloids by hepatic microsomal enzymes. This produces highly reactive pyrroles which act as powerful alkylating agents. The main liver injury caused by comfrey (Symphytum officinale) is veno-occlusive disease, a non-thrombotic obliteration of small hepatic veins leading to cirrhosis and eventually liver failure. Patients may present with either acute or chronic clinical signs with portal hypertension, hepatomegaly and abdominal pain as the main features. Therapeutic approaches include avoiding intake and, if hepatic failure is imminent, liver transplantation. In view of the known serious hazards and the ban on distributing comfrey in Germany and Canada, it is difficult to understand why comfrey is still freely available in the United States."
+  },
+  {
+   "record_id": "pubmed:11432014",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Liver toxicity. Could this be a drug reaction?",
+   "abstract": "BACKGROUND: Adverse reaction to prescription medications, over the counter medications and complementary medicines, are an important cause of liver toxicity.\nOBJECTIVE: To highlight the importance of drug induced liver toxicity in patients presenting with abnormal liver function tests.\nDISCUSSION: In patients who present with symptoms of liver dysfunction such as anorexia, itch or Jaundice and in whom liver function tests are abnormal, the possibility of an adverse reaction to medications should be considered. A detailed history of all medications taken in the past few months, including complementary medicines, should be obtained. After exclusion of other causes of liver disease such a viral hepatitis or gallstones, the cessation of the offending medication and the normalisation of liver tests is usually sufficient to establish a diagnosis. Occasionally, referral to a specialist and liver biopsy may be required."
+  },
+  {
+   "record_id": "pubmed:11527172",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Beneficial effect of a traditional herbal medicine (inchin-ko-to) in postoperative biliary atresia patients.",
+   "abstract": "Inchin-ko-to (ICKT) prevents Fas-mediated liver injury. This study evaluates the effect of ICKT on conventional markers of liver function (LF) and liver fibrosis in 18 postoperative biliary atresia (BA) patients aged 3 to 23 years with elevated glutamic oxaloacetic transaminase (GOT), glutamic pyruvic transaminase (GPT), gamma-glutamyl transpeptidase (gammaGTP) but normal serum total bilirubin (T-Bil) levels. ICKT (0.15 g/kg per day) was administered orally for 1 year. Serum GOT, GPT, gammaGTP, total bile acids (TBA), and T-Bil as markers of LF and hyaluronic acid (HA), prolyl hydroxylase (PH), procollagen III peptide (PIIIP), and type IV collagen as markers of liver fibrosis were measured before and after treatment in each patient and compared statistically. All patients tolerated ICKT well, and there were no side effects. The percentage of subjects who improved after ICKT was 45% for serum GOT, 72% for GPT, 72% for gammaGTP, 72% for TBA, 67% for HA, 40% for PH, 50% for PIIIP, and 23% for type IV collagen. Changes in the mean values of all serum markers were statistically significant (P < 0.01). It is concluded that long-term administration of ICKT in postoperative BA patients improves liver status as assessed by markers of LF and fibrosis."
+  },
+  {
+   "record_id": "pubmed:11598552",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "[Is Exolise hepatotoxic?].",
+   "abstract": ""
+  },
+  {
+   "record_id": "pubmed:1173650",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "The toxicity of intravenously used marihuana.",
+   "abstract": "While no unanimity of opinion exists regarding the risk to physical health from smoking marihuana, we have seen four cases that demonstrate clearly that intravenous usage is hazardous. The severity of the multisystemic involvement is dose-related. On initial examination, signs of most severe overdosage included fulminant gastroenteritis, hypoalbuminemia, toxic hepatitis confirmed by serial biopsy, acute renal failure, electrolyte disturbances, leukocytosis, anemia, and a relative thrombocytopenia. In three patients who shared a common needle, gingivostomatitis also developed."
+  },
+  {
+   "record_id": "pubmed:1173917",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Liver disease in nonparenteral drug abusers.",
+   "abstract": "Liver function tests were performed in 500 young servicemen with a history of drug abuse. Serum glutamic oxaloacetic transaminase (SGOT) level was abnormal in 66% of 68 patients with a history of parenteral drug abuse. Forty-one percent of 432 patients with a history of only nonparenteral drug abuse also had elevated SGOT levels. A high incidence of liver disease in parenteral drug abusers is well established; however, to our knowledge, the magnitude of the problem in nonparenteral drug abusers has not been noted previously. Liver biopsy specimens in 34 of our patients showed either a classic viral hepatitis or a mild nonspecific hepatitis. Limited follow-up suggested a slowly resolving process. We conclude that hepatitis may be a common sequel to epidemic nonparenteral drug abuse."
+  },
+  {
+   "record_id": "pubmed:11787084",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "[Chinese medicinal herbs can be insidious for the liver].",
+   "abstract": ""
+  },
+  {
+   "record_id": "pubmed:11787086",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "[Can liver tolerate chinese medicinal herbs?].",
+   "abstract": ""
+  },
+  {
+   "record_id": "pubmed:11826667",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "[\"Dosis solum facit venenum\" also for herbal products].",
+   "abstract": "A report of severe hepatitis due to the use of material from the plant Chelidonium majus, reminds us that herbal products can be much more life-threatening than many people realise. The widespread use of plants for food has reinforced the idea that eating plants promotes health. With the development of organic chemistry in the 19th century it became possible for the first time to purify and identify pharmacologically active plant constituents and later on to synthesize related compounds with an even stronger activity. The development of the antimalarial artemotil from Artemisia plants is a recent example. The activity, safety and composition of such compounds can be controlled in just the same manner as purely synthetic compounds. However, some people still believe that traditional plants are much safer and better than modern synthetic pharmaceuticals. The qualitative and quantitative composition of such herbal medicines from alternative medical sources, are not covered by public health legislation. Whereas phytotherapists consider plants to be a source of useful drugs, regular physicians maintain that the composition of a preparation and not the provenance, determines its effects."
+  },
+  {
+   "record_id": "pubmed:11826672",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "[Acute hepatitis after use of a herbal preparation with greater celandine (Chelidonium majus)].",
+   "abstract": "A 42-year-old woman developed jaundice due to acute hepatitis several weeks after ingestion of a herbal preparation containing greater celandine (Chelidonium majus) and curcuma root, which had been prescribed by an alternative therapist due to a skin complaint. After the medication had been withdrawn, clinical recovery was rapid and the hepatic functions returned to normal within 2 months. The hepatitis was ascribed to the known hepatotoxic effects of C. majus. In view of the increasing popularity of herbal remedies, greater awareness of side effects, such as hepatotoxicity, is needed. Quite a number of herbal preparations carry the risk of liver damage. The supposed clinical effectiveness of herbal remedies does not seem to always outweigh the potential risks. In the event of non-clarified liver function disturbances the ingestion of supposedly harmless, but potentially hepatotoxic, herbal products should be considered."
+  },
+  {
+   "record_id": "pubmed:11873112",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Hepatic hydrothorax associated with vitamin a toxicity.",
+   "abstract": "We report the first case of an adult presenting with respiratory symptoms caused by hepatic hydrothorax secondary to vitamin A intoxication. The patient was a 52-year-old woman who presented to the hospital with progressive dyspnea. Evaluation demonstrated mild elevation of her liver function tests, ascites, and a right pleural effusion. The patient consumed a variety of vitamins, including vitamin A. Her estimated vitamin A intake was at least 162,300,000 international units (IU) during 18 years. She dramatically escalated her dose the year before admission for a total acute dose of 98,550,000 IU, with a daily intake of 270,000 IU. The recommended daily allowance is 4,000 IU. A transjugular liver biopsy revealed histopathologic changes consistent with vitamin A toxicity: hypertrophy and hyperplasia of hepatic stellate cells, focal pericellular fibrosis, mild perivenular fibrosis, and minimal, predominantly microvesicular steatosis. Despite the absence of cirrhosis, pressure readings demonstrated portal hypertension. During her hospitalization, the patient's symptoms and biochemical profile improved. As the large and generally unregulated United States dietary supplement industry continues to grow, it is increasingly likely that individuals will present with the signs and symptoms of vitamin excess rather than vitamin deficiency. Physicians need to remain alert to the varied presentations and toxic manifestations of excessive vitamin use."
+  },
+  {
+   "record_id": "pubmed:11877593",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Herbal remedy-associated acute renal failure secondary to Cape aloes.",
+   "abstract": "Use of traditional herbal remedies is common in Africa, and many patients who visit traditional healers do not need to resort to Western medicine. Acute renal failure is one of the most serious complications resulting from the use of traditional remedies, however, which accounts for 35% of all cases of acute renal failure in Africa. Traditional remedies rarely have been analyzed, and little is known about their nephrotoxicity. We report a case of a 47-year-old man from Soweto, South Africa, who developed acute oliguric renal failure and liver dysfunction after ingestion of an herbal remedy. The patient's renal function recovered slowly, and dialysis was discontinued after several weeks, although serum creatinine did not return to the normal range. Mass spectrometric and chromatographic analysis of the herbal remedy used by the patient revealed the presence of Cape aloes, a previously described nephrotoxin."
+  },
+  {
+   "record_id": "pubmed:11902035",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Dietary supplement. Is kava safe?",
+   "abstract": ""
+  },
+  {
+   "record_id": "pubmed:11951318",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "The curious case of Kava.",
+   "abstract": ""
+  },
+  {
+   "record_id": "pubmed:11955027",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Severe hepatotoxicity associated with the dietary supplement LipoKinetix.",
+   "abstract": "BACKGROUND: LipoKinetix (Syntrax, Cape Girardeau, Missouri) is a dietary supplement marketed for weight loss.\nOBJECTIVE: To describe a possible causal association between LipoKinetix and hepatotoxicity.\nDESIGN: Case series.\nSETTING: Outpatient clinic, tertiary care hospital, and U.S. Food and Drug Administration databases.\nINTERVENTION: Routine medical and supportive care.\nMEASUREMENTS: Clinical and laboratory evaluation.\nRESULTS: All patients developed acute hepatotoxicity within 3 months of starting LipoKinetix. At presentation, symptoms and results of laboratory tests were characteristic of acute hepatitis. All patients recovered spontaneously after LipoKinetix use was discontinued. Three of the seven patients, including one who developed fulminant hepatic failure complicated by cerebral edema, were taking LipoKinetix alone at the time of presentation. Of the four patients who were taking multiple supplements, two resumed taking supplements other than LipoKinetix without incident.\nCONCLUSIONS: The use of LipoKinetix may be associated with hepatotoxicity. Despite extensive evaluations, no other cause for hepatotoxicity could be identified in the seven patients studied."
+  },
+  {
+   "record_id": "pubmed:11955030",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Balancing safety of dietary supplements with the free market.",
+   "abstract": ""
+  },
+  {
+   "record_id": "pubmed:11955047",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Summary for patients. Liver failure associated with the dietary supplement LipoKinetix.",
+   "abstract": ""
+  },
+  {
+   "record_id": "pubmed:11959540",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "By the way, doctor. Your article about anxiety in the March 2002 issue neglected to mention the herb kava as a treatment for anxiety. I've been using it, and I thought its effectiveness for anxiety was widely accepted. Why did you omit it?",
+   "abstract": ""
+  },
+  {
+   "record_id": "pubmed:11994028",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "A systematic review of the safety of kava extract in the treatment of anxiety.",
+   "abstract": "This paper systematically reviews the clinical evidence relating to the safety of extracts of the herbal anxiolytic kava (Piper methysticum). Literature searches were conducted in four electronic databases and the reference lists of all papers located were checked for further relevant publications. Information was also sought from the spontaneous reporting schemes of the WHO and national drug safety bodies and ten manufacturers of kava preparations were contacted. Data from short-term post-marketing surveillance studies and clinical trials suggest that adverse events are, in general, rare, mild and reversible. However, published case reports indicate that serious adverse events are possible including dermatological reactions, neurological complications and, of greatest concern, liver damage. Spontaneous reporting schemes also suggest that the most common adverse events are mild, but that serious ones occur. Controlled trials suggest that kava extracts do not impair cognitive performance and vigilance or potentiate the effects of central nervous system depressants. However, a possible interaction with benzodiazepines has been reported. It is concluded that when taken as a short-term monotherapy at recommended doses, kava extracts appear to be well tolerated by most users. Serious adverse events have been reported and further research is required to determine the nature and frequency of such events."
+  },
+  {
+   "record_id": "pubmed:12014355",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Possible hepatotoxicity from Copaltra, an herbal medicine.",
+   "abstract": ""
+  },
+  {
+   "record_id": "pubmed:12120808",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Incidence and clinical features of liver injury related to Kampo (Japanese herbal) medicine in 2,496 cases between 1979 and 1999: problems of the lymphocyte transformation test as a diagnostic method.",
+   "abstract": "We retrospectively examined the summaries of all admission records of patients from 1979 to 1999 in our department, and selected for further study all liver injuries suspected of being related to Kampo medicines. Among 2,496 summaries, 30 summaries described liver disorders suspected of being related to Kampo medicines. Whether there was a causal relationship between the use of Kampo medication and the occurrence of liver injury was assessed according to the criteria described by Haller and Benowitz (2000), independently of the results of the lymphocyte transformation test (LTT). Among 30 events, we concluded that 9 were definitely unrelated, and 6 were probably unrelated to the use of Kampo medicines. Nine events (0.36% of 2,496 patient admissions and 0.06% of 14,616 outpatients) were considered possibly related, and only 6 events (0.24% of 2,496 patient admissions and 0.04% of 14,616 outpatients) were judged to be definitely or probably related to Kampo medicines. Low-grade eosinophilia was observed in a few patients of these \"related\" groups, and no fever or rash was observed in these \"related\" groups. Other clinical features, including type of liver injury, duration of Kampo medicine-use, recovery period and laboratory data, were not different from liver injuries associated with western drugs. Most patients in the definitely \"unrelated\" group were positive in the LTT for the suspect Kampo medicine, suggesting that the LTT may be unreliable for the diagnosis of Kampo-medicine-induced liver injury. From 1979 to 1999, our use of Kampo medicines to treat patients resulted in a low rate of liver injury and no fatalities."
+  },
+  {
+   "record_id": "pubmed:12125181",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "[Phytotherapeutic drugs in gastroenterology and hepatology].",
+   "abstract": "More and more patients are trying out herbal medicine. It is estimated that half of the population have used alternative products at least once in their live. Gastrointestinal diseases often require long-lasting treatments involving many side-effects that can impair the patient's motivation. The majority of persons with symptoms of the irritable bowel syndrome or chronic liver disease resort to non-conventional therapies. However, potential hepatotoxicity of herbal products should not be underestimated. In this article, we discuss herbal preparations in specific gastrointestinal and hepatological indications, concentrating on products that have been tested in randomized, controlled clinical trials. Effective symptomatic treatment of obstipation, irritable bowel and inflammatory bowel disease has been demonstrated with plant-derived preparations. On the other hand phytotherapeutic preparations can not be recommended at present for the treatment of cirrhosis or chronic viral hepatitis based on the available data."
+  },
+  {
+   "record_id": "pubmed:12125250",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "[Use of the plant hepatoprotector Galstena tuberculostatics-induced hepatic lesions: experimental and clinical study].",
+   "abstract": "The efficiency of the use of the natural drug Galstena (Richard Bittner GmbH) was experimentally and clinically studied on a model of damage induced by toxic doses of tuberculostatics (rifampicin, isoniazid, pyrazinamide) in laboratory rats and in patients with different forms of pulmonary tuberculosis and with hepatitis caused by specific antituberculous drug therapy, who were treated at the Clinic of Phthiziology. Galstena was found to have marked hepatoprotective properties and to be able to prevent renal and pancreatic disorders. The drug also showed an antioxidative activity. The use of Galstena in patients with pulmonary tuberculosis substantially reduced the magnitude of clinical and laboratory signs of drug-induced hepatic damage."
+  },
+  {
+   "record_id": "pubmed:12131903",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Another FDA warning: Kava supplements.",
+   "abstract": ""
+  },
+  {
+   "record_id": "pubmed:12163142",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Role of S-adenosyl-L-methionine in the treatment of alcoholic liver disease: introduction and summary of the symposium.",
+   "abstract": "The National Institute on Alcohol Abuse and Alcoholism and the Office of Dietary Supplements, National Institutes of Health, sponsored a symposium on \"Role of S-Adenosyl-L-Methionine (SAMe) in the Treatment of Alcoholic Liver Disease\" in Bethesda, Maryland, September 2001. Alcoholic liver disease (ALD) is a major cause of illness and death in the United States. Oxidant stress plays a key role in pathogenesis of liver disease. S-Adenosyl-L-methionine, a dietary supplement, is the methyl donor for biochemical methylation reactions and a precursor of glutathione, the main hepatocellular antioxidant. S-Adenosyl-L-methionine has been shown to attenuate liver injury caused by alcohol and other hepatotoxins in some animal models. Understanding the mechanisms by which SAMe attenuates liver injury caused by alcohol may provide useful information for full-scale human clinical trials. For this symposium, seven speakers were invited to address the following issues: (1) impaired methionine metabolism in alcoholic liver injury; (2) regulation of liver function by SAMe; (3) folate deficiency, methionine metabolism, and alcoholic liver injury; (4) attenuating effect of SAMe on ALD in experimental animals; (5) SAMe and mitochondrial glutathione depletion in ALD; (6) SAMe and cytokine production in liver injury; and (7) role of SAMe in the prevention of hepatocarcinogenesis. The presentations of this symposium support the suggestion that SAMe may have potential to treat ALD by (1) acting as a precursor of antioxidant glutathione, (2) repairing mitochondrial glutathione transport system, (3) attenuating toxic effects of proinflammatory cytokines, and (4) increasing DNA methylation. Further studies are required to evaluate the safety and effectiveness of SAMe treatment."
+  },
+  {
+   "record_id": "pubmed:12174378",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Clinical observation of salvianolic acid B in treatment of liver fibrosis in chronic hepatitis B.",
+   "abstract": "AIM: To evaluate the clinical efficacy of salvianolic acid B (SA-B) on liver fibrosis in chronic hepatitis B.\nMETHODS: Sixty patients with definite diagnosis of liver fibrosis with hepatitis B were included in the trial. Interferon-gamma (IFN-gamma) was used as control drug. The patients took orally SA-B tablets or received muscular injection of IFN-gamma in the double blind randomized test. The complete course lasted 6 months. The histological changes of liver biopsy specimen before and after the treatment were the main evidence in evaluation, in combination with the results of contents of serum HA, LN, IV-C, P-III-P, liver ultrasound imaging, and symptoms and signs.\nRESULTS: Reverse rate of fibrotic stage was 36.67 % in SA-B group and 30.0 % in IFN-gamma group. Inflammatory alleviating rate was 40.0 % in SA-B group and 36.67 % in IFN-gamma group. The average content of HA and IV-C was significantly lower than that before treatment. The abnormal rate also decreased remarkably. Overall analysis of 4 serological fibrotic markers showed significant improvement in SA-B group as compared with the IFN-gamma group. Score of liver ultrasound imaging was lower in SA-B group than in IFN-gamma group (HA 36.7 % vs 80 %, IV-C 3.3 % vs 23.2 %). Before the treatment, ALT AST activity and total bilirubin content of patients who had regression of fibrosis after oral administration of SA-B, were significantly lower than those of patients who had aggravation of fibrosis after oral administration of SA-B. IFN-gamma showed certain side effects (fever and transient decrease of leukocytes, occurrence rates were 50 % and 3.23 %), but SA-B showed no side effects.\nCONCLUSION: SA-B could effectively reverse liver fibrosis in chronic hepatitis B. SA-B was better than IFN-gamma in reduction of serum HA content, overall decrease of 4 serum fibrotic markers, and decrease of ultrasound imaging score. Liver fibrosis in chronic hepatitis B with slight liver injury was more suitable to SA-B in anti-fibrotic treatment. SA-B showed no obvious side effects."
+  },
+  {
+   "record_id": "pubmed:12244883",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "[Piper methysticum (kava) under discussion: observations on quality, effectiveness and safety].",
+   "abstract": "Worldwide the application for a drug registration follows three basic principles: the proof of quality, efficacy and safety. In the following the applicability of these three principles on extracts from roots of the medicinal plant Kava (Piper methysticum) will be examined in the light of the current discussion of possible hepatic side effects ratio."
+  },
+  {
+   "record_id": "pubmed:12361828",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Second thoughts about kava.",
+   "abstract": ""
+  },
+  {
+   "record_id": "pubmed:12391560",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Hepatoprotective and free radical scavenging activities of prenylflavonoids, coumarin, and stilbene from Morus alba.",
+   "abstract": "Chemical investigation of the EtOH extract of Morus alba L. (Moraceae), as guided by free radical scavenging activity, furnished 5,7-dihydroxycoumarin 7-methyl ether (1), two prenylflavones, cudraflavone B (2) and cudraflavone C (3), and oxyresveratrol (4). Compounds 1 and 4 showed superoxide scavenging effects with the IC(50) values of 19.1 +/- 3.6 and 3.81 +/- 0.5 microM, respectively. Compound 4 exhibited a DPPH free radical scavenging effect (IC(50) = 23.4 +/- 1.5 microM). Compounds 2 and 4 showed hepatoprotective effects with EC(50) values of 10.3 +/- 0.42 and 32.3 +/- 2.62 micro, respectively, on tacrine-induced cytotoxicity in human liver-derived Hep G2 cells."
+  },
+  {
+   "record_id": "pubmed:12414243",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Safety concerns about kava not unique.",
+   "abstract": ""
+  },
+  {
+   "record_id": "pubmed:12499812",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Rhus-chicken.",
+   "abstract": ""
+  },
+  {
+   "record_id": "pubmed:12500906",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Hepatic toxicity possibly associated with kava-containing products--United States, Germany, and Switzerland, 1999-2002.",
+   "abstract": "Since 1999, health-care professionals in Germany, Switzerland, and the United States have reported the occurrence of severe hepatic toxicity possibly associated with the consumption of products containing kava (i.e., kava kava or Piper methysticum). A total of 11 patients who used kava products had liver failure and underwent subsequent liver transplantation. On March 25, 2002, in response to five such case reports (four in Europe and one in the United States), the Food and Drug Administration (FDA) issued a consumer advisory and subsequently completed an investigation already underway of a similar U.S. case. This report presents the investigation of the two U.S. cases of liver failure associated with kava-containing dietary supplement products and summarizes the European cases. FDA continues to advise consumers and health-care providers about the potential risk associated with the use of kava-containing products."
+  },
+  {
+   "record_id": "pubmed:12503940",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Adverse reaction to a dietary supplement in an elderly patient.",
+   "abstract": "OBJECTIVE: To describe the case of an elderly patient who experienced hepatic enzyme elevations and symptoms of hepatitis associated with the administration of a dietary supplement.\nCASE SUMMARY: A 92-year-old white woman with no history of hepatic disease developed jaundice and increased confusion associated with increased hepatic enzymes. The hepatitis panel, abdominal ultrasound, and antinuclear antibody screen indicated no abnormalities. A drug regimen review revealed that the patient was receiving a dietary supplement, Nutrilite Double X Multivitamin-Multimineral. Following discontinuation of the supplement, the patient's symptoms resolved and the hepatic enzymes decreased or returned to the reference range at evaluations occurring 1 week and 1 month after intervention. An objective causality assessment revealed this to be a probable adverse drug event.\nDISCUSSION: While the association of certain herbal preparations with hepatotoxicity has been demonstrated, the potential for this adverse effect is easily overlooked. In this patient, infectious or autoimmune causes of acute hepatitis were ruled out, and drug-induced causes were considered. The resolution of symptoms and laboratory values following discontinuation of the supplement support a relationship between the dietary supplement and this episode of hepatitis.\nCONCLUSIONS: Our case indicates that there was a probable relationship between the dietary supplement Nutrilite Double X Multivitamin-Multimineral and the development of acute hepatitis. Due to the multi-ingredient formulation of the product, as well as lack of data describing manufacturing procedures, it is difficult to determine which component may be associated with this effect. Over-the-counter supplements should be considered as a part of the differential diagnosis in patients presenting with increased liver enzymes and related symptoms."
+  },
+  {
+   "record_id": "pubmed:12515265",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "From the Centers for Disease Control and Prevention. Hepatic toxicity possibly associated with kava-containing products--United States, Germany, and Switzerland, 1999-2002.",
+   "abstract": ""
+  },
+  {
+   "record_id": "pubmed:12575547",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "[Clinical and experimental study of shuangcao tuihuang granule-1 in treating severe jaundice of acute icterohepatitis].",
+   "abstract": "OBJECTIVE: To observe the effect of Shuangcao Tuihuang Granule-1 (SCTH-1) in treating severe jaundice of acute icterohepatitis and to study its mechanism.\nMETHODS: Thirty-four patients with severe jaundice of acute icterohepatitis were treated with SCTH-1, their therapeutic effects were analyzed. In the experimental studies, the influences of SCTH-1 on acute liver injury, liver superoxide dismutase (SOD) and serum ALT and AST were monitored.\nRESULTS: The markedly effective rate and effective rate of the treated group were 73.5% and 23.5% respectively. The markedly effective rate of the treated group was obviously higher than that of the control group (P < 0.05). Experimental study revealed that SCTH-1 could reduce the level of serum transaminase and inflammation of liver tissue in mice with acute liver damage. In addition, SCTH-1 could raise the activity of liver SOD (P < 0.05).\nCONCLUSION: SCTH-1 could accelerate the jaundice subsidence, improve the liver function and ameliorate the liver injury, its mechanism was possibly correlated with raising SOD activity, scavenging the oxygen free radicals."
+  },
+  {
+   "record_id": "pubmed:12693919",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Hepatotoxicity associated with a dietary supplement.",
+   "abstract": ""
+  },
+  {
+   "record_id": "pubmed:12697018",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Black cohosh and other herbal remedies associated with acute hepatitis.",
+   "abstract": ""
+  },
+  {
+   "record_id": "pubmed:12720510",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Fatal fulminant hepatic failure induced by a natural therapy containing kava.",
+   "abstract": "We describe a case of acute liver failure and death associated with the use of a preparation containing the \"natural\" anxiolytic kava (Piper methysticum) and passionflower (Passiflora incarnata). The patient died after a report by the Therapeutic Goods Administration (TGA) warning of the potential for hepatotoxicity associated with the use of kava-containing products. The general public and alternative medicine practitioners need to be aware of the potential for non-prescription drugs to cause serious hepatic reactions."
+  },
+  {
+   "record_id": "pubmed:12772052",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "[Kava, kavapyrones and toxic liver injury].",
+   "abstract": "Kava extracts are obtained from the rhizoma of the kava shrub (Piper methysticum) and contain various pyrones which are used as herbal anxiolytic remedies for generalized anxiety syndromes of low and intermediate grades. The commonly recommended daily dose of 60-120 mg kavapyrones and the duration of the therapy of up to 3 months should not be increased without consultation of a physician and were not followed by most patients, since herbal drugs are considered by the population not only as effective but also as safe. Whereas kava extracts are well tolerated by most patients and rare side effects are rapidly reversible upon drug discontinuation, there are suspected hepatotoxic reactions reported during the last years in temporal and not necessarily causal association with a therapy with kava extracts. Almost 80 % of the patients took kavapyrones in overdose (maximally 480 mg/d) and/or for a prolonged time of more than 3 months up to 2 years. Additional risks factors include co-medication with up to 5 other chemically defined or herbal drugs with in part potentially hepatotoxic properties as well as a genetic deficiency of the hepatic microsomal cytochrome P450 2D6. Severe clinical courses with liver transplantation and possible fatal outcome occurred in 7 patients with overdose and/or long duration of the therapy with kavapyrones. Preventive measures should therefore include a dose of 120, maximally 210 mg kavapyrones per day for 1 month, maximally 2 months, as well as a prescription by a physician. Laboratory test (ALT and gamma-GT) should be done before and during the therapy, and co-medication and alcohol consumption should be avoided. With these measures the hepatotoxic risks under the treatment with kavapyrones might be minimized which are also available via internet and from abroad with possible severe consequences when taken without medical supervision."
+  },
+  {
+   "record_id": "pubmed:12788957",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Recent developments in the treatment of alcoholic hepatitis.",
+   "abstract": "Alcoholic hepatitis is a form of acute injury to liver tissue that is also a precursor of cirrhosis, and carries significant morbidity and mortality. Severe alcoholic hepatitis in particular carries a high short-term mortality, and also places an enormous burden on stretched healthcare resources. Treatment of alcoholic hepatitis has been limited to supportive management and nutritional supplementation without clear improvements in outcome, and the timing and patient selection for hepatic transplantation is problematic. The use of corticosteroids has remained controversial for many years, but probably has a role in selected patients. Various other therapeutic strategies have been tested over the decades and none has shown any consistent benefit. Recently there have been major developments in our understanding of the mechanisms of alcoholic liver injury, including the role of cytokines and hepatocyte apoptosis. For the first time, there are exciting possibilities for specific therapies for this challenging and serious condition."
+  },
+  {
+   "record_id": "pubmed:12806613",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Nutritional supplementation with branched-chain amino acids in advanced cirrhosis: a double-blind, randomized trial.",
+   "abstract": "BACKGROUND & AIMS: The role of oral supplementation with branched-chain amino acids (BCAA) in advanced cirrhosis is far from settled. A nutritional approach might prevent progressive liver failure and improve nutritional parameters and quality of life.\nMETHODS: A multicenter, randomized study comparing 1-year nutritional supplementation with BCAA against lactoalbumin or maltodextrins was performed in 174 patients with advanced cirrhosis. Primary outcomes were the prevention of a combined end point (death and deterioration to exclusion criteria), the need for hospital admission, and the duration of hospital stay. Secondary outcomes were nutritional parameters, laboratory data and Child-Pugh score, anorexia, health-related quality of life, and need for therapy.\nRESULTS: Treatment with BCAA significantly reduced the combined event rates compared with lactoalbumin (odds ratio, 0.43; 95% confidence interval, 0.19-0.96; P = 0.039) and nonsignificantly compared with maltodextrins (odds ratio, 0.51; 95% confidence interval, 0.23-1.17; P = 0.108). The average hospital admission rate was lower in the BCAA arm compared with control treatments (P = 0.006 and P = 0.003, respectively). In patients who remained in the study, nutritional parameters and liver function tests were, on average, stable or improved during treatment with BCAA and the Child-Pugh score decreased (P = 0.013). Also, anorexia and health-related quality of life (SF-36 questionnaire) improved. Long-term compliance with BCAA was poor.\nCONCLUSIONS: In advanced cirrhosis, long-term nutritional supplementation with oral BCAA is useful to prevent progressive hepatic failure and to improve surrogate markers and perceived health status. New formulas are needed to increase compliance."
+  },
+  {
+   "record_id": "pubmed:12807347",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Toxicity of kava pyrones, drug safety and precautions--a case study.",
+   "abstract": "Kava pyrones have been sold in Germany as OTC anxiolytics until June 2002, when all preparations with a kava pyrone content of more than 10(-4) of a homeopathic stock solution were withdrawn. Other countries in which kava pyrones have been used as anxiolytics, namely GB and the USA, have not followed suit. Kava pyrone anxiolytics have been positively reviewed by the Cochrane Collaboration; also newer German clinical studies have indicated pharmacological anxiolysis at the recommended doses. To use the first choice of treatment, psychotherapy, for all uncomplicated cases of pathological fear does not appear to be realistic. Current data about kava pyrone toxicity are unclear. Judging from the few well documented cases of kava pyrone hepatotoxicity (appr. 2 out of 36) in Germany and Switzerland, an immunologically mediated idiosyncratic mechanism appears to be most likely, especially at higher doses, whereas a direct toxic mechanism is much less likely. No direct results are available for the incidence of kava pyrone-related adverse drug effects. From spontaneously reported cases the incidences of adverse drug reactions cannot be obtained, a rough estimation indicates the incidence of hepatotoxicity to be comparable to those of benzodiazepines. Taken together, the withdrawal of kava pyrone-based anxiolytics appears to be an ill founded over-reaction given the lack of superior therapeutic alternatives. Neither the case evaluations presented by the BfArM (Bundesamt für Arzneimittel und Medizinprodukte = Federal Office for Drugs and Medical Products) nor the complete rejection of proof for therapeutic efficacy of kava pyrone anxiolytics are scientifically well founded."
+  },
+  {
+   "record_id": "pubmed:12808361",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "[The common butterbur (Petasites hybridus)--portrait of a medicinal herb].",
+   "abstract": "For hundreds of years butterbur (Petasites hybridus) has been used against many diseases. Modern indications are the prophylaxis of migraine, tension headache, spasms of the urogenital tract, gastro-intestinal tract and bile duct and hopefully hay fever and asthma in the near future. The petasines, the main components of butterbur, inhibit the synthesis of leucotrienes and decrease the intracellular concentration of calcium which explains the anti-inflammatory and spasmolytic properties of extracts of butterbur. Thanks to extraction with supercritical CO(2) the concentrations of the potentially hepatotoxic and carcinogenic pyrrolizidine alkaloids lie below the detection limits. Until now four cases of a reversible cholestatic hepatitis have been probably associated with long-term administration of butterbur (incidence of 1:175.000). It is unknown which components of butterbur are responsible for the long-term hepatotoxicity. Further side effects involve the gastrointestinal tract and are usually mild."
+  },
+  {
+   "record_id": "pubmed:12808475",
+   "question_id": "HRS4_LIVER_DISEASE",
+   "title": "Pharmacological studies on resveratrol.",
+   "abstract": ""
+  }
+ ]
+}
