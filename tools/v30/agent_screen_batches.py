@@ -45,12 +45,19 @@ QUESTION_ORDER = ('HRS1_PERIOPERATIVE', 'HRS2_KIDNEY_DISEASE', 'HRS3_PREGNANCY',
                   'HRS4_LIVER_DISEASE', 'HRS5_ANTICOAGULATION')
 
 
+HASH_METHOD = 'sha256_over_lf_normalized_bytes'
+
+
 def sha256_file(path: str) -> str:
-    h = hashlib.sha256()
-    with open(path, 'rb') as fh:
-        for chunk in iter(lambda: fh.read(1 << 20), b''):
-            h.update(chunk)
-    return h.hexdigest()
+    """줄바꿈을 LF 로 정규화한 바이트에 대해 SHA-256 을 계산한다.
+
+    `.gitattributes` 는 보호 대상이라 v3.0 경로를 `-text` 로 추가할 수 없고,
+    저장소의 `core.autocrlf=true` 환경에서는 체크아웃 시 텍스트 파일의 LF 가
+    CRLF 로 바뀐다. 원시 바이트 해시를 쓰면 같은 내용인데도 플랫폼에 따라
+    해시가 달라져 감사 사슬이 끊긴다. 따라서 정규화 후 해시한다.
+    """
+    data = open(path, 'rb').read().replace(b'\r\n', b'\n')
+    return hashlib.sha256(data).hexdigest()
 
 
 def sha256_text(text: str) -> str:
@@ -293,6 +300,7 @@ def cmd_finalize() -> None:
         'generated_at': datetime.now(timezone.utc).isoformat(timespec='seconds'),
         'screener': 'agent_direct',
         'execution_mode': 'agent_direct',
+        'hash_method': HASH_METHOD,
         'model_invocations': 0,
         'external_api_calls': 0,
         'human_decisions': 0,
