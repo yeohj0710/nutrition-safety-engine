@@ -297,8 +297,11 @@ sections = [
             (
                 "3.1 질문과 검색식의 AI 정의",
                 [
-                    f"연구 질문과 PubMed 검색식은 {PICOS['generated_by']['execution_mode']} 방식으로 "
-                    f"생성하였다. 정의 프롬프트는 {P['picos_prompt'].relative_to(ROOT).as_posix()}에 두고 "
+                    f"연구 질문과 PubMed 검색식은 AI 에이전트가 정의하였고 이 단계에서 사람의 "
+                    f"판정은 {PICOS['generated_by']['human_decisions']}건이다. 정의를 수행한 실행 주체는 "
+                    f"{PICOS['generated_by']['model']}이며, 뒤이은 선별·참조 판정·번역·집필을 수행한 "
+                    f"에이전트와는 다른 실행 주체다. 정의 프롬프트는 "
+                    f"{P['picos_prompt'].relative_to(ROOT).as_posix()}에 두고 "
                     f"SHA-256 {CM['picos']['prompt_sha256']}로 고정했다. "
                     f"정의 결과 파일의 SHA-256은 {CM['picos']['sha256']}다.",
                     f"질문 선정의 근거는 다음과 같이 기록되어 있다. “{PICOS['derivation']}” "
@@ -323,7 +326,7 @@ sections = [
                 "3.3 에이전트 직접 선별",
                 [
                     f"선별 프롬프트는 {SM['prompt_path']}에 동결하고 SHA-256 {SM['prompt_sha256']}로 "
-                    f"기록했다. 실행 방식은 {SM['execution_mode']}이며, 선별을 위한 "
+                    f"기록했다. 선별은 에이전트가 배치를 직접 읽고 판정하는 방식이며, 선별을 위한 "
                     f"별도 모델 호출은 {SM['model_invocations']}회, 외부 API 호출은 "
                     f"{SM['external_api_calls']}회, 사람의 판정은 {SM['human_decisions']}건이다. "
                     f"즉 에이전트가 배치를 읽고 모든 행을 직접 판정했다.",

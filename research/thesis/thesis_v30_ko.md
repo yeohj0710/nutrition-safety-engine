@@ -48,7 +48,7 @@
 
 ### 3.1 질문과 검색식의 AI 정의
 
-연구 질문과 PubMed 검색식은 agent_local 방식으로 생성하였다. 정의 프롬프트는 research/searches_v3/ai_picos/prompt.txt에 두고 SHA-256 b8fd37a2463eab37b24e45174ae29c06f45450d92d9606cbdc50e82a6838e510로 고정했다. 정의 결과 파일의 SHA-256은 70e4749529fb2ad9db6bf7c7c45456b9761d7958a27ee728371ae68015f3912f다.
+연구 질문과 PubMed 검색식은 AI 에이전트가 정의하였고 이 단계에서 사람의 판정은 0건이다. 정의를 수행한 실행 주체는 OpenAI Codex GPT-5이며, 뒤이은 선별·참조 판정·번역·집필을 수행한 에이전트와는 다른 실행 주체다. 정의 프롬프트는 research/searches_v3/ai_picos/prompt.txt에 두고 SHA-256 b8fd37a2463eab37b24e45174ae29c06f45450d92d9606cbdc50e82a6838e510로 고정했다. 정의 결과 파일의 SHA-256은 70e4749529fb2ad9db6bf7c7c45456b9761d7958a27ee728371ae68015f3912f다.
 
 질문 선정의 근거는 다음과 같이 기록되어 있다. “환자 위해의 심각성이 커질 수 있는 임상상태를 먼저 나눈 뒤, 보충제 노출과 안전성 결과를 관찰할 수 있고 서로 임상적으로 구별되는 질문을 선택했다.” 정의 단계의 입력에서는 기존 질문 목록, 기존 검색식 초안, 기존 검색 결과 수치를 명시적으로 배제하여, 선행 트랙의 질문·검색식·결과 수치가 새 질문 정의에 흘러들어가지 않도록 했다.
 
@@ -60,7 +60,7 @@
 
 ### 3.3 에이전트 직접 선별
 
-선별 프롬프트는 research/screening/v30_agent/prompts/screening_prompt.md에 동결하고 SHA-256 d7a41a5936d13ca9f5de926142ea2bdf4628285fab2edec581b391cbc58fffcc로 기록했다. 실행 방식은 agent_direct이며, 선별을 위한 별도 모델 호출은 0회, 외부 API 호출은 0회, 사람의 판정은 0건이다. 즉 에이전트가 배치를 읽고 모든 행을 직접 판정했다.
+선별 프롬프트는 research/screening/v30_agent/prompts/screening_prompt.md에 동결하고 SHA-256 d7a41a5936d13ca9f5de926142ea2bdf4628285fab2edec581b391cbc58fffcc로 기록했다. 선별은 에이전트가 배치를 직접 읽고 판정하는 방식이며, 선별을 위한 별도 모델 호출은 0회, 외부 API 호출은 0회, 사람의 판정은 0건이다. 즉 에이전트가 배치를 읽고 모든 행을 직접 판정했다.
 
 판정은 append-only 체크포인트(research/screening/v30_agent/checkpoints.jsonl, SHA-256 085ad6346ddbeaf3133b00f3503316e814d93c67c9ed23bb60c0aa399ce3497a)에 누적하고, 요청한 레코드-질문 쌍이 정확히 한 번씩 돌아왔는지 반복 검증하여 커버리지 100%에 도달한 뒤 확정했다. 최종 산출물은 data/curated_v3/llm_screening_classifications.csv(SHA-256 5305c69437114b9f157ff6fb10bf1dc0308b2fca1ddacb2d02fc3b6848450393)다.
 

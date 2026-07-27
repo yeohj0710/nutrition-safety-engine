@@ -915,3 +915,17 @@
 - closed the agent-assisted workstream under one portal validation event with reviewer identity not captured
 - preserved zero individual human decisions, zero independent reviewers, 17 open systematic-review gates, and `systematic_review_complete: false`
 - did not run the legacy final-delivery scripts because they target the prohibited G drive; the repository-scoped closure manifest is the authoritative freeze for this workstream
+
+## 2026-07-27 v3.0 완전 AI 자율 트랙 완료
+
+- 선별 2,209행, 참조표준 채점 300건 3라운드, 한국어 번역 75건, 졸업논문 집필을 에이전트가 전부 직접 수행했다. 로컬 언어모델을 로드하지 않았고 외부 LLM·번역 API 를 호출하지 않았다.
+- 코퍼스는 PubMed 단일 자료원 `data/curated_v3/evidence_map.csv` 이며 선별 커버리지는 1.0 이다. 사람 판정은 0건이다.
+- 참조표준 대비 지표는 층화 가중으로 계산했고, Rogan-Gladen 보정과 층화 부트스트랩 10,000회로 코퍼스 수준 retain 규모의 점추정과 95% CI 를 냈다. 결과는 `research/synthesis/screener_vs_ai_reference_v3.json` 에 있다.
+- 라운드 2와 3의 축 판정이 완전히 동일해 그 쌍의 κ 는 재검사 신뢰도 근거로 쓰지 않는다. 매니페스트에 `identical_round_pairs` 와 해석 문구를 넣고 논문·발표 원고·Notion 문서에도 같은 한계를 적었다.
+- 사이트 근거 번들을 재생성하고(`llm_gate.applied=true`) 오래된 v2 고정 테스트를 v3.0 불변조건 검증으로 교체했다. 경계 테스트 3종은 유지했다.
+- `tools/compare_picos_tracks.py` 와 `tools/test_phase02_evidence_bytes.py` 의 중단 상태를 해소했다. 후자는 CSV 개행·인용 표기 차이로 생긴 바이트 불일치를 정규 직렬화로 없앴다.
+- 졸업논문을 v3.0 내용으로 다시 쓰고 PDF 전 페이지를 이미지로 렌더해 표 분할·잘림·빈 페이지를 직접 확인해 고쳤다. 기존 v2.1 논문은 `_v21백업` 으로 보존했다.
+- 발표 원고와 Notion 원고를 만들고 Notion 색인 하위에 새 진행 페이지를 실제로 생성했다. 기존 문서는 덮어쓰지 않았다.
+- G 드라이브에 14건을 복사하고 SHA-256 을 전건 비교했다. 이름이 겹치는 v3 매니페스트는 `03_연구부록/v3.0_완전AI자율트랙/` 하위에 두어 v2.1 원본을 보존했다.
+- 배포하지 않았다. `npm run build` 까지만 확인했다.
+- `validate:phase07:proxy` 는 사람 이중선별 자료가 없어 의도적 skip 이며 사유를 실행 보고서에 기록했다.
