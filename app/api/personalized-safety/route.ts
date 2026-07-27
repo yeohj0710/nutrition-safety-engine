@@ -1147,6 +1147,8 @@ function buildAssessment(
 type RuleAssessment = ReturnType<typeof buildAssessment>;
 type NarrativeAssessment = {
   ai_used: boolean;
+  // 서술 재작성이 실패해 규칙 기반 문장으로 돌아간 이유. 조용한 저하를 남기지 않는다.
+  fallback_reason?: string;
   conclusion: string;
   context: string;
   explanation: string;
@@ -1287,14 +1289,15 @@ async function generateNarrativeAssessment({
   symptomNote: string;
   evidenceLimit: string;
 }): Promise<NarrativeAssessment> {
-  const fallback: NarrativeAssessment = {
+  const fellBack = (reason: string): NarrativeAssessment => ({
     ai_used: false,
+    fallback_reason: reason,
     conclusion: assessment.verdict,
     context: assessment.context,
     explanation: `${assessment.dose} ${assessment.interaction}`,
     next: [symptomNote, assessment.watch].filter(Boolean).join(" "),
-  };
-  if (!process.env.OPENAI_API_KEY) return fallback;
+  });
+  if (!process.env.OPENAI_API_KEY) return fellBack("api_key_missing");
   const source = {
     submitted_input: submitted,
     interpreted_input: interpreted,
@@ -1342,7 +1345,7 @@ async function generateNarrativeAssessment({
         max_output_tokens: 700,
       }),
     });
-    if (!response.ok) return fallback;
+    if (!response.ok) return fellBack(`http_${response.status}`);
     const data = await response.json();
     const outputText = String(
       data.output_text ??
@@ -1359,10 +1362,15 @@ async function generateNarrativeAssessment({
       NarrativeAssessment,
       "ai_used"
     >;
-    if (!isGroundedNarrative(parsed, source)) return fallback;
+    if (!isGroundedNarrative(parsed, source))
+      return fellBack("ungrounded_output_rejected");
     return { ai_used: true, ...parsed, context: assessment.context };
-  } catch {
-    return fallback;
+  } catch (error) {
+    return fellBack(
+      error instanceof Error && error.name === "TimeoutError"
+        ? "timeout"
+        : "request_failed",
+    );
   }
 }
 export async function POST(req: Request) {
