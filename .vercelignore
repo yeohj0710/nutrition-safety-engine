@@ -7,3 +7,19 @@ tmp
 coverage
 research/full_texts
 data/full_texts
+
+# 배포 업로드에서 제외하는 연구 원자료.
+# 앱이 빌드 시 번들하는 research/·data/ 파일은 16개뿐이고 모두 아래 목록 밖에 있다.
+# 런타임 파일 읽기는 src/generated/legacy/knowledge-index.json 하나다.
+# 이 목록을 지우면 업로드가 700MB를 넘어 배포가 실패한다.
+research/searches
+research/searches_v3
+research/systematic_review_v3
+research/fulltext
+research/thesis
+research/validation
+data/interim
+data/curated_v2
+data/curated_v3
+tools
+.venv

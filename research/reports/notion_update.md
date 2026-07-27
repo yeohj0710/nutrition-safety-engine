@@ -6,7 +6,7 @@
 
 - 선별 커버리지 100% (2,209/2,209행)
 - 사람의 연구 의사결정 0건
-- 사이트는 배포하지 않았고 빌드까지만 검증했다
+- 사이트를 https://nutrition-safety-engine.vercel.app 에 배포했고 공개 응답이 v3.0 근거를 반환하는 것을 확인했다
 
 ## 핵심 수치
 
@@ -72,7 +72,7 @@
 
 - `npm run typecheck` 통과, `npm run lint` 통과, `npm test` 통과, `npm run build` 통과
 - `research/systematic_review_v30/validation.json` 의 valid = true
-- **배포하지 않았다.** 빌드 성공까지만 확인했다.
+- **배포 완료.** https://nutrition-safety-engine.vercel.app (배포 ID dpl_A2dXBwXXA8D4sha3StyBcRrev3eW). 공개 API 응답의 `evidence_lineage.track` 이 `v3.0_full_ai_autonomy` 로 확인됐다.
 
 ## 공식 문서 위치
 

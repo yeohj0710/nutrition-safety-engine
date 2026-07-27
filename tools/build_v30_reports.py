@@ -21,6 +21,23 @@ NOTION = REPORTS / "notion_update.md"
 RUN_REPORT = LOGS / "v30_run_report.json"
 
 NOTION_URL = "https://app.notion.com/p/3753b1f9b9ae814bb314dc1deb743dfa"
+
+# 배포는 goal 지시의 금지 항목이었으나 사용자가 최종 검증 뒤 직접 해제하고 배포를 요청했다.
+DEPLOY = {
+    "url": "https://nutrition-safety-engine.vercel.app",
+    "deployment_url": "https://nutrition-safety-engine-f32e0tj1p-yeohj0710s-projects.vercel.app",
+    "deployment_id": "dpl_A2dXBwXXA8D4sha3StyBcRrev3eW",
+    "target": "production",
+    "method": "npx vercel --prod (Vercel CLI, GitHub 연동 아님)",
+    "authorized_by": "사용자가 P6 완료 보고 뒤 배포와 push 를 명시적으로 지시했다",
+    "public_check": {
+        "endpoint": "POST /api/personalized-safety",
+        "evidence_lineage_track": "v3.0_full_ai_autonomy",
+        "source_question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:22651380",
+        "console_errors": 0,
+    },
+}
 NOTION_UPDATED = True
 NOTION_PAGE_URL = "https://app.notion.com/p/3aa3b1f9b9ae81929548cc52f2026aa4"
 NOTION_REASON = (
@@ -302,8 +319,8 @@ slides.append(
             f"한국어 핵심소견 번역 {VAL['translations']:,}건은 번역 모델을 쓰지 않고 직접 작성했고, "
             f"숫자·단위·증감 방향이 원문과 같은지 자동 검증합니다.",
             "타입 검사, 린트, 자동 테스트, 배포용 빌드까지 전부 통과했습니다.",
-            "다만 사이트는 배포하지 않았습니다. 빌드가 되는 것까지만 확인했고, 실제 서비스에 올리지 "
-            "않았습니다.",
+            f"사이트는 {DEPLOY['url']} 에 실제로 올려 두었습니다. 공개된 응답을 직접 불러 "
+            f"근거 출처가 {RM['track']} 트랙인 것과 오류가 없는 것을 확인했습니다.",
         ],
     )
 )
@@ -351,7 +368,7 @@ notion_lines = [
     "",
     f"- 선별 커버리지 {SM['coverage']:.0%} ({SM['classified']:,}/{SM['row_count']:,}행)",
     f"- 사람의 연구 의사결정 {CM['human_decisions']}건",
-    "- 사이트는 배포하지 않았고 빌드까지만 검증했다",
+    f"- 사이트를 {DEPLOY['url']} 에 배포했고 공개 응답이 v3.0 근거를 반환하는 것을 확인했다",
     "",
     "## 핵심 수치",
     "",
@@ -420,7 +437,7 @@ notion_lines += [
     "",
     f"- `npm run typecheck` 통과, `npm run lint` 통과, `npm test` 통과, `npm run build` 통과",
     f"- `{rel(P['validation'])}` 의 valid = {str(VAL['valid']).lower()}",
-    "- **배포하지 않았다.** 빌드 성공까지만 확인했다.",
+    f"- **배포 완료.** {DEPLOY['url']} (배포 ID {DEPLOY['deployment_id']}). 공개 API 응답의 `evidence_lineage.track` 이 `{RM['track']}` 로 확인됐다.",
     "",
     "## 공식 문서 위치",
     "",
@@ -556,12 +573,6 @@ UNRESOLVED = [
         "evidence_path": "research/logs/DECISIONS_v30.md",
         "handled": "테스트를 v3 실제 동작에 맞게 고쳤고 논문 고찰에 근거 폭 제한으로 적었다.",
     },
-    {
-        "item": "사이트 미배포",
-        "detail": "지시에 따라 배포하지 않았다. next build 까지만 검증했다.",
-        "evidence_path": "research/logs/v30_run_report.json",
-        "handled": "site.deployed=false 로 기록한다.",
-    },
 ]
 
 report = {
@@ -673,7 +684,8 @@ report = {
         "lint": "pass",
         "tests": "pass (vitest 152, tools.v30.test_build_site_v3 7, test_agent_reference_stats 24)",
         "build": "pass (next build)",
-        "deployed": False,
+        "deployed": True,
+        "deployment": DEPLOY,
     },
     "thesis": {
         "docx": rel(P["thesis_docx"]),

@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "track": "v3.0_full_ai_autonomy",
   "generated_from": "tools/build_v30_reports.py",
-  "git_head": "4269f62580a9fb2197ab7767c234ababff5a1a72",
+  "git_head": "af8fa83eb341341318c7eecdfa8662901880d8e6",
   "claims": [
     {
       "id": 1,
@@ -21991,7 +21991,22 @@
     "lint": "pass",
     "tests": "pass (vitest 152, tools.v30.test_build_site_v3 7, test_agent_reference_stats 24)",
     "build": "pass (next build)",
-    "deployed": false
+    "deployed": true,
+    "deployment": {
+      "url": "https://nutrition-safety-engine.vercel.app",
+      "deployment_url": "https://nutrition-safety-engine-f32e0tj1p-yeohj0710s-projects.vercel.app",
+      "deployment_id": "dpl_A2dXBwXXA8D4sha3StyBcRrev3eW",
+      "target": "production",
+      "method": "npx vercel --prod (Vercel CLI, GitHub 연동 아님)",
+      "authorized_by": "사용자가 P6 완료 보고 뒤 배포와 push 를 명시적으로 지시했다",
+      "public_check": {
+        "endpoint": "POST /api/personalized-safety",
+        "evidence_lineage_track": "v3.0_full_ai_autonomy",
+        "source_question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:22651380",
+        "console_errors": 0
+      }
+    }
   },
   "thesis": {
     "docx": "research/thesis/thesis_v30.docx",
@@ -22074,7 +22089,7 @@
   "files_synced": {
     "log": "research/logs/gdrive_sync_v30.json",
     "gdrive_root": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준",
-    "synced_at": "2026-07-27T03:08:01+00:00",
+    "synced_at": "2026-07-27T03:46:32+00:00",
     "policy": "기존 v2.1 원본과 90_legacy 는 삭제·재구성하지 않는다. 이름이 겹치는 v3 매니페스트는 03_연구부록/v3.0_완전AI자율트랙/ 하위에 두고, 유일하게 같은 자리를 덮어쓰는 amendments.csv 는 백업본을 먼저 만든다.",
     "file_count": 16,
     "all_sha256_match": true,
@@ -22122,12 +22137,12 @@
       {
         "source": "research/reports/notion_update.md",
         "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/03_연구부록/v3.0_완전AI자율트랙/notion_update.md",
-        "source_sha256": "08208801d406bea54e1b5d43c9a6c33ac6a174b35ede238cb93210fc12fb56f6",
+        "source_sha256": "a1345d0434a8db09c3bcf7def3d523fa5ec7d717f35caa45c74fea8fe0ae0b78",
         "backup_created": null,
         "overwrote_existing": true,
-        "destination_sha256": "08208801d406bea54e1b5d43c9a6c33ac6a174b35ede238cb93210fc12fb56f6",
+        "destination_sha256": "a1345d0434a8db09c3bcf7def3d523fa5ec7d717f35caa45c74fea8fe0ae0b78",
         "sha256_match": true,
-        "bytes": 5627
+        "bytes": 5835
       },
       {
         "source": "research/searches_v3/ai_picos/picos_definition.json",
@@ -22222,22 +22237,22 @@
       {
         "source": "research/logs/v30_run_report.json",
         "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/03_연구부록/v3.0_완전AI자율트랙/v30_run_report.json",
-        "source_sha256": "eaad3b4d2a026ccbd31c0531c817a9d9f585063d08c13ffd4129048a83da655b",
+        "source_sha256": "d141e1c3d56adbe0aa82f9fc8ee75914ec80b4e7714b4e342341304195f725bd",
         "backup_created": null,
         "overwrote_existing": true,
-        "destination_sha256": "eaad3b4d2a026ccbd31c0531c817a9d9f585063d08c13ffd4129048a83da655b",
+        "destination_sha256": "d141e1c3d56adbe0aa82f9fc8ee75914ec80b4e7714b4e342341304195f725bd",
         "sha256_match": true,
-        "bytes": 478351
+        "bytes": 480576
       },
       {
         "source": "research/reports/발표원고_v3.0.md",
         "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/06_발표자료/발표원고_v3.0.md",
-        "source_sha256": "8a18e3b22c3020817dd334e3975f9141ce135b489733b3042b5afb453ab8b7b6",
+        "source_sha256": "4098b94d4147e63bf39c089aea570b48d93c833bbaae40a818fb18d232516717",
         "backup_created": null,
         "overwrote_existing": true,
-        "destination_sha256": "8a18e3b22c3020817dd334e3975f9141ce135b489733b3042b5afb453ab8b7b6",
+        "destination_sha256": "4098b94d4147e63bf39c089aea570b48d93c833bbaae40a818fb18d232516717",
         "sha256_match": true,
-        "bytes": 7729
+        "bytes": 7816
       }
     ],
     "self_note": "이 실행 보고서 자체는 생성 직후 tools/sync_gdrive_v30.py --report 로 복사하며, 그 복사본의 해시 검증 결과는 위 로그 파일에만 기록된다(자기참조 순환을 피하기 위함)."
@@ -22278,12 +22293,6 @@
       "detail": "별칭별 후보 근거가 A1 7건, A2 1건, B1 1건, B2 2건, B3 5건 이며, v3 근거 집합에는 용량 문자열이 없어 '입력한 용량' 선택 사유가 발화하지 않고 오메가-3와 아스피린을 직접 다룬 연구도 없다.",
       "evidence_path": "research/logs/DECISIONS_v30.md",
       "handled": "테스트를 v3 실제 동작에 맞게 고쳤고 논문 고찰에 근거 폭 제한으로 적었다."
-    },
-    {
-      "item": "사이트 미배포",
-      "detail": "지시에 따라 배포하지 않았다. next build 까지만 검증했다.",
-      "evidence_path": "research/logs/v30_run_report.json",
-      "handled": "site.deployed=false 로 기록한다."
     }
   ]
 }
