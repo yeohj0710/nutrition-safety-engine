@@ -555,14 +555,24 @@ def build_rules() -> dict[str, Any]:
         "B3": ("HRS2_KIDNEY_DISEASE", "비타민 C", r"vitamin c|ascorb"),
     }
     for alias, (question_id, label, pattern) in aliases.items():
-        filtered = [
-            item for item in by_question[question_id]
-            if re.search(pattern, f"{item['title']} {item['key_finding']}", re.IGNORECASE)
+        # 성분 정규식으로 잘라내지 않는다. 잘라내면 후보가 1건까지 줄고, 하나도 못 맞히면
+        # 같은 질문의 아무 5건이나 가져오게 된다. 대신 질문의 핵심 근거 전체를 후보로 두고
+        # 성분을 직접 언급한 문헌을 앞세운다. 각 항목에 성분 일치 여부를 표시해 두어
+        # 화면이 "이 보충제를 직접 다룬 문헌인지"를 정직하게 말할 수 있게 한다.
+        pool = by_question[question_id]
+        marked = []
+        for item in pool:
+            matched = bool(
+                re.search(pattern, f"{item['title']} {item['key_finding']}", re.IGNORECASE)
+            )
+            marked.append({**item, "ingredient_match": matched})
+        evidence = [i for i in marked if i["ingredient_match"]] + [
+            i for i in marked if not i["ingredient_match"]
         ]
-        evidence = filtered or by_question[question_id][:5]
         alias_rule = rule_payload(alias, f"compat:{alias}", label, evidence, axis="compatibility_alias")
         alias_rule["condition"] = QUESTION_CONFIG[question_id]["label_ko"]
         alias_rule["source_question_id"] = question_id
+        alias_rule["ingredient_matched_count"] = sum(1 for i in marked if i["ingredient_match"])
         rules.append(alias_rule)
     write_json(RULES_OUT, rules)
     per_question = dict(Counter(row["question_id"] for row in core))

@@ -6,7 +6,7 @@ import rules from "@/research/systematic_review_v30/personalized_rules.json";
 type CompatibilityRule = {
   question_id: string;
   source_question_id?: string;
-  all_evidence: Array<{ record_id: string }>;
+  all_evidence: Array<{ record_id: string; ingredient_match?: boolean }>;
 };
 
 const originalApiKey = process.env.OPENAI_API_KEY;
@@ -49,7 +49,10 @@ describe("v3.0 personalized-safety evidence lineage", () => {
         track: "v3.0_full_ai_autonomy",
         source_question_id: sourceQuestionId,
       });
-      expect(body.evidence.length).toBeGreaterThan(0);
+      const ingredientMatchedCount =
+        compatibilityRule?.all_evidence.filter((item) => item.ingredient_match)
+          .length ?? 0;
+      expect(body.evidence).toHaveLength(Math.min(5, ingredientMatchedCount));
       expect(body.all_evidence.length).toBe(allowedRecordIds.size);
       expect(
         body.all_evidence.every((item: { record_id: string }) =>
@@ -57,9 +60,10 @@ describe("v3.0 personalized-safety evidence lineage", () => {
         ),
       ).toBe(true);
       expect(
-        body.evidence.every((item: { record_id: string }) =>
+        body.evidence.every((item: { record_id: string; ingredient_match?: boolean }) =>
           item.record_id.startsWith("pubmed:") &&
-          allowedRecordIds.has(item.record_id),
+          allowedRecordIds.has(item.record_id) &&
+          item.ingredient_match,
         ),
       ).toBe(true);
     },

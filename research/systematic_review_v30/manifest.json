@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "track": "v3.0_full_ai_autonomy",
-  "generated_at": "2026-07-27T02:21:47+00:00",
+  "generated_at": "2026-07-27T06:19:40+00:00",
   "protocol": "protocol-v3.0-full-ai",
   "input": "data/curated_v3/evidence_map.csv",
   "input_sha256": "3142e5259bd44acec1eb270aa66f9ff4d791e8c78013525a666f65a8bdc5b4d3",

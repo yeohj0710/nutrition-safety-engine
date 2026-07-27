@@ -168,23 +168,32 @@ function buildEvidenceSummary(
   evidence: RuntimeEvidence[],
   directMedicationMatches: number,
   medicationName: string,
+  ingredient: string,
+  situationLabel: string,
 ) {
   if (!evidence.length)
     return "선별을 통과한 문헌 가운데 이 조합에 연결된 것이 없습니다. 아래 설명은 공개 기준 자료에만 근거합니다.";
-  const top = evidence[0];
-  const finding = evidenceFindingText(top);
+  const onIngredient = evidence.filter((item) => item.ingredient_match).length;
+  const head = onIngredient
+    ? `이번 판단에 연결된 문헌은 ${evidence.length}건이고, 그 가운데 ${withObjectParticle(ingredient)} 직접 다룬 것은 ${onIngredient}건입니다.`
+    : `이번 판단에 연결된 문헌은 ${evidence.length}건입니다. ${withObjectParticle(ingredient)} 직접 다룬 문헌은 없고, 모두 ${situationLabel}이라는 같은 임상 상황에서 선별된 근거입니다.`;
+
+  // 인용은 성분을 직접 다룬 문헌에서만 뽑는다. 상황만 같은 문헌의 소견을
+  // 이 보충제의 소견처럼 읽히게 두면 안 된다.
+  const quotable = evidence.find((item) => item.ingredient_match);
+  const finding = quotable ? evidenceFindingText(quotable) : "";
   const shortened = trimToSentences(finding);
-  const quoted = finding
-    ? `${studyKindLabel(top)}의 핵심 소견은 “${shortened.text}”입니다.${
-        shortened.trimmed ? " 나머지 문장은 아래 근거 목록에 있습니다." : ""
-      }`
-    : "";
-  const head = `이번 판단에 연결된 문헌은 ${evidence.length}건입니다.`;
+  const quoted =
+    quotable && finding
+      ? `${studyKindLabel(quotable)}의 핵심 소견은 “${shortened.text}”입니다.${
+          shortened.trimmed ? " 나머지 문장은 아래 근거 목록에 있습니다." : ""
+        }`
+      : "";
   const gap =
     medicationName && directMedicationMatches === 0
       ? ` 다만 ${withObjectParticle(medicationName)} 직접 다룬 연구는 이 가운데 없습니다.`
       : "";
-  return `${head} ${quoted}${gap}`.trim();
+  return `${head} ${quoted}${gap}`.replace(/\s+/g, " ").trim();
 }
 function buildEvidenceLimit(
   evidence: RuntimeEvidence[],
@@ -196,10 +205,14 @@ function buildEvidenceLimit(
   const doseText = doseLabelFor(dose);
   if (!evidence.length)
     return `이 조합에 연결된 문헌이 없어 ${doseText}의 개인별 안전 여부를 문헌으로 뒷받침할 수 없습니다.`;
-  const body =
-    medicationName && directMedicationMatches === 0
-      ? `이 문헌들은 ${withObjectParticle(medicationName)} 직접 연구하지 않았고, ${ingredient}의 개인별 안전 상한도 정하지 않았습니다.`
-      : `이 문헌들은 ${ingredient}의 개인별 안전 상한을 정하지 않았습니다.`;
+  const noIngredientEvidence = !evidence.some((item) => item.ingredient_match);
+  const gaps: string[] = [];
+  if (noIngredientEvidence) gaps.push(`${withObjectParticle(ingredient)} 직접 다루지 않았고`);
+  else if (medicationName && directMedicationMatches === 0)
+    gaps.push(`${withObjectParticle(medicationName)} 직접 연구하지 않았고`);
+  const body = gaps.length
+    ? `이 문헌들은 ${gaps.join(" ")} ${ingredient}의 개인별 안전 상한도 정하지 않았습니다.`
+    : `이 문헌들은 ${ingredient}의 개인별 안전 상한을 정하지 않았습니다.`;
   return `${body} 따라서 ${doseText}가 안전하다고 단정할 수 없습니다.`;
 }
 const actionWatchLists: Record<string, string> = {
@@ -607,10 +620,18 @@ type AssessmentReference = {
   title: string;
   url: string;
   summary_ko?: string;
+  source_excerpts?: Array<{
+    locator: string;
+    quote: string;
+  }>;
 };
 type RuntimeEvidence = {
   title: string;
   url: string;
+  // 빌드 시 표시한다. 이 보충제 이름이 제목·핵심소견에 실제로 등장하는지 여부다.
+  // 같은 임상 질문의 핵심 근거를 후보로 함께 두기 때문에, 직접 다룬 문헌과
+  // 상황만 같은 문헌을 화면에서 구분해 말해야 한다.
+  ingredient_match?: boolean;
   dose?: string;
   outcome?: string;
   locator?: string;
@@ -631,8 +652,9 @@ function reference(
   title: string,
   url: string,
   summary_ko?: string,
+  source_excerpts?: AssessmentReference["source_excerpts"],
 ): AssessmentReference {
-  return { label, title, url, summary_ko };
+  return { label, title, url, summary_ko, source_excerpts };
 }
 function numberFrom(value: string) {
   const matches = value.match(/[\d,]+(?:\.\d+)?/g);
@@ -889,12 +911,19 @@ function selectEvidence(
       score += 20;
       reasons.push("입력한 용량과 같거나 가까운 용량을 보고했습니다.");
     }
+    // 성분을 직접 다룬 문헌을 앞세운다. 나머지는 같은 임상 상황의 후보로만 남긴다.
+    if (item.ingredient_match) {
+      score += 40;
+      reasons.unshift("이 보충제를 직접 다룬 문헌입니다.");
+    }
     return {
       ...item,
       relevance_score: score,
       selection_reason:
         reasons.join(" ") ||
-        "이 보충제의 안전성 결과를 보고한 문헌입니다.",
+        (item.ingredient_match
+          ? "이 보충제를 직접 다룬 문헌입니다."
+          : "이 보충제를 직접 다루지는 않았지만 같은 임상 상황에서 선별된 핵심 근거입니다."),
     };
   });
   ranked.sort(
@@ -902,7 +931,10 @@ function selectEvidence(
       b.relevance_score - a.relevance_score ||
       Number(b.priority_score ?? 0) - Number(a.priority_score ?? 0),
   );
-  const directMedicationMatches = ranked.filter((item) =>
+  // "결과에 사용한 문헌"에는 이 성분을 직접 다룬 최종 추출 논문만 넣는다.
+  // 같은 임상 질문의 다른 보충제 논문은 후보 목록에서만 확인할 수 있다.
+  const selected = ranked.filter((item) => item.ingredient_match).slice(0, 5);
+  const directMedicationMatches = selected.filter((item) =>
     medicationPatterns.direct.some((pattern) =>
       pattern.test(
         `${item.title} ${item.outcome ?? ""} ${item.population ?? ""} ${item.locator ?? ""} ${item.key_finding ?? ""}`,
@@ -910,7 +942,7 @@ function selectEvidence(
     )
   ).length;
   return {
-    selected: ranked.slice(0, 5),
+    selected,
     all: ranked,
     directMedicationMatches,
   };
@@ -925,6 +957,12 @@ function buildAssessment(
   const dose = normalizedDose(questionId, input.dose);
   const lab = numberFrom(input.labs);
   const doseLabel = Number.isFinite(dose) ? input.dose : "현재 복용량";
+  const hasSerumCalciumLab =
+    /(?:(?:혈청|혈중).{0,16}칼슘|칼슘.{0,16}(?:혈청|혈중)|serum.{0,16}calcium|calcium.{0,16}serum)/i.test(
+      input.labs,
+    );
+  const highSerumCalcium =
+    hasSerumCalciumLab && Number.isFinite(lab) && lab > 10.5;
   const medicines = medicationValues(input.medication);
   const medicationName = compactMultiValue(medicines);
   const hasMedication = (pattern: RegExp) =>
@@ -970,31 +1008,70 @@ function buildAssessment(
       "NIH 기준",
       "NIH ODS Calcium Fact Sheet",
       "https://ods.od.nih.gov/factsheets/calcium-HealthProfessional/",
-      "칼슘의 권장 섭취량과 상한, 약물 상호작용을 정리한 기준 자료입니다.",
+      "NIH는 성인의 칼슘 상한을 연령에 따라 2,000–2,500 mg/day로 제시하고, 혈청 칼슘이 10.5 mg/dL를 넘으면 고칼슘혈증으로 설명합니다.",
+      [
+        {
+          locator: "Health Risks from Excessive Calcium",
+          quote:
+            "The tolerable upper intake level for calcium ranges from 2,000 mg to 2,500 mg for adults, depending on age.",
+        },
+        {
+          locator: "Health Risks from Excessive Calcium",
+          quote: "Hypercalcemia (serum levels >10.5 mg/dL [2.63 mmol/L])",
+        },
+      ],
     ),
     omega: reference(
       "NIH 기준",
       "NIH ODS Omega-3 Fatty Acids Fact Sheet",
       "https://ods.od.nih.gov/factsheets/Omega3FattyAcids-HealthProfessional/",
-      "오메가-3의 섭취 기준과 출혈·약물 상호작용을 정리한 기준 자료입니다.",
+      "NIH는 EPA와 DHA를 합쳐 하루 5 g 이하인 보충제를 권장대로 사용할 때 안전하다는 FDA 판단을 소개합니다.",
+      [
+        {
+          locator: "Safety of Omega-3s",
+          quote:
+            "FDA has concluded that dietary supplements providing no more than 5 g/day EPA and DHA are safe when used as recommended.",
+        },
+      ],
     ),
     vitaminK: reference(
       "NIH 기준",
       "NIH ODS Vitamin K Fact Sheet",
       "https://ods.od.nih.gov/factsheets/VitaminK-HealthProfessional/",
-      "비타민 K의 섭취 기준과 와파린 상호작용을 정리한 기준 자료입니다.",
+      "NIH는 와파린 복용자가 음식과 보충제에서 섭취하는 비타민 K 양을 일정하게 유지해야 한다고 설명합니다.",
+      [
+        {
+          locator: "Warfarin (Coumadin) and similar anticoagulants",
+          quote:
+            "People taking warfarin and similar anticoagulants need to maintain a consistent intake of vitamin K from food and supplements.",
+        },
+      ],
     ),
     vitaminD: reference(
       "NIH 기준",
       "NIH ODS Vitamin D Fact Sheet",
       "https://ods.od.nih.gov/factsheets/VitaminD-HealthProfessional/",
-      "비타민 D의 섭취 기준과 상한, 약물 상호작용을 정리한 기준 자료입니다.",
+      "NIH는 비타민 D 상한을 연령에 따라 1,000–4,000 IU/day로 제시하며, 성인 상한은 4,000 IU/day입니다.",
+      [
+        {
+          locator: "Health Risks from Excessive Vitamin D",
+          quote:
+            "The Tolerable Upper Intake Level for vitamin D ranges from 25 to 100 mcg (1,000–4,000 IU), depending on age.",
+        },
+      ],
     ),
     vitaminC: reference(
       "NIH 기준",
       "NIH ODS Vitamin C Fact Sheet",
       "https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/",
-      "비타민 C의 섭취 기준과 상한, 건강 위험을 정리한 기준 자료입니다.",
+      "NIH는 비타민 C 상한을 연령에 따라 400–2,000 mg/day로 제시하며, 성인 상한은 2,000 mg/day입니다.",
+      [
+        {
+          locator: "Health Risks from Excessive Vitamin C",
+          quote:
+            "The Tolerable Upper Intake Level for vitamin C ranges from 400 to 2,000 mg, depending on age.",
+        },
+      ],
     ),
   };
   if (questionId === "A1") {
@@ -1078,7 +1155,9 @@ function buildAssessment(
       );
     return {
       context,
-      verdict: highUrineCalcium
+      verdict: highSerumCalcium
+        ? `혈청 칼슘 ${lab} mg/dL는 NIH 자료가 설명한 고칼슘혈증 기준인 10.5 mg/dL를 넘습니다. 현재 ${doseLabel}를 그대로 유지하기보다 총 칼슘 섭취량과 원인을 먼저 확인해야 합니다.`
+        : highUrineCalcium
           ? `현재 ${doseLabel}를 그대로 유지하기에는 적합하지 않습니다. 요중 칼슘과 결석 병력을 고려하면 줄이는 편이 낫습니다.`
         : Number.isFinite(dose)
           ? `${doseLabel} 자체는 성인 총섭취 상한보다 낮습니다. 음식으로 먹는 칼슘까지 더해야 현재 용량을 유지해도 되는지 판단할 수 있습니다.`
@@ -1089,8 +1168,10 @@ function buildAssessment(
       interaction:
         interactions.join(" ") ||
         "레보티록신, 퀴놀론계 항생제, 돌루테그라비르의 흡수를 떨어뜨릴 수 있어 복용 시간 간격이 중요합니다.",
-      watch: highUrineCalcium
-        ? `${lab} mg/day는 NIH가 제시한 고칼슘뇨 기준보다 높습니다. 결석 병력까지 있으므로 총 칼슘 섭취량과 복용 시점을 조정할 근거가 됩니다.`
+      watch: highSerumCalcium
+        ? `혈청 칼슘 ${lab} mg/dL의 원인과 신장기능을 함께 확인해야 합니다.`
+        : highUrineCalcium
+          ? `${lab} mg/day는 NIH가 제시한 고칼슘뇨 기준보다 높습니다. 결석 병력까지 있으므로 총 칼슘 섭취량과 복용 시점을 조정할 근거가 됩니다.`
         : "결석 병력에서는 보충제 양보다 결석 성분, 식이 칼슘, 24시간 요중 칼슘을 함께 봅니다.",
       references: [ods.calcium, ...studies(0, 1)],
     };
@@ -1114,7 +1195,9 @@ function buildAssessment(
     return {
       context,
       verdict:
-        Number.isFinite(dose) && dose >= 4000
+        highSerumCalcium
+          ? `혈청 칼슘 ${lab} mg/dL는 NIH 자료가 설명한 고칼슘혈증 기준인 10.5 mg/dL를 넘습니다. ${Number.isFinite(dose) ? `현재 ${input.dose}도 함께` : "현재 복용량을"} 검토해야 합니다.`
+          : Number.isFinite(dose) && dose >= 4000
           ? `현재 ${input.dose}는 ${dose === 4000 ? "성인 상한 4,000 IU/day와 같습니다" : "성인 상한 4,000 IU/day보다 높습니다"}. 결석이나 고칼슘뇨 병력이 있다면 늘리기보다 줄이는 편이 낫습니다.`
           : "현재 용량은 성인 상한 아래이지만 결석·고칼슘뇨가 있으면 칼슘 검사와 함께 판단합니다.",
       dose: "성인 비타민 D 상한은 4,000 IU/day입니다. 상한은 권장량이 아니라 넘기지 말아야 할 총량 기준입니다.",
@@ -1421,10 +1504,15 @@ export async function POST(req: Request) {
   const evidenceSelection = selectEvidence(q, r.all_evidence, b);
   const assessment = buildAssessment(q, b, evidenceSelection.selected);
   const selectedMedicationName = compactMultiValue(medicationValues(b.medication));
+  const situationLabel = String(
+    (r as RuntimeRule & { condition?: string }).condition ?? "같은 임상 상황",
+  );
   const evidenceSummary = buildEvidenceSummary(
     evidenceSelection.selected,
     evidenceSelection.directMedicationMatches,
     selectedMedicationName,
+    b.ingredient,
+    situationLabel,
   );
   const evidenceLimit = buildEvidenceLimit(
     evidenceSelection.selected,
@@ -1489,10 +1577,13 @@ export async function POST(req: Request) {
       evidence_selection: {
         selected: evidenceSelection.selected.length,
         total_candidates: evidenceSelection.all.length,
+        ingredient_matches: evidenceSelection.all.filter(
+          (item) => item.ingredient_match,
+        ).length,
         direct_medication_matches: evidenceSelection.directMedicationMatches,
         medication_name: compactMultiValue(medicationValues(b.medication)),
         method:
-          "연구 설계와 입력한 약·증상·병력·검사 결과·용량을 문헌의 대상과 결과에 대조해 관련도가 높은 순서로 배치했습니다.",
+          "v3.0 최종 추출 논문 가운데 이 보충제를 직접 다룬 문헌만 결과에 사용했습니다. 입력한 약·증상·병력·검사 결과·용량을 대조해 관련도가 높은 순서로 배치했습니다.",
       },
       interpretation:
         "이 결과는 상담 준비를 위한 근거 요약입니다. 복용 시작·중단·용량 변경을 직접 지시하지 않습니다.",

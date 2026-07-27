@@ -40,6 +40,10 @@ type Result = {
       title: string;
       url: string;
       summary_ko?: string;
+      source_excerpts?: Array<{
+        locator: string;
+        quote: string;
+      }>;
     }>;
   };
   profile: string[];
@@ -49,6 +53,7 @@ type Result = {
   evidence_selection: {
     selected: number;
     total_candidates: number;
+    ingredient_matches: number;
     direct_medication_matches: number;
     medication_name: string;
     method: string;
@@ -56,6 +61,7 @@ type Result = {
   evidence: Array<{
     title: string;
     url: string;
+    ingredient_match?: boolean;
     doi: string;
     dose: string;
     outcome: string;
@@ -66,6 +72,7 @@ type Result = {
   all_evidence: Array<{
     title: string;
     url: string;
+    ingredient_match?: boolean;
     year?: number;
     key_finding: string;
     key_finding_ko: string;
@@ -177,6 +184,22 @@ function EvidenceSentence({
                 {toHaeyoStyle(reference.summary_ko)}
               </span>
             )}
+            {reference.source_excerpts?.map((excerpt) => (
+              <span
+                key={`${excerpt.locator}-${excerpt.quote}`}
+                className="mt-2 block border-l-2 border-blue-200 pl-2"
+              >
+                <span className="block text-[10px] font-semibold leading-4 text-stone-500">
+                  원문 · {excerpt.locator}
+                </span>
+                <span
+                  lang="en"
+                  className="mt-0.5 block text-[10px] leading-4 text-stone-600"
+                >
+                  &ldquo;{excerpt.quote}&rdquo;
+                </span>
+              </span>
+            ))}
             <span
               lang="en"
               title={reference.title}
@@ -776,7 +799,8 @@ export function PersonalizedSafetyQuery() {
                       <span>결과에 사용한 문헌</span>
                       <span className="flex items-center gap-2 text-sm text-stone-500">
                         {result.evidence_selection.selected}건 · 후보{" "}
-                        {result.evidence_selection.total_candidates}건{" "}
+                        {result.evidence_selection.total_candidates}건 중 성분 직접{" "}
+                        {result.evidence_selection.ingredient_matches}건{" "}
                         <span className="collapsible-chevron">
                           <Chevron />
                         </span>
@@ -871,6 +895,9 @@ export function PersonalizedSafetyQuery() {
                       </p>
                       <p className="mt-1 text-xs text-stone-500">
                         {item.year ? `${item.year} · ` : ""}
+                        {!item.ingredient_match
+                          ? "같은 임상 상황의 후보 문헌 · "
+                          : ""}
                         {toHaeyoStyle(item.selection_reason)}
                       </p>
                     </div>

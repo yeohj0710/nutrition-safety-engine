@@ -11,20 +11,22 @@ export type PersonalizedSafetyExample = {
   };
 };
 
-// 순서는 v3.0 선별을 통과해 별칭에 연결된 후보 근거 수를 따른다.
-// 비타민 K 7건, 비타민 C 5건, 비타민 D 2건, 오메가-3 1건, 칼슘 1건.
-// 근거가 두꺼운 보충제를 앞에 두어 첫 화면에서 근거가 실제로 붙는 사례를 먼저 보여준다.
+// 순서는 v3.0 최종 추출 논문 가운데 그 성분을 직접 다룬 문헌 수를 따른다.
+// 비타민 K 7건, 비타민 D 2건, 오메가-3 1건, 칼슘 1건이다.
+//
+// 비타민 C 는 화면에서 뺐다. 별칭 B3 이 연결된 만성콩팥병·투석 질문의 핵심 근거 15건 가운데
+// 비타민 C 를 언급한 문헌이 0건이라, 어떤 입력을 넣어도 "이 성분을 직접 다룬 문헌은 없다"는
+// 답만 나온다. 검색식을 넓혀 근거가 생기면 다시 넣는다. 별칭 데이터 자체는 v2.1 호환을 위해
+// 남아 있으므로 API 로는 계속 조회된다.
 export const personalizedSafetyIngredientOrder = [
   "비타민 K",
-  "비타민 C",
   "비타민 D",
   "오메가-3",
   "칼슘",
 ] as const;
 
-// 각 예시는 실제로 문헌이 붙는 조합으로 골랐다. 별칭 A1·A2 의 근거는 와파린과 비타민 K
-// 상호작용을 다루고, B1·B2·B3 의 근거는 전부 만성콩팥병·투석 문헌이다. 그래서 B 계열은
-// 결석·옥살산이 아니라 신장기능 저하를 기준으로 입력을 구성해야 개인화 신호가 발화한다.
+// 각 예시는 최종 추출 논문이 성분을 직접 다루고, 입력한 약·병력·검사 중 하나 이상이
+// 판단에 반영되는 조합만 남겼다. 약이나 용량을 직접 다루지 않는 보조 예시는 화면에서 뺐다.
 export const personalizedSafetyExamples: PersonalizedSafetyExample[] = [
   {
     id: "vitamin-k-warfarin-inr",
@@ -63,42 +65,6 @@ export const personalizedSafetyExamples: PersonalizedSafetyExample[] = [
     },
   },
   {
-    id: "vitamin-c-kidney-function",
-    title: "2,000 mg/day, 신장기능 저하",
-    description: "일반 상한에 해당하고 신장기능이 떨어진 경우",
-    input: {
-      ingredient: "비타민 C",
-      dose: "2000 mg/day",
-      medication: "",
-      condition: "신장기능 저하",
-      labs: "eGFR 48 mL/min/1.73m²",
-    },
-  },
-  {
-    id: "vitamin-c-ckd-iron",
-    title: "만성콩팥병, 철분제와 함께",
-    description: "신장기능이 떨어진 상태에서 철분제와 같이 먹는 경우",
-    input: {
-      ingredient: "비타민 C",
-      dose: "1000 mg/day",
-      medication: "철분제",
-      condition: "만성콩팥병으로 신장기능 저하",
-      labs: "eGFR 32 mL/min/1.73m²",
-    },
-  },
-  {
-    id: "vitamin-c-low-dose-no-risk",
-    title: "500 mg/day, 신장 관련 위험 없음",
-    description: "성인 상한 아래이며 신장 관련 위험이 없는 경우",
-    input: {
-      ingredient: "비타민 C",
-      dose: "500 mg/day",
-      medication: "복용 약 없음",
-      condition: "특별한 증상 없음",
-      labs: "",
-    },
-  },
-  {
     id: "vitamin-d-ckd-hypercalcemia",
     title: "4,000 IU/day, 만성콩팥병",
     description: "성인 상한과 같고 혈중 칼슘이 높은 경우",
@@ -120,18 +86,6 @@ export const personalizedSafetyExamples: PersonalizedSafetyExample[] = [
       medication: "",
       condition: "복막투석 중이며 신장기능 저하",
       labs: "eGFR 12 mL/min/1.73m²",
-    },
-  },
-  {
-    id: "vitamin-d-microgram-thiazide",
-    title: "100 μg, 티아지드 이뇨제 복용",
-    description: "μg를 IU로 환산하고 높은 혈중 칼슘도 함께 보는 경우",
-    input: {
-      ingredient: "비타민 D",
-      dose: "100 μg/day",
-      medication: "티아지드 이뇨제",
-      condition: "칼슘 수치가 높다고 들음",
-      labs: "혈청 칼슘 10.7 mg/dL",
     },
   },
   {
@@ -159,18 +113,6 @@ export const personalizedSafetyExamples: PersonalizedSafetyExample[] = [
     },
   },
   {
-    id: "omega3-aspirin-no-symptoms",
-    title: "아스피린 복용, 증상 없음",
-    description: "EPA+DHA 1,000 mg/day를 먹고 출혈 증상은 없는 경우",
-    input: {
-      ingredient: "오메가-3",
-      dose: "EPA+DHA 1000 mg/day",
-      medication: "아스피린",
-      condition: "특별한 증상 없음",
-      labs: "",
-    },
-  },
-  {
     id: "calcium-ckd-hypercalcemia",
     title: "600 mg/day, 만성콩팥병",
     description: "신장기능이 떨어졌고 혈중 칼슘이 높은 경우",
@@ -180,30 +122,6 @@ export const personalizedSafetyExamples: PersonalizedSafetyExample[] = [
       medication: "",
       condition: "만성콩팥병으로 신장기능 저하",
       labs: "혈청 칼슘 10.6 mg/dL",
-    },
-  },
-  {
-    id: "calcium-levothyroxine",
-    title: "레보티록신과 함께 복용",
-    description: "칼슘 500 mg/day의 양과 약 흡수 영향을 함께 보는 경우",
-    input: {
-      ingredient: "칼슘",
-      dose: "500 mg/day",
-      medication: "레보티록신",
-      condition: "특별한 증상 없음",
-      labs: "",
-    },
-  },
-  {
-    id: "calcium-unknown-antibiotic",
-    title: "항생제 복용, 칼슘 양을 모름",
-    description: "제품 함량을 모르는 상태에서 복용 시간도 확인하는 경우",
-    input: {
-      ingredient: "칼슘",
-      dose: "잘 모르겠어요",
-      medication: "퀴놀론계 항생제",
-      condition: "변비",
-      labs: "",
     },
   },
 ];

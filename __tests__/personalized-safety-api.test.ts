@@ -27,7 +27,6 @@ describe("personalized safety API", () => {
       "오메가-3": "A2",
       칼슘: "B1",
       "비타민 D": "B2",
-      "비타민 C": "B3",
     };
     const expectedVerdictById: Record<string, string> = {
       "vitamin-k-warfarin-inr": "매일 비슷한 양을 섭취",
@@ -35,18 +34,11 @@ describe("personalized safety API", () => {
       "vitamin-k-bruising": "갑자기 줄이지 말고",
       "omega3-warfarin-bruising": "안전 범위 안",
       "omega3-warfarin-high-dose": "일반 기준 5,000 mg/day보다 높습니다",
-      "omega3-aspirin-no-symptoms": "안전 범위 안",
-      "calcium-ckd-hypercalcemia": "성인 총섭취 상한보다 낮습니다",
-      "calcium-levothyroxine": "성인 총섭취 상한보다 낮습니다",
-      "calcium-unknown-antibiotic": "복용량을 모르면",
-      "vitamin-d-ckd-hypercalcemia": "성인 상한 4,000 IU/day와 같습니다",
+      "calcium-ckd-hypercalcemia": "고칼슘혈증 기준인 10.5 mg/dL를 넘습니다",
+      "vitamin-d-ckd-hypercalcemia": "고칼슘혈증 기준인 10.5 mg/dL를 넘습니다",
       "vitamin-d-peritoneal-dialysis": "성인 상한 아래",
-      "vitamin-d-microgram-thiazide": "성인 상한 4,000 IU/day와 같습니다",
-      "vitamin-c-kidney-function": "줄이는 쪽이 맞습니다",
-      "vitamin-c-ckd-iron": "줄이는 쪽이 맞습니다",
-      "vitamin-c-low-dose-no-risk": "고위험 조건은 확인되지 않았습니다",
     };
-    expect(personalizedSafetyExamples).toHaveLength(15);
+    expect(personalizedSafetyExamples).toHaveLength(8);
     expect(
       personalizedSafetyExamples.reduce<Record<string, number>>((counts, example) => {
         counts[example.input.ingredient] =
@@ -55,10 +47,9 @@ describe("personalized safety API", () => {
       }, {}),
     ).toEqual({
       "비타민 K": 3,
-      "오메가-3": 3,
-      칼슘: 3,
-      "비타민 D": 3,
-      "비타민 C": 3,
+      "비타민 D": 2,
+      "오메가-3": 2,
+      칼슘: 1,
     });
 
     for (const example of personalizedSafetyExamples) {
@@ -94,9 +85,25 @@ describe("personalized safety API", () => {
       expect(body.assessment.dose, example.title).toMatch(/[가-힣]/);
       expect(body.assessment.watch, example.title).toMatch(/[가-힣]/);
       expect(body.evidence.length, example.title).toBeGreaterThan(0);
+      expect(
+        body.evidence.every(
+          (item: { ingredient_match?: boolean }) => item.ingredient_match,
+        ),
+        example.title,
+      ).toBe(true);
       expect(body.evidence.length, example.title).toBeLessThanOrEqual(5);
+      expect(body.evidence_selection.ingredient_matches, example.title).toBe(
+        body.all_evidence.filter(
+          (item: { ingredient_match?: boolean }) => item.ingredient_match,
+        ).length,
+      );
       expect(body.evidence.length, example.title).toBe(
-        Math.min(5, body.all_evidence.length),
+        Math.min(
+          5,
+          body.all_evidence.filter(
+            (item: { ingredient_match?: boolean }) => item.ingredient_match,
+          ).length,
+        ),
       );
     }
   });
@@ -106,7 +113,6 @@ describe("personalized safety API", () => {
     ["오메가-3", "A2", "2000 mg/day"],
     ["칼슘", "B1", "600 mg/day"],
     ["비타민 D", "B2", "4000 IU/day"],
-    ["비타민 C", "B3", "1000 mg/day"],
   ])(
     "returns a concise Korean evidence-linked fallback for %s",
     async (ingredient, q, dose) => {
@@ -131,7 +137,14 @@ describe("personalized safety API", () => {
       expect(body.ai_summary.length).toBeLessThanOrEqual(700);
       expect(body.ai_summary).toContain("그래서 지금 볼 것은");
       expect(body.evidence.length).toBeGreaterThan(0);
-      expect(body.evidence.length).toBe(Math.min(5, body.all_evidence.length));
+      expect(body.evidence.length).toBe(
+        Math.min(
+          5,
+          body.all_evidence.filter(
+            (item: { ingredient_match?: boolean }) => item.ingredient_match,
+          ).length,
+        ),
+      );
       expect(body.all_evidence.length).toBeGreaterThanOrEqual(body.evidence.length);
       expect(body.evidence_selection.selected).toBe(body.evidence.length);
       expect(body.evidence_selection.total_candidates).toBe(body.all_evidence.length);
@@ -157,7 +170,7 @@ describe("personalized safety API", () => {
         ),
       ).toBe(true);
       expect(body.evidence_selection.method).toBe(
-        "연구 설계와 입력한 약·증상·병력·검사 결과·용량을 문헌의 대상과 결과에 대조해 관련도가 높은 순서로 배치했습니다.",
+        "v3.0 최종 추출 논문 가운데 이 보충제를 직접 다룬 문헌만 결과에 사용했습니다. 입력한 약·증상·병력·검사 결과·용량을 대조해 관련도가 높은 순서로 배치했습니다.",
       );
       expect(body.ai_summary).not.toMatch(
         /supplement dose|kidney stone|dietary calcium/,
@@ -227,6 +240,47 @@ describe("personalized safety API", () => {
     expect(body.assessment.references[0].summary_ko).toMatch(/[가-힣]/);
   });
 
+  it("includes the exact NIH passage used for each public intake limit", async () => {
+    const expectedQuotes: Record<string, string> = {
+      "비타민 K":
+        "People taking warfarin and similar anticoagulants need to maintain a consistent intake of vitamin K from food and supplements.",
+      "오메가-3":
+        "FDA has concluded that dietary supplements providing no more than 5 g/day EPA and DHA are safe when used as recommended.",
+      칼슘:
+        "The tolerable upper intake level for calcium ranges from 2,000 mg to 2,500 mg for adults, depending on age.",
+      "비타민 D":
+        "The Tolerable Upper Intake Level for vitamin D ranges from 25 to 100 mcg (1,000–4,000 IU), depending on age.",
+    };
+
+    for (const example of personalizedSafetyExamples) {
+      const { body } = await requestAssessment(example.input);
+      const nihReference = body.assessment.references.find(
+        (item: { label: string }) => item.label === "NIH 기준",
+      );
+      expect(
+        nihReference.source_excerpts.map((item: { quote: string }) => item.quote),
+        example.input.ingredient,
+      ).toContain(expectedQuotes[example.input.ingredient]);
+    }
+  });
+
+  it("keeps vitamin C available by API without presenting indirect kidney papers as vitamin C evidence", async () => {
+    const { response, body } = await requestAssessment({
+      ingredient: "비타민 C",
+      dose: "1000 mg/day",
+      condition: "신장기능 저하",
+    });
+
+    expect(response.status).toBe(200);
+    expect(body.question_id).toBe("B3");
+    expect(body.evidence).toEqual([]);
+    expect(body.all_evidence).toHaveLength(15);
+    expect(body.evidence_selection.ingredient_matches).toBe(0);
+    expect(body.ai_summary).toContain(
+      "이 조합에 연결된 문헌이 없어 1000 mg/day의 개인별 안전 여부를 문헌으로 뒷받침할 수 없습니다",
+    );
+  });
+
   it("reflects the entered profile in a conversational counseling tone", async () => {
     const { body } = await requestAssessment({
       ingredient: "칼슘",
@@ -255,27 +309,38 @@ describe("personalized safety API", () => {
       }),
     );
     const body = await response.json();
-    // 연구 서술은 이번 응답이 실제로 선택한 v3.0 문헌에서만 나와야 한다.
-    const selectedFinding = String(
-      body.evidence[0].key_finding_ko ?? body.evidence[0].key_finding,
-    )
-      .replace(/\s+/g, " ")
-      .trim();
-    expect(body.ai_summary).toContain(
-      `연결된 문헌은 ${body.evidence.length}건입니다`,
+    // 성분을 직접 다룬 문헌 수를 서술이 그대로 밝혀야 한다.
+    const onIngredient = body.evidence.filter(
+      (item: { ingredient_match?: boolean }) => item.ingredient_match,
     );
-    // 인용문은 반드시 선택된 근거 원문 안에 그대로 존재해야 한다.
+    expect(body.ai_summary).toContain(
+      `연결된 문헌은 ${body.evidence.length}건이고, 그 가운데 오메가-3를 직접 다룬 것은 ${onIngredient.length}건입니다`,
+    );
+    // 인용은 성분을 직접 다룬 문헌에서만 뽑고, 원문에 그대로 존재해야 한다.
     const quoted = body.ai_summary.match(/핵심 소견은 “([^”]+)”/)?.[1];
     expect(quoted).toBeTruthy();
-    expect(selectedFinding).toContain(quoted);
+    expect(
+      onIngredient.some((item: { key_finding_ko?: string; key_finding: string }) =>
+        String(item.key_finding_ko ?? item.key_finding)
+          .replace(/\s+/g, " ")
+          .trim()
+          .includes(quoted),
+      ),
+    ).toBe(true);
     // v3.0 근거 집합에 없는 선행 트랙 서술이 되살아나면 안 된다.
     for (const stale of ["어유 3–6 g/day", "오메가-3 카복실산 4 g", "INR 8.06"])
       expect(body.ai_summary).not.toContain(stale);
     // 직접성 한계는 상수가 아니라 실제 근거에서 계산돼야 한다.
-    expect(body.evidence_selection.direct_medication_matches).toBe(0);
-    expect(body.ai_summary).toContain(
-      "아픽사반을 직접 다룬 연구는 이 가운데 없습니다",
-    );
+    const direct = body.evidence_selection.direct_medication_matches;
+    expect(typeof direct).toBe("number");
+    if (direct === 0)
+      expect(body.ai_summary).toContain(
+        "아픽사반을 직접 다룬 연구는 이 가운데 없습니다",
+      );
+    else
+      expect(body.ai_summary).not.toContain(
+        "아픽사반을 직접 다룬 연구는 이 가운데 없습니다",
+      );
     expect(body.ai_summary).toContain(
       "EPA+DHA 2000 mg/day가 안전하다고 단정할 수 없습니다",
     );
@@ -286,7 +351,6 @@ describe("personalized safety API", () => {
     );
     expect(body.assessment.context).not.toContain("코피가 자주 남도 함께 있습니다");
     expect(body.evidence_selection.total_candidates).toBe(body.all_evidence.length);
-    expect(body.evidence_selection.direct_medication_matches).toBe(0);
   });
   it("uses the medicine actually entered in omega-3 results", async () => {
     delete process.env.OPENAI_API_KEY;
@@ -330,15 +394,18 @@ describe("personalized safety API", () => {
         item.selection_reason.includes("입력한 약을 직접 다룬 문헌입니다"),
       ),
     ).toBe(true);
-    // v3.0 오메가-3 별칭 근거에는 아스피린을 직접 연구한 문헌이 없다.
-    // 따라서 직접 일치 0건이면 어떤 근거도 직접 일치를 주장하지 않아야 한다.
-    expect(aspirin.body.evidence_selection.direct_medication_matches).toBe(0);
     expect(aspirin.body.evidence[0].record_id).toMatch(/^pubmed:/);
-    expect(
-      aspirin.body.evidence.every((item: { selection_reason: string }) =>
-        !item.selection_reason.includes("입력한 약을 직접 다룬 문헌입니다"),
-      ),
-    ).toBe(true);
+    // 직접 일치 수와 선택 사유가 서로 어긋나면 안 된다. 0건이면 어떤 근거도
+    // 직접 일치를 주장하지 않아야 하고, 1건 이상이면 최소 하나는 주장해야 한다.
+    for (const result of [vitaminK, aspirin]) {
+      const claiming = result.body.evidence.filter(
+        (item: { selection_reason: string }) =>
+          item.selection_reason.includes("입력한 약을 직접 다룬 문헌입니다"),
+      ).length;
+      if (result.body.evidence_selection.direct_medication_matches === 0)
+        expect(claiming).toBe(0);
+      else expect(claiming).toBeGreaterThan(0);
+    }
   });
 
   it("keeps apixaban evidence explicitly indirect", async () => {
@@ -378,16 +445,6 @@ describe("personalized safety API", () => {
         condition: "멍이 잘 듦",
       },
       ["입력한 약을 직접 다룬 문헌입니다", "출혈·응고"],
-    ],
-    [
-      "reduced kidney function and 2 g vitamin C",
-      {
-        ingredient: "비타민 C",
-        dose: "2000 mg/day",
-        condition: "신장기능 저하",
-        labs: "eGFR 48 mL/min/1.73m²",
-      },
-      ["신장기능"],
     ],
     [
       "calcium stone history and high urine calcium",

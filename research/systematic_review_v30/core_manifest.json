@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "track": "v3.0_full_ai_autonomy",
-  "generated_at": "2026-07-27T02:21:47+00:00",
+  "generated_at": "2026-07-27T06:19:40+00:00",
   "core_records": 75,
   "per_question": {
     "HRS1_PERIOPERATIVE": 15,
@@ -13,7 +13,7 @@
   "rules": 35,
   "source_sha256": "19cf68710ef87e4b76f75687fe2e6ce53db44f65850c1ecffb5cfaf626dcec64",
   "core_sha256": "bc9912c4fa79976fb1780b3bade0eadcecef6fd6bbe99620e333382e91fd1d44",
-  "translation_sha256": "cd06576c06a051d9b6998f8ee9364e05df4e1eafac91ca18e94b7a8ac2f66aff",
+  "translation_sha256": "fcfb68c7ee566debef2984ef677103002951b5db24d567b7b8d24615d6899296",
   "translation_authorship": "ai_generated",
   "personalization": {
     "axes": [
