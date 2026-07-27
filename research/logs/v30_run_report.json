@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "track": "v3.0_full_ai_autonomy",
   "generated_from": "tools/build_v30_reports.py",
-  "git_head": "841306667f6072ae6caa905a8f81980a24ea005d",
+  "git_head": "3b85fccf0a55bf366d419d2cb890d3d73e7d3f14",
   "claims": [
     {
       "id": 1,
@@ -22092,7 +22092,7 @@
   "files_synced": {
     "log": "research/logs/gdrive_sync_v30.json",
     "gdrive_root": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준",
-    "synced_at": "2026-07-27T04:33:47+00:00",
+    "synced_at": "2026-07-27T04:51:35+00:00",
     "policy": "기존 v2.1 원본과 90_legacy 는 삭제·재구성하지 않는다. 이름이 겹치는 v3 매니페스트는 03_연구부록/v3.0_완전AI자율트랙/ 하위에 두고, 유일하게 같은 자리를 덮어쓰는 amendments.csv 는 백업본을 먼저 만든다.",
     "file_count": 16,
     "all_sha256_match": true,
@@ -22140,12 +22140,12 @@
       {
         "source": "research/reports/notion_update.md",
         "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/03_연구부록/v3.0_완전AI자율트랙/notion_update.md",
-        "source_sha256": "69e270bdc524203e151c75996ed97642ae2ec24253f71ba81ed9bbe0762b0e4b",
+        "source_sha256": "451043be57ad0d7ef529b490b3d22c7e85c0f62e1a3ad611bc6df73953987d67",
         "backup_created": null,
         "overwrote_existing": true,
-        "destination_sha256": "69e270bdc524203e151c75996ed97642ae2ec24253f71ba81ed9bbe0762b0e4b",
+        "destination_sha256": "451043be57ad0d7ef529b490b3d22c7e85c0f62e1a3ad611bc6df73953987d67",
         "sha256_match": true,
-        "bytes": 6144
+        "bytes": 6766
       },
       {
         "source": "research/searches_v3/ai_picos/picos_definition.json",
@@ -22240,22 +22240,22 @@
       {
         "source": "research/logs/v30_run_report.json",
         "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/03_연구부록/v3.0_완전AI자율트랙/v30_run_report.json",
-        "source_sha256": "8a75d3f24db5396c4b6d80778ed2054ffe5b5cc246130073398c9c176a238727",
+        "source_sha256": "a3af2ed656fb81046ffb2f0bb64897e62f7656bace7fd7d30f7f9fe77cc0ac3b",
         "backup_created": null,
         "overwrote_existing": true,
-        "destination_sha256": "8a75d3f24db5396c4b6d80778ed2054ffe5b5cc246130073398c9c176a238727",
+        "destination_sha256": "a3af2ed656fb81046ffb2f0bb64897e62f7656bace7fd7d30f7f9fe77cc0ac3b",
         "sha256_match": true,
-        "bytes": 481043
+        "bytes": 482291
       },
       {
         "source": "research/reports/발표원고_v3.0.md",
         "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/06_발표자료/발표원고_v3.0.md",
-        "source_sha256": "4098b94d4147e63bf39c089aea570b48d93c833bbaae40a818fb18d232516717",
+        "source_sha256": "a010712d34dded285071d066dce5334ad8796d5eefb7569a26ffaa083760e31e",
         "backup_created": null,
         "overwrote_existing": true,
-        "destination_sha256": "4098b94d4147e63bf39c089aea570b48d93c833bbaae40a818fb18d232516717",
+        "destination_sha256": "a010712d34dded285071d066dce5334ad8796d5eefb7569a26ffaa083760e31e",
         "sha256_match": true,
-        "bytes": 7816
+        "bytes": 8473
       }
     ],
     "self_note": "이 실행 보고서 자체는 생성 직후 tools/sync_gdrive_v30.py --report 로 복사하며, 그 복사본의 해시 검증 결과는 위 로그 파일에만 기록된다(자기참조 순환을 피하기 위함)."
@@ -22289,7 +22289,14 @@
       "item": "분류기와 참조 판정의 독립성이 부분적",
       "detail": "선별과 참조 판정을 모두 같은 판정 주체가 수행했다. 프롬프트와 판정 절차는 분리했지만 판정자는 분리하지 못했다. 따라서 sensitivity_vs_ai_reference 등은 진실 정확도가 아니라 내부 일관성 지표다.",
       "evidence_path": "research/synthesis/screener_vs_ai_reference_v3.json",
-      "handled": "구조적 한계로 남긴다. 해소하려면 독립된 판정 주체가 필요하다."
+      "handled": "해소 경로를 준비해 뒀다. 참조표준 채점(300건)만 다른 모델 계열에 넘기는 교차검증 arm 이며, 선별(2,209행)보다 작고 독립이 필요한 쪽이 참조표준이라 역할 분리가 맞다. 인계 패키지 research/validation/screening_ai_reference_v3/codex_arm/, 검증·비교 도구 tools/v30/codex_reference_arm.py. 실행 전이므로 아직 미해소다.",
+      "prepared_next_step": {
+        "arm": "codex_reference_cross_check",
+        "handoff": "research/validation/screening_ai_reference_v3/codex_arm/README.md",
+        "tool": "tools/v30/codex_reference_arm.py",
+        "workload_rows": 300,
+        "status": "prepared_awaiting_external_run"
+      }
     },
     {
       "item": "서술 재작성 단계가 일부 입력에서 거부됨",

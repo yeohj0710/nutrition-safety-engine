@@ -45,12 +45,12 @@
     {
       "source": "research/reports/notion_update.md",
       "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/03_연구부록/v3.0_완전AI자율트랙/notion_update.md",
-      "source_sha256": "69e270bdc524203e151c75996ed97642ae2ec24253f71ba81ed9bbe0762b0e4b",
+      "source_sha256": "451043be57ad0d7ef529b490b3d22c7e85c0f62e1a3ad611bc6df73953987d67",
       "backup_created": null,
       "overwrote_existing": true,
-      "destination_sha256": "69e270bdc524203e151c75996ed97642ae2ec24253f71ba81ed9bbe0762b0e4b",
+      "destination_sha256": "451043be57ad0d7ef529b490b3d22c7e85c0f62e1a3ad611bc6df73953987d67",
       "sha256_match": true,
-      "bytes": 6144
+      "bytes": 6766
     },
     {
       "source": "research/searches_v3/ai_picos/picos_definition.json",
@@ -145,25 +145,25 @@
     {
       "source": "research/logs/v30_run_report.json",
       "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/03_연구부록/v3.0_완전AI자율트랙/v30_run_report.json",
-      "source_sha256": "a3af2ed656fb81046ffb2f0bb64897e62f7656bace7fd7d30f7f9fe77cc0ac3b",
+      "source_sha256": "fd41d98db274dca8b6261bffde2a91f461fc4bd9d1e62874dac9193dfcd9e241",
       "backup_created": null,
       "overwrote_existing": true,
-      "destination_sha256": "a3af2ed656fb81046ffb2f0bb64897e62f7656bace7fd7d30f7f9fe77cc0ac3b",
+      "destination_sha256": "fd41d98db274dca8b6261bffde2a91f461fc4bd9d1e62874dac9193dfcd9e241",
       "sha256_match": true,
-      "bytes": 482291
+      "bytes": 482914
     },
     {
       "source": "research/reports/발표원고_v3.0.md",
       "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/06_발표자료/발표원고_v3.0.md",
-      "source_sha256": "4098b94d4147e63bf39c089aea570b48d93c833bbaae40a818fb18d232516717",
+      "source_sha256": "a010712d34dded285071d066dce5334ad8796d5eefb7569a26ffaa083760e31e",
       "backup_created": null,
       "overwrote_existing": true,
-      "destination_sha256": "4098b94d4147e63bf39c089aea570b48d93c833bbaae40a818fb18d232516717",
+      "destination_sha256": "a010712d34dded285071d066dce5334ad8796d5eefb7569a26ffaa083760e31e",
       "sha256_match": true,
-      "bytes": 7816
+      "bytes": 8473
     }
   ],
-  "synced_at": "2026-07-27T04:33:48+00:00",
+  "synced_at": "2026-07-27T04:51:35+00:00",
   "gdrive_root": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준",
   "policy": "기존 v2.1 원본과 90_legacy 는 삭제·재구성하지 않는다. 이름이 겹치는 v3 매니페스트는 03_연구부록/v3.0_완전AI자율트랙/ 하위에 두고, 유일하게 같은 자리를 덮어쓰는 amendments.csv 는 백업본을 먼저 만든다.",
   "file_count": 16,

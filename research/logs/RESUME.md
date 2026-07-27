@@ -28,3 +28,15 @@
   `research/screening/agent_batches/`, `agent_results/`, `agent_local_runs.jsonl`,
   `data/curated_v2/llm_screening_classifications.csv` 는 사용자 소유이므로 수정·스테이징하지 않는다.
 - 남은 unresolved 항목은 `research/logs/v30_run_report.json` 의 `unresolved` 에 있다.
+
+## 할일
+
+- [ ] **참조표준 교차검증 arm 실행** — 블라인드 300건 채점을 Codex 에 넘기고 결과를 받는다.
+  인계 지시서 `research/validation/screening_ai_reference_v3/codex_arm/README.md`,
+  받은 뒤 `python tools/v30/codex_reference_arm.py verify|compare <응답파일>`.
+  실행하면 unresolved 2건(라운드 동일, 독립성 부분적)이 해소된다. Codex 에 Claude 의 P2 라벨과
+  기존 라운드 응답을 절대 보여주지 말 것.
+- [ ] 데모 예시 재구성 — 오메가-3·칼슘은 후보 근거가 1건뿐이라 대표 예시로 부적절하다.
+  후보 근거가 많은 조합으로 교체한다(비타민 K 7건, 비타민 C 5건).
+- [ ] `narrative_assessment` 의 `decision_changed` 거부 조건 검토 — 판단 보존 검사를 완화할지는
+  별도 판단이 필요하다. 되돌아간 경로도 근거 기반이라 급하지 않다.
