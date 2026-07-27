@@ -67,6 +67,11 @@ RM = json.loads(P["review_manifest"].read_text(encoding="utf-8"))
 CORE = json.loads(P["core_manifest"].read_text(encoding="utf-8"))
 VAL = json.loads(P["validation"].read_text(encoding="utf-8"))
 TC = json.loads(P["track_comparison"].read_text(encoding="utf-8"))
+TRANSLATIONS = json.loads(
+    (ROOT / "research/systematic_review_v30/key_finding_translations_ko.json").read_text(
+        encoding="utf-8"
+    )
+)
 
 QORDER = [r["question_id"] for r in CM["search"]["question_runs"]]
 RUNS = {r["question_id"]: r for r in CM["search"]["question_runs"]}
@@ -700,6 +705,39 @@ report = {
             ],
             "remaining_issues": [],
         },
+    },
+    "execution_integrity": {
+        "claim": "선별·참조 판정·한국어 번역·논문 집필을 에이전트가 직접 수행했고 로컬 언어모델을 "
+        "로드하거나 외부 LLM·번역 API 를 호출하지 않았다.",
+        "screening": {
+            "screener": SM["screener"],
+            "model_invocations": SM["model_invocations"],
+            "external_api_calls": SM["external_api_calls"],
+            "human_decisions": SM["human_decisions"],
+        },
+        "ai_reference": REF["execution"],
+        "translation": {
+            "author": TRANSLATIONS["author"],
+            "authorship": TRANSLATIONS["translation_authorship"],
+            "source": TRANSLATIONS["source"],
+            "parts": [part["path"] for part in TRANSLATIONS["parts"]],
+        },
+        "legacy_harness_modules": {
+            "paths": ["tools/v30/screen_v3.py", "tools/v30/ai_reference_v3.py"],
+            "status": (
+                "선행 실행 시도에 쓰인 모델 구동 하네스가 저장소에 남아 있다. 이번 실행에서는 "
+                "호출하지 않았고, v3.0 산출물을 만드는 어떤 도구도 이 모듈을 import 하지 않는다"
+                "(각 모듈의 단위 테스트만 예외이며, 모델 로딩은 메서드 안의 지연 import 라 "
+                "모듈을 불러오는 것만으로는 모델이 올라가지 않는다)."
+            ),
+            "verification": "grep -rn 'screen_v3|ai_reference_v3' tools/",
+        },
+        "execution_path": [
+            "research/screening/v30_agent/batches/ 를 에이전트가 읽고 판정",
+            "research/screening/v30_agent/checkpoints.jsonl 에 append-only 누적",
+            "research/validation/screening_ai_reference_v3/rounds/round{1,2,3}/responses/ 에 축별 판정 기록",
+            "tools/v30/agent_reference_sample.py 로 층화 가중·보정·부트스트랩 계산",
+        ],
     },
     "notion_updated": NOTION_UPDATED,
     "notion_update_reason": NOTION_REASON,

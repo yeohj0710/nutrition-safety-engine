@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "track": "v3.0_full_ai_autonomy",
+  "files": [
+    {
+      "source": "research/thesis/thesis_v30.docx",
+      "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/02_졸업논문/여형준_졸업논문_최종본.docx",
+      "source_sha256": "9f5d2aea2e3791bfc8a64ca1943fce72f5f1083b4f95dec73764c4df0e2b65e3",
+      "backup_created": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/02_졸업논문/여형준_졸업논문_최종본_v21백업.docx (이미 존재해 덮어쓰지 않음)",
+      "overwrote_existing": true,
+      "destination_sha256": "9f5d2aea2e3791bfc8a64ca1943fce72f5f1083b4f95dec73764c4df0e2b65e3",
+      "sha256_match": true,
+      "bytes": 50087
+    },
+    {
+      "source": "research/thesis/thesis_v30.pdf",
+      "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/02_졸업논문/여형준_졸업논문_최종본.pdf",
+      "source_sha256": "658f49fe60963f69e873fa1281f3251957f346db79f54cea477b21803fbebdcd",
+      "backup_created": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/02_졸업논문/여형준_졸업논문_최종본_v21백업.pdf (이미 존재해 덮어쓰지 않음)",
+      "overwrote_existing": true,
+      "destination_sha256": "658f49fe60963f69e873fa1281f3251957f346db79f54cea477b21803fbebdcd",
+      "sha256_match": true,
+      "bytes": 406739
+    },
+    {
+      "source": "research/protocol/amendments.csv",
+      "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/03_연구부록/amendments.csv",
+      "source_sha256": "b97a824bf794de6a51e033d9548f59e0ac7a873f5469c7859a14eb8d7026629c",
+      "backup_created": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/03_연구부록/amendments_v21백업.csv (이미 존재해 덮어쓰지 않음)",
+      "overwrote_existing": true,
+      "destination_sha256": "b97a824bf794de6a51e033d9548f59e0ac7a873f5469c7859a14eb8d7026629c",
+      "sha256_match": true,
+      "bytes": 4699
+    },
+    {
+      "source": "data/curated_v3/corpus_manifest.json",
+      "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/03_연구부록/v3.0_완전AI자율트랙/corpus_manifest_v3.json",
+      "source_sha256": "dfce0fd19f155047b779b4871b2605b90ee23bc50d13fbebeaf5532f592baaca",
+      "backup_created": null,
+      "overwrote_existing": true,
+      "destination_sha256": "dfce0fd19f155047b779b4871b2605b90ee23bc50d13fbebeaf5532f592baaca",
+      "sha256_match": true,
+      "bytes": 5624
+    },
+    {
+      "source": "research/reports/notion_update.md",
+      "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/03_연구부록/v3.0_완전AI자율트랙/notion_update.md",
+      "source_sha256": "08208801d406bea54e1b5d43c9a6c33ac6a174b35ede238cb93210fc12fb56f6",
+      "backup_created": null,
+      "overwrote_existing": true,
+      "destination_sha256": "08208801d406bea54e1b5d43c9a6c33ac6a174b35ede238cb93210fc12fb56f6",
+      "sha256_match": true,
+      "bytes": 5627
+    },
+    {
+      "source": "research/searches_v3/ai_picos/picos_definition.json",
+      "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/03_연구부록/v3.0_완전AI자율트랙/picos_definition.json",
+      "source_sha256": "70e4749529fb2ad9db6bf7c7c45456b9761d7958a27ee728371ae68015f3912f",
+      "backup_created": null,
+      "overwrote_existing": true,
+      "destination_sha256": "70e4749529fb2ad9db6bf7c7c45456b9761d7958a27ee728371ae68015f3912f",
+      "sha256_match": true,
+      "bytes": 6870
+    },
+    {
+      "source": "research/synthesis/picos_track_comparison.json",
+      "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/03_연구부록/v3.0_완전AI자율트랙/picos_track_comparison.json",
+      "source_sha256": "84b40e1c3f7c770dab812e482176b593c707b3007f98a8a9648c328775473480",
+      "backup_created": null,
+      "overwrote_existing": true,
+      "destination_sha256": "84b40e1c3f7c770dab812e482176b593c707b3007f98a8a9648c328775473480",
+      "sha256_match": true,
+      "bytes": 569127
+    },
+    {
+      "source": "research/protocol/protocol-v3.0-full-ai.md",
+      "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/03_연구부록/v3.0_완전AI자율트랙/protocol-v3.0-full-ai.md",
+      "source_sha256": "0d273f6a130ebd11e856b4f5aaf8894469dfe2b29e5b0ed8b6398b1dffbbe808",
+      "backup_created": null,
+      "overwrote_existing": true,
+      "destination_sha256": "0d273f6a130ebd11e856b4f5aaf8894469dfe2b29e5b0ed8b6398b1dffbbe808",
+      "sha256_match": true,
+      "bytes": 7177
+    },
+    {
+      "source": "research/synthesis/screener_vs_ai_reference_v3.json",
+      "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/03_연구부록/v3.0_완전AI자율트랙/screener_vs_ai_reference_v3.json",
+      "source_sha256": "e55e21e74842867516f30996d9d0df93067ef3b20e4371ea38fc2f51bb6ad89e",
+      "backup_created": null,
+      "overwrote_existing": true,
+      "destination_sha256": "e55e21e74842867516f30996d9d0df93067ef3b20e4371ea38fc2f51bb6ad89e",
+      "sha256_match": true,
+      "bytes": 13839
+    },
+    {
+      "source": "research/validation/screening_ai_reference_v3/manifest.json",
+      "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/03_연구부록/v3.0_완전AI자율트랙/screening_ai_reference_v3_manifest.json",
+      "source_sha256": "7e11991f4587ebd12e409db8efdc3fa2ee91637190bd68e398b8e0ee853ab3ae",
+      "backup_created": null,
+      "overwrote_existing": true,
+      "destination_sha256": "7e11991f4587ebd12e409db8efdc3fa2ee91637190bd68e398b8e0ee853ab3ae",
+      "sha256_match": true,
+      "bytes": 5230
+    },
+    {
+      "source": "research/screening/v30_agent/manifest.json",
+      "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/03_연구부록/v3.0_완전AI자율트랙/screening_v30_agent_manifest.json",
+      "source_sha256": "1d8060e90254c2476bf6fcd3362f4e4db5a6f3afef660d37ea17d1ddb21a0afd",
+      "backup_created": null,
+      "overwrote_existing": true,
+      "destination_sha256": "1d8060e90254c2476bf6fcd3362f4e4db5a6f3afef660d37ea17d1ddb21a0afd",
+      "sha256_match": true,
+      "bytes": 17791
+    },
+    {
+      "source": "research/systematic_review_v30/core_manifest.json",
+      "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/03_연구부록/v3.0_완전AI자율트랙/systematic_review_v30_core_manifest.json",
+      "source_sha256": "d6a6190301939ce45a838ed4ffec5f1b4b661223962af8298fcbef80534f64a6",
+      "backup_created": null,
+      "overwrote_existing": true,
+      "destination_sha256": "d6a6190301939ce45a838ed4ffec5f1b4b661223962af8298fcbef80534f64a6",
+      "sha256_match": true,
+      "bytes": 2613
+    },
+    {
+      "source": "research/systematic_review_v30/manifest.json",
+      "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/03_연구부록/v3.0_완전AI자율트랙/systematic_review_v30_manifest.json",
+      "source_sha256": "3d0e9fa66b11f9e95631d48f7fe35bb48f5b7dd68f2c2160353012d098a0c15f",
+      "backup_created": null,
+      "overwrote_existing": true,
+      "destination_sha256": "3d0e9fa66b11f9e95631d48f7fe35bb48f5b7dd68f2c2160353012d098a0c15f",
+      "sha256_match": true,
+      "bytes": 1385
+    },
+    {
+      "source": "research/systematic_review_v30/validation.json",
+      "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/03_연구부록/v3.0_완전AI자율트랙/systematic_review_v30_validation.json",
+      "source_sha256": "3d6685453ba1c032c6651ce5481b88fe80594ee0c954d74e73fcb5ed29b59d85",
+      "backup_created": null,
+      "overwrote_existing": true,
+      "destination_sha256": "3d6685453ba1c032c6651ce5481b88fe80594ee0c954d74e73fcb5ed29b59d85",
+      "sha256_match": true,
+      "bytes": 245
+    },
+    {
+      "source": "research/logs/v30_run_report.json",
+      "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/03_연구부록/v3.0_완전AI자율트랙/v30_run_report.json",
+      "source_sha256": "d141e1c3d56adbe0aa82f9fc8ee75914ec80b4e7714b4e342341304195f725bd",
+      "backup_created": null,
+      "overwrote_existing": true,
+      "destination_sha256": "d141e1c3d56adbe0aa82f9fc8ee75914ec80b4e7714b4e342341304195f725bd",
+      "sha256_match": true,
+      "bytes": 480576
+    },
+    {
+      "source": "research/reports/발표원고_v3.0.md",
+      "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/06_발표자료/발표원고_v3.0.md",
+      "source_sha256": "8a18e3b22c3020817dd334e3975f9141ce135b489733b3042b5afb453ab8b7b6",
+      "backup_created": null,
+      "overwrote_existing": true,
+      "destination_sha256": "8a18e3b22c3020817dd334e3975f9141ce135b489733b3042b5afb453ab8b7b6",
+      "sha256_match": true,
+      "bytes": 7729
+    }
+  ],
+  "synced_at": "2026-07-27T03:09:22+00:00",
+  "gdrive_root": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준",
+  "policy": "기존 v2.1 원본과 90_legacy 는 삭제·재구성하지 않는다. 이름이 겹치는 v3 매니페스트는 03_연구부록/v3.0_완전AI자율트랙/ 하위에 두고, 유일하게 같은 자리를 덮어쓰는 amendments.csv 는 백업본을 먼저 만든다.",
+  "file_count": 16,
+  "all_sha256_match": true
+}
