@@ -84,3 +84,31 @@ P3 는 P2 와 다른 과업이다. 레코드를 통째로 판단하지 않고 P�
 ### 라운드 1 결과
 - 300건 전량 채점 완료, `collect --round 1` 통과.
 - 도출 라벨 분포: reference_retain 170 / reference_deprioritize 102 / reference_uncertain 28
+
+## 2026-07-27 P3 완료 및 라운드 독립성에 대한 한계 기록
+
+### 결과
+- 3라운드 × 300건 채점 완료, `vote` 결과 unresolved 0건.
+- 다수결 라벨: reference_retain 164 / reference_deprioritize 105 / reference_uncertain 31.
+- 층화 가중 지표(`screener_vs_ai_reference_v3.json`):
+  - `sensitivity_vs_ai_reference` 0.9868 (95% CI 0.968–1.000)
+  - `specificity_vs_ai_reference` 0.5155 (95% CI 0.466–0.575)
+  - `agreement_vs_ai_reference` 0.7851
+- Rogan–Gladen 보정 후 코퍼스 retain 규모: 비율 0.5721 (95% CI 0.527–0.615),
+  건수 1,264건 (95% CI 1,165–1,359). 보정 전 겉보기 값은 1,705건(0.7718)이다.
+- 불일치 사례: 분류기 retain·참조 deprioritize 59건, 분류기 deprioritize·참조 retain 2건.
+
+### 라운드 독립성 한계 (반드시 함께 보고할 것)
+세 라운드를 모두 같은 채점자(이 에이전트)가 수행했다. 라운드 간 순서는 시드로
+독립 무작위화했지만 채점자는 하나뿐이므로, 산출된 kappa 는 서로 다른 채점자 간
+일치도가 아니라 **동일 채점자의 재검사 안정성**이다.
+
+실제로 라운드 2와 라운드 3은 1,500개 축 셀이 **하나도 다르지 않았다**. 라운드 1을
+거치며 축 판정 기준이 완전히 고정된 뒤로는 같은 초록에 대해 같은 값이 그대로
+재현된 것이며, 이는 독립적인 3차 판정이라기보다 2차 판정의 재현이다. 따라서
+`round2_vs_round3` 의 kappa 1.0 을 신뢰도 근거로 인용해서는 안 된다. 정보량이 있는
+값은 기준이 아직 굳어지는 중이던 라운드 1과의 비교뿐이다(kappa 0.964, 축 셀 22/1500 상이).
+
+이 한계는 산출물에도 남겼다: `screener_vs_ai_reference_v3.json` 의
+`rounds.identical_round_pairs` 와 `rounds.agreement_interpretation`.
+논문·발표 원고에서 이 수치를 쓸 때 같은 단서를 반드시 붙인다.

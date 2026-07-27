@@ -474,14 +474,26 @@ def cmd_stats(args) -> int:
 
     round_labels = {r: load_round(r) for r in (1, 2, 3)}
     ids = sorted(round_labels[1])
+    axis_names = ("population", "intervention", "comparator", "outcome", "design")
     pairs = {}
+    identical_pairs = []
     for a, b in ((1, 2), (1, 3), (2, 3)):
         la = [round_labels[a][i]["reference_label"] for i in ids]
         lb = [round_labels[b][i]["reference_label"] for i in ids]
+        axis_diffs = sum(
+            1
+            for i in ids
+            for ax in axis_names
+            if round_labels[a][i][ax] != round_labels[b][i][ax]
+        )
         pairs[f"round{a}_vs_round{b}"] = {
             "raw_agreement": sum(1 for x, y in zip(la, lb) if x == y) / len(ids),
             "cohen_kappa": cohen_kappa(la, lb),
+            "axis_cells_compared": len(ids) * len(axis_names),
+            "axis_cells_differing": axis_diffs,
         }
+        if axis_diffs == 0:
+            identical_pairs.append(f"round{a}_vs_round{b}")
 
     out = {
         "schema_version": 1,
@@ -506,6 +518,13 @@ def cmd_stats(args) -> int:
             "unanimous_share": sum(
                 1 for r in majority_rows.values() if r["unanimous"]
             ) / len(majority_rows),
+            "identical_round_pairs": identical_pairs,
+            "agreement_interpretation": (
+                "세 라운드를 모두 같은 채점자(에이전트)가 수행했으므로 이 kappa 는 서로 다른 "
+                "채점자 사이의 일치도가 아니라 동일 채점자의 재검사 안정성(intra-rater)이다. "
+                "축 셀이 하나도 다르지 않은 라운드 쌍은 독립 재판정이 아니라 앞 라운드를 "
+                "그대로 재현한 것으로 보아야 하며, 그 쌍의 kappa 1.0 을 신뢰도 근거로 쓰면 안 된다."
+            ),
         },
         "weighted_metrics": rates,
         "corpus": {
