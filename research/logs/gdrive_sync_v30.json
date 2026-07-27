@@ -5,22 +5,22 @@
     {
       "source": "research/thesis/thesis_v30.docx",
       "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/02_졸업논문/여형준_졸업논문_최종본.docx",
-      "source_sha256": "9f5d2aea2e3791bfc8a64ca1943fce72f5f1083b4f95dec73764c4df0e2b65e3",
+      "source_sha256": "4477482ed779c97367b7a71268ec231beef329907a816b556425452d529654c6",
       "backup_created": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/02_졸업논문/여형준_졸업논문_최종본_v21백업.docx (이미 존재해 덮어쓰지 않음)",
       "overwrote_existing": true,
-      "destination_sha256": "9f5d2aea2e3791bfc8a64ca1943fce72f5f1083b4f95dec73764c4df0e2b65e3",
+      "destination_sha256": "4477482ed779c97367b7a71268ec231beef329907a816b556425452d529654c6",
       "sha256_match": true,
-      "bytes": 50087
+      "bytes": 50390
     },
     {
       "source": "research/thesis/thesis_v30.pdf",
       "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/02_졸업논문/여형준_졸업논문_최종본.pdf",
-      "source_sha256": "658f49fe60963f69e873fa1281f3251957f346db79f54cea477b21803fbebdcd",
+      "source_sha256": "08adbeb00945442fa8a976616970c88d86ca0cf40964021e57dc1a303ca875ff",
       "backup_created": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/02_졸업논문/여형준_졸업논문_최종본_v21백업.pdf (이미 존재해 덮어쓰지 않음)",
       "overwrote_existing": true,
-      "destination_sha256": "658f49fe60963f69e873fa1281f3251957f346db79f54cea477b21803fbebdcd",
+      "destination_sha256": "08adbeb00945442fa8a976616970c88d86ca0cf40964021e57dc1a303ca875ff",
       "sha256_match": true,
-      "bytes": 406739
+      "bytes": 410200
     },
     {
       "source": "research/protocol/amendments.csv",
@@ -45,12 +45,12 @@
     {
       "source": "research/reports/notion_update.md",
       "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/03_연구부록/v3.0_완전AI자율트랙/notion_update.md",
-      "source_sha256": "a1345d0434a8db09c3bcf7def3d523fa5ec7d717f35caa45c74fea8fe0ae0b78",
+      "source_sha256": "69e270bdc524203e151c75996ed97642ae2ec24253f71ba81ed9bbe0762b0e4b",
       "backup_created": null,
       "overwrote_existing": true,
-      "destination_sha256": "a1345d0434a8db09c3bcf7def3d523fa5ec7d717f35caa45c74fea8fe0ae0b78",
+      "destination_sha256": "69e270bdc524203e151c75996ed97642ae2ec24253f71ba81ed9bbe0762b0e4b",
       "sha256_match": true,
-      "bytes": 5835
+      "bytes": 6144
     },
     {
       "source": "research/searches_v3/ai_picos/picos_definition.json",
@@ -145,12 +145,12 @@
     {
       "source": "research/logs/v30_run_report.json",
       "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/03_연구부록/v3.0_완전AI자율트랙/v30_run_report.json",
-      "source_sha256": "8a75d3f24db5396c4b6d80778ed2054ffe5b5cc246130073398c9c176a238727",
+      "source_sha256": "a3af2ed656fb81046ffb2f0bb64897e62f7656bace7fd7d30f7f9fe77cc0ac3b",
       "backup_created": null,
       "overwrote_existing": true,
-      "destination_sha256": "8a75d3f24db5396c4b6d80778ed2054ffe5b5cc246130073398c9c176a238727",
+      "destination_sha256": "a3af2ed656fb81046ffb2f0bb64897e62f7656bace7fd7d30f7f9fe77cc0ac3b",
       "sha256_match": true,
-      "bytes": 481043
+      "bytes": 482291
     },
     {
       "source": "research/reports/발표원고_v3.0.md",
@@ -163,7 +163,7 @@
       "bytes": 7816
     }
   ],
-  "synced_at": "2026-07-27T03:46:32+00:00",
+  "synced_at": "2026-07-27T04:33:48+00:00",
   "gdrive_root": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준",
   "policy": "기존 v2.1 원본과 90_legacy 는 삭제·재구성하지 않는다. 이름이 겹치는 v3 매니페스트는 03_연구부록/v3.0_완전AI자율트랙/ 하위에 두고, 유일하게 같은 자리를 덮어쓰는 amendments.csv 는 백업본을 먼저 만든다.",
   "file_count": 16,

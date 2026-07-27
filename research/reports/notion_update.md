@@ -47,7 +47,7 @@
 
 **4. AI 가 고른 문헌으로 개인 맞춤 요약을 만든다 — 참**
 
-선별 라벨을 게이트로 적용해 근거 번들 1,353행, 핵심 근거 75건, 개인화 규칙 35건, 한국어 번역 75건을 생성했고 공개 API 응답의 evidence_lineage.track 이 v3.0_full_ai_autonomy 로 고정된다. 다만 별칭별 후보 근거 수가 적은 질문이 있어 근거 폭은 선행 트랙보다 좁다.
+선별 라벨을 게이트로 적용해 근거 번들 1,353행, 핵심 근거 75건, 개인화 규칙 35건, 한국어 번역 75건을 생성했고 공개 API 응답의 evidence_lineage.track 이 v3.0_full_ai_autonomy 로 고정된다. 공개 화면의 연구 서술은 상수 문자열이 아니라 각 응답이 실제로 선택한 근거에서 생성하며, 인용문이 선택된 근거 원문에 그대로 존재하는지를 회귀 테스트가 검사한다. 다만 별칭별 후보 근거 수가 적은 질문이 있어 근거 폭은 선행 트랙보다 좁고, 그런 경우 서술은 문헌이 부족하다는 사실을 그대로 적는다.
 
 증거: `research/systematic_review_v30/core_manifest.json`, `research/systematic_review_v30/validation.json`, `research/systematic_review_v30/personalized_rules.json`
 
@@ -72,7 +72,7 @@
 
 - `npm run typecheck` 통과, `npm run lint` 통과, `npm test` 통과, `npm run build` 통과
 - `research/systematic_review_v30/validation.json` 의 valid = true
-- **배포 완료.** https://nutrition-safety-engine.vercel.app (배포 ID dpl_A2dXBwXXA8D4sha3StyBcRrev3eW). 공개 API 응답의 `evidence_lineage.track` 이 `v3.0_full_ai_autonomy` 로 확인됐다.
+- **배포 완료.** https://nutrition-safety-engine.vercel.app (배포 ID dpl_5HiQkMJSLiU5hMGbmzcw1ZEug36J). 공개 API 응답의 `evidence_lineage.track` 이 `v3.0_full_ai_autonomy` 로 확인됐다.
 
 ## 공식 문서 위치
 

@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "track": "v3.0_full_ai_autonomy",
   "generated_from": "tools/build_v30_reports.py",
-  "git_head": "af8fa83eb341341318c7eecdfa8662901880d8e6",
+  "git_head": "841306667f6072ae6caa905a8f81980a24ea005d",
   "claims": [
     {
       "id": 1,
@@ -39,7 +39,7 @@
       "id": 4,
       "claim": "AI 가 고른 문헌으로 개인 맞춤 요약을 만든다",
       "verdict": true,
-      "evidence": "선별 라벨을 게이트로 적용해 근거 번들 1,353행, 핵심 근거 75건, 개인화 규칙 35건, 한국어 번역 75건을 생성했고 공개 API 응답의 evidence_lineage.track 이 v3.0_full_ai_autonomy 로 고정된다. 다만 별칭별 후보 근거 수가 적은 질문이 있어 근거 폭은 선행 트랙보다 좁다.",
+      "evidence": "선별 라벨을 게이트로 적용해 근거 번들 1,353행, 핵심 근거 75건, 개인화 규칙 35건, 한국어 번역 75건을 생성했고 공개 API 응답의 evidence_lineage.track 이 v3.0_full_ai_autonomy 로 고정된다. 공개 화면의 연구 서술은 상수 문자열이 아니라 각 응답이 실제로 선택한 근거에서 생성하며, 인용문이 선택된 근거 원문에 그대로 존재하는지를 회귀 테스트가 검사한다. 다만 별칭별 후보 근거 수가 적은 질문이 있어 근거 폭은 선행 트랙보다 좁고, 그런 경우 서술은 문헌이 부족하다는 사실을 그대로 적는다.",
       "evidence_paths": [
         "research/systematic_review_v30/core_manifest.json",
         "research/systematic_review_v30/validation.json",
@@ -21994,25 +21994,28 @@
     "deployed": true,
     "deployment": {
       "url": "https://nutrition-safety-engine.vercel.app",
-      "deployment_url": "https://nutrition-safety-engine-f32e0tj1p-yeohj0710s-projects.vercel.app",
-      "deployment_id": "dpl_A2dXBwXXA8D4sha3StyBcRrev3eW",
+      "deployment_id": "dpl_5HiQkMJSLiU5hMGbmzcw1ZEug36J",
       "target": "production",
       "method": "npx vercel --prod (Vercel CLI, GitHub 연동 아님)",
       "authorized_by": "사용자가 P6 완료 보고 뒤 배포와 push 를 명시적으로 지시했다",
+      "repo_parity": "배포 시점의 앱 소스는 push 된 커밋과 일치한다. 커밋하지 않은 파일은 사이트가 빌드 시 읽는 16개 파일에 포함되지 않는다.",
       "public_check": {
         "endpoint": "POST /api/personalized-safety",
+        "cases": 5,
         "evidence_lineage_track": "v3.0_full_ai_autonomy",
-        "source_question_id": "HRS5_ANTICOAGULATION",
-        "record_id": "pubmed:22651380",
+        "quote_is_verbatim_substring_of_selected_evidence": true,
+        "selection_reason_derived_from_evidence": true,
+        "broken_reference_links": 0,
+        "legacy_track_narrative_strings_found": 0,
         "console_errors": 0
       }
     }
   },
   "thesis": {
     "docx": "research/thesis/thesis_v30.docx",
-    "docx_sha256": "9f5d2aea2e3791bfc8a64ca1943fce72f5f1083b4f95dec73764c4df0e2b65e3",
+    "docx_sha256": "4477482ed779c97367b7a71268ec231beef329907a816b556425452d529654c6",
     "pdf": "research/thesis/thesis_v30.pdf",
-    "pdf_sha256": "658f49fe60963f69e873fa1281f3251957f346db79f54cea477b21803fbebdcd",
+    "pdf_sha256": "08adbeb00945442fa8a976616970c88d86ca0cf40964021e57dc1a303ca875ff",
     "gdrive_docx": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/02_졸업논문/여형준_졸업논문_최종본.docx",
     "gdrive_pdf": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/02_졸업논문/여형준_졸업논문_최종본.pdf",
     "backup_docx": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/02_졸업논문/여형준_졸업논문_최종본_v21백업.docx",
@@ -22089,7 +22092,7 @@
   "files_synced": {
     "log": "research/logs/gdrive_sync_v30.json",
     "gdrive_root": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준",
-    "synced_at": "2026-07-27T03:46:32+00:00",
+    "synced_at": "2026-07-27T04:33:47+00:00",
     "policy": "기존 v2.1 원본과 90_legacy 는 삭제·재구성하지 않는다. 이름이 겹치는 v3 매니페스트는 03_연구부록/v3.0_완전AI자율트랙/ 하위에 두고, 유일하게 같은 자리를 덮어쓰는 amendments.csv 는 백업본을 먼저 만든다.",
     "file_count": 16,
     "all_sha256_match": true,
@@ -22097,22 +22100,22 @@
       {
         "source": "research/thesis/thesis_v30.docx",
         "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/02_졸업논문/여형준_졸업논문_최종본.docx",
-        "source_sha256": "9f5d2aea2e3791bfc8a64ca1943fce72f5f1083b4f95dec73764c4df0e2b65e3",
+        "source_sha256": "4477482ed779c97367b7a71268ec231beef329907a816b556425452d529654c6",
         "backup_created": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/02_졸업논문/여형준_졸업논문_최종본_v21백업.docx (이미 존재해 덮어쓰지 않음)",
         "overwrote_existing": true,
-        "destination_sha256": "9f5d2aea2e3791bfc8a64ca1943fce72f5f1083b4f95dec73764c4df0e2b65e3",
+        "destination_sha256": "4477482ed779c97367b7a71268ec231beef329907a816b556425452d529654c6",
         "sha256_match": true,
-        "bytes": 50087
+        "bytes": 50390
       },
       {
         "source": "research/thesis/thesis_v30.pdf",
         "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/02_졸업논문/여형준_졸업논문_최종본.pdf",
-        "source_sha256": "658f49fe60963f69e873fa1281f3251957f346db79f54cea477b21803fbebdcd",
+        "source_sha256": "08adbeb00945442fa8a976616970c88d86ca0cf40964021e57dc1a303ca875ff",
         "backup_created": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/02_졸업논문/여형준_졸업논문_최종본_v21백업.pdf (이미 존재해 덮어쓰지 않음)",
         "overwrote_existing": true,
-        "destination_sha256": "658f49fe60963f69e873fa1281f3251957f346db79f54cea477b21803fbebdcd",
+        "destination_sha256": "08adbeb00945442fa8a976616970c88d86ca0cf40964021e57dc1a303ca875ff",
         "sha256_match": true,
-        "bytes": 406739
+        "bytes": 410200
       },
       {
         "source": "research/protocol/amendments.csv",
@@ -22137,12 +22140,12 @@
       {
         "source": "research/reports/notion_update.md",
         "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/03_연구부록/v3.0_완전AI자율트랙/notion_update.md",
-        "source_sha256": "a1345d0434a8db09c3bcf7def3d523fa5ec7d717f35caa45c74fea8fe0ae0b78",
+        "source_sha256": "69e270bdc524203e151c75996ed97642ae2ec24253f71ba81ed9bbe0762b0e4b",
         "backup_created": null,
         "overwrote_existing": true,
-        "destination_sha256": "a1345d0434a8db09c3bcf7def3d523fa5ec7d717f35caa45c74fea8fe0ae0b78",
+        "destination_sha256": "69e270bdc524203e151c75996ed97642ae2ec24253f71ba81ed9bbe0762b0e4b",
         "sha256_match": true,
-        "bytes": 5835
+        "bytes": 6144
       },
       {
         "source": "research/searches_v3/ai_picos/picos_definition.json",
@@ -22237,12 +22240,12 @@
       {
         "source": "research/logs/v30_run_report.json",
         "destination": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/03_연구부록/v3.0_완전AI자율트랙/v30_run_report.json",
-        "source_sha256": "d141e1c3d56adbe0aa82f9fc8ee75914ec80b4e7714b4e342341304195f725bd",
+        "source_sha256": "8a75d3f24db5396c4b6d80778ed2054ffe5b5cc246130073398c9c176a238727",
         "backup_created": null,
         "overwrote_existing": true,
-        "destination_sha256": "d141e1c3d56adbe0aa82f9fc8ee75914ec80b4e7714b4e342341304195f725bd",
+        "destination_sha256": "8a75d3f24db5396c4b6d80778ed2054ffe5b5cc246130073398c9c176a238727",
         "sha256_match": true,
-        "bytes": 480576
+        "bytes": 481043
       },
       {
         "source": "research/reports/발표원고_v3.0.md",
@@ -22287,6 +22290,12 @@
       "detail": "선별과 참조 판정을 모두 같은 판정 주체가 수행했다. 프롬프트와 판정 절차는 분리했지만 판정자는 분리하지 못했다. 따라서 sensitivity_vs_ai_reference 등은 진실 정확도가 아니라 내부 일관성 지표다.",
       "evidence_path": "research/synthesis/screener_vs_ai_reference_v3.json",
       "handled": "구조적 한계로 남긴다. 해소하려면 독립된 판정 주체가 필요하다."
+    },
+    {
+      "item": "서술 재작성 단계가 일부 입력에서 거부됨",
+      "detail": "공개 API 의 서술 재작성 결과가 판단 보존 검사(preservesDecision)에서 거부되는 입력이 있다. 거부되면 규칙 기반 문장으로 되돌아가며, 그 경로도 선택된 근거에서 생성한 문장을 쓰므로 표시 내용의 정합성 문제는 없다. 사유는 응답의 narrative_assessment.fallback_reason 에 남는다.",
+      "evidence_path": "app/api/personalized-safety/route.ts",
+      "handled": "검사를 완화하지 않았다. 판단이 바뀌지 않도록 막는 것이 이 검사의 목적이므로, 완화 여부는 별도 판단이 필요하다."
     },
     {
       "item": "개인화 근거 폭이 좁음",

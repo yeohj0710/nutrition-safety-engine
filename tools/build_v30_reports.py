@@ -25,16 +25,22 @@ NOTION_URL = "https://app.notion.com/p/3753b1f9b9ae814bb314dc1deb743dfa"
 # 배포는 goal 지시의 금지 항목이었으나 사용자가 최종 검증 뒤 직접 해제하고 배포를 요청했다.
 DEPLOY = {
     "url": "https://nutrition-safety-engine.vercel.app",
-    "deployment_url": "https://nutrition-safety-engine-f32e0tj1p-yeohj0710s-projects.vercel.app",
-    "deployment_id": "dpl_A2dXBwXXA8D4sha3StyBcRrev3eW",
+    "deployment_id": "dpl_5HiQkMJSLiU5hMGbmzcw1ZEug36J",
     "target": "production",
     "method": "npx vercel --prod (Vercel CLI, GitHub 연동 아님)",
     "authorized_by": "사용자가 P6 완료 보고 뒤 배포와 push 를 명시적으로 지시했다",
+    "repo_parity": (
+        "배포 시점의 앱 소스는 push 된 커밋과 일치한다. 커밋하지 않은 파일은 사이트가 "
+        "빌드 시 읽는 16개 파일에 포함되지 않는다."
+    ),
     "public_check": {
         "endpoint": "POST /api/personalized-safety",
+        "cases": 5,
         "evidence_lineage_track": "v3.0_full_ai_autonomy",
-        "source_question_id": "HRS5_ANTICOAGULATION",
-        "record_id": "pubmed:22651380",
+        "quote_is_verbatim_substring_of_selected_evidence": True,
+        "selection_reason_derived_from_evidence": True,
+        "broken_reference_links": 0,
+        "legacy_track_narrative_strings_found": 0,
         "console_errors": 0,
     },
 }
@@ -561,6 +567,20 @@ UNRESOLVED = [
         ),
         "evidence_path": "research/synthesis/screener_vs_ai_reference_v3.json",
         "handled": "구조적 한계로 남긴다. 해소하려면 독립된 판정 주체가 필요하다.",
+    },
+    {
+        "item": "서술 재작성 단계가 일부 입력에서 거부됨",
+        "detail": (
+            "공개 API 의 서술 재작성 결과가 판단 보존 검사(preservesDecision)에서 거부되는 입력이 "
+            "있다. 거부되면 규칙 기반 문장으로 되돌아가며, 그 경로도 선택된 근거에서 생성한 문장을 "
+            "쓰므로 표시 내용의 정합성 문제는 없다. 사유는 응답의 "
+            "narrative_assessment.fallback_reason 에 남는다."
+        ),
+        "evidence_path": "app/api/personalized-safety/route.ts",
+        "handled": (
+            "검사를 완화하지 않았다. 판단이 바뀌지 않도록 막는 것이 이 검사의 목적이므로, "
+            "완화 여부는 별도 판단이 필요하다."
+        ),
     },
     {
         "item": "개인화 근거 폭이 좁음",
