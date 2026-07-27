@@ -2,7 +2,7 @@
 
 새 세션에서 빠르게 진입하기 위한 파일 맵입니다. 길게 설명하지 않고, "어디를 먼저 열어야 하는지"만 적습니다.
 
-생성/갱신 시각: 2026-03-23
+생성/갱신 시각: 2026-07-27
 
 ## 1. 앱 진입점
 
@@ -48,8 +48,8 @@
   - 개인화 안전성 API가 쓰는 다중 값 입력 파싱 helper.
 - `src/lib/personalized-safety-examples.ts`
   - 개인화 안전성 예시 입력 데이터.
-- `research/systematic_review_v3/personalized_rules.json`
-  - 개인화 안전성 규칙/근거 데이터(A1~B3).
+- `research/systematic_review_v30/personalized_rules.json`
+  - v3.0 개인화 안전성 규칙과 근거 데이터. HRS1~HRS5와 앱 호환 별칭을 함께 보관.
 
 ## 4. 타입 / 생성물
 
@@ -63,7 +63,31 @@
 
 ## 5. 데이터 원본
 
-### 5-1. 연구 코퍼스 (protocol v2.1, 메인 페이지가 쓰는 계보)
+### 5-1. 신규 연구 코퍼스 (protocol v3.0, 메인 페이지가 쓰는 계보)
+
+- `research/protocol/protocol-v3.0-full-ai.md`
+  - v3.0 AI 자율 트랙의 범위, 역할, 명명 규칙, 재현 조건.
+- `research/searches_v3/`
+  - 독립 PICOS 정의, 질문별 PubMed 검색 원문·체크섬, `search_log.csv`.
+- `data/curated_v3/evidence_map.csv`
+  - v3.0 독립 코퍼스. `corpus_manifest.json`이 입력 계보와 해시를 기록.
+- `research/screening/v30_agent/`
+  - AI 분류 프롬프트, 실행 로그, 배치 감사 기록, manifest.
+- `data/curated_v3/llm_screening_classifications.csv`
+  - v3.0 AI 분류 결과. 라벨은 `retain`/`deprioritize`/`uncertain`.
+- `research/validation/screening_ai_reference_v3/`
+  - 블라인드 표본, AI 참조표준 라운드, 점수와 실행 manifest.
+- `research/synthesis/screener_vs_ai_reference_v3.json`
+  - AI 참조표준 대비 비교. `sensitivity_vs_ai_reference`,
+    `specificity_vs_ai_reference`, `agreement_vs_ai_reference`만 사용. 참조표준과 상태 이름은
+    `ai_reference_standard`, `ai_cross_checked`로 기록.
+- `research/systematic_review_v30/`
+  - `picos_extraction.csv` → `core_evidence.csv` →
+    `key_finding_translations_ko.json` → `personalized_rules.json` 계보와 manifest.
+- `research/reports/`, `research/thesis/`
+  - 생성되는 발표·업데이트 문서와 논문 DOCX/PDF의 canonical 경로.
+
+### 5-2. 동결 비교 코퍼스 (protocol v2.1)
 
 - `data/curated_v2/evidence_map.csv`
   - 근거지도 원본. 20,230 레코드-질문 / 초록 보유 18,015. 아래 산출물의 입력 해시 기준.
@@ -74,9 +98,9 @@
 - `research/synthesis/screening_method_comparison.json`
   - 두 자동 방식의 일치도·교차표. 정확도 지표는 산출하지 않음(프로토콜 §9).
 - `research/systematic_review_v3/picos_extraction.csv` → `core_evidence.csv` → `personalized_rules.json`
-  - 정규식 PICOS 추출에 LLM 게이트를 적용한 결과. 메인 페이지 통계와 조회 결과의 출처.
+  - 정규식 PICOS 추출에 LLM 게이트를 적용한 동결 비교 산출물.
 
-### 5-2. 레거시 스냅샷 (`/legacy` 브라우저 전용, 격리 유지)
+### 5-3. 레거시 스냅샷 (`/legacy` 브라우저 전용, 격리 유지)
 
 - `data/knowledge_pack.json`
   - 기본 단일 원본. 있으면 이 파일만 읽음.
@@ -100,6 +124,14 @@
 
 - `scripts/build-knowledge-index.ts`
   - 정규화 스크립트 실행 진입점.
+- `tools/v30/pubmed_v3.py`
+  - v3.0 PubMed 검색·코퍼스 생성·검증.
+- `tools/v30/agent_screen_batches.py`
+  - v3.0 코퍼스 AI 분류·재개·완료 처리·검증.
+- `tools/v30/agent_reference_sample.py`
+  - AI 참조표준 표본·라운드·비교 결과 생성·검증.
+- `tools/v30/build_site_v3.py`
+  - v3.0 PICOS·핵심 근거·번역·개인화 규칙 생성과 검증.
 - `schemas/*.schema.json`
   - 데이터/엔진 관련 JSON schema.
 - `exports/*`
@@ -137,6 +169,11 @@
    - 개발 서버에서는 저장 즉시 자동 반영, 수동 검증/배포 전에는 `npm run prepare:knowledge`
 4. 출처 화면 수정: `app/sources/page.tsx` -> `src/components/source-browser-client.tsx` -> `app/sources/[id]/page.tsx`
 5. AI 설명 수정: `app/api/personalized-safety/route.ts` -> `src/lib/personalized-safety-examples.ts`, `src/lib/multi-value-input.ts`
+6. v3.0 연구 산출물 검증: `python tools/v30/pubmed_v3.py validate` ->
+   `python tools/v30/agent_screen_batches.py verify` ->
+   `python tools/v30/agent_reference_sample.py stats` ->
+   `npm run validate:v30-evidence`
+7. v3.0 근거 번들 재생성: `npm run build:v30-evidence` -> `npm run validate:v30-evidence`
 
 ## 10. 작업 후 기본 확인
 

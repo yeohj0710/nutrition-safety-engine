@@ -33,7 +33,7 @@
 여기서 말하는 AI는 **런타임 설명 계층**입니다. 실행 중에 규칙을 바꾸거나 판정을 내리지
 않습니다. 문헌을 고르는 **빌드 시점의 LLM 분류 층**은 아래 연구 파이프라인에 따로 있습니다.
 
-## 연구 파이프라인 (protocol v2.1)
+## 연구 파이프라인 (protocol v2.1 동결 비교 트랙)
 
 ```
 PubMed 검색 (질문 5개, 확정 2026-07-13, 원본 XML + 체크섬 보존)
@@ -62,6 +62,71 @@ python tools/build_systematic_review_v3.py     # PICOS 추출 + LLM 게이트
 python tools/build_core_evidence_v3.py         # core evidence
 npm run prepare:knowledge                      # 앱이 읽는 번들 재생성
 ```
+
+## 신규 연구 파이프라인 (protocol v3.0 AI 자율 트랙)
+
+v3.0 트랙은 v2.1의 질문, 검색식, 코퍼스와 분리되어 있습니다. v2.1 산출물을 덮어쓰지
+않으며, 각 단계의 입력 해시와 실행 기록을 별도 경로에 보존합니다.
+
+```text
+research/protocol/protocol-v3.0-full-ai.md
+  └ research/searches_v3/                       독립 PICOS·검색식·PubMed 원문·검색 로그
+       └ data/curated_v3/evidence_map.csv       독립 코퍼스
+            └ research/screening/v30_agent/     에이전트 직접 선별 실행·감사 기록
+                 └ data/curated_v3/llm_screening_classifications.csv
+                      └ research/validation/screening_ai_reference_v3/
+                           └ research/synthesis/screener_vs_ai_reference_v3.json
+                                └ research/systematic_review_v30/
+                                     ├ core_evidence.csv
+                                     ├ key_finding_translations_ko.json
+                                     └ personalized_rules.json
+                                          ├ research/reports/
+                                          └ research/thesis/
+```
+
+- `research/systematic_review_v30/`은 PICOS 추출, AI 게이트, 핵심 근거, 한국어 번역,
+  개인화 규칙과 각 산출물의 manifest를 보관합니다.
+- `research/reports/`는 발표 원고와 업데이트 문서를, `research/thesis/`는 논문 원본과
+  PDF를 보관하는 canonical 경로입니다.
+- AI 참조표준 비교값은 임상적 정확도가 아닙니다. 필드명은
+  `sensitivity_vs_ai_reference`, `specificity_vs_ai_reference`,
+  `agreement_vs_ai_reference`, `ai_reference_standard`, `ai_cross_checked`를 그대로 씁니다.
+
+현재 산출물 검증과 근거 번들 재생성 명령:
+
+```bash
+python tools/v30/pubmed_v3.py validate                     # 검색·코퍼스 무결성
+python tools/v30/agent_screen_batches.py verify            # 선별 커버리지 100% 확인
+python tools/v30/agent_reference_sample.py stats           # 참조표준 지표 재계산
+npm run validate:v30-evidence
+```
+
+새 검색부터 다시 실행할 때의 순서는 다음과 같습니다.
+
+```bash
+python tools/v30/pubmed_v3.py probe
+python tools/v30/pubmed_v3.py fetch
+python tools/v30/pubmed_v3.py validate
+
+# 선별: 배치를 만들고 에이전트가 직접 판정한 뒤 커버리지를 검증한다.
+python tools/v30/agent_screen_batches.py batch --view-dir <작업폴더>
+python tools/v30/agent_screen_batches.py collect
+python tools/v30/agent_screen_batches.py verify
+python tools/v30/agent_screen_batches.py finalize
+
+# 참조표준: 층화표본을 뽑고 라운드별로 축을 채점한 뒤 다수결·통계를 낸다.
+python tools/v30/agent_reference_sample.py sample
+python tools/v30/agent_reference_sample.py rounds --round 1 --view-dir <작업폴더>
+python tools/v30/agent_reference_sample.py collect --round 1
+python tools/v30/agent_reference_sample.py vote
+python tools/v30/agent_reference_sample.py stats --iterations 10000
+
+npm run build:v30-evidence
+npm run validate:v30-evidence
+```
+
+선별과 참조표준 채점은 스크립트가 판정을 생성하지 않습니다. 스크립트는 배치와
+블라인드 뷰를 만들고, 에이전트가 쓴 판정 파일을 수집·검증·집계하는 역할만 합니다.
 
 ## 아키텍처
 
@@ -108,7 +173,7 @@ npm run prepare:knowledge                      # 앱이 읽는 번들 재생성
 ### 3. AI 설명 계층
 
 - 서버 라우트: `app/api/personalized-safety/route.ts`
-- 지원 모듈: `src/lib/multi-value-input.ts`, `src/lib/personalized-safety-examples.ts`, `research/systematic_review_v3/personalized_rules.json`
+- 지원 모듈: `src/lib/multi-value-input.ts`, `src/lib/personalized-safety-examples.ts`, `research/systematic_review_v30/personalized_rules.json`
 - 사용 방식: 별도 SDK 없이 `fetch`로 OpenAI Responses API(`https://api.openai.com/v1/responses`)를 직접 호출합니다. `openai` npm 패키지는 의존성에 없습니다.
 - API: Responses API + Structured Outputs(json_schema)
 
