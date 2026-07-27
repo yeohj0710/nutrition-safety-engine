@@ -1,0 +1,68 @@
+{
+  "input": "G:\\\ub0b4 \ub4dc\ub77c\uc774\ube0c\\\uc5ec\ud615\uc900\ub2d8\\24 \uc804\uacf5\uc2ec\ud654\uc2e4\uc2b5(1)\\\uc5ec\ud615\uc900\\02_\uc878\uc5c5\ub17c\ubb38\\\uc5ec\ud615\uc900_\uc878\uc5c5\ub17c\ubb38_\ucd5c\uc885\ubcf8.docx",
+  "fonts_by_char_count": {},
+  "direct_run_formatting_runs": 4,
+  "direct_paragraph_formatting_paragraphs": 3,
+  "heading_like_paragraphs_not_heading_style": [
+    {
+      "para_index": 1,
+      "text": "\ud559\uc704\ub17c\ubb38",
+      "style": "Normal"
+    },
+    {
+      "para_index": 2,
+      "text": "\uace0\uc704\ud5d8 \uc784\uc0c1\uc0c1\ud669\uc758 \uc601\uc591\ubcf4\ucda9\uc81c \uc548\uc804\uc131 \ubb38\ud5cc\uc744 \uc704\ud55c\nAI \uae30\ubc18 \ud0d0\uc0c9\uc801 \uadfc\uac70\uc9c0\ub3c4 \uad6c\ucd95\uacfc\n\uacb0\uc815\ub860\uc801 \ud0d0\uc0c9 \ub3c4\uad6c\uc758 \uae30\uc220 \uac80\uc99d",
+      "style": "Normal"
+    },
+    {
+      "para_index": 4,
+      "text": "\uc5ec\ud615\uc900\n2026\ub144 7\uc6d4",
+      "style": "Normal"
+    }
+  ],
+  "examples": {
+    "direct_paragraph_formatting": [
+      {
+        "para_index": 1,
+        "text": "\ud559\uc704\ub17c\ubb38",
+        "style": "Normal"
+      },
+      {
+        "para_index": 2,
+        "text": "\uace0\uc704\ud5d8 \uc784\uc0c1\uc0c1\ud669\uc758 \uc601\uc591\ubcf4\ucda9\uc81c \uc548\uc804\uc131 \ubb38\ud5cc\uc744 \uc704\ud55c\nAI \uae30\ubc18 \ud0d0\uc0c9\uc801 \uadfc\uac70\uc9c0\ub3c4 \uad6c\ucd95\uacfc\n\uacb0\uc815\ub860\uc801 \ud0d0\uc0c9 \ub3c4\uad6c\uc758 \uae30\uc220 \uac80\uc99d",
+        "style": "Normal"
+      },
+      {
+        "para_index": 4,
+        "text": "\uc5ec\ud615\uc900\n2026\ub144 7\uc6d4",
+        "style": "Normal"
+      }
+    ],
+    "direct_run_formatting": [
+      {
+        "para_index": 1,
+        "run_text": "\ud559\uc704\ub17c\ubb38",
+        "style": "Normal"
+      },
+      {
+        "para_index": 2,
+        "run_text": "\uace0\uc704\ud5d8 \uc784\uc0c1\uc0c1\ud669\uc758 \uc601\uc591\ubcf4\ucda9\uc81c \uc548\uc804\uc131 \ubb38\ud5cc\uc744 \uc704\ud55c\nAI \uae30\ubc18 \ud0d0\uc0c9\uc801 \uadfc\uac70\uc9c0\ub3c4 \uad6c\ucd95\uacfc\n\uacb0\uc815\ub860\uc801 \ud0d0\uc0c9 \ub3c4\uad6c\uc758 \uae30\uc220 \uac80\uc99d",
+        "style": "Normal"
+      },
+      {
+        "para_index": 3,
+        "run_text": "AI-Based Exploratory Evidence Mapping of Dietary Supplement Safety in High-Risk ",
+        "style": "Normal"
+      },
+      {
+        "para_index": 4,
+        "run_text": "\uc5ec\ud615\uc900\n2026\ub144 7\uc6d4",
+        "style": "Normal"
+      }
+    ]
+  },
+  "notes": [
+    "Direct formatting is not always wrong, but it often causes inconsistent output when templates change.",
+    "Heading-like paragraphs not using Heading styles can break TOC and accessibility."
+  ]
+}
