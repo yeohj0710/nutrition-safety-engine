@@ -7,6 +7,8 @@
   "protocol_approver_identity_captured": false,
   "independent_press_complete": false,
   "registered": false,
+  "hash_method": "sha256_over_canonical_bytes",
+  "hash_method_note": "BOM 제거, CRLF/CR -> LF 통일, CSV 는 최소 인용으로 재직렬화한 뒤 해싱한다. core.autocrlf 체크아웃에서도 같은 값이 나온다.",
   "artifact_count": 23,
   "artifacts": [
     {
@@ -16,113 +18,113 @@
     },
     {
       "path": "research/approvals/research_progress_approval.json",
-      "size_bytes": 1195,
-      "sha256": "fdf8d10b0b82e92fc7a26426a83087232b865d7eaf41294a89f79563f94d94f6"
+      "size_bytes": 1169,
+      "sha256": "2e55d971361fc71bbfe735be1501941ea14f02b0d7b41b5791a91fa1f8afc091"
     },
     {
       "path": "research/protocol/access_matrix.csv",
-      "size_bytes": 4651,
-      "sha256": "79001899174e0d652a63d9859d2962b3a68099614ee0e56a04a417c0d0e02df6"
+      "size_bytes": 4624,
+      "sha256": "3e2116e93ebd9bec5162ea1e4401d016c7f31f3bf966eda21c9227e49ca5f186"
     },
     {
       "path": "research/protocol/amendments.csv",
-      "size_bytes": 2463,
-      "sha256": "fcc6c9b0d29d07ec9f33fb665c728945c8878e9539f3a8b14cb30192f2acaa36"
+      "size_bytes": 4686,
+      "sha256": "9b6253f07c8438339fdf5a665280489ddf3bdad877f9cf047bf5f0d97334dc09"
     },
     {
       "path": "research/protocol/human_ai_role_matrix.md",
-      "size_bytes": 1400,
-      "sha256": "daab857a2546f21f781603f6b7145919736c6a24aebf541405f439d1f1e087f7"
+      "size_bytes": 2403,
+      "sha256": "4287cbf4393d2307bbdb3a45052a2aec139b6c92dfbb2c40f660c2eb84b80c46"
     },
     {
       "path": "research/protocol/outcome_priority.csv",
-      "size_bytes": 2258,
-      "sha256": "d12aba0c55abbf99befb6c3dce174748c368d9b09af10f81d216fad171217e0d"
+      "size_bytes": 2240,
+      "sha256": "39fcbca48bf478ff2850c804bf4054f3ff7cfc45b247296c30de7f74eaf4ec5d"
     },
     {
       "path": "research/protocol/protocol-v1.0.md",
-      "size_bytes": 11480,
-      "sha256": "204c46961abcc04fe803e45ad161ce7c2fbfed14b5ccabeb72ce86d64e93dd23"
+      "size_bytes": 11263,
+      "sha256": "8acfe2664c8647d16bdfe9b79ae5e8f71d094d834ccfcfca7340f6abdfbdeda5"
     },
     {
       "path": "research/protocol/registration_status.md",
-      "size_bytes": 707,
-      "sha256": "a2300bde8bb159d800fff56569e74c49566be883582cc20fc55e9ecacdc74727"
+      "size_bytes": 698,
+      "sha256": "747619a21ed6dfc11334b1ebf39813d1f84f2ebb62b883b4e0257f1c893f2c2a"
     },
     {
       "path": "research/protocol/workload_forecast.csv",
-      "size_bytes": 686,
-      "sha256": "59e770ce388d61d681587d5907f91dc537ec7ff3cc6660d597a2d8353a1a5ecd"
+      "size_bytes": 679,
+      "sha256": "5c11b268ef017f5b0e03af4afefde7527bdd09592ebebbf513039364d04aeff9"
     },
     {
       "path": "research/review_queue/PRESS_review.csv",
-      "size_bytes": 4551,
-      "sha256": "34a8dc5d3d9548f514c22bdaa8739d101ed4af5b6b129b2afbae8f13e83b6a99"
+      "size_bytes": 4287,
+      "sha256": "0a001ee075fc9973b156ce6397dc5dbc51e18626240a99b57b40e6b905c0a905"
     },
     {
       "path": "research/review_queue/korean_db_PRESS_review.csv",
-      "size_bytes": 26398,
-      "sha256": "f381f36e47403780f1705a16a05a1e6e65d04f910ba933568c0a15aed6541ec7"
+      "size_bytes": 25164,
+      "sha256": "72a73c1b48e155447c0a2ec8a4b4907e490bc4342bb8514d7754592db3c400e5"
     },
     {
       "path": "research/review_queue/phase_02_external_review.csv",
-      "size_bytes": 1410,
-      "sha256": "0d463e8a6a97b12c9136e2faeef8df85a57413ba05d4f590229b5c81c0b8c5d7"
+      "size_bytes": 1395,
+      "sha256": "7c57f8a5754fd6bcdbd7569cbf3696f4fbd819cc1c786a56205b1752532f08af"
     },
     {
       "path": "research/searches/central_hitcount_log.csv",
-      "size_bytes": 1629,
-      "sha256": "6ca79a63a0d2abe9564f549d1b4fc32329817d4b7c966215a74f4fb48d538615"
+      "size_bytes": 1620,
+      "sha256": "5edd494d698fd2017aa3ad671da49dff57b7bdeb500497efe8f672efb04f5916"
     },
     {
       "path": "research/searches/clinicaltrials_search_log.csv",
-      "size_bytes": 2881,
-      "sha256": "22aab44aa3d69fcf9af7ae1d5a54370db04b90dace7aa0efdb13d683f280a9b9"
+      "size_bytes": 2872,
+      "sha256": "f1dae53b3029fd746c2d647d616110d4f9c0908fdb61fc8406a9f271506fc0a7"
     },
     {
       "path": "research/searches/koreamed_designpilot_20260710/summary.json",
-      "size_bytes": 696,
-      "sha256": "27f80c5a5d5ce029aca6f50be22c9563bc94907f92d1639a4d15ca68fc3cf254"
+      "size_bytes": 679,
+      "sha256": "57809e580c6fbcd4f7fcae5f8c50dc2d2123cc790b107e1267034745e4c865f8"
     },
     {
       "path": "research/searches/korean_db_split_designpilot_20260710/summary.json",
-      "size_bytes": 24358,
-      "sha256": "11d5f0b439b4b1c120444f5de1ed5d8075bc5bb363fc6534eb88803eeaad02cf"
+      "size_bytes": 23739,
+      "sha256": "70c968dc1f4b8bae14882c68417f22925a4451fa067f1350166da8b300eede16"
     },
     {
       "path": "research/searches/pubmed_pilot_20260710.json",
-      "size_bytes": 7424,
-      "sha256": "4f55250088ea6fa84f62becc9aa377b82133f4ddd2a9435b9743a2222f8861ba"
+      "size_bytes": 7317,
+      "sha256": "43459edf000e4d26eef356400e3e13e3668a5d7022a0c0a1d00d4d84ca31c4d4"
     },
     {
       "path": "research/searches/search_strategy_drafts/A1_pubmed.txt",
-      "size_bytes": 487,
-      "sha256": "8ad480eb9a18f69dd8c0b485494fba350e491597dc9d40b642546a401991ff88"
+      "size_bytes": 486,
+      "sha256": "1c8cf631d80cafe6979690e2e346d0b713ec4ede510d68ecd675c3d7f02e6d66"
     },
     {
       "path": "research/searches/search_strategy_drafts/A2_pubmed.txt",
-      "size_bytes": 587,
-      "sha256": "535b8155afb9545e43de46b89351c3caf45b7f84b00dc9af78f0928521c3691d"
+      "size_bytes": 586,
+      "sha256": "6c12f61d0e6964b0057611a1cbb6525dcb48077139b8808e08666b44122654d4"
     },
     {
       "path": "research/searches/search_strategy_drafts/B1_pubmed.txt",
-      "size_bytes": 605,
-      "sha256": "cf1a3da2737dd2e28bd772f74a250c6b1f2f7f02099c22812964ef6aa6d2e304"
+      "size_bytes": 604,
+      "sha256": "2500922a5460a60d1a38ca8113bd02e24a5a4ed0e69d11d2099b765d283d13e9"
     },
     {
       "path": "research/searches/search_strategy_drafts/B2_pubmed.txt",
-      "size_bytes": 554,
-      "sha256": "e70ea38a94475c3fb4745d057a48785c74696c6dc2276c614eb7b4382aae9b0b"
+      "size_bytes": 553,
+      "sha256": "c78f241a84c6cfa84d710490b821c6ebf41692493d9b0906e386832924f62c22"
     },
     {
       "path": "research/searches/search_strategy_drafts/B3_pubmed.txt",
-      "size_bytes": 525,
-      "sha256": "4976190d2fc9b7e10b51b0538e5463e07204ad8150fded8432ee1744041dbe5b"
+      "size_bytes": 524,
+      "sha256": "1cd3f203baa8a45c45fa5e33fd965a566097e7bd1e726ff47ec238824ed1e3f9"
     },
     {
       "path": "research/searches/sentinel_set.csv",
-      "size_bytes": 1722,
-      "sha256": "73a2875ba92d94a7747f2957d434a01b7ff798d645086aa2362c0bb22a033a44"
+      "size_bytes": 1712,
+      "sha256": "d51a0bc05518ae1e5aeb8eaa82c5e5585bfe7ae0bb193436b81bbe0f51a934b3"
     }
   ]
 }

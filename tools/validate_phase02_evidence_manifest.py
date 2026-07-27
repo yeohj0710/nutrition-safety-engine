@@ -2,20 +2,15 @@
 """Validate Phase 02 evidence bytes without closing external human gates."""
 
 import csv
-import hashlib
 import json
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from phase02_evidence_bytes import canonical_sha256, canonical_size
 MANIFEST = ROOT / "research/protocol/phase_02_evidence_manifest.json"
-
-
-def sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for block in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(block)
-    return digest.hexdigest()
 
 
 def rows(relative: str) -> list[dict[str, str]]:
@@ -30,6 +25,8 @@ def main() -> int:
                 "final_search_allowed": False, "protocol_execution_approved": True,
                 "protocol_approver_identity_captured": False,
                 "independent_press_complete": False, "registered": False}
+    if manifest.get("hash_method") != "sha256_over_canonical_bytes":
+        errors.append("manifest hash_method is not sha256_over_canonical_bytes")
     for key, value in expected.items():
         if manifest.get(key) != value:
             errors.append(f"manifest {key}: expected {value!r}, got {manifest.get(key)!r}")
@@ -42,7 +39,10 @@ def main() -> int:
         path = ROOT / entry["path"]
         if not path.is_file():
             errors.append(f"missing artifact: {entry['path']}")
-        elif path.stat().st_size != entry["size_bytes"] or sha256(path) != entry["sha256"]:
+        elif (
+            canonical_size(path) != entry["size_bytes"]
+            or canonical_sha256(path) != entry["sha256"]
+        ):
             errors.append(f"artifact hash/size mismatch: {entry['path']}")
     main_press = rows("research/review_queue/PRESS_review.csv")
     korean_press = rows("research/review_queue/korean_db_PRESS_review.csv")
