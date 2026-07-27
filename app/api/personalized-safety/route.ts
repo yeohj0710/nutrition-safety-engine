@@ -1208,10 +1208,12 @@ function preservesDecision(verdict: string, conclusion: string) {
       !sourcePattern.test(verdict) || outputPattern.test(conclusion),
   );
 }
-function isGroundedNarrative(
+// 통과하면 빈 문자열, 막히면 어느 검사에서 막혔는지 돌려준다.
+// 어떤 이유로 규칙 기반 문장으로 되돌아갔는지 응답에 남기기 위한 것이다.
+function narrativeGroundingFailure(
   candidate: Omit<NarrativeAssessment, "ai_used">,
   source: Record<string, unknown>,
-) {
+): string {
   const combined = narrativeKeys.map((key) => candidate[key]).join(" ");
   if (
     narrativeKeys.some(
@@ -1230,7 +1232,7 @@ function isGroundedNarrative(
       combined,
     )
   )
-    return false;
+    return "style_or_length";
   const submittedInput = source.submitted_input as Partial<ParsedInput>;
   if (
     /같아|같은|기억|들었|정확하지|확실하지/.test(
@@ -1238,7 +1240,7 @@ function isGroundedNarrative(
     ) &&
     !/같|기억|들었|정확하지|확실하지|추정/.test(candidate.context)
   )
-    return false;
+    return "uncertainty_dropped";
   const sourceText = JSON.stringify(source);
   const actualNumbers = numericTokens(combined);
   const allowedNumbers = numericTokens(sourceText);
@@ -1248,17 +1250,21 @@ function isGroundedNarrative(
       symptom_note: source.symptom_note,
     }),
   );
-  if ([...actualNumbers].some((token) => !allowedNumbers.has(token)))
-    return false;
-  if ([...requiredNumbers].some((token) => !actualNumbers.has(token)))
-    return false;
+  const invented = [...actualNumbers].filter(
+    (token) => !allowedNumbers.has(token),
+  );
+  if (invented.length) return `number_not_in_source:${invented.join(",")}`;
+  const dropped = [...requiredNumbers].filter(
+    (token) => !actualNumbers.has(token),
+  );
+  if (dropped.length) return `required_number_missing:${dropped.join(",")}`;
   if (
     !conceptsAreGrounded(sourceText, combined, medicationConcepts) ||
     !conceptsAreGrounded(sourceText, combined, conditionConcepts) ||
     !conceptsAreGrounded(sourceText, combined, labConcepts) ||
     !conceptsAreGrounded(sourceText, combined, narrativeClinicalConcepts)
   )
-    return false;
+    return "concept_not_in_source";
   if (
     ["근접", "초과", "중단", "증량", "시작", "권장", "규정"].some(
       (term) => combined.includes(term) && !sourceText.includes(term),
@@ -1269,12 +1275,11 @@ function isGroundedNarrative(
     (/(?:하세요|마세요|하십시오)/.test(combined) &&
       !/(?:하세요|마세요|하십시오)/.test(String(source.symptom_note ?? "")))
   )
-    return false;
+    return "forbidden_term_or_imperative";
   const ruleAssessment = source.rule_assessment as { verdict?: string };
-  return preservesDecision(
-    String(ruleAssessment.verdict ?? ""),
-    candidate.conclusion,
-  );
+  return preservesDecision(String(ruleAssessment.verdict ?? ""), candidate.conclusion)
+    ? ""
+    : "decision_changed";
 }
 async function generateNarrativeAssessment({
   submitted,
@@ -1362,8 +1367,8 @@ async function generateNarrativeAssessment({
       NarrativeAssessment,
       "ai_used"
     >;
-    if (!isGroundedNarrative(parsed, source))
-      return fellBack("ungrounded_output_rejected");
+    const groundingFailure = narrativeGroundingFailure(parsed, source);
+    if (groundingFailure) return fellBack(`ungrounded:${groundingFailure}`);
     return { ai_used: true, ...parsed, context: assessment.context };
   } catch (error) {
     return fellBack(
