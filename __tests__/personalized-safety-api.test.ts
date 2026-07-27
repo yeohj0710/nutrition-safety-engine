@@ -186,7 +186,9 @@ describe("personalized safety API", () => {
       "최근 검사에서는 24시간 요중 칼슘 280 mg/day가 확인됐고요.",
     );
     expect(body.ai_summary).toContain("그래서 지금 볼 것은 제품 라벨의 원소 칼슘");
-    expect(body.ai_summary).toContain("600 mg/day라는 숫자만으로 많고 적음을 정할 수는 없습니다");
+    expect(body.ai_summary).toContain(
+      "현재 연결된 문헌만으로 600 mg/day의 개인별 안전 여부를 단정할 수는 없습니다",
+    );
     expect(body.ai_summary).not.toMatch(/확인받으세요|보여 주세요|상의하세요/);
     expect(body.ai_summary).not.toMatch(
       /입력(?:되|하|된)|입력값|대상자|사용자|프로필|검사값|현재 입력한 조건|종합하면|핵심은|상담 전에는|이시군요|살펴볼게요|적어주셨네요/,
@@ -253,10 +255,30 @@ describe("personalized safety API", () => {
       }),
     );
     const body = await response.json();
-    expect(body.ai_summary).toContain("어유 3–6 g/day");
-    expect(body.ai_summary).toContain("오메가-3 카복실산 4 g");
-    expect(body.ai_summary).toContain("INR 8.06");
-    expect(body.ai_summary).toContain("아픽사반 복용자에게 안전한 EPA+DHA 상한을 직접 정하지 않았으므로");
+    // 연구 서술은 이번 응답이 실제로 선택한 v3.0 문헌에서만 나와야 한다.
+    const selectedFinding = String(
+      body.evidence[0].key_finding_ko ?? body.evidence[0].key_finding,
+    )
+      .replace(/\s+/g, " ")
+      .trim();
+    expect(body.ai_summary).toContain(
+      `연결된 문헌은 ${body.evidence.length}건입니다`,
+    );
+    // 인용문은 반드시 선택된 근거 원문 안에 그대로 존재해야 한다.
+    const quoted = body.ai_summary.match(/핵심 소견은 “([^”]+)”/)?.[1];
+    expect(quoted).toBeTruthy();
+    expect(selectedFinding).toContain(quoted);
+    // v3.0 근거 집합에 없는 선행 트랙 서술이 되살아나면 안 된다.
+    for (const stale of ["어유 3–6 g/day", "오메가-3 카복실산 4 g", "INR 8.06"])
+      expect(body.ai_summary).not.toContain(stale);
+    // 직접성 한계는 상수가 아니라 실제 근거에서 계산돼야 한다.
+    expect(body.evidence_selection.direct_medication_matches).toBe(0);
+    expect(body.ai_summary).toContain(
+      "아픽사반을 직접 다룬 연구는 이 가운데 없습니다",
+    );
+    expect(body.ai_summary).toContain(
+      "EPA+DHA 2000 mg/day가 안전하다고 단정할 수 없습니다",
+    );
     expect(body.assessment.verdict).toContain("일반 성인 기준으로는 안전 범위 안");
     expect(body.assessment.interaction).toContain("아픽사반과 오메가-3");
     expect(body.assessment.context).toContain(

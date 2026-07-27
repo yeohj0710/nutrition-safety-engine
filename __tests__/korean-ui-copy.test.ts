@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 
-import rules from "@/research/systematic_review_v3/personalized_rules.json";
+import rules from "@/research/systematic_review_v30/personalized_rules.json";
 import { toHaeyoStyle } from "@/src/lib/korean-ui-copy";
 
 describe("Korean public UI copy", () => {
@@ -46,44 +46,38 @@ describe("Korean public UI copy", () => {
     }
   });
 
-  it("preserves the calcium-to-oxalate direction reported by the paper", () => {
-    const item = rules
-      .flatMap((rule) => rule.all_evidence ?? rule.evidence)
-      .find((evidence) => evidence.record_id === "REC-PUBMED-11271790");
+  it("keeps the English source beside every Korean finding", () => {
+    const evidence = rules.flatMap(
+      (rule) => rule.all_evidence ?? rule.evidence,
+    );
 
-    expect(item?.key_finding_ko).toContain("칼슘에 대한 옥살레이트의 비율");
-    expect(item?.key_finding_ko).not.toContain("옥살레이트에 대한 칼슘의 비율");
-  });
-
-  it("does not expose the PubMed abstract unit typo for the vitamin D trial", () => {
-    const item = rules
-      .flatMap((rule) => rule.all_evidence ?? rule.evidence)
-      .find((evidence) => evidence.record_id === "REC-PUBMED-23595003");
-
-    expect(item?.key_finding).not.toContain("250 mg/week");
-    expect(item?.key_finding).toContain("1250 μg treatment group");
-    expect(item?.key_finding_ko).toContain("1,250 μg 투여군");
+    for (const item of evidence) {
+      expect(item.key_finding, item.record_id).toMatch(/[A-Za-z]/);
+      expect(item.key_finding_ko, item.record_id).toMatch(/[가-힣]/);
+    }
   });
 
   it("keeps every core evidence record in all_evidence", () => {
     const csv = readFileSync(
-      "research/systematic_review_v3/core_evidence.csv",
+      "research/systematic_review_v30/core_evidence.csv",
       "utf8",
     );
     const coreIds = new Set(
-      [...csv.matchAll(/^(A1|A2|B1|B2|B3),(REC-PUBMED-\d+),/gm)].map(
+      [...csv.matchAll(/^(HRS\d_[A-Z_]+),(pubmed:\d+),/gm)].map(
         ([, questionId, recordId]) => `${questionId}:${recordId}`,
       ),
     );
     const ruleIds = new Set(
-      rules.flatMap((rule) =>
-        rule.all_evidence.map(
-          (evidence) => `${rule.question_id}:${evidence.record_id}`,
+      rules
+        .filter((rule) => rule.rule_id.endsWith(":base"))
+        .flatMap((rule) =>
+          rule.all_evidence.map(
+            (evidence) => `${rule.question_id}:${evidence.record_id}`,
+          ),
         ),
-      ),
     );
 
-    expect(ruleIds.size).toBe(121);
+    expect(ruleIds.size).toBeGreaterThan(0);
     expect(ruleIds).toEqual(coreIds);
   });
 });

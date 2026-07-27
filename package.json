@@ -12,6 +12,8 @@
     "screening:gold-sample": "python tools/screening_gold_sample.py",
     "screening:estimate": "python tools/llm_screening_estimate.py",
     "build:systematic-review-v3": "python tools/build_systematic_review_v3.py && python tools/build_core_evidence_v3.py",
+    "build:v30-evidence": "python tools/v30/build_site_v3.py all",
+    "validate:v30-evidence": "python tools/v30/build_site_v3.py validate",
     "check:translations": "python tools/report_missing_translations.py",
     "research:refresh": "npm run screening:compare && npm run build:systematic-review-v3 && npm run check:translations && npm run prepare:knowledge",
     "dev": "tsx scripts/dev-with-knowledge-watch.ts",

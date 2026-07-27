@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import rules from "@/research/systematic_review_v3/personalized_rules.json";
+import rules from "@/research/systematic_review_v30/personalized_rules.json";
 import { splitMultiValue } from "@/src/lib/multi-value-input";
 const map: Record<string, string> = {
   "비타민 K": "A1",
@@ -116,32 +116,96 @@ type SummaryInput = {
   labs: string;
   summary: string;
   evidenceSummary: string;
+  evidenceLimit: string;
+  actionPlan: string;
   profile: string[];
   checks: string[];
   why: string;
   next: string[];
 };
-const evidenceSummaries: Record<string, string> = {
-  A1: "관련 연구에서는 비타민 K 25 mcg이 든 종합비타민이 비타민 K 상태가 낮은 와파린 복용자의 항응고 조절에 영향을 준 사례가 있었고, INR 안정화를 위한 시험에서는 비타민 K 100·150·200 μg/day가 비교됐습니다. 이는 일정한 섭취의 중요성을 보여주지만 개인별 적정량을 정한 기준은 아닙니다.",
-  A2: "와파린 환자 연구에서는 어유 3–6 g/day가 INR에 통계적으로 유의한 변화를 보이지 않았고, 건강한 지원자 연구에서는 오메가-3 카복실산 4 g에서도 뚜렷한 와파린 상호작용이 관찰되지 않았습니다. 반면 와파린·트라조돈·오메가-3 병용 후 INR 8.06이 보고된 단일 증례도 있습니다.",
-  B1: "결석 환자 연구에서는 칼슘 500 mg/day와 식사 중 칼슘 섭취가 평가됐고, 골다공증 환자 대상 문헌고찰에서는 보충제 칼슘이 신장결석 위험을 유의하게 높이지 않았습니다. 약 1,200 mg/day를 사용한 연구에서는 혈청과 24시간 요중 칼슘을 반복 측정했습니다.",
-  B2: "무작위시험에서는 비타민 D 100,000 IU를 매달 투여해 3.3년 추적했을 때 결석이 비타민 D군 76명, 위약군 82명에서 보고됐습니다. 다른 연구에서는 50,000 IU의 반복 투여가 고칼슘뇨와 관련됐으며, 결석 재발 환자에서는 2,000 IU/day와 50,000 IU/week가 비교됐습니다.",
-  B3: "비타민 C 관련 증례에서는 680 mg/day, 2 g/day, 장기간 3 g/day 복용 후 고옥살산뇨·옥살산 신병증이 보고됐습니다. 이는 위험이 시작되는 확정 기준이 아니라, 신장질환·장질환·탈수 같은 취약 조건이 있던 개별 사례입니다.",
+// 연구 서술은 상수로 두지 않는다. v3.0 선별을 통과해 이번 응답에 실제로 선택된 문헌에서만
+// 만든다. 선택된 문헌이 없으면 없다고 적고, 문헌이 뒷받침하지 않는 주장을 대신 채우지 않는다.
+function studyKindLabel(item: RuntimeEvidence) {
+  const types = String(item.publication_types ?? "");
+  const year = item.year ? `${item.year}년 ` : "";
+  if (/systematic review|meta-analysis/i.test(types))
+    return `${year}체계적 문헌고찰`;
+  if (/randomized controlled trial/i.test(types)) return `${year}무작위 대조시험`;
+  if (/clinical trial/i.test(types)) return `${year}임상시험`;
+  if (/case reports/i.test(types)) return `${year}증례 보고`;
+  if (/review/i.test(types)) return `${year}문헌고찰`;
+  return `${year}연구`;
+}
+function evidenceFindingText(item: RuntimeEvidence) {
+  return String(item.key_finding_ko ?? item.key_finding ?? "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+// 인용은 문장 경계에서만 줄인다. 문장 중간을 잘라 의미가 뒤집히는 일이 없어야 하고,
+// 줄인 경우에는 줄였다고 밝힌 뒤 전문을 볼 위치를 알린다.
+const QUOTE_LIMIT = 220;
+function trimToSentences(text: string) {
+  if (text.length <= QUOTE_LIMIT) return { text, trimmed: false };
+  const sentences = text.split(/(?<=[.!?])\s+/);
+  let kept = "";
+  for (const sentence of sentences) {
+    const next = kept ? `${kept} ${sentence}` : sentence;
+    if (kept && next.length > QUOTE_LIMIT) break;
+    kept = next;
+    if (kept.length >= QUOTE_LIMIT) break;
+  }
+  return { text: kept || sentences[0], trimmed: (kept || sentences[0]).length < text.length };
+}
+const doseLabelFor = (dose: string) =>
+  dose && !/모르겠/.test(dose) ? dose : "현재 복용량";
+function buildEvidenceSummary(
+  evidence: RuntimeEvidence[],
+  directMedicationMatches: number,
+  medicationName: string,
+) {
+  if (!evidence.length)
+    return "선별을 통과한 문헌 가운데 이 조합에 연결된 것이 없습니다. 아래 설명은 공개 기준 자료에만 근거합니다.";
+  const top = evidence[0];
+  const finding = evidenceFindingText(top);
+  const shortened = trimToSentences(finding);
+  const quoted = finding
+    ? `${studyKindLabel(top)}의 핵심 소견은 “${shortened.text}”입니다.${
+        shortened.trimmed ? " 나머지 문장은 아래 근거 목록에 있습니다." : ""
+      }`
+    : "";
+  const head = `이번 판단에 연결된 문헌은 ${evidence.length}건입니다.`;
+  const gap =
+    medicationName && directMedicationMatches === 0
+      ? ` 다만 ${withObjectParticle(medicationName)} 직접 다룬 연구는 이 가운데 없습니다.`
+      : "";
+  return `${head} ${quoted}${gap}`.trim();
+}
+function buildEvidenceLimit(
+  evidence: RuntimeEvidence[],
+  directMedicationMatches: number,
+  ingredient: string,
+  medicationName: string,
+  dose: string,
+) {
+  const doseText = doseLabelFor(dose);
+  if (!evidence.length)
+    return `이 조합에 연결된 문헌이 없어 ${doseText}의 개인별 안전 여부를 문헌으로 뒷받침할 수 없습니다.`;
+  const body =
+    medicationName && directMedicationMatches === 0
+      ? `이 문헌들은 ${withObjectParticle(medicationName)} 직접 연구하지 않았고, ${ingredient}의 개인별 안전 상한도 정하지 않았습니다.`
+      : `이 문헌들은 ${ingredient}의 개인별 안전 상한을 정하지 않았습니다.`;
+  return `${body} 따라서 ${doseText}가 안전하다고 단정할 수 없습니다.`;
+}
+const actionWatchLists: Record<string, string> = {
+  A1: "제품 라벨의 비타민 K 함량, 최근 식사 변화, INR 변화의 시점",
+  A2: "EPA와 DHA의 하루 합산량, 코피·멍·잇몸출혈 여부",
+  B1: "제품 라벨의 원소 칼슘, 음식으로 먹는 칼슘, 결석 성분과 24시간 요중 칼슘",
+  B2: "모든 제품의 비타민 D 총량과 복용 기간, 같은 시점의 25(OH)D·혈청 칼슘·24시간 요중 칼슘 변화",
+  B3: "여러 제품에 든 비타민 C의 하루 총량과 복용 기간, 결석 성분·신장기능·요중 옥살산의 변화",
 };
-const evidenceLimits: Record<string, string> = {
-  A1: "현재 섭취량이 적절한지는 최근 INR 변화와 식사·보충제 섭취 패턴을 함께 봐야 합니다.",
-  A2: "이 연구들은 아픽사반 복용자에게 안전한 EPA+DHA 상한을 직접 정하지 않았으므로, 현재 2,000 mg/day가 안전하다고 단정할 수 없습니다.",
-  B1: "보충제 용량만으로 결석 위험을 판단할 수 없고 결석 성분과 24시간 요중 칼슘이 필요합니다.",
-  B2: "투여 간격과 대상자가 달라 일일 안전용량으로 단순 환산할 수 없으며 혈청·요중 칼슘 확인이 필요합니다.",
-  B3: "증례만으로 모든 사람의 안전 상한을 정할 수 없지만, 결석 또는 신장질환 병력이 있다면 고용량 노출을 가볍게 볼 수 없습니다.",
-};
-const actionPlans: Record<string, string> = {
-  A1: "그래서 지금 볼 것은 제품 라벨의 비타민 K 함량, 최근 식사 변화, INR 변화의 시점입니다. 세 항목의 날짜가 맞물리는지를 보면 섭취 변화와 INR의 관계가 더 분명해집니다.",
-  A2: "그래서 지금 볼 것은 EPA와 DHA의 하루 합산량, 코피·멍·잇몸출혈 여부입니다. 현재 연구만으로 2,000 mg/day의 개인별 안전 여부를 단정할 수는 없습니다.",
-  B1: "그래서 지금 볼 것은 제품 라벨의 원소 칼슘, 음식으로 먹는 칼슘, 결석 성분과 24시간 요중 칼슘입니다. 600 mg/day라는 숫자만으로 많고 적음을 정할 수는 없습니다.",
-  B2: "그래서 지금 볼 것은 모든 제품의 비타민 D 총량과 복용 기간, 같은 시점의 25(OH)D·혈청 칼슘·24시간 요중 칼슘 변화입니다.",
-  B3: "그래서 지금 볼 것은 여러 제품에 든 비타민 C의 하루 총량과 복용 기간, 결석 성분·신장기능·요중 옥살산의 변화입니다.",
-};
+function buildActionPlan(questionId: string, dose: string) {
+  return `그래서 지금 볼 것은 ${actionWatchLists[questionId]}입니다. 현재 연결된 문헌만으로 ${doseLabelFor(dose)}의 개인별 안전 여부를 단정할 수는 없습니다.`;
+}
 function describeConditionInCounseling(value: string) {
   if (/자주 남$/.test(value)) return value.replace(/자주 남$/, "자주 나고요");
   if (/병력$/.test(value)) return `${value}도 있으시고요`;
@@ -292,8 +356,8 @@ function buildSummaryFallback(input: SummaryInput) {
     symptomAdvice,
     buildProfileSentence(input),
     `연구 결과를 같이 보면, ${input.evidenceSummary}`,
-    `다만 ${evidenceLimits[input.questionId]}`,
-    actionPlans[input.questionId],
+    `다만 ${input.evidenceLimit}`,
+    input.actionPlan,
   ]
     .filter(Boolean)
     .join("\n\n");
@@ -550,6 +614,11 @@ type RuntimeEvidence = {
   population?: string;
   priority_score?: number;
   [key: string]: unknown;
+};
+type RuntimeRule = {
+  question_id: string;
+  source_question_id?: string;
+  all_evidence: RuntimeEvidence[];
 };
 function reference(
   label: string,
@@ -876,13 +945,20 @@ function buildAssessment(
   ]
     .filter(Boolean)
     .join(" ");
-  const study = (index: number) =>
-    reference(
+  // 선택된 문헌이 없는 자리는 빈 링크로 채우지 않는다. 화면의 근거 링크는
+  // 이번 응답이 실제로 사용한 문헌만 가리켜야 한다.
+  const study = (index: number): AssessmentReference | null => {
+    const item = evidence[index];
+    if (!item) return null;
+    return reference(
       `논문 ${index + 1}`,
-      evidence[index]?.title ?? "근거 문헌",
-      evidence[index]?.url ?? "#",
-      evidence[index]?.key_finding_ko,
+      item.title,
+      item.url,
+      item.key_finding_ko,
     );
+  };
+  const studies = (...indexes: number[]) =>
+    indexes.map(study).filter((item): item is AssessmentReference => item !== null);
   const ods = {
     calcium: reference(
       "NIH 기준",
@@ -939,7 +1015,7 @@ function buildAssessment(
         "와파린의 효과는 비타민 K 섭취량에 따라 달라질 수 있습니다. 섭취량이 갑자기 늘거나 줄면 INR도 변할 수 있습니다.",
       watch:
         "최근 INR이 달라졌다면 제품이나 식사에서 비타민 K 섭취량이 바뀐 시점과 비교해야 합니다.",
-      references: [ods.vitaminK, study(0), study(1)],
+      references: [ods.vitaminK, ...studies(0, 1)],
     };
   }
   if (questionId === "A2") {
@@ -967,7 +1043,7 @@ function buildAssessment(
       watch: hasAbdominalPain
         ? "복통만으로 출혈을 판단할 수는 없습니다. 검은변·혈변·토혈이 함께 나타나는지가 더 중요합니다."
         : "멍·코피·잇몸출혈·혈변이 새로 생기거나 심해지는지 봐야 합니다.",
-      references: [ods.omega, study(0), study(4)],
+      references: [ods.omega, ...studies(0, 4)],
     };
   }
   if (questionId === "B1") {
@@ -1010,7 +1086,7 @@ function buildAssessment(
       watch: highUrineCalcium
         ? `${lab} mg/day는 NIH가 제시한 고칼슘뇨 기준보다 높습니다. 결석 병력까지 있으므로 총 칼슘 섭취량과 복용 시점을 조정할 근거가 됩니다.`
         : "결석 병력에서는 보충제 양보다 결석 성분, 식이 칼슘, 24시간 요중 칼슘을 함께 봅니다.",
-      references: [ods.calcium, study(0), study(1)],
+      references: [ods.calcium, ...studies(0, 1)],
     };
   }
   if (questionId === "B2") {
@@ -1041,7 +1117,7 @@ function buildAssessment(
         "티아지드 이뇨제는 고칼슘혈증 위험을 높일 수 있고, 올리스타트는 비타민 D 흡수를 낮출 수 있습니다.",
       watch:
         "25(OH)D만 보지 말고 혈청 칼슘과 24시간 요중 칼슘도 함께 봐야 합니다.",
-      references: [ods.vitaminD, study(0), study(1)],
+      references: [ods.vitaminD, ...studies(0, 1)],
     };
   }
   const vitaminCHighRisk = /(옥살산|결석|신장기능|신장 질환|신장질환)/.test(
@@ -1065,7 +1141,7 @@ function buildAssessment(
     watch: vitaminCHighRisk
       ? "제품 라벨에서 하루 총량을 확인해야 합니다. 요중 옥살산 상승, 칼슘옥살산 결석 또는 신장기능 저하가 확인되면 고용량을 피해야 합니다."
       : "요중 옥살산 상승, 칼슘옥살산 결석 또는 신장기능 저하가 새로 확인되면 고용량을 유지하지 않아야 합니다.",
-    references: [ods.vitaminC, study(0), study(1)],
+    references: [ods.vitaminC, ...studies(0, 1)],
   };
 }
 type RuleAssessment = ReturnType<typeof buildAssessment>;
@@ -1305,7 +1381,12 @@ export async function POST(req: Request) {
       { error: "지원하는 다섯 보충제 중 하나를 선택하세요." },
       { status: 400, headers: { "Cache-Control": "no-store" } },
     );
-  const r = rules.find((x) => x.question_id === q)!;
+  const r = (rules as RuntimeRule[]).find((x) => x.question_id === q);
+  if (!r)
+    return NextResponse.json(
+      { error: "이 보충제의 근거 규칙을 불러오지 못했습니다. 잠시 후 다시 시도하세요." },
+      { status: 503, headers: { "Cache-Control": "no-store" } },
+    );
   const g = guidance[q];
   const inputInterpretation = await interpretFreeText(submitted);
   const b = inputInterpretation.input;
@@ -1320,6 +1401,20 @@ export async function POST(req: Request) {
   ].filter(Boolean) as string[];
   const evidenceSelection = selectEvidence(q, r.all_evidence, b);
   const assessment = buildAssessment(q, b, evidenceSelection.selected);
+  const selectedMedicationName = compactMultiValue(medicationValues(b.medication));
+  const evidenceSummary = buildEvidenceSummary(
+    evidenceSelection.selected,
+    evidenceSelection.directMedicationMatches,
+    selectedMedicationName,
+  );
+  const evidenceLimit = buildEvidenceLimit(
+    evidenceSelection.selected,
+    evidenceSelection.directMedicationMatches,
+    b.ingredient,
+    selectedMedicationName,
+    b.dose,
+  );
+  const actionPlan = buildActionPlan(q, b.dose);
   const summaryInput: SummaryInput = {
     questionId: q,
     ingredient: b.ingredient,
@@ -1328,7 +1423,9 @@ export async function POST(req: Request) {
     condition: b.condition,
     labs: b.labs,
     summary: g.summary,
-    evidenceSummary: evidenceSummaries[q],
+    evidenceSummary,
+    evidenceLimit,
+    actionPlan,
     profile: entered,
     checks: g.checks,
     why: g.why,
@@ -1339,7 +1436,7 @@ export async function POST(req: Request) {
     interpreted: b,
     assessment,
     symptomNote: buildSymptomAdvice(summaryInput),
-    evidenceLimit: evidenceLimits[q],
+    evidenceLimit,
   });
   const ai_summary = narrativeAssessment.ai_used
     ? narrativeKeys
@@ -1350,6 +1447,10 @@ export async function POST(req: Request) {
   return NextResponse.json(
     {
       question_id: q,
+      evidence_lineage: {
+        track: "v3.0_full_ai_autonomy",
+        source_question_id: r.source_question_id ?? r.question_id,
+      },
       ingredient: b.ingredient,
       title: g.title,
       summary: g.summary,
