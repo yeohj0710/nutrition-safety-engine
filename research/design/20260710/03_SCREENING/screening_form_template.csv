@@ -1,1 +1,0 @@
-﻿record_id,report_id,question_ids,screening_stage,reviewer_id,decision,primary_reason_code,secondary_reason_notes,evidence_layer_candidate,ai_priority_score,ai_recommendation,ai_run_id,reviewed_at,adjudication_status,final_decision,final_reason_code,adjudicator_id,notes

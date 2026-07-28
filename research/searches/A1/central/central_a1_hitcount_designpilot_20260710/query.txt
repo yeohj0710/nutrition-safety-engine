@@ -1,1 +1,0 @@
-(warfarin OR "vitamin K antagonist" OR acenocoumarol OR phenprocoumon) AND ("vitamin K" OR phylloquinone OR menaquinone OR MK-7)

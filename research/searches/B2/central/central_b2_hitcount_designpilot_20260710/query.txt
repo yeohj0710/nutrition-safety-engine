@@ -1,1 +1,0 @@
-("kidney stone" OR "renal stone" OR nephrolithiasis OR urolithiasis OR hypercalciuria) AND ("vitamin D" OR cholecalciferol OR ergocalciferol OR calcifediol)

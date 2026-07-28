@@ -1,1 +1,0 @@
-(("Surgical Procedures, Operative"[Mesh] OR perioperative[tiab] OR preoperative[tiab]) AND ("Dietary Supplements"[Mesh] OR "Phytotherapy"[Mesh] OR herbal supplement*[tiab] OR dietary supplement*[tiab]) AND ("Hemorrhage"[Mesh] OR bleed*[tiab] OR transfusion*[tiab] OR anesthe*[tiab] OR perioperative complication*[tiab]) AND humans[Mesh])

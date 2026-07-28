@@ -30,9 +30,12 @@ Python 스크립트는 표본 추출, 맹검 카드 생성, 결과 검증, 통�
 1. `AGENTS.md` — 특히 "Thesis track: v4.0 only" 와 v4.0 파이프라인 절
 2. `research/logs/v40_run_report.json` — 단일 원장. phase_a~e 와 remaining_unresolved_items
 3. `research/logs/DECISIONS_v40.md` — 선별이 어떻게 이루어졌는지
-4. `research/validation/screening_ai_reference_v3/manifest.json` 과
-   `research/synthesis/screener_vs_ai_reference_v3.json` — **구조만** 참고할 선례
-5. `tools/v40/agent_screen_worker.py` — 네가 채점할 대상의 판정 논리
+4. `tools/v40/agent_screen_worker.py` — 네가 채점할 대상의 판정 논리
+
+이전 트랙(v1.0·v2.0/v2.1·v3.0)은 2026-07-28 에 저장소에서 제거했다. 참조표준 선례를
+보고 싶으면 git 히스토리의 `research/validation/screening_ai_reference_v3/` 와
+`research/synthesis/screener_vs_ai_reference_v3.json` 을 읽어라. 구조만 참고하고
+수치는 가져오지 마라. 그 트랙은 논문에 들어가지 않는다.
 
 `git status --short`, 최근 커밋, 현재 매니페스트를 직접 확인하라.
 **현재 파일 상태가 권위다.**
@@ -129,11 +132,9 @@ v4.0 선별은 두 층이다. 이 구분이 채점 설계의 핵심이다.
 - `research/logs/v40_run_report.json` 수정. 봉인된 스냅샷이다.
   `tools/v40/finalize_run_report_v4.py` 는 커밋 이후 재실행되지 않는다(가드가 거부한다)
 - `research/screening/v40_agent/` 의 선별 산출물 수정·삭제
-- v3.0 참조표준 arm(`research/validation/screening_ai_reference_v3/codex_arm/`) 부활.
-  2,209 행 v3.0 코퍼스를 채점하는 것이라 논문 트랙과 무관하다
-- 사람 판단 산출물(`research/validation/screening_gold/` 420 건,
-  `research/screening/` 의 사람 검토 파일)을 v4.0 체인에 넣는 것
-- `data/curated_v2/`, `data/curated_v3/`, `research/searches/`, `research/searches_v3/` 수정
+- 제거된 이전 트랙(v1.0·v2.0/v2.1·v3.0)의 산출물을 git 히스토리에서 되살려 v4.0 체인에
+  넣는 것. 여기에는 v3.0 참조표준 arm 과 사람 라벨 표본 420 건이 포함된다.
+  코퍼스도 질문도 다르므로 수치를 섞으면 안 된다
 - 메타분석, 통합 효과크기, RoB, GRADE, 임상 권고
 - 완료하지 못한 것을 완료했다고 쓰는 것
 

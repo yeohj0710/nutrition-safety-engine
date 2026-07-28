@@ -1,8 +1,0 @@
-{
-  "errors": [],
-  "status": "hitcount_proxy_verified_export_blocked",
-  "runs": 5,
-  "hits_observed": 2264,
-  "records_exported": 0,
-  "final_search_claim_allowed": false
-}

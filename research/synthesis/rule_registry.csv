@@ -1,1 +1,0 @@
-rule_id,question_id,scope_status,conditions_json,exclusions_json,missing_information_json,action_class,severity,message_template,rationale_template,claim_ids,validation_status,validation_evidence_json,version,effective_date,review_due,created_by,reviewed_by,notes

@@ -1,9 +1,0 @@
-{
-  "database": "PubMed",
-  "endpoint": "NCBI E-utilities ESearch",
-  "status": "final_public_source_search",
-  "total_hits_reported": 820,
-  "pmids_exported": 820,
-  "query_translation": "(\"Anticoagulants\"[MeSH Terms] OR \"anticoagulan*\"[Title/Abstract] OR \"warfarin\"[Title/Abstract] OR \"vitamin K antagonist\"[Title/Abstract] OR \"vitamin K antagonists\"[Title/Abstract] OR \"VKA\"[Title/Abstract] OR \"VKAs\"[Title/Abstract] OR \"direct oral anticoagulant\"[Title/Abstract] OR \"direct oral anticoagulants\"[Title/Abstract] OR \"DOAC\"[Title/Abstract] OR \"DOACs\"[Title/Abstract] OR \"apixaban\"[Title/Abstract] OR \"rivaroxaban\"[Title/Abstract] OR \"edoxaban\"[Title/Abstract] OR \"dabigatran\"[Title/Abstract]) AND (\"fatty acids, omega 3\"[MeSH Terms] OR \"omega-3\"[Title/Abstract] OR \"omega3\"[Title/Abstract] OR \"n-3\"[Title/Abstract] OR \"fish oil\"[Title/Abstract] OR \"fish oils\"[Title/Abstract] OR \"eicosapentaenoic\"[Title/Abstract] OR \"EPA\"[Title/Abstract] OR \"docosahexaenoic\"[Title/Abstract] OR \"DHA\"[Title/Abstract] OR \"icosapent\"[Title/Abstract] OR \"icosapent ethyl\"[Title/Abstract])",
-  "partitions": []
-}

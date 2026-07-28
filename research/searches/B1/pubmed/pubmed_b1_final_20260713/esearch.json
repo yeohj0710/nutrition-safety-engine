@@ -1,9 +1,0 @@
-{
-  "database": "PubMed",
-  "endpoint": "NCBI E-utilities ESearch",
-  "status": "final_public_source_search",
-  "total_hits_reported": 1355,
-  "pmids_exported": 1355,
-  "query_translation": "(\"Kidney Calculi\"[MeSH Terms] OR \"Urinary Calculi\"[MeSH Terms] OR \"nephrolithiasis\"[Title/Abstract] OR \"urolithiasis\"[Title/Abstract] OR \"kidney stone\"[Title/Abstract] OR \"kidney stones\"[Title/Abstract] OR \"renal stone\"[Title/Abstract] OR \"renal stones\"[Title/Abstract] OR \"urinary stone\"[Title/Abstract] OR \"urinary stones\"[Title/Abstract] OR \"urinary tract stone\"[Title/Abstract] OR \"urinary tract stones\"[Title/Abstract] OR \"hypercalciuria\"[Title/Abstract] OR \"calcium oxalate\"[Title/Abstract]) AND (\"calcium, dietary\"[MeSH Terms] OR \"Calcium Carbonate\"[MeSH Terms] OR \"calcium supplement\"[Title/Abstract] OR \"calcium supplements\"[Title/Abstract] OR \"calcium supplementation\"[Title/Abstract] OR \"supplemental calcium\"[Title/Abstract] OR \"Calcium Carbonate\"[Title/Abstract] OR \"calcium citrate\"[Title/Abstract])",
-  "partitions": []
-}

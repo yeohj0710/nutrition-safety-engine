@@ -1,1 +1,0 @@
-("kidney stone" OR nephrolithiasis OR urolithiasis) AND ("calcium supplement" OR "calcium carbonate" OR "calcium citrate")

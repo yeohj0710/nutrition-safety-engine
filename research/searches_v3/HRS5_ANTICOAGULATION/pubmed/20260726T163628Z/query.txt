@@ -1,1 +1,0 @@
-(("Anticoagulants"[Mesh] OR anticoagulan*[tiab] OR warfarin[tiab] OR apixaban[tiab] OR rivaroxaban[tiab] OR dabigatran[tiab]) AND ("Dietary Supplements"[Mesh] OR "Phytotherapy"[Mesh] OR dietary supplement*[tiab] OR herbal supplement*[tiab]) AND ("Drug Interactions"[Mesh] OR "Hemorrhage"[Mesh] OR bleed*[tiab] OR thrombo*[tiab] OR INR[tiab] OR interaction*[tiab]) AND humans[Mesh])

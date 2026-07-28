@@ -1,9 +1,0 @@
-﻿risk_id,category,risk,likelihood,impact,mitigation,trigger,owner,status
-R-001,scope,five questions exceed available reviewer time,medium,high,Gate 1 workload estimate and staged scope rule,projected screening/full-text burden exceeds capacity,research lead,open
-R-002,access,Embase or full texts unavailable,high,medium,document access; use librarian/ILL; protocol amendment,access not secured by Gate 1,research lead,open
-R-003,bias,AI misses eligible records,medium,high,no AI-only exclusion; audit exclusion sample; high-recall threshold,false negative found,AI evaluation lead,open
-R-004,data,legacy and new counts mix,high,high,separate namespaces and canonical manifests,same metric differs across outputs,data lead,open
-R-005,clinical,rule overstates evidence,medium,high,claim-level certainty and expert review,message stronger than evidence,clinical reviewer,open
-R-006,validation,scenario gold set contaminated by engine behavior,medium,high,independent scenario authors and frozen gold,developers author expected outputs,validation lead,open
-R-007,writing,thesis becomes compressed AI-like report,high,high,"results freeze, chapter-level review, style checks",noun-heavy/repetitive prose,author,open
-R-008,ethics,human usability data collected without determination,low,high,obtain written institutional determination first,participant recruitment planned,research lead,open

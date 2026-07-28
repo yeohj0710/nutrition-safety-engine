@@ -1,9 +1,0 @@
-{
-  "database": "PubMed",
-  "endpoint": "NCBI E-utilities ESearch",
-  "status": "design_pilot_full_export_not_final_search",
-  "total_hits_reported": 680,
-  "pmids_exported": 680,
-  "query_translation": "(\"Kidney Calculi\"[MeSH Terms] OR \"Urinary Calculi\"[MeSH Terms] OR \"nephrolithiasis\"[Title/Abstract] OR \"urolithiasis\"[Title/Abstract] OR \"kidney stone\"[Title/Abstract] OR \"kidney stones\"[Title/Abstract] OR \"urinary stone\"[Title/Abstract] OR \"urinary stones\"[Title/Abstract] OR \"urinary tract stone\"[Title/Abstract] OR \"urinary tract stones\"[Title/Abstract] OR \"hyperoxaluria\"[Title/Abstract] OR \"oxalate\"[Title/Abstract] OR \"calcium oxalate\"[Title/Abstract]) AND (\"Ascorbic Acid\"[MeSH Terms] OR \"vitamin C\"[Title/Abstract] OR \"Ascorbic Acid\"[Title/Abstract] OR \"ascorbate\"[Title/Abstract] OR \"vitamin C supplement\"[Title/Abstract] OR \"vitamin C supplements\"[Title/Abstract] OR \"vitamin C supplementation\"[Title/Abstract])",
-  "partitions": []
-}

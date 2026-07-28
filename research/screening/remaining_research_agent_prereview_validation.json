@@ -1,8 +1,0 @@
-{
-  "schema_version": "1.0.0",
-  "status": "pass",
-  "koreamed_records_verified": 62,
-  "koreamed_links_verified": 35,
-  "human_completion_claim_allowed": false,
-  "errors": []
-}
