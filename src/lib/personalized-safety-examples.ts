@@ -1,127 +1,99 @@
+import type { SituationId } from "@/src/lib/clinical-situations";
+
 export type PersonalizedSafetyExample = {
   id: string;
   title: string;
-  description: string;
+  summary: string;
   input: {
-    ingredient: string;
-    dose: string;
+    situation: SituationId;
+    age: string;
     medication: string;
+    dose: string;
+    sex: string;
     condition: string;
-    labs: string;
   };
 };
 
-// 순서는 v3.0 최종 추출 논문 가운데 그 성분을 직접 다룬 문헌 수를 따른다.
-// 비타민 K 7건, 비타민 D 2건, 오메가-3 1건, 칼슘 1건이다.
-//
-// 비타민 C 는 화면에서 뺐다. 별칭 B3 이 연결된 만성콩팥병·투석 질문의 핵심 근거 15건 가운데
-// 비타민 C 를 언급한 문헌이 0건이라, 어떤 입력을 넣어도 "이 성분을 직접 다룬 문헌은 없다"는
-// 답만 나온다. 검색식을 넓혀 근거가 생기면 다시 넣는다. 별칭 데이터 자체는 v2.1 호환을 위해
-// 남아 있으므로 API 로는 계속 조회된다.
-export const personalizedSafetyIngredientOrder = [
-  "비타민 K",
-  "비타민 D",
-  "오메가-3",
-  "칼슘",
-] as const;
-
-// 각 예시는 최종 추출 논문이 성분을 직접 다루고, 입력한 약·병력·검사 중 하나 이상이
-// 판단에 반영되는 조합만 남겼다. 약이나 용량을 직접 다루지 않는 보조 예시는 화면에서 뺐다.
-export const personalizedSafetyExamples: PersonalizedSafetyExample[] = [
+// 다섯 상황을 모두 덮고, 축을 하나도 안 채운 경우와 여러 개 채운 경우를 함께 둔다.
+// 축을 많이 채울수록 그 조건을 모두 보고한 문헌만 남아 결과가 줄어드는데,
+// 줄어드는 모습 자체가 이 도구가 보여주려는 것이다.
+export const publicInputExamples: PersonalizedSafetyExample[] = [
   {
-    id: "vitamin-k-warfarin-inr",
-    title: "와파린 복용, INR 3.1",
-    description: "100 mcg/day를 먹고 있으며 최근 INR 수치가 있는 경우",
+    id: "perioperative-plain",
+    title: "다음 달에 수술이 잡혀 있어요",
+    summary: "조건을 더 넣지 않고 이 상황의 핵심 근거부터 봅니다.",
     input: {
-      ingredient: "비타민 K",
-      dose: "100 mcg/day",
-      medication: "와파린",
-      condition: "항응고 치료 중",
-      labs: "INR 3.1",
-    },
-  },
-  {
-    id: "vitamin-k-unknown-dose",
-    title: "하루 섭취량을 모름",
-    description: "와파린을 먹고 있으며 INR이 자주 달라지는 경우",
-    input: {
-      ingredient: "비타민 K",
-      dose: "잘 모르겠어요",
-      medication: "와파린",
-      condition: "INR이 자주 바뀜",
-      labs: "",
-    },
-  },
-  {
-    id: "vitamin-k-bruising",
-    title: "200 mcg/day, 멍이 잘 듦",
-    description: "와파린과 함께 먹고 있으며 멍이 늘어난 경우",
-    input: {
-      ingredient: "비타민 K",
-      dose: "200 mcg/day",
-      medication: "와파린",
-      condition: "멍이 잘 듦",
-      labs: "INR 3.8",
-    },
-  },
-  {
-    id: "vitamin-d-ckd-hypercalcemia",
-    title: "4,000 IU/day, 만성콩팥병",
-    description: "성인 상한과 같고 혈중 칼슘이 높은 경우",
-    input: {
-      ingredient: "비타민 D",
-      dose: "4000 IU/day",
+      situation: "HRS1_PERIOPERATIVE",
+      age: "",
       medication: "",
-      condition: "만성콩팥병",
-      labs: "혈청 칼슘 10.7 mg/dL",
+      dose: "",
+      sex: "",
+      condition: "",
     },
   },
   {
-    id: "vitamin-d-peritoneal-dialysis",
-    title: "2,000 IU/day, 복막투석 중",
-    description: "투석을 받고 있으며 상한 아래로 먹고 있는 경우",
+    id: "perioperative-elderly-antiplatelet",
+    title: "68세, 수술 전인데 아스피린을 먹고 있어요",
+    summary: "연령과 병용약을 모두 보고한 문헌만 남깁니다.",
     input: {
-      ingredient: "비타민 D",
-      dose: "2000 IU/day",
+      situation: "HRS1_PERIOPERATIVE",
+      age: "68세",
+      medication: "아스피린",
+      dose: "",
+      sex: "",
+      condition: "",
+    },
+  },
+  {
+    id: "kidney-dialysis",
+    title: "투석 중인데 보충제를 먹어도 되는지 궁금해요",
+    summary: "만성콩팥병·투석 상황의 근거를 봅니다.",
+    input: {
+      situation: "HRS2_KIDNEY_DISEASE",
+      age: "",
       medication: "",
-      condition: "복막투석 중이며 신장기능 저하",
-      labs: "eGFR 12 mL/min/1.73m²",
+      dose: "",
+      sex: "",
+      condition: "투석 중",
     },
   },
   {
-    id: "omega3-warfarin-bruising",
-    title: "와파린 복용, 멍이 잘 듦",
-    description: "EPA+DHA 2,000 mg/day와 출혈 증상을 함께 보는 경우",
+    id: "pregnancy-dose",
+    title: "임신 중이고 하루 2000 mg을 먹고 있어요",
+    summary: "복용량을 보고한 문헌만 남깁니다.",
     input: {
-      ingredient: "오메가-3",
-      dose: "EPA+DHA 2000 mg/day",
-      medication: "와파린",
-      condition: "멍이 잘 듦",
-      labs: "INR 2.6",
-    },
-  },
-  {
-    id: "omega3-warfarin-high-dose",
-    title: "와파린 복용, 6,000 mg/day",
-    description: "일반 기준보다 많은 양을 먹고 멍이 잘 드는 경우",
-    input: {
-      ingredient: "오메가-3",
-      dose: "EPA+DHA 6000 mg/day",
-      medication: "와파린",
-      condition: "멍이 잘 듦",
-      labs: "",
-    },
-  },
-  {
-    id: "calcium-ckd-hypercalcemia",
-    title: "600 mg/day, 만성콩팥병",
-    description: "신장기능이 떨어졌고 혈중 칼슘이 높은 경우",
-    input: {
-      ingredient: "칼슘",
-      dose: "600 mg/day",
+      situation: "HRS3_PREGNANCY",
+      age: "",
       medication: "",
-      condition: "만성콩팥병으로 신장기능 저하",
-      labs: "혈청 칼슘 10.6 mg/dL",
+      dose: "2000 mg",
+      sex: "",
+      condition: "",
+    },
+  },
+  {
+    id: "liver-elevated-enzymes",
+    title: "간수치가 높다고 들었어요",
+    summary: "간질환 상황에서 기저질환을 보고한 문헌만 남깁니다.",
+    input: {
+      situation: "HRS4_LIVER_DISEASE",
+      age: "",
+      medication: "",
+      dose: "",
+      sex: "",
+      condition: "간수치 상승",
+    },
+  },
+  {
+    id: "anticoagulation-warfarin",
+    title: "와파린을 먹는데 멍이 잘 들어요",
+    summary: "항응고제 복용 상황에서 병용약을 보고한 문헌만 남깁니다.",
+    input: {
+      situation: "HRS5_ANTICOAGULATION",
+      age: "",
+      medication: "와파린",
+      dose: "",
+      sex: "",
+      condition: "멍이 잘 듦",
     },
   },
 ];

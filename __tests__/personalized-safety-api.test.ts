@@ -1,1130 +1,184 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import { POST } from "@/app/api/personalized-safety/route";
-import { personalizedSafetyExamples } from "@/src/lib/personalized-safety-examples";
-const original = process.env.OPENAI_API_KEY;
-afterEach(() => {
-  vi.restoreAllMocks();
-  if (original) process.env.OPENAI_API_KEY = original;
-  else delete process.env.OPENAI_API_KEY;
-});
+import rules from "@/research/systematic_review_v40/personalized_rules.json";
+import {
+  axes,
+  situationIds,
+  situations,
+} from "@/src/lib/clinical-situations";
+import { publicInputExamples } from "@/src/lib/personalized-safety-examples";
 
-async function requestAssessment(input: Record<string, string>) {
-  delete process.env.OPENAI_API_KEY;
+type Rule = {
+  question_id: string;
+  personalization_axis: string;
+  all_evidence: { record_id: string }[];
+  evidence: { record_id: string }[];
+  clinical_recommendation: boolean;
+  decision_authority: string;
+  output_scope: string;
+};
+
+const allRules = rules as unknown as Rule[];
+
+function ruleFor(situation: string, axis: string) {
+  return allRules.find(
+    (rule) =>
+      rule.question_id === situation && rule.personalization_axis === axis,
+  );
+}
+
+async function ask(input: Record<string, string>) {
   const response = await POST(
-    new Request("http://local/api/personalized-safety", {
+    new Request("http://localhost/api/personalized-safety", {
       method: "POST",
+      headers: { "content-type": "application/json" },
       body: JSON.stringify(input),
     }),
   );
-  return { response, body: await response.json() };
+  return { status: response.status, body: await response.json() };
 }
 
 describe("personalized safety API", () => {
-  it("returns a complete assessment for every public input example", async () => {
-    delete process.env.OPENAI_API_KEY;
-    const expectedQuestionByIngredient: Record<string, string> = {
-      "비타민 K": "A1",
-      "오메가-3": "A2",
-      칼슘: "B1",
-      "비타민 D": "B2",
-    };
-    const expectedVerdictById: Record<string, string> = {
-      "vitamin-k-warfarin-inr": "매일 비슷한 양을 섭취",
-      "vitamin-k-unknown-dose": "매일 비슷한 양을 섭취",
-      "vitamin-k-bruising": "갑자기 줄이지 말고",
-      "omega3-warfarin-bruising": "안전 범위 안",
-      "omega3-warfarin-high-dose": "일반 기준 5,000 mg/day보다 높습니다",
-      "calcium-ckd-hypercalcemia": "고칼슘혈증 기준인 10.5 mg/dL를 넘습니다",
-      "vitamin-d-ckd-hypercalcemia": "고칼슘혈증 기준인 10.5 mg/dL를 넘습니다",
-      "vitamin-d-peritoneal-dialysis": "성인 상한 아래",
-    };
-    expect(personalizedSafetyExamples).toHaveLength(8);
-    expect(
-      personalizedSafetyExamples.reduce<Record<string, number>>((counts, example) => {
-        counts[example.input.ingredient] =
-          (counts[example.input.ingredient] ?? 0) + 1;
-        return counts;
-      }, {}),
-    ).toEqual({
-      "비타민 K": 3,
-      "비타민 D": 2,
-      "오메가-3": 2,
-      칼슘: 1,
-    });
-
-    for (const example of personalizedSafetyExamples) {
-      const response = await POST(
-        new Request("http://local/api/personalized-safety", {
-          method: "POST",
-          body: JSON.stringify(example.input),
-        }),
-      );
-      const body = await response.json();
-
-      expect(response.status, example.title).toBe(200);
-      expect(body.question_id, example.title).toBe(
-        expectedQuestionByIngredient[example.input.ingredient],
-      );
-      expect(body.ingredient, example.title).toBe(example.input.ingredient);
-      expect(body.assessment.context, example.title).toContain(
-        example.input.ingredient,
-      );
-      expect(body.assessment.context, example.title).toContain(
-        "복용하고 계시네요",
-      );
-      expect(body.narrative_assessment.context, example.title).toBe(
-        body.assessment.context,
-      );
-      expect(body.assessment.context, example.title).not.toMatch(
-        /복용 중입니다|현재 불편한 증상은 없습니다|반영했습니다/,
-      );
-      expect(
-        `${body.assessment.verdict} ${body.assessment.dose}`,
-        example.title,
-      ).toContain(expectedVerdictById[example.id]);
-      expect(body.assessment.dose, example.title).toMatch(/[가-힣]/);
-      expect(body.assessment.watch, example.title).toMatch(/[가-힣]/);
-      // 근거 건수를 상수로 고정하지 않는다. 코퍼스가 바뀌면 성분별 직접 근거 수가
-      // 달라지고, 0 건인 성분도 정당한 결과다. 계약은 "가진 것을 전부, 5건 상한으로
-      // 내놓고 없으면 없다고 말한다" 이므로 그것을 검사한다.
-      const directCandidates = body.all_evidence.filter(
-        (item: { ingredient_match?: boolean }) => item.ingredient_match,
-      ).length;
-      expect(body.evidence.length, example.title).toBe(
-        Math.min(5, directCandidates),
-      );
-      if (directCandidates === 0) {
-        expect(body.ai_summary, example.title).toMatch(
-          /직접 다룬 (?:연구|것|문헌)[^.]*없|직접 근거[^.]*없/,
-        );
-      }
-      expect(
-        body.evidence.every(
-          (item: { ingredient_match?: boolean }) => item.ingredient_match,
-        ),
-        example.title,
-      ).toBe(true);
-      expect(body.evidence.length, example.title).toBeLessThanOrEqual(5);
-      expect(body.evidence_selection.ingredient_matches, example.title).toBe(
-        body.all_evidence.filter(
-          (item: { ingredient_match?: boolean }) => item.ingredient_match,
-        ).length,
-      );
-      expect(body.evidence.length, example.title).toBe(
-        Math.min(
-          5,
-          body.all_evidence.filter(
-            (item: { ingredient_match?: boolean }) => item.ingredient_match,
-          ).length,
-        ),
-      );
-    }
+  it("rejects a situation that is not one of the five", async () => {
+    const { status, body } = await ask({ situation: "HRS9_UNKNOWN" });
+    expect(status).toBe(400);
+    expect(body.error).toMatch(/다섯 상황/);
   });
 
-  it.each([
-    ["비타민 K", "A1", "100 mcg/day"],
-    ["오메가-3", "A2", "2000 mg/day"],
-    ["칼슘", "B1", "600 mg/day"],
-    ["비타민 D", "B2", "4000 IU/day"],
-  ])(
-    "returns a concise Korean evidence-linked fallback for %s",
-    async (ingredient, q, dose) => {
-      delete process.env.OPENAI_API_KEY;
-      const response = await POST(
-        new Request("http://local/api/personalized-safety", {
-          method: "POST",
-          body: JSON.stringify({
-            ingredient,
-            dose,
-            condition: "검토 대상 병력",
-            labs: "검사값 3.1",
-          }),
-        }),
-      );
-      const body = await response.json();
-      expect(response.status).toBe(200);
-      expect(body.question_id).toBe(q);
-      expect(body.ai_summary).toContain(dose);
-      expect(body.ai_summary).toContain("3.1");
-      expect(body.ai_summary).not.toMatch(/종합하면|핵심은|상담 전에는/);
-      expect(body.ai_summary.length).toBeLessThanOrEqual(700);
-      expect(body.ai_summary).toContain("그래서 지금 볼 것은");
-      expect(body.evidence.length).toBe(
-        Math.min(
-          5,
-          body.all_evidence.filter(
-            (item: { ingredient_match?: boolean }) => item.ingredient_match,
-          ).length,
-        ),
-      );
-      expect(body.all_evidence.length).toBeGreaterThanOrEqual(body.evidence.length);
-      expect(body.evidence_selection.selected).toBe(body.evidence.length);
-      expect(body.evidence_selection.total_candidates).toBe(body.all_evidence.length);
-      expect(body.evidence[0].selection_reason).toBeTruthy();
-      expect(body.evidence[0].selection_reason).not.toContain(" · ");
-      expect(body.evidence[0].selection_reason).toMatch(/(?:입니다|습니다)\.$/);
-      expect(body.evidence[0].key_finding).toBeTruthy();
-      expect(body.evidence[0].key_finding_ko).toBeTruthy();
-      expect(body.evidence[0].locator).toMatch(/^ABSTRACT_SENTENCE_\d+: /);
-      expect(
-        body.evidence.every(
-          (item: { key_finding: string; locator: string }) =>
-            item.key_finding.trim().length > 0 &&
-            /^ABSTRACT_SENTENCE_\d+: /.test(item.locator) &&
-            item.locator.endsWith(item.key_finding),
-        ),
-      ).toBe(true);
-      expect(body.evidence_lineage.track).toBe("v3.0_full_ai_autonomy");
-      expect(body.evidence_lineage.source_question_id).toMatch(/^HRS[1-5]_/);
-      expect(
-        body.all_evidence.every((item: { record_id: string }) =>
-          item.record_id.startsWith("pubmed:"),
-        ),
-      ).toBe(true);
-      expect(body.evidence_selection.method).toBe(
-        "v3.0 최종 추출 논문 가운데 이 보충제를 직접 다룬 문헌만 결과에 사용했습니다. 입력한 약·증상·병력·검사 결과·용량을 대조해 관련도가 높은 순서로 배치했습니다.",
-      );
-      expect(body.ai_summary).not.toMatch(
-        /supplement dose|kidney stone|dietary calcium/,
-      );
-    },
-  );
-  it("splits the profile into short natural sentences", async () => {
-    delete process.env.OPENAI_API_KEY;
+  it("rejects a body that is not an object", async () => {
     const response = await POST(
-      new Request("http://local/api/personalized-safety", {
+      new Request("http://localhost/api/personalized-safety", {
         method: "POST",
-        body: JSON.stringify({
-          ingredient: "칼슘",
-          dose: "600 mg/day",
-          condition: "칼슘옥살산 신장결석 병력",
-          labs: "24시간 요중 칼슘 280 mg/day",
-        }),
-      }),
-    );
-    const body = await response.json();
-    expect(body.ai_summary).toContain(
-      "말씀해 주신 내용을 보면, 칼슘을 600 mg/day 복용하고 계십니다.",
-    );
-    expect(body.ai_summary).toContain("칼슘옥살산 신장결석 병력도 있으시고요.");
-    expect(body.ai_summary).toContain(
-      "최근 검사에서는 24시간 요중 칼슘 280 mg/day가 확인됐고요.",
-    );
-    expect(body.ai_summary).toContain("그래서 지금 볼 것은 제품 라벨의 원소 칼슘");
-    expect(body.ai_summary).toContain(
-      "현재 연결된 문헌만으로 600 mg/day의 개인별 안전 여부를 단정할 수는 없습니다",
-    );
-    expect(body.ai_summary).not.toMatch(/확인받으세요|보여 주세요|상의하세요/);
-    expect(body.ai_summary).not.toMatch(
-      /입력(?:되|하|된)|입력값|대상자|사용자|프로필|검사값|현재 입력한 조건|종합하면|핵심은|상담 전에는|이시군요|살펴볼게요|적어주셨네요/,
-    );
-    expect(body.assessment.verdict).toContain("줄이는 편이 낫습니다");
-    expect(body.assessment.context).toContain(
-      "칼슘옥살산 신장결석 병력이 있다고 하셨어요.",
-    );
-    expect(body.assessment.context).not.toContain("병력도 함께 있습니다");
-    expect(body.assessment.dose).toContain("2,000–2,500 mg/day");
-    expect(body.assessment.interaction).toContain("레보티록신");
-    expect(body.assessment.watch).toContain("280 mg/day");
-    expect(body.assessment.references).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({ label: "NIH 기준" }),
-        expect.objectContaining({ label: "논문 1" }),
-      ]),
-    );
-  });
-
-  it("includes Korean findings in sentence-level evidence references", async () => {
-    const { body } = await requestAssessment({
-      ingredient: "비타민 D",
-      dose: "100 μg/day",
-      medication: "티아지드 이뇨제",
-      condition: "칼슘 수치가 높다고 들음",
-      labs: "혈청 칼슘 10.7 mg/dL",
-    });
-    const paperReferences = body.assessment.references.filter(
-      (item: { label: string }) => item.label.startsWith("논문"),
-    );
-
-    expect(paperReferences).toHaveLength(2);
-    expect(paperReferences[0].summary_ko).toBe(body.evidence[0].key_finding_ko);
-    expect(paperReferences[1].summary_ko).toBe(body.evidence[1].key_finding_ko);
-    expect(body.assessment.references[0].summary_ko).toMatch(/[가-힣]/);
-  });
-
-  it("includes the exact NIH passage used for each public intake limit", async () => {
-    const expectedQuotes: Record<string, string> = {
-      "비타민 K":
-        "People taking warfarin and similar anticoagulants need to maintain a consistent intake of vitamin K from food and supplements.",
-      "오메가-3":
-        "FDA has concluded that dietary supplements providing no more than 5 g/day EPA and DHA are safe when used as recommended.",
-      칼슘:
-        "The tolerable upper intake level for calcium ranges from 2,000 mg to 2,500 mg for adults, depending on age.",
-      "비타민 D":
-        "The Tolerable Upper Intake Level for vitamin D ranges from 25 to 100 mcg (1,000–4,000 IU), depending on age.",
-    };
-
-    for (const example of personalizedSafetyExamples) {
-      const { body } = await requestAssessment(example.input);
-      const nihReference = body.assessment.references.find(
-        (item: { label: string }) => item.label === "NIH 기준",
-      );
-      expect(
-        nihReference.source_excerpts.map((item: { quote: string }) => item.quote),
-        example.input.ingredient,
-      ).toContain(expectedQuotes[example.input.ingredient]);
-    }
-  });
-
-  it("keeps vitamin C available by API without presenting indirect kidney papers as vitamin C evidence", async () => {
-    const { response, body } = await requestAssessment({
-      ingredient: "비타민 C",
-      dose: "1000 mg/day",
-      condition: "신장기능 저하",
-    });
-
-    expect(response.status).toBe(200);
-    expect(body.question_id).toBe("B3");
-    expect(body.evidence).toEqual([]);
-    expect(body.all_evidence).toHaveLength(15);
-    expect(body.evidence_selection.ingredient_matches).toBe(0);
-    expect(body.ai_summary).toContain(
-      "이 조합에 연결된 문헌이 없어 1000 mg/day의 개인별 안전 여부를 문헌으로 뒷받침할 수 없습니다",
-    );
-  });
-
-  it("reflects the entered profile in a conversational counseling tone", async () => {
-    const { body } = await requestAssessment({
-      ingredient: "칼슘",
-      dose: "500 mg/day",
-      medication: "레보티록신(성분명 알려지지 않음)",
-      condition: "특별한 증상 없음",
-    });
-    const expectedContext =
-      "칼슘을 복용하고 계시네요. 제품 라벨에는 하루 500 mg/day로 적혀 있다고 하셨고요. 레보티록신(성분명 알려지지 않음)도 함께 복용하고 계시고요. 현재 불편한 증상은 없다고 하셨어요.";
-
-    expect(body.assessment.context).toBe(expectedContext);
-    expect(body.narrative_assessment.context).toBe(expectedContext);
-    expect(expectedContext).not.toMatch(/복용 중이에요|섭취량은 .*이에요/);
-  });
-  it("combines the omega-3 profile with quantitative findings and directness limits", async () => {
-    delete process.env.OPENAI_API_KEY;
-    const response = await POST(
-      new Request("http://local/api/personalized-safety", {
-        method: "POST",
-        body: JSON.stringify({
-          ingredient: "오메가-3",
-          dose: "EPA+DHA 2000 mg/day",
-          medication: "아픽사반",
-          condition: "코피가 자주 남",
-        }),
-      }),
-    );
-    const body = await response.json();
-    // 성분을 직접 다룬 문헌 수를 서술이 그대로 밝혀야 한다.
-    const onIngredient = body.evidence.filter(
-      (item: { ingredient_match?: boolean }) => item.ingredient_match,
-    );
-    expect(body.ai_summary).toContain(
-      `연결된 문헌은 ${body.evidence.length}건이고, 그 가운데 오메가-3를 직접 다룬 것은 ${onIngredient.length}건입니다`,
-    );
-    // 인용은 성분을 직접 다룬 문헌에서만 뽑고, 원문에 그대로 존재해야 한다.
-    const quoted = body.ai_summary.match(/핵심 소견은 “([^”]+)”/)?.[1];
-    expect(quoted).toBeTruthy();
-    expect(
-      onIngredient.some((item: { key_finding_ko?: string; key_finding: string }) =>
-        String(item.key_finding_ko ?? item.key_finding)
-          .replace(/\s+/g, " ")
-          .trim()
-          .includes(quoted),
-      ),
-    ).toBe(true);
-    // v3.0 근거 집합에 없는 선행 트랙 서술이 되살아나면 안 된다.
-    for (const stale of ["어유 3–6 g/day", "오메가-3 카복실산 4 g", "INR 8.06"])
-      expect(body.ai_summary).not.toContain(stale);
-    // 직접성 한계는 상수가 아니라 실제 근거에서 계산돼야 한다.
-    const direct = body.evidence_selection.direct_medication_matches;
-    expect(typeof direct).toBe("number");
-    if (direct === 0)
-      expect(body.ai_summary).toContain(
-        "아픽사반을 직접 다룬 연구는 이 가운데 없습니다",
-      );
-    else
-      expect(body.ai_summary).not.toContain(
-        "아픽사반을 직접 다룬 연구는 이 가운데 없습니다",
-      );
-    expect(body.ai_summary).toContain(
-      "EPA+DHA 2000 mg/day가 안전하다고 단정할 수 없습니다",
-    );
-    expect(body.assessment.verdict).toContain("일반 성인 기준으로는 안전 범위 안");
-    expect(body.assessment.interaction).toContain("아픽사반과 오메가-3");
-    expect(body.assessment.context).toContain(
-      "현재 코피가 자주 난다고 하셨어요.",
-    );
-    expect(body.assessment.context).not.toContain("코피가 자주 남도 함께 있습니다");
-    expect(body.evidence_selection.total_candidates).toBe(body.all_evidence.length);
-  });
-  it("uses the medicine actually entered in omega-3 results", async () => {
-    delete process.env.OPENAI_API_KEY;
-    const response = await POST(
-      new Request("http://local/api/personalized-safety", {
-        method: "POST",
-        body: JSON.stringify({
-          ingredient: "오메가-3",
-          dose: "2000 mg/day",
-          medication: "와파린",
-          condition: "특별한 증상 없음",
-        }),
-      }),
-    );
-    const body = await response.json();
-    expect(body.assessment.interaction).toContain("와파린과 오메가-3");
-    expect(body.assessment.interaction).not.toContain("아픽사반");
-    expect(body.assessment.context).toContain(
-      "현재 불편한 증상은 없다고 하셨어요.",
-    );
-  });
-
-  it("matches Korean medicine names to the exact English medicine in evidence", async () => {
-    const vitaminK = await requestAssessment({
-      ingredient: "비타민 K",
-      dose: "100 mcg/day",
-      medication: "와파린",
-      condition: "항응고 치료 중",
-      labs: "INR 3.1",
-    });
-    const aspirin = await requestAssessment({
-      ingredient: "오메가-3",
-      dose: "EPA+DHA 1000 mg/day",
-      medication: "아스피린",
-      condition: "특별한 증상 없음",
-    });
-
-    expect(vitaminK.body.evidence_selection.direct_medication_matches).toBeGreaterThan(0);
-    expect(
-      vitaminK.body.evidence.some((item: { selection_reason: string }) =>
-        item.selection_reason.includes("입력한 약을 직접 다룬 문헌입니다"),
-      ),
-    ).toBe(true);
-    expect(aspirin.body.evidence[0].record_id).toMatch(/^pubmed:/);
-    // 직접 일치 수와 선택 사유가 서로 어긋나면 안 된다. 0건이면 어떤 근거도
-    // 직접 일치를 주장하지 않아야 하고, 1건 이상이면 최소 하나는 주장해야 한다.
-    for (const result of [vitaminK, aspirin]) {
-      const claiming = result.body.evidence.filter(
-        (item: { selection_reason: string }) =>
-          item.selection_reason.includes("입력한 약을 직접 다룬 문헌입니다"),
-      ).length;
-      if (result.body.evidence_selection.direct_medication_matches === 0)
-        expect(claiming).toBe(0);
-      else expect(claiming).toBeGreaterThan(0);
-    }
-  });
-
-  it("keeps apixaban evidence explicitly indirect", async () => {
-    const { body } = await requestAssessment({
-      ingredient: "오메가-3",
-      dose: "EPA+DHA 2000 mg/day",
-      medication: "아픽사반",
-      condition: "코피가 자주 남",
-    });
-
-    expect(body.evidence_selection.direct_medication_matches).toBe(0);
-    expect(
-      body.evidence.every((item: { selection_reason: string }) =>
-        !item.selection_reason.includes("입력한 약을 직접 다룬 문헌입니다"),
-      ),
-    ).toBe(true);
-  });
-
-  it.each([
-    [
-      "thiazide and high serum calcium",
-      {
-        ingredient: "비타민 D",
-        dose: "100 μg/day",
-        medication: "티아지드 이뇨제",
-        condition: "칼슘 수치가 높다고 들음",
-        labs: "혈청 칼슘 10.7 mg/dL",
-      },
-      ["같은 약물 계열이나 관련 안전성 결과를 다뤘습니다", "혈중 칼슘"],
-    ],
-    [
-      "warfarin and 6 g omega-3",
-      {
-        ingredient: "오메가-3",
-        dose: "EPA+DHA 6000 mg/day",
-        medication: "와파린",
-        condition: "멍이 잘 듦",
-      },
-      ["입력한 약을 직접 다룬 문헌입니다", "출혈·응고"],
-    ],
-    [
-      "calcium stone history and high urine calcium",
-      {
-        ingredient: "칼슘",
-        dose: "600 mg/day",
-        condition: "칼슘옥살산 신장결석 병력",
-        labs: "24시간 요중 칼슘 280 mg/day",
-      },
-      ["체계적 문헌고찰"],
-    ],
-    [
-      "vitamin D upper limit with stone history",
-      {
-        ingredient: "비타민 D",
-        dose: "4000 IU/day",
-        condition: "신장결석 및 고칼슘뇨 병력",
-        labs: "25(OH)D 48 ng/mL",
-      },
-      ["체계적 문헌고찰"],
-    ],
-    [
-      "vitamin D without a risk modifier",
-      {
-        ingredient: "비타민 D",
-        dose: "2000 IU/day",
-        medication: "복용 약 없음",
-        condition: "특별한 증상 없음",
-        labs: "25(OH)D 28 ng/mL",
-      },
-      ["체계적 문헌고찰"],
-    ],
-  ])(
-    "puts the most directly relevant paper first for %s",
-    async (_name, input, expectedReasons) => {
-      const { body } = await requestAssessment(input);
-
-      // v3.0 트랙에서는 고정된 v2 PMID 순위를 요구하지 않는다.
-      // 대신 선두 근거가 v3 코퍼스에서 왔고 직접 관련 사유를 갖는지 검증한다.
-      expect(body.evidence[0].record_id).toMatch(/^pubmed:/);
-      expect(body.evidence_lineage.track).toBe("v3.0_full_ai_autonomy");
-      for (const reason of expectedReasons) {
-        expect(body.evidence[0].selection_reason).toContain(reason);
-      }
-    },
-  );
-
-  it("does not mistake parathyroid text for levothyroxine evidence", async () => {
-    const { body } = await requestAssessment({
-      ingredient: "칼슘",
-      dose: "500 mg/day",
-      medication: "레보티록신",
-      condition: "특별한 증상 없음",
-    });
-
-    expect(body.evidence_selection.direct_medication_matches).toBe(0);
-    expect(
-      body.evidence.every((item: { selection_reason: string }) =>
-        !item.selection_reason.includes("같은 약물 계열"),
-      ),
-    ).toBe(true);
-  });
-
-  it("does not treat co-medication doses as the omega-3 dose", async () => {
-    const lowDose = await requestAssessment({
-      ingredient: "오메가-3",
-      dose: "40 mg/day",
-      medication: "와파린",
-      condition: "특별한 증상 없음",
-    });
-    const omegaDose = await requestAssessment({
-      ingredient: "오메가-3",
-      dose: "4000 mg/day",
-      medication: "와파린",
-      condition: "특별한 증상 없음",
-    });
-    // 병용약(와파린) 용량이 아니라 입력한 오메가-3 용량이 그대로 파싱돼야 한다.
-    expect(lowDose.body.assessment.dose).toContain("40 mg/day");
-    expect(omegaDose.body.assessment.dose).toContain("4,000 mg/day");
-    expect(lowDose.body.assessment.dose).not.toContain("4,000 mg/day");
-  });
-
-  it("matches an unknown medicine as a whole phrase instead of generic tokens", async () => {
-    const { body } = await requestAssessment({
-      ingredient: "칼슘",
-      dose: "500 mg/day",
-      medication: "calcium channel blocker",
-      condition: "특별한 증상 없음",
-    });
-
-    expect(body.evidence_selection.direct_medication_matches).toBe(0);
-    expect(
-      body.evidence.every((item: { selection_reason: string }) =>
-        !item.selection_reason.includes("입력한 약을 직접 다룬 문헌입니다"),
-      ),
-    ).toBe(true);
-  });
-
-  it.each([
-    ["spaced thousands", "600000 IU/day"],
-    ["lower range endpoint", "4000 IU/day"],
-  ])(
-    "matches vitamin D doses written with %s",
-    async (_name, dose) => {
-      const { body } = await requestAssessment({
-        ingredient: "비타민 D",
-        dose,
-        condition: "신장결석 병력",
-      });
-
-      // v3.0 별칭 근거의 핵심소견에는 용량 문자열이 없어 용량 근거 문구가 붙지 않는다.
-      // 대신 두 표기 형태가 모두 입력 그대로 파싱돼 요약에 반영되는지 검증한다.
-      expect(body.ai_summary).toContain(dose);
-      expect(body.evidence_selection.total_candidates).toBe(
-        body.all_evidence.length,
-      );
-    },
-  );
-  it("describes multiple medicines and symptoms without collapsing them", async () => {
-    delete process.env.OPENAI_API_KEY;
-    const response = await POST(
-      new Request("http://local/api/personalized-safety", {
-        method: "POST",
-        body: JSON.stringify({
-          ingredient: "오메가-3",
-          dose: "2000 mg/day",
-          medication: "와파린 · 아스피린",
-          condition: "코피가 남 · 멍이 잘 듦",
-        }),
-      }),
-    );
-    const body = await response.json();
-
-    expect(response.status).toBe(200);
-    expect(body.assessment.context).toContain(
-      "와파린·아스피린도 함께 복용하고 계시고요.",
-    );
-    expect(body.assessment.context).toContain("현재 코피가 난다고 하셨어요.");
-    expect(body.assessment.context).toContain(
-      "현재 멍이 잘 든다고 하셨어요.",
-    );
-    expect(body.assessment.interaction).toContain(
-      "와파린·아스피린과 오메가-3",
-    );
-    expect(body.ai_summary).not.toContain("멍이 잘 듦도 확인되고요");
-  });
-  it.each([
-    [
-      "비타민 K",
-      "100 mcg/day",
-      "항생제 · 올리스타트",
-      [
-        "장내 비타민 K 생성이 줄어 비타민 K 상태를 낮출 수",
-        "비타민 K 흡수를 낮출 수",
-      ],
-    ],
-    [
-      "칼슘",
-      "500 mg/day",
-      "갑상선약 · 리튬",
-      ["레보티록신의 흡수를 떨어뜨릴 수", "혈중 칼슘을 높일 수"],
-    ],
-    [
-      "비타민 D",
-      "2000 IU/day",
-      "스테로이드 · 스타틴",
-      ["비타민 D 대사에 영향을 줄 수", "일부 스타틴의 작용에 영향을 줄 수"],
-    ],
-  ])(
-    "explains each selected medicine for %s",
-    async (ingredient, dose, medication, expectedPhrases) => {
-      delete process.env.OPENAI_API_KEY;
-      const response = await POST(
-        new Request("http://local/api/personalized-safety", {
-          method: "POST",
-          body: JSON.stringify({
-            ingredient,
-            dose,
-            medication,
-            condition: "특별한 증상 없음",
-          }),
-        }),
-      );
-      const body = await response.json();
-
-      expect(response.status).toBe(200);
-      for (const phrase of expectedPhrases) {
-        expect(body.assessment.interaction).toContain(phrase);
-      }
-    },
-  );
-  it("prioritizes abdominal-pain triage for an anticoagulant user", async () => {
-    delete process.env.OPENAI_API_KEY;
-    const response = await POST(
-      new Request("http://local/api/personalized-safety", {
-        method: "POST",
-        body: JSON.stringify({
-          ingredient: "오메가-3",
-          dose: "EPA+DHA 2000 mg/day",
-          medication: "아픽사반",
-          condition: "배가 아파요",
-        }),
-      }),
-    );
-    const body = await response.json();
-    expect(body.ai_summary).toContain("배가 아픈 증상은 오메가-3 근거와 별도로 봐야 합니다");
-    expect(body.ai_summary).toContain("검은변·혈변·토혈");
-    expect(body.ai_summary).toContain("바로 진료가 필요한 신호입니다");
-    expect(body.ai_summary).not.toMatch(/119|응급실|가급적 오늘/);
-  });
-  it("sends severe abdominal-pain red flags directly to emergency care", async () => {
-    delete process.env.OPENAI_API_KEY;
-    const response = await POST(
-      new Request("http://local/api/personalized-safety", {
-        method: "POST",
-        body: JSON.stringify({
-          ingredient: "오메가-3",
-          dose: "EPA+DHA 2000 mg/day",
-          medication: "아픽사반",
-          condition: "갑자기 심한 복통과 검은변",
-        }),
-      }),
-    );
-    const body = await response.json();
-    expect(body.ai_summary).toContain("바로 진료받으세요");
-  });
-  it("accepts a consumer who does not know the dose", async () => {
-    delete process.env.OPENAI_API_KEY;
-    const response = await POST(
-      new Request("http://local/api/personalized-safety", {
-        method: "POST",
-        body: JSON.stringify({
-          ingredient: "칼슘",
-          dose: "잘 모르겠어요",
-          medication: "복용 약 없음",
-          condition: "특별한 증상 없음",
-        }),
-      }),
-    );
-    const body = await response.json();
-    expect(response.status).toBe(200);
-    expect(body.assessment.context).toContain(
-      "하루 양은 아직 모르겠다고 하셨고요",
-    );
-    expect(body.assessment.verdict).toContain("복용량을 모르면");
-    expect(body.assessment.context).not.toContain("복용 약 없음도");
-  });
-  it("converts vitamin D micrograms before comparing the upper limit", async () => {
-    delete process.env.OPENAI_API_KEY;
-    const response = await POST(
-      new Request("http://local/api/personalized-safety", {
-        method: "POST",
-        body: JSON.stringify({
-          ingredient: "비타민 D",
-          dose: "100 μg",
-          condition: "신장결석 병력",
-        }),
-      }),
-    );
-    const body = await response.json();
-    expect(body.assessment.verdict).toContain("성인 상한 4,000 IU/day");
-  });
-  it("gives a direct vitamin C decision when urine oxalate is elevated and dose is unknown", async () => {
-    delete process.env.OPENAI_API_KEY;
-    const response = await POST(
-      new Request("http://local/api/personalized-safety", {
-        method: "POST",
-        body: JSON.stringify({
-          ingredient: "비타민 C",
-          dose: "잘 모르겠어요",
-          condition: "특별한 증상 없음",
-          labs: "요중 옥살산 상승",
-        }),
-      }),
-    );
-    const body = await response.json();
-    expect(response.status).toBe(200);
-    expect(body.assessment.verdict).toContain(
-      "고용량 비타민 C를 유지하지 않는 쪽이 맞습니다",
-    );
-    expect(body.assessment.watch).toContain(
-      "제품 라벨에서 하루 총량을 확인해야 합니다",
-    );
-    expect(body.assessment.watch).not.toContain("불리한 조건입니다");
-  });
-  it("rejects unsupported ingredients", async () => {
-    const response = await POST(
-      new Request("http://local/api/personalized-safety", {
-        method: "POST",
-        body: JSON.stringify({ ingredient: "마그네슘" }),
-      }),
-    );
-    expect(response.status).toBe(400);
-  });
-  it.each([
-    ["malformed JSON", "{"],
-    [
-      "oversized health text",
-      JSON.stringify({ ingredient: "칼슘", condition: "가".repeat(201) }),
-    ],
-    [
-      "non-string field",
-      JSON.stringify({ ingredient: "칼슘", labs: { value: 3.1 } }),
-    ],
-  ])("rejects %s", async (_caseName, body) => {
-    const response = await POST(
-      new Request("http://local/api/personalized-safety", {
-        method: "POST",
-        body,
-      }),
-    );
-    expect(response.status).toBe(400);
-    expect(response.headers.get("cache-control")).toBe("no-store");
-  });
-  it.each([
-    [
-      "invented numeric threshold",
-      "입력 상태를 확인했습니다. 하루 5000 mg까지 안전합니다. 그대로 복용하세요.",
-    ],
-    [
-      "direct medication instruction",
-      "입력 상태를 확인했습니다. 지금 복용을 중단하세요.",
-    ],
-    [
-      "robotic input acknowledgement",
-      "복용량 600 mg/day, 병력 신장결석이 입력되었습니다.",
-    ],
-  ])("falls back when AI returns %s", async (_caseName, output_text) => {
-    process.env.OPENAI_API_KEY = "test-key";
-    vi.spyOn(globalThis, "fetch").mockResolvedValue(
-      new Response(JSON.stringify({ output_text }), {
-        status: 200,
         headers: { "content-type": "application/json" },
+        body: "not json",
       }),
     );
-    const response = await POST(
-      new Request("http://local/api/personalized-safety", {
-        method: "POST",
-        body: JSON.stringify({
-          ingredient: "칼슘",
-          dose: "600 mg/day",
-          condition: "신장결석 병력",
-        }),
-      }),
-    );
-    const body = await response.json();
-    expect(response.status).toBe(200);
-    expect(body.ai_summary).toContain("600 mg/day");
-    expect(body.ai_summary).not.toContain("5000");
-    expect(body.ai_summary).not.toContain("복용을 중단하세요");
+    expect(response.status).toBe(400);
   });
-  it("sets an upstream timeout and falls back when the model call fails", async () => {
-    process.env.OPENAI_API_KEY = "test-key";
-    const mocked = vi
-      .spyOn(globalThis, "fetch")
-      .mockRejectedValue(new DOMException("timed out", "TimeoutError"));
-    const response = await POST(
-      new Request("http://local/api/personalized-safety", {
-        method: "POST",
-        body: JSON.stringify({ ingredient: "칼슘", dose: "600 mg/day" }),
-      }),
-    );
-    const body = await response.json();
-    expect(response.status).toBe(200);
-    expect(body.ai_summary).toContain("600 mg/day");
-    expect(mocked).toHaveBeenCalledWith(
-      expect.any(String),
-      expect.objectContaining({ signal: expect.any(AbortSignal) }),
-    );
-  });
-  it("uses a grounded AI interpretation before applying evidence rules", async () => {
-    process.env.OPENAI_API_KEY = "test-key";
-    vi.spyOn(globalThis, "fetch").mockImplementation(async (_url, init) => {
-      const request = JSON.parse(String(init?.body ?? "{}"));
-      if (
-        request.text?.format?.name === "supplement_input_interpretation"
-      ) {
-        return new Response(
-          JSON.stringify({
-            output_text: JSON.stringify({
-              dose: "EPA+DHA 2,000 mg/day",
-              medication: "엘리퀴스(아픽사반) · 아스피린",
-              condition: "코피 빈발",
-              labs: "",
-            }),
-          }),
-          { status: 200, headers: { "content-type": "application/json" } },
-        );
-      }
-      throw new DOMException("timed out", "TimeoutError");
-    });
-    const response = await POST(
-      new Request("http://local/api/personalized-safety", {
-        method: "POST",
-        body: JSON.stringify({
-          ingredient: "오메가-3",
-          dose: "EPA랑 DHA 합쳐서 2,000 mg",
-          medication: "엘리퀴스랑 아스피린",
-          condition: "요즘 코피가 자주 나요",
-        }),
-      }),
-    );
-    const body = await response.json();
-    expect(response.status).toBe(200);
-    expect(body.input_interpretation).toEqual({
-      ai_used: true,
-      changed: true,
-    });
-    expect(body.assessment.context).toContain("아픽사반");
-    expect(body.assessment.context).toContain(
-      "현재 코피가 자주 난다고 하셨어요.",
-    );
-    expect(body.assessment.context).toContain("2,000 mg/day");
-  });
-  it("writes the displayed assessment from the full interpreted context", async () => {
-    process.env.OPENAI_API_KEY = "test-key";
-    let narrativeRequest: Record<string, unknown> | null = null;
-    vi.spyOn(globalThis, "fetch").mockImplementation(async (_url, init) => {
-      const request = JSON.parse(String(init?.body ?? "{}"));
-      const formatName = request.text?.format?.name;
-      if (formatName === "supplement_input_interpretation") {
-        return new Response(
-          JSON.stringify({
-            output_text: JSON.stringify({
-              dose: "잘 모르겠어요",
-              medication: "",
-              condition: "배가 아픔",
-              labs: "비타민 D 수치가 낮았다고 들음",
-            }),
-          }),
-          { status: 200, headers: { "content-type": "application/json" } },
-        );
-      }
-      if (formatName === "personalized_safety_narrative") {
-        narrativeRequest = JSON.parse(request.input[1].content);
-        return new Response(
-          JSON.stringify({
-            output_text: JSON.stringify({
-              conclusion:
-                "하루 섭취량을 모르는 상태라 지금 복용량을 유지해도 되는지는 판단할 수 없습니다. 제품 라벨에서 비타민 C 총량을 먼저 확인해야 합니다.",
-              context:
-                "비타민 C를 복용 중이고 현재 배가 아픕니다. 최근 검사에서는 비타민 D 수치가 낮다는 설명을 들었습니다.",
-              explanation:
-                "성인 비타민 C 상한은 2,000 mg/day이지만, 이 수치만으로 현재 복용량의 안전성을 판단할 수는 없습니다. 철 과다증이 있다면 비타민 C가 철 흡수를 늘릴 수 있습니다.",
-              next:
-                "복통은 비타민 C 근거와 별도로 살펴야 합니다. 요중 옥살산 상승, 칼슘옥살산 결석 또는 신장기능 저하가 확인되면 고용량을 유지하지 않는 편이 낫습니다.",
-            }),
-          }),
-          { status: 200, headers: { "content-type": "application/json" } },
-        );
-      }
-      throw new Error(`unexpected model request: ${formatName}`);
-    });
 
-    const response = await POST(
-      new Request("http://local/api/personalized-safety", {
-        method: "POST",
-        body: JSON.stringify({
-          ingredient: "비타민 C",
-          dose: "잘 모르겠어요",
-          condition: "배가 아프다.",
-          labs: "비타민D가 낮다고했던거같아요",
-        }),
-      }),
-    );
-    const body = await response.json();
-
-    expect(response.status).toBe(200);
-    expect(narrativeRequest).toEqual(
-      expect.objectContaining({
-        submitted_input: expect.objectContaining({
-          condition: "배가 아프다.",
-          labs: "비타민D가 낮다고했던거같아요",
-        }),
-        interpreted_input: expect.objectContaining({
-          condition: "배가 아픔",
-          labs: "비타민 D 수치가 낮았다고 들음",
-        }),
-        rule_assessment: expect.objectContaining({
-          verdict: expect.stringContaining("판단할 수 없습니다"),
-        }),
-      }),
-    );
-    expect(body.narrative_assessment.ai_used).toBe(true);
-    expect(body.narrative_assessment.context).toBe(
-      "비타민 C를 복용하고 계시네요. 제품 라벨의 하루 양은 아직 모르겠다고 하셨고요. 현재 배가 아프다고 하셨어요. 최근 검사와 관련해서는 “비타민 D 수치가 낮았다고 들음”이라는 내용도 말씀하셨어요.",
-    );
-    expect(JSON.stringify(body.narrative_assessment)).not.toContain(
-      "낮다고했던거같아요입니다",
+  it("has a base rule for every situation the UI offers", () => {
+    for (const situation of situations) {
+      expect(ruleFor(situation.id, "base"), situation.id).toBeTruthy();
+    }
+    expect(situations.map((item) => item.id).sort()).toEqual(
+      [...situationIds].sort(),
     );
   });
-  it("rejects a narrative that invents symptoms or emergency guidance", async () => {
-    process.env.OPENAI_API_KEY = "test-key";
-    vi.spyOn(globalThis, "fetch").mockImplementation(async (_url, init) => {
-      const request = JSON.parse(String(init?.body ?? "{}"));
-      const formatName = request.text?.format?.name;
-      if (formatName === "supplement_input_interpretation") {
-        return new Response(
-          JSON.stringify({
-            output_text: JSON.stringify({
-              dose: "잘 모르겠어요",
-              medication: "",
-              condition: "배가 아픔",
-              labs: "비타민 D 수치가 낮았다고 들음",
-            }),
-          }),
-          { status: 200, headers: { "content-type": "application/json" } },
-        );
-      }
-      return new Response(
-        JSON.stringify({
-          output_text: JSON.stringify({
-            conclusion:
-              "하루 섭취량을 몰라 현재 용량을 유지해도 되는지는 판단할 수 없습니다.",
-            context:
-              "비타민 C를 복용 중이고 배가 아프며 비타민 D 수치가 낮았다는 설명을 들었습니다.",
-            explanation:
-              "성인 비타민 C 상한은 2,000 mg/day이지만 결석 위험군의 안전선이라는 뜻은 아닙니다. 철 과다증에서는 철 흡수를 늘릴 수 있습니다.",
-            next:
-              "혈뇨·고열·오심이 나타나면 즉시 응급실로 가야 합니다. 요중 옥살산 상승도 살펴야 합니다.",
-          }),
-        }),
-        { status: 200, headers: { "content-type": "application/json" } },
+
+  it("returns this situation's core evidence when no axis is filled", async () => {
+    for (const situation of situationIds) {
+      const base = ruleFor(situation, "base");
+      const { status, body } = await ask({ situation });
+      expect(status, situation).toBe(200);
+      expect(body.evidence.length, situation).toBe(
+        Math.min(5, base!.evidence.length),
       );
-    });
-
-    const response = await POST(
-      new Request("http://local/api/personalized-safety", {
-        method: "POST",
-        body: JSON.stringify({
-          ingredient: "비타민 C",
-          dose: "잘 모르겠어요",
-          condition: "배가 아프다.",
-          labs: "비타민D가 낮다고했던거같아요",
-        }),
-      }),
-    );
-    const body = await response.json();
-
-    expect(body.narrative_assessment.ai_used).toBe(false);
-    expect(JSON.stringify(body.narrative_assessment)).not.toMatch(
-      /혈뇨|고열|오심|응급실/,
-    );
-  });
-  it("rejects an AI interpretation that adds a number", async () => {
-    process.env.OPENAI_API_KEY = "test-key";
-    vi.spyOn(globalThis, "fetch").mockImplementation(async (_url, init) => {
-      const request = JSON.parse(String(init?.body ?? "{}"));
-      if (
-        request.text?.format?.name === "supplement_input_interpretation"
-      ) {
-        return new Response(
-          JSON.stringify({
-            output_text: JSON.stringify({
-              dose: "600 mg/day",
-              medication: "",
-              condition: "",
-              labs: "요중 칼슘 280 · 안전 기준 300",
-            }),
-          }),
-          { status: 200, headers: { "content-type": "application/json" } },
-        );
-      }
-      throw new DOMException("timed out", "TimeoutError");
-    });
-    const response = await POST(
-      new Request("http://local/api/personalized-safety", {
-        method: "POST",
-        body: JSON.stringify({
-          ingredient: "칼슘",
-          dose: "600 mg/day",
-          labs: "요중 칼슘 280",
-        }),
-      }),
-    );
-    const body = await response.json();
-    expect(body.input_interpretation).toEqual({
-      ai_used: false,
-      changed: false,
-    });
-    expect(body.assessment.context).toContain(
-      "요중 칼슘 280이라고 하셨어요",
-    );
-    expect(body.assessment.context).not.toContain("300");
-  });
-  it("rejects an AI interpretation that changes a medicine concept", async () => {
-    process.env.OPENAI_API_KEY = "test-key";
-    vi.spyOn(globalThis, "fetch").mockImplementation(async (_url, init) => {
-      const request = JSON.parse(String(init?.body ?? "{}"));
-      if (
-        request.text?.format?.name === "supplement_input_interpretation"
-      ) {
-        return new Response(
-          JSON.stringify({
-            output_text: JSON.stringify({
-              dose: "2,000 mg/day",
-              medication: "엘리퀴스(와파린)",
-              condition: "",
-              labs: "",
-            }),
-          }),
-          { status: 200, headers: { "content-type": "application/json" } },
-        );
-      }
-      throw new DOMException("timed out", "TimeoutError");
-    });
-    const response = await POST(
-      new Request("http://local/api/personalized-safety", {
-        method: "POST",
-        body: JSON.stringify({
-          ingredient: "오메가-3",
-          dose: "2,000 mg/day",
-          medication: "엘리퀴스",
-        }),
-      }),
-    );
-    const body = await response.json();
-    expect(body.input_interpretation.ai_used).toBe(false);
-    expect(body.assessment.context).toContain("엘리퀴스");
-    expect(body.assessment.context).not.toContain("와파린");
-  });
-  it("applies the urine-calcium threshold only to a urine-calcium result", async () => {
-    delete process.env.OPENAI_API_KEY;
-    const response = await POST(
-      new Request("http://local/api/personalized-safety", {
-        method: "POST",
-        body: JSON.stringify({
-          ingredient: "칼슘",
-          dose: "600 mg/day",
-          labs: "비타민 D 280",
-        }),
-      }),
-    );
-    const body = await response.json();
-    expect(body.assessment.verdict).toContain("성인 총섭취 상한보다 낮습니다");
-    expect(body.assessment.verdict).not.toContain("요중 칼슘");
-  });
-  it.each([
-    [
-      "missing input number",
-      "신장결석 병력이 있어 섭취원과 검사 결과를 함께 살펴야 합니다. 식이 칼슘과 보충제 칼슘을 구분해 확인하세요.",
-    ],
-    ["overlong paragraph", `600 mg/day ${"긴 설명 ".repeat(80)}`],
-  ])(
-    "rejects %s and returns a concise fallback",
-    async (_caseName, output_text) => {
-      process.env.OPENAI_API_KEY = "test-key";
-      vi.spyOn(globalThis, "fetch").mockResolvedValue(
-        new Response(JSON.stringify({ output_text }), {
-          status: 200,
-          headers: { "content-type": "application/json" },
-        }),
+      expect(body.core_evidence_count, situation).toBe(
+        base!.all_evidence.length,
       );
-      const response = await POST(
-        new Request("http://local/api/personalized-safety", {
-          method: "POST",
-          body: JSON.stringify({
-            ingredient: "칼슘",
-            dose: "600 mg/day",
-            labs: "24시간 요중 칼슘 280 mg/day",
-          }),
-        }),
+      expect(body.applied_axes, situation).toEqual([]);
+    }
+  });
+
+  it("keeps only papers that report every axis the user filled", async () => {
+    // 축을 채우면 그 축을 보고한 문헌만 남아야 한다. 규칙 파일이 축별로 이미
+    // 부분집합을 갖고 있으므로 응답은 그 교집합 안에 있어야 한다.
+    const situation = "HRS1_PERIOPERATIVE";
+    const ageRule = ruleFor(situation, "age_group")!;
+    const medicationRule = ruleFor(situation, "concomitant_medication")!;
+    const intersection = new Set(
+      ageRule.all_evidence
+        .map((item) => item.record_id)
+        .filter((id) =>
+          medicationRule.all_evidence.some((item) => item.record_id === id),
+        ),
+    );
+
+    const { status, body } = await ask({
+      situation,
+      age: "68세",
+      medication: "아스피린",
+    });
+    expect(status).toBe(200);
+    expect(body.applied_axes.map((item: { axis: string }) => item.axis)).toEqual(
+      ["age_group", "concomitant_medication"],
+    );
+    expect(body.evidence.length).toBeLessThanOrEqual(intersection.size);
+    for (const item of body.evidence as { record_id: string }[]) {
+      expect(intersection.has(item.record_id), item.record_id).toBe(true);
+    }
+  });
+
+  it("reports an axis it cannot apply instead of silently ignoring it", async () => {
+    // HRS2 에는 sex 축이 없다. 없는 축으로 걸러낸 척하면 안 된다.
+    expect(ruleFor("HRS2_KIDNEY_DISEASE", "sex")).toBeUndefined();
+    const { body } = await ask({ situation: "HRS2_KIDNEY_DISEASE", sex: "여성" });
+    expect(body.unavailable_axes).toEqual([
+      { axis: "sex", field: "sex", value: "여성" },
+    ]);
+    expect(body.applied_axes).toEqual([]);
+  });
+
+  it("treats 없음 and 모름 as an unfilled field", async () => {
+    const { body } = await ask({
+      situation: "HRS5_ANTICOAGULATION",
+      medication: "없음",
+      condition: "모름",
+    });
+    expect(body.applied_axes).toEqual([]);
+    expect(body.unavailable_axes).toEqual([]);
+  });
+
+  it("never emits a clinical direction", async () => {
+    for (const example of publicInputExamples) {
+      const { status, body } = await ask(example.input);
+      expect(status, example.title).toBe(200);
+      expect(body.clinical_recommendation, example.title).toBe(false);
+      expect(body.decision_authority, example.title).toBe("none");
+      expect(body.output_scope, example.title).toBe("evidence_linking_only");
+      expect(body.disclaimer, example.title).toMatch(/지시하지 않으며/);
+      // 복용을 지시하는 표현이 요약에 섞이면 안 된다.
+      expect(body.summary, example.title).not.toMatch(
+        /복용을 (?:중단|시작)|용량을 (?:줄|늘)|드시지 마|끊으세요/,
       );
-      const body = await response.json();
-      expect(body.ai_summary).toContain("600 mg/day");
-      expect(body.ai_summary).toContain("280 mg/day");
-      expect(body.ai_summary.length).toBeLessThanOrEqual(700);
-      expect(body.ai_summary).not.toContain("긴 설명");
-    },
-  );
+    }
+  });
+
+  it("says so plainly when the filters leave nothing", async () => {
+    // 다섯 축을 모두 채우면 교집합이 빌 수 있다. 그때도 200 이고 이유를 말해야 한다.
+    const { status, body } = await ask({
+      situation: "HRS2_KIDNEY_DISEASE",
+      age: "68세",
+      medication: "와파린",
+      dose: "2000 mg",
+      condition: "고혈압",
+    });
+    expect(status).toBe(200);
+    if (body.evidence.length === 0)
+      expect(body.summary).toMatch(/문헌은 없습니다/);
+  });
+
+  it("answers every public example without an error", async () => {
+    for (const example of publicInputExamples) {
+      const { status, body } = await ask(example.input);
+      expect(status, example.title).toBe(200);
+      expect(body.error, example.title).toBeUndefined();
+      expect(body.situation_label, example.title).toBeTruthy();
+      expect(body.research_question, example.title).toBeTruthy();
+      expect(body.evidence.length, example.title).toBeLessThanOrEqual(5);
+      for (const item of body.evidence as { url: string; locator: string }[]) {
+        expect(item.url, example.title).toMatch(/^https:\/\/pubmed\./);
+        expect(item.locator, example.title).toBeTruthy();
+      }
+    }
+  });
+
+  it("covers every axis the UI shows with a real rule in at least one situation", () => {
+    for (const axis of axes) {
+      const found = situationIds.some((situation) =>
+        Boolean(ruleFor(situation, axis.id)),
+      );
+      expect(found, axis.id).toBe(true);
+    }
+  });
 });
