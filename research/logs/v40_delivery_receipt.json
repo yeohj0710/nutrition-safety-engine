@@ -10,11 +10,27 @@
   },
   "git": {
     "branch": "main",
-    "head": "f01a56978dcd3099b44dc84023e55e46437e86de",
+    "head": "fc3f0228a4c5b3574bca292d97568689f1e28d96",
     "remote": "https://github.com/yeohj0710/nutrition-safety-engine.git",
     "pushed": true,
-    "working_tree_clean": false,
+    "working_tree_clean": true,
     "commits": [
+      {
+        "sha": "fc3f0228a4c5b3574bca292d97568689f1e28d96",
+        "subject": "refactor: 이전 트랙 전부 제거하고 단일 트랙 저장소로 정리"
+      },
+      {
+        "sha": "cbc8a22aaa4d558a82076eac508a9a0357e1849c",
+        "subject": "feat(site): 사이트를 v4.0 임상상황 축으로 재구축"
+      },
+      {
+        "sha": "8e3d5e2c62e620268d20c1d63544933a8da87ce0",
+        "subject": "wip(cleanup): 레거시 트랙 제거와 엔진 v4 전환 (테스트 8건 미해결)"
+      },
+      {
+        "sha": "76b681d204f1b90524cd1060e85a6ce8786947a2",
+        "subject": "docs(v40): 커밋·푸시·배포 인계 영수증과 생성 도구 추가"
+      },
       {
         "sha": "f01a56978dcd3099b44dc84023e55e46437e86de",
         "subject": "fix(deploy): v4.0 원자료를 배포 업로드에서 제외"
@@ -34,11 +50,11 @@
     "method": "npx vercel --prod --yes",
     "note": "이 저장소는 GitHub 연동이 없어 push 로는 배포되지 않는다.",
     "target": "production",
-    "deployment_url": "https://nutrition-safety-engine-j5889pu9e-yeohj0710s-projects.vercel.app",
+    "deployment_url": "https://nutrition-safety-engine-o0w6782st-yeohj0710s-projects.vercel.app",
     "production_alias": "https://nutrition-safety-engine.vercel.app",
-    "site_data_track": "v3.0",
-    "site_serves_v40": false,
-    "site_note": "사이트는 여전히 v3.0 산출물을 쓴다. v4.0 을 사이트에 반영하는 것은 이 트랙의 범위가 아니며 DECISIONS_v40.md 하류 산출물 절에 그렇게 적혀 있다."
+    "site_data_track": "v4.0",
+    "site_serves_v40": true,
+    "site_note": "사이트는 v4.0 임상상황 축으로 재구축됐다. 이전 트랙은 저장소에서 제거했고 git 히스토리에만 남는다."
   },
   "verification_before_deploy": {
     "typecheck": "npm run typecheck",
