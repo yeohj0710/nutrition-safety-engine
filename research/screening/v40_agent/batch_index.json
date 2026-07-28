@@ -1,0 +1,2004 @@
+{
+  "schema_version": "1.0.0",
+  "track": "v4.0_mecir_search_redesign",
+  "created_at": "2026-07-28T02:02:47+00:00",
+  "corpus": "data/curated_v4/evidence_map.csv",
+  "corpus_sha256": "d5a70b828bdef00ef885e495de90f2dd7e74d3c34a714e8d1c953436a7727173",
+  "prompt_path": "research/screening/v40_agent/prompts/screening_prompt.md",
+  "prompt_sha256": "55f7b08f8d7af7e5e9553e093558438cdccc5c4b3365e1c4acb6300302c5b4a3",
+  "target_batch_rows": 250,
+  "total_rows": 48031,
+  "batch_count": 196,
+  "assignment_plan": {
+    "HRS1_PERIOPERATIVE": [
+      "/root/terms_hrs1",
+      "/root/mecir_audit"
+    ],
+    "HRS2_KIDNEY_DISEASE": [
+      "/root/terms_hrs2"
+    ],
+    "HRS3_PREGNANCY": [
+      "/root/terms_hrs3",
+      "/root/v40_pipeline_audit",
+      "/root/v40_pipeline_audit/retrieval_audit"
+    ],
+    "HRS4_LIVER_DISEASE": [
+      "/root/terms_hrs4"
+    ],
+    "HRS5_ANTICOAGULATION": [
+      "/root/terms_hrs5"
+    ]
+  },
+  "agents": [
+    "/root/mecir_audit",
+    "/root/terms_hrs1",
+    "/root/terms_hrs2",
+    "/root/terms_hrs3",
+    "/root/terms_hrs4",
+    "/root/terms_hrs5",
+    "/root/v40_pipeline_audit",
+    "/root/v40_pipeline_audit/retrieval_audit"
+  ],
+  "batches": [
+    {
+      "batch_id": "v40-agent-0001",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "81514013e7aec6fe0256827edf294c50d2c5a2be7b58580e630dd7e643d9ac52",
+      "path": "research/screening/v40_agent/batches/v40-agent-0001.json",
+      "file_sha256": "f20f82e801ee10680543929562538e1416ac5ab88b5cef684542bd26fc4f84b0"
+    },
+    {
+      "batch_id": "v40-agent-0002",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "80683d5d75baf1a4a471335249273d2b8eea329c3e7c16569bf9f1724f7f73c3",
+      "path": "research/screening/v40_agent/batches/v40-agent-0002.json",
+      "file_sha256": "7b2e39cbf2e1643558559d05f05ecd1182cfc8239239ea960b48ee2e8eebdbca"
+    },
+    {
+      "batch_id": "v40-agent-0003",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "ddc097464ea3f97d0185d9d5fc0c218e1b9e3c3b9d297a8e47e48cfdc090455d",
+      "path": "research/screening/v40_agent/batches/v40-agent-0003.json",
+      "file_sha256": "ddf7d55b3077078d05529c173ddb158b84304032f680b08fd8d766482db875ae"
+    },
+    {
+      "batch_id": "v40-agent-0004",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "ae92a417ac0fd86c14a6bbb8fff555d643ec07dfee4af3d5ec1a20a2680ec220",
+      "path": "research/screening/v40_agent/batches/v40-agent-0004.json",
+      "file_sha256": "35a53579b358722520d62cdbfcdbbce66f6156d79143aa1b9f1fe501817d9a1e"
+    },
+    {
+      "batch_id": "v40-agent-0005",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "007c372f787b0795c56b384b4f8ffbdcbd7c7347ba414c5bae76ad86caa4ef0e",
+      "path": "research/screening/v40_agent/batches/v40-agent-0005.json",
+      "file_sha256": "25c55ce31f2ba7cc2fa4a92e85fc8120a503bf853e7915617baa2ef1ccfce274"
+    },
+    {
+      "batch_id": "v40-agent-0006",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "d95b4cc2274ce7834dc47aec423e8731b5a7d599b10279b24ce14e0ec705fabe",
+      "path": "research/screening/v40_agent/batches/v40-agent-0006.json",
+      "file_sha256": "401ba54f736d52c29bc8718a045f3e675f7081e6f3585e4240ddd43296cc4825"
+    },
+    {
+      "batch_id": "v40-agent-0007",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "d2e365e4308a17cdfb9c614acc8ff289c2e24befcbdd523e5cb37919d6065c73",
+      "path": "research/screening/v40_agent/batches/v40-agent-0007.json",
+      "file_sha256": "7fadbbe4caf789d564ec57dd7835342d13ac8733f2c2afc3481eac0e33515aba"
+    },
+    {
+      "batch_id": "v40-agent-0008",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "5e05a880c22155a6cd575fb1631b1416034c00d0b727d49664514bc035c510de",
+      "path": "research/screening/v40_agent/batches/v40-agent-0008.json",
+      "file_sha256": "0c6c80dad9ea76bfbbac723df27805448e1da87f59798aba24e692f2dceae467"
+    },
+    {
+      "batch_id": "v40-agent-0009",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "35566b95d9e75ce5088cbfcee34f9365b4f90d07d6612acdc7e15a83a1f20bf4",
+      "path": "research/screening/v40_agent/batches/v40-agent-0009.json",
+      "file_sha256": "1224c87473f804b1ec6d2d5e4b957868658a42bc8f212ba9aeee4c0a5bffb903"
+    },
+    {
+      "batch_id": "v40-agent-0010",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "df7435d9e3e81b6657382d4123172ca68acd1835e28717608559826e44e895b8",
+      "path": "research/screening/v40_agent/batches/v40-agent-0010.json",
+      "file_sha256": "1671d3aae1600e5e390e8fc0566b55126e05ff2906531f3d66a2ab6a8e16f944"
+    },
+    {
+      "batch_id": "v40-agent-0011",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "24b1c0a193dfa0f0c87bc2e36469fc9b4f5b336a2b39149ff439132ae4b565c7",
+      "path": "research/screening/v40_agent/batches/v40-agent-0011.json",
+      "file_sha256": "74c3e9a6f229058cdb0c4547923d03d9a63929334bc82023566092c0bcbe80c1"
+    },
+    {
+      "batch_id": "v40-agent-0012",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "9c5529564cff87160ca6ffe38c5af8552b788bedd480d1179069a75a4a6ccf83",
+      "path": "research/screening/v40_agent/batches/v40-agent-0012.json",
+      "file_sha256": "9fa07d72e207259e0983f53babc6630d9c0c1629a282543cb9fe5b540f17c67d"
+    },
+    {
+      "batch_id": "v40-agent-0013",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "86e6ce9bc7f3fc8a15061110d73c7b279b74e34eb739a31498e11228338953ae",
+      "path": "research/screening/v40_agent/batches/v40-agent-0013.json",
+      "file_sha256": "0c52ae430d6b45ab534116a200c03bd467acd13b88bf53c8789ef7b1a708c63a"
+    },
+    {
+      "batch_id": "v40-agent-0014",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "551439c5d9dd42661b3354e35da83a346cfa3bb5052e08e6e4991304828976c9",
+      "path": "research/screening/v40_agent/batches/v40-agent-0014.json",
+      "file_sha256": "b93bd00f285c5587fb5382de050acdd2412ff8d7a53c9080374da80d885c49b0"
+    },
+    {
+      "batch_id": "v40-agent-0015",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "7c0cf871fb66f4e5bb7466f48a3cd94f099c3c3ba2bec3e1dc51f145cb89858c",
+      "path": "research/screening/v40_agent/batches/v40-agent-0015.json",
+      "file_sha256": "a5c0999a340e3428eb17a9102f9987f67a27fcd99bca38137816074a74ff0de4"
+    },
+    {
+      "batch_id": "v40-agent-0016",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "0f7a0478192aa312bd2b3ed70d1f37db2dc69cb7a6f20a53035533a6f64952b6",
+      "path": "research/screening/v40_agent/batches/v40-agent-0016.json",
+      "file_sha256": "3dfd8301eaf5ac379968c096270d32955e9c208fb18bbf0429163a66e01942ec"
+    },
+    {
+      "batch_id": "v40-agent-0017",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "c8bc9cd69ca84a0e7d56e2da0679a770af6d2f2ad2e2de43d57d1b662ae37933",
+      "path": "research/screening/v40_agent/batches/v40-agent-0017.json",
+      "file_sha256": "c7707e89dad7490442b057841f9e123495a41c5764fb54f4bf6dab1ddf2d0621"
+    },
+    {
+      "batch_id": "v40-agent-0018",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "19d23d4f8df9a085f15b0fd61649b262c690c346f063de5e89c0ea4bde3d4ae0",
+      "path": "research/screening/v40_agent/batches/v40-agent-0018.json",
+      "file_sha256": "a53ad50526c2a8728bd9a0f6493a46c75f703de5b8f43df1bde20651cbc12e08"
+    },
+    {
+      "batch_id": "v40-agent-0019",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "17ebd22d8044072824c62d8bac159e6efe4158378275750841edfc5750a20f1d",
+      "path": "research/screening/v40_agent/batches/v40-agent-0019.json",
+      "file_sha256": "5f992e7cc03d3d428ecc1e1c029f08eea84510f708f1facf200a0b7f2520baa3"
+    },
+    {
+      "batch_id": "v40-agent-0020",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "78bcd4e5f2fdb46f553437b21938e644c2fbe9fd5531ea6b48f6ce38b875067d",
+      "path": "research/screening/v40_agent/batches/v40-agent-0020.json",
+      "file_sha256": "7882b40968ff56a9ef2fd54203707fd928b588f56148f56802de23b1f872f6bd"
+    },
+    {
+      "batch_id": "v40-agent-0021",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "2336dff8923b4460c2aa3fb547dd73fadce4a2484ae71696062a06a74de49286",
+      "path": "research/screening/v40_agent/batches/v40-agent-0021.json",
+      "file_sha256": "c4752c19b69419de39521f597bc6ea90410c6767a85d39ec3160e38c47914f17"
+    },
+    {
+      "batch_id": "v40-agent-0022",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "c25e2b5d41b0389b8b943629abd0b3620661bf71402cbee4d4133fae79730460",
+      "path": "research/screening/v40_agent/batches/v40-agent-0022.json",
+      "file_sha256": "d74f55e2858ff41c3b0057026b331e9268b76b8d9bd74508cf4e3563422fbaf5"
+    },
+    {
+      "batch_id": "v40-agent-0023",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 245,
+      "input_sha256": "ce93f1049d53c30b857b733207ef35b64a4285be6132526d13d35a640a942b5e",
+      "path": "research/screening/v40_agent/batches/v40-agent-0023.json",
+      "file_sha256": "c1ade22a577b11997aabab8656d4611d235c58120953bbacf8a33044ce13345d"
+    },
+    {
+      "batch_id": "v40-agent-0024",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 245,
+      "input_sha256": "d27777afd250b5caa8f140ee9a4aebc47b2e229f79cd23df03554e057bf2c3c5",
+      "path": "research/screening/v40_agent/batches/v40-agent-0024.json",
+      "file_sha256": "b00591ecf9dc9453bdb6ae7b89e00401859369efe43e8e78b9216228f315ae2f"
+    },
+    {
+      "batch_id": "v40-agent-0025",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/terms_hrs1",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 245,
+      "input_sha256": "0fa039b327e7fbcdb049588aee0937bd0534d609fa9bc77fcc9bc50eb5f50e2f",
+      "path": "research/screening/v40_agent/batches/v40-agent-0025.json",
+      "file_sha256": "5ef19b20e6a4279d2bd25e39012b99009a1dd8f5c6c3fccfefba21cc2e105015"
+    },
+    {
+      "batch_id": "v40-agent-0026",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "bff3f7ec855a9fc16c14d87c75f605750dd7f70cdbec194cc140c2fca49ce0b9",
+      "path": "research/screening/v40_agent/batches/v40-agent-0026.json",
+      "file_sha256": "450fd61226776e00c540cf4bba1de5c0717b18944dab5447baac70f1c62a3695"
+    },
+    {
+      "batch_id": "v40-agent-0027",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "20cef000eef70856623551315e593ccae9687a4b1010d2f3faaedb2dd1e3c1a1",
+      "path": "research/screening/v40_agent/batches/v40-agent-0027.json",
+      "file_sha256": "f10e9c8ee8d7e2a594981a01c1e5fcb20748567307733e98e5efdd33a0df8d59"
+    },
+    {
+      "batch_id": "v40-agent-0028",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "a08767a69906d1266ff712bd32aa28e544b0e5ff3ad3ef08adf63b2965fbf52e",
+      "path": "research/screening/v40_agent/batches/v40-agent-0028.json",
+      "file_sha256": "1a2609dd3c0202dba8330d64c19764c06b8d43670b22ead3fcedd0893a471dab"
+    },
+    {
+      "batch_id": "v40-agent-0029",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "bf0c85415c42d24d3db56c0f81af811db621957dd3854c2598361c7380a4fd6a",
+      "path": "research/screening/v40_agent/batches/v40-agent-0029.json",
+      "file_sha256": "419660a8e3d95a198f7232c9fdc389be93a7f943714b2e46ff5a95ae2005765a"
+    },
+    {
+      "batch_id": "v40-agent-0030",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "ab8754d6c59784afd5af9aae7036c2b3feeb3eca0797b4dcf3e4d7447b271440",
+      "path": "research/screening/v40_agent/batches/v40-agent-0030.json",
+      "file_sha256": "466eee04de4ee9fc9b34b0ab044a1f0e914998412fdf7bd8000849e2ceda0095"
+    },
+    {
+      "batch_id": "v40-agent-0031",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "ce16ee71b6e1285ab3bf23b692361c42e5e39292cd2acc744528f1eafc45e08c",
+      "path": "research/screening/v40_agent/batches/v40-agent-0031.json",
+      "file_sha256": "d68c2c6de3899e2bb09b3ddadb1f2c79b2bcbd141f7f779b2d60cacf42383ed3"
+    },
+    {
+      "batch_id": "v40-agent-0032",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "b0991bc3bb4e17704cc39a2f331eae8eef6db6fe82712ff7539236130159d84e",
+      "path": "research/screening/v40_agent/batches/v40-agent-0032.json",
+      "file_sha256": "93251aeefd030e2f7900ce4fd9e7c72364d148912b9abca5274afb3216970292"
+    },
+    {
+      "batch_id": "v40-agent-0033",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "eb6f6d3b542ea6eecb7fa41752b385a091b46585535c0a372effd5099cbd9d90",
+      "path": "research/screening/v40_agent/batches/v40-agent-0033.json",
+      "file_sha256": "468350c267e563269c63fc26bdea27af5354c2b83b71b79425566212f1776225"
+    },
+    {
+      "batch_id": "v40-agent-0034",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "437d178ee1ba88ac7321983b98ae05155a239048cad25c62874c7d6a63639b12",
+      "path": "research/screening/v40_agent/batches/v40-agent-0034.json",
+      "file_sha256": "fc351d5d430a22c39452ca5e79aea8729ff1ce8544d50c6b659a6c00d5d0a017"
+    },
+    {
+      "batch_id": "v40-agent-0035",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "50354f3bf327aad4857e7352522252fb1ac8a783ce03222ab7c41b61f94490cd",
+      "path": "research/screening/v40_agent/batches/v40-agent-0035.json",
+      "file_sha256": "b7060ae39dec83b7d85cd33e9e827cc2be32f1467bf3acab290e513344128d6a"
+    },
+    {
+      "batch_id": "v40-agent-0036",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "6922e4acde93f06513759b38c480a0dfb2e59b633e376c96c925f36a65abe3d7",
+      "path": "research/screening/v40_agent/batches/v40-agent-0036.json",
+      "file_sha256": "2751f776b7c5092ff3159a26a925be59d66f7102847eb216b207a6d0d63e6e60"
+    },
+    {
+      "batch_id": "v40-agent-0037",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "0629d5406e5b4e2adb7377331bcc041b09044834881d98bdb5c7dfa19ef54e79",
+      "path": "research/screening/v40_agent/batches/v40-agent-0037.json",
+      "file_sha256": "448d81d0321b38d63d600c6354b1fd64ca238d2c1d32ae1d75c4fbb8edf2367f"
+    },
+    {
+      "batch_id": "v40-agent-0038",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "9af35569ac762ea8f4d3ba64f609bb9b62e388f765e8d2f5ed490ce64c4aa470",
+      "path": "research/screening/v40_agent/batches/v40-agent-0038.json",
+      "file_sha256": "def16ea2525b6575b3543f882b293399046a2e9a0946853e9bf8f4d832ce778f"
+    },
+    {
+      "batch_id": "v40-agent-0039",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "3caf022283e57c525e7209ae909dd89527a2aa30386e68c7f9fe265448c1ee94",
+      "path": "research/screening/v40_agent/batches/v40-agent-0039.json",
+      "file_sha256": "0f6c178f29515b09c8903eaa58e7ea251b72d456f5db68b1f7332c2f2fcd0b56"
+    },
+    {
+      "batch_id": "v40-agent-0040",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "2f1695873140cfffb03afc9a2744218832c60181a60e650ce5f4f3e2e87cffe8",
+      "path": "research/screening/v40_agent/batches/v40-agent-0040.json",
+      "file_sha256": "50808e3380ae692b80b1cf09bec70187975ba6895fb0797a5473be11e58623bb"
+    },
+    {
+      "batch_id": "v40-agent-0041",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "fa83133faf3bf5dc24611e0aa79bd11ed42b91c17c11bbcdd286b8bba44761bc",
+      "path": "research/screening/v40_agent/batches/v40-agent-0041.json",
+      "file_sha256": "e6951b201b0e7fa27429721baf3f112ec8c9213b765bf2085aa149867b73b22f"
+    },
+    {
+      "batch_id": "v40-agent-0042",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "b025e4efc88c0eef0645af4037e95f7e717939ae655505aad246d6b3f7bc93db",
+      "path": "research/screening/v40_agent/batches/v40-agent-0042.json",
+      "file_sha256": "59f40fad98a306672d570d633147439194a585c22100e4a1dfbe980746352b05"
+    },
+    {
+      "batch_id": "v40-agent-0043",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "4c101483146bc43ce0801bfa543e0a5144bdf7a40f133c4a390a3d6f5ffc9d9d",
+      "path": "research/screening/v40_agent/batches/v40-agent-0043.json",
+      "file_sha256": "e8e2f243bdd1b78ad7a66c626ab95b5a51db585d6f4a44dec5920c82d5cef6a6"
+    },
+    {
+      "batch_id": "v40-agent-0044",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "c152f842174aa7e07711dbc55d6092e5f3245571ac2b387ea59bd08cb7250546",
+      "path": "research/screening/v40_agent/batches/v40-agent-0044.json",
+      "file_sha256": "681a84b6027b0c97dda6987da63b29b3b8e845821f32f74a2c2e8a81972b8b1f"
+    },
+    {
+      "batch_id": "v40-agent-0045",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "80d287b74ccb27c25a978d8ebccf96dd36ede7fb3021b8c3b24940196c42cab0",
+      "path": "research/screening/v40_agent/batches/v40-agent-0045.json",
+      "file_sha256": "c72afa8596b34b46d6bd8a75f7b43ca33c71105a062d1d365d28830940fc0b1d"
+    },
+    {
+      "batch_id": "v40-agent-0046",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 246,
+      "input_sha256": "32e21cb41601e39865455e0d3606b00375b19aacdc60ffa037f24a474228699e",
+      "path": "research/screening/v40_agent/batches/v40-agent-0046.json",
+      "file_sha256": "9650b75036c855ca311005b105040f132eef455ac20342c8c791b4821f272484"
+    },
+    {
+      "batch_id": "v40-agent-0047",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 245,
+      "input_sha256": "9fe7f0febda2550a5742b90de1db156a7a1b4ab3b891e75cdb8127b400358f03",
+      "path": "research/screening/v40_agent/batches/v40-agent-0047.json",
+      "file_sha256": "e0eaa6ca4550775c0c9d43d6a200222fb1c6af675b6f07279026a2bb735c9e82"
+    },
+    {
+      "batch_id": "v40-agent-0048",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 245,
+      "input_sha256": "e42632f9ccfcd8b155e45ea7044c554fa532dc52775d811764968a69d71ca8c0",
+      "path": "research/screening/v40_agent/batches/v40-agent-0048.json",
+      "file_sha256": "3cc92f94465d7ba844dc7626463fbdac94341f950b72ebbd7bd1ec36e2060a2d"
+    },
+    {
+      "batch_id": "v40-agent-0049",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 245,
+      "input_sha256": "faf2e9163e4ec13b52384c60ea81aec39e77f52f5860e6ef1fde2cedf88b58d2",
+      "path": "research/screening/v40_agent/batches/v40-agent-0049.json",
+      "file_sha256": "611d8d1e84473dfab3926242c29f1e93df6593f23d7446159fb1e0e0a4cafd2d"
+    },
+    {
+      "batch_id": "v40-agent-0050",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "assigned_agent": "/root/mecir_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 245,
+      "input_sha256": "27e75a8cb598a0626f60c5e10ba22aeffc50fc4de69d01a507a2029532e8215d",
+      "path": "research/screening/v40_agent/batches/v40-agent-0050.json",
+      "file_sha256": "3b784869932ecc2188585629ad681da5b87684e474e14c970d3c8f6432177ae3"
+    },
+    {
+      "batch_id": "v40-agent-0051",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "assigned_agent": "/root/terms_hrs2",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 248,
+      "input_sha256": "e10e51dd819f4227bc3bf76ced471d5be4c28b2e8c0495e6e3b25e8e165ae743",
+      "path": "research/screening/v40_agent/batches/v40-agent-0051.json",
+      "file_sha256": "c85c38026dd46b0ffc0dab45d4cce3fff49d5591146da69cfa78d7f18039da46"
+    },
+    {
+      "batch_id": "v40-agent-0052",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "assigned_agent": "/root/terms_hrs2",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 248,
+      "input_sha256": "c2629670d2388ba2001e27285fc708a7694a680a6321fa5ce218d564bce95eea",
+      "path": "research/screening/v40_agent/batches/v40-agent-0052.json",
+      "file_sha256": "6b094e2d08b5402eacc0cfbac25c0c6c42eacc5c5700db4696efeeda6a635b95"
+    },
+    {
+      "batch_id": "v40-agent-0053",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "assigned_agent": "/root/terms_hrs2",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 248,
+      "input_sha256": "dd1f29804adc25c805fb852fa5f6ac971e624d5c22dc17692816f0fa4995e042",
+      "path": "research/screening/v40_agent/batches/v40-agent-0053.json",
+      "file_sha256": "28489f474cdc57f52bc2c52a8aba46d9f95175cf7c364e0660397cb0932ca386"
+    },
+    {
+      "batch_id": "v40-agent-0054",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "assigned_agent": "/root/terms_hrs2",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 248,
+      "input_sha256": "495af7c39d9bf7e31abe5d2e20c6b39c48b6e56c041ab8f2bc0da4f5817555f5",
+      "path": "research/screening/v40_agent/batches/v40-agent-0054.json",
+      "file_sha256": "3d3a220962d8927bce9d1bf9b6f03b0368547b0f478cc9959533b83bd7bd3642"
+    },
+    {
+      "batch_id": "v40-agent-0055",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "assigned_agent": "/root/terms_hrs2",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 248,
+      "input_sha256": "f68207706eadbb85f692026c5ce052adb66f99f9ed2077f6899433fddfa6a547",
+      "path": "research/screening/v40_agent/batches/v40-agent-0055.json",
+      "file_sha256": "2da3dee07a769395a2b3a21f9f0882b802fd6328356ead2ead90b89e9257d9e1"
+    },
+    {
+      "batch_id": "v40-agent-0056",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "assigned_agent": "/root/terms_hrs2",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 248,
+      "input_sha256": "2d049224c7243309555f603d556685a9c12914c7e5debe0e473949eb4ebfa1a9",
+      "path": "research/screening/v40_agent/batches/v40-agent-0056.json",
+      "file_sha256": "2fe26a85a6717bdd935b9b9081557da658fb6640f7aadbfeecb40fbcdd34d93f"
+    },
+    {
+      "batch_id": "v40-agent-0057",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "assigned_agent": "/root/terms_hrs2",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 248,
+      "input_sha256": "43620249dbda78c590fbc925639ca02ddf213f8dc84e3eb3cbf06d1cf8f44f77",
+      "path": "research/screening/v40_agent/batches/v40-agent-0057.json",
+      "file_sha256": "2c7aa069d40c75c507d4f4333bd85274921b7ec35b5aafe79c30b2f8bc115898"
+    },
+    {
+      "batch_id": "v40-agent-0058",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "assigned_agent": "/root/terms_hrs2",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 248,
+      "input_sha256": "9a4b05851a247730a7611f80b0f22980fd216fa6707828da613de4981ac812c4",
+      "path": "research/screening/v40_agent/batches/v40-agent-0058.json",
+      "file_sha256": "f970f0db12fadf3f9f8b0ea446a5b344537e3e5caf57ab97923bbeb993257e25"
+    },
+    {
+      "batch_id": "v40-agent-0059",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "assigned_agent": "/root/terms_hrs2",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 248,
+      "input_sha256": "2bc836f0a0d1587efed346e4dec6cea35667484b75e1ecc3f31304f10c9bd63b",
+      "path": "research/screening/v40_agent/batches/v40-agent-0059.json",
+      "file_sha256": "75ead2b67bc9069ca513e18b207eee362d98c8e1e536e675003d380592f797b5"
+    },
+    {
+      "batch_id": "v40-agent-0060",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "assigned_agent": "/root/terms_hrs2",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 248,
+      "input_sha256": "c75fbcceba1e008758a4295e9cf0e84f48a25e51e6a84fb3b405e66d973f6d6b",
+      "path": "research/screening/v40_agent/batches/v40-agent-0060.json",
+      "file_sha256": "dac1b19f5806d8c41ed9bab22451609de8ad9d6e11259218a9641b5c3581fb42"
+    },
+    {
+      "batch_id": "v40-agent-0061",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "assigned_agent": "/root/terms_hrs2",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 248,
+      "input_sha256": "ab7b8090b396fb7dd647fe13ea09677d53ad46f4ac26530da20d66d9197aa3b4",
+      "path": "research/screening/v40_agent/batches/v40-agent-0061.json",
+      "file_sha256": "3f622a838b25780b9f4b2b5d79d06b78db92eb6230dc3905cef8b667fc8675eb"
+    },
+    {
+      "batch_id": "v40-agent-0062",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "assigned_agent": "/root/terms_hrs2",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "a660de1c7e80a4d298de1c7228d888864fa8b299d8137f5779ba6a35ba58d738",
+      "path": "research/screening/v40_agent/batches/v40-agent-0062.json",
+      "file_sha256": "bffb0cb4d9e3233fdb16d1c78815eaff9f643dea982936937bc09eb7bbd56411"
+    },
+    {
+      "batch_id": "v40-agent-0063",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "assigned_agent": "/root/terms_hrs2",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "6d4ed43526d4f83a67f76efee48d915a51994e21a3c45dd937c8de8f95c50814",
+      "path": "research/screening/v40_agent/batches/v40-agent-0063.json",
+      "file_sha256": "ab035daa8ce5ab10a699c6242d316c3067080a79b739d3f1e97632a080efe8ec"
+    },
+    {
+      "batch_id": "v40-agent-0064",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "assigned_agent": "/root/terms_hrs2",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "1978e5a0a0a9649fc1e408967ec9885f3bb7188578f980b652ed7cce4cc4a416",
+      "path": "research/screening/v40_agent/batches/v40-agent-0064.json",
+      "file_sha256": "3041127413b4afbea71e03729b1e006c065b2ea684a7087a078dab009c119768"
+    },
+    {
+      "batch_id": "v40-agent-0065",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "assigned_agent": "/root/terms_hrs2",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "fb0bfb2827d559f17dd289915f17b5c7b78ca16bb66ebd4c0aab9a9704cde01d",
+      "path": "research/screening/v40_agent/batches/v40-agent-0065.json",
+      "file_sha256": "167b0b280f1d793088a50eeab6349f038779a660fbed0a27e98f0cf2cadee809"
+    },
+    {
+      "batch_id": "v40-agent-0066",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "assigned_agent": "/root/terms_hrs2",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "f67314a7606194442f6f18d44bf0790d423d589672731a2dd88fccec5df594bb",
+      "path": "research/screening/v40_agent/batches/v40-agent-0066.json",
+      "file_sha256": "e6eed2da89987e15903728d5e817e2db8733c4684efabc1bdb2fb975f705dcfa"
+    },
+    {
+      "batch_id": "v40-agent-0067",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "assigned_agent": "/root/terms_hrs2",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "c5c3e8dfb7f75faf8f4a3fc0dae61340008cc1ba0356b6e9f32659879ef2250a",
+      "path": "research/screening/v40_agent/batches/v40-agent-0067.json",
+      "file_sha256": "6a42d99951c0b376748b317cebe12e821812849719e0d7c87010b12d77d4776b"
+    },
+    {
+      "batch_id": "v40-agent-0068",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "assigned_agent": "/root/terms_hrs2",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "5b1250e8b4ae6be6434098853f0ce195ad5bd4f71187de611b7331670600fc8f",
+      "path": "research/screening/v40_agent/batches/v40-agent-0068.json",
+      "file_sha256": "afcc22511054acb78cbb99bb3f1fa9f23c5bf48655dff5c9795b70480512ad77"
+    },
+    {
+      "batch_id": "v40-agent-0069",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "assigned_agent": "/root/terms_hrs2",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "41675a7b603b50f19d398712716b2f62b127184cf106b23ee22326fff46648ff",
+      "path": "research/screening/v40_agent/batches/v40-agent-0069.json",
+      "file_sha256": "d1301a661a2ace3e24df0efe5b7fd45571cb405b3724d1014e0deacdf4210222"
+    },
+    {
+      "batch_id": "v40-agent-0070",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "d485719aa0261171bf58eece48abd38f5910b6e863473c7933264eb4bebd2f73",
+      "path": "research/screening/v40_agent/batches/v40-agent-0070.json",
+      "file_sha256": "d3759a071a09ae2c17f7d413982259a2b990a2649135cb2b6fe1c3eb365d6554"
+    },
+    {
+      "batch_id": "v40-agent-0071",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "1f21130c17eccd86b8796e46d93b9acadbc5c031bbb40b1bc83dbd4523c273ef",
+      "path": "research/screening/v40_agent/batches/v40-agent-0071.json",
+      "file_sha256": "66249c9fac8790997523d8dd4eca7d3f3680b077324b78744f3375e26d0c1fc2"
+    },
+    {
+      "batch_id": "v40-agent-0072",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "fff194c23f43df23aa47972add5bf2d45dd9d77a03356d58d34959aca359bdae",
+      "path": "research/screening/v40_agent/batches/v40-agent-0072.json",
+      "file_sha256": "6e3580402e79838182f56c20a008701f9a12b45bc18d58628810c4ba05dec569"
+    },
+    {
+      "batch_id": "v40-agent-0073",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "77e0808f66a5b1aab106a2d89b028eed715af10d3fdc1ab7f5b3d3896278d0b6",
+      "path": "research/screening/v40_agent/batches/v40-agent-0073.json",
+      "file_sha256": "88fa313096d1f5b210e241fa124bed8840e2a9f63d1e8d24a967cc1a1a769ae6"
+    },
+    {
+      "batch_id": "v40-agent-0074",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "22098f80fce58dd9513cb5055ae6deab6e40ab29ab34bbc829af05026c42fe23",
+      "path": "research/screening/v40_agent/batches/v40-agent-0074.json",
+      "file_sha256": "a2d183ec17c8a409e9f3375d0d3398b1ed59824fba3cdfd3572d60d006e7b27e"
+    },
+    {
+      "batch_id": "v40-agent-0075",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "06172ff7761b1864be397f12d5f603c07fd874d2e66f32a6754a91ad23be48e4",
+      "path": "research/screening/v40_agent/batches/v40-agent-0075.json",
+      "file_sha256": "4cef37ccbd968cab8230c597d8f127f3187c7b9a4eb1271bb2eb2833d951c548"
+    },
+    {
+      "batch_id": "v40-agent-0076",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "d9b47320ec301abdd09b9032072e0c25b24e6531284a53625b1633af4249edbf",
+      "path": "research/screening/v40_agent/batches/v40-agent-0076.json",
+      "file_sha256": "b01bf79c949067c62e1131128107d6910c7a2b42c0ea06bc94ececf2b4f9b8c2"
+    },
+    {
+      "batch_id": "v40-agent-0077",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "aa25aa5b1e4f3ff5768501265cbf9c5b4fb0dab59d1d76bbf22298e4a82eae72",
+      "path": "research/screening/v40_agent/batches/v40-agent-0077.json",
+      "file_sha256": "bb0104911707946909830437a176c862e6f804f64d2dfc3d6dee9433f209a667"
+    },
+    {
+      "batch_id": "v40-agent-0078",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "b45bb816af34f35c0b1769b27c05b3768b38052f2b3e8e1645a94d7d467201a3",
+      "path": "research/screening/v40_agent/batches/v40-agent-0078.json",
+      "file_sha256": "4a5642f6c45173aee0ccb405f90acfcd37e05022e098b236e40207d70283e27c"
+    },
+    {
+      "batch_id": "v40-agent-0079",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "b2b2e01ef60a05b8d79063448aa21e14d9d0bee88cea215fb051a5705cdfa4cf",
+      "path": "research/screening/v40_agent/batches/v40-agent-0079.json",
+      "file_sha256": "d1b103dd5ecbb5730fcba3dd1f7acd17ef6ae6528cf4ce1ca88ec44070bfb5d5"
+    },
+    {
+      "batch_id": "v40-agent-0080",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "3ac762af0ad7be0c5e7f3c60f00ad5f053f0a61bd2fe87b70857c33653cee18f",
+      "path": "research/screening/v40_agent/batches/v40-agent-0080.json",
+      "file_sha256": "52d192e2c83292dd04c25ee6b3e80aba56e93dfb7ce4d9002b7b3d230477facd"
+    },
+    {
+      "batch_id": "v40-agent-0081",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "4f8b1b6019f3a27effd240198728a1cccec693db8a96837953b659e9312f95c5",
+      "path": "research/screening/v40_agent/batches/v40-agent-0081.json",
+      "file_sha256": "ffb4158201bc1d59c29369e0bdb54cf60c4fcc96b82ea72393c878b1648a9c68"
+    },
+    {
+      "batch_id": "v40-agent-0082",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "2e6dccbe04fd45c541619274a5ad31fa4d934a80b65505e9097e8aa77b9070c3",
+      "path": "research/screening/v40_agent/batches/v40-agent-0082.json",
+      "file_sha256": "cae5373ba07bb09ec0db5933d0f19c865ea4d5ffe3e935ca8a25bb997a3d8a91"
+    },
+    {
+      "batch_id": "v40-agent-0083",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "ace53d1c82e29a95c3c4f9bcacf1d2a9c6516ad0077e16081b295ecb7575b176",
+      "path": "research/screening/v40_agent/batches/v40-agent-0083.json",
+      "file_sha256": "cd06f5955055581732c469ad05ad40c211e9284b34300bba832ba271d4f07c0e"
+    },
+    {
+      "batch_id": "v40-agent-0084",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "277673ca14db531f8c20012a033c29a023375415309c7e8590022b4b9b23658c",
+      "path": "research/screening/v40_agent/batches/v40-agent-0084.json",
+      "file_sha256": "e9ec6cf95366ba9edebd42c9c78d6e568960b1a46c686d74da4c23789f20a4a8"
+    },
+    {
+      "batch_id": "v40-agent-0085",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "006a30e028623deb5620648448e2c161159d95e05d41e7d7065e3e15ee0e0d16",
+      "path": "research/screening/v40_agent/batches/v40-agent-0085.json",
+      "file_sha256": "f9802e270baa4ceeb9b1e68dbe7349d044ca35d49c969321e4d4c2aa00b84978"
+    },
+    {
+      "batch_id": "v40-agent-0086",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "fe9e672cdc4a228102695b9dd4b5a9ba37e3e4f506705135006001873808b68a",
+      "path": "research/screening/v40_agent/batches/v40-agent-0086.json",
+      "file_sha256": "108fe43e5b39a58744950b8a9c9e90c797d41b9144981fb629513dd1c0c0b6b2"
+    },
+    {
+      "batch_id": "v40-agent-0087",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "ef5bf1ed773a75e790e7990b96f65ce7b99ab7439e06e0c4e0590e32b1f8bec3",
+      "path": "research/screening/v40_agent/batches/v40-agent-0087.json",
+      "file_sha256": "2e22e37a369414a72d6f54a3a33996ed10f40c2ef529ecf828627e008322c3d0"
+    },
+    {
+      "batch_id": "v40-agent-0088",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "00575810cfd9c81a516a7bf8a1c55116baa54911815e73a9dc4ffb4357fca17d",
+      "path": "research/screening/v40_agent/batches/v40-agent-0088.json",
+      "file_sha256": "883e26286fa1e68dc9242b1a8407f5e5f04144e1f7f4d344d63b720a910664a7"
+    },
+    {
+      "batch_id": "v40-agent-0089",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "a369132b84b6e82d4e95b2ac2f6ab432cb48f944f902540c6d49b9890ddd81b8",
+      "path": "research/screening/v40_agent/batches/v40-agent-0089.json",
+      "file_sha256": "e7436bab062305ff229a7e1317fecd55baf0166cc692ae6b10af21fbca09a55b"
+    },
+    {
+      "batch_id": "v40-agent-0090",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "8406eea3ba7812d23eb84a46dfd68f82e2806b9e65daca6a9a457be2e9ae8103",
+      "path": "research/screening/v40_agent/batches/v40-agent-0090.json",
+      "file_sha256": "8a3eddf806064fabfed755954a23611401ea5dd65cfbe75644883924d32f47fe"
+    },
+    {
+      "batch_id": "v40-agent-0091",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "6c1318e43bc78f403d1f883a89e72bd6ebf2285d430921a14640af020bd29598",
+      "path": "research/screening/v40_agent/batches/v40-agent-0091.json",
+      "file_sha256": "abf05c5f25cbeaafdb96eba4ebfbc874bf07ae89c777ee64f22cdf704bbc4014"
+    },
+    {
+      "batch_id": "v40-agent-0092",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "d9310a27d5aa24c986eb63e7cda340482b4c499279527808483ff6eeb72ed859",
+      "path": "research/screening/v40_agent/batches/v40-agent-0092.json",
+      "file_sha256": "81a45d0dc0be6af4e04a51e75e2037700be3ffee88ff597df48d8b1c5d6ad5e3"
+    },
+    {
+      "batch_id": "v40-agent-0093",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "66b896f7e0019e2dd4075adff78a1b40436b640172384bb0fb1586db296c955d",
+      "path": "research/screening/v40_agent/batches/v40-agent-0093.json",
+      "file_sha256": "d28c20a93dcf67aa84c858cec7bd2c8cc525e898bca56817a8d4968f666b362c"
+    },
+    {
+      "batch_id": "v40-agent-0094",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "bd443e4013326b8bb35002fb6e592c3395ea34d92e8183fe9198e3d35fbef960",
+      "path": "research/screening/v40_agent/batches/v40-agent-0094.json",
+      "file_sha256": "9d133f37ab4511cd76714e77218c9b7067363919e80b25395a0496ebc7e13aab"
+    },
+    {
+      "batch_id": "v40-agent-0095",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "cb758f5ee72fff68e67d33a9df9f2021b77f95c7e64a9fe21044196b5bc2daeb",
+      "path": "research/screening/v40_agent/batches/v40-agent-0095.json",
+      "file_sha256": "8f51370f28ccf752d929a29a6847dd6b81ec4d01b754261260de3ee9888e38e3"
+    },
+    {
+      "batch_id": "v40-agent-0096",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "b3d92abb9693c168be920a6717be3ce3f0b3aa6695d68d1af0bb8d25e855d22e",
+      "path": "research/screening/v40_agent/batches/v40-agent-0096.json",
+      "file_sha256": "7ecfffacc3fa68db05f43cf18198453297d430656379bc883f2ee860bb65f41c"
+    },
+    {
+      "batch_id": "v40-agent-0097",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/terms_hrs3",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "8efd4890fa49d1d3af51a581748bedca44449265f9f2bb58eb4e661fd7aca793",
+      "path": "research/screening/v40_agent/batches/v40-agent-0097.json",
+      "file_sha256": "5159304465fb09fc819bf1a708d889185d792f4eee1bc4f79959726748a43c29"
+    },
+    {
+      "batch_id": "v40-agent-0098",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "aab1abc5abf419273d460e57785aecfc26672a06e03135d39b9472190e40a358",
+      "path": "research/screening/v40_agent/batches/v40-agent-0098.json",
+      "file_sha256": "80be3330ceb80427d1c9611eff3f861bd6a9609f25739ee003a07ee7c361e6b9"
+    },
+    {
+      "batch_id": "v40-agent-0099",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "37a3f38b826b0d0c8d8ef6cee8a67eded2d743cca431af4c49ea72432592a130",
+      "path": "research/screening/v40_agent/batches/v40-agent-0099.json",
+      "file_sha256": "f92ad80646db635b9fc09eb808b2fdce290758cd6720b72467a2ed2dcb05dca9"
+    },
+    {
+      "batch_id": "v40-agent-0100",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "7750b3215c1a6f325135fccdab0ce4254bc8a71bec573d4a7a9d7bd856281356",
+      "path": "research/screening/v40_agent/batches/v40-agent-0100.json",
+      "file_sha256": "8b1a01bc322800ce8c8af18438b89bea38c33c86de76d42be3fe4449823dfcb3"
+    },
+    {
+      "batch_id": "v40-agent-0101",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "c61a1a1740979b5fd3c2b2bb56e66a6c5e036d4e80caa71305a7895eeadeaaf3",
+      "path": "research/screening/v40_agent/batches/v40-agent-0101.json",
+      "file_sha256": "5531c168dacfb261f899a1bc52aa96be28a3549bb833b3eee0c5f92d8a0d9082"
+    },
+    {
+      "batch_id": "v40-agent-0102",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "3e51195189f897060eee3812bf0534fa82c2d33035458ba9bff8700529e61c6d",
+      "path": "research/screening/v40_agent/batches/v40-agent-0102.json",
+      "file_sha256": "5d11ddd4f62527622f2b054311ac91bb0512fd8a8aeba5ad424032cc85bb225c"
+    },
+    {
+      "batch_id": "v40-agent-0103",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "2d1d907e7bb97485aaaf91c4236dcee94b68a311c3c16372c0b4cc20a3732a05",
+      "path": "research/screening/v40_agent/batches/v40-agent-0103.json",
+      "file_sha256": "b9514eb58ebca7ce60c7d6a9ec153db8edd92f07afc96775b4ee22c6fb662627"
+    },
+    {
+      "batch_id": "v40-agent-0104",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "0b546ef7aece69d9fe8627f4662e9bf0817ade0726f0cc64858297b63d89d534",
+      "path": "research/screening/v40_agent/batches/v40-agent-0104.json",
+      "file_sha256": "8688ee3c75e93fad6dd9c1619ce844ee2965ff9670b0b215cf3e7db945a3fe5a"
+    },
+    {
+      "batch_id": "v40-agent-0105",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "f809f3206455b5ba7c717eb459d5b5a09f26c95ceffb020f60fb6ebada716188",
+      "path": "research/screening/v40_agent/batches/v40-agent-0105.json",
+      "file_sha256": "0af5afa7a214535322519aa92537da6d735661c3d4e69a129401b2672328279b"
+    },
+    {
+      "batch_id": "v40-agent-0106",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "fc9d53510470dd697229493e23c7e57d1651bc1665ea1004c779345e49d493ed",
+      "path": "research/screening/v40_agent/batches/v40-agent-0106.json",
+      "file_sha256": "90b6661166d8955844ca2c9ca274be2e6adf17410d722ef24ebe5fe1dd67fd86"
+    },
+    {
+      "batch_id": "v40-agent-0107",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "1400a11aa755b38b7cbd6d898c5720993bcee9e5047d35d8fd7f25fe53341b0c",
+      "path": "research/screening/v40_agent/batches/v40-agent-0107.json",
+      "file_sha256": "622386dd66512963636c664dfb8faa8e88cddbca01f258d1e081e5c7186a9f33"
+    },
+    {
+      "batch_id": "v40-agent-0108",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "defcdcf2b404d677b9077050cd31e4d23a57ba31ab8cc8f4f278a7677e391f5f",
+      "path": "research/screening/v40_agent/batches/v40-agent-0108.json",
+      "file_sha256": "bfcf868fd94a56c63cc99ac66d68e82010a2021dd89657a0ea79f3eb9e2dd90a"
+    },
+    {
+      "batch_id": "v40-agent-0109",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "b2faf059de20690d0812f17c23e75822aab9dbec5ad9f8f22d3342a3c82c84a5",
+      "path": "research/screening/v40_agent/batches/v40-agent-0109.json",
+      "file_sha256": "9a9f8a912905ec01a93ee2ad382d837a817cb4b954b78b285e11839e56b0bb6e"
+    },
+    {
+      "batch_id": "v40-agent-0110",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "e500fa45fd33fc43fa3e2ecc17a40f1736082481f41edd79f261494190f271c9",
+      "path": "research/screening/v40_agent/batches/v40-agent-0110.json",
+      "file_sha256": "92f2274edbbaa53c6cb3d06e9dbb67475e4ce57a9778c13ab73a2eabbbdd5f43"
+    },
+    {
+      "batch_id": "v40-agent-0111",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "20ac4cafcffcc09a29e272710ba11de0407d3cdd26704001133410ec1ef95feb",
+      "path": "research/screening/v40_agent/batches/v40-agent-0111.json",
+      "file_sha256": "a90680f0430c45cc937c1f6cb1033e9e71f204604e954e7c8916caf133e19e57"
+    },
+    {
+      "batch_id": "v40-agent-0112",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "3d0ba95841dbbbeae045977a7f20b5eb8cbc199a021f911f8ba14d21d0a2edd1",
+      "path": "research/screening/v40_agent/batches/v40-agent-0112.json",
+      "file_sha256": "b32d1ed47e7144373ab642394e47718e4a83cd7172ebaf2fece6d4c4e4304153"
+    },
+    {
+      "batch_id": "v40-agent-0113",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "33c21bc490e71153d4e197bac60ea127531f2b7e087543c99a6af9d5dd74136b",
+      "path": "research/screening/v40_agent/batches/v40-agent-0113.json",
+      "file_sha256": "b7c337582a45d5b582cf5851fde8bc63cec04b82252b5b6e09e606eb55539ac0"
+    },
+    {
+      "batch_id": "v40-agent-0114",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "88eae32bafebeb9c6c520107184162b26127c88327cee0254eb85b9eb7445ec9",
+      "path": "research/screening/v40_agent/batches/v40-agent-0114.json",
+      "file_sha256": "0e0b69aa3c6baf06aefb458b9beac92da88732efb825f21f51eb9ba444ee72bb"
+    },
+    {
+      "batch_id": "v40-agent-0115",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "094121527474638fb6dc2004f70d7da57ecad661fa55df7b0127c8b64619d253",
+      "path": "research/screening/v40_agent/batches/v40-agent-0115.json",
+      "file_sha256": "787baaa63475d3cdd1149f5aa8e3d62fc8139b30baf75269c62fa32f288a5edb"
+    },
+    {
+      "batch_id": "v40-agent-0116",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "09d232030aede361ec0356eab23243d50c065cc2260afb35f8813335fcce9953",
+      "path": "research/screening/v40_agent/batches/v40-agent-0116.json",
+      "file_sha256": "0a7befe6aa0545c90425bdead7cd55815c746bd4d4c7c6f743d436d00bfa592c"
+    },
+    {
+      "batch_id": "v40-agent-0117",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "1ff0b17331c3bd69f1b180f3d0d0f3a44f5c017db1156ab3c935e8beaf1a3336",
+      "path": "research/screening/v40_agent/batches/v40-agent-0117.json",
+      "file_sha256": "39480d385a4f11290916e18d7a0f68e8d5024ed105e89215d65ece05ef6b2a3f"
+    },
+    {
+      "batch_id": "v40-agent-0118",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "4e2be7e093ecd28bcb51b9e177e8a4f7b85b341b076c111d24e66d10c9326a2a",
+      "path": "research/screening/v40_agent/batches/v40-agent-0118.json",
+      "file_sha256": "3ed52bf748f47f5092de7af2cc551bf80c9fc60d4c3482e5c3edc211a8aada20"
+    },
+    {
+      "batch_id": "v40-agent-0119",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "6a7ecaef68ceb752b1920e9d6ef8d0e190a3fef7d674dc5c74e0f5a389a295fd",
+      "path": "research/screening/v40_agent/batches/v40-agent-0119.json",
+      "file_sha256": "398de4e50f895fcab7835e031d417b6bf2aea29fdfe96c95a5679d0b11500926"
+    },
+    {
+      "batch_id": "v40-agent-0120",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "1d9124cc4e41f46728199c4b06efd6011065e77f276f89472315f6327ad4cb56",
+      "path": "research/screening/v40_agent/batches/v40-agent-0120.json",
+      "file_sha256": "42c19dff5a7ace8e4d3cae5b4c986c142b35e29e669183469dcf01da4b14a369"
+    },
+    {
+      "batch_id": "v40-agent-0121",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "937826eae8bc430adb35652d67d5a6b95623441e42301f63d7630fdc305792a9",
+      "path": "research/screening/v40_agent/batches/v40-agent-0121.json",
+      "file_sha256": "d457398e43a3cbd3424d4a7e286280940db3097878e3788b45b115f5d76fc642"
+    },
+    {
+      "batch_id": "v40-agent-0122",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "c838f97e52f51b890266df6f31f2f69772b2713949edf9c8c896fc4ba20b01a6",
+      "path": "research/screening/v40_agent/batches/v40-agent-0122.json",
+      "file_sha256": "36fda649afb18c4e3eb0fef9d1d63234c3ada8573ddccec33be52b827e1b942e"
+    },
+    {
+      "batch_id": "v40-agent-0123",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "bc84fceb836e157aac6629bd8d821bacc3320f623b77738558a44f9563499a92",
+      "path": "research/screening/v40_agent/batches/v40-agent-0123.json",
+      "file_sha256": "874f5f116aa0d9c57929fc71dede29258cf161e3de7e1a3064af4b6a5968fbb0"
+    },
+    {
+      "batch_id": "v40-agent-0124",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "36904b321b4818bdb9fcdc1f7d71c35fc36c6d1bd77591d5b985760134840843",
+      "path": "research/screening/v40_agent/batches/v40-agent-0124.json",
+      "file_sha256": "fa219ebf08d295c082cbc4fdff313e68108e6e6aa0df624cc4437099ce11c2eb"
+    },
+    {
+      "batch_id": "v40-agent-0125",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "c058fec07f9fe3cf269c08b8cd120df24a2ab863aeaf9fc4e1c35849b30d006e",
+      "path": "research/screening/v40_agent/batches/v40-agent-0125.json",
+      "file_sha256": "c01fa30e7851e0c82a0e313246c59ca71356cb28f40ba359445cc58914ab4558"
+    },
+    {
+      "batch_id": "v40-agent-0126",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "e4d90692ecc19ec26ba4d6f793e45601a8d8160e4b7e1920230f9ff8ff8a3059",
+      "path": "research/screening/v40_agent/batches/v40-agent-0126.json",
+      "file_sha256": "e33dac382c495a95dfd4fa4b0c5ba9b9a7d40bc42fa213b507a0eb377577469f"
+    },
+    {
+      "batch_id": "v40-agent-0127",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "11b41973c61b5e5c315fe8ce691d35cbf37ccbfe621fde6b1d5171f9fec27767",
+      "path": "research/screening/v40_agent/batches/v40-agent-0127.json",
+      "file_sha256": "98406efebd10302e43d4ebc465e2c32bd7c8e3ef6bdbdfef009ff52d0cf702d9"
+    },
+    {
+      "batch_id": "v40-agent-0128",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "021f62c891c09365eafd503f79e0ab37328c1192e50ebbf6a51688d3a01eb2ca",
+      "path": "research/screening/v40_agent/batches/v40-agent-0128.json",
+      "file_sha256": "8f3d15f2cc917df03dd98a62a9a0429f0b062735e5aea93f6145e0148e118ce8"
+    },
+    {
+      "batch_id": "v40-agent-0129",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "b26e3a023ac7b392e53cb3b457fc70daaed68d318851541b462a35b69d29d056",
+      "path": "research/screening/v40_agent/batches/v40-agent-0129.json",
+      "file_sha256": "d4fb064295227693584b6b815b970a4c6aa81a736f92227820d718bbf9bad17d"
+    },
+    {
+      "batch_id": "v40-agent-0130",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "692967bd7f3d27596afb904096bd12fa19239f9b4eb92bc09fb6411d7839cea7",
+      "path": "research/screening/v40_agent/batches/v40-agent-0130.json",
+      "file_sha256": "4d97959c376b481480420be37b059832cb6f8ea04fa66c8ddaf39dd8a9ee0a87"
+    },
+    {
+      "batch_id": "v40-agent-0131",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "cdf9844a88bb0a2d9b27a14d9091b412498afd8c24cd985d680d27b18e41c6be",
+      "path": "research/screening/v40_agent/batches/v40-agent-0131.json",
+      "file_sha256": "87874799bb88872f6408e39d76e4ed7ee1a7543f05add6ec8636fefafab9dce4"
+    },
+    {
+      "batch_id": "v40-agent-0132",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "bdeac724f4847d21fd5f26024a99d55018eeac0e09c48f6e623ac39376a89982",
+      "path": "research/screening/v40_agent/batches/v40-agent-0132.json",
+      "file_sha256": "1a3edba0b33bf2c2985e142ae73def5cff8d4444fff7acf6a5d11b866fd04cda"
+    },
+    {
+      "batch_id": "v40-agent-0133",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "2bd63f2170add8a44c3927a6412b03669c02461f5615af4b093833344aa29ad2",
+      "path": "research/screening/v40_agent/batches/v40-agent-0133.json",
+      "file_sha256": "9f87c6d45214eb65497fb3d9293a425f901ee46ff537c06a14c076b11871661b"
+    },
+    {
+      "batch_id": "v40-agent-0134",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "a91dc4fdef6aaa40957fd263a5aaf13cba3d5ac0974984220a6cd8a6a1d8e26a",
+      "path": "research/screening/v40_agent/batches/v40-agent-0134.json",
+      "file_sha256": "348ec1a0dd5594e888aa4667d8c58e7b7a4b3366890602c02eea2d19a3e07205"
+    },
+    {
+      "batch_id": "v40-agent-0135",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "14b097d6152c60a2250c956e189f08f4dfa7aaff2648fb560bc5862e5027c3ac",
+      "path": "research/screening/v40_agent/batches/v40-agent-0135.json",
+      "file_sha256": "d1d4d875a2c042291f82022ceef860f1fca01f060b70d7039fc6f89a54932e4f"
+    },
+    {
+      "batch_id": "v40-agent-0136",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "8e03ea90766e4023c0ab7d5fa4eeb801661e5e60611fdad7eb61831a98ad242e",
+      "path": "research/screening/v40_agent/batches/v40-agent-0136.json",
+      "file_sha256": "95e9b1f65cbc310cd8e5f7e246aafac3a3006b683f09ecc6e78e86fb04042e2f"
+    },
+    {
+      "batch_id": "v40-agent-0137",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 243,
+      "input_sha256": "d5ed98408c4f70dc42b2fd61a595704cffe8bebfa040e66d827fe57d9e337781",
+      "path": "research/screening/v40_agent/batches/v40-agent-0137.json",
+      "file_sha256": "9422d46cb8cbbc46b6b5fe675bbbf3b787e505c1aa788f40f6bbac8c5e12db3c"
+    },
+    {
+      "batch_id": "v40-agent-0138",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "25402b7b0a9b2aef79a3e39d68aa9699cac580d6749224901d49666ca4efc929",
+      "path": "research/screening/v40_agent/batches/v40-agent-0138.json",
+      "file_sha256": "5049e9167042e8f481139dd4da903355d77273cb03b4836f2eeb8445b1dc4f4f"
+    },
+    {
+      "batch_id": "v40-agent-0139",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "e0f170e372d840aa6f00230d35c5573662dc0f0fbbbee4a25786505cf62d9588",
+      "path": "research/screening/v40_agent/batches/v40-agent-0139.json",
+      "file_sha256": "1a767ba48225bd5fd840ab9e0873daffb21d43c7e7eda68193f8be6d5852b4aa"
+    },
+    {
+      "batch_id": "v40-agent-0140",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "dc22dd027a1501d58629884c624f332bbf61a7c344f447534fce343abafba051",
+      "path": "research/screening/v40_agent/batches/v40-agent-0140.json",
+      "file_sha256": "8072fce753047d2b4dd7b25a363d8e8f324b4b1cdcacf89d666fc7e02bcbfb8d"
+    },
+    {
+      "batch_id": "v40-agent-0141",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "403a79d19a00403d87ab05712b6f68ee74816e3fda3cccf99dbea2e81b0de3b2",
+      "path": "research/screening/v40_agent/batches/v40-agent-0141.json",
+      "file_sha256": "f7ea6c0fd0ba467e620e90e276580e51dd0456f755d4cacb8b0b01f39d8c0604"
+    },
+    {
+      "batch_id": "v40-agent-0142",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "2cd7085c4e5c933c77eb3a37d0a5713c065a8253403bb1b3b9dc33fb1a73f74e",
+      "path": "research/screening/v40_agent/batches/v40-agent-0142.json",
+      "file_sha256": "8572130e959531190ce42f4041f96d3cf9e4c102e20022babc5242f61480f79d"
+    },
+    {
+      "batch_id": "v40-agent-0143",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "02b54be80dd129f7f08c02597385dd47a1f32a8ddbe3a2fc8d8fe00d222511e7",
+      "path": "research/screening/v40_agent/batches/v40-agent-0143.json",
+      "file_sha256": "d8da419564031a06b5b854f75f015a5333294b48299021320fa4a532ad262570"
+    },
+    {
+      "batch_id": "v40-agent-0144",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "cb9d56c7de7aae7572563714c405cf2107203b55a1db318c81518e9a71f3250d",
+      "path": "research/screening/v40_agent/batches/v40-agent-0144.json",
+      "file_sha256": "b0da072bccc84ec5b116bae2428d23beb127197ccca0a3b9d07141a42e4ca243"
+    },
+    {
+      "batch_id": "v40-agent-0145",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "3c12a3bcb8089430bf80628649ee72cea190ef1efe5a535c9d439ebe5e642134",
+      "path": "research/screening/v40_agent/batches/v40-agent-0145.json",
+      "file_sha256": "dce20b930bc5219b92523e19342ad0353d29a44f7a05016fd25d45bdc8246272"
+    },
+    {
+      "batch_id": "v40-agent-0146",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "fbf305e73af1c4c1f3d9d8520c2027f60d21baf33932d1a391e7657d6dd8958f",
+      "path": "research/screening/v40_agent/batches/v40-agent-0146.json",
+      "file_sha256": "fb4b933ea289c5373a6b2ce1cb89a8d32d8ba33e4f46075dd5618aa8e1aac354"
+    },
+    {
+      "batch_id": "v40-agent-0147",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "687488b1764c391d16c97e42385e5031aaa17ae2b41520a5b1eca85dae2b10b2",
+      "path": "research/screening/v40_agent/batches/v40-agent-0147.json",
+      "file_sha256": "3167a69aa4ced5d51ab4940ef63c5236ec0434b1c43ce7d8f55599003cffead0"
+    },
+    {
+      "batch_id": "v40-agent-0148",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "33aa7663e8d943bedf38b7af82dc0b5797d04ac04722cde6b116eef7314d3630",
+      "path": "research/screening/v40_agent/batches/v40-agent-0148.json",
+      "file_sha256": "42022e03104773bfd909c1224b5121c8b672c70867e55823c649a6d14e88c692"
+    },
+    {
+      "batch_id": "v40-agent-0149",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "87757960beb001a2a1dc67495be269be9183763d4809601ab2d9318aa25dfbf3",
+      "path": "research/screening/v40_agent/batches/v40-agent-0149.json",
+      "file_sha256": "5d0e937b6759ec9567f5180844b730979493aaf8f87362a0479ba4367d152a83"
+    },
+    {
+      "batch_id": "v40-agent-0150",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "aec7d4726eb90cdd661775dab7505ab7b0499d81feb26f9398ba6dad07fbdf1d",
+      "path": "research/screening/v40_agent/batches/v40-agent-0150.json",
+      "file_sha256": "a2674eaba88b291c0a82d8d3e7ff2088e3fe96879bae27145423d303e6cf8b38"
+    },
+    {
+      "batch_id": "v40-agent-0151",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "59ff659e71659eaa993dc8323a1eea4492f01236dd101247af9eec11044289d9",
+      "path": "research/screening/v40_agent/batches/v40-agent-0151.json",
+      "file_sha256": "a6c7c863e9c5d9e2f6eac85b48c741a4d572646bf9dcd3eae4dae396d70c7028"
+    },
+    {
+      "batch_id": "v40-agent-0152",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "1d693d70ea343f7cdce324838a45d343cf20937ed19272952c88bb91473a7863",
+      "path": "research/screening/v40_agent/batches/v40-agent-0152.json",
+      "file_sha256": "9813406edf77c29617b7da86311fb117793105190775c2307676687f9ff16f0a"
+    },
+    {
+      "batch_id": "v40-agent-0153",
+      "question_id": "HRS3_PREGNANCY",
+      "assigned_agent": "/root/v40_pipeline_audit/retrieval_audit",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 242,
+      "input_sha256": "4eef32b0c4bc6a77859806698de0d96be36d3a3330aa20ac87727ace0b8d0970",
+      "path": "research/screening/v40_agent/batches/v40-agent-0153.json",
+      "file_sha256": "e0cca0c9891134e4fa7438e917e38566fe99c5543da2e970db1f8d52b3464d32"
+    },
+    {
+      "batch_id": "v40-agent-0154",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 248,
+      "input_sha256": "9e5582cc08656de7403c5757879a00139e9a758681887a8246b7ab9777e7825f",
+      "path": "research/screening/v40_agent/batches/v40-agent-0154.json",
+      "file_sha256": "911314573e4ee71b0612f828be775cd8b14f9654ac64ed6330bc074cb0bae9ce"
+    },
+    {
+      "batch_id": "v40-agent-0155",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 248,
+      "input_sha256": "eb4e09b7ffaf487f9958aa4b35ef4857819b76fa92f4d69025ae26c40c0ac396",
+      "path": "research/screening/v40_agent/batches/v40-agent-0155.json",
+      "file_sha256": "8b6b1c3847a863d6870439513b409704bbe85ea58bfeba4ea281bf55469afff5"
+    },
+    {
+      "batch_id": "v40-agent-0156",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "04b17599a1db2fb37cef711178378e2fb5c4963b1047df7d187add7a368f58c9",
+      "path": "research/screening/v40_agent/batches/v40-agent-0156.json",
+      "file_sha256": "3ea1e4b8ee08439a706901db8dc05a4ce3ab559652caed3344f9dd6a10eb873b"
+    },
+    {
+      "batch_id": "v40-agent-0157",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "bfc44536b8ab9f23750c8dd1e21329404b0f4331d30c45aa1576466e7ec5e413",
+      "path": "research/screening/v40_agent/batches/v40-agent-0157.json",
+      "file_sha256": "d3dc030a73b64375a4557cff7da15cee965dfd2857bb149b030e903fabc35859"
+    },
+    {
+      "batch_id": "v40-agent-0158",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "eb2b364d6130a66cc1d4aa95c2b203c3d77218978ece82498b63332a27957dba",
+      "path": "research/screening/v40_agent/batches/v40-agent-0158.json",
+      "file_sha256": "c7d2b5f3e58fba788ed9c790ecb9dc28b3921bef92528121b7dad5e50d1d3394"
+    },
+    {
+      "batch_id": "v40-agent-0159",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "ea28012a7eeaad3e866cd90f1cef2f0a9ce41542ecd5b1970fdf6270e6f0ea3a",
+      "path": "research/screening/v40_agent/batches/v40-agent-0159.json",
+      "file_sha256": "dc744b811be242b81c3f5950893313a546e21c62c8ee0bca1c9a3625a9e7d283"
+    },
+    {
+      "batch_id": "v40-agent-0160",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "bcde4058cfb01864ba95ceee58ba88d55723fc89c4290ef6b79b75cbba40d046",
+      "path": "research/screening/v40_agent/batches/v40-agent-0160.json",
+      "file_sha256": "4fe974525dbd0313e91804f00c221c9998a31854eb393ebd2c8608a4617b0013"
+    },
+    {
+      "batch_id": "v40-agent-0161",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "d467e96dc6c5537703ce31164fc6deb2fa63623cb940a9437584f34903e1bada",
+      "path": "research/screening/v40_agent/batches/v40-agent-0161.json",
+      "file_sha256": "a2f4339e5f8f1dae2617a12bb9defffb8f701fba0bd8dec1c43159bfa09ea1d7"
+    },
+    {
+      "batch_id": "v40-agent-0162",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "43befa037de101c9f5e2ee9d366afbc0ac71bc49bf94e53c20481e3f4d7d8f0f",
+      "path": "research/screening/v40_agent/batches/v40-agent-0162.json",
+      "file_sha256": "268ee0ad20699fb17538920dde37dbeb60f592785f1023429f3a9bbab4d9a07a"
+    },
+    {
+      "batch_id": "v40-agent-0163",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "766143b24e812414eda9b4b823356848e28df2fbe7968891f460d70cdbb726e1",
+      "path": "research/screening/v40_agent/batches/v40-agent-0163.json",
+      "file_sha256": "666620d9ad6aa9569bb12220cc8322f3db0acc5a6ecd7269611962be1d62f0b6"
+    },
+    {
+      "batch_id": "v40-agent-0164",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "00cc6f92f462d8884d982a4e9e6cbae5d43c4f66a4346890a80cea7e9029ba01",
+      "path": "research/screening/v40_agent/batches/v40-agent-0164.json",
+      "file_sha256": "c20d8ee7b294c924d52cce8a87445f13c3f6eea3d6f6bd55fa8074a762427c78"
+    },
+    {
+      "batch_id": "v40-agent-0165",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "f98b619d524e9f57c35908b24ac8ef9b4f7769603e0e0f94d9639a199b7ad1f6",
+      "path": "research/screening/v40_agent/batches/v40-agent-0165.json",
+      "file_sha256": "8a9450e1c02e381046d4f48196ddff44835f2220dae8a3d73943cfea1ef560b2"
+    },
+    {
+      "batch_id": "v40-agent-0166",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "c9b421c3675bb408bb788e6c151a583091082de47e9e5b8a50a832a998153e5e",
+      "path": "research/screening/v40_agent/batches/v40-agent-0166.json",
+      "file_sha256": "924a9ad3233c4d83e7e3cb31bed40f65c040010a0642317f9f1cba5d5a97b30e"
+    },
+    {
+      "batch_id": "v40-agent-0167",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "49c48fb627729b19b89123c5f77b747c9c0500dd0e96a46acc6142984a2ae948",
+      "path": "research/screening/v40_agent/batches/v40-agent-0167.json",
+      "file_sha256": "9b86e3bc2d652d6737ed37ee83cbc8754063e3891d619c32722c00d29c3e8f0a"
+    },
+    {
+      "batch_id": "v40-agent-0168",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "84c229e39e0c33b89e3a5f64ac1b3382e55e2092c787179d0f159b266b74add5",
+      "path": "research/screening/v40_agent/batches/v40-agent-0168.json",
+      "file_sha256": "9eb1996877a406db8084d30d484cd342b5ba6eda2b37ad93827a4768c0a4c81a"
+    },
+    {
+      "batch_id": "v40-agent-0169",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "5d6f846119995fd6fd10aab99866e9ddbaeba9dc5053d66aeacde737be3242d4",
+      "path": "research/screening/v40_agent/batches/v40-agent-0169.json",
+      "file_sha256": "aa6cef70a87e04e06e8f6d2e81f5bb63f47c195afa3f0b84bca64967e178440e"
+    },
+    {
+      "batch_id": "v40-agent-0170",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "6be87de208facab6772dd494c70b9a966e6fb704942cc0b5655eea479d9473e2",
+      "path": "research/screening/v40_agent/batches/v40-agent-0170.json",
+      "file_sha256": "6ea62c4d9536288888681fee9f47a052e406596364ab5f1cbcf57a5bc238f6ba"
+    },
+    {
+      "batch_id": "v40-agent-0171",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "f62f8ba89146221477de22f6f282a71282baaa1438f91bf23094f46797e8d21f",
+      "path": "research/screening/v40_agent/batches/v40-agent-0171.json",
+      "file_sha256": "dcb23febe92453e2eada1cdfadc1fd0c226e4b95593842cfdfeb27c7ed077bf9"
+    },
+    {
+      "batch_id": "v40-agent-0172",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "6d5a1a0dbea90b5380ba9b365d4fe371a6fcb551cb2d2e19b2d73971e3d953bb",
+      "path": "research/screening/v40_agent/batches/v40-agent-0172.json",
+      "file_sha256": "1d4acda61ff4803dec2cd11932259c483efb112f4b57a8bc850b5821400c3d19"
+    },
+    {
+      "batch_id": "v40-agent-0173",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "c522e5087aba0fa28510da57c9159035829a28261a5f28a424e43b636eb0a44e",
+      "path": "research/screening/v40_agent/batches/v40-agent-0173.json",
+      "file_sha256": "07dd3b8d6060f3521f3bcb31c70c3207fc075623976f87ef902869ad362d043d"
+    },
+    {
+      "batch_id": "v40-agent-0174",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "2c3df1c4b85464d5d6ecf1f711673438add4ec79a3d8543375bf1a6b09855e50",
+      "path": "research/screening/v40_agent/batches/v40-agent-0174.json",
+      "file_sha256": "7c9c2f0bd25cef6dfd50fd137766411f5903994f6b439053798be9bc711276b0"
+    },
+    {
+      "batch_id": "v40-agent-0175",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "1e23c4ad6ffc551c758a00a881565b68ff722c6f33e9a986fbd6eb61f1b958ec",
+      "path": "research/screening/v40_agent/batches/v40-agent-0175.json",
+      "file_sha256": "01c905e3048632e4a65bff4f4a7108185b81b9bd8e26182d76a10fac503e80b8"
+    },
+    {
+      "batch_id": "v40-agent-0176",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "7ef81ba846984dac7db60f3ee031dedc3bdf00e1f680b6d2a15dec568b2ef79a",
+      "path": "research/screening/v40_agent/batches/v40-agent-0176.json",
+      "file_sha256": "3ffb0eec589b71598b7987ffcbbdc380fc3c08fae6302148f83266e504499571"
+    },
+    {
+      "batch_id": "v40-agent-0177",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "366b3a8d8fa8fb2dd9ab23808fb14bea4dbebe64330ba87311135da8ff435c14",
+      "path": "research/screening/v40_agent/batches/v40-agent-0177.json",
+      "file_sha256": "0f84e964883b77309b4ade1b6fdf00d10ad606a3c62adcd4ab5d624d6ae5e1af"
+    },
+    {
+      "batch_id": "v40-agent-0178",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "38c373218c5a4c17a6f7d679a9926fdebfd7eb7a2cc75c836ad4a183937dfb75",
+      "path": "research/screening/v40_agent/batches/v40-agent-0178.json",
+      "file_sha256": "6192d8246a8ffacd5fca0ed3a9d124dfa046a20a1d3c1a8259222f4807f2e98a"
+    },
+    {
+      "batch_id": "v40-agent-0179",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "f059fb7fc3803fac033facc145c246c3654da9d48141984a66891587a43209f0",
+      "path": "research/screening/v40_agent/batches/v40-agent-0179.json",
+      "file_sha256": "4729604b2b081138f23f1b0f202a5efbd27c12eb1011a5ed6f72b8b34142b8bc"
+    },
+    {
+      "batch_id": "v40-agent-0180",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "55d0bd63b008ef8f292d23b84c1fdaeb2709c616fd3ab5792e521841792c328d",
+      "path": "research/screening/v40_agent/batches/v40-agent-0180.json",
+      "file_sha256": "bda1ba989f62246b56a4bb834aa00efcd485eee08fea5245bf4297bb5eb28b5f"
+    },
+    {
+      "batch_id": "v40-agent-0181",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "assigned_agent": "/root/terms_hrs4",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 247,
+      "input_sha256": "9915b78bff0d15636ed2e732986a0ad07d5a16d26954db265bafc295e85e74d5",
+      "path": "research/screening/v40_agent/batches/v40-agent-0181.json",
+      "file_sha256": "d41bd9a3716a99e1de83724e1b5ecb0c9534b805de23c92eb5ae83f30bdbbd13"
+    },
+    {
+      "batch_id": "v40-agent-0182",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "assigned_agent": "/root/terms_hrs5",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 250,
+      "input_sha256": "1cc6ee2cbb724f9a3654a815a3a4f2d6a122a64bd5a361849772b8d2b06f4aff",
+      "path": "research/screening/v40_agent/batches/v40-agent-0182.json",
+      "file_sha256": "d9786ddc3497eb497b6f1372fef9343cd6e5d0e022615171a09674f10e684e8c"
+    },
+    {
+      "batch_id": "v40-agent-0183",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "assigned_agent": "/root/terms_hrs5",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 250,
+      "input_sha256": "5719c458cbab1d67f1a8d046c97a4698e3db0007d149137d60024cd1c3fe2598",
+      "path": "research/screening/v40_agent/batches/v40-agent-0183.json",
+      "file_sha256": "6a73c91650bc202bf766a5dbe86911a24a44685564c3598d97627ed4e27e60fb"
+    },
+    {
+      "batch_id": "v40-agent-0184",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "assigned_agent": "/root/terms_hrs5",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 250,
+      "input_sha256": "a29403a78be5b089e7194c035a3b4a9eb65eb32c0a800840a802f0eae999eecc",
+      "path": "research/screening/v40_agent/batches/v40-agent-0184.json",
+      "file_sha256": "00aeee39d0c248d77425717dde3f9de3b09c19e2e88de33b966347d86b50fbb5"
+    },
+    {
+      "batch_id": "v40-agent-0185",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "assigned_agent": "/root/terms_hrs5",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 250,
+      "input_sha256": "bacb3cca77dba440be88ca730dc2bf72968a4271115fed104b1313ac80f45be1",
+      "path": "research/screening/v40_agent/batches/v40-agent-0185.json",
+      "file_sha256": "ea510df7c231dfef355debd12b662028afae174c8b69ee6bb57bede13a2026c4"
+    },
+    {
+      "batch_id": "v40-agent-0186",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "assigned_agent": "/root/terms_hrs5",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 250,
+      "input_sha256": "586f0678e83a0c9e5b7ed937d1d6d731246b03df31f4350dd725086755065608",
+      "path": "research/screening/v40_agent/batches/v40-agent-0186.json",
+      "file_sha256": "ae28cf235f2d395970b93c0d4f824d9c5271a35439516e90a81170021e2d741b"
+    },
+    {
+      "batch_id": "v40-agent-0187",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "assigned_agent": "/root/terms_hrs5",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 250,
+      "input_sha256": "6c55aa3521f9fd84b0bd671f6d2142b70e44129a5017855bb9d1a757966d4a04",
+      "path": "research/screening/v40_agent/batches/v40-agent-0187.json",
+      "file_sha256": "be1c39b8bcd9dbf286ec75c5223e4ad4a6c3f3606339e61d537ec724c6214182"
+    },
+    {
+      "batch_id": "v40-agent-0188",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "assigned_agent": "/root/terms_hrs5",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 250,
+      "input_sha256": "70de3f652af6e21e5d9a3bfb35e8d3b747deecdcbbcc9687fed3e0855c36a399",
+      "path": "research/screening/v40_agent/batches/v40-agent-0188.json",
+      "file_sha256": "8a35bb9f4aa5e10574e6fb1f4309d89ec08735e35850d1e5eef9c93c591cfda1"
+    },
+    {
+      "batch_id": "v40-agent-0189",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "assigned_agent": "/root/terms_hrs5",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 250,
+      "input_sha256": "bf0748414b4ea92dff7e157ba3041e28976df3bc04e0edf4477de61a328772a7",
+      "path": "research/screening/v40_agent/batches/v40-agent-0189.json",
+      "file_sha256": "d6e4928a7e7ede045fd8121ca53566507aeeaa0949b4631368ad73a0a736b46d"
+    },
+    {
+      "batch_id": "v40-agent-0190",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "assigned_agent": "/root/terms_hrs5",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 250,
+      "input_sha256": "34d61eae80ed8df4b80d29d539de0027d3f3687a3378d629fa8c8940da5443ae",
+      "path": "research/screening/v40_agent/batches/v40-agent-0190.json",
+      "file_sha256": "3e7f742ee38797938b77ace0917a2952a7eab82a79aa497a27ea0e1875058d23"
+    },
+    {
+      "batch_id": "v40-agent-0191",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "assigned_agent": "/root/terms_hrs5",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 250,
+      "input_sha256": "67951a1b5578b794de422d53bd314b80268e6799d2954b86bb5a78d6555ded1c",
+      "path": "research/screening/v40_agent/batches/v40-agent-0191.json",
+      "file_sha256": "48b7716b1a0d94daaf73131d6f02eae0c11f5a5f73b57ad289b12819d55e1756"
+    },
+    {
+      "batch_id": "v40-agent-0192",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "assigned_agent": "/root/terms_hrs5",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 250,
+      "input_sha256": "e5e5207fdb0e22c0e6832185058f0065616c9857425ee1e8ba8da0b9f11a6571",
+      "path": "research/screening/v40_agent/batches/v40-agent-0192.json",
+      "file_sha256": "eb9ae288955f691916827ee9cd24381951f81af9d7a47581957189b09d1d8bc0"
+    },
+    {
+      "batch_id": "v40-agent-0193",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "assigned_agent": "/root/terms_hrs5",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 250,
+      "input_sha256": "3b3b7a00d4581b70f8417e803a7dd089f45db782bc60e06f9482df017065c7e9",
+      "path": "research/screening/v40_agent/batches/v40-agent-0193.json",
+      "file_sha256": "067042e6de6d6c70cc1f3d3234f595d8a912e1524ec86bc0be7e6567c36a5f89"
+    },
+    {
+      "batch_id": "v40-agent-0194",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "assigned_agent": "/root/terms_hrs5",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 250,
+      "input_sha256": "f92118940ff4d58643ebd7122469e3fe2c2a0f659d123295fb4f4566915a309c",
+      "path": "research/screening/v40_agent/batches/v40-agent-0194.json",
+      "file_sha256": "2c018313963259ac49b8a07e38327b35c0b819f6f1626e503e397c1882496bd3"
+    },
+    {
+      "batch_id": "v40-agent-0195",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "assigned_agent": "/root/terms_hrs5",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 250,
+      "input_sha256": "eeef08cc1ef5580fd1af27f6f4da79200213dc3be5cbaa702be3c6285d7f2554",
+      "path": "research/screening/v40_agent/batches/v40-agent-0195.json",
+      "file_sha256": "a28187be7aec7e5d3fcbb213aae89b0e56b318ceed27a5cb6d6fe5a330005e71"
+    },
+    {
+      "batch_id": "v40-agent-0196",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "assigned_agent": "/root/terms_hrs5",
+      "assigned_at": "2026-07-28T02:02:47+00:00",
+      "row_count": 250,
+      "input_sha256": "213c3b299766d1d14caa01e57d22c66ea7411dea0890e6e3638f32b4ed18791c",
+      "path": "research/screening/v40_agent/batches/v40-agent-0196.json",
+      "file_sha256": "8f9e9c89f05459f386e5e829d54773f37b3560002d3775db96cebff5c0739af5"
+    }
+  ]
+}

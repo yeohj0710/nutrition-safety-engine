@@ -1,0 +1,12 @@
+{
+  "verified": true,
+  "verified_at": "2026-07-28T04:54:57+00:00",
+  "row_count": 48031,
+  "unique_paper_count": 46694,
+  "unique_paper_question_keys": 48031,
+  "source": "pubmed",
+  "raw_xml_files": 242,
+  "referenced_raw_xml_files": 242,
+  "corpus_sha256": "d5a70b828bdef00ef885e495de90f2dd7e74d3c34a714e8d1c953436a7727173",
+  "manifest_sha256": "00eb46f71deb1a37c58c0c86f0ea20b21540196cd9e9bbf0d69b38cd37d7c2ca"
+}

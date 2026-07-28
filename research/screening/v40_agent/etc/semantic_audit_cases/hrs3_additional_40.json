@@ -1,0 +1,402 @@
+[
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "35913943",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["off_topic"],
+    "audit_group": "general_diet_nutritional_status_biomarker_covariate",
+    "rationale": "임신 중 칼슘 보충과 임신고혈압, 저출생체중, Apgar 점수의 연관성을 실제 임신부 자료로 분석했다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "36834991",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure"],
+    "audit_group": "general_diet_nutritional_status_biomarker_covariate",
+    "rationale": "모체·태반·태아의 미량영양소 농도를 측정했을 뿐이며 보충은 결론에서 향후 연구로 제안했을 뿐이다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "33977578",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["outcome"],
+    "audit_group": "general_diet_nutritional_status_biomarker_covariate",
+    "rationale": "산전 영양정보와 서비스에 대한 회상 조사이며 보충제 안전성 결과를 측정하지 않았다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "36321872",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic", "insufficient_abstract"],
+    "forbidden_reason_codes": ["exposure"],
+    "audit_group": "general_diet_nutritional_status_biomarker_covariate",
+    "rationale": "초록 없는 Letter이며 제목의 prenatal diet와 plasma micronutrients/metabolome은 일반 식이와 바이오마커 노출이다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "36280147",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic", "insufficient_abstract"],
+    "forbidden_reason_codes": ["exposure", "outcome"],
+    "audit_group": "general_diet_nutritional_status_biomarker_covariate",
+    "rationale": "초록 없는 Letter이며 임신 코호트의 iodine status만 제시해 보충 노출과 안전성 결과가 확인되지 않는다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "36184213",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure"],
+    "audit_group": "general_diet_nutritional_status_biomarker_covariate",
+    "rationale": "실제 노출은 임신부 혈청 비타민 D 농도이며 replacement therapy는 결론의 가정적 제안일 뿐이다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "35834313",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure"],
+    "audit_group": "general_diet_nutritional_status_biomarker_covariate",
+    "rationale": "임신 전 25-hydroxyvitamin D 단일 측정과 유산의 연관성을 조사했으며 임신 중 보충 노출은 없었다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "36351308",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure"],
+    "audit_group": "general_diet_nutritional_status_biomarker_covariate",
+    "rationale": "식품섭취빈도조사로 측정한 일반 식이의 folate, B-vitamin, choline 섭취가 노출이다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "34601603",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure"],
+    "audit_group": "general_diet_nutritional_status_biomarker_covariate",
+    "rationale": "비타민 B12와 folate의 혈중 표지자와 인슐린 저항성을 분석했으며 보충제 노출 연구가 아니다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "35276959",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure"],
+    "audit_group": "general_diet_nutritional_status_biomarker_covariate",
+    "rationale": "동물성 식품과 채소 등으로 구성한 B-vitamin dietary pattern이 노출이며 보충제를 평가하지 않았다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "36034548",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["exposure", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "outcome"],
+    "audit_group": "postpartum_neonatal",
+    "rationale": "출산 후 수유 중 모체 철분 3개월 대 6개월과 영아 철 상태를 비교해 임신 중 노출이 아니다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "36774110",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["exposure", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "outcome"],
+    "audit_group": "postpartum_neonatal",
+    "rationale": "출생 후 영아에게 vitamin D를 직접 투여한 효능 연구이며 임신 중 모체 보충 노출과 연결되지 않는다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "36096375",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["off_topic"],
+    "audit_group": "postpartum_neonatal",
+    "rationale": "임신 중 iodine supplement 사용이 임신기 정서적 고통 위험 증가와 연관되어 명시적 안전성 신호가 있다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "35124672",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure"],
+    "audit_group": "postpartum_neonatal",
+    "rationale": "원 자료가 micronutrient trial에서 왔지만 이 분석의 실제 노출은 gestational weight gain이다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "34983656",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure"],
+    "audit_group": "postpartum_neonatal",
+    "rationale": "제품이 특정되지 않은 dietary supplementation과 식사 보완 공변량을 분석했으며 보충제 안전성 연구가 아니다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "36774497",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["outcome"],
+    "audit_group": "postpartum_neonatal",
+    "rationale": "임신·수유 balanced energy-protein 연구의 변수 정의를 맞추는 방법론 논문으로 실제 안전성 결과가 없다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "36153674",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["off_topic"],
+    "audit_group": "postpartum_neonatal",
+    "rationale": "임신 중 경구 철분의 위장관 이상반응과 정맥 철분의 안전성을 명시적으로 검토했다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "37085971",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population"],
+    "audit_group": "postpartum_neonatal",
+    "rationale": "미숙 신생아의 TPN 관련 결핍과 출생 41일 뒤 치료용 riboflavin·biotin 투여로 임신 노출이 아니다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "35236316",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "exposure"],
+    "audit_group": "postpartum_neonatal",
+    "rationale": "NICU 미숙아의 비경구 fish-oil lipid emulsion 연구이며 임신 중 식이보충제 노출이 아니다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "35956361",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "outcome"],
+    "audit_group": "postpartum_neonatal",
+    "rationale": "수유부의 식이·혈청·모유 vitamin A 상태 연구이며 임신 중 노출과 안전성 결과가 없다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "35215549",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["outcome"],
+    "audit_group": "actual_pregnancy_supplement_exposure",
+    "rationale": "임신 중 vitamin D 보충을 다루지만 publication type이 Editorial이고 효능·용량 논평만 제공한다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "36986153",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["outcome"],
+    "audit_group": "actual_pregnancy_supplement_exposure",
+    "rationale": "임신 중 folic acid와 0~6세 성장·BMI 궤적의 효능성 연관을 분석했으며 보충제 안전성 결과가 아니다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "36658740",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["off_topic"],
+    "audit_group": "actual_pregnancy_supplement_exposure",
+    "rationale": "임신 3기 IV ferric carboxymaltose와 경구 철분에서 모체·신생아 결과와 adverse effects를 직접 비교했다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "36839232",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["off_topic"],
+    "audit_group": "actual_pregnancy_supplement_exposure",
+    "rationale": "임신 15~20주부터 분만까지 probiotic을 투여한 RCT이며 tolerability와 모체·신생아 지표를 보고했다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "37111163",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure"],
+    "audit_group": "actual_pregnancy_supplement_exposure",
+    "rationale": "실제 노출은 식이 섭취와 RBC fatty-acid 분획이며 n-3 LC-PUFA 보충제 사용자가 없다고 명시했다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "36018544",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure"],
+    "audit_group": "actual_pregnancy_supplement_exposure",
+    "rationale": "포함 연구는 urinary iodine status와 식이·식수 과잉 섭취를 평가했으며 보충제 노출을 평가하지 않았다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "35684035",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["off_topic"],
+    "audit_group": "actual_pregnancy_supplement_exposure",
+    "rationale": "임신부 갑상선염에서 selenium supplementation의 임상시험 안전성과 postpartum thyroiditis를 검토했다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "35909334",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["off_topic"],
+    "audit_group": "actual_pregnancy_supplement_exposure",
+    "rationale": "임신 중 LNS·MMN·IFA RCT에서 제왕절개 증가와 분만 합병증을 직접 평가했다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "36372696",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["off_topic"],
+    "audit_group": "actual_pregnancy_supplement_exposure",
+    "rationale": "folic acid 보충 용량·기간과 임신성 당뇨병 위험의 U자형 증가를 분석했다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "35956291",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["outcome"],
+    "audit_group": "actual_pregnancy_supplement_exposure",
+    "rationale": "IFA 수령·복용량·서비스 coverage와 adherence만 분석했으며 안전성 결과를 측정하지 않았다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "36698500",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["off_topic"],
+    "audit_group": "safety_outcome",
+    "rationale": "임신·수유부를 포함한 selenium UL, 고용량 보충제, 사람 alopecia LOAEL을 명시한 안전성 자료다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "35568996",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["outcome"],
+    "audit_group": "safety_outcome",
+    "rationale": "임신부·신생아 영양 및 의약 중재의 cerebral palsy 예방 효능 종설로 보충제 유발 안전성 결과가 없다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "33745458",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["outcome"],
+    "audit_group": "safety_outcome",
+    "rationale": "국가 영양보충 프로그램의 저출생체중과 신생아 사망 감소 효능만 평가했으며 위해를 평가하지 않았다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "35636782",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["outcome", "human_signal"],
+    "audit_group": "safety_outcome",
+    "rationale": "MMS가 저출생체중을 줄이는지 평가할 연구계획서로 결과나 안전성 신호가 아직 없다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "35821184",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome"],
+    "audit_group": "safety_outcome",
+    "rationale": "임신 중 hyperparathyroidism의 식사·수액·수술·cinacalcet 치료이며 식이보충제 노출과 연결된 안전성 결과가 아니다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "35745263",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["outcome"],
+    "audit_group": "safety_outcome",
+    "rationale": "COVID-19 임신부에게 micronutrient가 면역·정신 증상을 개선할 수 있다는 효능 종설이며 위해 결과가 없다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "35090514",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["outcome"],
+    "audit_group": "safety_outcome",
+    "rationale": "임신 이상결과는 aerobic vaginitis 병원체에 기인하고 probiotic은 치료 성공으로만 언급되어 P·I·O가 연결되지 않는다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "35866037",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["off_topic"],
+    "audit_group": "safety_outcome",
+    "rationale": "임신부 2,247명에서 folic acid supplementation을 태아 기형 위험의 보호 인자로 직접 분석했다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "36210639",
+    "expected_decision": "uncertain",
+    "expected_confidence": "low",
+    "required_reason_codes": ["outcome", "design_signal", "insufficient_abstract"],
+    "forbidden_reason_codes": [],
+    "audit_group": "safety_outcome",
+    "rationale": "제목만으로 pre-eclampsia 위험요인은 확인되지만 보충 노출을 긍정하거나 부정할 정보가 없다."
+  },
+  {
+    "question_id": "HRS3_PREGNANCY",
+    "pmid": "36342076",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": ["outcome", "design_signal", "off_topic", "insufficient_abstract"],
+    "forbidden_reason_codes": ["exposure"],
+    "audit_group": "safety_outcome",
+    "rationale": "초록 없이 유전성 RBP4 안질환에 vitamin A가 도움이 되는지를 묻는 치료 효능 제목이며 실제 임신 중 보충 노출과 안전성 신호가 없다."
+  }
+]

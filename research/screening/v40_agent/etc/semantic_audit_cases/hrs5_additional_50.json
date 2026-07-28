@@ -1,0 +1,502 @@
+[
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "37730613",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["exposure", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "actual_supplement",
+    "rationale": "Chamomile을 투여한 무작위시험이지만 참가자는 항응고제를 사용하지 않는 건강한 지원자이므로 HRS5 대상집단이 아니다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "35998204",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "actual_supplement",
+    "rationale": "항응고제 복용자 4,470명에서 Chinese herbal medicine 병용과 주요 출혈을 직접 평가했다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "30000845",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "design_signal"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "actual_supplement",
+    "rationale": "Ginger monograph가 warfarin 병용 시 출혈 위험 증가를 명시한다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "35958417",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "actual_supplement",
+    "rationale": "Rivaroxaban과 coenzyme Q10 병용 증례지만 임상 증상이 안정됐다는 효능 서술뿐이며 안전성 결과나 상호작용을 평가하지 않았다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "39199344",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "actual_supplement",
+    "rationale": "NOAC과 nattokinase를 서로 다른 심혈관 치료 접근으로 비교한 효능 종설이며 병용 안전성이나 상호작용을 다루지 않는다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "41806621",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["exposure", "design_signal", "animal_term_present", "off_topic"],
+    "forbidden_reason_codes": ["population", "outcome", "human_signal", "insufficient_abstract"],
+    "audit_group": "actual_supplement",
+    "rationale": "Sea buckthorn polysaccharide라는 식물 유래 기능성 성분을 사용했지만 ulcerative-colitis mouse 전용 효능 연구다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "34800885",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["exposure", "outcome", "design_signal", "animal_term_present", "off_topic"],
+    "forbidden_reason_codes": ["population", "human_signal", "insufficient_abstract"],
+    "audit_group": "actual_supplement",
+    "rationale": "Herbal sesquiterpenoid linderane과 warfarin의 CYP2C9 상호작용을 다루지만 rat 및 in-vitro 전용 연구다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "38004336",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "exposure", "outcome", "human_signal", "insufficient_abstract"],
+    "audit_group": "actual_supplement",
+    "rationale": "Nattokinase 등 fibrinolytic enzyme의 혈전용해 효능을 설명한 종설이며 보충제와 항응고제의 안전성 상호작용이 아니다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "36422227",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["exposure", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "actual_supplement",
+    "rationale": "Curcumin microparticle의 피부 자극과 안전성을 암환자에서 평가했지만 항응고제 사용자가 대상이 아니다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "39932122",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["design_signal", "animal_term_present", "off_topic"],
+    "forbidden_reason_codes": ["population", "exposure", "outcome", "human_signal", "insufficient_abstract"],
+    "audit_group": "actual_supplement",
+    "rationale": "Trolox는 실험용 vitamin-E derivative reagent이고 연구는 recombinant DAO와 murine model에 한정된다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "38728459",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "blood_product_supplementation",
+    "rationale": "Warfarin overdose에서 PCC를 vitamin K 및 fresh frozen plasma와 비교하며, 모두 해독·역전 치료이지 보충 노출이 아니다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "38510368",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "blood_product_supplementation",
+    "rationale": "항응고된 고관절 골절 환자의 수술 전 vitamin K, PCC, fresh frozen plasma 역전 관리를 다룬다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "41398102",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "blood_product_supplementation",
+    "rationale": "DOAC laboratory testing chapter이며 보충제나 허브 노출이 없다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "41910938",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "blood_product_supplementation",
+    "rationale": "VKA를 사용하는 urgent-surgery 환자에서 4F-PCC와 plasma 역전 치료를 비교했다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "35924671",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "blood_product_supplementation",
+    "rationale": "소아 DOAC 중독과 charcoal, 지지요법, 역전 관리를 다루며 보충제 노출은 없다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "37649304",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "blood_product_supplementation",
+    "rationale": "4F-PCC의 VKA 및 비-VKA coagulopathy 치료 결과를 비교하며 보충제 노출은 없다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "36016569",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "blood_or_dietary_vitamin_k",
+    "rationale": "HCV direct-acting antiviral과 antithrombotic 처방약 간 상호작용만 다루며 보충제 노출이 없다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "36827667",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "blood_or_dietary_vitamin_k",
+    "rationale": "Rivaroxaban 출혈의 약물·질환·pharmacogenetic 위험인자를 분석한 증례군이며 보충제 노출은 없다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "38172964",
+    "expected_decision": "retain",
+    "expected_confidence": "medium",
+    "required_reason_codes": ["population", "exposure", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["outcome", "animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "blood_or_dietary_vitamin_k",
+    "rationale": "Vitamin K supplementation과 warfarin의 연관성을 함께 논의해 대상집단과 보충 노출이 명확하며 안전성 결과는 초록에서 확정되지 않는다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "40144413",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "blood_or_dietary_vitamin_k",
+    "rationale": "Cefmetazole로 coagulopathy가 발생한 비항응고제 환자를 vitamin K로 치료했으므로 대상집단도 보충 노출도 아니다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "40541254",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "blood_or_dietary_vitamin_k",
+    "rationale": "유전성 vitamin-K-dependent factor deficiency 증례들의 vitamin K, PCC, plasma 치료를 다루며 vitamin K는 보충 노출이 아니다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "38580096",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "blood_or_dietary_vitamin_k",
+    "rationale": "Acenocoumarol 환자에게 시술 전 경구 vitamin K를 투여한 항응고 역전 연구다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "35970209",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["design_signal", "animal_term_present", "off_topic"],
+    "forbidden_reason_codes": ["population", "exposure", "outcome", "human_signal", "insufficient_abstract"],
+    "audit_group": "blood_or_dietary_vitamin_k",
+    "rationale": "Spain rodents의 VKORC1 변이와 anticoagulant rodenticide resistance를 분석한 동물 연구다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "41674238",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["design_signal", "animal_term_present", "off_topic"],
+    "forbidden_reason_codes": ["population", "exposure", "outcome", "human_signal", "insufficient_abstract"],
+    "audit_group": "blood_or_dietary_vitamin_k",
+    "rationale": "Plasma에서 네 항응고제를 정량하는 HPLC 시험관 검증이며 환자 안전성 연구가 아니다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "35057443",
+    "expected_decision": "retain",
+    "expected_confidence": "medium",
+    "required_reason_codes": ["population", "exposure", "design_signal"],
+    "forbidden_reason_codes": ["outcome", "animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "ordinary_diet",
+    "rationale": "CKD에서 vitamin K supplementation과 anticoagulation therapy를 함께 논의해 대상집단과 보충 노출이 명확하지만 안전성 결과는 초록에서 확정되지 않는다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "35517810",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "ordinary_diet",
+    "rationale": "Ginkgo extract EGb 761과 rivaroxaban의 사람 대상 PK·PD 상호작용 및 출혈 이상반응을 직접 평가했다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "42164031",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "ordinary_diet",
+    "rationale": "Warfarin과 heparin resistance 증례이며 dietary influence를 검토한 뒤 배제했다고 명시해 보충 노출이 없다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "35776157",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "ordinary_diet",
+    "rationale": "Rivaroxaban과 aspirin 관련 치명적 이상반응에서 과도한 ginger 또는 fish-oil 섭취를 실제 출혈 위험요인으로 기록했다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "37997897",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "ordinary_diet",
+    "rationale": "경구 항응고제 관련 intracerebral hemorrhage registry이며 보충제 노출은 없다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "39778989",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["design_signal", "animal_term_present", "off_topic"],
+    "forbidden_reason_codes": ["population", "exposure", "outcome", "human_signal", "insufficient_abstract"],
+    "audit_group": "ordinary_diet",
+    "rationale": "Hyaluronic-acid 효소 정량법에서 heparin 간섭을 시험한 실험실 연구다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "37760813",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["exposure", "design_signal", "animal_term_present", "off_topic"],
+    "forbidden_reason_codes": ["population", "outcome", "human_signal", "insufficient_abstract"],
+    "audit_group": "ordinary_diet",
+    "rationale": "Pistacia lentiscus의 in-vitro 및 동물 anticoagulant 효능 연구로 안전성 결과가 아니다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "36422361",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "exposure", "outcome", "human_signal", "insufficient_abstract"],
+    "audit_group": "ordinary_diet",
+    "rationale": "Red microalgae를 식품·nutraceutical 원료로 설명한 건강 효능 종설이며 실제 보충 노출이나 안전성 결과가 없다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "38754272",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "therapeutic_vitamin_k_or_antidote",
+    "rationale": "DOAC과 vitamin-K antagonist의 left-ventricular-thrombosis 안전성·효능 메타분석이며 vitamin K 보충제를 다루지 않는다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "36229221",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "therapeutic_vitamin_k_or_antidote",
+    "rationale": "Bromadiolone rodenticide poisoning을 blood products와 vitamin K1으로 치료한 증례로 치료적 항응고제 사용자도 보충 노출도 아니다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "35309585",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "therapeutic_vitamin_k_or_antidote",
+    "rationale": "경구 항응고제 관련 intracerebral hemorrhage의 성차를 분석하며 VKA와 NOAC은 처방약 이름이지 보충 노출이 아니다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "37760609",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "therapeutic_vitamin_k_or_antidote",
+    "rationale": "Cancer-associated thrombosis에서 heparin, DOAC, vitamin-K inhibitor를 다룬 처방약 종설이며 보충 노출은 없다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "35332571",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "therapeutic_vitamin_k_or_antidote",
+    "rationale": "Rivaroxaban과 VKA가 cardiovascular calcification에 미치는 영향을 비교하며 보충제 노출은 없다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "39156380",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "therapeutic_vitamin_k_or_antidote",
+    "rationale": "Cerebral venous sinus thrombosis에서 dabigatran 처방약의 안전성과 효능을 평가하며 보충제 노출은 없다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "36814196",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "therapeutic_vitamin_k_or_antidote",
+    "rationale": "Morbid-obesity VTE 환자에서 factor-Xa inhibitor와 VKA를 비교한 메타분석이며 보충제 노출은 없다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "35080357",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "therapeutic_vitamin_k_or_antidote",
+    "rationale": "Left ventricular thrombosis에서 DOAC과 VKA를 비교한 메타분석이며 보충제 노출은 없다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "36861431",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "vka_doac_names",
+    "rationale": "DOAC과 antiplatelet, NSAID, CYP·P-gp 조절 처방약의 상호작용만 다루며 보충제 노출은 없다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "38597576",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "vka_doac_names",
+    "rationale": "Warfarin 관련 small-bowel hematoma를 vitamin K와 fresh frozen plasma로 치료한 증례이며 vitamin K는 역전 치료다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "42233542",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "exposure", "outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "vka_doac_names",
+    "rationale": "일반인 genomic dataset의 population pharmacogenomics 연구이며 dietary vitamin-K intake는 진화적 배경일 뿐 항응고제 환자의 보충 노출이 아니다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "42377292",
+    "expected_decision": "retain",
+    "expected_confidence": "medium",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "vka_doac_names",
+    "rationale": "ACC DOAC statement에서 항응고제 사용 환자, 출혈 관리, 상호작용이 명확하며 광범위 종설이라 보충 노출 가능성이 명시적으로 부정되지는 않는다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "41469064",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "vka_doac_names",
+    "rationale": "경구 항응고제 adherence implementation scoping review로 보충 노출과 안전성 결과가 없다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "39615399",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "vka_doac_names",
+    "rationale": "AF 환자의 frailty와 malnutrition이 VKA 치료 중 출혈·사망에 미치는 영향을 분석하며 malnutrition은 보충 노출이 아니다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "35767124",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "vka_doac_names",
+    "rationale": "Apixaban과 VKA의 의료자원·비용 비교가 주제이며 보충제 노출은 없다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "38076348",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "vka_doac_names",
+    "rationale": "AF와 CKD가 있는 항응고제 환자의 출혈·혈전 결과를 분석하며 보충제 노출은 없다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "35522014",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic", "insufficient_abstract"],
+    "forbidden_reason_codes": ["exposure", "outcome", "animal_term_present"],
+    "audit_group": "vka_doac_names",
+    "rationale": "초록 없는 Comment로 bioprosthetic SAVR와 AF에서 NOAC 처방약만 다루며 보충 노출이 명백히 없다."
+  },
+  {
+    "question_id": "HRS5_ANTICOAGULATION",
+    "pmid": "38127436",
+    "expected_decision": "retain",
+    "expected_confidence": "low",
+    "required_reason_codes": ["population", "exposure", "human_signal", "design_signal", "insufficient_abstract"],
+    "forbidden_reason_codes": ["outcome", "animal_term_present", "off_topic"],
+    "audit_group": "vka_doac_names",
+    "rationale": "제목에 elderly AF·coronary-heart-disease warfarin 환자와 Chinese patent medicine Naoxintong 병용이 함께 명시되지만 초록이 없다."
+  }
+]

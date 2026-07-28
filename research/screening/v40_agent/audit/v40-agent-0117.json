@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "v40-agent-0117",
+  "question_id": "HRS3_PREGNANCY",
+  "assigned_agent": "/root/v40_pipeline_audit",
+  "assigned_at": "2026-07-28T02:02:47+00:00",
+  "started_at": "2026-07-28T04:32:58+00:00",
+  "completed_at": "2026-07-28T04:32:59+00:00",
+  "row_count": 242,
+  "input_sha256": "1ff0b17331c3bd69f1b180f3d0d0f3a44f5c017db1156ab3c935e8beaf1a3336",
+  "prompt_sha256": "55f7b08f8d7af7e5e9553e093558438cdccc5c4b3365e1c4acb6300302c5b4a3",
+  "worker_version": "v40_deterministic_text_assist_3.3.0",
+  "worker_sha256": "7b3de69fcd5b0a4095b515585fb92cac3e1e966baef5c4d8a19289f11df305c8",
+  "semantic_adjudications_path": "research/screening/v40_agent/semantic_adjudications.json",
+  "semantic_adjudications_sha256": "81d92a76635e621b998f7299171b473ef86f5e90e81aa060b781814d0b49e6e8",
+  "decisions_path": "research/screening/v40_agent/decisions/v40-agent-0117.jsonl",
+  "decisions_sha256": "abc04ec4139862e248cfd93182d2221cd5e42cd77d85d4eb3b4d772b0d447b77",
+  "distribution": {
+    "deprioritize": 228,
+    "retain": 14
+  },
+  "basis_distribution": {
+    "abstract": 238,
+    "title_only": 4
+  },
+  "confidence_distribution": {
+    "high": 236,
+    "low": 4,
+    "medium": 2
+  },
+  "review_mode": "subagent_owned_full_batch_with_frozen_prompt_and_deterministic_text_assist",
+  "external_screening_api_calls": 0,
+  "human_decisions": 0
+}

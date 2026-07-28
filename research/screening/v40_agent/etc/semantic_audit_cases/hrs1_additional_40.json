@@ -1,0 +1,402 @@
+[
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "37936745",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure"],
+    "audit_group": "tcm_institution",
+    "rationale": "PTED 수술 안전성 연구이며 Traditional Chinese Medicine은 병원명일 뿐 보충제 노출이 없다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "36508919",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "exposure", "outcome"],
+    "audit_group": "tcm_institution",
+    "rationale": "NSCLC 예후 노모그램이며 수술은 공변량이고 Traditional Chinese Medicine은 병원명이다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "36185190",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "exposure", "outcome"],
+    "audit_group": "tcm_institution",
+    "rationale": "유방 영상 AI 진단 연구이고 Traditional Chinese Medicine은 기관명이며 postoperative pathology는 기준검사 언급이다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "37383116",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome"],
+    "audit_group": "tcm_institution",
+    "rationale": "내시경 디스크수술 천자기법 효능 비교이며 Traditional Chinese Medicine 병원명 외 보충제 노출이 없다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "38384164",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure"],
+    "audit_group": "tcm_institution",
+    "rationale": "수술 중 숨은 출혈 연구이며 Traditional Chinese Medicine은 병원명이다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "34966997",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "exposure", "outcome"],
+    "audit_group": "tcm_institution",
+    "rationale": "발목 CT 형태 연구이고 수술은 임상적 활용 언급이며 Traditional Chinese Medicine은 병원명이다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "35368758",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["off_topic"],
+    "audit_group": "tcm_institution",
+    "rationale": "TCM 병원명뿐 아니라 실제 SYD 한약 처방 노출과 PCI 주위 심근손상이 있다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "35367109",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome"],
+    "audit_group": "tcm_institution",
+    "rationale": "수술 전 갑상선 악성도 예측모형이며 Traditional Chinese Medicine은 병원명이고 보충제·안전성 결과가 없다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "36521882",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure"],
+    "audit_group": "non_supplement_alternative",
+    "rationale": "침술 보조마취는 식이·허브 보충제가 아니다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "38659606",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure"],
+    "audit_group": "non_supplement_alternative",
+    "rationale": "경혈 마사지·촉각요법은 보충제가 아니다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "35647164",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure"],
+    "audit_group": "non_supplement_alternative",
+    "rationale": "손목·발목 침술은 보충제가 아니다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "34918967",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure"],
+    "audit_group": "non_supplement_alternative",
+    "rationale": "수술 후 오심·구토 침술 RCT지만 중재가 비보충 요법이다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "37397275",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome", "human_signal"],
+    "audit_group": "non_supplement_alternative",
+    "rationale": "침술 문헌의 계량서지 분석이며 환자 보충제 안전성 자료가 아니다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "38106681",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure"],
+    "audit_group": "non_supplement_alternative",
+    "rationale": "수술 중 propofol 절감을 위한 침술 연구로 중재가 명백히 비보충 요법이다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "35146993",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome"],
+    "audit_group": "non_supplement_alternative",
+    "rationale": "전자기 물리치료가 주 중재이고 배경치료의 multivitamin은 목표 노출이 아니다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "37165126",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "exposure", "outcome"],
+    "audit_group": "non_supplement_alternative",
+    "rationale": "마취 전공의 평가의 성별 편향 연구로 환자·보충제·안전성 연구가 아니다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "38702162",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure"],
+    "audit_group": "efficacy_only",
+    "rationale": "뇌혈관 우회술 자체의 안전성 연구이고 Traditional Chinese Medicine은 병원명이다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "36915313",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure"],
+    "audit_group": "efficacy_only",
+    "rationale": "microwave ablation과 수술 비교이며 Traditional Chinese Medicine 기관명 외 보충제가 없다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "37319382",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["off_topic"],
+    "audit_group": "efficacy_only",
+    "rationale": "성인 cranioplasty, 비타민·무기질 보충 프로토콜, 감염·재수술 결과가 모두 명시됐다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "38714632",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["off_topic"],
+    "audit_group": "efficacy_only",
+    "rationale": "비만수술 후 경구 multivitamin과 결핍·이상반응을 직접 추적했다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "35695692",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["exposure", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "outcome"],
+    "audit_group": "efficacy_only",
+    "rationale": "명시적 non-surgical 치주치료 뒤 ginger의 진통 효능 연구로 HRS1 대상집단·안전성 결과가 아니다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "36096139",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "exposure", "outcome"],
+    "audit_group": "efficacy_only",
+    "rationale": "36개월 이하 소아 전용이고 curcumin patch는 비경구이며 결과는 진통 효능이다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "35043693",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["off_topic"],
+    "audit_group": "efficacy_only",
+    "rationale": "성인 경구영양보충과 수술상처 합병증·입원기간이 명시됐다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "38370002",
+    "expected_decision": "retain",
+    "expected_confidence": "medium",
+    "required_reason_codes": ["population", "outcome", "design_signal"],
+    "forbidden_reason_codes": ["exposure", "off_topic"],
+    "audit_group": "efficacy_only",
+    "rationale": "수술주위 합병증은 명시되지만 일반 영양·상태 중심이라 보충제 노출은 확정할 수 없다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "35304090",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["exposure", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "outcome"],
+    "audit_group": "incidental_surgery_mention",
+    "rationale": "수술은 지연유합의 일반 배경이고 실제 환자는 herbal decoction의 치유 효능 증례다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "37719006",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["exposure", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "outcome"],
+    "audit_group": "incidental_surgery_mention",
+    "rationale": "위 전암병변 TCM 치료 고찰이며 endoscopy는 치료목록 배경이고 안전성 연구가 아니다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "35081550",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["exposure", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population"],
+    "audit_group": "incidental_surgery_mention",
+    "rationale": "HDS 유발 급성간부전 연구에서 이식은 결과이지 수술주위 대상집단이 아니다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "38344377",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "exposure", "outcome"],
+    "audit_group": "incidental_surgery_mention",
+    "rationale": "4~8세 소아 전용이고 curcumin은 치과 충전재이며 결과는 재료 효능이다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "34844500",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["outcome"],
+    "audit_group": "incidental_surgery_mention",
+    "rationale": "제왕절개 후 철분 처방 관행 연구로 출혈·수혈은 처방 예측인자이지 철분 노출의 안전성 결과가 아니다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "38337627",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["exposure", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "outcome"],
+    "audit_group": "incidental_surgery_mention",
+    "rationale": "reflux 환자의 probiotic 효능 연구에서 endoscopy는 측정 도구일 뿐 수술주위 대상집단이 아니다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "35475975",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["exposure", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population"],
+    "audit_group": "incidental_surgery_mention",
+    "rationale": "endometriosis 진단에 수술이 일부 사용됐을 뿐 CHM 치료는 수술주위 노출이 아니다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "37441102",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["exposure", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population"],
+    "audit_group": "incidental_surgery_mention",
+    "rationale": "multivitamin bezoar가 내시경 치료를 초래했으며 내시경은 노출 당시 대상집단이 아니라 결과다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "35913551",
+    "expected_decision": "retain",
+    "expected_confidence": "low",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal", "insufficient_abstract"],
+    "forbidden_reason_codes": ["off_topic"],
+    "audit_group": "title_only_letter",
+    "rationale": "내비뇨 수술·복합 보충·crystalluria가 제목에 모두 있다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "37902121",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": ["population", "exposure", "human_signal", "design_signal", "insufficient_abstract", "off_topic"],
+    "forbidden_reason_codes": ["outcome"],
+    "audit_group": "title_only_letter",
+    "rationale": "이식 후 prebiotic 연구지만 제목의 결과는 microbiota 특성뿐이라 안전성 결과가 명백히 없다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "36513549",
+    "expected_decision": "retain",
+    "expected_confidence": "low",
+    "required_reason_codes": ["population", "exposure", "design_signal", "insufficient_abstract"],
+    "forbidden_reason_codes": ["off_topic"],
+    "audit_group": "title_only_letter",
+    "rationale": "흉강경 수술 후 TCM 치료로 대상집단·노출이 명시되고 결과는 부정되지 않았다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "38729114",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": ["population", "design_signal", "insufficient_abstract", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome", "human_signal"],
+    "audit_group": "title_only_letter",
+    "rationale": "Letter to the Editor 형식의 논평이며 music intervention도 보충제가 아니다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "37597977",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": ["exposure", "design_signal", "insufficient_abstract", "off_topic"],
+    "forbidden_reason_codes": ["population", "outcome"],
+    "audit_group": "title_only_letter",
+    "rationale": "TCM의 감염상처 재생 효능 제목이며 수술 대상집단·안전성 결과가 없다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "35933171",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "insufficient_abstract", "off_topic"],
+    "forbidden_reason_codes": ["exposure"],
+    "audit_group": "title_only_letter",
+    "rationale": "전기 경혈자극 bracelet은 보충제가 아니다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "37596225",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": ["population", "design_signal", "insufficient_abstract", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome"],
+    "audit_group": "title_only_letter",
+    "rationale": "경피 전기자극과 장기능 회복은 비보충·효능 전용이다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "37723033",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": ["population", "design_signal", "insufficient_abstract", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome"],
+    "audit_group": "title_only_letter",
+    "rationale": "이침 지압과 진통은 비보충·효능 전용이다."
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "v40-agent-0052",
+  "question_id": "HRS2_KIDNEY_DISEASE",
+  "assigned_agent": "/root/terms_hrs2",
+  "assigned_at": "2026-07-28T02:02:47+00:00",
+  "started_at": "2026-07-28T04:32:15+00:00",
+  "completed_at": "2026-07-28T04:32:15+00:00",
+  "row_count": 248,
+  "input_sha256": "c2629670d2388ba2001e27285fc708a7694a680a6321fa5ce218d564bce95eea",
+  "prompt_sha256": "55f7b08f8d7af7e5e9553e093558438cdccc5c4b3365e1c4acb6300302c5b4a3",
+  "worker_version": "v40_deterministic_text_assist_3.3.0",
+  "worker_sha256": "7b3de69fcd5b0a4095b515585fb92cac3e1e966baef5c4d8a19289f11df305c8",
+  "semantic_adjudications_path": "research/screening/v40_agent/semantic_adjudications.json",
+  "semantic_adjudications_sha256": "81d92a76635e621b998f7299171b473ef86f5e90e81aa060b781814d0b49e6e8",
+  "decisions_path": "research/screening/v40_agent/decisions/v40-agent-0052.jsonl",
+  "decisions_sha256": "82eaf40fc9356f84560e5f3e1112a07dccbbe8358bd9b1a044b9e8b3d583d5df",
+  "distribution": {
+    "deprioritize": 220,
+    "retain": 27,
+    "uncertain": 1
+  },
+  "basis_distribution": {
+    "abstract": 244,
+    "title_only": 4
+  },
+  "confidence_distribution": {
+    "high": 241,
+    "low": 4,
+    "medium": 3
+  },
+  "review_mode": "subagent_owned_full_batch_with_frozen_prompt_and_deterministic_text_assist",
+  "external_screening_api_calls": 0,
+  "human_decisions": 0
+}

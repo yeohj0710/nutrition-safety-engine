@@ -1,0 +1,502 @@
+[
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "30252281",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome", "human_signal", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "prescription_drug",
+    "rationale": "Calcitriol은 처방되는 합성 비타민 D 유사체다. 교육성 모노그래프이며 비처방 보충제 노출이나 직접 사람 안전성 신호가 없다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "34273436",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "prescription_drug",
+    "rationale": "Etelcalcetide는 처방 calcimimetic이다. 투석 환자와 저칼슘혈증 결과는 확인되지만 HRS2의 비처방 보충제 노출이 아니다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "35230570",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "prescription_drug",
+    "rationale": "ESA와 철분의 의료기관 처방률을 비교한 연구다. 비처방 보충제 안전성을 평가하지 않는다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "35507237",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "prescription_drug",
+    "rationale": "ESA 저반응성과 처방 상태를 기술한다. 철분 보충 부족은 진료 배경이며 보충제 안전성 결과가 없다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "35942813",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "prescription_drug",
+    "rationale": "처방 calcitriol의 동맥경직 개선 효능 시험이다. 비처방 보충제 노출이나 안전성 결과가 아니다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "40060059",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "prescription_drug",
+    "rationale": "HIF-PHI 처방약의 이상반응을 분석한다. 철분 보충 언급은 배경이며 해당 이상반응과 연결된 보충제 노출이 아니다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "40583089",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "prescription_drug",
+    "rationale": "처방 calcitriol과 enalapril의 임상시험이다. 안전성 검사치는 있지만 목표 비처방 보충제 노출은 없다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "41079599",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "prescription_drug",
+    "rationale": "Roxadustat 처방 증례다. 과거 철분 보충은 반응하지 않은 배경 치료이고 직접 안전성 결과도 없다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "41376433",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "prescription_drug",
+    "rationale": "Vadadustat과 darbepoetin의 처방약 비교이며 MACE를 평가한다. 비처방 보충제 노출은 아니다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "42495460",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "prescription_drug",
+    "rationale": "Calcimimetic, 비타민 D 유사체, 인결합제의 약물 치료 종설이다. 약물 이상반응은 있으나 목표 보충제 노출이 아니다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "34465503",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "ordinary_diet",
+    "rationale": "투석 영양사의 코로나19 업무와 식사 정책 설문이다. 환자의 실제 경구 영양보충제 노출이나 안전성 결과가 아니다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "35277755",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "ordinary_diet",
+    "rationale": "만성콩팥병 소아의 일반 음식 섭취를 요약한 범위 문헌고찰이다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "35998793",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "ordinary_diet",
+    "rationale": "시작 시 만성콩팥병이 없는 성인의 음식 기반 비타민 E 섭취와 발생 만성콩팥병을 분석한다. P와 목표 I가 모두 아니다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "36460269",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome", "human_signal", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "ordinary_diet",
+    "rationale": "만성콩팥병용 이론적 3일 식단의 영양성분을 계산한다. 실제 사람 보충 노출이나 안전성 결과가 없다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "38283477",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "ordinary_diet",
+    "rationale": "정상 신기능 환자의 주스 식단이 급성콩팥손상을 일으킨 증례다. 기존 만성콩팥병·투석 P가 아니며 일반 음식 노출이다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "38498671",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "ordinary_diet",
+    "rationale": "투석 영양사의 평가·처방 관행 설문이다. 환자별 보충제 노출과 안전성 결과를 분석하지 않는다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "38728008",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "ordinary_diet",
+    "rationale": "천연 항산화제가 심혈관 합병증을 줄인다는 효능·기전 종설이다. 보충제 이상반응을 평가하지 않는다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "39115418",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "ordinary_diet",
+    "rationale": "식물성 식단의 만성콩팥병 예방·관리와 영양 위험을 검토한다. 일반 식사 패턴은 목표 I가 아니다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "39339698",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "design_signal"],
+    "forbidden_reason_codes": ["off_topic", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "ordinary_diet",
+    "rationale": "케토유사체 보충을 포함한 저단백식의 장기 안전성, 영양실조, 골·무기질 이상을 만성콩팥병 환자에서 직접 검토한다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "41164370",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "ordinary_diet",
+    "rationale": "NHANES 음식 섭취 기반 항산화 식이지수와 만성콩팥병·사망의 연관을 분석한다. 보충제 투여가 아니다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "33580868",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "endogenous_status_or_biomarker",
+    "rationale": "명시적으로 만성콩팥병이 없는 성인의 혈청 인과 사망을 분석한다. 대상집단과 보충제 노출이 모두 없다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "34292490",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "endogenous_status_or_biomarker",
+    "rationale": "복막투석 환자의 혈청 25(OH)D 상태와 삶의 질을 관찰한다. 실제 보충 노출이나 안전성 결과가 없다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "35075212",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "endogenous_status_or_biomarker",
+    "rationale": "Ferritin, TSAT, hemoglobin 상태와 사망의 연관을 분석한다. 철분 보충은 진료 배경이며 분석 노출이 아니다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "35241379",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "endogenous_status_or_biomarker",
+    "rationale": "비투석 만성콩팥병 환자의 철 결핍 유병률과 검사 관행을 조사한다. 보충제 안전성 연구가 아니다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "35689669",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "endogenous_status_or_biomarker",
+    "rationale": "관상동맥 칼슘 점수는 영상 바이오마커다. 칼슘 보충 노출이 아니다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "36000910",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "endogenous_status_or_biomarker",
+    "rationale": "혈청 PTH와 대동맥 석회화의 연관을 분석하며 대상자가 칼슘 정제, calcitriol, 비타민 D 유사체를 복용한 적이 없다고 명시한다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "36404469",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "endogenous_status_or_biomarker",
+    "rationale": "혈장 유리 25(OH)D3와 제거율을 측정한다. 정맥 중수소 표지 추적자는 비처방 보충 노출이 아니며 안전성 결과도 없다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "37660283",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "endogenous_status_or_biomarker",
+    "rationale": "투석 환자의 내인성 혈청 인 농도와 골절 위험을 분석한다. 인 보충 노출이 아니다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "38970659",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "endogenous_status_or_biomarker",
+    "rationale": "만성콩팥병 소아의 25OHD 농도와 혈압을 관찰한다. 보충은 결론의 향후 치료 제안일 뿐 실제 노출이 아니다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "39711121",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "endogenous_status_or_biomarker",
+    "rationale": "비타민 D 결핍 상태와 코로나19 중증도·사망을 분석한다. 보충 여부는 상태 분류 보조변수이고 보충제 위해 노출이 아니다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "35158075",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "tcm_diagnosis_or_institution",
+    "rationale": "자동 혀 진단 시스템으로 만성콩팥병을 구분하는 관찰연구다. 한약 제제 노출이 아니다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "35856161",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "tcm_diagnosis_or_institution",
+    "rationale": "생체임피던스 체액지표와 심혈관 사건을 예측한다. Traditional Chinese Medicine은 병원명에만 있다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "35942383",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "tcm_diagnosis_or_institution",
+    "rationale": "TCM 증후군 요소로 IgA 신병증 예후를 예측한다. 한약 노출은 없다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "37147762",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "tcm_diagnosis_or_institution",
+    "rationale": "TCM 증상 패턴을 이용해 당뇨병성 신병증을 감별한다. 제제 노출이나 안전성 결과가 없다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "38415296",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "tcm_diagnosis_or_institution",
+    "rationale": "투석 환자 사망 예측모형 연구다. Traditional Chinese Medicine은 외부 검증 코호트 병원명에만 있다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "38767642",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "tcm_diagnosis_or_institution",
+    "rationale": "당뇨병성 콩팥병 단계별 TCM 증후군 분포와 검사치의 상관을 분석한다. 한약 노출이 아니다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "39831189",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "tcm_diagnosis_or_institution",
+    "rationale": "자동 혀 영상으로 만성콩팥병 유무와 단계를 구분한다. 보충제·허브 노출이 아니다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "40547367",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "tcm_diagnosis_or_institution",
+    "rationale": "생체임피던스 phase angle과 만성콩팥병 예후를 분석한다. Traditional Chinese Medicine은 코호트 병원명에만 있다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "41568849",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "exposure", "outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "tcm_diagnosis_or_institution",
+    "rationale": "연구대상은 투석 간호사이며 Traditional Chinese Medicine은 여섯 병원의 유형이다. 환자 P, 보충 I, 안전 O가 모두 없다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "42265663",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "tcm_diagnosis_or_institution",
+    "rationale": "투석 환자의 윤리 딜레마를 다룬 질적연구다. Traditional Chinese Medicine은 모집 병원 유형에만 있다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "34231314",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "supplement_safety_vs_efficacy",
+    "rationale": "Chitosan이 혈청 인을 낮춘 단일 증례로 효능 전용이다. Chitosan 자체의 이상반응이나 안전성 결과를 보고하지 않는다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "35363181",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "design_signal"],
+    "forbidden_reason_codes": ["human_signal", "off_topic", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "supplement_safety_vs_efficacy",
+    "rationale": "만성콩팥병에서 한약의 효과와 안전성을 명시한 체계적 고찰 프로토콜이다. 직접 사람 결과는 아직 없다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "35458199",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "supplement_safety_vs_efficacy",
+    "rationale": "Probiotics와 저단백식의 독소·지질 개선 효능만 보고한다. 이상반응이나 안전성 결과가 없다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "36517799",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "supplement_safety_vs_efficacy",
+    "rationale": "경구 식이섬유의 신성 빈혈과 장내미생물 개선 효능만 평가한다. 안전성 결과가 없다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "37202214",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["off_topic", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "supplement_safety_vs_efficacy",
+    "rationale": "비투석 만성콩팥병에서 철분 보충과 실제 심혈관 사건의 연관을 분석해 안전성 결과 축이 존재한다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "37409723",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "supplement_safety_vs_efficacy",
+    "rationale": "Inulin 보충의 요독소·염증 감소 효능만 평가한다. 이상반응이나 안전성 결과가 없다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "38732502",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["off_topic", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "supplement_safety_vs_efficacy",
+    "rationale": "경구 리포솜 철분의 부작용과 부작용에 따른 중단을 실제 보고한다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "39559176",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["off_topic", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "supplement_safety_vs_efficacy",
+    "rationale": "만성콩팥병 환자의 비타민 E 보충 후 심혈관 합병증이 감소하지 않았다는 결과를 제공한다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "39683529",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["off_topic", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "supplement_safety_vs_efficacy",
+    "rationale": "아연 보충이 유발하는 구리 결핍과 안전한 보충 범위를 투석 환자에서 직접 평가한다."
+  },
+  {
+    "question_id": "HRS2_KIDNEY_DISEASE",
+    "pmid": "41644022",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "supplement_safety_vs_efficacy",
+    "rationale": "투석 회기 중 정맥 L-carnitine 처방 투여이며 빈혈 개선 효능 전용이다. 비처방 보충제 안전성 연구가 아니다."
+  }
+]

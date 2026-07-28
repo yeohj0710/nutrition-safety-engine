@@ -1,0 +1,448 @@
+[
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "38972090",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": [
+      "population",
+      "exposure",
+      "outcome",
+      "off_topic",
+      "insufficient_abstract"
+    ],
+    "forbidden_reason_codes": [
+      "design_signal"
+    ],
+    "audit_group": "opinion_letter_or_commentary",
+    "rationale": "Rhodiola와 수술주위 상호작용은 P·I·O를 충족하지만, 현재 기록은 Letter|Comment이며 다른 논문에 대한 CommentOn 기록이다. 논평 자체의 연구설계는 확인되지 않는다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "38990465",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": [
+      "population",
+      "design_signal",
+      "off_topic",
+      "insufficient_abstract"
+    ],
+    "forbidden_reason_codes": [
+      "exposure",
+      "outcome"
+    ],
+    "audit_group": "non_supplement_exposure",
+    "rationale": "Colonoscopy와 Comparative Study는 확인되지만 yoga 기반 장세척과 polyethylene glycol은 보충제 노출이 아니다. Feasibility와 cost-effectiveness도 안전성 결과가 아니다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "38990482",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": [
+      "population",
+      "outcome",
+      "human_signal",
+      "off_topic",
+      "insufficient_abstract"
+    ],
+    "forbidden_reason_codes": [
+      "exposure",
+      "design_signal"
+    ],
+    "audit_group": "quoted_study_commentary",
+    "rationale": "인용 원문은 여성의 sleeve gastrectomy와 PONV를 다루지만 acupressure는 보충제가 아니다. 현재 기록은 Letter to the Editor이므로 인용 원문의 무작위시험을 현재 기록의 설계로 세지 않는다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "39106982",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": [
+      "population",
+      "off_topic",
+      "insufficient_abstract"
+    ],
+    "forbidden_reason_codes": [
+      "exposure",
+      "outcome",
+      "design_signal"
+    ],
+    "audit_group": "non_supplement_exposure",
+    "rationale": "Urological surgery는 P를 충족하지만 acupuncture는 보충제가 아니며 pain management는 효능 결과다. 현재 기록은 Letter|Comment다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "39106983",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": [
+      "population",
+      "off_topic",
+      "insufficient_abstract"
+    ],
+    "forbidden_reason_codes": [
+      "exposure",
+      "outcome",
+      "design_signal"
+    ],
+    "audit_group": "opinion_letter_or_commentary",
+    "rationale": "Acupuncture 기반 pain management 논평에 대한 authors' reply다. 보충제 노출과 안전성 결과, 자료성 연구설계가 확인되지 않는다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "39134103",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": [
+      "population",
+      "human_signal",
+      "design_signal",
+      "off_topic",
+      "insufficient_abstract"
+    ],
+    "forbidden_reason_codes": [
+      "exposure",
+      "outcome"
+    ],
+    "audit_group": "non_supplement_exposure",
+    "rationale": "Cardiac surgery 환자를 다룬 Review이지만 breathing exercise는 보충제가 아니다. Postoperative lung function effectiveness는 안전성 결과가 아닌 효능 결과다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "39150621",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": [
+      "population",
+      "exposure",
+      "off_topic",
+      "insufficient_abstract"
+    ],
+    "forbidden_reason_codes": [
+      "outcome",
+      "design_signal"
+    ],
+    "audit_group": "opinion_letter_or_commentary",
+    "rationale": "Postoperative oral nutritional supplements로 P와 I는 확인된다. 그러나 ASO Author Reflections는 원 연구에 대한 논평이고 prognostic impact는 직접 안전성 결과가 아니다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "39179476",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": [
+      "off_topic",
+      "insufficient_abstract"
+    ],
+    "forbidden_reason_codes": [
+      "population",
+      "exposure",
+      "outcome",
+      "design_signal"
+    ],
+    "audit_group": "acronym_polysemy",
+    "rationale": "General surgery EPA feedback는 교수 피드백을 다루는 교육 논평이다. EPA는 이 문맥에서 eicosapentaenoic acid 보충제가 아니며 환자 수술 P도 아니다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "39182001",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": [
+      "population",
+      "exposure",
+      "human_signal",
+      "off_topic",
+      "insufficient_abstract"
+    ],
+    "forbidden_reason_codes": [
+      "outcome",
+      "design_signal"
+    ],
+    "audit_group": "quoted_study_commentary",
+    "rationale": "Post-bariatric pregnancy와 supplement use는 P와 I를 충족하지만 현재 기록은 Paired Editorial이다. 제목에 인용된 observational cohort를 현재 기록의 연구설계로 세지 않는다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "39224053",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": [
+      "population",
+      "exposure",
+      "outcome",
+      "human_signal",
+      "off_topic",
+      "insufficient_abstract"
+    ],
+    "forbidden_reason_codes": [
+      "design_signal"
+    ],
+    "audit_group": "quoted_study_commentary",
+    "rationale": "Lumbar surgery, perioperative nutritional supplementation, wound healing으로 P·I·O는 확인된다. 그러나 현재 기록은 Response to 형식의 논평이며 연구설계는 확인되지 않는다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "39238264",
+    "expected_decision": "retain",
+    "expected_confidence": "low",
+    "required_reason_codes": [
+      "population",
+      "exposure",
+      "outcome",
+      "human_signal",
+      "design_signal",
+      "insufficient_abstract"
+    ],
+    "forbidden_reason_codes": [
+      "off_topic"
+    ],
+    "audit_group": "data_bearing_trial",
+    "rationale": "Cardiac surgery 후 atrial fibrillation 예방을 위한 potassium supplementation TIGHT-K trial이다. 수술 P, 보충 I, 수술 후 안전성 O와 실제 trial 설계가 모두 확인된다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "39241347",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": [
+      "exposure",
+      "outcome",
+      "human_signal",
+      "off_topic",
+      "insufficient_abstract"
+    ],
+    "forbidden_reason_codes": [
+      "population",
+      "design_signal"
+    ],
+    "audit_group": "pediatric_only_population",
+    "rationale": "Probiotics와 cardiopulmonary bypass로 인한 intestinal impairment는 I와 O를 충족한다. 그러나 children-only 기록이므로 성인 대상 HRS1의 P를 충족하지 않는다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "39379965",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": [
+      "animal_term_present",
+      "off_topic",
+      "insufficient_abstract"
+    ],
+    "forbidden_reason_codes": [
+      "population",
+      "exposure",
+      "outcome",
+      "human_signal",
+      "design_signal"
+    ],
+    "audit_group": "animal_erratum",
+    "rationale": "Beef cattle 연구의 정정문이다. Muscle omega-3 composition은 보충제 투여 노출이 아니며 사람 대상 신호와 자료성 연구설계도 없다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "39538043",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": [
+      "population",
+      "exposure",
+      "human_signal",
+      "off_topic",
+      "insufficient_abstract"
+    ],
+    "forbidden_reason_codes": [
+      "outcome",
+      "design_signal"
+    ],
+    "audit_group": "editorial_only",
+    "rationale": "Pregnant women post-bariatric surgery와 nutritional supplementation은 P와 I를 충족한다. 그러나 현재 기록은 Editorial이며 구체적인 안전성 결과가 없다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "39817365",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": [
+      "population",
+      "off_topic",
+      "insufficient_abstract"
+    ],
+    "forbidden_reason_codes": [
+      "exposure",
+      "outcome",
+      "design_signal"
+    ],
+    "audit_group": "acronym_polysemy",
+    "rationale": "van der Heijden EPA의 EPA는 저자 이니셜이며 eicosapentaenoic acid 보충제가 아니다. 현재 기록은 Re: 형식의 Letter이고 인용 review를 현재 연구설계로 세지 않는다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "39964920",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": [
+      "off_topic",
+      "insufficient_abstract"
+    ],
+    "forbidden_reason_codes": [
+      "population",
+      "exposure",
+      "outcome",
+      "design_signal"
+    ],
+    "audit_group": "disconnected_multi_topic_title",
+    "rationale": "서로 무관한 여러 임상 주제를 나열한 제목이다. Umbilical hernias, multivitamins, 다른 결과를 하나의 연결된 HRS1 P·I·O로 합칠 수 없다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "40343657",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": [
+      "population",
+      "exposure",
+      "human_signal",
+      "design_signal",
+      "off_topic",
+      "insufficient_abstract"
+    ],
+    "forbidden_reason_codes": [
+      "outcome"
+    ],
+    "audit_group": "adherence_non_safety",
+    "rationale": "Post-bariatric multivitamin observational study로 P와 I는 확인된다. 그러나 endpoint는 adherence와 patient-centered care이며 직접 안전성 결과가 아니다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "40425973",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": [
+      "population",
+      "exposure",
+      "outcome",
+      "off_topic",
+      "insufficient_abstract"
+    ],
+    "forbidden_reason_codes": [
+      "design_signal"
+    ],
+    "audit_group": "editorial_only",
+    "rationale": "Preoperative multivitamin use와 safety로 P·I·O는 확인된다. 그러나 현재 기록은 Editorial이며 제목의 study design 언급은 현재 기록의 연구설계가 아니다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "40498411",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": [
+      "population",
+      "exposure",
+      "outcome",
+      "human_signal",
+      "off_topic",
+      "insufficient_abstract"
+    ],
+    "forbidden_reason_codes": [
+      "design_signal"
+    ],
+    "audit_group": "terminal_correction",
+    "rationale": "인용 원문 제목에는 preoperative multivitamin use와 micronutrient deficiencies가 있다. 그러나 현재 기록은 Published Erratum이며 자료성 연구설계가 없다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "40947440",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": [
+      "off_topic",
+      "insufficient_abstract"
+    ],
+    "forbidden_reason_codes": [
+      "population",
+      "exposure",
+      "outcome",
+      "design_signal"
+    ],
+    "audit_group": "workflow_not_patient_pico",
+    "rationale": "Non-surgical OR time의 효율과 비용을 다루는 workflow Comment다. 수술 환자 P, 보충제 I, 안전성 O가 확인되지 않는다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "41094541",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": [
+      "population",
+      "exposure",
+      "off_topic",
+      "insufficient_abstract"
+    ],
+    "forbidden_reason_codes": [
+      "outcome",
+      "design_signal"
+    ],
+    "audit_group": "efficacy_only_non_safety",
+    "rationale": "Surgery 후 omega-3 fatty acids로 P와 I는 확인된다. Inflammatory response modulation은 효능·바이오마커 endpoint이며 직접 안전성 결과가 아니다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "41665460",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": [
+      "population",
+      "exposure",
+      "human_signal",
+      "off_topic",
+      "insufficient_abstract"
+    ],
+    "forbidden_reason_codes": [
+      "outcome",
+      "design_signal"
+    ],
+    "audit_group": "opinion_letter_or_commentary",
+    "rationale": "Postoperative gastric cancer 환자와 oral nutritional supplementation으로 P와 I는 확인된다. Adherence는 비안전성 endpoint이며 현재 기록은 Comment on 형식이다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "41930007",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": [
+      "population",
+      "exposure",
+      "outcome",
+      "human_signal",
+      "off_topic",
+      "insufficient_abstract"
+    ],
+    "forbidden_reason_codes": [
+      "design_signal"
+    ],
+    "audit_group": "quoted_study_commentary",
+    "rationale": "Cataract surgery, ginkgo extract, posterior capsule opacification으로 P·I·O는 확인된다. 그러나 현재 기록은 Comment on 형식이며 인용된 무작위시험을 현재 Letter의 설계로 세지 않는다."
+  },
+  {
+    "question_id": "HRS1_PERIOPERATIVE",
+    "pmid": "41930010",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": [
+      "population",
+      "exposure",
+      "outcome",
+      "human_signal",
+      "off_topic",
+      "insufficient_abstract"
+    ],
+    "forbidden_reason_codes": [
+      "design_signal"
+    ],
+    "audit_group": "quoted_study_commentary",
+    "rationale": "제목에는 cataract surgery, ginkgo extract, postoperative complication과 무작위시험이 있다. 그러나 현재 기록은 Response to reviewer comments이며 원 시험 결과보고가 아니다."
+  }
+]

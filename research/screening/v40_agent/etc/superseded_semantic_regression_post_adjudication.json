@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-07-28T04:27:07+00:00",
+  "worker_version": "v40_deterministic_text_assist_3.2.0",
+  "worker_sha256": "fdd1f9df749499523047edb1d0c2f57776ef53c71440b3080bdc371c45505433",
+  "prompt_sha256": "55f7b08f8d7af7e5e9553e093558438cdccc5c4b3365e1c4acb6300302c5b4a3",
+  "corpus_sha256": "d5a70b828bdef00ef885e495de90f2dd7e74d3c34a714e8d1c953436a7727173",
+  "audit_case_files": [
+    {
+      "path": "research/screening/v40_agent/etc/semantic_audit_cases/hrs1_additional_40.json",
+      "sha256": "71aa9181defaa7155c77a38d3e14233f9f38fff18e9e9faca729d8269b0df08e",
+      "case_count": 40
+    },
+    {
+      "path": "research/screening/v40_agent/etc/semantic_audit_cases/hrs1_title_only_24.json",
+      "sha256": "06a517117f0b3ac07677e8dd760c6857d69f06a4f29309013493a09d59832bfd",
+      "case_count": 24
+    },
+    {
+      "path": "research/screening/v40_agent/etc/semantic_audit_cases/hrs2_additional_50.json",
+      "sha256": "4f4334a07720c4a9acaff21a7f00462eb7b77c7ce7f3dca9dd8b0de70869ccf0",
+      "case_count": 50
+    },
+    {
+      "path": "research/screening/v40_agent/etc/semantic_audit_cases/hrs3_additional_40.json",
+      "sha256": "526ac4517fed446da127be77609effada51aef2a04033501cee0851b4ecbb905",
+      "case_count": 40
+    },
+    {
+      "path": "research/screening/v40_agent/etc/semantic_audit_cases/hrs3_title_only_50.json",
+      "sha256": "c0941a3cc9d1251142bb6e1ae7cb9f7a0c2c32a638d1e6cd4b9a57f77bc74095",
+      "case_count": 50
+    },
+    {
+      "path": "research/screening/v40_agent/etc/semantic_audit_cases/hrs4_additional_50.json",
+      "sha256": "5dfd69908330dbcc3ab55b89f876e3ddf18b5640b5d3b5544129ee24b873b357",
+      "case_count": 50
+    },
+    {
+      "path": "research/screening/v40_agent/etc/semantic_audit_cases/hrs5_additional_50.json",
+      "sha256": "d688a54571cadb8350ebfe7ab1ba018e7acc51f8360130974c0041c11a462b20",
+      "case_count": 50
+    }
+  ],
+  "case_count": 616,
+  "passed_case_count": 616,
+  "failed_case_count": 0,
+  "all_passed": true,
+  "observed_decision_distribution": {
+    "deprioritize": 490,
+    "retain": 123,
+    "uncertain": 3
+  },
+  "failures": []
+}

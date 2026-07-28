@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0.0",
+  "track": "v4.0_mecir_search_redesign",
+  "generated_at": "2026-07-28T04:46:53+00:00",
+  "protocol": "protocol-v4.0-mecir-search",
+  "input": "data/curated_v4/evidence_map.csv",
+  "input_sha256": "d5a70b828bdef00ef885e495de90f2dd7e74d3c34a714e8d1c953436a7727173",
+  "screening_input": "data/curated_v4/agent_screening_classifications.csv",
+  "screening_sha256": "a64075cc0d4a1be042a618ec8d23e9b0edc3329a7810690f63821c6ba56f89d8",
+  "records": 1899,
+  "by_question": {
+    "HRS1_PERIOPERATIVE": 312,
+    "HRS2_KIDNEY_DISEASE": 340,
+    "HRS3_PREGNANCY": 715,
+    "HRS4_LIVER_DISEASE": 380,
+    "HRS5_ANTICOAGULATION": 152
+  },
+  "with_dose": 492,
+  "with_fulltext_locator": 0,
+  "source_scope": {
+    "abstract_only": 1888,
+    "title_only": 11
+  },
+  "effect_status": {
+    "not_observed": 1899
+  },
+  "core_limit_per_question": 15,
+  "human_decisions": 0,
+  "limitations": [
+    "Codex title/abstract screening and extraction; no human reference decisions",
+    "PubMed title/abstract scope only; retained records are abstract_only or title_only",
+    "No effect estimate is imputed; unobserved values remain not_observed"
+  ],
+  "agent_gate": {
+    "applied": true,
+    "regex_passed": 14099,
+    "kept": 1899,
+    "decision_source": "data/curated_v4/agent_screening_classifications.csv",
+    "dropped_by_agent": 12200
+  },
+  "input_provenance": {
+    "corpus_manifest": {
+      "path": "data/curated_v4/corpus_manifest.json",
+      "sha256": "00eb46f71deb1a37c58c0c86f0ea20b21540196cd9e9bbf0d69b38cd37d7c2ca"
+    },
+    "screening_manifest": {
+      "path": "research/screening/v40_agent/manifest.json",
+      "sha256": "3640c150e47d92b637523c2b55052c120cf80e27e4a871620c37e14563f3ba2a"
+    },
+    "screening_batch_index": {
+      "path": "research/screening/v40_agent/batch_index.json",
+      "sha256": "48c1ec50569fc8bf34498d12a65323df27054d66d12fa1251fd64586ce5cf529"
+    },
+    "screening_checkpoint": {
+      "path": "research/screening/v40_agent/checkpoints.jsonl",
+      "sha256": "0c14e3b56b2dcaa42272346d2b30d43007b1400c0e43e69b3c5915a28813004c"
+    },
+    "screening_batch_runs": {
+      "path": "research/screening/v40_agent/batch_runs.jsonl",
+      "sha256": "23f57b7177111693c106ca7778d360cbf50a356983024514d2a372e8dfddf2d5"
+    },
+    "screening_prompt": {
+      "path": "research/screening/v40_agent/prompts/screening_prompt.md",
+      "sha256": "55f7b08f8d7af7e5e9553e093558438cdccc5c4b3365e1c4acb6300302c5b4a3"
+    },
+    "screening_worker": {
+      "path": "tools/v40/agent_screen_worker.py",
+      "sha256": "7b3de69fcd5b0a4095b515585fb92cac3e1e966baef5c4d8a19289f11df305c8"
+    },
+    "screening_invariant_checks": {
+      "path": "research/screening/v40_agent/invariant_checks.json",
+      "sha256": "11cf05a8bd88ca015c6e7f7cccc9c9fac7876e6e399172883f5c3217b26bca38"
+    },
+    "screening_semantic_adjudications": {
+      "path": "research/screening/v40_agent/semantic_adjudications.json",
+      "sha256": "81d92a76635e621b998f7299171b473ef86f5e90e81aa060b781814d0b49e6e8"
+    },
+    "screening_semantic_rule_audit": {
+      "path": "research/screening/v40_agent/semantic_rule_audit.json",
+      "sha256": "52981df2f6da8ecf336f9dc770d1d8dc5119d45467a5fee8a468258250356291"
+    },
+    "screening_semantic_adjudication_consistency": {
+      "path": "research/screening/v40_agent/semantic_adjudication_consistency.json",
+      "sha256": "4ff7b0190d36b2afd855819c569717202536e01c8ab51e258b76892ae892b6ba"
+    }
+  },
+  "output_hashes": {
+    "regex_gate_sha256": "037f9fe9563c3c97413eb7c5ea2a27498f962e29d61af6bdb1f03bcfdfd7de89",
+    "evidence_bundle_sha256": "b445f14f20fa955de3cd4b629769fc840db6cf583da959e34f35ccb79b740ba8",
+    "core_evidence_sha256": "94063a02cd000efdfffd6a122acdde3a8a7627ab6d8fe4e3aa3a15230ddeb50c"
+  },
+  "verbatim_source_fields": [
+    "abstract",
+    "authors",
+    "doi",
+    "dose",
+    "key_finding",
+    "locator",
+    "locator_text",
+    "outcome",
+    "population",
+    "publication_types",
+    "raw_source_path",
+    "raw_source_sha256",
+    "source_text",
+    "title",
+    "url",
+    "venue"
+  ]
+}

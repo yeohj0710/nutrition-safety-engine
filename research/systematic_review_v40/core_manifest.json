@@ -1,0 +1,186 @@
+{
+  "schema_version": "1.0.0",
+  "track": "v4.0_mecir_search_redesign",
+  "generated_at": "2026-07-28T04:46:54+00:00",
+  "core_records": 75,
+  "per_question": {
+    "HRS1_PERIOPERATIVE": 15,
+    "HRS2_KIDNEY_DISEASE": 15,
+    "HRS3_PREGNANCY": 15,
+    "HRS4_LIVER_DISEASE": 15,
+    "HRS5_ANTICOAGULATION": 15
+  },
+  "rules": 34,
+  "source_sha256": "b445f14f20fa955de3cd4b629769fc840db6cf583da959e34f35ccb79b740ba8",
+  "core_sha256": "94063a02cd000efdfffd6a122acdde3a8a7627ab6d8fe4e3aa3a15230ddeb50c",
+  "translation_sha256": "68a597028e51337108ba6ecfef284cbb857d84f4a3d882bae39ba23ac43e8201",
+  "translation_authorship": "ai_generated",
+  "personalization": {
+    "axes": [
+      "age_group",
+      "concomitant_medication",
+      "dose_range",
+      "sex",
+      "underlying_condition"
+    ],
+    "evidence_rows_by_question_and_axis": {
+      "HRS1_PERIOPERATIVE": {
+        "age_group": 7,
+        "concomitant_medication": 3,
+        "dose_range": 8,
+        "sex": 3,
+        "underlying_condition": 14
+      },
+      "HRS2_KIDNEY_DISEASE": {
+        "age_group": 10,
+        "concomitant_medication": 5,
+        "dose_range": 9,
+        "underlying_condition": 15
+      },
+      "HRS3_PREGNANCY": {
+        "age_group": 8,
+        "concomitant_medication": 5,
+        "dose_range": 8,
+        "sex": 10,
+        "underlying_condition": 13
+      },
+      "HRS4_LIVER_DISEASE": {
+        "age_group": 6,
+        "concomitant_medication": 6,
+        "dose_range": 6,
+        "sex": 3,
+        "underlying_condition": 15
+      },
+      "HRS5_ANTICOAGULATION": {
+        "age_group": 12,
+        "concomitant_medication": 15,
+        "dose_range": 3,
+        "sex": 4,
+        "underlying_condition": 3
+      }
+    },
+    "compatibility_aliases": {
+      "A1": {
+        "source_question_id": "HRS5_ANTICOAGULATION",
+        "ingredient": "비타민 K"
+      },
+      "A2": {
+        "source_question_id": "HRS5_ANTICOAGULATION",
+        "ingredient": "오메가-3"
+      },
+      "B1": {
+        "source_question_id": "HRS2_KIDNEY_DISEASE",
+        "ingredient": "칼슘"
+      },
+      "B2": {
+        "source_question_id": "HRS2_KIDNEY_DISEASE",
+        "ingredient": "비타민 D"
+      },
+      "B3": {
+        "source_question_id": "HRS2_KIDNEY_DISEASE",
+        "ingredient": "비타민 C"
+      }
+    }
+  },
+  "agent_gate": {
+    "applied": true,
+    "regex_passed": 14099,
+    "kept": 1899,
+    "decision_source": "data/curated_v4/agent_screening_classifications.csv",
+    "dropped_by_agent": 12200
+  },
+  "rules_sha256": "0d3788fee15fa92af34173b315d52f32d98920075abd12ed9d8d588ad1222e06",
+  "translation_parts": [
+    {
+      "path": "research/systematic_review_v40/etc/translation_parts/hrs1_perioperative.json",
+      "sha256": "206184f1c9b49a1ea610a6d9b691652367b1389573078efe354135bceeecdae0"
+    },
+    {
+      "path": "research/systematic_review_v40/etc/translation_parts/hrs2_kidney_disease.json",
+      "sha256": "e21a1521d4eef0ac6ca4d5d57fbf7cce72dfc1fba04349c4d0c9599c2ae39e18"
+    },
+    {
+      "path": "research/systematic_review_v40/etc/translation_parts/hrs3_pregnancy.json",
+      "sha256": "577405f05f4c175eef0b89eaccd534bd424828b7e143c06e3b9ac2fcfe8d4a0c"
+    },
+    {
+      "path": "research/systematic_review_v40/etc/translation_parts/hrs4_liver_disease.json",
+      "sha256": "bc2e59effbe1f0065e16d6c457eb93335f49f52af4080b53364718c08ca3d6ec"
+    },
+    {
+      "path": "research/systematic_review_v40/etc/translation_parts/hrs5_anticoagulation.json",
+      "sha256": "c35e96321569049aaeb341642a6e64b032c8d5a8659a0000b42635e37f2b5f69"
+    }
+  ],
+  "translation_parts_index_sha256": "427565b7e5131066a68d09977ed9ee07838a8db5c188a8d0341c30030dffe4e6",
+  "input_provenance": {
+    "corpus_manifest": {
+      "path": "data/curated_v4/corpus_manifest.json",
+      "sha256": "00eb46f71deb1a37c58c0c86f0ea20b21540196cd9e9bbf0d69b38cd37d7c2ca"
+    },
+    "screening_manifest": {
+      "path": "research/screening/v40_agent/manifest.json",
+      "sha256": "3640c150e47d92b637523c2b55052c120cf80e27e4a871620c37e14563f3ba2a"
+    },
+    "screening_batch_index": {
+      "path": "research/screening/v40_agent/batch_index.json",
+      "sha256": "48c1ec50569fc8bf34498d12a65323df27054d66d12fa1251fd64586ce5cf529"
+    },
+    "screening_checkpoint": {
+      "path": "research/screening/v40_agent/checkpoints.jsonl",
+      "sha256": "0c14e3b56b2dcaa42272346d2b30d43007b1400c0e43e69b3c5915a28813004c"
+    },
+    "screening_batch_runs": {
+      "path": "research/screening/v40_agent/batch_runs.jsonl",
+      "sha256": "23f57b7177111693c106ca7778d360cbf50a356983024514d2a372e8dfddf2d5"
+    },
+    "screening_prompt": {
+      "path": "research/screening/v40_agent/prompts/screening_prompt.md",
+      "sha256": "55f7b08f8d7af7e5e9553e093558438cdccc5c4b3365e1c4acb6300302c5b4a3"
+    },
+    "screening_worker": {
+      "path": "tools/v40/agent_screen_worker.py",
+      "sha256": "7b3de69fcd5b0a4095b515585fb92cac3e1e966baef5c4d8a19289f11df305c8"
+    },
+    "screening_invariant_checks": {
+      "path": "research/screening/v40_agent/invariant_checks.json",
+      "sha256": "11cf05a8bd88ca015c6e7f7cccc9c9fac7876e6e399172883f5c3217b26bca38"
+    },
+    "screening_semantic_adjudications": {
+      "path": "research/screening/v40_agent/semantic_adjudications.json",
+      "sha256": "81d92a76635e621b998f7299171b473ef86f5e90e81aa060b781814d0b49e6e8"
+    },
+    "screening_semantic_rule_audit": {
+      "path": "research/screening/v40_agent/semantic_rule_audit.json",
+      "sha256": "52981df2f6da8ecf336f9dc770d1d8dc5119d45467a5fee8a468258250356291"
+    },
+    "screening_semantic_adjudication_consistency": {
+      "path": "research/screening/v40_agent/semantic_adjudication_consistency.json",
+      "sha256": "4ff7b0190d36b2afd855819c569717202536e01c8ab51e258b76892ae892b6ba"
+    }
+  },
+  "generator": {
+    "path": "tools/v40/build_site_v4.py",
+    "sha256": "947e19d5e778817c4af929c731c6fb7fc6830402f9cdaea59c71e88a1251c274",
+    "base_path": "tools/v30/build_site_v3.py",
+    "base_sha256": "99e05427797ade03df4772835199c818df20b98bea6aa5481cd4163b267eac44"
+  },
+  "verbatim_source_fields": [
+    "abstract",
+    "authors",
+    "doi",
+    "dose",
+    "key_finding",
+    "locator",
+    "locator_text",
+    "outcome",
+    "population",
+    "publication_types",
+    "raw_source_path",
+    "raw_source_sha256",
+    "source_text",
+    "title",
+    "url",
+    "venue"
+  ]
+}

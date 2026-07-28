@@ -1,0 +1,5223 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-07-28T04:31:26+00:00",
+  "mode": "raw_rule_audit",
+  "adjudications_applied": false,
+  "worker_version": "v40_deterministic_text_assist_3.3.0",
+  "worker_sha256": "7b3de69fcd5b0a4095b515585fb92cac3e1e966baef5c4d8a19289f11df305c8",
+  "prompt_sha256": "55f7b08f8d7af7e5e9553e093558438cdccc5c4b3365e1c4acb6300302c5b4a3",
+  "corpus_sha256": "d5a70b828bdef00ef885e495de90f2dd7e74d3c34a714e8d1c953436a7727173",
+  "audit_case_files": [
+    {
+      "path": "research/screening/v40_agent/etc/semantic_audit_cases/hrs1_additional_40.json",
+      "sha256": "71aa9181defaa7155c77a38d3e14233f9f38fff18e9e9faca729d8269b0df08e",
+      "case_count": 40
+    },
+    {
+      "path": "research/screening/v40_agent/etc/semantic_audit_cases/hrs1_title_only_24.json",
+      "sha256": "06a517117f0b3ac07677e8dd760c6857d69f06a4f29309013493a09d59832bfd",
+      "case_count": 24
+    },
+    {
+      "path": "research/screening/v40_agent/etc/semantic_audit_cases/hrs2_additional_50.json",
+      "sha256": "4f4334a07720c4a9acaff21a7f00462eb7b77c7ce7f3dca9dd8b0de70869ccf0",
+      "case_count": 50
+    },
+    {
+      "path": "research/screening/v40_agent/etc/semantic_audit_cases/hrs3_additional_40.json",
+      "sha256": "526ac4517fed446da127be77609effada51aef2a04033501cee0851b4ecbb905",
+      "case_count": 40
+    },
+    {
+      "path": "research/screening/v40_agent/etc/semantic_audit_cases/hrs3_title_only_50.json",
+      "sha256": "c0941a3cc9d1251142bb6e1ae7cb9f7a0c2c32a638d1e6cd4b9a57f77bc74095",
+      "case_count": 50
+    },
+    {
+      "path": "research/screening/v40_agent/etc/semantic_audit_cases/hrs4_additional_50.json",
+      "sha256": "5dfd69908330dbcc3ab55b89f876e3ddf18b5640b5d3b5544129ee24b873b357",
+      "case_count": 50
+    },
+    {
+      "path": "research/screening/v40_agent/etc/semantic_audit_cases/hrs5_additional_50.json",
+      "sha256": "d688a54571cadb8350ebfe7ab1ba018e7acc51f8360130974c0041c11a462b20",
+      "case_count": 50
+    }
+  ],
+  "case_count": 616,
+  "passed_case_count": 390,
+  "failed_case_count": 226,
+  "all_passed": false,
+  "observed_decision_distribution": {
+    "deprioritize": 453,
+    "retain": 157,
+    "uncertain": 6
+  },
+  "failures": [
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "37936745",
+      "title": "Evaluation of the efficacy and safety of percutaneous transforaminal endoscopic discectomy for multi-segmental lumbar disc herniation.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:37936745",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "36185190",
+      "title": "Differentiating non-lactating mastitis and malignant breast tumors by deep-learning based AI automatic classification system: A preliminary study.",
+      "problems": [
+        "missing_reason_codes:design_signal",
+        "forbidden_reason_codes:population"
+      ],
+      "observed": {
+        "record_id": "pubmed:36185190",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "human_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "38384164",
+      "title": "Risk Factors of Hidden Blood Loss in Unilateral Biportal Endoscopic Surgery for Patients with Lumbar Spinal Stenosis.",
+      "problems": [
+        "missing_reason_codes:design_signal,outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:38384164",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "human_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "34966997",
+      "title": "Morphological classification and clinical significance of medial malleolus based on computed tomography three-dimensional reconstruction.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:34966997",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "human_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "38659606",
+      "title": "Analysis of acupoint massage combined with touch on relieving anxiety and pain in patients with oral implant surgery.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:38659606",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "34918967",
+      "title": "The Impact of Acupuncture on Postoperative Nausea and Vomiting in Obese Adult Patients Undergoing Laparoscopic Sleeve Gastrectomy: A Randomized Controlled Trial.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:34918967",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "35146993",
+      "title": "[Application of physical therapy methods in the early rehabilitation period after surgical interventions in patients with inflammatory diseases of the maxillofacial region].",
+      "problems": [
+        "missing_reason_codes:design_signal",
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:35146993",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "37165126",
+      "title": "The influence of resident and faculty gender on assessments in anesthesia competency-based medical education.",
+      "problems": [
+        "forbidden_reason_codes:outcome,population"
+      ],
+      "observed": {
+        "record_id": "pubmed:37165126",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "36915313",
+      "title": "Comparative study of ultrasound-guided microwave ablation and traditional surgery in the treatment of plasma cell mastitis: a multicenter study.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:36915313",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "37319382",
+      "title": "Low-Cost Wound Healing Protocol Reduces Infection and Reoperation Rates After Cranioplasty: A Retrospective Cohort Study.",
+      "problems": [
+        "decision:deprioritize!=expected:retain",
+        "missing_reason_codes:population",
+        "forbidden_reason_codes:off_topic"
+      ],
+      "observed": {
+        "record_id": "pubmed:37319382",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "35695692",
+      "title": "Postoperative Analgesic and Anti-inflammatory Effectiveness of Ginger (Zingiber officinale) and NSAIDs as Adjuncts to Nonsurgical Periodontal Therapy for the Management of Periodontitis.",
+      "problems": [
+        "missing_reason_codes:design_signal",
+        "forbidden_reason_codes:population"
+      ],
+      "observed": {
+        "record_id": "pubmed:35695692",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "36096139",
+      "title": "The Efficacy of Curcumin Patch as an Adjuvant Therapeutic Agent in Managing Acute Orofacial Pain on the Post-Cleft Lip and Cleft Palate Surgery Patients: A Pragmatic Trial.",
+      "problems": [
+        "forbidden_reason_codes:exposure,population"
+      ],
+      "observed": {
+        "record_id": "pubmed:36096139",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "35043693",
+      "title": "A Systematic Review of Oral Nutritional Supplement and Wound Healing.",
+      "problems": [
+        "missing_reason_codes:outcome",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:35043693",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "38370002",
+      "title": "Impact of nutrition on skin wound healing and aesthetic outcomes: A comprehensive narrative review.",
+      "problems": [
+        "decision:deprioritize!=expected:retain",
+        "missing_reason_codes:outcome",
+        "forbidden_reason_codes:off_topic",
+        "confidence:high!=expected:medium"
+      ],
+      "observed": {
+        "record_id": "pubmed:38370002",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "35081550",
+      "title": "Secular Trends in Severe Idiosyncratic Drug-Induced Liver Injury in North America: An Update From the Acute Liver Failure Study Group Registry.",
+      "problems": [
+        "missing_reason_codes:exposure,outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:35081550",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "38344377",
+      "title": "To Evaluate the Success of Natural Compound: Curcumin as Obturating Material in Primary Teeth.",
+      "problems": [
+        "missing_reason_codes:design_signal",
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:38344377",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "human_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "34844500",
+      "title": "Examining prescribing practices with respect to oral iron supplementation for post-partum anemia: a retrospective review.",
+      "problems": [
+        "missing_reason_codes:population",
+        "forbidden_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:34844500",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "38337627",
+      "title": "Therapeutic Evaluation of Bifidobacterium animalis subsp. lactis MH-02 as an Adjunctive Treatment in Patients with Reflux Esophagitis: A Randomized, Double-Blind, Placebo-Controlled Trial.",
+      "problems": [
+        "forbidden_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:38337627",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "37441102",
+      "title": "Multivitamin-Induced Pharmacobezoar: A Rare Entity of Large Bowel Obstruction.",
+      "problems": [
+        "missing_reason_codes:human_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:37441102",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "outcome",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "35913551",
+      "title": "Food supplementation based on potassium citrate, magnesium and probiotics reduces crystalluria in patients undergoing endourological surgery for stone disease: report from a pilot study.",
+      "problems": [
+        "missing_reason_codes:design_signal,outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:35913551",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "37902121",
+      "title": "Characteristics of the gastrointestinal microbiota following prebiotic supplementation in acute kidney transplant recipients: Results from a randomised controlled trial.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic"
+      ],
+      "observed": {
+        "record_id": "pubmed:37902121",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "design_signal",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "36513549",
+      "title": "Application of traditional Chinese medicine therapy after thoracoscopic lung surgery.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:36513549",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "38729114",
+      "title": "Letter to the Editor concerning 'Personal versus therapist perioperative music intervention: a randomized controlled trial'.",
+      "problems": [
+        "missing_reason_codes:design_signal",
+        "forbidden_reason_codes:human_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:38729114",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "37597977",
+      "title": "Efficacy of traditional Chinese medicine for removing slough and promoting tissue regeneration in refractory wounds from oral and maxillofacial infections.",
+      "problems": [
+        "decision:uncertain!=expected:deprioritize",
+        "missing_reason_codes:design_signal,off_topic"
+      ],
+      "observed": {
+        "record_id": "pubmed:37597977",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "uncertain",
+        "reason_codes": [
+          "exposure",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "35933171",
+      "title": "Wearable transcutaneous electrical acupoint stimulation bracelet for prevention of postoperative nausea and vomiting in patients undergoing hysteroscopic surgery: a randomised controlled trial.",
+      "problems": [
+        "missing_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:35933171",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "human_signal",
+          "design_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "38972090",
+      "title": "Rhodiola Rosea L.: potential herbal-drug interactions in perioperative medicine.",
+      "problems": [
+        "missing_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:38972090",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "38990465",
+      "title": "Same-day yoga-based Laghu Shankhaprakshalana versus standard polyethylene glycol for rescue colonoscopy in inadequate bowel preparation-Feasibility and cost-effectiveness.",
+      "problems": [
+        "missing_reason_codes:design_signal,population"
+      ],
+      "observed": {
+        "record_id": "pubmed:38990465",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "38990482",
+      "title": "Letter to the Editor Regarding \"Auricular Acupressure in Relieving PONV and Promoting Gastrointestinal Function Recovery in Females After Laparoscopic Sleeve Gastrectomy: A Prospective Randomized Controlled Trial\".",
+      "problems": [
+        "missing_reason_codes:outcome,population"
+      ],
+      "observed": {
+        "record_id": "pubmed:38990482",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "39150621",
+      "title": "ASO Author Reflections: Prognostic Impact of Postoperative Oral Nutritional Supplements in Gastric Cancer.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic"
+      ],
+      "observed": {
+        "record_id": "pubmed:39150621",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "39179476",
+      "title": "Invited commentary for \"How well do faculty do in providing general surgery EPA feedback?\".",
+      "problems": [
+        "forbidden_reason_codes:exposure,population"
+      ],
+      "observed": {
+        "record_id": "pubmed:39179476",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "39224053",
+      "title": "Response to: \"Other Factors That Can Affect Wound Healing With Elective Lumbar Spine Surgery and Perioperative Nutritional Supplementation in Patients\".",
+      "problems": [
+        "missing_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:39224053",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "39238264",
+      "title": "Potassium supplementation and the prevention of atrial fibrillation after cardiac surgery (TIGHT-K) trial.",
+      "problems": [
+        "decision:deprioritize!=expected:retain",
+        "missing_reason_codes:outcome",
+        "forbidden_reason_codes:off_topic"
+      ],
+      "observed": {
+        "record_id": "pubmed:39238264",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "design_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "39241347",
+      "title": "Probiotics might relieve intestinal impairment caused by cardiopulmonary bypass in children.",
+      "problems": [
+        "missing_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:39241347",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "39379965",
+      "title": "Correction: Muscle biopsy long-chain omega-3 polyunsaturated fatty acid compositions, IMF and FMP in Australian pasture-based Bowen Genetics Forest Pastoral Angus, Hereford, and Wagyu Beef Cattle.",
+      "problems": [
+        "missing_reason_codes:animal_term_present",
+        "forbidden_reason_codes:exposure,population"
+      ],
+      "observed": {
+        "record_id": "pubmed:39379965",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "39817365",
+      "title": "Re: van der Heijden EPA, Dailiana ZH, Giele HP. State of the art review. Upper extremity revision nerve compression surgery. J Hand Surg Eur. 2024, 49: 687-97.",
+      "problems": [
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:39817365",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "39964920",
+      "title": "SGLT-2 for Diabetes, Biliary Pain, Depression in Adolescents, Intermittent Catheterization, Labor Induction, Umbilical Hernias, Multivitamins.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:exposure,population"
+      ],
+      "observed": {
+        "record_id": "pubmed:39964920",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "41094541",
+      "title": "The role of omega-3 fatty acids in modulating inflammatory response after surgery.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic"
+      ],
+      "observed": {
+        "record_id": "pubmed:41094541",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "41665460",
+      "title": "Comment on 'The Relationship Between Quality of Discharge Teaching and Oral Nutritional Supplementation Adherence in Postoperative Patients With Gastric Cancer: A Chain Mediated Role of Readiness for Hospital Discharge and Medication Beliefs'.",
+      "problems": [
+        "missing_reason_codes:population"
+      ],
+      "observed": {
+        "record_id": "pubmed:41665460",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "41930007",
+      "title": "Comment on of \"Effect of ginkgo biloba extracts in the prevention of posterior capsule opacification after cataract surgery: A randomized clinical trial\".",
+      "problems": [
+        "missing_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:41930007",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "pmid": "41930010",
+      "title": "Effect of Ginkgo biloba extracts in the prevention of posterior capsule opacification after cataract surgery: A randomized clinical trial - Response to reviewer comments.",
+      "problems": [
+        "missing_reason_codes:outcome",
+        "forbidden_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:41930010",
+        "question_id": "HRS1_PERIOPERATIVE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "design_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "30252281",
+      "title": "Calcitriol",
+      "problems": [
+        "forbidden_reason_codes:human_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:30252281",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "35230570",
+      "title": "Prescription rate of erythropoietin-stimulating agents is low for patients with renal impairment under non-nephrology care in a tertiary-level academic medical center in Japan.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:design_signal,off_topic",
+        "forbidden_reason_codes:exposure",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:35230570",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "35507237",
+      "title": "Prevalence, treatment status, and predictors of anemia and erythropoietin hyporesponsiveness in Japanese patients with non-dialysis-dependent chronic kidney disease: a cross-sectional study.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:exposure",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:35507237",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "35942813",
+      "title": "Effect of calcitriol treatment on arterial stiffness in people with type 2 diabetes and stage 3 chronic kidney disease.",
+      "problems": [
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:35942813",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "41079599",
+      "title": "Treatment of pure red cell aplasia in a chronic kidney disease patient with roxadustat: A case report.",
+      "problems": [
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:41079599",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "34465503",
+      "title": "Changes in US Dialysis Dietitian Responsibilities and Patient Needs During the COVID-19 Pandemic.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:exposure",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:34465503",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "35998793",
+      "title": "Dietary vitamin E and tocopherol isoforms and incident chronic kidney disease: A 30-y follow-up study from young adulthood to midlife.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:design_signal,human_signal,off_topic,outcome",
+        "forbidden_reason_codes:exposure,population",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:35998793",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "36460269",
+      "title": "Nutritional Adequacy of Essential Nutrients in Low Protein Animal-Based and Plant-Based Diets in the United States for Chronic Kidney Disease Patients.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:exposure,human_signal",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:36460269",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "38283477",
+      "title": "Oxalate Nephropathy: A Case Report of Acute Kidney Injury Due to Juice Diet.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:exposure,population"
+      ],
+      "observed": {
+        "record_id": "pubmed:38283477",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "38498671",
+      "title": "Dietitians' practices in dialysis units in Brazil: nutritional assessment and intervention.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:design_signal,human_signal,off_topic",
+        "forbidden_reason_codes:exposure",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:38498671",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "38728008",
+      "title": "The impacts of dietary antioxidants on cardiovascular events in hemodialysis patients: An update on the cellular and molecular mechanisms.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:38728008",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "39339698",
+      "title": "Low-Protein Diets, Malnutrition, and Bone Metabolism in Chronic Kidney Disease.",
+      "problems": [
+        "decision:deprioritize!=expected:retain",
+        "missing_reason_codes:exposure",
+        "forbidden_reason_codes:off_topic"
+      ],
+      "observed": {
+        "record_id": "pubmed:39339698",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "41164370",
+      "title": "Comprehensive dietary antioxidant index and chronic kidney disease: mediating role of frailty and its impact on mortality outcomes in adults.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:41164370",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "33580868",
+      "title": "Association between serum phosphorus and mortality in NHANES 2003-2006: the effect of gender and renal function.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:exposure,population"
+      ],
+      "observed": {
+        "record_id": "pubmed:33580868",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "34292490",
+      "title": "The relationship between serum vitamin D levels and health-related quality of life in peritoneal dialysis patients.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:34292490",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "human_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "35075212",
+      "title": "Association of anemia and iron parameters with mortality among prevalent peritoneal dialysis patients in Taiwan: the AIM-PD study.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:35075212",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "35689669",
+      "title": "Association of coronary artery calcium with adverse cardiovascular outcomes and death in patients with chronic kidney disease: results from the KNOW-CKD.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:35689669",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "36000910",
+      "title": "Relationship between serum parathyroid hormone levels and abdominal aortic calcification in patients starting hemodialysis who have never taken calcium tablets, calcitriol, or vitamin D analogs.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:design_signal,off_topic",
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:36000910",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "36404469",
+      "title": "The plasma free fraction of 25-hydroxyvitamin D3 is not strongly associated with 25-hydroxyvitamin D3 clearance in kidney disease patients and controls.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:design_signal,off_topic",
+        "forbidden_reason_codes:exposure",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:36404469",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "37660283",
+      "title": "Serum phosphate is associated with increased risk of bone fragility fractures in haemodialysis patients.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:37660283",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "38970659",
+      "title": "Vitamin D and its associations with blood pressure in the Chronic Kidney Disease in Children (CKiD) cohort.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:exposure",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:38970659",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "35942383",
+      "title": "Relationship between Traditional Chinese Medicine Syndrome Elements and Prognosis of Patients with IgA Nephropathy.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:design_signal,off_topic,outcome",
+        "forbidden_reason_codes:exposure",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:35942383",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "37147762",
+      "title": "Noninvasive identificational diagnosis of diabetic nephropathy and non-diabetic renal disease based on clinical characteristics of Traditional Chinese Medicine symptom pattern and conventional medicine.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:design_signal,off_topic",
+        "forbidden_reason_codes:exposure",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:37147762",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "38767642",
+      "title": "Distribution of Traditional Chinese Medicine syndromes in diabetic kidney disease chronic kidney disease 1-5: a correlation study.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:design_signal,off_topic",
+        "forbidden_reason_codes:exposure",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:38767642",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "39831189",
+      "title": "Exploring the pivotal variables of tongue diagnosis between patients with chronic kidney disease and health participants.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:exposure",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:39831189",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "41568849",
+      "title": "An ethical framework for hemodialysis nurses: A qualitative study.",
+      "problems": [
+        "missing_reason_codes:design_signal,human_signal",
+        "forbidden_reason_codes:outcome,population"
+      ],
+      "observed": {
+        "record_id": "pubmed:41568849",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "42265663",
+      "title": "A multi-systemic ethical dilemma model in hemodialysis patients: a qualitative study.",
+      "problems": [
+        "missing_reason_codes:design_signal",
+        "forbidden_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:42265663",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "34231314",
+      "title": "The dietary supplement chitosan lowers serum phosphorus in a hemodialysis patient not tolerating prescription medications.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:34231314",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "35363181",
+      "title": "Effects and safety of traditional Chinese medicine on the gut microbiota of an adult with chronic kidney disease: A protocol for systematic review and meta-analysis.",
+      "problems": [
+        "forbidden_reason_codes:human_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:35363181",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "35458199",
+      "title": "Probiotics-Supplemented Low-Protein Diet for Microbiota Modulation in Patients with Advanced Chronic Kidney Disease (ProLowCKD): Results from a Placebo-Controlled Randomized Trial.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:35458199",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "37202214",
+      "title": "Association between serum iron markers, iron supplementation and cardiovascular morbidity in pre-dialysis chronic kidney disease.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:37202214",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "37409723",
+      "title": "Low-protein diet supplemented with inulin lowers protein-bound toxin levels in patients with stage 3b-5 chronic kidney disease: a randomized controlled study.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:37409723",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "38732502",
+      "title": "Efficacy and Safety of Oral Supplementation with Liposomal Iron in Non-Dialysis Chronic Kidney Disease Patients with Iron Deficiency.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:38732502",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "39559176",
+      "title": "Profiling oxidative stress markers and cardiovascular complications in chronic kidney disease patients supplemented with vitamin E.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:39559176",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "39683529",
+      "title": "Managing Zinc Supplementation in Hemodialysis Patients: Balancing and Preventing Deficiencies in Serum Copper and Zinc Levels with and Without HIF-PH Inhibitors.",
+      "problems": [
+        "decision:deprioritize!=expected:retain",
+        "missing_reason_codes:outcome",
+        "forbidden_reason_codes:off_topic"
+      ],
+      "observed": {
+        "record_id": "pubmed:39683529",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "pmid": "41644022",
+      "title": "Effectiveness of L-Carnitine for the Treatment of Erythropoietin-Resistant Renal Anemia: A Randomized, Double-Blind, Placebo-Controlled Pilot Trial.",
+      "problems": [
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:41644022",
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "36834991",
+      "title": "Alterations in Antioxidant Micronutrient Concentrations in Placental Tissue, Maternal Blood and Urine and the Fetal Circulation in Pre-eclampsia.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:design_signal,off_topic",
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:36834991",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "33977578",
+      "title": "Contents of nutrition care services among pregnant women attending antenatal clinic: An Exit interview.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:33977578",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "36321872",
+      "title": "Prenatal diet, plasma micronutrients/metabolome and inflammatory status influence the development of atopic eczema in early childhood.",
+      "problems": [
+        "missing_reason_codes:design_signal,human_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:36321872",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "36184213",
+      "title": "Evaluation of the relationship between vitamin D level during pregnancy and the rate of fetal heart problems: a cross-sectional study.",
+      "problems": [
+        "missing_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:36184213",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "35834313",
+      "title": "Preconception vitamin D and miscarriage in a prospective cohort study.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:35834313",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "36351308",
+      "title": "One-carbon metabolism-related nutrients intake is associated with lower risk of preeclampsia in pregnant women: a matched case-control study.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:36351308",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "35276959",
+      "title": "Associations of B Vitamin-Related Dietary Pattern during Pregnancy with Birth Outcomes: A Population-Based Study in Northwest China.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:35276959",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "36034548",
+      "title": "Iron status of exclusively breastfed low-birth-weight infants born to anemic mothers and effect of maternal iron supplementation for 3 versus 6 months: A randomized double-blind placebo control trial.",
+      "problems": [
+        "forbidden_reason_codes:population"
+      ],
+      "observed": {
+        "record_id": "pubmed:36034548",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "36774110",
+      "title": "Vitamin D Status of Infants of Mothers with Gestational Diabetes: Status at Birth and a Randomized Controlled Trial of Vitamin D Supplementation across Infancy.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:population",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:36774110",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "36096375",
+      "title": "Mild-to-moderate iodine deficiency and symptoms of emotional distress and depression in pregnancy and six months postpartum - Results from a large pregnancy cohort.",
+      "problems": [
+        "decision:deprioritize!=expected:retain",
+        "missing_reason_codes:exposure,outcome",
+        "forbidden_reason_codes:off_topic"
+      ],
+      "observed": {
+        "record_id": "pubmed:36096375",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "35124672",
+      "title": "Associations between Gestational Weight Gain Adequacy and Neonatal Outcomes in Tanzania.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:35124672",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "34983656",
+      "title": "Determinants of adverse birth outcomes among women delivered in public hospitals of Ethiopia, 2020.",
+      "problems": [
+        "missing_reason_codes:population",
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:34983656",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "36153674",
+      "title": "The incidence, complications, and treatment of iron deficiency in pregnancy.",
+      "problems": [
+        "decision:deprioritize!=expected:retain",
+        "missing_reason_codes:exposure",
+        "forbidden_reason_codes:off_topic"
+      ],
+      "observed": {
+        "record_id": "pubmed:36153674",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "35236316",
+      "title": "Association of fish oil containing lipid emulsions with retinopathy of prematurity: a retrospective observational study.",
+      "problems": [
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:35236316",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "35956361",
+      "title": "Vitamin A Nutritional Status of Urban Lactating Chinese Women and Its Associated Factors.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:35956361",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "human_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "35215549",
+      "title": "Substantial Vitamin D Supplementation Is Required during the Prenatal Period to Improve Birth Outcomes.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:35215549",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "36986153",
+      "title": "Peri-Conceptional Folic Acid Supplementation and Children's Physical Development: A Birth Cohort Study.",
+      "problems": [
+        "missing_reason_codes:population"
+      ],
+      "observed": {
+        "record_id": "pubmed:36986153",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "36658740",
+      "title": "Efficacy of ferric carboxymaltose for treatment of iron deficiency anemia diagnosed in the third trimester of pregnancy: A case-control study.",
+      "problems": [
+        "decision:deprioritize!=expected:retain",
+        "missing_reason_codes:exposure",
+        "forbidden_reason_codes:off_topic"
+      ],
+      "observed": {
+        "record_id": "pubmed:36658740",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "37111163",
+      "title": "Omega-3 Fatty Acids during Pregnancy in Indigenous Australian Women of the Gomeroi Gaaynggal Cohort.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:37111163",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "36018544",
+      "title": "Prevalence of Excessive Iodine Intake in Pregnancy and Its Health Consequences: Systematic Review and Meta-analysis.",
+      "problems": [
+        "missing_reason_codes:outcome",
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:36018544",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "35909334",
+      "title": "Association between prenatal provision of lipid-based nutrient supplements and caesarean delivery: Findings from a randomised controlled trial in Malawi.",
+      "problems": [
+        "decision:deprioritize!=expected:retain",
+        "missing_reason_codes:outcome",
+        "forbidden_reason_codes:off_topic"
+      ],
+      "observed": {
+        "record_id": "pubmed:35909334",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "35956291",
+      "title": "Iron and Folic Acid Supplementation in Pregnancy: Findings from the Baseline Assessment of a Maternal Nutrition Service Programme in Bangladesh.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:design_signal,off_topic",
+        "forbidden_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:35956291",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "36698500",
+      "title": "Scientific opinion on the tolerable upper intake level for selenium.",
+      "problems": [
+        "decision:deprioritize!=expected:retain",
+        "missing_reason_codes:human_signal,population",
+        "forbidden_reason_codes:off_topic"
+      ],
+      "observed": {
+        "record_id": "pubmed:36698500",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "outcome",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "35568996",
+      "title": "Effectiveness of nutritional interventions to prevent nonprogressive congenital and perinatal brain injuries: a systematic review and meta-analysis of randomized trials.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:35568996",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "33745458",
+      "title": "Tipping the scale: the role of a national nutritional supplementation programme for pregnant mothers in reducing low birth weight and neonatal mortality in India.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:33745458",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "35636782",
+      "title": "Evaluating the impact of a countrywide, market-based roll-out of multiple micronutrient supplementation on low birth weight in Bangladesh: protocol for a two-arm, quasi-experimental and mixed-methods evaluation study.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:35636782",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "design_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "35821184",
+      "title": "Different treatment strategies in primary hyperparathyroidism during pregnancy.",
+      "problems": [
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:35821184",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "35090514",
+      "title": "The pathogenesis of prevalent aerobic bacteria in aerobic vaginitis and adverse pregnancy outcomes: a narrative review.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:35090514",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "35866037",
+      "title": "Diagnostic Value and High-Risk Factors of Two-Dimensional Ultrasonography Combined with Four-Dimensional Ultrasonography in Prenatal Ultrasound Screening of Fetal Congenital Malformations.",
+      "problems": [
+        "decision:deprioritize!=expected:retain",
+        "missing_reason_codes:exposure",
+        "forbidden_reason_codes:off_topic"
+      ],
+      "observed": {
+        "record_id": "pubmed:35866037",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "36210639",
+      "title": "Risk factors for pre-eclampsia: Received wisdom versus reality.",
+      "problems": [
+        "decision:retain!=expected:uncertain",
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:36210639",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "36342076",
+      "title": "Maternal transmission of RBP4 congenital eye disease: can Vitamin A help?",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:design_signal,off_topic",
+        "forbidden_reason_codes:population"
+      ],
+      "observed": {
+        "record_id": "pubmed:36342076",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "37661109",
+      "title": "Challenges in Formulating a Prenatal Dietary Supplement: A Perspective from Industry Scientists.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:37661109",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "39083990",
+      "title": "Letter to the Editor: Comment on: \"Probiotic intervention improves metabolic outcomes in gestational diabetes mellitus: A meta-analysis of randomized controlled trials\".",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:39083990",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "42144196",
+      "title": "Reply to letter to \"Effect of prenatal high-dose vitamin D on childhood atopic dermatitis is modified by maternal cotinine metabolome: A secondary analysis of a randomized clinical trial\".",
+      "problems": [
+        "missing_reason_codes:design_signal",
+        "forbidden_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:42144196",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "36780948",
+      "title": "Teratogenic, unregulated, vitamin A acne supplements, and Roe v Wade: Response to \"The Supreme Court abortion ban impact on dermatology\".",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:36780948",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "outcome",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "36329175",
+      "title": "Comment on: \"Neurological development and iron supplementation in healthy late-preterm neonates: a randomized double-blind controlled trial\".",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:36329175",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "outcome",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "34405772",
+      "title": "Letter to the editor regarding the article: Probiotics for the management of neonatal hyperbilirubinemia: a systematic review of randomized controlled trial.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:34405772",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "36788750",
+      "title": "EBNEO commentary: Maternal high-dose DHA supplementation and neurodevelopment in infants born before 29 weeks' gestation.",
+      "problems": [
+        "missing_reason_codes:design_signal,outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:36788750",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "36536235",
+      "title": "Comment on \"Evaluation of Serum Selenium Level, Quality of Sleep, and Life in Pregnant Women with Restless Legs Syndrome\".",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:36536235",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "35818958",
+      "title": "Reply: Multivitamin use may lower risk of preeclampsia: A meta-analysis.",
+      "problems": [
+        "missing_reason_codes:design_signal",
+        "forbidden_reason_codes:population"
+      ],
+      "observed": {
+        "record_id": "pubmed:35818958",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "39551346",
+      "title": "Letter to the editor: Comment on \"Maternal non-compliance with recommended folic acid supplement use alters global DNA methylation in cord blood of newborns: A cohort study\".",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:39551346",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "36620948",
+      "title": "A response to 'Highlights of the importance of vitamin B12 for neurological and cognitive function: from pregnancy to childhood'.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:36620948",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "41988234",
+      "title": "Comments on: Low adherence to aspirin and calcium carbonate for preeclampsia prevention in pregnant women with chronic hypertension in a Brazilian hospital.",
+      "problems": [
+        "missing_reason_codes:design_signal,exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:41988234",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "38821225",
+      "title": "Current Evidence and Controversies Related to Folate Supplementation During Pregnancy.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:38821225",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "40269399",
+      "title": "Increased risk of childhood cancers in children with epileptic mothers taking high dosage of folic acid during pregnancy.",
+      "problems": [
+        "missing_reason_codes:design_signal,outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:40269399",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "34586772",
+      "title": "Study on the relationship between serum vitamin D and the risk of preeclampsia in early, second and third trimester of pregnancy.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:34586772",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "37078399",
+      "title": "Maternal iodine intake and adherence to iodine supplement recommendations in a group of Chinese women: the results from the WIN cohort study - CORRIGENDUM.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:37078399",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "39083989",
+      "title": "Application of diversity research and probiotic intervention in gestational diabetes mellitus management.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:design_signal,human_signal,off_topic"
+      ],
+      "observed": {
+        "record_id": "pubmed:39083989",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "39700375",
+      "title": "Children, and Adults Who Are Pregnant, Have Prediabetes, or Are Older Than 74 Years, May Benefit From Empiric Vitamin D.",
+      "problems": [
+        "decision:uncertain!=expected:deprioritize",
+        "missing_reason_codes:design_signal,exposure,off_topic"
+      ],
+      "observed": {
+        "record_id": "pubmed:39700375",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "uncertain",
+        "reason_codes": [
+          "population",
+          "human_signal",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "41494664",
+      "title": "Elevated Maternal Unmetabolized Folic Acid During Pregnancy Increases Offspring Allergy Risk.",
+      "problems": [
+        "decision:uncertain!=expected:deprioritize",
+        "missing_reason_codes:design_signal,off_topic,outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:41494664",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "uncertain",
+        "reason_codes": [
+          "population",
+          "human_signal",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "34992004",
+      "title": "A neonatal hypocalcemia due to maternal vitamin D deficiency. Reviewing supplementation.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic,outcome",
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:34992004",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "design_signal",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "38448313",
+      "title": "Can the administration of probiotics in pregnant mothers reduce Group B streptococcus maternal colonization and mother-to-infant vertical transmission?",
+      "problems": [
+        "missing_reason_codes:design_signal,outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:38448313",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "37573012",
+      "title": "Incorporating Nutrition Interventions within Antenatal Care Services Can Improve Iron and Folic Acid Supplement Intake among Pregnant Women and Early Breastfeeding Practices.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:37573012",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "40340755",
+      "title": "Statement of Retraction: Omega-3 fatty acids plus vitamin for women with gestational diabetes or prediabetes: a meta-analysis of randomized controlled studies.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:40340755",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "40200414",
+      "title": "Serum Folate Levels in Reproductive Age Women: Implications for Prevention of Fetal Neural Tube Defects.",
+      "problems": [
+        "missing_reason_codes:design_signal,outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:40200414",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "39846467",
+      "title": "Biochemical evidence of vitamin B12 deficiency: a crucial issue to address supplementation in pregnant women.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:39846467",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "36282944",
+      "title": "Ligand binding assay-related underestimation of 25-hydroxyvitamin D in pregnant women exaggerates the prevalence of vitamin D insufficiency.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:36282944",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "34279843",
+      "title": "Reference Intervals of the Ratio of Urine Iodine to Creatinine in Pregnant Women in an Iodine-Replete Area of China : Reference Intervals of the Ratio of Urine Iodine to Creatinine in Pregnant Women in an Iodine-Replete Area of China.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:34279843",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "41482243",
+      "title": "Early pregnancy vitamin D deficiency and the risk of intrahepatic cholestasis of pregnancy.",
+      "problems": [
+        "missing_reason_codes:design_signal,outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:41482243",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "36377836",
+      "title": "Vitamin D deficiency and restless legs syndrome during pregnancy: walking in sunshine?",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:36377836",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "36470163",
+      "title": "Maternal serum 25-hydroxy vitamin D levels and risk of autism spectrum and attention-deficit hyperactivity disorders in offspring: A systematic review and dose-response meta-analysis.",
+      "problems": [
+        "missing_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:36470163",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "human_signal",
+          "design_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "37215261",
+      "title": "Maternal Iodine Status and Pregnancy Outcomes: Looking Beyond Cretinism.",
+      "problems": [
+        "missing_reason_codes:design_signal,outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:37215261",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "40056824",
+      "title": "Corrigendum to \"Serum iodine concentration in pregnant women and its association with thyroid function\" [J. Trace Elem. Med. Biol. 87 (2025) 127584].",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:40056824",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "38244861",
+      "title": "Serum Measures of Brain Iron Status - A Major Barrier to Optimizing Iron Status in Neonates.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:38244861",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "38664494",
+      "title": "A survey of iron supplementation, iron status surveillance, and erythropoiesis stimulating agent use in level III NICUs in the United States.",
+      "problems": [
+        "missing_reason_codes:human_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:38664494",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "design_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "39659427",
+      "title": "Editorial: New and advanced mechanistic insights into the influences of the infant gut microbiota on human health and disease.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:39659427",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "35315347",
+      "title": "Breastfeeding Support in Health Facilities: A Challenge Less Recognized?",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:35315347",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "38837639",
+      "title": "Folic acid supplementation in women of childbearing age with epilepsy: Missing the forest for the trees?",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:38837639",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "uncertain",
+        "reason_codes": [
+          "exposure",
+          "human_signal",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "38253878",
+      "title": "Supplementing human milk for preterm infants: a nutritional challenge?",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:38253878",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "outcome",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "40877017",
+      "title": "Should we abandon ARA and DHA supplementation in preterm infants?",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:40877017",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "outcome",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "38910077",
+      "title": "Significance of identifying diverse underlying etiologies in neonatal hypocalcemia.",
+      "problems": [
+        "missing_reason_codes:human_signal,outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:38910077",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "design_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "36919293",
+      "title": "[Do probiotics prevent necrotising enterocolitis in extremely preterm neonates?].",
+      "problems": [
+        "missing_reason_codes:design_signal,human_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:36919293",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "outcome",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "38533255",
+      "title": "Editorial: Research challenges of drug utilization, data collection, data validation, and adverse drug reactions in neonates.",
+      "problems": [
+        "missing_reason_codes:design_signal,human_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:38533255",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "outcome",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "39844484",
+      "title": "[Preventive strategies for milk protein allergy of infants].",
+      "problems": [
+        "missing_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:39844484",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "human_signal",
+          "design_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "37428483",
+      "title": "Probiotics in the Neonatal Intensive Care Unit-A Framework for Optimizing Product Standards.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:37428483",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "34955299",
+      "title": "Calcium and phosphate parenteral intake for preterm infants: Which is the better practice?",
+      "problems": [
+        "missing_reason_codes:design_signal",
+        "forbidden_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:34955299",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "outcome",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "pmid": "35675909",
+      "title": "The relevance of establishing method-dependent decision thresholds of serum folate in pregnancy and lactation: when the laboratory stewardship meets the health-care needs.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:35675909",
+        "question_id": "HRS3_PREGNANCY",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "31643760",
+      "title": "Herbal and Dietary Supplements",
+      "problems": [
+        "forbidden_reason_codes:outcome",
+        "confidence:high!=expected:medium"
+      ],
+      "observed": {
+        "record_id": "pubmed:31643760",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "32715778",
+      "title": "Evidence of drug-induced hepatotoxicity in the Maghrebian population.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:design_signal,off_topic",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:32715778",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "34491307",
+      "title": "The Role of Micronutrients in the Pathogenesis of Alcohol-Related Liver Disease.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "forbidden_reason_codes:exposure,outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:34491307",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "34809518",
+      "title": "Biallelic Mutations in Ubiquitin-Specific Peptidase 53 (USP53) Causing Progressive Intrahepatic Cholestasis. Report of a Case With Review of Literature.",
+      "problems": [
+        "missing_reason_codes:exposure",
+        "forbidden_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:34809518",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "34996317",
+      "title": "Predictors of pearl vitamin D3 consumption in pregnant women: application of the theory of planned behaviour.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:design_signal,off_topic",
+        "forbidden_reason_codes:population",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:34996317",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "human_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "35027389",
+      "title": "Macro-B12 masking B12 deficiency.",
+      "problems": [
+        "missing_reason_codes:human_signal",
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:35027389",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "35045168",
+      "title": "Proximal tubular dysfunction in pregnant women receiving tenofovir disoproxil fumarate to prevent mother-to-child transmission of hepatitis B virus.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:35045168",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "35068932",
+      "title": "Translation and Cross-Cultural Adaptation of Post-Stroke Checklist into Mandarin: A Cognitive Interview Study.",
+      "problems": [
+        "missing_reason_codes:human_signal",
+        "forbidden_reason_codes:population"
+      ],
+      "observed": {
+        "record_id": "pubmed:35068932",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "35130574",
+      "title": "Management of Multidrug-Resistant Infections in Cirrhosis.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:35130574",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "34331346",
+      "title": "Eight-Fold Increase in Dietary Supplement-Related Liver Failure Leading to Transplant Waitlisting Over the Last Quarter Century in the United States.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:34331346",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "human_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "35899384",
+      "title": "AASLD practice guidance on drug, herbal, and dietary supplement-induced liver injury.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:35899384",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "36299672",
+      "title": "Ayurvedic treatment induced severe alcoholic hepatitis and non-cirrhotic portal hypertension in a 14-year-old girl.",
+      "problems": [
+        "missing_reason_codes:human_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:36299672",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "design_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "36600786",
+      "title": "Turmeric-Associated Drug-Induced Liver Injury.",
+      "problems": [
+        "missing_reason_codes:human_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:36600786",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "design_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "31711319",
+      "title": "Anti-fibrotic activity of natural products, herbal extracts and nutritional components for prevention of liver fibrosis: review.",
+      "problems": [
+        "missing_reason_codes:exposure,population",
+        "forbidden_reason_codes:animal_term_present,outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:31711319",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "outcome",
+          "design_signal",
+          "animal_term_present",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "34417867",
+      "title": "Retrospective evaluation of the effect of Ninjin'yoeito in hepatocellular carcinoma patients treated with lenvatinib.",
+      "problems": [
+        "missing_reason_codes:exposure",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:34417867",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "34883213",
+      "title": "Therapeutic potential of Saccharomyces boulardii in liver diseases: from passive bystander to protective performer?",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:exposure,off_topic",
+        "forbidden_reason_codes:outcome",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:34883213",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "design_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "34903587",
+      "title": "Withaferin A in the Treatment of Liver Diseases: Progress and Pharmacokinetic Insights.",
+      "problems": [
+        "missing_reason_codes:exposure",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:34903587",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "design_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "34923950",
+      "title": "Potential Natural Compounds for the Prevention and Treatment of Nonalcoholic Fatty Liver Disease: A Review on Molecular Mechanisms.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:exposure,off_topic",
+        "forbidden_reason_codes:outcome",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:34923950",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "design_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "34996679",
+      "title": "Effect of Ayurveda Management on Liver Cirrhosis with Ascites-A Retrospective Cohort Study.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:exposure,off_topic",
+        "forbidden_reason_codes:outcome",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:34996679",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "35051605",
+      "title": "Xiaoyao Powder in the treatment of non-alcoholic fatty liver disease: A systematic review and meta-analysis.",
+      "problems": [
+        "missing_reason_codes:exposure",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:35051605",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "35178929",
+      "title": "[Meta-analysis of efficacy and safety of Liuwei Wuling Tablets combined with conventional drugs in treatment of liver fibrosis and cirrhosis in chronic hepatitis B].",
+      "problems": [
+        "missing_reason_codes:exposure",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:35178929",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "35064405",
+      "title": "Hepatoprotective effect of Trigonella foenum graecum against ethanol-induced cell death in human liver cells (HepG2 and Huh7).",
+      "problems": [
+        "missing_reason_codes:design_signal,exposure",
+        "forbidden_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:35064405",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "outcome",
+          "animal_term_present",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "35234063",
+      "title": "Combination of ShuangDan Capsule and Sorafenib Inhibits Tumor Growth and Angiogenesis in Hepatocellular Carcinoma Via PI3K/Akt/mTORC1 Pathway.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:35234063",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "outcome",
+          "animal_term_present",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "35714823",
+      "title": "Ursolic acid enhances the antitumor effects of sorafenib associated with Mcl-1-related apoptosis and SLC7A11-dependent ferroptosis in human cancer.",
+      "problems": [
+        "missing_reason_codes:animal_term_present,exposure",
+        "forbidden_reason_codes:human_signal,outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:35714823",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "outcome",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "36154592",
+      "title": "Chia Seeds Oil Suppresses the Resistance of Hepatocellular Carcinoma Cells to Liposomal-doxorubicin and Upregulates the Tumor Suppressor miRNAs.",
+      "problems": [
+        "missing_reason_codes:design_signal,exposure",
+        "forbidden_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:36154592",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "outcome",
+          "animal_term_present",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "36524620",
+      "title": "Safety assessment of herbal supplement components targeting hepatotoxicity and CYP3A4 induction in cell-based assay using HepG2 cells.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:36524620",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "outcome",
+          "animal_term_present",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "37046263",
+      "title": "Polysaccharides extracted from mulberry fruits (Morus nigra L.): antioxidant effect of ameliorating H2O2-induced liver injury in HepG2 cells.",
+      "problems": [
+        "missing_reason_codes:design_signal,exposure",
+        "forbidden_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:37046263",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "outcome",
+          "animal_term_present",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "37224052",
+      "title": "Alpinia japonica extract induces apoptosis of hepatocellular carcinoma cells through G0/G1 cell cycle arrest and activation of JNK.",
+      "problems": [
+        "missing_reason_codes:design_signal,exposure",
+        "forbidden_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:37224052",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "outcome",
+          "animal_term_present",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "38974120",
+      "title": "Schisandra chinensis Bee Pollen Extract Inhibits Proliferation and Migration of Hepatocellular Carcinoma HepG2 Cells via Ferroptosis-, Wnt-, and Focal Adhesion-Signaling Pathways.",
+      "problems": [
+        "missing_reason_codes:design_signal,exposure",
+        "forbidden_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:38974120",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "outcome",
+          "animal_term_present",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "39141932",
+      "title": "Hepatoprotective effect of date fruit extract against ethanol-induced apoptosis in human hepatoma (HepG2) cells.",
+      "problems": [
+        "missing_reason_codes:design_signal",
+        "forbidden_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:39141932",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "outcome",
+          "animal_term_present",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "35081550",
+      "title": "Secular Trends in Severe Idiosyncratic Drug-Induced Liver Injury in North America: An Update From the Acute Liver Failure Study Group Registry.",
+      "problems": [
+        "missing_reason_codes:exposure",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:35081550",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "35122190",
+      "title": "Impact of Prior Drug Allergies on the Risk, Clinical Features, and Outcomes of Idiosyncratic Drug-Induced Liver Injury in Adults.",
+      "problems": [
+        "decision:deprioritize!=expected:retain",
+        "missing_reason_codes:design_signal,exposure,population",
+        "forbidden_reason_codes:off_topic"
+      ],
+      "observed": {
+        "record_id": "pubmed:35122190",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "outcome",
+          "human_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "35596597",
+      "title": "Setting up criteria for drug-induced autoimmune-like hepatitis through a systematic analysis of published reports.",
+      "problems": [
+        "decision:deprioritize!=expected:retain",
+        "missing_reason_codes:exposure,population",
+        "forbidden_reason_codes:off_topic"
+      ],
+      "observed": {
+        "record_id": "pubmed:35596597",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "outcome",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "35843842",
+      "title": "Sex disparity and drug-induced liver injury.",
+      "problems": [
+        "missing_reason_codes:human_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:35843842",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "design_signal"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "36038343",
+      "title": "[Clinical characteristics and prognosis analysis of 498 cases with drug-induced liver injury].",
+      "problems": [
+        "decision:deprioritize!=expected:retain",
+        "missing_reason_codes:design_signal,exposure,population",
+        "forbidden_reason_codes:off_topic"
+      ],
+      "observed": {
+        "record_id": "pubmed:36038343",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "outcome",
+          "human_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "35066755",
+      "title": "Drug-induced liver injury from herbal and dietary supplements: a problem in the East and West alike.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:35066755",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "36321995",
+      "title": "Ashwagandha-Associated Acute Liver Failure Requiring Liver Transplantation.",
+      "problems": [
+        "missing_reason_codes:design_signal,outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:36321995",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "37269895",
+      "title": "Acute hepatitis induced by Guduchi; Letter to the editor.",
+      "problems": [
+        "decision:deprioritize!=expected:retain",
+        "missing_reason_codes:design_signal,exposure,outcome,population",
+        "forbidden_reason_codes:off_topic"
+      ],
+      "observed": {
+        "record_id": "pubmed:37269895",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "38232970",
+      "title": "Liver injury associated with the use of health supplement HemoHIM.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:38232970",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "outcome",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "pmid": "39244472",
+      "title": "Therapeutic effects of traditional Chinese medicine on Hepatitis B-related liver fibrosis: A case study.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:39244472",
+        "question_id": "HRS4_LIVER_DISEASE",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "exposure",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "30000845",
+      "title": "Ginger",
+      "problems": [
+        "decision:deprioritize!=expected:retain",
+        "missing_reason_codes:population",
+        "forbidden_reason_codes:off_topic"
+      ],
+      "observed": {
+        "record_id": "pubmed:30000845",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "outcome",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "35958417",
+      "title": "Case report: An unusual case of desmin myopathy associated with heart failure and arrhythmia.",
+      "problems": [
+        "missing_reason_codes:population"
+      ],
+      "observed": {
+        "record_id": "pubmed:35958417",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "39199344",
+      "title": "Comparative Cardioprotective Effectiveness: NOACs vs. Nattokinase-Bridging Basic Research to Clinical Findings.",
+      "problems": [
+        "missing_reason_codes:exposure",
+        "forbidden_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:39199344",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "41806621",
+      "title": "A sea buckthorn pericarp polysaccharide: Structure and amelioration of ulcerative colitis by modulating gut microbiota.",
+      "problems": [
+        "missing_reason_codes:design_signal,exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:41806621",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "animal_term_present",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "34800885",
+      "title": "Drug-drug interactions induced by Linderane based on mechanism-based inactivation of CYP2C9 and the molecular mechanisms.",
+      "problems": [
+        "missing_reason_codes:design_signal,exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:34800885",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "outcome",
+          "animal_term_present",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "38004336",
+      "title": "Fibrin and Fibrinolytic Enzyme Cascade in Thrombosis: Unravelling the Role.",
+      "problems": [
+        "forbidden_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:38004336",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "outcome",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "36422227",
+      "title": "Development and Preliminary Characterization of Polyester-Urethane Microparticles Used in Curcumin Drug Delivery System for Oropharyngeal Cancer.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:36422227",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "outcome",
+          "human_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "39932122",
+      "title": "Nitric oxide is an irreversible human diamine oxidase inhibitor.",
+      "problems": [
+        "missing_reason_codes:design_signal",
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:39932122",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "animal_term_present",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "38510368",
+      "title": "Anticoagulation management in elderly patients with proximal femur fractures - overview of current concepts.",
+      "problems": [
+        "missing_reason_codes:population"
+      ],
+      "observed": {
+        "record_id": "pubmed:38510368",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "outcome",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "41910938",
+      "title": "Effectiveness of Four-Factor Prothrombin Complex Concentrate Versus Plasma in Patients on Vitamin K Antagonists Undergoing Urgent Orthopedic Surgery: A Post Hoc Analysis.",
+      "problems": [
+        "missing_reason_codes:population"
+      ],
+      "observed": {
+        "record_id": "pubmed:41910938",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "outcome",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "35924671",
+      "title": "Direct oral anticoagulants toxicity in children: an overview and practical guide.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:35924671",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "37649304",
+      "title": "Outcomes of 4-factor Prothrombin Complex Concentrate in Patients With Liver Disease and Nonvitamin K Antagonist-Related Coagulopathy: A Retrospective Study.",
+      "problems": [
+        "missing_reason_codes:population"
+      ],
+      "observed": {
+        "record_id": "pubmed:37649304",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "outcome",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "36016569",
+      "title": "Drug-drug interactions between antithrombotics and direct-acting antivirals in hepatitis C virus (HCV) patients: A brief, updated report.",
+      "problems": [
+        "missing_reason_codes:population"
+      ],
+      "observed": {
+        "record_id": "pubmed:36016569",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "outcome",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "38172964",
+      "title": "Revisiting the interconnection between lipids and vitamin K metabolism: insights from recent research and potential therapeutic implications: a review.",
+      "problems": [
+        "decision:deprioritize!=expected:retain",
+        "missing_reason_codes:exposure",
+        "forbidden_reason_codes:off_topic",
+        "confidence:high!=expected:medium"
+      ],
+      "observed": {
+        "record_id": "pubmed:38172964",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "40144413",
+      "title": "Cefmetazole-Induced Coagulopathy in a Patient With Vitamin K Deficiency: A Case Report With Literature Review.",
+      "problems": [
+        "forbidden_reason_codes:population"
+      ],
+      "observed": {
+        "record_id": "pubmed:40144413",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "40541254",
+      "title": "Hereditary Combined Deficiency of the Vitamin K-Dependent Coagulation Factors.",
+      "problems": [
+        "missing_reason_codes:human_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:40541254",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "outcome",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "35970209",
+      "title": "VKORC1 single nucleotide polymorphisms in rodents in Spain.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:35970209",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "animal_term_present",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "41674238",
+      "title": "A Chromatographic Approach for Simultaneous Quantification of Multiple Anticoagulants in Human Plasma Samples.",
+      "problems": [
+        "missing_reason_codes:animal_term_present,design_signal",
+        "forbidden_reason_codes:human_signal,outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:41674238",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "outcome",
+          "human_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "35057443",
+      "title": "Biological Role of Vitamin K-With Particular Emphasis on Cardiovascular and Renal Aspects.",
+      "problems": [
+        "decision:deprioritize!=expected:retain",
+        "missing_reason_codes:population",
+        "forbidden_reason_codes:off_topic",
+        "confidence:high!=expected:medium"
+      ],
+      "observed": {
+        "record_id": "pubmed:35057443",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "35517810",
+      "title": "Single and Repeated Doses of EGb 761® do not Affect Pharmacokinetics or Pharmacodynamics of Rivaroxaban in Healthy Subjects.",
+      "problems": [
+        "decision:deprioritize!=expected:retain",
+        "missing_reason_codes:population",
+        "forbidden_reason_codes:off_topic"
+      ],
+      "observed": {
+        "record_id": "pubmed:35517810",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "42164031",
+      "title": "Challenging Anticoagulation With Warfarin and Heparin Following Mechanical Mitral Valve Replacement in a Patient With Infective Endocarditis: A Case Report Highlighting Diagnostic Difficulties.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:42164031",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "37997897",
+      "title": "Epidemiology and outcomes of intracerebral hemorrhage associated with oral anticoagulation over 10 years in a population-based stroke registry.",
+      "problems": [
+        "missing_reason_codes:population"
+      ],
+      "observed": {
+        "record_id": "pubmed:37997897",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "outcome",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "39778989",
+      "title": "Development of a rapid enzymatic quantification method for hyaluronic acid based on the gene-mining of hyaluronate lyase.",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:39778989",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "animal_term_present",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "37760813",
+      "title": "Analysis of the Chemical Composition and Evaluation of the Antioxidant, Antimicrobial, Anticoagulant, and Antidiabetic Properties of Pistacia lentiscus from Boulemane as a Natural Nutraceutical Preservative.",
+      "problems": [
+        "missing_reason_codes:design_signal",
+        "forbidden_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:37760813",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "outcome",
+          "animal_term_present",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "36422361",
+      "title": "Bioactive Compounds from Red Microalgae with Therapeutic and Nutritional Value.",
+      "problems": [
+        "forbidden_reason_codes:outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:36422361",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "outcome",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "37760609",
+      "title": "The Role of Injectables in the Treatment and Prevention of Cancer-Associated Thrombosis.",
+      "problems": [
+        "missing_reason_codes:population",
+        "forbidden_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:37760609",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "outcome",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "36861431",
+      "title": "Drug-drug interactions with direct oral anticoagulants for the prevention of ischemic stroke and embolism in atrial fibrillation: a narrative review of adverse events.",
+      "problems": [
+        "decision:retain!=expected:deprioritize",
+        "missing_reason_codes:off_topic",
+        "confidence:medium!=expected:high"
+      ],
+      "observed": {
+        "record_id": "pubmed:36861431",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "retain",
+        "reason_codes": [
+          "population",
+          "outcome",
+          "human_signal",
+          "design_signal"
+        ],
+        "confidence": "medium",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "42233542",
+      "title": "Population Genomics Insights into Pharmacogenomic Differentiation Between East Asians and Europeans.",
+      "problems": [
+        "missing_reason_codes:human_signal",
+        "forbidden_reason_codes:exposure,outcome"
+      ],
+      "observed": {
+        "record_id": "pubmed:42233542",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "exposure",
+          "outcome",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "41469064",
+      "title": "Optimisation of oral anticoagulation for stroke prevention: a scoping review of factors influencing implementation.",
+      "problems": [
+        "missing_reason_codes:human_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:41469064",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "39615399",
+      "title": "Poor clinical outcomes associated to multimorbidity, frailty and malnutrition in patients with atrial fibrillation.",
+      "problems": [
+        "missing_reason_codes:population"
+      ],
+      "observed": {
+        "record_id": "pubmed:39615399",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "outcome",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "38076348",
+      "title": "Clinical outcomes and predictors of long-term mortality, hemorrhagic and thromboembolic events in atrial fibrillation patients at different stages of chronic kidney disease: The CRAFT trial.",
+      "problems": [
+        "missing_reason_codes:population"
+      ],
+      "observed": {
+        "record_id": "pubmed:38076348",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "outcome",
+          "human_signal",
+          "design_signal",
+          "off_topic"
+        ],
+        "confidence": "high",
+        "evidence_basis": "abstract",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "35522014",
+      "title": "Oral anticoagulation following bioprosthetic SAVR in patients with atrial fibrillation: what's the current status of NOACs?",
+      "problems": [
+        "missing_reason_codes:design_signal"
+      ],
+      "observed": {
+        "record_id": "pubmed:35522014",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "deprioritize",
+        "reason_codes": [
+          "population",
+          "human_signal",
+          "off_topic",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "pmid": "38127436",
+      "title": "Application of Naoxintong combined with warfarin in anticoagulant therapy in elderly patients with coronary heart disease and atrial fibrillation.",
+      "problems": [
+        "decision:uncertain!=expected:retain",
+        "missing_reason_codes:exposure"
+      ],
+      "observed": {
+        "record_id": "pubmed:38127436",
+        "question_id": "HRS5_ANTICOAGULATION",
+        "decision": "uncertain",
+        "reason_codes": [
+          "population",
+          "human_signal",
+          "design_signal",
+          "insufficient_abstract"
+        ],
+        "confidence": "low",
+        "evidence_basis": "title_only",
+        "status": "ok"
+      }
+    }
+  ]
+}

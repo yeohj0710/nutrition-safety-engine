@@ -1,0 +1,78 @@
+{
+  "schema_version": "2.0.0",
+  "checked_at": "2026-07-28T04:55:31+00:00",
+  "passed": true,
+  "errors": [],
+  "error_count": 0,
+  "corpus_rows": 48031,
+  "screening_rows": 48031,
+  "evidence_bundle_rows": 1899,
+  "core_records": 75,
+  "core_by_question": {
+    "HRS1_PERIOPERATIVE": 15,
+    "HRS2_KIDNEY_DISEASE": 15,
+    "HRS3_PREGNANCY": 15,
+    "HRS4_LIVER_DISEASE": 15,
+    "HRS5_ANTICOAGULATION": 15
+  },
+  "rules": 34,
+  "translations": 75,
+  "exact_gate_records": 1899,
+  "exact_core_records": 75,
+  "generated_terminology_gate": {
+    "passed": true,
+    "verbatim_source_field_exceptions": [
+      "abstract",
+      "authors",
+      "doi",
+      "dose",
+      "key_finding",
+      "locator",
+      "locator_text",
+      "outcome",
+      "population",
+      "publication_types",
+      "raw_source_path",
+      "raw_source_sha256",
+      "source_text",
+      "title",
+      "url",
+      "venue"
+    ]
+  },
+  "clinical_rule_gate": {
+    "passed": true,
+    "scope": "evidence_linking_only"
+  },
+  "hashes": {
+    "corpus_manifest_sha256": "00eb46f71deb1a37c58c0c86f0ea20b21540196cd9e9bbf0d69b38cd37d7c2ca",
+    "corpus_sha256": "d5a70b828bdef00ef885e495de90f2dd7e74d3c34a714e8d1c953436a7727173",
+    "screening_sha256": "a64075cc0d4a1be042a618ec8d23e9b0edc3329a7810690f63821c6ba56f89d8",
+    "screening_manifest_sha256": "3640c150e47d92b637523c2b55052c120cf80e27e4a871620c37e14563f3ba2a",
+    "screening_batch_index_sha256": "48c1ec50569fc8bf34498d12a65323df27054d66d12fa1251fd64586ce5cf529",
+    "screening_checkpoint_sha256": "0c14e3b56b2dcaa42272346d2b30d43007b1400c0e43e69b3c5915a28813004c",
+    "screening_batch_runs_sha256": "23f57b7177111693c106ca7778d360cbf50a356983024514d2a372e8dfddf2d5",
+    "screening_prompt_sha256": "55f7b08f8d7af7e5e9553e093558438cdccc5c4b3365e1c4acb6300302c5b4a3",
+    "screening_worker_sha256": "7b3de69fcd5b0a4095b515585fb92cac3e1e966baef5c4d8a19289f11df305c8",
+    "screening_invariant_checks_sha256": "11cf05a8bd88ca015c6e7f7cccc9c9fac7876e6e399172883f5c3217b26bca38",
+    "screening_semantic_adjudications_sha256": "81d92a76635e621b998f7299171b473ef86f5e90e81aa060b781814d0b49e6e8",
+    "screening_semantic_rule_audit_sha256": "52981df2f6da8ecf336f9dc770d1d8dc5119d45467a5fee8a468258250356291",
+    "screening_semantic_adjudication_consistency_sha256": "4ff7b0190d36b2afd855819c569717202536e01c8ab51e258b76892ae892b6ba",
+    "regex_gate_sha256": "037f9fe9563c3c97413eb7c5ea2a27498f962e29d61af6bdb1f03bcfdfd7de89",
+    "evidence_bundle_sha256": "b445f14f20fa955de3cd4b629769fc840db6cf583da959e34f35ccb79b740ba8",
+    "core_evidence_sha256": "94063a02cd000efdfffd6a122acdde3a8a7627ab6d8fe4e3aa3a15230ddeb50c",
+    "translations_sha256": "68a597028e51337108ba6ecfef284cbb857d84f4a3d882bae39ba23ac43e8201",
+    "translation_parts": {
+      "research/systematic_review_v40/etc/translation_parts/hrs1_perioperative.json": "206184f1c9b49a1ea610a6d9b691652367b1389573078efe354135bceeecdae0",
+      "research/systematic_review_v40/etc/translation_parts/hrs2_kidney_disease.json": "e21a1521d4eef0ac6ca4d5d57fbf7cce72dfc1fba04349c4d0c9599c2ae39e18",
+      "research/systematic_review_v40/etc/translation_parts/hrs3_pregnancy.json": "577405f05f4c175eef0b89eaccd534bd424828b7e143c06e3b9ac2fcfe8d4a0c",
+      "research/systematic_review_v40/etc/translation_parts/hrs4_liver_disease.json": "bc2e59effbe1f0065e16d6c457eb93335f49f52af4080b53364718c08ca3d6ec",
+      "research/systematic_review_v40/etc/translation_parts/hrs5_anticoagulation.json": "c35e96321569049aaeb341642a6e64b032c8d5a8659a0000b42635e37f2b5f69"
+    },
+    "rules_sha256": "0d3788fee15fa92af34173b315d52f32d98920075abd12ed9d8d588ad1222e06",
+    "manifest_sha256": "35467ce5a35163b75bcd843175850a9ad80463e72dba21f1a0355159c0f7ed15",
+    "core_manifest_sha256": "4d650577d522561169d6fefe022ecb02097057a9b386a7897caacfcdf3a8554a",
+    "generator_sha256": "947e19d5e778817c4af929c731c6fb7fc6830402f9cdaea59c71e88a1251c274",
+    "base_generator_sha256": "99e05427797ade03df4772835199c818df20b98bea6aa5481cd4163b267eac44"
+  }
+}

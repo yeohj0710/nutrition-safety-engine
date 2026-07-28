@@ -1,0 +1,502 @@
+[
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "31643760",
+    "expected_decision": "retain",
+    "expected_confidence": "medium",
+    "required_reason_codes": ["population", "exposure", "human_signal"],
+    "forbidden_reason_codes": ["outcome", "design_signal", "animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "existing_liver_vs_background",
+    "rationale": "간클리닉 환자와 간질환을 이유로 한 HDS 사용은 확인되지만 실제 유해결과나 안전성 평가는 보고하지 않는다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "32715778",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "existing_liver_vs_background",
+    "rationale": "조사의 실제 원인물질은 paracetamol, isoniazid, rifampicin, pyrazinamide이며 보충제는 서론의 잠재 원인 언급뿐이다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "34491307",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "existing_liver_vs_background",
+    "rationale": "알코올 관련 간질환에서 미량영양소 결핍과 질환 진행을 검토했으며 보충제 노출의 안전성을 평가하지 않았다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "34809518",
+    "expected_decision": "retain",
+    "expected_confidence": "medium",
+    "required_reason_codes": ["population", "exposure", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["outcome", "animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "existing_liver_vs_background",
+    "rationale": "유전성 담즙정체 영아가 vitamin supplements를 치료로 복용하지만 보충제 유해결과는 보고하지 않는다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "34996317",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["exposure", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "existing_liver_vs_background",
+    "rationale": "임신부의 vitamin D3 복용행동 연구이며 간질환 대상집단이나 간 안전성 결과가 없다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "35027389",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "exposure", "outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "existing_liver_vs_background",
+    "rationale": "실제 증례 노출은 주사용 B12이고 간질환은 고B12의 일반적 배경 원인으로만 언급된다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "35045168",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "existing_liver_vs_background",
+    "rationale": "HBV 감염 임신부의 처방약 tenofovir 신장 안전성 연구로 HDS 노출이 아니다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "35068932",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "exposure", "outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "existing_liver_vs_background",
+    "rationale": "전통중의학 재활부서는 모집 장소일 뿐이며 연구 주제는 뇌졸중 체크리스트 번역이다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "35130574",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "existing_liver_vs_background",
+    "rationale": "간경변 환자의 다제내성 감염과 항생제 관리를 검토하며 보충제 노출은 다루지 않는다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "34331346",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "supplement_induced_liver_injury",
+    "rationale": "UNOS 자료에서 HDS 관련 급성간부전, 이식 대기, 이식 후 생존을 직접 분석한다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "35037744",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "supplement_induced_liver_injury",
+    "rationale": "Giloy 사용 후 발생한 HILI 환자 43명의 임상 양상과 결과를 다기관 후향 연구로 분석한다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "35710615",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "design_signal"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "supplement_induced_liver_injury",
+    "rationale": "Garcinia cambogia와 hydroxycitric acid 보충제 관련 급성간손상 사례와 안전 경보를 검토한 실질적 review Letter다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "35899384",
+    "expected_decision": "retain",
+    "expected_confidence": "low",
+    "required_reason_codes": ["population", "exposure", "outcome", "design_signal", "insufficient_abstract"],
+    "forbidden_reason_codes": ["human_signal", "animal_term_present", "off_topic"],
+    "audit_group": "supplement_induced_liver_injury",
+    "rationale": "제목이 drug, herbal, dietary supplement-induced liver injury를 다루는 AASLD 지침임을 명시한다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "35960048",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "supplement_induced_liver_injury",
+    "rationale": "Chinese herbal medicine 원인 DILI 353건의 중증도와 검사 결과를 직접 분석한다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "36252717",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "supplement_induced_liver_injury",
+    "rationale": "Turmeric 관련 간손상 10건에서 입원, 사망, 급성간부전 결과를 보고한다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "36299672",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "supplement_induced_liver_injury",
+    "rationale": "14세 여아의 Ayurvedic herbal medication 노출과 중증 간부전을 보고한 증례다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "36515339",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "supplement_induced_liver_injury",
+    "rationale": "HDS 간손상 428증례의 입원, 사망, 이식, 만성 간질환 결과를 통합한다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "36600786",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "supplement_induced_liver_injury",
+    "rationale": "49세 여성의 turmeric supplement-induced liver injury를 보고한 증례다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "31711319",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["outcome", "human_signal", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "efficacy_only",
+    "rationale": "천연물과 허브의 간섬유화 예방 기전과 효능만 검토하며 안전성 결과는 다루지 않는다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "34417867",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "efficacy_only",
+    "rationale": "HCC 환자에서 herbal compound Ninjin'yoeito 투여 여부에 따른 이상반응과 AST 및 간기능을 비교한다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "34837121",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "efficacy_only",
+    "rationale": "만성 간질환 HCC 환자 probiotic RCT에서 수술 후 합병증과 간기능을 평가한다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "34883213",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "efficacy_only",
+    "rationale": "Saccharomyces boulardii의 간질환 치료 잠재력과 보호 기전만 다루며 유해결과는 평가하지 않는다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "34903587",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "design_signal"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "efficacy_only",
+    "rationale": "Withaferin A의 간질환 치료뿐 아니라 toxicity, metabolism, pharmacokinetics를 명시적으로 검토한다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "34923950",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["outcome", "human_signal", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "efficacy_only",
+    "rationale": "TCM 유래 천연화합물의 NAFLD 개선 분자기전과 약물개발 효능만 검토하며 안전성 결과가 없다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "34996679",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["outcome", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "efficacy_only",
+    "rationale": "간경변 환자의 Ayurveda 복합치료 후 체격과 간·신장기능 개선만 보고한 효능 연구다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "35051605",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "efficacy_only",
+    "rationale": "NAFLD에서 Xiaoyao Powder의 효과와 adverse events를 함께 통합한 체계적 문헌고찰이다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "35178929",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "efficacy_only",
+    "rationale": "만성 HBV 섬유화와 간경변 환자의 Liuwei Wuling Tablets 메타분석이 중대한 이상반응 부재를 보고한다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "35064405",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["exposure", "animal_term_present", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "outcome", "human_signal", "insufficient_abstract"],
+    "audit_group": "nonclinical",
+    "rationale": "Fenugreek의 ethanol 손상 보호를 HepG2와 Huh7 세포에서만 시험한 효능 연구다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "35234063",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["exposure", "outcome", "animal_term_present", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "human_signal", "insufficient_abstract"],
+    "audit_group": "nonclinical",
+    "rationale": "ShuangDan Capsule이 sorafenib 간독성을 줄이는 신호는 있지만 DEN-HCC와 HepG2 xenograft 비임상 전용이다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "35714823",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["exposure", "animal_term_present", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "outcome", "human_signal", "insufficient_abstract"],
+    "audit_group": "nonclinical",
+    "rationale": "Ursolic acid와 sorafenib의 항암 효능을 세포와 xenograft에서만 평가한다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "36154592",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["exposure", "animal_term_present", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "outcome", "human_signal", "insufficient_abstract"],
+    "audit_group": "nonclinical",
+    "rationale": "Chia seed oil이 HepG2의 doxorubicin 저항성을 낮추는 세포 효능 연구다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "36524620",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["exposure", "outcome", "animal_term_present", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "human_signal", "insufficient_abstract"],
+    "audit_group": "nonclinical",
+    "rationale": "HDS 성분의 hepatotoxicity와 CYP3A4 유도를 HepG2 assay로만 평가한다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "37046263",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["exposure", "animal_term_present", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "outcome", "human_signal", "insufficient_abstract"],
+    "audit_group": "nonclinical",
+    "rationale": "Mulberry polysaccharide의 H2O2 손상 보호를 HepG2에서만 평가한 효능 연구다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "37224052",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["exposure", "animal_term_present", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "outcome", "human_signal", "insufficient_abstract"],
+    "audit_group": "nonclinical",
+    "rationale": "Alpinia japonica extract의 항암 apoptosis를 HepG2 세포에서만 평가한다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "38974120",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["exposure", "animal_term_present", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "outcome", "human_signal", "insufficient_abstract"],
+    "audit_group": "nonclinical",
+    "rationale": "Schisandra bee pollen extract의 HepG2 증식과 이동 억제만 시험한다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "39141932",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["exposure", "animal_term_present", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["population", "outcome", "human_signal", "insufficient_abstract"],
+    "audit_group": "nonclinical",
+    "rationale": "Human hepatoma는 사람 대상이 아니며 date fruit extract의 보호 효능을 HepG2 세포에서만 시험한다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "35081550",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "prescription_dili",
+    "rationale": "Broad DILI registry이지만 277명 중 HDS 원인 42명과 이식 및 생존 결과를 직접 분석한다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "35122190",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "prescription_dili",
+    "rationale": "DILI cohort에 HDS 원인 9.5%가 실제 포함되고 사망과 이식 결과를 분석한다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "35596597",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "prescription_dili",
+    "rationale": "DI-AILH 186 case reports에 HDS 38건과 Khat 및 Tinospora probable cases가 포함된다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "35645018",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "design_signal"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "prescription_dili",
+    "rationale": "Drug 또는 HDS-associated liver injury 데이터와 botanical compound 관련 유전변이를 함께 검토한다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "35843842",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "prescription_dili",
+    "rationale": "여성 환자에서 HDS 관련 DILI 증가를 논의하므로 사람 대상 안전성 신호가 명시적이다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "35899490",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "prescription_dili",
+    "rationale": "유럽 DILI registry에 HDS 원인 18건과 사망 및 이식 결과가 포함된다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "36038343",
+    "expected_decision": "retain",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic", "insufficient_abstract"],
+    "audit_group": "prescription_dili",
+    "rationale": "498명 DILI 분석에서 traditional Chinese medicine이 56.43%이며 중증도와 예후를 보고한다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "36332223",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "high",
+    "required_reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+    "forbidden_reason_codes": ["exposure", "animal_term_present", "insufficient_abstract"],
+    "audit_group": "prescription_dili",
+    "rationale": "실제 원인은 처방 구충제 albendazole이며 HDS는 DILI의 일반 배경 문장에만 나온다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "35066755",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": ["population", "exposure", "outcome", "design_signal", "off_topic", "insufficient_abstract"],
+    "forbidden_reason_codes": ["human_signal", "animal_term_present"],
+    "audit_group": "title_only_case_letter",
+    "rationale": "제목은 HDS 원인 DILI를 명시하지만 publication type이 Letter와 Comment뿐이라 우선순위를 낮춘다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "36155352",
+    "expected_decision": "retain",
+    "expected_confidence": "low",
+    "required_reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal", "insufficient_abstract"],
+    "forbidden_reason_codes": ["animal_term_present", "off_topic"],
+    "audit_group": "title_only_case_letter",
+    "rationale": "성인에서 levocarnitine supplementation과 asparaginase hepatotoxicity를 다룬 다기관 관찰연구임을 제목이 명시한다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "36321995",
+    "expected_decision": "retain",
+    "expected_confidence": "low",
+    "required_reason_codes": ["population", "exposure", "outcome", "design_signal", "insufficient_abstract"],
+    "forbidden_reason_codes": ["human_signal", "animal_term_present", "off_topic"],
+    "audit_group": "title_only_case_letter",
+    "rationale": "Ashwagandha-associated acute liver failure와 이식을 제목이 명시하므로 HDS 원인 간손상 자체가 대상집단 조건을 충족한다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "37269895",
+    "expected_decision": "retain",
+    "expected_confidence": "low",
+    "required_reason_codes": ["population", "exposure", "outcome", "design_signal", "insufficient_abstract"],
+    "forbidden_reason_codes": ["human_signal", "animal_term_present", "off_topic"],
+    "audit_group": "title_only_case_letter",
+    "rationale": "Acute hepatitis induced by Guduchi라는 제목은 허브 원인 급성간염을 명시하며 단순 논평이라고 확정할 정보가 없다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "38232970",
+    "expected_decision": "retain",
+    "expected_confidence": "low",
+    "required_reason_codes": ["population", "exposure", "outcome", "design_signal", "insufficient_abstract"],
+    "forbidden_reason_codes": ["human_signal", "animal_term_present", "off_topic"],
+    "audit_group": "title_only_case_letter",
+    "rationale": "HemoHIM health supplement 사용과 관련된 liver injury를 제목이 직접 명시한다."
+  },
+  {
+    "question_id": "HRS4_LIVER_DISEASE",
+    "pmid": "39244472",
+    "expected_decision": "deprioritize",
+    "expected_confidence": "low",
+    "required_reason_codes": ["population", "exposure", "design_signal", "off_topic", "insufficient_abstract"],
+    "forbidden_reason_codes": ["outcome", "animal_term_present"],
+    "audit_group": "title_only_case_letter",
+    "rationale": "HBV 관련 간섬유화에서 TCM의 therapeutic effects만 명시한 title-only case study로 안전성 결과가 없다."
+  }
+]
