@@ -23,3 +23,13 @@ data/curated_v2
 data/curated_v3
 tools
 .venv
+
+# v4.0 원자료. 위와 같은 이유이며 용량은 더 크다(약 1.4GB).
+# 앱이 번들하는 research/ 파일 16개는 전부 이 목록 밖에 있고,
+# research/screening/ 은 통째로 막지 않고 v40_agent 하위만 막는다.
+research/searches_v4
+research/screening/v40_agent
+research/screening/agent_batches
+research/screening/agent_results
+research/systematic_review_v40
+data/curated_v4
