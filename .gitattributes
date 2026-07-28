@@ -46,3 +46,4 @@ research/logs/v40_local_only_manifest.json -text
 research/logs/v40_phase_b_verification.json -text
 research/protocol/protocol-v4.0-mecir-search.md -text
 research/protocol/amendments.csv           -text
+research/logs/v40_delivery_receipt.json -text

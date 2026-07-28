@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "track": "v4.0_mecir_search_redesign",
+  "purpose": "봉인된 원장 v40_run_report.json 이후에 일어난 인계 사실 기록. 원장의 commit_created·push_performed·deployment_performed 가 false 인 것은 원장 생성 시점 기준이며, 현재 상태는 이 파일이 가리킨다.",
+  "ledger": {
+    "path": "research/logs/v40_run_report.json",
+    "sha256": "5b5d187817a4ca6f605cf485677e289ae0f5f202343d48d5a1074bf4ef3b8c81",
+    "run_status": "complete",
+    "head_at_ledger_generation": "2d59fa7c0dd60b0defe236d63e09d1dc4c02ad5b"
+  },
+  "git": {
+    "branch": "main",
+    "head": "f01a56978dcd3099b44dc84023e55e46437e86de",
+    "remote": "https://github.com/yeohj0710/nutrition-safety-engine.git",
+    "pushed": true,
+    "working_tree_clean": false,
+    "commits": [
+      {
+        "sha": "f01a56978dcd3099b44dc84023e55e46437e86de",
+        "subject": "fix(deploy): v4.0 원자료를 배포 업로드에서 제외"
+      },
+      {
+        "sha": "d1faa91143881b9d69b1fc10cd2938dcc980f464",
+        "subject": "wip(screening): v2.1 LLM 선별 재개분 400행과 API 경로 차단 가드 보존"
+      },
+      {
+        "sha": "b1e30ba38ccd027f28b283742703b9850f78be8d",
+        "subject": "feat(v40): MECIR 검색 재설계 트랙 전체 산출물 추가"
+      }
+    ]
+  },
+  "deployment": {
+    "provider": "vercel",
+    "method": "npx vercel --prod --yes",
+    "note": "이 저장소는 GitHub 연동이 없어 push 로는 배포되지 않는다.",
+    "target": "production",
+    "deployment_url": "https://nutrition-safety-engine-j5889pu9e-yeohj0710s-projects.vercel.app",
+    "production_alias": "https://nutrition-safety-engine.vercel.app",
+    "site_data_track": "v3.0",
+    "site_serves_v40": false,
+    "site_note": "사이트는 여전히 v3.0 산출물을 쓴다. v4.0 을 사이트에 반영하는 것은 이 트랙의 범위가 아니며 DECISIONS_v40.md 하류 산출물 절에 그렇게 적혀 있다."
+  },
+  "verification_before_deploy": {
+    "typecheck": "npm run typecheck",
+    "lint": "npm run lint",
+    "test": "npm test",
+    "build": "npm run build"
+  },
+  "release_ready": false,
+  "release_ready_note": "사이트 배포는 임상적 공개 승인이 아니다. 사람 독립 선별, 편향 평가, 근거 확실성 평가가 없으므로 false 를 유지한다."
+}
