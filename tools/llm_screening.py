@@ -41,6 +41,29 @@ MODEL = os.environ.get('LLM_SCREENING_MODEL', 'gpt-5-mini')
 EFFORT = os.environ.get('LLM_SCREENING_EFFORT', 'low')
 ENDPOINT = 'https://api.openai.com/v1/responses'
 
+# 문헌 선별은 에이전트 세션(Codex·Claude Code)이 수행한다: tools/agent_screening/.
+# 이 스크립트의 API 경로는 한 번 돌면 만 건 단위로 호출하는데, OPENAI_API_KEY 는
+# 운영 중인 서비스와 공유되므로 그 쿼터까지 함께 말린다. 실제로 그렇게 소진돼
+# 약국 상담 앱의 AI 해석이 429 로 멈춘 적이 있다. 그래서 API 실행은 기본으로
+# 닫아 두고, 사람이 비용을 감수하겠다고 명시할 때만 연다.
+API_RUN_OPT_IN = 'LLM_SCREENING_ALLOW_API'
+API_RUN_TOKEN = 'yes-spend-openai-credits'
+
+
+def assert_api_run_allowed() -> None:
+    if os.environ.get(API_RUN_OPT_IN) == API_RUN_TOKEN:
+        return
+    # Windows 콘솔의 stderr 는 stdout 과 코드페이지가 달라 한글이 깨진다. 읽지
+    # 못하는 차단 사유는 차단하지 않은 것과 같으므로 stdout 으로 안내한다.
+    print(
+        'API 선별 경로가 닫혀 있습니다. 이 저장소의 문헌 선별은 에이전트 세션이 수행합니다.\n'
+        '  배치 생성: python tools/agent_screening/make_batches.py --frame abstract --count 5\n'
+        '  판정 적재 후 집계: python tools/llm_screening.py --finalize\n'
+        f'재현 검증 등으로 반드시 API 를 써야 한다면 {API_RUN_OPT_IN}={API_RUN_TOKEN} 을\n'
+        '사람이 직접 설정하고 실행하세요. 같은 키를 쓰는 운영 서비스의 쿼터가 함께 소진됩니다.'
+    )
+    raise SystemExit(2)
+
 QUESTIONS = {
     'A1': 'vitamin K 노출과 vitamin K antagonist(와파린 등 비타민 K 길항 항응고제) 관련 문헌',
     'A2': 'omega-3 노출과 경구 항응고제 관련 문헌',
@@ -362,6 +385,7 @@ def main():
         finalize(a.incomplete_reason)
         return
 
+    assert_api_run_allowed()
     KEY = api_key()
     have = done_keys()
     todo = [r for r in rows if (r['record_id'], r['question_id']) not in have]

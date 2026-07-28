@@ -1,22 +1,35 @@
 {
-  "schema_version": "1.0.0",
-  "protocol_version": "2.1-ai-exploratory-llm",
+  "schema_version": "2.0.0",
+  "protocol_version": "3.0-full-ai",
   "status": "partial_llm_exploratory_classification_run_incomplete",
   "run_complete": false,
-  "coverage": 0.6578,
-  "resume_command": "python tools/llm_screening.py",
-  "incomplete_reason": "OpenAI API quota exhausted (HTTP 429 insufficient_quota) partway through the run. Add credit and rerun; the checkpoint resumes from where it stopped.",
-  "note": "protocol §5·§9 준수. include/exclude 가 아니며 사람 gold 가 없어 민감도·특이도를 산출하지 않는다.",
+  "coverage": 0.605536,
+  "resume_command": "python tools/agent_screening/make_batches.py --frame abstract --count 5",
+  "incomplete_reason": "체크포인트에 미분류 record-question 키가 남아 있다.",
+  "note": "retain/deprioritize/uncertain은 탐색지도용 AI 판정이며 사람 판정이 아니다.",
   "model": "gpt-5-mini",
   "reasoning_effort": "low",
   "prompt_sha256": "ecbb00c766e7ff9bea2a9779f36c9f8e3ead65c94aeeee119355af925b86f9d0",
-  "generated_at": "2026-07-25T09:31:16+00:00",
+  "generated_at": "2026-07-27T01:29:04+00:00",
+  "frame_rows_total": 20230,
   "frame_rows_with_abstract": 18015,
-  "row_count": 11850,
+  "frame_rows_title_only": 2215,
+  "row_count": 12250,
   "classifications": {
-    "deprioritize": 4315,
-    "retain": 7248,
-    "uncertain": 287
+    "deprioritize": 4407,
+    "retain": 7555,
+    "uncertain": 288
+  },
+  "classifications_by_evidence_basis": {
+    "abstract": {
+      "deprioritize": 4407,
+      "retain": 7555,
+      "uncertain": 288
+    }
+  },
+  "execution_mode_distribution": {
+    "api_batch": 11850,
+    "agent_local": 400
   },
   "failures": 161,
   "usage": {
@@ -43,6 +56,7 @@
   "input_path": "data/curated_v2/evidence_map.csv",
   "input_sha256": "7fbd8cab64c7ba874ec95c759c9597684151b020e4fdc4f708afbbdabf5aa7c2",
   "output_path": "data/curated_v2/llm_screening_classifications.csv",
-  "output_sha256": "29227702165eadb241ccbaf1fd92e6a1847c57d199c57524f5c7407c2cceed50",
+  "output_sha256": "19c34e03c24b86ffe5796f48d2cbb4f1eab0a35f57739ee625f3e1cbd4a2465c",
+  "agent_local_audit_path": "research/screening/agent_local_runs.jsonl",
   "human_screening_decisions": 0
 }
