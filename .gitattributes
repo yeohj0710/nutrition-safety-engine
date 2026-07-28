@@ -26,3 +26,13 @@ data/curated_v2/*.jsonl                   text
 # pre-existing rules
 research/systematic_review_v3/*.csv -text
 research/validation/*.json text eol=lf
+
+# v4.0 (MECIR search redesign) provenance-critical paths. Same rule and same
+# reason as the v2.1 block above: these files have SHA-256 recorded in
+# research/logs/v40_run_report.json, research/screening/v40_agent/batch_index.json
+# and research/searches_v4/*/pubmed/*/checksum.sha256. Newline conversion on
+# checkout rewrites LF inside quoted CSV abstract fields and breaks those hashes.
+data/curated_v4/**                        -text
+research/searches_v4/**                   -text
+research/screening/v40_agent/**           -text
+research/systematic_review_v40/**         -text

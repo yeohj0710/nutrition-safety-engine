@@ -63,3 +63,17 @@ data/interim/records.csv
 
 # Claude Code local tooling config
 /.claude/
+
+# v4.0 large payloads stay local; hashes and metadata are tracked.
+# Inventory with sizes and SHA-256: research/logs/v40_local_only_manifest.json
+#   - efetch XML: same volume/copyright reason as research/searches/ above (1.1 GB)
+#   - evidence_map.csv: 114.5 MiB, over GitHub's 100 MiB per-file hard limit.
+#     Rebuildable from the efetch XML; hash in data/curated_v4/corpus_manifest.json.
+#   - v40_agent/batches/: screening inputs, reproducible from evidence_map.csv +
+#     batch_index.json, which carries input_sha256 for all 196 batches.
+#   - etc/failed_classifier_*/: discarded classifier generations kept as local
+#     evidence of the rejection process; hashes tracked in the manifest.
+research/searches_v4/*/pubmed/*/efetch_*.xml
+data/curated_v4/evidence_map.csv
+research/screening/v40_agent/batches/
+research/screening/v40_agent/etc/failed_classifier_*/
