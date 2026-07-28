@@ -84,7 +84,20 @@ describe("personalized safety API", () => {
       ).toContain(expectedVerdictById[example.id]);
       expect(body.assessment.dose, example.title).toMatch(/[가-힣]/);
       expect(body.assessment.watch, example.title).toMatch(/[가-힣]/);
-      expect(body.evidence.length, example.title).toBeGreaterThan(0);
+      // 근거 건수를 상수로 고정하지 않는다. 코퍼스가 바뀌면 성분별 직접 근거 수가
+      // 달라지고, 0 건인 성분도 정당한 결과다. 계약은 "가진 것을 전부, 5건 상한으로
+      // 내놓고 없으면 없다고 말한다" 이므로 그것을 검사한다.
+      const directCandidates = body.all_evidence.filter(
+        (item: { ingredient_match?: boolean }) => item.ingredient_match,
+      ).length;
+      expect(body.evidence.length, example.title).toBe(
+        Math.min(5, directCandidates),
+      );
+      if (directCandidates === 0) {
+        expect(body.ai_summary, example.title).toMatch(
+          /직접 다룬 (?:연구|것|문헌)[^.]*없|직접 근거[^.]*없/,
+        );
+      }
       expect(
         body.evidence.every(
           (item: { ingredient_match?: boolean }) => item.ingredient_match,
@@ -136,7 +149,6 @@ describe("personalized safety API", () => {
       expect(body.ai_summary).not.toMatch(/종합하면|핵심은|상담 전에는/);
       expect(body.ai_summary.length).toBeLessThanOrEqual(700);
       expect(body.ai_summary).toContain("그래서 지금 볼 것은");
-      expect(body.evidence.length).toBeGreaterThan(0);
       expect(body.evidence.length).toBe(
         Math.min(
           5,

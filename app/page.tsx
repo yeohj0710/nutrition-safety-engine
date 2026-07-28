@@ -1,6 +1,6 @@
 import type {Metadata} from "next";
-import manifest from "@/research/systematic_review_v30/manifest.json";
-import core from "@/research/systematic_review_v30/core_manifest.json";
+import manifest from "@/research/systematic_review_v40/manifest.json";
+import core from "@/research/systematic_review_v40/core_manifest.json";
 import {PersonalizedSafetyQuery} from "@/src/components/personalized-safety-query";
 import {siteDescription,siteName} from "@/src/lib/site";
 export const metadata:Metadata={title:siteName,description:siteDescription,alternates:{canonical:"/"}};

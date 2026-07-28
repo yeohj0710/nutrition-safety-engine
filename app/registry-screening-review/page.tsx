@@ -1,1 +1,0 @@
-import type{Metadata}from"next";import{RegistryScreeningReviewClient}from"@/src/components/registry-screening-review-client";import{registryBundles}from"@/src/lib/registry-screening-review";export const metadata:Metadata={title:"임상시험 등록 사전검토",robots:{index:false,follow:false}};export default function Page(){return <RegistryScreeningReviewClient bundles={registryBundles}/>}

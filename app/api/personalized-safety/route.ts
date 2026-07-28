@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import rules from "@/research/systematic_review_v30/personalized_rules.json";
+import rules from "@/research/systematic_review_v40/personalized_rules.json";
 import { splitMultiValue } from "@/src/lib/multi-value-input";
 const map: Record<string, string> = {
   "비타민 K": "A1",
