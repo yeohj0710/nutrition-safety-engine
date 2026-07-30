@@ -41,6 +41,11 @@ type ApiResult = {
   checks: string[];
   summary: string;
   disclaimer: string;
+  expanded: boolean;
+  expanded_offset: number;
+  expanded_page_size: number;
+  extended_total: number;
+  extended_note: string;
   error?: string;
 };
 
@@ -112,8 +117,11 @@ export function PersonalizedSafetyQuery() {
   const update = (key: keyof typeof emptyForm, value: string) =>
     setForm((prev) => ({ ...prev, [key]: value }));
 
-  async function submit(event: FormEvent) {
-    event.preventDefault();
+  async function submit(
+    event: FormEvent | null,
+    extra: { expanded?: boolean; offset?: number } = {},
+  ) {
+    event?.preventDefault();
     if (!form.situation) {
       setError("먼저 지금 상황을 하나 고르세요.");
       return;
@@ -124,7 +132,7 @@ export function PersonalizedSafetyQuery() {
       const response = await fetch("/api/personalized-safety", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, ...extra }),
       });
       const body: ApiResult = await response.json();
       if (!response.ok) {
@@ -309,6 +317,65 @@ export function PersonalizedSafetyQuery() {
                 );
               })}
             </ol>
+          ) : null}
+
+          {result.extended_total > result.evidence.length ||
+          result.expanded ? (
+            <div className="flex flex-col gap-2 border-t border-stone-200 px-5 py-4">
+              <div className="flex flex-wrap items-center gap-2">
+                {result.expanded && result.expanded_offset > 0 ? (
+                  <button
+                    type="button"
+                    disabled={pending}
+                    onClick={() =>
+                      submit(null, {
+                        expanded: true,
+                        offset: Math.max(
+                          0,
+                          result.expanded_offset - result.expanded_page_size,
+                        ),
+                      })
+                    }
+                    className="rounded-full border border-stone-300 bg-white px-4 py-2 text-sm font-semibold text-stone-700 transition hover:border-blue-400 disabled:opacity-50"
+                  >
+                    이전 {result.expanded_page_size}건
+                  </button>
+                ) : null}
+                {result.expanded_offset + result.evidence.length <
+                result.extended_total ? (
+                  <button
+                    type="button"
+                    disabled={pending}
+                    onClick={() =>
+                      submit(null, {
+                        expanded: true,
+                        offset: result.expanded
+                          ? result.expanded_offset + result.expanded_page_size
+                          : 0,
+                      })
+                    }
+                    className="rounded-full border border-blue-600 bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:opacity-50"
+                  >
+                    {result.expanded
+                      ? `다음 ${result.expanded_page_size}건`
+                      : `이 상황의 근거 ${result.extended_total.toLocaleString("ko-KR")}건 모두 보기`}
+                  </button>
+                ) : null}
+                {result.expanded ? (
+                  <button
+                    type="button"
+                    disabled={pending}
+                    onClick={() => submit(null)}
+                    className="rounded-full border border-stone-300 bg-white px-4 py-2 text-sm font-semibold text-stone-700 transition hover:border-blue-400 disabled:opacity-50"
+                  >
+                    핵심 근거로 돌아가기
+                  </button>
+                ) : null}
+              </div>
+              <p className="text-xs leading-5 text-stone-500">
+                {result.extended_note}
+              </p>
+            </div>
           ) : null}
 
           <footer className="border-t border-stone-200 bg-blue-50/50 px-5 py-3 text-xs leading-5 text-stone-600">

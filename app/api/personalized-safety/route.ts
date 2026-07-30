@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import rules from "@/research/systematic_review_v40/personalized_rules.json";
+import extended from "@/research/systematic_review_v40/extended_evidence_v40.json";
 import {
   axes,
   axisByField,
@@ -50,6 +51,32 @@ type Rule = {
 };
 
 const allRules = rules as unknown as Rule[];
+
+/**
+ * 확장 근거 목록. 핵심근거 15건 상한 밖의 근거까지 담고 있다.
+ * 축 부분집합이 없으므로 조건 필터가 적용되지 않고, 근거 문장은 영어 원문이다.
+ * 봉인된 `personalized_rules.json` 을 재생성하지 않으려고 별도 파일로 둔 것이라
+ * 두 목록의 성격이 다르다는 점을 응답에서 밝힌다.
+ */
+// 확장 항목에는 한국어 번역(key_finding_ko)과 효과 판정(effect_status)이 없다.
+// 그 둘은 핵심근거 75건에만 있으므로 빈 값으로 채워 형태만 맞춘다. 화면은 번역이
+// 비어 있으면 그 줄을 그리지 않으므로 영어 근거 문장만 보인다.
+const extendedByQuestion = Object.fromEntries(
+  Object.entries(
+    (extended as { questions: Record<string, Record<string, unknown>[]> }).questions,
+  ).map(([question, items]) => [
+    question,
+    items.map(
+      (item) =>
+        ({
+          key_finding_ko: "",
+          effect_status: "",
+          ...item,
+        }) as unknown as Evidence,
+    ),
+  ]),
+) as Record<string, Evidence[]>;
+const EXTENDED_PAGE = 30;
 
 function findRule(situation: SituationId, axis: AxisId | "base") {
   return allRules.find(
@@ -165,7 +192,20 @@ export async function POST(req: Request) {
   // (핵심근거 15건인데 3건만 나오고, 축 두 개를 넣으면 5건이 나왔다).
   // 두 경로 모두 all_evidence 를 쓰고 표시 개수는 SELECTED_LIMIT 하나로 정한다.
   const ranked = rankEvidence(applied.length ? pool : base.all_evidence);
-  const selected = ranked.slice(0, SELECTED_LIMIT);
+
+  // 확장 보기: 이 상황의 근거 전체를 순서대로 넘긴다. 축 부분집합이 핵심근거 위에서만
+  // 계산돼 있어 조건 필터를 걸 수 없으므로, 조건을 적용하지 않는다는 사실을 함께 보낸다.
+  const extendedAll = extendedByQuestion[situation] ?? [];
+  const expanded = payload.expanded === true;
+  const rawOffset = Number(payload.offset);
+  const offset =
+    Number.isFinite(rawOffset) && rawOffset > 0
+      ? Math.min(Math.floor(rawOffset), extendedAll.length)
+      : 0;
+
+  const selected = expanded
+    ? extendedAll.slice(offset, offset + EXTENDED_PAGE)
+    : ranked.slice(0, SELECTED_LIMIT);
 
   const meta = situationById.get(situation);
   const axisCoverage = Object.fromEntries(
@@ -179,7 +219,20 @@ export async function POST(req: Request) {
     .map((item) => axisByField.get(item.field as never)?.applied)
     .filter(Boolean) as string[];
 
-  const summary = selected.length
+  const expandedSummary = [
+    `${meta?.short ?? "이 상황"}의 근거 ${extendedAll.length.toLocaleString("ko-KR")}건 가운데`,
+    `${offset + 1}~${offset + selected.length}번째를 보여드립니다.`,
+    applied.length
+      ? "확장 보기에서는 입력하신 조건을 적용하지 않습니다."
+      : "",
+    "근거 문장은 영어 원문입니다.",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const summary = expanded
+    ? expandedSummary
+    : selected.length
     ? [
         `${meta?.short ?? "이 상황"}에서 선별된 핵심 근거 ${base.all_evidence.length}건 가운데 ${selected.length}건을 보여드립니다.`,
         narrowed.length ? narrowed.join(" ") : "",
@@ -205,6 +258,12 @@ export async function POST(req: Request) {
       core_evidence_count: base.all_evidence.length,
       evidence: selected,
       evidence_total_after_filter: ranked.length,
+      expanded,
+      expanded_offset: offset,
+      expanded_page_size: EXTENDED_PAGE,
+      extended_total: extendedAll.length,
+      extended_note:
+        "확장 보기는 핵심근거 15건 상한 밖의 근거까지 포함합니다. 조건 필터가 적용되지 않고 근거 문장은 영어 원문입니다.",
       checks: base.checks,
       summary,
       output_scope: base.output_scope,
