@@ -51,6 +51,13 @@ Two rules the site must not break:
 ## The research pipeline
 
 - Protocol: `research/protocol/protocol-v4.0-mecir-search.md`, amendment `AM-008`.
+- Shared upper protocol: `research/protocol/protocol-shared-ai-screening.md`. This study and
+  권혁찬's OTC study (`otc-nutrient-safety-engine`, v5.0) are two instances of it. It holds the
+  rules both studies reached independently — search design, the abolished 10,000-row corpus cap,
+  the label/reason-code spec, the classifier→re-adjudication→zero-human structure, the scoring
+  arm design, and the naming discipline — plus an instance table and the disclosed deviations.
+  It has no retroactive force: where this run diverges, the deviation is recorded there (§7),
+  not fixed here.
 - Single ledger: `research/logs/v40_run_report.json` — phases A–E, `completion_conditions`,
   `remaining_unresolved_items`. Judgment record: `research/logs/DECISIONS_v40.md`.
   Post-run facts (commit, push, deploy) go in `research/logs/v40_delivery_receipt.json`,
@@ -82,7 +89,15 @@ Two rules the site must not break:
   may therefore be missing relevant records. Details: `research/synthesis/screener_vs_ai_reference_v40.json`.
 - 1,475 of 3,374 retain rows (43.7%) were dropped by the bundle's regex gate.
 - All 44,597 deprioritize rows carry `off_topic`, so exclusion reasons are not broken down.
-- The 60 `uncertain` rows are all abstract-less; the label means missing text, not doubt.
+- **The shared protocol's re-adjudication rule (a) was not applied.** Rule (a) sends every
+  classifier `uncertain` row to re-adjudication; here the 616 re-adjudicated rows are boundary
+  quota only, and the 60 `uncertain` rows were never re-read. The rule postdates this run, and
+  the sealed ledger blocks retrofitting. All 60 are abstract-less, so re-adjudication could only
+  have re-read titles. `protocol-shared-ai-screening.md` §7.1.
+- The 60 `uncertain` rows are all abstract-less; the label means missing text, not doubt. This
+  holds for v4.0 only — 권혁찬's v5.0 also attaches `uncertain` and `insufficient_abstract` to
+  rows that do have abstracts, so the two studies' `uncertain` counts are not like-for-like.
+  `protocol-shared-ai-screening.md` §7.3.
 - PubMed only. No second database, no grey literature, no citation searching.
 
 ### The scoring arm (done 2026-07-30)
