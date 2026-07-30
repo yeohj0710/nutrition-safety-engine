@@ -29,6 +29,8 @@ research/protocol/amendments.csv                -text
 # 인용하는 문서이므로 다른 프로토콜 파일과 같은 규칙을 적용해 바이트를 고정한다.
 research/protocol/protocol-shared-ai-screening.md -text
 research/protocol/HANDOFF_scoring_arm_comparability.md -text
+research/protocol/PROMPT_v50_scoring_wrapup.md      -text
+docs/version_map.md                                 -text
 
 # 채점 arm(2026-07-30). lock_receipt.json 과 v40_scoring_report.json 이 이 경로들의
 # SHA-256 을 기록한다. 특히 scored_labels_locked.json 의 해시는 "정답을 열기 전에 잠갔다"는
