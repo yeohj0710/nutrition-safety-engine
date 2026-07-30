@@ -11,6 +11,12 @@ in five high-risk clinical situations; the site is the deterministic lookup tool
 Earlier tracks (v1.0, v2.0/v2.1, v3.0) were removed on 2026-07-28 — they exist in git history
 and are not part of the thesis. Do not reintroduce them or cite their numbers.
 
+## Which version is final
+
+`docs/version_map.md` is the answer sheet. The one thing to remember: **this study ends at v4.0,
+권혁찬's OTC study ends at v5.0.** Their repo also contains a `v40_run_report.json`, which is a
+*superseded* track there — do not read numbers across the two repos by filename.
+
 ## Why paths still say `v40`
 
 Artifact paths carry a `v40` / `v4` marker (`research/searches_v4/`,
@@ -87,6 +93,9 @@ Two rules the site must not break:
   — 2.18×. `specificity_vs_ai_reference` is 88.52%, so roughly 11.5% of the 44,597
   deprioritize rows would have been retained by the second reading. The evidence bundle
   may therefore be missing relevant records. Details: `research/synthesis/screener_vs_ai_reference_v40.json`.
+  This stays a limitation of **this** study and must not be generalised to the shared screening
+  design: 권혁찬's v5.0 arm ran the same design and came out the other way (pipeline retain
+  18.23% vs scorer estimate 11.95%, ratio 0.66×). See `HANDOFF_scoring_arm_comparability.md`.
 - 1,475 of 3,374 retain rows (43.7%) were dropped by the bundle's regex gate.
 - All 44,597 deprioritize rows carry `off_topic`, so exclusion reasons are not broken down.
 - **The shared protocol's re-adjudication rule (a) was not applied.** Rule (a) sends every

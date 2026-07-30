@@ -1,0 +1,106 @@
+# 버전 지도 — 무엇이 최종이고 무엇이 옛것인가 (2026-07-30)
+
+두 졸업연구의 버전 표기가 겹쳐서 헷갈리는 지점을 한곳에 정리한다.
+**어느 경로도 지우지 않았다.** 이유는 §4에 적었다.
+
+## 0. 헷갈림의 진짜 원인 — 같은 "v4.0"이 서로 다른 것을 가리킨다
+
+| 표기 | 여형준 (nutrition-safety-engine) | 권혁찬 (otc-nutrient-safety-engine) |
+|---|---|---|
+| `v4.0` | **최종 트랙** (MECIR 검색 재설계) | **폐기된 선행 트랙** (AM-OTC-001로 종결) |
+| `v5.0` | 없음 | **최종 트랙** (AM-OTC-002) |
+| 최종 원장 | `research/logs/v40_run_report.json` | `research_v3/logs/v50_run_report.json` |
+
+**두 저장소에 `v40_run_report.json` 이 각각 있다.** 여형준 것은 최종 원장이고, 권혁찬 것은
+폐기된 트랙의 기록이다. 파일명만 보고 옮기면 다른 연구의 수치를 섞게 된다.
+
+기억할 한 줄: **여형준은 v4.0이 끝, 권혁찬은 v5.0이 끝.**
+
+## 1. 여형준 — 최종은 v4.0 하나
+
+선행 트랙(v1.0, v2.0/v2.1, v3.0)은 2026-07-28에 저장소에서 제거했다(추적 파일 1,083개).
+git 히스토리에만 있고 **되살려 수치를 섞으면 안 된다** — 코퍼스도 질문도 다르다.
+
+### 살아 있는 경로 (전부 최종. 이름의 `v40`/`v4`는 버전 라벨이 아니라 출처 표식이라 리네임 금지)
+
+| 경로 | 내용 | 크기 | git |
+|---|---|---|---|
+| `data/curated_v4/` | 코퍼스 `evidence_map.csv` 48,031행 | — | `evidence_map.csv` 114.5 MiB는 로컬 전용 |
+| `research/searches_v4/` | PubMed 원본 XML 242개 | 1,078 MiB | 로컬 전용 |
+| `research/screening/v40_agent/` | 선별(분류기 + 재판정 616) | 180 MiB | 409 파일 |
+| `research/systematic_review_v40/` | 근거 번들 1,899·핵심 75·규칙 34 | 12 MiB | 추적 · **사이트가 import** |
+| `research/validation/screening_ai_reference_v40/` | 채점 arm 1,033행 | 3 MiB | 44 파일 |
+| `research/synthesis/screener_vs_ai_reference_v40.json` | 채점 대조 결과 | — | 추적 |
+| `research/logs/` | 원장 8개 | — | 추적 |
+| `research/protocol/` | v4.0 프로토콜 · 공유 프로토콜 · 비교 핸드오프 | — | 추적 |
+
+### 로컬에만 있는 잔존물 (git에 없음 → 지우면 복구 불가)
+
+`etc/v30_backups/`(1 MiB), `etc/preserved-thesis-backups/`(1 MiB),
+`etc/root-wip-preserved/`(1 MiB), `etc/failed_classifier_*/`.
+
+### 일부러 남긴 예외 둘
+
+- `tools/search_pipeline/embase_adapter.py` — 제2 데이터베이스 공백용. 명시 요청 없이 삭제 금지.
+- `research/logs/reproducibility_diagnosis_20260720.md` — autocrlf 복구 기록.
+
+## 2. 권혁찬 — 최종은 v5.0, 그리고 축이 둘이다
+
+혼란이 큰 이유는 버전 축이 **두 개**라서다.
+
+**축 A — 저장소 세대**: `research_v2/`(390 MiB, 246 파일) = 영양성분 시절 구세대 →
+`research_v3/` = 현재 세대.
+
+**축 B — 문헌층 트랙**: v4.0(동결·비교 보존) → **v5.0(최종)**.
+
+| 경로 | 상태 | 크기 |
+|---|---|---|
+| `research_v3/otc/literature/v5/` | **최종** | 1,007 MiB, 593 파일 |
+| `research_v3/logs/v50_*` (8개) | **최종 원장·판단기록·채점** | 32 MiB |
+| `research_v3/otc/literature/{picos,searches,screening}/` | v4.0 문헌층. **수정·삭제 금지**(비교 기준) | 113 MiB |
+| `research_v3/logs/v40_run_report.json` | v4.0 원장. 폐기 트랙 기록 | — |
+| `research_v3/otc/{normalized,rules}/` | 허가원문 계층. **읽기만** | — |
+| `research_v3/otc/literature/screening_discarded_local3b/` | 로컬 파일럿 폐기물 | 6 MiB |
+| `research_v3/screening/`, `research_v3/human_review_minimal/` | 사람 판단 레거시. **v4/v5 체인에 넣지 말 것** | 31 MiB |
+| `research_v2/` | 구세대. 탐색 자료로만 | 390 MiB |
+
+## 3. 최종 수치만 모아 보기
+
+같은 이름의 지표가 두 연구에 다 있으므로 어느 연구 것인지 반드시 붙여 읽는다.
+
+| | 여형준 v4.0 | 권혁찬 v5.0 |
+|---|---|---|
+| 선별 단위 | 48,031 (레코드–질문) | 43,207 (논문–질문) |
+| 고유 논문 | 46,694 | 42,822 |
+| retain / deprioritize / uncertain | 3,374 / 44,597 / 60 | 7,875 / 34,965 / 367 |
+| 재판정 | 616 (1.3%) | 5,000 (11.6%) |
+| 근거 산출물 | 번들 1,899 · 핵심 75 · 규칙 34 | 하류 완료(`downstream: complete`) |
+| 사이트 | 배포됨 | 설계상 배포 없음 |
+| 채점 arm | 1,033행 (완료) | 894행 (완료) |
+| `agreement_vs_ai_reference` | 86.95% | 86.93% |
+| `sensitivity_vs_ai_reference` | 66.23% | 46.92% |
+| `specificity_vs_ai_reference` | 88.52% | 95.84% |
+| 파이프라인 전수 retain | **7.02%** | **18.23%** |
+| 채점자 설계기반 추정 | **15.33%** (CI 10.17~21.12) | **11.95%** |
+| 비 (채점자 ÷ 파이프라인) | **2.18배** (과소포함) | **0.66배** (과대포함) |
+
+**마지막 줄이 방향이 반대다.** 여형준 파이프라인은 덜 남기고, 권혁찬 파이프라인은 더 남긴다.
+따라서 과소포함을 공유 선별 설계의 성질로 일반화할 수 없다 —
+`HANDOFF_scoring_arm_comparability.md` §5가 사전지정한 세 번째 갈래에 해당한다.
+
+## 4. 왜 아무것도 지우지 않았는가
+
+1. **프로토콜이 금지한다.** 여형준 v4.0 §6은 v2/v3 산출물을 "읽기만 하고 절대 수정·삭제하지
+   않는다"고 정한다. 권혁찬 v5.0 §6도 v4.0 문헌층과 허가원문 계층에 같은 규정을 둔다.
+2. **되돌릴 수 없다.** 여형준 `etc/*` 백업은 git에 추적되지 않아 지우면 복구가 불가능하다.
+3. **출처 체인이 이름에 걸려 있다.** 여형준 원장은 297개 경로의 SHA-256을 기록하고 그중
+   296개가 `v40`을 포함한다. 이름을 바꾸거나 옮기면 체인이 끊기는데 원장은 재생성이 불가능하다.
+
+지우고 싶다면 **연구자가 직접** 판단할 항목은 아래 정도다. 어느 것도 최종 산출물이 아니지만
+전부 로컬 전용이라 삭제 후 복구가 안 된다.
+
+- 여형준 `etc/v30_backups`, `etc/preserved-thesis-backups`, `etc/root-wip-preserved` (각 1 MiB)
+- 권혁찬 `research_v3/otc/literature/screening_discarded_local3b` (6 MiB),
+  `research_v3/otc/literature/v5/etc/pycache-*` (10개 폴더)
+- 권혁찬 `research_v2/` (390 MiB) — 다만 구세대 계보 근거라 논문에서 인용하지 않을 것이
+  확실할 때만.
