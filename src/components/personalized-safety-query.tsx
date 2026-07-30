@@ -66,20 +66,39 @@ function splitLocator(locator: string) {
  * 어떤 문장이 어떤 논문에서 나왔다고 주장하지 않는다 — 이 요약은 데이터에서
  * 결정론적으로 만든 문장이고, 번호는 "아래 목록의 이 항목들"을 가리키는 표시다.
  */
-function CitationMarks({ count }: { count: number }) {
-  if (count <= 0) return null;
+function CitationMarks({ items }: { items: EvidenceItem[] }) {
+  if (items.length === 0) return null;
   return (
     <span className="ml-1 inline-flex flex-wrap gap-1 align-super">
-      {Array.from({ length: count }, (_, i) => i + 1).map((n) => (
-        <a
-          key={`mark-${n}`}
-          href={`#result-ref-${n}`}
-          aria-label={`${n}번 출처로 이동`}
-          className="rounded bg-blue-100 px-1 text-[0.62em] font-bold leading-4 text-blue-800 no-underline transition hover:bg-blue-200"
-        >
-          {n}
-        </a>
-      ))}
+      {items.map((item, index) => {
+        const n = index + 1;
+        return (
+          // 툴팁을 이 group 안에 두어야 커서를 번호에서 툴팁으로 옮기는 동안
+          // hover 가 끊기지 않는다. 예전 구현이 따로 처리하던 동작이다.
+          <span key={item.record_id} className="group/cite relative inline-block">
+            <a
+              href={`#result-ref-${n}`}
+              aria-label={`${n}번 출처: ${item.title}`}
+              className="rounded bg-blue-100 px-1 text-[0.62em] font-bold leading-4 text-blue-800 no-underline transition hover:bg-blue-200"
+            >
+              {n}
+            </a>
+            <span
+              role="tooltip"
+              className="pointer-events-none absolute left-1/2 top-full z-20 hidden w-64 -translate-x-1/2 pt-1.5 group-hover/cite:block group-focus-within/cite:block"
+            >
+              <span className="block rounded-lg border border-stone-200 bg-white p-3 text-left shadow-lg">
+                <span className="block text-xs font-bold leading-5 text-stone-950">
+                  {item.title}
+                </span>
+                <span className="mt-1 block text-[11px] leading-4 text-stone-500">
+                  {item.venue} · {item.year}
+                </span>
+              </span>
+            </span>
+          </span>
+        );
+      })}
     </span>
   );
 }
@@ -231,7 +250,7 @@ export function PersonalizedSafetyQuery() {
             </span>
             <p className="break-keep text-base font-semibold leading-7 text-stone-950 md:text-xl md:leading-9">
               {result.summary}
-              <CitationMarks count={result.evidence.length} />
+              <CitationMarks items={result.evidence} />
             </p>
             {result.unavailable_axes.length ? (
               <p className="text-xs leading-5 text-stone-500">

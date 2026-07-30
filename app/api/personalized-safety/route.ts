@@ -9,6 +9,7 @@ import {
   type AxisId,
   type SituationId,
 } from "@/src/lib/clinical-situations";
+import { joinMultiValue, splitMultiValue } from "@/src/lib/multi-value-input";
 
 // 이 라우트는 외부 모델을 호출하지 않는다. 같은 입력에 같은 근거 목록이 나와야
 // 논문이 주장하는 "결정론적 탐색 도구"가 성립하고, 예전 구현이 쓰던 요약 API 키는
@@ -65,6 +66,15 @@ function readField(value: unknown) {
   return trimmed.length > FIELD_MAX ? "" : trimmed;
 }
 
+/**
+ * 한 칸에 조건을 여러 개 적을 수 있다(예: "와파린, 아스피린").
+ * 축 적용 여부는 값이 아니라 입력 유무로 정해지므로 판정에는 영향이 없고,
+ * 화면에 되돌려 줄 때 구분자를 하나로 통일하고 중복만 제거한다.
+ */
+function normalizeMultiValue(value: string) {
+  return joinMultiValue(splitMultiValue(value));
+}
+
 /** 입력란이 실질적으로 비어 있는지. "없음", "모름"은 축을 적용하지 않는다. */
 function isBlank(value: string) {
   return !value || /^(없음|없어요|모름|모르겠어요|해당없음|-)$/.test(value);
@@ -106,11 +116,11 @@ export async function POST(req: Request) {
     );
 
   const inputs = {
-    age: readField(payload.age),
-    medication: readField(payload.medication),
-    dose: readField(payload.dose),
-    sex: readField(payload.sex),
-    condition: readField(payload.condition),
+    age: normalizeMultiValue(readField(payload.age)),
+    medication: normalizeMultiValue(readField(payload.medication)),
+    dose: normalizeMultiValue(readField(payload.dose)),
+    sex: normalizeMultiValue(readField(payload.sex)),
+    condition: normalizeMultiValue(readField(payload.condition)),
   };
 
   // 사용자가 채운 입력란만 축으로 바꾼다. 규칙 파일에 그 축이 없는 상황도 있으므로
