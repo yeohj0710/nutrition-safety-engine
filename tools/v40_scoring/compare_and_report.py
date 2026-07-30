@@ -211,6 +211,36 @@ def stratified_bootstrap(rows, weights, census_ids, draws=BOOTSTRAP_DRAWS):
     return out
 
 
+REQUIRED_RECEIPT_KEYS = (
+    "locked_at_utc",
+    "scored_labels_sha256",
+    "blinded_cards_sha256",
+    "scored_rows",
+    "truth_opened_before_lock",
+)
+
+
+def lock_block(receipt: dict) -> dict:
+    """잠금 영수증에서 증거 항목을 옮긴다.
+
+    키 이름을 잘못 짚으면 잠금 해시가 조용히 null 로 들어가고, 그 해시는
+    "봉인된 정답을 열기 전에 잠갔다"는 유일한 증거다. 그래서 없으면 즉시 멈춘다.
+    """
+    missing = [k for k in REQUIRED_RECEIPT_KEYS if receipt.get(k) is None]
+    if missing:
+        raise SystemExit(f"lock_receipt.json 에 필요한 키가 없다: {missing}")
+    if receipt["truth_opened_before_lock"] is not False:
+        raise SystemExit("truth_opened_before_lock 이 false 가 아니다. 대조를 진행할 수 없다.")
+    return {
+        "locked_at_utc": receipt["locked_at_utc"],
+        "scored_labels_sha256": receipt["scored_labels_sha256"],
+        "blinded_cards_sha256": receipt["blinded_cards_sha256"],
+        "scored_rows": receipt["scored_rows"],
+        "truth_opened_before_lock": receipt["truth_opened_before_lock"],
+        "round_files": len(receipt.get("round_files", [])),
+    }
+
+
 def layer_block(rows, weights, census_ids, label, run_bootstrap):
     tp, fp, fn, tn = weighted_confusion(rows, weights)
     block = {
@@ -326,12 +356,7 @@ def main() -> None:
         "positive_class": "retain",
         "negative_class": "deprioritize | uncertain",
         "naming_rule": "모든 지표는 비교 상대를 이름에 포함한다. 사람 gold standard는 존재하지 않는다.",
-        "lock": {
-            "locked_at_utc": receipt.get("locked_at_utc"),
-            "scored_labels_sha256": receipt.get("sha256"),
-            "truth_opened_before_lock": receipt.get("truth_opened_before_lock"),
-            "rows": receipt.get("rows"),
-        },
+        "lock": lock_block(receipt),
         "design": {k: v for k, v in design.items() if k != "strata"},
         "strata": strata,
         "ai_reference_population": AI_REFERENCE_POPULATION,

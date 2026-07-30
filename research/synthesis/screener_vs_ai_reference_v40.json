@@ -15,9 +15,11 @@
   "naming_rule": "모든 지표는 비교 상대를 이름에 포함한다. 사람 gold standard는 존재하지 않는다.",
   "lock": {
     "locked_at_utc": "2026-07-30T02:47:42.195065+00:00",
-    "scored_labels_sha256": null,
+    "scored_labels_sha256": "b3dbdd8c9db176d70e444f4c1e12dd3f9e5cb8e59be5d5945f4f2f5e20ee14ed",
+    "blinded_cards_sha256": "d01bcb4ecfb8b3f6d87d4f1071ea64509cf48a96034154befa8eb6857e284ec8",
+    "scored_rows": 1033,
     "truth_opened_before_lock": false,
-    "rows": null
+    "round_files": 38
   },
   "design": {
     "seed": "20260729",
