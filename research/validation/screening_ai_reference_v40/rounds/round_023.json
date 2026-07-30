@@ -1,0 +1,245 @@
+{
+  "round": 23,
+  "judgments": [
+    {
+      "record_id": "pubmed:37723033",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "항문질환 수술 후 진통에 대한 이압요법 메타분석 서신. 초록 없음. 노출이 이압요법이고 문헌 유형이 Letter."
+    },
+    {
+      "record_id": "pubmed:36372696",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "중국 임신부 1,300명의 엽산 보충과 임신성 당뇨 U자형 연관 환자대조연구. 보충 용량·기간이 노출이고 800 μg/일 이상 적정기간 복용군에서 위험 188% 증가라는 고용량 위해 신호가 명확."
+    },
+    {
+      "record_id": "pubmed:35068807",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "Tinospora 속에 의한 개연성 약물유발 간손상 증례. 초록 없음. 제목만으로 간손상 P·생약 I·간손상 O가 모두 확인되고 문헌 유형이 Journal Article이라 배제 대상이 아님."
+    },
+    {
+      "record_id": "pubmed:35470909",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "관동맥우회술 비타민 D 부족 환자 196명의 수술 5일 전 경구 비타민 D3 600,000 IU 무작위 시험. 수술 P와 고용량 보충 I가 명확하고 결과가 수술 후 심방세동 발생·중환자실·재원기간."
+    },
+    {
+      "record_id": "pubmed:37814735",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "세파졸린 유발 응고장애에 의한 두개내출혈 감염성 심내막염 증례. 와파린 P와 INR 상승·출혈 O는 명확하나 노출이 처방 항생제이고 비타민 K는 역전용."
+    },
+    {
+      "record_id": "pubmed:36897216",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "유지혈액투석 환자의 부갑상선 칼슘 감지 설정점 이동 가능성 서신. 초록 없음. 문헌 유형이 Letter뿐."
+    },
+    {
+      "record_id": "pubmed:35301401",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "비타민 D가 전자간증 태반 LAT1 수송체를 자극한다는 기전 연구. HTR-8/SVneo 세포 실험 중심이고 노출이 세포에 처리한 1,25(OH)2D3, 결과가 발현·mTOR 신호."
+    },
+    {
+      "record_id": "pubmed:38702162",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "만성 내경동맥 폐색 15명의 두개외-두개내 우회술 임상분석. 수술 P와 이상반응 O는 있으나 노출이 수술 기법."
+    },
+    {
+      "record_id": "pubmed:39106982",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "비뇨기 수술 수술 전후 통증관리에 침의 통합적 가능성 서신. 초록 없음. 노출이 침."
+    },
+    {
+      "record_id": "pubmed:38328391",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "말기 비투석 만성콩팥병 2,076명의 경구영양보충제 처방과 환자보고 증상 부담. CKD P와 보충 I가 명확하고 결과가 증상 점수·알부민·인·중성호중구비. 성향점수 짝지음에서 보충과 증상 변화 간 연관이 없었다는 음성 결과."
+    },
+    {
+      "record_id": "pubmed:38510368",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "고령 대퇴골 근위부 골절 환자의 항응고 관리 개요. 수술 전후 항응고 P와 출혈·수혈 O는 명확하나 노출이 처방 항응고제이고 비타민 K는 INR 역전용."
+    },
+    {
+      "record_id": "pubmed:34966997",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "off_topic"],
+      "confidence": "high",
+      "note": "CT 3차원 재건 기반 내측 복사뼈 형태 분류 373명. 해부·영상 연구로 보충 노출과 안전성 결과가 없음."
+    },
+    {
+      "record_id": "pubmed:35517810",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "건강인 41명에서 은행잎 추출물 EGb 761 240 mg 단회·반복 투여가 리바록사반 약동·약력학에 영향하지 않음. 항응고제 노출 P, 생약 I, 항Xa 활성과 출혈 관련 이상사건 O가 모두 명시적인 상호작용 시험."
+    },
+    {
+      "record_id": "pubmed:38821225",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "임신 중 엽산 보충의 최신 근거와 논쟁 서신. 초록 없음. 문헌 유형이 Letter뿐."
+    },
+    {
+      "record_id": "pubmed:38456342",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "칼슘이 전자간증을 예방하는가. 초록 없음. 제목·MeSH로 임신·전자간증 P와 칼슘 I가 확인되고 문헌 유형이 Journal Article."
+    },
+    {
+      "record_id": "pubmed:37874581",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "uncertain",
+      "reason_codes": ["population", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "ST 상승 심근경색에 대한 한의학. 초록 없음. 관동맥중재술이라는 침습적 시술 P는 MeSH에서 확인되나 한의학이 약물인지 시술인지, 결과가 무엇인지 판단 정보가 없음."
+    },
+    {
+      "record_id": "pubmed:35035159",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "생약 지식에 대한 역방향 브리지 교육과정 필요성. 초록 없음. 의학교육 논평으로 대상 집단·결과가 없음."
+    },
+    {
+      "record_id": "pubmed:20301300",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "허친슨-길포드 조기노화증후군 임상요약. 전신마취·삽관 시 극도의 주의와 고관절 재건·경카테터 판막치환이 기술되어 수술 P가 성립하고, 회피 대상에 '골외 칼슘 침착 때문에 칼슘 보충'이 명시되어 보충제 위해가 직접적."
+    },
+    {
+      "record_id": "pubmed:34772600",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "약물유발 간손상의 병태생리·역학·임상양상·관리 종설. '흔히 쓰는 약물에 더해 허브·식이보충제가 간손상을 일으킬 수 있다'고 명시하고 결과가 간효소 상승부터 간부전·이식·사망."
+    },
+    {
+      "record_id": "pubmed:38244861",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "신생아 뇌 철 상태의 혈청 측정 한계 사설. 초록 없음. 문헌 유형이 Editorial·Comment뿐."
+    },
+    {
+      "record_id": "pubmed:41568437",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "피네레논의 당뇨병성 신장질환 알부민뇨 개선과 MR-TRPC 신호. 당뇨 생쥐와 배양 족세포 전용이고 노출이 처방약."
+    },
+    {
+      "record_id": "pubmed:39846467",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "임신부 비타민 B12 결핍의 생화학적 근거와 보충 접근 서신. 초록 없음. 문헌 유형이 Letter뿐."
+    },
+    {
+      "record_id": "pubmed:33882494",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "중국 7개 센터 복막투석 1,004명의 저마그네슘혈증과 사망률. 투석 P와 전체·심혈관·감염 관련 사망 O가 명확하고 혈청 마그네슘 0.7 mmol/L 미만에서 HR 1.58. 노출은 혈중 무기질 상태."
+    },
+    {
+      "record_id": "pubmed:42497478",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "실리마린 경구 전달용 실리카 산화환원 나노입자. RAW264.7 세포와 사염화탄소 간섬유화 생쥐 전용."
+    },
+    {
+      "record_id": "pubmed:37307422",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "내시경 환자의 음악치료 예비연구. 초록 없음. 노출이 음악치료."
+    },
+    {
+      "record_id": "pubmed:36280147",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "캐나다 대규모 임신 코호트의 요오드 상태 서신. 초록 없음. 문헌 유형이 Letter뿐."
+    },
+    {
+      "record_id": "pubmed:38728008",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "혈액투석 환자의 식이 항산화제와 심혈관 사건 종설. 투석 P와 천연 항산화 보충 I가 명확하고 결과가 심혈관 합병증·염증·산화스트레스."
+    },
+    {
+      "record_id": "pubmed:39998074",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "만성콩팥병 700명의 식이섬유 보충과 요독소·염증 체계적고찰·메타분석 21편. CKD P와 6~50 g/일 보충 I가 명확하고 결과가 p-크레실황산·인독실황산·BUN·IL-6·TNF-α 검사치."
+    },
+    {
+      "record_id": "pubmed:42501513",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "로즈마리 유래 카르노식산·카르노솔의 지질매개체 전환 촉진. 사람 단핵구 유래 대식세포와 간경변 환자 복강 대식세포 시험관 실험 전용이고 결과가 매개체 프로파일."
+    },
+    {
+      "record_id": "pubmed:33879035",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "사람 VKOR와 아세트아미노펜·NAPQI·N-아세틸시스테인 상호작용의 전산 기전. 항응고 환자 INR 상승 우려가 동기이지만 도킹·분자동역학 전산 분석 전용이고 노출이 처방·보조 치료약."
+    }
+  ]
+}

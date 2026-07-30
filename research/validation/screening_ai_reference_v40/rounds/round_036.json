@@ -1,0 +1,245 @@
+{
+  "round": 36,
+  "judgments": [
+    {
+      "record_id": "pubmed:35475975",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "자궁내막증 통증 338명의 한약 탕제 3~24개월 후향연구. 한약 I와 통증·중대 이상사건 없음이라는 O는 명확하나 수술은 진단 경로로만 등장하고 수술 전후 노출 집단이 아님. 명시적으로 수술 후를 대상으로 한 pubmed:38910886과 대조됨."
+    },
+    {
+      "record_id": "pubmed:37221121",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "코로나 유행기 모체 일광 노출 부족으로 중증 두개연화가 발생한 만삭 신생아 증례. 초록 없음. 모체 노출과 신생아 결과가 연결되고 MeSH에 비타민 D·비타민 D 결핍이 색인됨. 문헌 유형에 Case Reports가 포함됨."
+    },
+    {
+      "record_id": "pubmed:35636782",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "design_signal"],
+      "confidence": "medium",
+      "note": "방글라데시 전국 시장기반 복합 미량영양소 보충 사업의 저체중출생 영향 평가 프로토콜. 임신 P·복합 미량영양소 보충 I·저체중출생 O가 모두 명확하나 프로토콜이라 결과가 아직 없음. pubmed:35363181과 같은 처리."
+    },
+    {
+      "record_id": "pubmed:34955299",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "미숙아의 칼슘·인 정맥 투여, 어느 실무가 더 나은가. 초록 없음. 대상이 미숙아 직접 투여이고 문헌 유형이 Editorial."
+    },
+    {
+      "record_id": "pubmed:42498088",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "대사증후군 환자의 꿀풀과 식물과 신체계측 지표 체계적고찰·메타분석 20 RCT 2,445명. 비알코올 지방간질환이 포함 조건 중 하나로 등장하고 Salvia·Zataria 보충 I는 명확하나 결과가 체질량지수·허리둘레 등 신체계측뿐이고 간 관련·안전성 결과가 없음."
+    },
+    {
+      "record_id": "pubmed:32842782",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "생약 성분 레인의 급성·아만성 독성과 간독성 기전, 쿤밍 마우스. 고용량군 노화 마우스 55.5% 사망과 AST·ALT 상승이라는 강한 위해 신호지만 동물 실험 전용."
+    },
+    {
+      "record_id": "pubmed:35768119",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "대폐수술 64명의 수술 전후 영양 보충 무작위 실행가능성 연구. 수술 P와 탄수화물 음료·단백 보충 I는 교과서적으로 맞지만 측정 결과가 모집률·순응도 97%·설문 회수율이라는 실행가능성 지표이고 임상 효능은 후속 과제로 유보됨. 선례 19 적용. 판정이 갈릴 수 있는 경계."
+    },
+    {
+      "record_id": "pubmed:34962672",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "임신 3분기 콜린 480 대 930 mg/일 무작위 급식시험의 7년 추적. 임신 P와 보충 I가 명확하고 결과가 7세 아동의 지속주의력 검사 성적. 권장섭취량 수준군이 두 배 용량군보다 열등했다는 용량 관련 소견."
+    },
+    {
+      "record_id": "pubmed:36470163",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "모체 혈청 25-수산화비타민 D와 자녀 자폐스펙트럼·주의력결핍과잉행동장애 위험 체계적고찰·용량반응 메타분석. 초록 없음. 제목만으로 모체 P·비타민 D 상태 I·신경발달 O가 확인됨."
+    },
+    {
+      "record_id": "pubmed:35458199",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "진행성 만성콩팥병 60명의 저단백식과 프로바이오틱 병용 이중맹검 위약대조 무작위시험(ProLowCKD). 만성콩팥병 P와 Bifidobacterium longum·Lactobacillus reuteri 보충 I가 명확하고 결과가 인독실 설페이트 등 미생물 유래 요독소와 지질·Lp-PLA2, 강압제·이뇨제 감량."
+    },
+    {
+      "record_id": "pubmed:35718375",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "50년 전 소아과학회지: 만삭아의 철 보충. 초록 없음. 대상이 영아 직접 보충으로 임신 중 모체 노출이 아님."
+    },
+    {
+      "record_id": "pubmed:34992004",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "모체 비타민 D 결핍으로 인한 신생아 저칼슘혈증 증례와 보충 재검토. 초록 없음. 제목·MeSH로 모체 결핍 P·비타민 D 보충 I·신생아 저칼슘혈증 O가 확인되고 문헌 유형에 Case Reports가 포함됨."
+    },
+    {
+      "record_id": "pubmed:34845313",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "소아 혈액투석 60명의 비타민 K2(MK-7) 100 µg와 천연 비타민 D 10 µg 4개월 무작위 대조시험. 투석 P와 보충 I가 명확하고 목적에 유효성·안전성이 명시되며 결과가 dp-uc-MGP·uc-OC·FGF23 석회화 조절인자. HRS2는 소아 배제 조항이 없음."
+    },
+    {
+      "record_id": "pubmed:36839232",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "다양한 인구집단 임신부 20명의 Lactobacillus plantarum 299v 이중맹검 위약대조 실행가능성 연구. 임신 P와 프로바이오틱·철 함유 산전비타민 I가 명확하고 결과에 모체 혈액·철 지표 감소 완화와 임신 중 내약성이 포함됨. 실행가능성 연구지만 pubmed:35768119과 달리 예비 효능·내약성을 보고(선례 15)."
+    },
+    {
+      "record_id": "pubmed:41502198",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal"],
+      "confidence": "medium",
+      "note": "원위 신세뇨관 산증·전신루푸스·항인지질증후군 동반 임신 23세 여성 증례. 칼륨·중탄산 보충이 임신 전반에 필요했고 37주 제왕절개로 건강한 출생. 제왕절개가 수술 축을 제공하지만 보충이 수술 전후에 특정되지 않아 confidence는 medium."
+    },
+    {
+      "record_id": "pubmed:36503533",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "임신부터 소아기까지 신경·인지 기능에 대한 비타민 B12의 중요성. 초록 없음. 제목·MeSH로 임신 P·비타민 B12 I·인지 기능 O가 확인되고 문헌 유형이 Journal Article."
+    },
+    {
+      "record_id": "pubmed:34510284",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "만성 혈액투석 24명이 정맥 철에서 경구 수크로솜 철 주당 90 mg으로 전환한 3개월 관찰. 투석 P와 경구 철 보충 I가 명확하고 결과가 헤모글로빈 유지·페리틴·트랜스페린 포화도와 단백 카보닐·다이타이로신 등 산화스트레스 지표, 안전성."
+    },
+    {
+      "record_id": "pubmed:36096139",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "human_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "구개구순 수술 후 55명의 커큐민 패치 보조 진통 실용시험. 수술 후 통증 O는 명확하나 대상이 36개월 이하 소아 전용이라 명세 4절 HRS1에 걸리고 노출도 경피 패치라 선례 17에 해당."
+    },
+    {
+      "record_id": "pubmed:35180026",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "design_signal"],
+      "confidence": "medium",
+      "note": "투석 만성콩팥병 고인산혈증의 인결합제 안전성 종설. 투석 P가 명확하고 칼슘 기반 결합제의 칼슘 과부하 위험, 구연산철의 철 과부하 감시 필요가 안전성 결과로 명시됨. 인결합제가 처방 치료제라는 점에서 선례 18과 경합하나 칼슘·철 무기질 과부하라는 HRS2 축을 직접 다룸."
+    },
+    {
+      "record_id": "pubmed:32912100",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "FMR1 결손 랫 자폐 모델의 임신·수유기 오메가-3 보충. 스프라그-돌리 랫 실험 전용."
+    },
+    {
+      "record_id": "pubmed:20301298",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "off_topic"],
+      "confidence": "medium",
+      "note": "디스트로핀병 GeneReviews. 골밀도 개선을 위한 비타민 D·칼슘 풍부 식이 권고가 있으나 임신은 유전상담과 산전검사 문맥에만 등장. pubmed:20301288·pubmed:20301300(HRS3)과 같은 처리."
+    },
+    {
+      "record_id": "pubmed:39641572",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "off_topic"],
+      "confidence": "high",
+      "note": "MIMIC-IV 중증 자가면역질환 1,054명의 이온화/총 칼슘 비와 급성콩팥손상. 대상이 급성콩팥손상이고 노출이 검사 지표 비율. 선례 11·16 적용."
+    },
+    {
+      "record_id": "pubmed:35315347",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "의료기관의 모유수유 지원 논평. 초록 없음. 문헌 유형에 Comment가 있고 보충 노출이 특정되지 않음."
+    },
+    {
+      "record_id": "pubmed:35152746",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "코로나 유행기 와파린 환자의 INR 자가검사 프로그램 검토. 와파린 복용 P와 치료범위내 시간 O는 명확하나 노출이 현장검사 기기."
+    },
+    {
+      "record_id": "pubmed:41079599",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "만성콩팥병 환자의 순수 적혈구 무형성증을 록사두스타트로 치료한 증례. 만성콩팥병 P와 헤모글로빈 O는 명확하나 노출이 처방약이고 철 보충은 이전 실패 치료 이력으로만 등장. 선례 12 적용."
+    },
+    {
+      "record_id": "pubmed:34586772",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "임신 초기·중기·말기 혈청 비타민 D와 전자간증 위험. 초록 없음. 제목·MeSH로 임신 P·비타민 D 상태 I·전자간증 O가 확인되고 문헌 유형이 Journal Article."
+    },
+    {
+      "record_id": "pubmed:38304792",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "off_topic"],
+      "confidence": "medium",
+      "note": "약용 곤충 구향충의 현대 약리 연구와 응용 종설. 전통 약재 I는 확인되나 대상 집단이 없고 항응고 작용이 약리 활성 목록의 한 항목으로만 언급됨. 검색어 유래."
+    },
+    {
+      "record_id": "pubmed:39887107",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "치아를 이용한 태생기·출생후 비타민 D 결핍의 고병리학적 분석. 초록 없음. 대상이 고고학적 유해로 살아있는 임상 집단이 아님."
+    },
+    {
+      "record_id": "pubmed:39270698",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "면역매개 염증질환 피부궤양의 예리절제 시 임상 최면과 통증 관리 서신. 초록 없음. 노출이 최면요법."
+    },
+    {
+      "record_id": "pubmed:31364414",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "뇌 동정맥기형 색전술 후 리피오돌이 측뇌실로 이동한 증례. 시술 P와 화학적 수막염 O는 명확하나 노출이 색전 물질과 조영제."
+    }
+  ]
+}

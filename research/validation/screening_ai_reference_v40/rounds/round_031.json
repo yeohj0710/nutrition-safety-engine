@@ -1,0 +1,245 @@
+{
+  "round": 31,
+  "judgments": [
+    {
+      "record_id": "pubmed:35260147",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "삼칠초(토삼칠) 복용 1년 6개월 후 부분 간절제 뒤 급성 간부실과 2도 간성뇌증이 발생한 63세 여성 증례와 문헌고찰. RUCAM 6점으로 매우 높은 인과성. 간질환 P·한약 I·급성간부전 O가 모두 명확."
+    },
+    {
+      "record_id": "pubmed:36404469",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "off_topic"],
+      "confidence": "medium",
+      "note": "신질환 환자·대조군 85명의 혈장 유리 25-수산화비타민 D3 분획과 청소율. 만성콩팥병·투석 P는 명확하나 노출이 중수소 표지 추적자 정맥 투여이고 결과가 청소율·결합단백 반수체라는 약동학 지표. pubmed:38016814과 같은 처리."
+    },
+    {
+      "record_id": "pubmed:38127436",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "고령 관상동맥질환·심방세동 환자의 뇌심통 한약과 와파린 병용. 초록 없음. 제목·MeSH상 와파린 P·한약 I·치료 결과 O가 HRS5 축에 정확히 맞지만 문헌 유형이 Letter 단독. 판정이 갈릴 수 있는 경계."
+    },
+    {
+      "record_id": "pubmed:34001663",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "신이식 환자의 칼시페디올 투여로 칼시필락시스가 완전 소실된 증례. 초록 없음. 제목만으로 신질환 P·칼시페디올 I·병변 소실 O가 확인됨. 칼시페디올은 25-수산화 비타민 D 자체여서 파리칼시톨 같은 합성 유사체(선례 18)와 구분."
+    },
+    {
+      "record_id": "pubmed:42265663",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "off_topic"],
+      "confidence": "high",
+      "note": "혈액투석 환자 35명의 다층 윤리적 딜레마 모형 질적연구. 투석 P는 있으나 주제가 의료윤리. pubmed:41568849과 같은 처리."
+    },
+    {
+      "record_id": "pubmed:36321995",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "아쉬와간다 관련 급성 간부전으로 간이식이 필요했던 사례. 초록 없음. 보충제 I와 이식 O는 확인되나 문헌 유형이 Letter 단독이고 수술은 손상의 결과 쪽에 있음."
+    },
+    {
+      "record_id": "pubmed:40619705",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "손 재건수술 76명의 광귤 정유와 통증·혈압 이중맹검 무작위시험. 수술 P와 통증·혈압 O는 명확하나 노출이 아로마테라피 흡입이고 섭취 보충이 아님. 선례 17의 비섭취 경로 확장."
+    },
+    {
+      "record_id": "pubmed:38732502",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "비투석 만성콩팥병 1~5기 38명의 경구 리포솜 철 6개월 예비연구. 만성콩팥병 P와 경구 철 보충 I가 명확하고 결과가 트랜스페린 포화도·페리틴·헤모글로빈, 안전성 집단에서 부작용으로 4명이 중단. 서론에 경구 철의 위장 이상반응이 명시됨."
+    },
+    {
+      "record_id": "pubmed:36038343",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "약물유발 간손상 498례의 임상 특성·예후 분석. 원인 의심 약물 중 한약이 56.43%로 최다이고 결론이 허브·식이보충제를 주요 원인으로 지목. 결과가 ALT·AST·총빌리루빈·중증도·섬유화도와 GGT·INR의 예후 예측력. HRS4 대표 레코드."
+    },
+    {
+      "record_id": "pubmed:37419168",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "임신 중 망상적혈구 헤모글로빈 추이 서신. 초록 없음. 노출이 검사 지표이고 문헌 유형이 Letter."
+    },
+    {
+      "record_id": "pubmed:42111807",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "대사성 지방간질환 동반 만성 B형간염 447명의 유의한 간염증 예측인자. 노출이 체질량지수·간섬유화도·HBV DNA이고 간생검은 진단 목적이라 수술 전후 노출이 아님."
+    },
+    {
+      "record_id": "pubmed:41644022",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "조혈자극제 저반응 만성 혈액투석 환자의 L-카르니틴 무작위 이중맹검 위약대조 2상. 투석 P와 카르니틴 보충 I가 명확하고 결과가 에리스로포이에틴 저항지수 25% 감소 대 위약 3%. 정맥 경로지만 영양소 보충이라 pubmed:34609004·pubmed:34059194과 같은 처리."
+    },
+    {
+      "record_id": "pubmed:34844500",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "off_topic"],
+      "confidence": "medium",
+      "note": "제왕절개 분만 1,470명의 산후 빈혈 경구 철 처방 실태 후향 검토. 산후 P와 경구 철 보충 I는 명확하나 결과가 퇴원 시 처방 여부와 연관 인자라는 처방 실태 지표. 선례 19 적용."
+    },
+    {
+      "record_id": "pubmed:34562018",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "베타지중해빈혈 경증 동반 철결핍빈혈 임신부의 철 대사 지표 비교와 4주 철 보충. 제목 자체가 임신 중 베타지중해빈혈 경증에서 철 보충의 안전성을 다루고 헵시딘·페리틴으로 철 과부하 위험을 평가. 유전적 고위험 하위군의 보충 안전성을 직접 검정한 HRS3 대표 레코드."
+    },
+    {
+      "record_id": "pubmed:30000845",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal"],
+      "confidence": "medium",
+      "note": "생강 LactMed 단행. 보충제 I가 명확하고 본문에 '생강은 와파린과 함께 복용하면 출혈 위험을 증가시킬 수 있다'가 명시되어 항응고 병용 위해가 직접 기술됨. 단행의 주 대상은 수유부라 P 축은 간접적."
+    },
+    {
+      "record_id": "pubmed:38384164",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "요추협착 단측 양문 내시경수술 51명의 잠재 실혈 위험인자. 수술 P와 실혈 O는 명확하나 노출이 프로트롬빈시간·조직 두께·당뇨 등 환자 인자."
+    },
+    {
+      "record_id": "pubmed:35156909",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "만성콩팥병 빈혈의 페루목시톨 체계적고찰·메타분석 7편 3,315명. 만성콩팥병 P가 명확하고 비교 대상이 기존 경구 철 보충 제형이라 철 보충이 직접 범위에 들어오며 결과에 치료 관련 이상사건 발생 감소(-0.24)가 포함됨."
+    },
+    {
+      "record_id": "pubmed:39463357",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "임신 전후 주요 미량영양소 보충 전문가 합의(2024). 초록 없음. 제목·MeSH로 임신 P·미량영양소·엽산 보충 I·임신 결과·합병증 O가 확인되고 Consensus Statement는 명세 3.4의 배제 유형이 아님."
+    },
+    {
+      "record_id": "pubmed:33745458",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "인도 전국가족보건조사 2회차 자료, 아동 148,019명·205,593명 대상 임신부 영양보충 사업과 저체중출생·신생아 사망. 임신 P와 보충 I가 명확하고 결과가 극저·초저·저체중출생과 0~27일 신생아 사망(OR 0.67). 이용률만 본 pubmed:36632272과 달리 경성 임상 결과를 봄."
+    },
+    {
+      "record_id": "pubmed:35234063",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "쌍단캡슐과 소라페닙 병용의 간세포암 억제, PI3K/Akt/mTORC1 경로. 소라페닙 단독의 AST 상승 간독성을 병용이 완화했다는 상호작용 결과가 있으나 디에틸니트로사민 유발 마우스와 HepG2 이식 모델 전용."
+    },
+    {
+      "record_id": "pubmed:41480354",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "중국 항저우 임신부 290명 전향 출생코호트의 모체 요오드 수준과 자녀 결과. 임신 P가 명확하고 1·2·3분기 요중 요오드 농도가 측정 노출, 결과가 자발 조산·부당경량아·출생체중과 18개월까지의 성장. 선례 4 적용."
+    },
+    {
+      "record_id": "pubmed:40044430",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "2024년 약물유발 간손상 분야 연구 진전 종설. 초록 없음. 제목의 약물유발 간손상 P와 MeSH의 Drugs, Chinese Herbal I가 확인되고 문헌 유형이 Journal Article·Review."
+    },
+    {
+      "record_id": "pubmed:36788750",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "모체 고용량 DHA 보충과 29주 미만 출생아의 신경발달에 대한 EBNEO 논평. 초록 없음. 제목·MeSH상 모체 P·DHA 보충 I·신경발달 O가 확인되고 문헌 유형 필드가 Journal Article. 실질은 논평이라 유형 판정이 갈릴 수 있는 경계. pubmed:39150621과 같은 처리."
+    },
+    {
+      "record_id": "pubmed:38548583",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "헤파린 유발 혈소판감소증 환자의 구연산 항응고 온라인 혈액여과투석 2례. 초록 없음. 투석 P는 명확하나 노출이 투석액 조성과 구연산 항응고이고 보충 노출이 아님."
+    },
+    {
+      "record_id": "pubmed:35913551",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "요로결석 내시경수술 환자의 구연산칼륨·마그네슘·프로바이오틱 보충과 결정뇨 감소 예비연구. 초록 없음. 제목상 수술 P·보충 I·결정뇨 O가 모두 맞지만 문헌 유형이 Letter 단독. 판정이 갈릴 수 있는 경계."
+    },
+    {
+      "record_id": "pubmed:36704595",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "주 2회 혈액투석 60명(채식 40명)의 인 섭취와 투석 제거. 투석 P와 고인산혈증 O는 명확하나 주 노출이 식품섭취빈도조사 기반 식이 인 섭취량이라 명세 4절 HRS2의 명시적 배제와 선례 13에 해당. 활성 비타민 D 제제 복용 40%는 배경 기술."
+    },
+    {
+      "record_id": "pubmed:35956291",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "off_topic"],
+      "confidence": "medium",
+      "note": "방글라데시 농촌 2,572명의 산전 철·엽산 보충 기저조사. 임신 P와 철엽산 보충 I는 명확하나 결과가 수령·복용 정수와 순응도 보정 유효 커버리지라는 사업 지표. 경성 결과를 본 pubmed:33745458과 대조됨."
+    },
+    {
+      "record_id": "pubmed:39716493",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "off_topic"],
+      "confidence": "high",
+      "note": "칼슘 의존성 칼륨채널 KCNN4의 PMCA4b 상호작용 조절 기전, HEK293·K562·적혈구. 분자생물학 연구이고 MeSH의 Calcium은 세포내 이온. 검색어 오탐."
+    },
+    {
+      "record_id": "pubmed:37039193",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "미숙아 망막증 발생아의 비타민 D 수준과 재태연령·출생체중 상관 서신. 초록 없음. 대상이 신생아이고 문헌 유형이 Letter."
+    },
+    {
+      "record_id": "pubmed:36774110",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "임신성 당뇨 산모의 신생아 98명 비타민 D 상태와 결핍아 16명의 400 대 1,000 IU 보충 무작위시험. 임신성 당뇨라는 모체 조건과 신생아 상태를 연결하고 결론이 임신 가능 여성의 종합비타민 복용 권고를 명시. 무작위 배정 자체는 영아 투여라 P 축이 부분적."
+    }
+  ]
+}

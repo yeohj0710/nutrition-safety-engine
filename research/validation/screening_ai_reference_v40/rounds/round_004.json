@@ -1,0 +1,181 @@
+{
+  "round": 4,
+  "judgments": [
+    {
+      "record_id": "pubmed:37964024",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "대장암 근치수술 생존자 40명의 한의학 결합 집단심리치료 1상. 수술 후 집단 P는 충족하나 중재가 생활습관 코칭·자가 이압·마음챙김이라 보충 섭취 아님, 결과도 불안·우울·미생물군 효능."
+    },
+    {
+      "record_id": "pubmed:40782390",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic"],
+      "confidence": "high",
+      "note": "이탈리아 Aglianico 포도의 원소 조성과 토양 특성 관계. 농식품 화학으로 대상자·보충 노출·안전성 결과가 모두 없음."
+    },
+    {
+      "record_id": "pubmed:40513315",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "중국 임신부의 혈청 금속 혼합 노출과 임신성 당뇨 위험, 대사체 매개분석. 임신 P와 GDM O 명확. 노출이 혈청 금속 수준이라 보충 섭취는 아니나 철·몰리브덴을 필수 영양소로 논의해 I가 부정되지 않음."
+    },
+    {
+      "record_id": "pubmed:38050247",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "소간방의 약물유발 간손상 기전 네트워크 약리학·분자도킹. 데이터베이스와 도킹만 쓴 전산 연구라 사람·동물 근거가 없고 결과도 표적·경로."
+    },
+    {
+      "record_id": "pubmed:39538043",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "비만수술 후 임신부의 영양보충 필요성 사설. 초록 없음. 제목상 임신 P와 영양보충 I는 확인되나 문헌 유형이 Editorial뿐이라 명세 3.4에 따라 deprioritize."
+    },
+    {
+      "record_id": "pubmed:41940581",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "세대 간 무용 프로그램 참여 경험 질적 근거통합. 수술·보충제와 전혀 무관."
+    },
+    {
+      "record_id": "pubmed:34984493",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "비타민 C 첨가 자가 필러의 안면 볼륨 복원 서신. 초록 없음. 비타민이 국소 필러 성분으로 쓰였고 문헌 유형이 Letter·Comment뿐."
+    },
+    {
+      "record_id": "pubmed:37735625",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "PCI·CABG 환자 872명 대상 비타민 C 메타분석(7개 대조시험). 시술 전 정맥 투여 1~16 g/일로 수술 전후 P와 비타민 노출 I가 명확하고, 트로포닌·CKMB는 명세 3.3의 검사치 결과. 효과 방향은 유익하나 영양소-검사치 노출결과 쌍이 성립."
+    },
+    {
+      "record_id": "pubmed:36433678",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "비판막성 심방세동에서 DOAC의 임상약리·유효성·안전성 체계적고찰. 항응고 환자 P와 출혈 O는 충족하나 노출이 처방의약품이라 I 부정. Vitamin K는 VKA 약물군 명칭."
+    },
+    {
+      "record_id": "pubmed:37137432",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "외상성 뇌손상에서 간의 대사 관문 역할과 T4의 보호작용. 식이 과당과 갑상선호르몬 투여이고 실험이 동물·일차 간세포 전용, 수술 전후 상황 아님."
+    },
+    {
+      "record_id": "pubmed:39843162",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic", "animal_term_present"],
+      "confidence": "high",
+      "note": "복합 그래핀 지지체의 줄기세포 골분화 유도. 재료과학 시험관·동물 연구로 임신·보충제와 무관. HRS3 유입은 제대(umbilical cord) 용어로 보임."
+    },
+    {
+      "record_id": "pubmed:38303916",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "심장 아밀로이드증·심방세동 환자 1,579명의 DOAC 대 VKA 체계적고찰. 주요출혈 O는 충족하나 노출이 처방 항응고제라 I 부정."
+    },
+    {
+      "record_id": "pubmed:37427935",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "항문수술 후 통증에 대한 혈위 매침과 다림질요법. 수술 후 P는 충족하나 노출이 침·온열요법이라 보충제 I 부정."
+    },
+    {
+      "record_id": "pubmed:38614946",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "수술 신생아 21명의 대두 지질유탁액 감량과 비경구영양 관련 담즙정체 RCT. 영양 노출과 담즙정체 안전성 결과가 뚜렷하나 임신 중 노출과 연결되지 않은 신생아 보충 연구라 명세 4절 HRS3 단서에 해당."
+    },
+    {
+      "record_id": "pubmed:37709183",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "천연 약초의 TRPV1·TRPA1 표적화로 수술 후 장폐색 대응 종설. 수술 후 P와 캡사이신·알리신 I는 충족하나 초록의 결과가 장운동 촉진·통증 완화 효능과 기전 전용."
+    },
+    {
+      "record_id": "pubmed:37042787",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "임신 후기·수유기 모돈 60마리와 자돈의 발효 대나무 섬유 급여. 식이보충 노출과 염증 지표는 있으나 돼지 전용."
+    },
+    {
+      "record_id": "pubmed:36162415",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "태아기 오피오이드 노출과 영아 미생물군 변화 소식기사. 초록 없음. 노출이 오피오이드이고 문헌 유형이 News뿐."
+    },
+    {
+      "record_id": "pubmed:39559722",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "인도 임신부 200명 전향코호트, 임신 중 빈혈·미량영양소 상태와 출생 결과. 임신 P와 저출생체중·재태기간 단축 O 명확. 노출이 페리틴·B12·엽산 혈중 상태라 I는 불명확하나 부정되지 않음."
+    },
+    {
+      "record_id": "pubmed:41871664",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "베트남 아동 831명의 10년 헤모글로빈 궤적과 10~11세 인지·학업. 임신 전 미량영양소 보충 시험(PRECONCEPT) 코호트지만 분석 노출은 아동 헤모글로빈이고 보충은 보정 공변량, 결과 시점도 산모·태아·신생아 범위를 벗어남."
+    },
+    {
+      "record_id": "pubmed:41724295",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "키토산-칼슘-심바스타틴 지지체의 염증 조건 골재생. SAOS-2 세포와 Wistar 랫드 전용, 임신·보충제와 무관."
+    },
+    {
+      "record_id": "pubmed:40293607",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "와파린 복용 환자 10명 검체로 에미시주맙 병용 응고능 시험관 평가. 항응고 환자 P는 충족하나 노출이 단클론항체와 와파린이라 보충제 I 부정. 비타민 K는 기전 서술."
+    },
+    {
+      "record_id": "pubmed:35698810",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "디클로페낙의 육계 간독성 프로테오믹스. 육계 20마리 전용이고 노출이 처방 NSAID라 보충제 I 부정. MeSH의 Vitamin A는 레티놀 대사 경로 맥락."
+    }
+  ]
+}

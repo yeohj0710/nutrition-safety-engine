@@ -1,0 +1,3213 @@
+{
+  "schema_version": "1.0.0",
+  "track": "v4.0",
+  "arm": "screening_ai_reference_v40",
+  "scorer": "claude_opus_5_single_scorer_no_subagents",
+  "reference_standard": "ai_reference_standard",
+  "human_reference_rows": 0,
+  "independent_blinding": false,
+  "independent_blinding_ai": true,
+  "release_ready": false,
+  "local_language_model_used": false,
+  "external_llm_api_used": false,
+  "positive_class": "retain",
+  "negative_class": "deprioritize | uncertain",
+  "naming_rule": "모든 지표는 비교 상대를 이름에 포함한다. 사람 gold standard는 존재하지 않는다.",
+  "lock": {
+    "locked_at_utc": "2026-07-30T02:47:42.195065+00:00",
+    "scored_labels_sha256": null,
+    "truth_opened_before_lock": false,
+    "rows": null
+  },
+  "design": {
+    "seed": "20260729",
+    "rank_function": "SHA-256(seed|question_id|record_id) 오름차순",
+    "per_question_worker_label_stratum": 36,
+    "partition_is_exhaustive": true,
+    "population_total": 48031,
+    "sample_total": 1033
+  },
+  "strata": {
+    "S1_worker_retain|HRS1_PERIOPERATIVE": {
+      "stratum_id": "S1_worker_retain|HRS1_PERIOPERATIVE",
+      "population_N": 603,
+      "sample_n": 36,
+      "census": false,
+      "weight": 16.75
+    },
+    "S1_worker_retain|HRS2_KIDNEY_DISEASE": {
+      "stratum_id": "S1_worker_retain|HRS2_KIDNEY_DISEASE",
+      "population_N": 491,
+      "sample_n": 36,
+      "census": false,
+      "weight": 13.63888888888889
+    },
+    "S1_worker_retain|HRS3_PREGNANCY": {
+      "stratum_id": "S1_worker_retain|HRS3_PREGNANCY",
+      "population_N": 1415,
+      "sample_n": 36,
+      "census": false,
+      "weight": 39.30555555555556
+    },
+    "S1_worker_retain|HRS4_LIVER_DISEASE": {
+      "stratum_id": "S1_worker_retain|HRS4_LIVER_DISEASE",
+      "population_N": 575,
+      "sample_n": 36,
+      "census": false,
+      "weight": 15.972222222222221
+    },
+    "S1_worker_retain|HRS5_ANTICOAGULATION": {
+      "stratum_id": "S1_worker_retain|HRS5_ANTICOAGULATION",
+      "population_N": 167,
+      "sample_n": 36,
+      "census": false,
+      "weight": 4.638888888888889
+    },
+    "S2_worker_deprioritize|HRS1_PERIOPERATIVE": {
+      "stratum_id": "S2_worker_deprioritize|HRS1_PERIOPERATIVE",
+      "population_N": 11538,
+      "sample_n": 36,
+      "census": false,
+      "weight": 320.5
+    },
+    "S2_worker_deprioritize|HRS2_KIDNEY_DISEASE": {
+      "stratum_id": "S2_worker_deprioritize|HRS2_KIDNEY_DISEASE",
+      "population_N": 4099,
+      "sample_n": 36,
+      "census": false,
+      "weight": 113.86111111111111
+    },
+    "S2_worker_deprioritize|HRS3_PREGNANCY": {
+      "stratum_id": "S2_worker_deprioritize|HRS3_PREGNANCY",
+      "population_N": 18748,
+      "sample_n": 36,
+      "census": false,
+      "weight": 520.7777777777778
+    },
+    "S2_worker_deprioritize|HRS4_LIVER_DISEASE": {
+      "stratum_id": "S2_worker_deprioritize|HRS4_LIVER_DISEASE",
+      "population_N": 6231,
+      "sample_n": 36,
+      "census": false,
+      "weight": 173.08333333333334
+    },
+    "S2_worker_deprioritize|HRS5_ANTICOAGULATION": {
+      "stratum_id": "S2_worker_deprioritize|HRS5_ANTICOAGULATION",
+      "population_N": 3491,
+      "sample_n": 36,
+      "census": false,
+      "weight": 96.97222222222223
+    },
+    "S3_worker_uncertain": {
+      "stratum_id": "S3_worker_uncertain",
+      "population_N": 57,
+      "sample_n": 57,
+      "census": true,
+      "weight": 1.0
+    },
+    "S4_adjudication": {
+      "stratum_id": "S4_adjudication",
+      "population_N": 616,
+      "sample_n": 616,
+      "census": true,
+      "weight": 1.0
+    }
+  },
+  "ai_reference_population": {
+    "retain": 3374,
+    "deprioritize": 44597,
+    "uncertain": 60,
+    "total": 48031
+  },
+  "layers": {
+    "overall": {
+      "layer": "overall",
+      "rows_scored": 1033,
+      "population_N_represented": 48031.0,
+      "weighted": {
+        "n_weighted": 48030.999999999905,
+        "true_positive_weighted": 2234.499999999998,
+        "false_positive_weighted": 5127.0,
+        "false_negative_weighted": 1139.4999999999998,
+        "true_negative_weighted": 39529.999999999905,
+        "sensitivity_vs_ai_reference": 0.662270302311796,
+        "specificity_vs_ai_reference": 0.8851915713102086,
+        "precision_vs_ai_reference": 0.30353868097534453,
+        "f1_vs_ai_reference": 0.4162824274602951,
+        "agreement_vs_ai_reference": 0.8695321771355997
+      },
+      "reverse_direction": {
+        "sensitivity_of_ai_reference_vs_scorer": 0.30353868097534453,
+        "specificity_of_ai_reference_vs_scorer": 0.9719814603080932
+      },
+      "scorer_retain_prevalence_weighted": 0.1532655993004518,
+      "cohen_kappa_vs_ai_reference_unweighted": 0.4629729548775348,
+      "unweighted": {
+        "rows": 1033,
+        "exact_label_match": 769,
+        "agreement_vs_ai_reference_unweighted": 0.744433688286544,
+        "wilson_ci95": [
+          0.7169631063856421,
+          0.770093034843037
+        ]
+      },
+      "scorer_label_counts": {
+        "retain": 347,
+        "deprioritize": 677,
+        "uncertain": 9
+      },
+      "ai_reference_label_counts": {
+        "deprioritize": 670,
+        "retain": 303,
+        "uncertain": 60
+      },
+      "disagreement_matrix": {
+        "deprioritize->retain": 118,
+        "retain->deprioritize": 89,
+        "uncertain->deprioritize": 37,
+        "uncertain->retain": 17,
+        "retain->uncertain": 2,
+        "deprioritize->uncertain": 1
+      },
+      "stratified_bootstrap": {
+        "draws": 10000,
+        "census_strata_held_fixed": [
+          "S3_worker_uncertain",
+          "S4_adjudication"
+        ],
+        "note": "전수 층은 표집오차가 0이므로 재추출하지 않는다.",
+        "ci": {
+          "sensitivity_vs_ai_reference": {
+            "ci95_low": 0.5840742936178623,
+            "ci95_high": 0.7381446354475398,
+            "draws_used": 10000
+          },
+          "specificity_vs_ai_reference": {
+            "ci95_low": 0.8230070935749771,
+            "ci95_high": 0.9397724134327577,
+            "draws_used": 10000
+          },
+          "precision_vs_ai_reference": {
+            "ci95_low": 0.21800117675821912,
+            "ci95_high": 0.45283297588304794,
+            "draws_used": 10000
+          },
+          "f1_vs_ai_reference": {
+            "ci95_low": 0.3243803261975171,
+            "ci95_high": 0.5431290225261463,
+            "draws_used": 10000
+          },
+          "agreement_vs_ai_reference": {
+            "ci95_low": 0.8116442158883493,
+            "ci95_high": 0.9199596788185408,
+            "draws_used": 10000
+          },
+          "scorer_retain_prevalence": {
+            "ci95_low": 0.10174505354180981,
+            "ci95_high": 0.211211971897779,
+            "draws_used": 10000
+          },
+          "rogan_gladen_ai_reference_retain": {
+            "ci95_low": 0.10174505354181006,
+            "ci95_high": 0.2112119718977785,
+            "draws_used": 10000
+          }
+        }
+      }
+    },
+    "worker_classifier_layer": {
+      "layer": "worker_classifier_layer",
+      "rows_scored": 417,
+      "population_N_represented": 47415.0,
+      "weighted": {
+        "n_weighted": 47414.9999999999,
+        "true_positive_weighted": 2132.499999999998,
+        "false_positive_weighted": 5024.0,
+        "false_negative_weighted": 1118.4999999999998,
+        "true_negative_weighted": 39139.9999999999,
+        "sensitivity_vs_ai_reference": 0.6559520147646876,
+        "specificity_vs_ai_reference": 0.8862421882075896,
+        "precision_vs_ai_reference": 0.29798085656396267,
+        "f1_vs_ai_reference": 0.4098006245496035,
+        "agreement_vs_ai_reference": 0.8704523884846564
+      },
+      "reverse_direction": {
+        "sensitivity_of_ai_reference_vs_scorer": 0.29798085656396267,
+        "specificity_of_ai_reference_vs_scorer": 0.9722170473316193
+      },
+      "scorer_retain_prevalence_weighted": 0.15093324897184435,
+      "cohen_kappa_vs_ai_reference_unweighted": 0.42346187370382604,
+      "unweighted": {
+        "rows": 417,
+        "exact_label_match": 279,
+        "agreement_vs_ai_reference_unweighted": 0.6690647482014388,
+        "wilson_ci95": [
+          0.6225383387513905,
+          0.7125046971569873
+        ]
+      },
+      "scorer_label_counts": {
+        "retain": 142,
+        "deprioritize": 267,
+        "uncertain": 8
+      },
+      "ai_reference_label_counts": {
+        "retain": 180,
+        "uncertain": 57,
+        "deprioritize": 180
+      },
+      "disagreement_matrix": {
+        "retain->deprioritize": 69,
+        "uncertain->deprioritize": 35,
+        "deprioritize->retain": 16,
+        "uncertain->retain": 16,
+        "retain->uncertain": 1,
+        "deprioritize->uncertain": 1
+      },
+      "stratified_bootstrap": {
+        "draws": 10000,
+        "census_strata_held_fixed": [
+          "S3_worker_uncertain",
+          "S4_adjudication"
+        ],
+        "note": "전수 층은 표집오차가 0이므로 재추출하지 않는다.",
+        "ci": {
+          "sensitivity_vs_ai_reference": {
+            "ci95_low": 0.5747974982056805,
+            "ci95_high": 0.7346970163026759,
+            "draws_used": 10000
+          },
+          "specificity_vs_ai_reference": {
+            "ci95_low": 0.8233635489941525,
+            "ci95_high": 0.9414323128943634,
+            "draws_used": 10000
+          },
+          "precision_vs_ai_reference": {
+            "ci95_low": 0.21217590160388164,
+            "ci95_high": 0.4509509909005905,
+            "draws_used": 10000
+          },
+          "f1_vs_ai_reference": {
+            "ci95_low": 0.31640157919689194,
+            "ci95_high": 0.5399694322531792,
+            "draws_used": 10000
+          },
+          "agreement_vs_ai_reference": {
+            "ci95_low": 0.8118123659882591,
+            "ci95_high": 0.921535027593237,
+            "draws_used": 10000
+          },
+          "scorer_retain_prevalence": {
+            "ci95_low": 0.09874336532039792,
+            "ci95_high": 0.20963244167926232,
+            "draws_used": 10000
+          },
+          "rogan_gladen_ai_reference_retain": {
+            "ci95_low": 0.10278847390147292,
+            "ci95_high": 0.2186080381486208,
+            "draws_used": 10000
+          }
+        }
+      }
+    },
+    "agent_adjudication_layer": {
+      "layer": "agent_adjudication_layer",
+      "rows_scored": 616,
+      "population_N_represented": 616.0,
+      "weighted": {
+        "n_weighted": 616.0,
+        "true_positive_weighted": 102.0,
+        "false_positive_weighted": 103.0,
+        "false_negative_weighted": 21.0,
+        "true_negative_weighted": 390.0,
+        "sensitivity_vs_ai_reference": 0.8292682926829268,
+        "specificity_vs_ai_reference": 0.7910750507099391,
+        "precision_vs_ai_reference": 0.4975609756097561,
+        "f1_vs_ai_reference": 0.6219512195121951,
+        "agreement_vs_ai_reference": 0.7987012987012987
+      },
+      "reverse_direction": {
+        "sensitivity_of_ai_reference_vs_scorer": 0.4975609756097561,
+        "specificity_of_ai_reference_vs_scorer": 0.948905109489051
+      },
+      "scorer_retain_prevalence_weighted": 0.3327922077922078,
+      "cohen_kappa_vs_ai_reference_unweighted": 0.4938241010056215,
+      "unweighted": {
+        "rows": 616,
+        "exact_label_match": 490,
+        "agreement_vs_ai_reference_unweighted": 0.7954545454545454,
+        "wilson_ci95": [
+          0.7618158482872421,
+          0.8254310917472063
+        ]
+      },
+      "scorer_label_counts": {
+        "retain": 205,
+        "deprioritize": 410,
+        "uncertain": 1
+      },
+      "ai_reference_label_counts": {
+        "deprioritize": 490,
+        "retain": 123,
+        "uncertain": 3
+      },
+      "disagreement_matrix": {
+        "deprioritize->retain": 102,
+        "retain->deprioritize": 20,
+        "uncertain->deprioritize": 2,
+        "retain->uncertain": 1,
+        "uncertain->retain": 1
+      },
+      "stratified_bootstrap": {
+        "draws": 10000,
+        "census_strata_held_fixed": [
+          "S3_worker_uncertain",
+          "S4_adjudication"
+        ],
+        "note": "전수 층은 표집오차가 0이므로 재추출하지 않는다.",
+        "ci": {
+          "sensitivity_vs_ai_reference": {
+            "ci95_low": 0.8292682926829268,
+            "ci95_high": 0.8292682926829268,
+            "draws_used": 10000
+          },
+          "specificity_vs_ai_reference": {
+            "ci95_low": 0.7910750507099391,
+            "ci95_high": 0.7910750507099391,
+            "draws_used": 10000
+          },
+          "precision_vs_ai_reference": {
+            "ci95_low": 0.4975609756097561,
+            "ci95_high": 0.4975609756097561,
+            "draws_used": 10000
+          },
+          "f1_vs_ai_reference": {
+            "ci95_low": 0.6219512195121951,
+            "ci95_high": 0.6219512195121951,
+            "draws_used": 10000
+          },
+          "agreement_vs_ai_reference": {
+            "ci95_low": 0.7987012987012987,
+            "ci95_high": 0.7987012987012987,
+            "draws_used": 10000
+          },
+          "scorer_retain_prevalence": {
+            "ci95_low": 0.3327922077922078,
+            "ci95_high": 0.3327922077922078,
+            "draws_used": 10000
+          },
+          "rogan_gladen_ai_reference_retain": {
+            "ci95_low": 0.04289555106939592,
+            "ci95_high": 0.04289555106939592,
+            "draws_used": 10000
+          }
+        }
+      }
+    }
+  },
+  "per_question": {
+    "HRS1_PERIOPERATIVE": {
+      "rows_scored": 224,
+      "weighted": {
+        "n_weighted": 12293.0,
+        "true_positive_weighted": 502.75,
+        "false_positive_weighted": 1622.5,
+        "false_negative_weighted": 125.25,
+        "true_negative_weighted": 10042.5,
+        "sensitivity_vs_ai_reference": 0.8005573248407644,
+        "specificity_vs_ai_reference": 0.8609087012430348,
+        "precision_vs_ai_reference": 0.2365604046582755,
+        "f1_vs_ai_reference": 0.3652047580132571,
+        "agreement_vs_ai_reference": 0.8578255918002115
+      },
+      "agreement_vs_ai_reference_unweighted": 0.7723214285714286,
+      "wilson_ci95": [
+        0.713087544873693,
+        0.8223725098086542
+      ],
+      "cohen_kappa_vs_ai_reference_unweighted": 0.5128981366989299
+    },
+    "HRS2_KIDNEY_DISEASE": {
+      "rows_scored": 186,
+      "weighted": {
+        "n_weighted": 4704.000000000003,
+        "true_positive_weighted": 299.41666666666674,
+        "false_positive_weighted": 488.44444444444446,
+        "false_negative_weighted": 205.58333333333331,
+        "true_negative_weighted": 3710.5555555555584,
+        "sensitivity_vs_ai_reference": 0.592904290429043,
+        "specificity_vs_ai_reference": 0.8836760075150168,
+        "precision_vs_ai_reference": 0.3800373726333604,
+        "f1_vs_ai_reference": 0.46318458199944146,
+        "agreement_vs_ai_reference": 0.8524600812547243
+      },
+      "agreement_vs_ai_reference_unweighted": 0.6774193548387096,
+      "wilson_ci95": [
+        0.6072356516648316,
+        0.7404228651279117
+      ],
+      "cohen_kappa_vs_ai_reference_unweighted": 0.3523301027218385
+    },
+    "HRS3_PREGNANCY": {
+      "rows_scored": 275,
+      "weighted": {
+        "n_weighted": 20365.999999999993,
+        "true_positive_weighted": 1005.6388888888887,
+        "false_positive_weighted": 2653.888888888889,
+        "false_negative_weighted": 436.36111111111103,
+        "true_negative_weighted": 16270.111111111102,
+        "sensitivity_vs_ai_reference": 0.6973917398674679,
+        "specificity_vs_ai_reference": 0.8597606801474904,
+        "precision_vs_ai_reference": 0.2748001791366524,
+        "f1_vs_ai_reference": 0.3942500884811194,
+        "agreement_vs_ai_reference": 0.8482642639693606
+      },
+      "agreement_vs_ai_reference_unweighted": 0.6945454545454546,
+      "wilson_ci95": [
+        0.6377367879099036,
+        0.7459938110184046
+      ],
+      "cohen_kappa_vs_ai_reference_unweighted": 0.38330930642319405
+    },
+    "HRS4_LIVER_DISEASE": {
+      "rows_scored": 184,
+      "weighted": {
+        "n_weighted": 6917.999999999998,
+        "true_positive_weighted": 345.4722222222223,
+        "false_positive_weighted": 359.1666666666667,
+        "false_negative_weighted": 275.5277777777778,
+        "true_negative_weighted": 5937.833333333331,
+        "sensitivity_vs_ai_reference": 0.5563159778135623,
+        "specificity_vs_ai_reference": 0.9429622571594939,
+        "precision_vs_ai_reference": 0.49028265068790167,
+        "f1_vs_ai_reference": 0.5212161850679965,
+        "agreement_vs_ai_reference": 0.9082546336449199
+      },
+      "agreement_vs_ai_reference_unweighted": 0.782608695652174,
+      "wilson_ci95": [
+        0.7175611595156496,
+        0.8360972322575745
+      ],
+      "cohen_kappa_vs_ai_reference_unweighted": 0.5734816875289755
+    },
+    "HRS5_ANTICOAGULATION": {
+      "rows_scored": 164,
+      "weighted": {
+        "n_weighted": 3749.9999999999986,
+        "true_positive_weighted": 81.2222222222222,
+        "false_positive_weighted": 3.0,
+        "false_negative_weighted": 96.77777777777774,
+        "true_negative_weighted": 3568.9999999999986,
+        "sensitivity_vs_ai_reference": 0.45630461922596754,
+        "specificity_vs_ai_reference": 0.9991601343784995,
+        "precision_vs_ai_reference": 0.9643799472295514,
+        "f1_vs_ai_reference": 0.6194915254237289,
+        "agreement_vs_ai_reference": 0.9733925925925926
+      },
+      "agreement_vs_ai_reference_unweighted": 0.823170731707317,
+      "wilson_ci95": [
+        0.7575829663828677,
+        0.8739654051794985
+      ],
+      "cohen_kappa_vs_ai_reference_unweighted": 0.5148918808649531
+    }
+  },
+  "retain_prevalence_estimates": {
+    "ai_reference_apparent_census": 0.07024629926505799,
+    "ai_reference_apparent_census_note": "전수 라벨이므로 표집오차 없음. 측정오차는 보정되지 않은 값.",
+    "scorer_design_based_weighted": 0.1532655993004518,
+    "scorer_design_based_note": "층화 확률표본의 설계 기반 추정치. 이것이 유일한 1차 추정치다.",
+    "rogan_gladen_corrected_ai_reference": 0.15326559930045122,
+    "rogan_gladen_inputs": {
+      "sensitivity_of_ai_reference_vs_scorer": 0.30353868097534453,
+      "specificity_of_ai_reference_vs_scorer": 0.9719814603080932
+    },
+    "rogan_gladen_identity_gap": 5.828670879282072e-16,
+    "rogan_gladen_is_tautological_here": true,
+    "rogan_gladen_note": "로건-글래든 보정은 이 설계에서 설계 기반 추정치와 대수적으로 동일하다. 층이 AI 참조표준 라벨로 정의되어 가중 합이 전수 retain 수(3,374)를 정확히 복원하고, 보정에 쓰는 Se·Sp를 같은 표본에서 추정하기 때문이다. N = P + Q(P: 채점자 양성 가중합, Q: 채점자 음성 가중합)를 대입하면 (p_app + Sp - 1)/(Se + Sp - 1) = P/N 으로 환원된다. 따라서 두 값의 일치는 독립적인 교차확인이 아니라 항등식이며, 외부 검증연구에서 얻은 Se·Sp를 대입할 때만 보정으로서 의미를 가진다.",
+    "bootstrap_ci": {
+      "scorer_design_based_weighted": {
+        "ci95_low": 0.10174505354180981,
+        "ci95_high": 0.211211971897779,
+        "draws_used": 10000
+      },
+      "rogan_gladen_corrected_ai_reference": {
+        "ci95_low": 0.10174505354181006,
+        "ci95_high": 0.2112119718977785,
+        "draws_used": 10000
+      }
+    },
+    "ratio_scorer_to_ai_reference": 2.1818316538233553
+  },
+  "disclosed_weaknesses": [
+    "사람 gold standard가 0건이다. 두 판정 모두 AI가 산출한 것이므로 어느 쪽도 정답이 아니다. 모든 지표는 두 AI 판정 사이의 일치·불일치를 뜻한다.",
+    "채점자 블라인딩은 카드 필드 제한과 잠금 영수증으로 보장했으나 사람 블라인딩(independent_blinding)은 false다.",
+    "재판정 층(S4, 616행)은 전수이므로 표집오차가 0이다. 이 층의 부트스트랩 신뢰구간은 설계상 한 점으로 수축하며, 남는 불확실성은 표집이 아니라 판단 차이다.",
+    "로건-글래든 보정은 이 설계에서 항등식이라 추가 정보를 주지 않는다(위 note 참조).",
+    "이진 지표는 양성 = retain, 음성 = deprioritize ∪ uncertain 으로 이진화한 값이다. uncertain 60행(표본 57행)은 초록 결측을 뜻하므로 이진화가 이 층의 의미를 압축한다.",
+    "Cohen κ는 비가중값이다. 표본이 경계 사례를 의도적으로 과대표집했으므로 κ는 모집단 전체의 일치도가 아니라 이 표본에서의 일치도다.",
+    "채점자 판정 근거는 초록·제목·문헌유형·MeSH뿐이다. 전문을 읽지 않았다."
+  ],
+  "decision_disagreements": {
+    "count": 264,
+    "by_direction": {
+      "deprioritize->retain": 118,
+      "retain->deprioritize": 89,
+      "uncertain->deprioritize": 37,
+      "uncertain->retain": 17,
+      "retain->uncertain": 2,
+      "deprioritize->uncertain": 1
+    },
+    "by_scorer_confidence": {
+      "medium": 90,
+      "low": 92,
+      "high": 82
+    },
+    "by_evidence_basis": {
+      "abstract": 174,
+      "title_only": 90
+    },
+    "rows": [
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:20301300",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:33143761",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:33783312",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "retain",
+        "ai_label_source": "adjudication",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:34059194",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:34544226",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:34609004",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:34823989",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "uncertain",
+        "ai_label_source": "adjudication",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:34995935",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:34997340",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:35081550",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:35088388",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:35204301",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:35241333",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:35243603",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:35315624",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:35506725",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:35640263",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:35768119",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "retain",
+        "ai_label_source": "adjudication",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:35781402",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "retain",
+        "ai_label_source": "adjudication",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:35913551",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "retain",
+        "ai_label_source": "adjudication",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:36089835",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "retain",
+        "ai_label_source": "adjudication",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:36117063",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:36206809",
+        "stratum_id": "S2_worker_deprioritize|HRS1_PERIOPERATIVE",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:36461939",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "retain",
+        "ai_label_source": "adjudication",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:36513549",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "retain",
+        "ai_label_source": "adjudication",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:36650849",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:36707961",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:37441102",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:37709183",
+        "stratum_id": "S1_worker_retain|HRS1_PERIOPERATIVE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:37735625",
+        "stratum_id": "S2_worker_deprioritize|HRS1_PERIOPERATIVE",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:37840169",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:37962867",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:38115283",
+        "stratum_id": "S1_worker_retain|HRS1_PERIOPERATIVE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:38265798",
+        "stratum_id": "S2_worker_deprioritize|HRS1_PERIOPERATIVE",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:38394188",
+        "stratum_id": "S2_worker_deprioritize|HRS1_PERIOPERATIVE",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:38767573",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:39150621",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:39224053",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:39557196",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:39801112",
+        "stratum_id": "S1_worker_retain|HRS1_PERIOPERATIVE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:39991716",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:40338349",
+        "stratum_id": "S2_worker_deprioritize|HRS1_PERIOPERATIVE",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:40550664",
+        "stratum_id": "S1_worker_retain|HRS1_PERIOPERATIVE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:40619705",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "retain",
+        "ai_label_source": "adjudication",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:40992150",
+        "stratum_id": "S1_worker_retain|HRS1_PERIOPERATIVE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:41094541",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:41502198",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:41930010",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:42015786",
+        "stratum_id": "S1_worker_retain|HRS1_PERIOPERATIVE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:42287322",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS1_PERIOPERATIVE",
+        "record_id": "pubmed:42298563",
+        "stratum_id": "S1_worker_retain|HRS1_PERIOPERATIVE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:33882494",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:34001663",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:34231314",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:34292490",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:34586605",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:35075212",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:35156909",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:35180026",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:35241379",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:35349100",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:35458199",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:35507237",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:35530510",
+        "stratum_id": "S1_worker_retain|HRS2_KIDNEY_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:35714209",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:35736361",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:35861499",
+        "stratum_id": "S1_worker_retain|HRS2_KIDNEY_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:35872348",
+        "stratum_id": "S1_worker_retain|HRS2_KIDNEY_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:35942813",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:36088526",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "retain",
+        "ai_label_source": "adjudication",
+        "scorer": "uncertain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:36120321",
+        "stratum_id": "S1_worker_retain|HRS2_KIDNEY_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:36316651",
+        "stratum_id": "S1_worker_retain|HRS2_KIDNEY_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:36499168",
+        "stratum_id": "S2_worker_deprioritize|HRS2_KIDNEY_DISEASE",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:36517799",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:36709541",
+        "stratum_id": "S1_worker_retain|HRS2_KIDNEY_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:36897216",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:37409723",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:37660283",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:37967548",
+        "stratum_id": "S1_worker_retain|HRS2_KIDNEY_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:38089160",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:38180728",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:38267238",
+        "stratum_id": "S1_worker_retain|HRS2_KIDNEY_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:38278730",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:38283477",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:38328391",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:38403867",
+        "stratum_id": "S1_worker_retain|HRS2_KIDNEY_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:38548583",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:38696076",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:38716532",
+        "stratum_id": "S1_worker_retain|HRS2_KIDNEY_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:38728008",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:38803195",
+        "stratum_id": "S1_worker_retain|HRS2_KIDNEY_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:38955708",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:38961721",
+        "stratum_id": "S1_worker_retain|HRS2_KIDNEY_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:38970659",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:38976478",
+        "stratum_id": "S2_worker_deprioritize|HRS2_KIDNEY_DISEASE",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:38992516",
+        "stratum_id": "S1_worker_retain|HRS2_KIDNEY_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:39081774",
+        "stratum_id": "S2_worker_deprioritize|HRS2_KIDNEY_DISEASE",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:39252179",
+        "stratum_id": "S1_worker_retain|HRS2_KIDNEY_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:39350653",
+        "stratum_id": "S1_worker_retain|HRS2_KIDNEY_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:39608497",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:39711121",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:39998074",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:40423532",
+        "stratum_id": "S2_worker_deprioritize|HRS2_KIDNEY_DISEASE",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:40583089",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:40744977",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:40768773",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:41150979",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:41577393",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:41644022",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:42402093",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS2_KIDNEY_DISEASE",
+        "record_id": "pubmed:42495460",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:32828743",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:33745458",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:33749574",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "retain",
+        "ai_label_source": "adjudication",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:34586772",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:34601603",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:34647596",
+        "stratum_id": "S2_worker_deprioritize|HRS3_PREGNANCY",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:34842031",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:34865048",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:34962672",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:34983656",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:34992004",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:35090514",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:35441210",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:35508343",
+        "stratum_id": "S1_worker_retain|HRS3_PREGNANCY",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "uncertain",
+        "scorer_confidence": "low",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:35565911",
+        "stratum_id": "S1_worker_retain|HRS3_PREGNANCY",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:35568996",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:35636782",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:35718375",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:35834313",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:35866037",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "retain",
+        "ai_label_source": "adjudication",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:35866154",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:35870823",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:35956361",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:35994745",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:36018544",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:36034548",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:36184213",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:36210639",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "uncertain",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:36342076",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:36470163",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:36503533",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:36584689",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:36594958",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:36620948",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:36689333",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:36721726",
+        "stratum_id": "S2_worker_deprioritize|HRS3_PREGNANCY",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "worker",
+        "scorer": "uncertain",
+        "scorer_confidence": "low",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:36774110",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:36788750",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:36834991",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:36916357",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:36971966",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:36986153",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:37111163",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:37148409",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:37197102",
+        "stratum_id": "S1_worker_retain|HRS3_PREGNANCY",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:37221121",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:37321475",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:37393033",
+        "stratum_id": "S2_worker_deprioritize|HRS3_PREGNANCY",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:37497121",
+        "stratum_id": "S1_worker_retain|HRS3_PREGNANCY",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:37526717",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:37565442",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:37837500",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:37852377",
+        "stratum_id": "S1_worker_retain|HRS3_PREGNANCY",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:38223365",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:38403917",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:38821225",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "retain",
+        "ai_label_source": "adjudication",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:38837639",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "uncertain",
+        "ai_label_source": "adjudication",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:38871397",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:38973681",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:38985881",
+        "stratum_id": "S1_worker_retain|HRS3_PREGNANCY",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:39163029",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:39463357",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:39485595",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:39559722",
+        "stratum_id": "S2_worker_deprioritize|HRS3_PREGNANCY",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:39700375",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:39846467",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "retain",
+        "ai_label_source": "adjudication",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:40200414",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:40271244",
+        "stratum_id": "S1_worker_retain|HRS3_PREGNANCY",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:40513315",
+        "stratum_id": "S2_worker_deprioritize|HRS3_PREGNANCY",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:40908477",
+        "stratum_id": "S1_worker_retain|HRS3_PREGNANCY",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:40934969",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:41062817",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:41106115",
+        "stratum_id": "S2_worker_deprioritize|HRS3_PREGNANCY",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:41459147",
+        "stratum_id": "S1_worker_retain|HRS3_PREGNANCY",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:41480354",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:41482243",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:41494664",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:41730175",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:41787772",
+        "stratum_id": "S1_worker_retain|HRS3_PREGNANCY",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:41919876",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:41956646",
+        "stratum_id": "S1_worker_retain|HRS3_PREGNANCY",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:42168761",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:42201685",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS3_PREGNANCY",
+        "record_id": "pubmed:42211108",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:20301428",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:31082119",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:32467497",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "retain",
+        "ai_label_source": "adjudication",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:33861657",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:34491307",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:34939363",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:34996679",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:35078571",
+        "stratum_id": "S1_worker_retain|HRS4_LIVER_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:35107323",
+        "stratum_id": "S1_worker_retain|HRS4_LIVER_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:35144413",
+        "stratum_id": "S1_worker_retain|HRS4_LIVER_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:35240641",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:35955942",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:36012266",
+        "stratum_id": "S1_worker_retain|HRS4_LIVER_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:36183848",
+        "stratum_id": "S2_worker_deprioritize|HRS4_LIVER_DISEASE",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:36321995",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "retain",
+        "ai_label_source": "adjudication",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:36504550",
+        "stratum_id": "S1_worker_retain|HRS4_LIVER_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:37077767",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:37200041",
+        "stratum_id": "S1_worker_retain|HRS4_LIVER_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:37208742",
+        "stratum_id": "S1_worker_retain|HRS4_LIVER_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:37269895",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "retain",
+        "ai_label_source": "adjudication",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:37688392",
+        "stratum_id": "S1_worker_retain|HRS4_LIVER_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:38232970",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "retain",
+        "ai_label_source": "adjudication",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:38442241",
+        "stratum_id": "S1_worker_retain|HRS4_LIVER_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:38480498",
+        "stratum_id": "S1_worker_retain|HRS4_LIVER_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:38665787",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:38674209",
+        "stratum_id": "S1_worker_retain|HRS4_LIVER_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:38674932",
+        "stratum_id": "S2_worker_deprioritize|HRS4_LIVER_DISEASE",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:38703301",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:38755017",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:39108760",
+        "stratum_id": "S1_worker_retain|HRS4_LIVER_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:39328004",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:39388923",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:40009170",
+        "stratum_id": "S1_worker_retain|HRS4_LIVER_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:40044430",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "retain",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:40501231",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:40820824",
+        "stratum_id": "S1_worker_retain|HRS4_LIVER_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:41754125",
+        "stratum_id": "S1_worker_retain|HRS4_LIVER_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:42000078",
+        "stratum_id": "S1_worker_retain|HRS4_LIVER_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:42358145",
+        "stratum_id": "S1_worker_retain|HRS4_LIVER_DISEASE",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS4_LIVER_DISEASE",
+        "record_id": "pubmed:42467982",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:28520347",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "retain",
+        "ai_label_source": "adjudication",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:29261922",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "retain",
+        "ai_label_source": "adjudication",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:34242404",
+        "stratum_id": "S1_worker_retain|HRS5_ANTICOAGULATION",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:34350609",
+        "stratum_id": "S1_worker_retain|HRS5_ANTICOAGULATION",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:35138967",
+        "stratum_id": "S1_worker_retain|HRS5_ANTICOAGULATION",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:35444556",
+        "stratum_id": "S1_worker_retain|HRS5_ANTICOAGULATION",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:35621008",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:35838235",
+        "stratum_id": "S1_worker_retain|HRS5_ANTICOAGULATION",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:36106226",
+        "stratum_id": "S1_worker_retain|HRS5_ANTICOAGULATION",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:36208925",
+        "stratum_id": "S1_worker_retain|HRS5_ANTICOAGULATION",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:36323905",
+        "stratum_id": "S1_worker_retain|HRS5_ANTICOAGULATION",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:36433678",
+        "stratum_id": "S1_worker_retain|HRS5_ANTICOAGULATION",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:37598356",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:37730613",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:37762897",
+        "stratum_id": "S1_worker_retain|HRS5_ANTICOAGULATION",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:37927673",
+        "stratum_id": "S1_worker_retain|HRS5_ANTICOAGULATION",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:38127436",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "retain",
+        "ai_label_source": "adjudication",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:38581551",
+        "stratum_id": "S1_worker_retain|HRS5_ANTICOAGULATION",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:38984712",
+        "stratum_id": "S1_worker_retain|HRS5_ANTICOAGULATION",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:39199344",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "deprioritize",
+        "ai_label_source": "adjudication",
+        "scorer": "retain",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:39317217",
+        "stratum_id": "S1_worker_retain|HRS5_ANTICOAGULATION",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:39407867",
+        "stratum_id": "S1_worker_retain|HRS5_ANTICOAGULATION",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:40157645",
+        "stratum_id": "S1_worker_retain|HRS5_ANTICOAGULATION",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:40340094",
+        "stratum_id": "S3_worker_uncertain",
+        "ai_reference": "uncertain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "low",
+        "evidence_basis": "title_only"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:40491104",
+        "stratum_id": "S1_worker_retain|HRS5_ANTICOAGULATION",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "medium",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:41550412",
+        "stratum_id": "S1_worker_retain|HRS5_ANTICOAGULATION",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:41719785",
+        "stratum_id": "S1_worker_retain|HRS5_ANTICOAGULATION",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:42031612",
+        "stratum_id": "S1_worker_retain|HRS5_ANTICOAGULATION",
+        "ai_reference": "retain",
+        "ai_label_source": "worker",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      },
+      {
+        "question_id": "HRS5_ANTICOAGULATION",
+        "record_id": "pubmed:42377292",
+        "stratum_id": "S4_adjudication",
+        "ai_reference": "retain",
+        "ai_label_source": "adjudication",
+        "scorer": "deprioritize",
+        "scorer_confidence": "high",
+        "evidence_basis": "abstract"
+      }
+    ]
+  }
+}

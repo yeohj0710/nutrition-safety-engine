@@ -1,0 +1,181 @@
+{
+  "round": 7,
+  "judgments": [
+    {
+      "record_id": "pubmed:40009170",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "커큐민의 아세트아미노펜 간손상 완화 가능성 종설. 간손상 P와 커큐민 I는 충족하나 보고 결과가 항산화·항염 보호 효능과 나노제형 생체이용률 전용."
+    },
+    {
+      "record_id": "pubmed:34231314",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "처방 인결합제를 견디지 못한 혈액투석 환자가 키토산 3.5 g/일로 혈청 인을 1년간 조절한 증례. 투석 P, 식이보충제 I, 혈청 인이라는 검사치 O가 모두 명시적."
+    },
+    {
+      "record_id": "pubmed:35414414",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["outcome", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "신생아 포경수술 전 소독제로 차아염소산과 포비돈요오드 비교 60명. 합병증 결과는 있으나 임신 중 노출 아니고 노출도 소독제."
+    },
+    {
+      "record_id": "pubmed:35802810",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "3주 항응고 후에도 남는 좌심방귀 혈전과 심율동전환 전 경식도초음파 필요성. 노출이 VKA·DOAC 처방약."
+    },
+    {
+      "record_id": "pubmed:34697623",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "군 병원 중증 특이체질 약물유발 간손상 27건 후향고찰. 9건이 보충제 원인이며 그중 5건이 합성 아나볼릭 스테로이드·운동 전 보충제. 보충제 유발 간손상 자체가 HRS4의 P를 충족."
+    },
+    {
+      "record_id": "pubmed:35255766",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "피세틴의 티오아세트아미드 유발 간섬유화 완화. 랫드 전용, 결과도 효능."
+    },
+    {
+      "record_id": "pubmed:41337586",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "저·중소득국 3개 코호트 모체 지질체와 조산·부당경량아. 임신 P와 조산·SGA라는 임상 이상결과 O가 명확. 노출은 혈중 지질 신호이고 장쇄지방산 보충은 함의로만 언급."
+    },
+    {
+      "record_id": "pubmed:38677576",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "차전자(Plantaginis semen)의 당뇨병성 신장병 개선과 SphK1-S1P 경로. 생쥐와 HBZY-1 세포 전용."
+    },
+    {
+      "record_id": "pubmed:38612523",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "코로나19 후 신생아·영아 다기관염증증후군의 비타민 D 보충 서술적 종설. 비타민 D I는 명확하나 임신 중 노출과 연결되지 않은 신생아·소아 대상이고 결과도 예방·중증도 효능."
+    },
+    {
+      "record_id": "pubmed:42231505",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "항응고 환자 120명의 비수술적 치주치료 중 출혈 관찰코호트. 출혈 O는 충족하나 노출이 DOAC·VKA 처방약."
+    },
+    {
+      "record_id": "pubmed:41459147",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "임신부 23명의 프로바이오틱 보충과 모체 장·모유 미생물군. 임신 P와 프로바이오틱 I는 명확하나 결과가 미생물 조성·다양성 변화로 안전성 결과가 아님."
+    },
+    {
+      "record_id": "pubmed:35886354",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "루마니아 산후 여성 1,278명의 임신 전·중 비타민·엽산 보충 실태. 실제 보충 섭취 노출이고 미보충이 저출생체중 OR 2.4, 36주 미만 출생과 연관되어 임상 결과가 명확."
+    },
+    {
+      "record_id": "pubmed:38936192",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "갈렉틴-8의 엽산 유발 급성신손상 보호와 섬유화 이행 억제. 생쥐 전용이고 엽산은 신손상 유발 모델 시약."
+    },
+    {
+      "record_id": "pubmed:40504581",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "차세대 프로바이오틱 Akkermansia muciniphila의 간건강 유지 종설 49편. P·I 명확하나 결과가 인슐린저항성·콜레스테롤·간기능 개선 효능 전용."
+    },
+    {
+      "record_id": "pubmed:38729584",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "만성콩팥병 미각이상 범위고찰 13편. CKD P와 경구 아연 보충 50~220 mg I가 모두 명확하나 보고 결과가 미각이상 개선 효능이고 아연 자체의 이상반응은 없음. 판정이 갈릴 수 있는 경계."
+    },
+    {
+      "record_id": "pubmed:37491445",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic"],
+      "confidence": "high",
+      "note": "직선편광 마이크로파가 펩타이드 이용 탄산칼슘 광화 나노형태에 미치는 영향. 재료화학으로 주제가 완전히 다름."
+    },
+    {
+      "record_id": "pubmed:37197102",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "포도송이 임신에 의한 중증 갑상선중독증 증례. 임신 P와 임상 결과는 있으나 이 환자의 원인이 포도송이 임신이고 보충제 노출이 없음. 요오드·레보티록신은 일반 병인 열거."
+    },
+    {
+      "record_id": "pubmed:38724897",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "자궁경부 봉축술 임신부 114명의 경구 프로바이오틱 이중맹검 RCT. 16~37주 보충 노출이 명확하고 결과가 조산·PPROM·PROM·아프가점수 등 임상 산과·신생아 결과."
+    },
+    {
+      "record_id": "pubmed:38114139",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "북오미자의 약물유발 간손상 품질표지물 규명. UPLC 지문분석과 네트워크 약리학뿐이라 사람·동물 근거 없음."
+    },
+    {
+      "record_id": "pubmed:39840146",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "만성콩팥병 환자 33명(투석·비투석)의 토코트리에놀 300 mg/일 이중맹검 위약대조 RCT. 비타민 E 이성체 보충 노출과 LDL·총콜레스테롤·CRP·IL-6·지질과산화 검사치 결과가 모두 명시적."
+    },
+    {
+      "record_id": "pubmed:35770317",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "뮤코다당 폴리설페이트가 사람 표피 각질세포 밀착연접에 미치는 영향. HEKa 세포 전용이고 노출이 국소 보습제 성분. HRS5 유입은 헤파리노이드·폴리설페이트 용어로 보임."
+    },
+    {
+      "record_id": "pubmed:36585647",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "국내산 울금 에탄올 추출물의 항신경염증 효과. LPS 자극 BV2 미세아교세포 전용."
+    }
+  ]
+}

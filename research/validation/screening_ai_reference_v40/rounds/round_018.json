@@ -1,0 +1,245 @@
+{
+  "round": 18,
+  "judgments": [
+    {
+      "record_id": "pubmed:37295325",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "염증성 식이·임신성 당뇨와 모체 빈혈 전향 환자대조연구. 임신 P와 빈혈·헤모글로빈 O는 명확하나 노출이 식이염증지수와 헵시딘 유전 다형성이라 보충 노출이 아님."
+    },
+    {
+      "record_id": "pubmed:40541254",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "유전성 비타민 K 의존 응고인자 복합결핍 종설 61례. 비타민 K 투여가 주 치료이고 출혈·골격기형 O가 명확하나 대상이 항응고제를 사용하는 환자가 아니라 유전성 결핍 환자라 HRS5의 P가 부정됨. 판정이 갈릴 수 있는 경계."
+    },
+    {
+      "record_id": "pubmed:39559176",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "만성콩팥병 99명에게 경구 비타민 E 300 mg/일 2년 보충하며 산화스트레스 지표·심혈관 합병증 관찰. CKD P와 비타민 E 보충 I가 명확하고 결과가 심혈관 합병증 발생과 NO·MPO·산화LDL·MDA·글루타티온 검사치."
+    },
+    {
+      "record_id": "pubmed:34999978",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "uncertain",
+      "reason_codes": ["population", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "청소년 신장이식 후 크레아티닌 상승의 이례적 원인(문제편). 초록 없음. 이식 P와 저인산혈증·크레아티닌 상승 O는 확인되나 '이례적 원인'이 무엇인지 알 수 없어 I 판단 정보가 없음. MeSH의 칼슘·PTH는 단서 수준."
+    },
+    {
+      "record_id": "pubmed:40167627",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "사프란(Crocus sativus)과 사프라날·크로신의 사이토크롬 P450 영향 종설. 좁은 치료역 약물로 와파린을 명시하고 생약-약물 상호작용과 약동학·독성 변화를 결과로 다룸."
+    },
+    {
+      "record_id": "pubmed:41393756",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "좌전하행지 STEMI 젊은 여성의 좌심실 혈전 해소 증례. 노출이 관동맥중재술과 아스피린·클로피도그렐·리바록사반 처방약."
+    },
+    {
+      "record_id": "pubmed:39956102",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "점도 조절용 프리바이오틱 증점제와 와파린의 약물-식품 상호작용 연구. 와파린 복용 P가 명확하고 영양보충제에 널리 쓰이는 잔탄검·구아검·펙틴이 노출이며 PT-INR·와파린 감수성 지수·잔존율 변화가 결과."
+    },
+    {
+      "record_id": "pubmed:39700375",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "임신부·소아·당뇨 전단계·74세 초과 성인이 경험적 비타민 D에서 이익을 얻을 수 있다는 논문. 초록 없음. 제목상 임신 P와 비타민 D I는 확인되나 결과의 성격은 판단 정보가 없음."
+    },
+    {
+      "record_id": "pubmed:41469064",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "뇌졸중 예방을 위한 경구항응고 최적화 실행요인 범위고찰 216편. 노출이 처방 항응고제와 실행 전략이고 결과가 실행 보고 품질."
+    },
+    {
+      "record_id": "pubmed:35994745",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "모체 엽산 수준과 선천심장병 환자용 요약. 초록 없음. 제목·MeSH만으로 임신 P와 선천심장기형 O가 확인되고 엽산이 노출축으로 등장."
+    },
+    {
+      "record_id": "pubmed:36834991",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "전자간증에서 태반·모체 혈액·요·태아 순환의 항산화 미량영양소 농도 변화 140명. 임신 P와 전자간증 O가 명확하고 셀레늄·아연·망간·구리 농도 차이를 제시. 노출은 혈중 상태이고 무기질 보충은 연구 과제로 언급."
+    },
+    {
+      "record_id": "pubmed:37137609",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "모체 산전·산후 비타민 D 보충과 자녀 골질량·근력 추적연구의 정정문. 초록 없음. 문헌 유형이 Published Erratum뿐."
+    },
+    {
+      "record_id": "pubmed:38330573",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "오미크론 감염 918명의 진료지침 전후 사망률 비교. 항응고제 사용과 생약·부정방 사용이 군 간 비교 변수로 측정되고 결과가 사망률과 간·신기능 검사치. 연구 목적 자체는 보충제 안전성이 아님."
+    },
+    {
+      "record_id": "pubmed:41990347",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "주산기 식이보충제. 초록 없음. 제목만으로 주산기 P와 식이보충제 I가 확인되고 명확한 부정이 없음."
+    },
+    {
+      "record_id": "pubmed:40149514",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "코로나19 494명 짝지음 코호트의 경구항응고 치료와 중기 사망률. 항응고 P와 90일 사망 O가 명확하고 '입원 중 비타민 D 보충이 유익해 보였다'는 측정 변수가 포함됨."
+    },
+    {
+      "record_id": "pubmed:41158518",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "치질수술 후 통증 평가·관리 근거요약 22편. 수술 후 P는 명확하나 한의학 영역이 침·약물 구분 없이 제시되고 결과가 통증 관리 효능."
+    },
+    {
+      "record_id": "pubmed:42404154",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "신장 임신부 1,166명의 사회경제적 패턴과 갑상선질환 위험. 임신 P와 TSH·갑상선결절 O는 명확하나 주 노출이 사회경제적 지위이고 요오드 섭취는 매개변수로 검정되어 유의하지 않았음."
+    },
+    {
+      "record_id": "pubmed:34923950",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "비알코올성 지방간 예방·치료 천연화합물 분자기전 종설. P·I 명확하나 보고 내용이 분자기전 전용."
+    },
+    {
+      "record_id": "pubmed:35178929",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "만성 B형간염 간섬유화·간경변 육위오령정 병용 메타분석 18편 2,168명. 간질환 P와 한약 I가 명확하고 총빌리루빈·ALT·AST와 섬유화 지표 개선, 양군 모두 중대 이상반응 없음이라는 안전성 결과를 보고."
+    },
+    {
+      "record_id": "pubmed:33977578",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "산전 진료소 임신부 50명의 영양관리 서비스 내용 퇴실면담. 철-엽산 보충 제공률 70%가 서비스 항목으로 등장하나 결과가 정보 회상·실행 의향으로 임상 결과가 없음."
+    },
+    {
+      "record_id": "pubmed:40645126",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "임신부 비타민 D 보충 코크란 고찰 요약. 초록 없음. 제목만으로 임신 P와 비타민 D 보충 I가 확인되고 명확한 부정이 없음."
+    },
+    {
+      "record_id": "pubmed:36517799",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "유지혈액투석 말기신질환 162명의 수용성 식이섬유 10 g/일 8주 무작위 위약대조 연구. 투석 P와 프리바이오틱 보충 I가 명확하고 결과가 헤모글로빈·혈청철·페리틴·헵시딘·조혈제 용량 검사치."
+    },
+    {
+      "record_id": "pubmed:37704534",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "일차의료 VKA 환자 123명의 다학제 약물검토 군집 RCT. 항응고 P와 INR 안정성·치료범위내시간 O가 명확하고 '비타민 K 최적화 중재'를 받은 환자가 치료범위 달성 비율이 높았다는 결과가 있어 비타민 K 섭취 관리가 중재 구성요소. 식이 비타민 K라 경계."
+    },
+    {
+      "record_id": "pubmed:38319546",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "중증 급성신손상의 불응성 고마그네슘혈증에 대한 지속저효율투석 서신. 초록 없음. 고마그네슘혈증의 원인이 보충 섭취인지 알 수 없고 문헌 유형이 Letter뿐."
+    },
+    {
+      "record_id": "pubmed:38004336",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "혈전증의 피브린·섬유소분해효소 캐스케이드 종설. 낫토키나아제 등 미생물 유래 효소가 언급되나 내용이 효소 생화학·분석법이고 대상 환자·안전성 결과가 없음."
+    },
+    {
+      "record_id": "pubmed:39999244",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "uncertain",
+      "reason_codes": ["population", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "모성·아동 영양: 임신 중 영양과 체중관리, 5세 이하 아동 영양. 초록·문헌유형 없음. 임신 P는 확인되나 지침 성격상 보충 노출을 포함하는지, 안전성 결과가 있는지 판단할 정보가 없음."
+    },
+    {
+      "record_id": "pubmed:38597576",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "와파린에 의한 소장 벽내 혈종 증례·문헌고찰. 항응고 P와 출혈 O는 명확하나 노출이 와파린 처방약이고 비타민 K는 역전용."
+    },
+    {
+      "record_id": "pubmed:35733496",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "테스토스테론 증강 보충제(페누그릭 함유 'Eroxin')가 원인으로 추정되는 첫 아준대량 폐동맥혈전 증례. 헤파린 항응고 P, 비처방 보충제 I, 폐동맥혈전 O가 모두 명시적이고 보충제 성분 규제 미비를 경고."
+    },
+    {
+      "record_id": "pubmed:39703766",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "태국 대마 합법화 후 물에 우린 대마와 와파린 상호작용 심방세동 3례. 와파린 복용 P, 생약 섭취 I, INR 3.49~4.92 초과와 중단 후 회복이라는 상호작용 O가 모두 명확."
+    },
+    {
+      "record_id": "pubmed:35568996",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "선천·주산기 뇌손상 예방 영양중재 체계적고찰·메타분석 17편. 조산 위험 임신부·저출생체중아 P와 황산마그네슘·아미노산·비타민 A·D·콜린·DHA·프리바이오틱 I가 명확하고 결과가 뇌성마비·태아알코올증후군."
+    }
+  ]
+}

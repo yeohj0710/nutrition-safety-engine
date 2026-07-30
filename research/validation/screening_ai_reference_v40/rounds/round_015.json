@@ -1,0 +1,245 @@
+{
+  "round": 15,
+  "judgments": [
+    {
+      "record_id": "pubmed:38728459",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "기계판막 와파린 과다항응고 162명의 프로트롬빈복합체 대 통상치료. 비타민 K가 통상치료군에 실제 투여되지만 INR 역전용 처방 주사제라 보충 노출이 아님. pubmed:42269153과 같은 처리."
+    },
+    {
+      "record_id": "pubmed:41658566",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "대장암 수술 후 보조화학요법에 한약 병용 메타분석 41편 2,918명. 수술 후 P와 한약 I가 명확하고 결과가 백혈구·혈소판·헤모글로빈 저하와 간·신기능 이상 등 검사치 이상 및 오심·구토·말초신경독성 이상반응."
+    },
+    {
+      "record_id": "pubmed:38403867",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "고칼륨혈증 관리 아시아·태평양 합의문. CKD P와 고칼륨혈증 O는 명확하나 노출이 칼륨 결합제 처방약."
+    },
+    {
+      "record_id": "pubmed:34856477",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "모링가 종자 추출물의 당뇨병성 신증 신기능 보호. SD 랫드와 사람 신장 메산지움세포 전용."
+    },
+    {
+      "record_id": "pubmed:38848802",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "유지혈액투석 459명의 낮은 부갑상선호르몬과 영양·염증 종단연구. 비타민 D 유사체 사용 여부로 군을 나눈 측정 노출이고 결과가 골절 입원 HR 4.04, 알칼리인산분해효소·CRP·헤모글로빈·알부민."
+    },
+    {
+      "record_id": "pubmed:39644740",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "암·조혈모세포이식 환자의 섬유·프리바이오틱 중재 체계적고찰 14편. 프리바이오틱 보충 I가 명확하고 결과가 위장관 이상반응과 치료 관련 독성. 수술 P는 조혈모세포이식이라는 침습적 시술 수준."
+    },
+    {
+      "record_id": "pubmed:30252281",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "칼시트리올 약물 개요. 투석·CKD P와 처방 비타민 D 유사체 I는 명확하나 약물 monograph로 측정된 결과가 제시되지 않음."
+    },
+    {
+      "record_id": "pubmed:39328004",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "한의 의료기관의 만성 B형간염 단일질병 DRG 지불제도 연구. 초록 없음. 보건경제 주제로 보충제·안전성과 무관."
+    },
+    {
+      "record_id": "pubmed:39615399",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "VKA 시작 심방세동 1,050명의 다중질병·노쇠·영양불량과 예후. 뇌졸중·주요출혈·사망 O는 명확하나 노출이 CONUT 영양불량 종합점수로 특정 영양소 보충·상태가 아님. 판정이 갈릴 수 있는 경계."
+    },
+    {
+      "record_id": "pubmed:36504550",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "원발성 경화성 담관염의 장내세균 역할과 치료 가치 종설. 프로바이오틱·분변이식 언급은 있으나 보고 내용이 병태생리와 치료 가능성."
+    },
+    {
+      "record_id": "pubmed:36316651",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "커큐민 유사체 C66의 당뇨 심혈관·신장 합병증 감소 종설. 검토 대상이 동물 모델 연구 전용."
+    },
+    {
+      "record_id": "pubmed:39801112",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "요도성형술 이력 환자의 인공요도조임근 삽입 결과 14명. 수술 P와 요도 침식 합병증 O는 명확하나 노출이 기기 삽입."
+    },
+    {
+      "record_id": "pubmed:40419393",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "위장관 종양 수술 349명의 영양위험과 경구영양보충제 사용. 수술 P와 보충 I가 명확하고 보충군의 합병증 감소·재원 1일 단축을 비교 보고."
+    },
+    {
+      "record_id": "pubmed:38803195",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "장기 복막투석 771명의 중증 이차성 부갑상선기능항진증 예후. 투석 P와 감염 관련 사망 O는 명확하나 활성 비타민 D 충격요법이 중증 정의의 구성요소로만 등장해 측정 노출이 아님."
+    },
+    {
+      "record_id": "pubmed:39256329",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "만성콩팥병 합병증·진행에서 마그네슘 보충의 위험·이익 균형 종설. 보충 I가 명확하고 진행 CKD에서 고마그네슘혈증 위협과 '저활성 비타민 D 보충이 혈관 칼슘화·심장사건을 증가시킨다'는 위해 방향 결과가 명시적."
+    },
+    {
+      "record_id": "pubmed:41544700",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "안정 비보상성 간경변 근감소증 21명의 HMB 함유 경구영양보충 예비 RCT. 간경변 P와 보충 I가 명확하고 '내성 양호, 유의한 이상사건 없음'을 보고. pubmed:37099902과 달리 내성·이상사건 보고가 있는 점이 차이."
+    },
+    {
+      "record_id": "pubmed:35893914",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "대장암 수술 151명의 올리고머 고단백 대 면역영양 보충 이중맹검 RCT. 수술 후 P와 두 보충제 I가 명확하고 결과가 합병증·재입원·수술부위감염·사망과 보충제 내성·혈액지표."
+    },
+    {
+      "record_id": "pubmed:42234880",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "Tribulus terrestris 자가복용 후 급성신손상 증례. 비처방 생약 노출이 명확하고 크레아티닌 상승과 투석 필요라는 안전성 결과가 직접적."
+    },
+    {
+      "record_id": "pubmed:39286715",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "만성 간질환에서 실리마린 항산화 치료 종설. 만성간질환 P와 밀크시슬 유래 I가 명확하고 유효성과 함께 장기 안전성·약물상호작용을 명시적으로 다룸."
+    },
+    {
+      "record_id": "pubmed:42081954",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "단삼(Salvia miltiorrhiza)과 활성성분의 다표적 기전 종설. 임상적으로 와파린·아스피린 병용 시 상승효과와 안전성 프로파일을 명시해 항응고제 상호작용 축이 성립."
+    },
+    {
+      "record_id": "pubmed:34279843",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "요오드 충족 지역 중국 임신부의 요중 요오드·크레아티닌 비 참고구간 서신. 초록 없음. 결과가 참고구간 산출이고 문헌 유형이 Letter뿐."
+    },
+    {
+      "record_id": "pubmed:34995935",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "대장암 65명의 L-아르기닌 10 g/일 9일 보충과 수술 외상, 이중맹검 RCT. 수술 P와 보충 I가 명확하고 보충군 종양·점막의 억제세포 빈도가 오히려 높았다는 불리한 방향 결과와 CRP를 보고."
+    },
+    {
+      "record_id": "pubmed:38490516",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "복막투석 50명의 복막평형검사 등급과 엽산 이동. 투석 P가 명확하고 결과가 혈중 엽산 저하와 투석액/혈중 엽산비라는 검사치. 결론이 등급별 엽산 보충 필요성 평가로 이어짐."
+    },
+    {
+      "record_id": "pubmed:38961721",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "고양이 특발성·만성콩팥병 연관 이온화 고칼슘혈증의 알렌드로네이트·식이 치료 29례. 대상이 고양이."
+    },
+    {
+      "record_id": "pubmed:37927673",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "심방세동 신규 경구항응고제 유효성·안전성 체계적고찰 11편. 노출이 처방 항응고제."
+    },
+    {
+      "record_id": "pubmed:41270879",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "입원 특이체질 약물유발 간손상 305명의 예후 점수 개발. 원인 약제 중 허브·식이보충제가 16%이고 점수 구성요소 자체에 '허브·식이보충제 제품'이 포함되며 결과가 사망·간이식."
+    },
+    {
+      "record_id": "pubmed:38911445",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "식이 옥살산과 신장 염증 문헌고찰. 만성콩팥병·요로결석 P와 고옥살산뇨 O가 명확하고, 아스코르브산 분해가 순환 옥살산의 35~55%를 만들고 하루 30 mg까지 생성한다고 기술해 비타민 C-옥살산-신결석 축이 성립."
+    },
+    {
+      "record_id": "pubmed:40145668",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "비소세포폐암 수술 후 재활에 한의학 통합 서신. 초록 없음. 제목상 P·I는 확인되나 문헌 유형이 Letter뿐."
+    },
+    {
+      "record_id": "pubmed:36592735",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "uncertain",
+      "reason_codes": ["population", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "염증성 장질환 감시 대장내시경에서 발견된 이례적 출혈 원인. 초록 없음. 내시경이라는 침습적 시술 P와 출혈 O는 제목에서 확인되나 '이례적 원인'이 무엇인지 알 수 없어 I 판단 정보가 없음."
+    },
+    {
+      "record_id": "pubmed:37160627",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "한약 치료 간세포암 317명의 염증·영양·혈중지질 지표 기반 노모그램. 간암 P와 실제 한약 치료 I가 명확하고 결과가 생존과 HDL·NLR·AGR·예후영양지수 검사치."
+    }
+  ]
+}

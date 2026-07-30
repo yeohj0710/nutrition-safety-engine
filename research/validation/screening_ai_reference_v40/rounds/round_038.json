@@ -1,0 +1,45 @@
+{
+  "round": 38,
+  "judgments": [
+    {
+      "record_id": "pubmed:41094493",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "아일랜드 낙농장 27곳의 건유기 임신 젖소 목초 사일리지 무기질 함량과 보충 실태. 대상이 젖소로 동물 사양 연구."
+    },
+    {
+      "record_id": "pubmed:37644576",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "off_topic"],
+      "confidence": "high",
+      "note": "임신 452건의 확장 비침습 산전검사와 염색체 이수성·미세결실 검출능. 임신 P는 명확하나 노출이 유전체 검사이고 결과가 검출 민감도."
+    },
+    {
+      "record_id": "pubmed:41325444",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "체질량지수·체중 구간별 비타민 K 비의존 경구 항응고제 대 와파린 메타분석에 대한 서신. 초록 없음. 노출이 처방 항응고제이고 문헌 유형이 Letter."
+    },
+    {
+      "record_id": "pubmed:35041061",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "비후성 심근증 동반 비판막성 심방세동 124명의 비타민 K 비의존 경구 항응고제 유효성·안전성. 항응고 P와 출혈 O는 명확하나 노출이 처방 항응고제."
+    },
+    {
+      "record_id": "pubmed:35241379",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "프랑스 25개 신장센터 비투석 만성콩팥병 1,211명의 철결핍 유병률 다기관 관찰연구(CARENFER). 만성콩팥병 P가 명확하고 페리틴·트랜스페린 포화도라는 철 상태 지표가 노출(선례 4), 철 보충을 받는 환자 수도 부차 목표로 집계됨. 결과가 결핍 유병률 47.1%와 검사 실태여서 임상 사건이 아니라 confidence는 medium."
+    }
+  ]
+}

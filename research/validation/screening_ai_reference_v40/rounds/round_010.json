@@ -1,0 +1,245 @@
+{
+  "round": 10,
+  "judgments": [
+    {
+      "record_id": "pubmed:33975877",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "노르웨이 75세 이상 심방세동 30,401명의 경구항응고제 유효성·안전성 코호트. 출혈 O는 충족하나 노출이 처방 항응고제."
+    },
+    {
+      "record_id": "pubmed:41185912",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "남아공 Vhembe 임신부 419명 빈혈 유병률 조사. 철 96.5%·엽산 97.3% 보충 순응도와 결품률을 측정 변수로 다루고 결과가 중증도별 빈혈. 주 연관은 식품 불안정이라 보충-결과 축은 간접적."
+    },
+    {
+      "record_id": "pubmed:35243916",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "만성콩팥병 식물 기반 치료 종설. CKD P와 식물추출물 I는 명확하나 보고 결과가 항산화·항염·항섬유화 효능이고 독성은 향후 연구 과제로만 언급."
+    },
+    {
+      "record_id": "pubmed:36088526",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "uncertain",
+      "reason_codes": ["population", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "탄산칼슘에 의한 복막투석 카테터 폐색. 초록 없음. 투석 P와 카테터 폐색이라는 이상사건은 제목에서 확인되나, 탄산칼슘이 경구 보충·인결합제인지 투석액 침전물인지 판단할 정보가 없어 I 불명확. 명확한 부정도 없음."
+    },
+    {
+      "record_id": "pubmed:40560787",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "구연산 항응고 지속신대체요법에서 칼슘 함유 보충액과 이온화칼슘 프로토콜. 신대체요법 P는 충족하나 노출이 투석 보충액·구연산이고 프로토콜이라 결과 없음."
+    },
+    {
+      "record_id": "pubmed:40398918",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "덴마크 임신 1,189,134건의 요오드 소금 강화 전후 갑상선기능저하증 발생률. 요오드 섭취 증가 후 자가면역 갑상선기능저하 증가 우려가 연구 동기이고 결과가 임상 진단이라 미량영양소 위해 신호. 노출이 식품 강화라 보충 섭취는 아니나 부정되지 않음."
+    },
+    {
+      "record_id": "pubmed:39946202",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "혈액투석 환자 20명의 날푸라핀 대 협대역 자외선B 가려움 치료 비교. 투석 P와 칼슘·인·비타민 D 검사치는 있으나 비타민 D·칼슘이 결과 지표이고 노출은 약물·광선치료."
+    },
+    {
+      "record_id": "pubmed:41072599",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "흉강경 폐절제 529명의 수술 전후 Clostridium butyricum CBM588 프로바이오틱 예방. 수술 P와 프로바이오틱 I가 명확하고 결과가 수술부위감염·전체 합병증·30·90일 사망·재수술."
+    },
+    {
+      "record_id": "pubmed:34929422",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "십자화과 채소·아이소티오시아네이트 섭취와 건강결과 우산고찰 57편. 비타민 K 풍부한 브로콜리에 의한 와파린 저항성이 보고되어 상호작용 O가 있으나 노출이 일반 채소 식이 섭취라 명세 3.2에 따라 I 부정. 판정이 갈릴 수 있는 경계."
+    },
+    {
+      "record_id": "pubmed:39471241",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "전자간증 위험 임신부 마늘 섭취 RCT의 철회 공고. 초록 없음. 문헌 유형이 Retraction Notice뿐이라 명세 3.4에 해당."
+    },
+    {
+      "record_id": "pubmed:42295123",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "Gli2 활성화와 신세뇨관간질 섬유화, FoxM1 연계. 생쥐 모델·세포 실험 중심이고 노출이 아리스톨로크산 모델 시약과 GANT61."
+    },
+    {
+      "record_id": "pubmed:42318991",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "항응고 중 발생한 허혈성 뇌졸중 833명의 DOAC 조기 대 지연 개시. 출혈 O는 충족하나 노출이 처방 항응고제."
+    },
+    {
+      "record_id": "pubmed:35788844",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "정상 심박동 혼합 심혈관질환에서 NOAC 대 아스피린 논평. 초록 없음. 제목만으로도 노출이 처방 항응고제·아스피린."
+    },
+    {
+      "record_id": "pubmed:42266284",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "임신부 316명의 모체 25(OH)D3 결핍과 조기진통. 임신 P와 조기진통 O(보정 OR 2.51)가 명확. 노출이 혈청 비타민 D 상태이고 보충은 결론의 제언."
+    },
+    {
+      "record_id": "pubmed:37634679",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "항인지질증후군에서 aPL 음전 후 항응고 중단 가능성 종설. 노출이 VKA 처방약."
+    },
+    {
+      "record_id": "pubmed:34266650",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "신장이식 849명의 3차 부갑상선기능항진증 유병률·위험인자. 고칼슘혈증 O는 충족하나 노출이 칼시미메틱 처방약이고 칼슘은 결과 정의."
+    },
+    {
+      "record_id": "pubmed:39617304",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "후성유전 치료제의 신손상·섬유화 완화. 엽산 유발 급성신손상 생쥐와 HK-2 세포 전용, 엽산은 모델 시약."
+    },
+    {
+      "record_id": "pubmed:36499168",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "당뇨 환자 903명 대상 프로바이오틱·프리바이오틱·신바이오틱과 신장 지표 체계적고찰 16편. 크레아티닌·eGFR·미세알부민뇨 검사치와 함께 '이 뉴트라수티컬이 혈청 요산을 올리는 것으로 보인다'는 위해 방향 신호가 명시적."
+    },
+    {
+      "record_id": "pubmed:36728285",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "만성콩팥병 영아 분유의 지르코늄 사이클로실리케이트 전처리로 칼륨 섭취 감소. 초록 없음. 노출이 칼륨 결합제이고 문헌 유형이 Letter뿐."
+    },
+    {
+      "record_id": "pubmed:39107635",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "심방세동 6,633명에서 주요출혈 후 심혈관 사건 위험(SAKURA·RAFFINE 등록자료). 노출이 처방 항응고제."
+    },
+    {
+      "record_id": "pubmed:35988825",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "무릎 전치환 107명의 수술 당일 비타민 D3 50,000 IU 단회 투여 RCT. 수술 전후 P와 비타민 I가 명확하고 90일 내 합병증을 군별로 보고(위약 4건 대 비타민 5건)."
+    },
+    {
+      "record_id": "pubmed:37049509",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "animal_term_present"],
+      "confidence": "high",
+      "note": "긴병꽃풀(Glechoma hederacea) 추출물의 항산화·항응고 활성과 세포 독성. 사람 말초혈액세포·혈장 시험관 전용."
+    },
+    {
+      "record_id": "pubmed:42150221",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "두개내 종양 수술 120명의 NRS 2002·GLIM 기반 수술 전후 영양중재. 표적 단백 보충과 수술 후 경구영양보충이 노출이고 결과가 합병증률(1.7% 대 40.0%)과 헤모글로빈·알부민·프리알부민 검사치."
+    },
+    {
+      "record_id": "pubmed:41961655",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "비투석 만성콩팥병 빈혈 120명의 에나로두스타트+경구 철 보충 병용. CKD P와 철 보충 I가 명확하고 헤모글로빈·페리틴·TSAT 검사치와 이상반응 발생률을 함께 보고."
+    },
+    {
+      "record_id": "pubmed:37078399",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "중국 여성 모체 요오드 섭취·보충 권고 순응도 WIN 코호트의 정정문. 초록 없음. 문헌 유형이 CORRIGENDUM뿐이라 명세 3.4에 해당."
+    },
+    {
+      "record_id": "pubmed:42269153",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "항응고 역전 해독제 종설. 노출이 프로타민·프로트롬빈복합체·이다루시주맙·안덱사네트 등 처방약. Vitamin K는 VKA·PCC 맥락."
+    },
+    {
+      "record_id": "pubmed:36377836",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "임신 중 비타민 D 결핍과 하지불안증후군 논평. 초록 없음. 문헌 유형이 Comment뿐이라 명세 3.4에 해당."
+    },
+    {
+      "record_id": "pubmed:36201473",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "GLORIA-AF 3상 등록자료 21,241명의 항혈전 처방 양상. 노출이 처방 항응고제이고 결과가 처방 패턴."
+    },
+    {
+      "record_id": "pubmed:40271244",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "임신 중 미량영양소 섭취 향상을 위한 행동중재 종설. 임신 P와 철·칼슘·비타민 D 언급은 있으나 노출이 식이 수정·순응 행동중재이고 보고 결과가 중재 전략의 효과."
+    },
+    {
+      "record_id": "pubmed:39976654",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "부인과 개복수술 114명의 Bacillus coagulans TBC169 프로바이오틱 이중맹검 RCT. 수술 P와 프로바이오틱 I가 명확하고 결과가 수술 후 합병증률(21.1~34.2% 대 68.4%)과 이상반응 보고."
+    }
+  ]
+}

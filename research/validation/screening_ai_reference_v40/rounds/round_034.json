@@ -1,0 +1,245 @@
+{
+  "round": 34,
+  "judgments": [
+    {
+      "record_id": "pubmed:39321111",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "정형외과 수술 후 광귤 아로마테라피와 통증. 초록 없음. 수술 P와 통증 O는 확인되나 노출이 흡입 아로마테라피로 섭취 보충이 아님. pubmed:40619705과 같은 처리."
+    },
+    {
+      "record_id": "pubmed:38990465",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "불충분한 장정결 시 요가 기반 라구 샹카프락샬라나 대 폴리에틸렌글리콜 비교. 초록 없음. 노출이 요가 수행과 완하제이고 문헌 유형이 Letter·Comment."
+    },
+    {
+      "record_id": "pubmed:35363181",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "design_signal"],
+      "confidence": "medium",
+      "note": "만성콩팥병 성인의 장내미생물에 대한 한약 효과·안전성 체계적고찰 프로토콜. 만성콩팥병 P와 한약 I가 명확하고 목적에 안전성이 명시되나 프로토콜이라 결과가 아직 없음. 판정이 갈릴 수 있는 경계."
+    },
+    {
+      "record_id": "pubmed:34353389",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "당뇨 혈액투석 환자의 마그네슘 보충과 경동맥 내중막 두께 무작위시험에 대한 우려 표명. 초록 없음. 제목상 P·I·O가 맞지만 문헌 유형이 Expression of Concern으로 원논문의 신뢰성이 유보됨. 철회 공고(pubmed:36459002)와 같은 취급."
+    },
+    {
+      "record_id": "pubmed:36422361",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "off_topic"],
+      "confidence": "medium",
+      "note": "홍조류 미세조류의 생리활성 물질과 치료·영양 가치 종설. 보충·건강기능식품 소재 I는 명확하나 대상 집단이 없고 항응고 활성이 활성 목록의 한 항목으로만 언급됨. 검색어 유래."
+    },
+    {
+      "record_id": "pubmed:35621372",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "off_topic"],
+      "confidence": "high",
+      "note": "투석용 셀룰로스 막에 산화그래핀-키토산 망을 형성한 유기염료 제거 연구. 폐수 처리 소재 연구이고 dialysis는 실험실 막 기법을 뜻하는 검색어 오탐."
+    },
+    {
+      "record_id": "pubmed:34980887",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "선천 위장관 수술 질환 신생아 61명의 3균주 비피더스 프로바이오틱 무작위시험. 보충 I와 장내미생물 O는 명확하나 대상이 신생아 전용이라 명세 4절 HRS1의 소아 배제에 해당."
+    },
+    {
+      "record_id": "pubmed:35942383",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "일차 IgA 신병증 423명의 한의 변증 요소와 예후. 신질환 P와 말기신질환·eGFR 감소 O는 명확하나 노출이 변증 분류. pubmed:37147762·pubmed:34717305과 같은 처리."
+    },
+    {
+      "record_id": "pubmed:40702230",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "off_topic"],
+      "confidence": "high",
+      "note": "중국 만성콩팥병 환자 30명의 낙인 대응과 회복력 문화기술지. 만성콩팥병 P는 있으나 주제가 사회적 낙인."
+    },
+    {
+      "record_id": "pubmed:32654629",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "저위험 임신부 60명의 식이 지방산·오메가6/3 비율과 우울 증상. 임신 P와 우울 증상 O는 명확하나 노출이 24시간 회상법 2회 기반 식이 섭취량이라 선례 13 적용."
+    },
+    {
+      "record_id": "pubmed:35349100",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "복막투석 7례의 칼슘·인·부갑상선호르몬 일주기 리듬 서신. 초록 없음. 투석 P는 명확하나 칼슘·인이 측정 지표이고 문헌 유형이 Letter."
+    },
+    {
+      "record_id": "pubmed:34996679",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "비대상성 간경변 복수 55례의 아유르베다 관리 후향 코호트, Child-Turcotte-Pugh C군. 간질환 P가 명확하고 니티아비레차나와 경구 아유르베다 약제가 I, 결과가 간기능검사·프로트롬빈시간·INR·신기능검사와 복위·체중. 다성분 복합 개입이라 생약 단독 효과는 분리되지 않음."
+    },
+    {
+      "record_id": "pubmed:42252696",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "off_topic"],
+      "confidence": "high",
+      "note": "수혈의존 베타지중해빈혈의 엑사감글로진 오토템셀 유전자치료 3상. 대상이 12~35세 환자로 임신과 무관하고 노출이 CRISPR 세포치료와 철 킬레이션."
+    },
+    {
+      "record_id": "pubmed:35714823",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "우르솔산이 소라페닙의 항종양 효과를 증강하는 기전. 천연 트리터펜 I는 확인되나 근거가 세포주와 마우스 이식 모델이고 결과가 세포자멸·페롭토시스 기전."
+    },
+    {
+      "record_id": "pubmed:41062817",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "산전 비타민 D 상태와 장기 신경인지 결과. 초록 없음. 제목만으로 산전 P·비타민 D 상태 I·신경인지 결과 O가 확인되고 문헌 유형이 Journal Article."
+    },
+    {
+      "record_id": "pubmed:40877017",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "미숙아의 아라키돈산·DHA 보충을 중단해야 하는가. 초록 없음. 대상이 미숙아 직접 투여이고 문헌 유형이 Editorial."
+    },
+    {
+      "record_id": "pubmed:39197740",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "영양보충제 유발 약물유발 간손상의 드문 발현으로 나타난 DRESS 증후군과 혈구탐식성 림프조직증. 초록 없음. 제목·MeSH로 간손상 P·식이보충제 I·중증 과민반응 O가 확인되고 문헌 유형에 Case Reports가 포함됨. pubmed:38071155과 같은 처리."
+    },
+    {
+      "record_id": "pubmed:35057443",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "design_signal"],
+      "confidence": "high",
+      "note": "비타민 K의 생물학적 역할, 심혈관·신장 측면 종설. 만성콩팥병·투석 환자의 비타민 K 결핍과 항응고 치료가 결핍에 미치는 영향을 함께 다루고 비타민 K 보충의 역할·가능성을 명시적으로 논의. 결과가 혈관 석회화와 심혈관 사건, 미카복실화 매트릭스 Gla 단백. HRS5 축에 정확히 부합."
+    },
+    {
+      "record_id": "pubmed:34508748",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "베이징 단태 출생 63,969건(선천심질환 308건)의 임신 전후 엽산·복합 미량영양소 보충과 태아 선천심질환. 보정 위험비가 총 선천심질환 0.60, 중증 선천심질환 0.41이고 수태 전 개시가 더 낮은 위험과 연관. 문헌 유형에 Comment가 있으나 원자료 분석과 실질 초록을 갖춤(선례 20)."
+    },
+    {
+      "record_id": "pubmed:36521882",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "심방세동 전극도자절제의 침 보조 마취 무작위시험 프로토콜. 시술 P와 수술후 오심·구토 O는 명확하나 노출이 침 치료."
+    },
+    {
+      "record_id": "pubmed:32912927",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "임신 중 비타민 D 보충이 6년 추적에서 소아 천식 발생을 줄이지 못함. 초록 없음. 제목상 P·I·O가 맞지만 문헌 유형에 Comment가 있고 실질 초록이 없어 선례 20의 예외에 해당하지 않음."
+    },
+    {
+      "record_id": "pubmed:38761337",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "대장수술 후 커피·카페인과 장기능 회복 메타분석. 초록 없음. 제목상 수술 P·카페인 I·회복 O가 확인되나 문헌 유형이 Letter."
+    },
+    {
+      "record_id": "pubmed:39386345",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "장기작용 항응고 살서제 중독의 장기 경구 비타민 K1 치료 비순응. 초록 없음. 노출이 해독제로서의 비타민 K이고(선례 14) 결과가 복약 비순응이라는 행동 지표(선례 19)."
+    },
+    {
+      "record_id": "pubmed:37950553",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "결핵성 흉막염 동반 유지투석 환자의 칼시트리올 과다생성 고칼슘혈증을 항결핵제와 졸레드론산으로 치료. 초록 없음. 투석 P와 고칼슘혈증 O는 확인되나 칼시트리올이 내인성 과다생성이고 치료가 항결핵제·비스포스포네이트, 문헌 유형이 Letter."
+    },
+    {
+      "record_id": "pubmed:39115418",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "신질환 예방·치료를 위한 식물성 식단 종설. 만성콩팥병 P와 사망·신기능·요독소 O는 명확하나 노출이 식사 패턴이라 명세 4절 HRS2의 명시적 배제와 선례 13에 해당. 채식이 중증 비타민 D 결핍과 연관되었다는 보고가 있어 경계."
+    },
+    {
+      "record_id": "pubmed:36185190",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "off_topic"],
+      "confidence": "high",
+      "note": "비수유기 유방염과 악성 유방종양의 딥러닝 자동분류 감별, 707명. 노출이 인공지능 영상판독이고 보충 노출이 없음."
+    },
+    {
+      "record_id": "pubmed:39241347",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "소아 심폐우회로 유발 장손상을 프로바이오틱이 완화할 수 있다는 서신. 초록 없음. 대상이 소아 전용이라 명세 4절 HRS1에 걸리고 문헌 유형이 Letter."
+    },
+    {
+      "record_id": "pubmed:35995981",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "자궁내 산화스트레스 노출이 카스파제-1 의존 장신경세포 파이롭토시스를 유발. 임신 랫 모델과 세포 실험이고 N-아세틸시스테인은 활성산소 소거 시약으로만 등장."
+    },
+    {
+      "record_id": "pubmed:38913100",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "괴화산 5성분의 정상 랫과 궤양성대장염 랫 약동학 비교. 동물 실험 전용이고 수술 집단이 아님."
+    },
+    {
+      "record_id": "pubmed:33749574",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "off_topic"],
+      "confidence": "medium",
+      "note": "중국 청두 임신부 1,081명의 영양 보충제 사용 실태 관찰연구. 임신 P와 엽산·칼슘·비타민 D·철·DHA 보충 I는 명확하나 결과가 사용률과 정보 출처라는 이용·인식 지표. 선례 19 적용."
+    }
+  ]
+}

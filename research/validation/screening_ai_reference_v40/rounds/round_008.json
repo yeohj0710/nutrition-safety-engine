@@ -1,0 +1,141 @@
+{
+  "round": 8,
+  "judgments": [
+    {
+      "record_id": "pubmed:35531334",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "익기보신조지방의 고지방·고과당 식이 유발 비알코올성 지방간염 완화와 장내세균. C57BL/6 생쥐 전용."
+    },
+    {
+      "record_id": "pubmed:37579693",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "며느리배꼽(Polygonum perfoliatum) 추출물의 간세포암 억제 기전. 안전성 프로파일 언급은 있으나 시험관·동물 실험 전용."
+    },
+    {
+      "record_id": "pubmed:35564748",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "고령 심방세동 116명에서 노쇠·치매가 경구항응고 치료 편의성·만족도에 미치는 영향. 노출이 처방 항응고제이고 결과가 만족도·삶의질."
+    },
+    {
+      "record_id": "pubmed:36843559",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "바이칼레인의 구강편평세포암 기전 네트워크 약리학·생물정보학. 전산 분석 전용이고 대상 질환도 간이 아님."
+    },
+    {
+      "record_id": "pubmed:40191522",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "사하라 이남 26개국 149,346 모자쌍의 모체 철 보충과 저출생체중. 보충 여부·기간이 실제 노출 변수이고 미보충 시 저출생체중 aOR 1.19로 임상 결과가 명확."
+    },
+    {
+      "record_id": "pubmed:41663805",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "SMOC2의 급성신손상 세뇨관 보호 기전. 녹아웃 생쥐 전용이고 아리스톨로크산은 손상 유발 모델 시약."
+    },
+    {
+      "record_id": "pubmed:35386305",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "흰점박이꽃무지 단백가수분해물의 항비만·간보호 효과. 비만 생쥐 40마리 전용."
+    },
+    {
+      "record_id": "pubmed:39302807",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "비타민 D 수용체의 당뇨병성 신증 지질과산화 완화와 ACLY/Nrf2/Keap1 경로. 녹아웃 생쥐와 세포 전용이고 노출이 수용체·파리칼시톨."
+    },
+    {
+      "record_id": "pubmed:42298563",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "중증 비만 33명의 위소매절제술 전후 엔도카나비노이드옴과 식이 지질 프로파일. 수술 전후 P는 명확하나 노출이 24시간 회상법 식이 섭취라 보충 노출이 아님(명세 3.2)."
+    },
+    {
+      "record_id": "pubmed:39081774",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "3세 미만 유지투석 아동 26명의 시나칼세트 안전성·유효성. 투석 P와 저칼슘혈증 10회·조기 사춘기라는 전해질·내분비 이상 O가 명확. 주 노출은 처방약이지만 경구 칼슘 섭취량을 권장량 대비로 정량하고 비타민 D 상태와 보충 관리를 결론에서 명시해 I가 부정되지 않음. pubmed:40060059와 달리 영양소 섭취가 측정 변수로 등장하는 점이 차이."
+    },
+    {
+      "record_id": "pubmed:38042042",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "1일령 병아리 체중이 외인성 피타아제 고용량 반응에 미치는 영향. 육계 360마리 전용."
+    },
+    {
+      "record_id": "pubmed:40892742",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "황련온담탕의 비알코올성 지방간 개선과 LKB1/AMPK 경로. SD 랫드 모델 전용."
+    },
+    {
+      "record_id": "pubmed:36609317",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "대만 전국 코호트 24,835명, 심방세동·당뇨 고령자의 항응고제별 심부전 위험. 노출이 NOAC·와파린 처방약."
+    },
+    {
+      "record_id": "pubmed:39770882",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "Lactobacillus delbrueckii CKDB001의 고지방식이 비만 생쥐 대사 합병증 개선. 생쥐 48마리 전용."
+    },
+    {
+      "record_id": "pubmed:36660168",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "DOAC 대 VKA 항응고 중 위장관 출혈 248명 후향비교. 출혈 O는 명확하나 노출과 상호작용 약물(아미오다론)이 모두 처방약."
+    },
+    {
+      "record_id": "pubmed:38460576",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "홍삼 추출물의 고요산혈증 생쥐 지질독성 유발 신섬유화 개선. 생쥐 모델 전용."
+    },
+    {
+      "record_id": "pubmed:35390440",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "텍토리게닌의 고지방식이 비알코올성 지방간 개선과 장내세균 조절. C57BL/6 생쥐 전용. 식이보충제 활용 제언은 결론의 전망."
+    }
+  ]
+}

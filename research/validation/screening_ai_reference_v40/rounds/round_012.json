@@ -1,0 +1,237 @@
+{
+  "round": 12,
+  "judgments": [
+    {
+      "record_id": "pubmed:36466428",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "탈라세미아 유전형별 임신부 15,051명의 철결핍빈혈 유병률. 임신 P와 빈혈·페리틴 검사치 O가 명확하고 β-탈라세미아 보인자는 철 보충을 동적으로 감시해야 한다는 결론까지 제시. 노출은 혈중 상태."
+    },
+    {
+      "record_id": "pubmed:35078571",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "원발성 담도담관염 UDCA 반응 불량군의 차등발현유전자 생물정보 분석. GEO·CIBERSORT·Coremine 전산 분석 전용이고 한약 예측은 데이터베이스 추론."
+    },
+    {
+      "record_id": "pubmed:35107323",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "Akkermansia muciniphila의 아세트아미노펜 간손상 완화. C57BL/6 생쥐 전용."
+    },
+    {
+      "record_id": "pubmed:35352269",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "재수술 흡수저해형 비만수술 102명의 장기 결과. 영양결핍 80.4%, 중증 결핍 9.8%가 정맥영양 필요, 문합부 누출 등 합병증이 명확하고 결론이 '영양보충 순응 확보 불가로 장기 안전성에 의문'."
+    },
+    {
+      "record_id": "pubmed:41567325",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "nuMoM2b 코호트 9,461명에서 임신부 비타민 외 오메가-3 추가 보충과 조산·부당경량아. 실제 보충 섭취가 노출이고 결과가 임상 이상결과(보정 OR 0.64)."
+    },
+    {
+      "record_id": "pubmed:42184682",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "재발 간세포암 환자의 아유르베다 치료 증례. 간질환 P와 아유르베다 제제 I가 명확하고 알파태아단백·빌리루빈 등 검사치 변화를 보고."
+    },
+    {
+      "record_id": "pubmed:36012285",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "간질환과 진행성 만성간질환 합병증에서 비타민 D의 역할 종설. 간질환 P가 명확하고 비타민 D 보충 적응증의 결론 불충분성을 다루며 합병증·진행 예측 결과를 제시."
+    },
+    {
+      "record_id": "pubmed:40641396",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "소아 신증후군의 미량원소 개별화 접근 종설. 미량원소 보충 I가 명확하고 결과가 재발 빈도·감염 위험·만성콩팥병 진행·입원."
+    },
+    {
+      "record_id": "pubmed:35566753",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "조기 태아성장제한 임신에서 비타민 D 2000 IU 대 500 IU 미만 보충과 대뇌태반비. 고위험 임신 P와 용량 대비 보충 I가 명확하고 결과가 초음파 지표."
+    },
+    {
+      "record_id": "pubmed:36514502",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "브라질 폐색성 문맥혈관병 43례. 환자 3분의 1이 간효소 변화 시점에 약물, 특히 생약 노출이 있었고 결론이 생약 사용의 역할 가능성. GGT·ALT 상승과 문맥고혈압이 결과."
+    },
+    {
+      "record_id": "pubmed:40892003",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal"],
+      "confidence": "medium",
+      "note": "9세 소아 유년기 신장수질낭성병 증례. 투석·이식까지 간 CKD P와 헤모글로빈 7.4·크레아티닌 4.89 검사치 O가 명확. 에르고칼시페롤·탄산칼슘이 실제 투여된 보충 노출이라 pubmed:38716532(감별진단 열거)와 구분."
+    },
+    {
+      "record_id": "pubmed:39755183",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "한약 유발 독성의 생화학 표지자 종설. 한약·식물성 성분 노출과 간독성·신독성·심독성이 주제 자체이고 PA-단백 부가체 등 표지자를 제시."
+    },
+    {
+      "record_id": "pubmed:35818085",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "미국 임신부 최적 산전 보충제 권고 종설. 시판 산전 보충제 180종 이상의 함량을 분석하고 결과가 임신 합병증과 저출생체중·선천심장기형·신경관결손 등 기형."
+    },
+    {
+      "record_id": "pubmed:28722928",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "부갑상선기능저하증 개요. 치료가 칼슘·비타민 D·마그네슘 보충이라는 노출이 명확하고 저칼슘혈증·고인산혈증·부정맥과 합병증으로서의 만성콩팥병·신결석이 결과. HRS2의 P는 합병증 축이라 약함."
+    },
+    {
+      "record_id": "pubmed:37852377",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "중국 임신부 1,120명의 요중 과염소산·티오시안산·질산 노출 수준. 노출이 환경 화학물질이고 결과가 노출 농도·관련 인자로 임상 결과가 없음."
+    },
+    {
+      "record_id": "pubmed:20301523",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "TFR2 관련 혈색소증 임상요약. 간경변·당뇨·심근증 등 철 과부하 합병증이 결과이고 '회피 대상'에 의약용 철과 철 함유 영양보충제, 비타민 C 보충제가 명시적으로 들어 있어 보충제 안전성 진술이 직접적."
+    },
+    {
+      "record_id": "pubmed:38491222",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "만성콩팥병 약물 스튜어드십 종설. CKD P가 명확하고 비처방약·생약·보충제의 책임 있는 사용 지침을 명시하며 약물 안전성·위험 변화가 주제."
+    },
+    {
+      "record_id": "pubmed:37208742",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "비알코올성 지방간염 한약 RCT 112편 체계적 분석. P·I 명확하나 보고 내용이 처방·약재 빈도·네트워크와 시험설계 보고 품질이고 임상 결과가 제시되지 않음."
+    },
+    {
+      "record_id": "pubmed:39634340",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "비보상성 간경변 3례의 아유르베다·판차카르마 관리. 간경변 P와 아유르베다 제제 I가 명확하고 간기능검사 지표의 유의한 감소를 보고."
+    },
+    {
+      "record_id": "pubmed:35144413",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "만성 B형간염 95명의 한의 변증 유형별 CHI3L1 발현과 간섬유화. 간질환 P와 섬유화 검사치 O는 명확하나 노출이 변증 분류라는 진단 범주이고 한약 투여가 없음."
+    },
+    {
+      "record_id": "pubmed:37200041",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "비알코올성 지방간에서 점액층과 장내미생물 상호작용 종설. 프로바이오틱·프리바이오틱·분변이식 언급은 있으나 보고 내용이 병태생리 기전과 치료 전략 제안."
+    },
+    {
+      "record_id": "pubmed:40072608",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "MOBYDIck RCT 이차분석, 산전 조건별 고용량 DHA와 초극소 조산아 기관지폐이상. 모유를 통한 모체 DHA 보충이 노출이고 결과가 기관지폐이상·사망. 시험 자체가 안전성 사유로 조기 중단된 점도 기록."
+    },
+    {
+      "record_id": "pubmed:39959784",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "임신 중 빈혈과 불량 임신결과 체계적고찰·메타분석 31편. 산후출혈 RR 2.76, 조산·저출생체중·신생아 질식 등 임상 이상결과가 명확. 노출은 빈혈 상태이고 영양보충은 결론의 권고."
+    },
+    {
+      "record_id": "pubmed:34980778",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "커큐민과 하이드로모르폰 병용의 수술 후 통증 완화. SD 랫드 전용."
+    },
+    {
+      "record_id": "pubmed:38663781",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "시호(Bupleuri Radix)와 활성성분의 만성 간질환 치료 종설. P·I 명확하고 '시호와 그 성분은 CYP450·산화스트레스와 연관된 간독성을 가질 수 있어 주의가 필요하다'는 안전성 결과가 명시적."
+    },
+    {
+      "record_id": "pubmed:37967548",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "장 노쇠 개념과 병태생리 종설. 프리·프로·포스트바이오틱이 치료 후보로 언급되나 대상이 CKD 환자가 아니고 만성콩팥병은 변비의 하류 위험으로만 등장."
+    },
+    {
+      "record_id": "pubmed:40823027",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "IgA 신병증 866명의 10년 코호트, 시간가중 평균 25(OH)D와 주요 신장 이상사건. CKD P와 MAKE 임상 결과가 명확하고 비타민 D 보충 효능을 함께 논의. 노출은 혈중 상태."
+    },
+    {
+      "record_id": "pubmed:41171441",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "간세포암 화학예방 종설. 만성간질환 P가 명확하고 예방 수단으로 식이보충제를 명시적으로 평가하며 결과가 간세포암 발생."
+    },
+    {
+      "record_id": "pubmed:36821460",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "간질환 영양지원 최신 체계적고찰. 신규 12편 중 9편이 영양보충제 시험이고 결과가 간이식 후 감염률·간절제 후 총합병증률·사망·복수·간성뇌증. 약리 활성 미량영양소 사용이 신뢰도를 제한한다는 안전성 관련 유보도 기록."
+    }
+  ]
+}

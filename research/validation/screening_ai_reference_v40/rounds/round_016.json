@@ -1,0 +1,245 @@
+{
+  "round": 16,
+  "judgments": [
+    {
+      "record_id": "pubmed:40583089",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "소아 만성콩팥병 72명의 칼시트리올+에날라프릴 대 에날라프릴 RCT. CKD P가 명확하고 고인산혈증 3례·고칼슘혈증·고칼륨혈증 미발생과 내성 양호를 보고해 전해질 안전성 결과가 측정됨. pubmed:35942813과 같은 처리."
+    },
+    {
+      "record_id": "pubmed:41993723",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "비알코올성 지방간·대사증후군 360명의 실리마린 140 mg 1일 3회 6개월 단일군 연구. 간질환 P와 보충 I가 명확하고 AST·ALT·GGT 정상화율과 안전성·내성을 함께 보고."
+    },
+    {
+      "record_id": "pubmed:39109075",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "당뇨병성 신장질환 1,682명의 승강산 병용 체계적고찰·메타분석 23편. 신질환 P와 한약 I가 명확하고 유효성·안전성을 평가하며 결과가 요단백·BUN·크레아티닌·HbA1c·지질 검사치."
+    },
+    {
+      "record_id": "pubmed:35066755",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "허브·식이보충제 유발 간손상이 동서양 공통 문제라는 서신. 초록 없음. 제목상 P·I·O가 모두 주제에 부합하지만 문헌 유형이 Letter·Comment뿐이라 명세 3.4에 따라 배제."
+    },
+    {
+      "record_id": "pubmed:40620271",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "발프로에이트 노출 태아의 신경관결손 서신. 초록 없음. 임신 노출 P와 기형 O는 확인되나 노출 물질이 처방 항경련제이고 문헌 유형이 Letter뿐."
+    },
+    {
+      "record_id": "pubmed:38581551",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "와파린 역전용 고정용량 4인자 프로트롬빈복합체 195명. 병용 비타민 K 투여율을 이차 결과로 보지만 역전용 처방 제제라 보충 노출이 아님."
+    },
+    {
+      "record_id": "pubmed:35530510",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "medium",
+      "note": "고혈압·폐동맥고혈압 혈관 재형성에서 커큐민의 이익 종설. 커큐민의 불리하고 일관되지 않은 효과를 언급하지만 대상이 고혈압이고 근거가 설치류 모델."
+    },
+    {
+      "record_id": "pubmed:38284271",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "칼륨 강화 대체소금의 진료지침 권고 검토(고혈압 32·신장 14개 지침). 무기질(칼륨) 노출이고 결과가 혈압·심혈관 사건·사망이며 '진행 신질환·칼륨 보충제 사용·칼륨보존 이뇨제 사용 시 제외'라는 금기를 명시해 CKD 안전성 축이 성립."
+    },
+    {
+      "record_id": "pubmed:36012266",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "장내미생물과 간성뇌증 연관 종설. 간경변 P와 프로바이오틱·프리바이오틱 I는 명확하나 보고 내용이 인지기능·고암모니아혈증 개선 효능과 한계."
+    },
+    {
+      "record_id": "pubmed:42031612",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "아목시실린-클라불란산과 와파린 상호작용에 의한 약물유발 간손상 증례. 항응고 P와 간손상·INR 7 O는 명확하나 노출이 양쪽 모두 처방약이고 비타민 K는 역전용."
+    },
+    {
+      "record_id": "pubmed:40162400",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "위암 근치술 후 위식도역류에 누패이진탕과 침 병용 후향연구 128명. 수술 후 P와 경구 한약 I는 명확하나 결과가 위장기능 회복시간·GERD-Q·변증 점수 효능 전용."
+    },
+    {
+      "record_id": "pubmed:38984712",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "심혈관질환에서 인자 XI 억제 종설. 노출이 개발 중 처방 항응고제."
+    },
+    {
+      "record_id": "pubmed:39141932",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "대추야자 열매 추출물의 에탄올 유발 HepG2 세포사 보호. 세포주 전용."
+    },
+    {
+      "record_id": "pubmed:39120763",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "고령 일반외과 환자 발바닥 마사지 RCT에 대한 편집자 회신. 초록 없음. 노출이 마사지."
+    },
+    {
+      "record_id": "pubmed:35838235",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "외상 환자의 피브리노겐 농축액 대 동결침전제제 255명. '보충'은 혈액응고인자 보충이고 손상 전 항응고제 복용자는 제외되어 HRS5의 P가 명확히 부정됨."
+    },
+    {
+      "record_id": "pubmed:35138967",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "리토나비르 부스팅 항레트로바이러스 요법 중 심방세동 아픽사반 사용 증례. 노출이 처방약 상호작용이고 비타민 K는 출혈 시 역전용."
+    },
+    {
+      "record_id": "pubmed:40056824",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "임신부 혈청 요오드 농도와 갑상선기능 논문의 정정문. 초록 없음. 문헌 유형이 Published Erratum뿐."
+    },
+    {
+      "record_id": "pubmed:38812630",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "선천성 신장·요로기형(소아 만성콩팥병 최대 원인) 위험인자 환자대조연구 114명. 주 노출은 임신 중 휴대전화 전자기장이지만 임신 전 엽산 보충 사용이 측정 변수이고 기형 위험 감소와 유의하게 연관(p=0.028). 결과가 선천기형."
+    },
+    {
+      "record_id": "pubmed:38992516",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "혈액투석 51명의 투석일·비투석일 영양섭취 평가. 투석 P는 명확하나 노출이 2일 식이기록 기반 섭취이고 결과가 권장량 충족도로 안전성 결과가 아님."
+    },
+    {
+      "record_id": "pubmed:34544226",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["animal_term_present", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "몽골의학 청자(blue thorn)의 폐경후 골다공증 항산화 기전 실험. 초록 없음. MeSH가 난소절제 동물 모델이고 문헌 유형이 Letter."
+    },
+    {
+      "record_id": "pubmed:39317217",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "난원공개존 연관 뇌졸중의 아픽사반 이차예방 증례. 항응고 P와 출혈·INR O는 명확하고 '일관되지 않은 비타민 K 섭취'가 전환 사유로 등장하나 노출이 식이 비타민 K라 명세 3.2에 해당. pubmed:34929422와 같은 처리."
+    },
+    {
+      "record_id": "pubmed:34400337",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "가르시니아 캄보지아 단독 또는 녹차 병용의 중등도~중증 간손상 DILIN 22례. 체중감량 보충제 노출과 간손상·사망 1명·간이식 1명·입원 91%라는 안전성 결과가 모두 명시적."
+    },
+    {
+      "record_id": "pubmed:40753041",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "식물추출 기반 니켈 페라이트 나노입자 논문의 철회 공고. 초록 없음. 주제가 완전히 다름."
+    },
+    {
+      "record_id": "pubmed:39083989",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "임신성 당뇨 관리의 다양성 연구와 프로바이오틱 중재 서신. 초록 없음. 문헌 유형이 Letter뿐."
+    },
+    {
+      "record_id": "pubmed:36106226",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "좌심실보조장치 전환 수술의 와파린 역전 증례. 4인자 프로트롬빈복합체와 비타민 K 병용이 역전용 처방이라 보충 노출이 아님."
+    },
+    {
+      "record_id": "pubmed:37573012",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "산전관리에 영양중재를 통합하면 철-엽산 보충 섭취가 개선된다는 사설. 초록 없음. 문헌 유형이 Editorial뿐."
+    },
+    {
+      "record_id": "pubmed:35913943",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "임신 후기 1,074명의 이온화칼슘·총칼슘·알부민과 칼슘 보충에 따른 모체·태아 이상결과. 칼슘 보충이 분석 노출로 명시되고(1·5분 아프가 OR 0.42·0.25) 결과가 저출생체중·거대아·임신성 고혈압."
+    },
+    {
+      "record_id": "pubmed:40547367",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "만성콩팥병 2,202명의 위상각과 신장 예후 코호트. CKD P와 복합 신장 종말점 O는 명확하나 노출이 생체전기저항 위상각이라는 종합 영양상태 지표."
+    },
+    {
+      "record_id": "pubmed:41642683",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "임신 1분기 혈청 요오드와 태아 계측·출생 크기 논문에 대한 서신. 초록 없음. 노출이 혈중 요오드 상태."
+    },
+    {
+      "record_id": "pubmed:41368692",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "브라질 북부 아마존 지역 안면골 골절 97명 후향연구. 수술 P는 충족하나 보충제 노출이 없음. HRS1 유입은 직업 활동인 'plant extraction' 용어 일치로 보임."
+    }
+  ]
+}

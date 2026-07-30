@@ -1,0 +1,245 @@
+{
+  "round": 26,
+  "judgments": [
+    {
+      "record_id": "pubmed:36210639",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "전자간증 위험인자의 통설 대 실제. 초록 없음. 제목에서 임신 P와 전자간증 O가 확인되고 MeSH에 Dietary Supplements가 색인되어 보충 노출이 다뤄짐. 문헌 유형이 Journal Article."
+    },
+    {
+      "record_id": "pubmed:37494706",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "인공심장판막 163명의 혈전·출혈 합병증. VKA 복용 P와 출혈·혈전 O는 명확하나 노출이 항응고제와 판막 종류이고 보충제가 없음."
+    },
+    {
+      "record_id": "pubmed:34121529",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "북아프리카 고유종 Hyacinthoides lingulata 부탄올 추출물의 시험관 항염·항산화·지혈 활성. 탈칼슘 혈장의 응고시간 측정이지만 사람 대상 연구가 아니고 항응고 복용 대상이 없음."
+    },
+    {
+      "record_id": "pubmed:39932122",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "산화질소의 사람 디아민 옥시다제 비가역 억제. 시험관·마우스 모델이고 대상이 전신비만세포증. 비타민 E 유도체 Trolox는 NO 소거 시약으로만 등장."
+    },
+    {
+      "record_id": "pubmed:34331346",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "미국 UNOS 자료 2,146명의 약물유발 급성간부전 25년 추이. 허브·식이보충제 원인이 비아세트아미노펜 사례의 2.9%에서 24.1%로 8배 증가하고 결과가 간이식 대기 등록·5년 생존. HRS4 대표 레코드."
+    },
+    {
+      "record_id": "pubmed:41241720",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "off_topic"],
+      "confidence": "medium",
+      "note": "스웨덴 임신부 1,000명의 비만 여부별 분변 미생물군 비교. 임신 P는 명확하나 측정 노출이 미생물군 조성이고 프로바이오틱은 결론의 향후 개입 제언으로만 등장. 임신 합병증은 배경 논의이고 측정 결과가 아님."
+    },
+    {
+      "record_id": "pubmed:36459002",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "off_topic"],
+      "confidence": "high",
+      "note": "임신 중 비타민 D 보충의 태아막 NF-κB 억제 논문 철회 공고. 제목상 P·I가 모두 맞지만 원논문이 철회되어 근거가 소멸했고 문헌 유형이 Retraction Notice."
+    },
+    {
+      "record_id": "pubmed:34370392",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "미국 UNOS 대기자 1,875명 중 736명 이식. 허브·식이보충제 유발 간손상군에서 아시아계 비율이 17.4% 대 3.8%로 유의하게 높고 2010~2020년에 70% 이상이 집중. 결과가 간이식."
+    },
+    {
+      "record_id": "pubmed:37565761",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "복막투석 관련 복막염 예방을 위한 경구 비타민 D 보충 예비 무작위시험의 정정문. 초록 없음. 제목상 P·I·O가 맞지만 문헌 유형이 Published Erratum."
+    },
+    {
+      "record_id": "pubmed:37147762",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "당뇨병성 신증과 비당뇨성 신질환의 한의 변증 기반 비침습 감별. 만성콩팥병 P는 있으나 노출이 진단용 변증 분류이고 보충 노출이 없음."
+    },
+    {
+      "record_id": "pubmed:36422227",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "off_topic"],
+      "confidence": "high",
+      "note": "구인두암 16명의 커큐민 전달용 폴리에스터-우레탄 미립자 개발. 대상이 항응고 복용자가 아니고 노출이 약물전달 제형. 커큐민의 항응고 성질은 서론의 성질 서술로만 등장한 검색어 오탐."
+    },
+    {
+      "record_id": "pubmed:33621669",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "HIV 감염인의 식이보충제 후 간손상 촉구 서신. 초록 없음. 주제는 HRS4에 정확히 맞지만 문헌 유형이 Letter·Comment. 판정이 갈릴 수 있는 경계."
+    },
+    {
+      "record_id": "pubmed:39683529",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "혈액투석 50명의 5년 아연 보충 관리. 투석 P와 아연 보충 I가 명확하고 결과가 보충으로 유발되는 혈청 구리 결핍(71 µg/dL 미만)과 안전 용량 역치. 목표 아연을 80 µg/dL 수준으로 낮추라는 구체 권고. HRS2 대표 레코드."
+    },
+    {
+      "record_id": "pubmed:35236316",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "미숙아 89명의 어유 함유 지질유제와 미숙아 망막증. 중증 망막증 2.33% 대 23.91%라는 결과는 명확하나 노출이 신생아 직접 정맥영양이고 임신 중 모체 노출이 아님. pubmed:37565442·pubmed:37428483과 같은 처리."
+    },
+    {
+      "record_id": "pubmed:36549192",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "75세 초과 연령이 정맥혈전 재발 위험을 높이지 않는다는 RIETE 등록자료 서신. 초록 없음. 노출이 연령·항응고제이고 MeSH의 Vitamin K는 VKA에서 유래."
+    },
+    {
+      "record_id": "pubmed:35685257",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "기계판막·불안정 INR 환자에게 비타민 K 180 μg/day를 보충해 3주 후 치료범위 진입, 2개월 유지. 항응고 복용 P와 보충 I·INR 안정성 O가 모두 명확. 선례 14의 반전용 비타민 K 주사와 달리 일일 경구 보충이므로 구분됨. HRS5 대표 레코드."
+    },
+    {
+      "record_id": "pubmed:35426325",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "식이보충제와 비만수술 종설. 수술 P와 종합비타민·무기질 보충 I가 명확하고 결과가 비타민·무기질·미량원소 결핍과 그에 따른 빈혈·골다공증·심근증, 부당경량아 위험 및 임신 연기 12~24개월 권고."
+    },
+    {
+      "record_id": "pubmed:38955708",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "혈관 석회화에서 알리자린 레드 S의 활용 가치. 초록 없음. 노출이 조직 염색 시약."
+    },
+    {
+      "record_id": "pubmed:37526717",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "신경관 결손 예방을 위한 엽산 환자 교육 자료. 초록 없음. 제목상 P·I·O가 맞지만 문헌 유형이 Patient Education Handout으로 안전성 근거를 담지 않음."
+    },
+    {
+      "record_id": "pubmed:36107253",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "임신 중 원발성 부갑상선기능과다증 15명의 3차기관 경험. 임신 P와 유산·사산·신생아 경련 O는 명확하나 노출이 내과적 대 수술적 관리이고 칼슘은 질병 지표로만 측정됨. 선례 11 적용."
+    },
+    {
+      "record_id": "pubmed:37077767",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal"],
+      "confidence": "medium",
+      "note": "진행성 섬유화·중증 지방증 대사성 지방간질환 환자의 실리마린 사용 증례. 간질환 P와 밀크시슬 유래 실리마린 I가 명확하고 측정 결과가 간효소 활성. 효능 방향이지만 간효소는 HRS4의 장기 안전성 축 자체여서 pubmed:35960048과 같은 기준으로 O를 인정."
+    },
+    {
+      "record_id": "pubmed:42201685",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "태아기 노출에서 질병 위험까지: 셀리악병의 n-3 지방산 연구의 통찰과 한계. 초록 없음. 제목만으로 태아기 노출 P·n-3 지방산 I·질병 위험 O가 확인되고 문헌 유형이 Journal Article."
+    },
+    {
+      "record_id": "pubmed:35689669",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "KNOW-CKD 1,579명의 관상동맥 칼슘점수와 심혈관 결과. 만성콩팥병 P와 심혈관·사망 O는 명확하나 노출이 영상 칼슘점수이고 MeSH의 Calcium은 혈관벽 침착을 뜻함."
+    },
+    {
+      "record_id": "pubmed:35909334",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "말라위 임신부 1,391명 무작위 배정, 산전 소량 지질기반 영양보충제 대 복합 미량영양소 대 철엽산. 제왕절개 발생이 4.0%·6.0%·8.9%로 보충군에서 상대위험 2.2(1.3~3.8). 보충제가 위해 방향으로 연결된 HRS3 대표 레코드."
+    },
+    {
+      "record_id": "pubmed:40312644",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "비타민 투여가 치료 오류를 유발했는가 증례. 초록 없음. MeSH에 췌장절제·수술후합병증 P, 비타민·근육주사 I, 투약오류 O가 모두 색인되고 문헌 유형이 Case Reports."
+    },
+    {
+      "record_id": "pubmed:34717305",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "한의 변증 분류를 이용한 당뇨병성 신질환 중증도 판정. 초록 없음. 노출이 진단용 변증 분류."
+    },
+    {
+      "record_id": "pubmed:40231197",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "animal_term_present", "off_topic"],
+      "confidence": "medium",
+      "note": "대사성 지방간질환의 다표적 신호전달을 조절하는 한약 활성성분 종설, 실험연구 108편. 간질환 P와 한약 I는 명확하나 보고 내용이 지질대사·산화스트레스·자가포식 등 기전이고 동물 실험 기반."
+    },
+    {
+      "record_id": "pubmed:36321872",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "산전 식이·혈장 미량영양소·염증 상태와 유아기 아토피 습진 서신. 초록 없음. 제목상 P·I·O가 맞지만 문헌 유형이 Letter."
+    },
+    {
+      "record_id": "pubmed:34990766",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "모로코 동부 만성 혈액투석 404명의 신독성 약용식물 섭취 다기관 조사. 71.5%가 말기신질환 발생 전 약용식물을 사용했고 Rhamnus alaternus 66.7%·Artemisia herba alba 54.3%·Aristolochia longa 52.6%. 27.7%가 합병증을 경험하고 부작용이 중증 원인불명 신병증의 위험인자 OR 4.0. HRS2 대표 레코드."
+    },
+    {
+      "record_id": "pubmed:40200414",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "가임기 여성의 혈청 엽산 수준과 태아 신경관 결손 예방 시사점. 초록 없음. 제목만으로 임신 연계 P·엽산 상태 I·신경관 결손 O가 확인되고 문헌 유형이 Journal Article. 선례 4에 따라 영양소 혈중 지표를 노출로 인정."
+    }
+  ]
+}

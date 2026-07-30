@@ -1,0 +1,143 @@
+{
+  "schema_version": "1.0.0",
+  "track": "v4.0",
+  "arm": "screening_ai_reference_v40",
+  "scorer": "claude_opus_5_single_scorer_no_subagents",
+  "local_language_model_used": false,
+  "external_llm_api_used": false,
+  "independent_blinding": false,
+  "independent_blinding_ai": true,
+  "release_ready": false,
+  "human_reference_rows": 0,
+  "design": {
+    "seed": "20260729",
+    "rank_function": "SHA-256(seed|question_id|record_id) 오름차순",
+    "per_question_worker_label_stratum": 36,
+    "partition_is_exhaustive": true,
+    "population_total": 48031,
+    "sample_total": 1033,
+    "strata": {
+      "S1_worker_retain|HRS1_PERIOPERATIVE": {
+        "stratum_id": "S1_worker_retain|HRS1_PERIOPERATIVE",
+        "population_N": 603,
+        "sample_n": 36,
+        "census": false,
+        "weight": 16.75
+      },
+      "S1_worker_retain|HRS2_KIDNEY_DISEASE": {
+        "stratum_id": "S1_worker_retain|HRS2_KIDNEY_DISEASE",
+        "population_N": 491,
+        "sample_n": 36,
+        "census": false,
+        "weight": 13.63888888888889
+      },
+      "S1_worker_retain|HRS3_PREGNANCY": {
+        "stratum_id": "S1_worker_retain|HRS3_PREGNANCY",
+        "population_N": 1415,
+        "sample_n": 36,
+        "census": false,
+        "weight": 39.30555555555556
+      },
+      "S1_worker_retain|HRS4_LIVER_DISEASE": {
+        "stratum_id": "S1_worker_retain|HRS4_LIVER_DISEASE",
+        "population_N": 575,
+        "sample_n": 36,
+        "census": false,
+        "weight": 15.972222222222221
+      },
+      "S1_worker_retain|HRS5_ANTICOAGULATION": {
+        "stratum_id": "S1_worker_retain|HRS5_ANTICOAGULATION",
+        "population_N": 167,
+        "sample_n": 36,
+        "census": false,
+        "weight": 4.638888888888889
+      },
+      "S2_worker_deprioritize|HRS1_PERIOPERATIVE": {
+        "stratum_id": "S2_worker_deprioritize|HRS1_PERIOPERATIVE",
+        "population_N": 11538,
+        "sample_n": 36,
+        "census": false,
+        "weight": 320.5
+      },
+      "S2_worker_deprioritize|HRS2_KIDNEY_DISEASE": {
+        "stratum_id": "S2_worker_deprioritize|HRS2_KIDNEY_DISEASE",
+        "population_N": 4099,
+        "sample_n": 36,
+        "census": false,
+        "weight": 113.86111111111111
+      },
+      "S2_worker_deprioritize|HRS3_PREGNANCY": {
+        "stratum_id": "S2_worker_deprioritize|HRS3_PREGNANCY",
+        "population_N": 18748,
+        "sample_n": 36,
+        "census": false,
+        "weight": 520.7777777777778
+      },
+      "S2_worker_deprioritize|HRS4_LIVER_DISEASE": {
+        "stratum_id": "S2_worker_deprioritize|HRS4_LIVER_DISEASE",
+        "population_N": 6231,
+        "sample_n": 36,
+        "census": false,
+        "weight": 173.08333333333334
+      },
+      "S2_worker_deprioritize|HRS5_ANTICOAGULATION": {
+        "stratum_id": "S2_worker_deprioritize|HRS5_ANTICOAGULATION",
+        "population_N": 3491,
+        "sample_n": 36,
+        "census": false,
+        "weight": 96.97222222222223
+      },
+      "S3_worker_uncertain": {
+        "stratum_id": "S3_worker_uncertain",
+        "population_N": 57,
+        "sample_n": 57,
+        "census": true,
+        "weight": 1.0
+      },
+      "S4_adjudication": {
+        "stratum_id": "S4_adjudication",
+        "population_N": 616,
+        "sample_n": 616,
+        "census": true,
+        "weight": 1.0
+      }
+    }
+  },
+  "card_stats": {
+    "cards": 1033,
+    "mesh_resolved": 768,
+    "mesh_absent": 265,
+    "abstract_absent": 232
+  },
+  "blinding_check": {
+    "checked_cards": 1033,
+    "allowed_fields": [
+      "record_id",
+      "question_id",
+      "title",
+      "abstract",
+      "publication_types",
+      "mesh_terms"
+    ],
+    "forbidden_keys_absent": true,
+    "passed": true,
+    "problems": []
+  },
+  "artifacts": {
+    "blinded_cards": {
+      "path": "research/validation/screening_ai_reference_v40/blinded_cards.json",
+      "sha256": "f540f80fb7be7e18c32d105189f770954d519eab252395b566b527f931d26e8b",
+      "count": 1033
+    },
+    "v40_truth_sealed": {
+      "path": "research/validation/screening_ai_reference_v40/v40_truth_sealed.json",
+      "sha256": "dea092d9d81fdc9a379df2f677ad9abfd55ccf1624e421f15cad4a2deff40a5d",
+      "note": "채점 라벨 잠금 이후에만 열람한다"
+    }
+  },
+  "source_hashes": {
+    "evidence_map.csv": "d5a70b828bdef00ef885e495de90f2dd7e74d3c34a714e8d1c953436a7727173",
+    "semantic_adjudications.json": "81d92a76635e621b998f7299171b473ef86f5e90e81aa060b781814d0b49e6e8",
+    "agent_screen_worker.py": "7b3de69fcd5b0a4095b515585fb92cac3e1e966baef5c4d8a19289f11df305c8"
+  }
+}

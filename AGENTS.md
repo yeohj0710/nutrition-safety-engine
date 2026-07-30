@@ -71,16 +71,47 @@ Two rules the site must not break:
 ### Disclosed weaknesses — keep them disclosed
 
 - The raw classifier rules differed from the agent re-adjudication on 226 of 616 boundary
-  cases (36.7%).
+  cases (36.7%). That 226 is not a decision-disagreement count: it decomposes into 77
+  decision flips (12.5%) and 149 rows where only reason codes or confidence differed
+  (24.2%). Of the 77 flips, 53 were retain → deprioritize.
+- **The scoring arm found the screening retains too little.** An independent blinded second
+  reading of a stratified probability sample (1,033 rows, `_vs_ai_reference` metrics) puts
+  the retain share at 15.33% (95% CI 10.17–21.12%) against the pipeline's 7.02%
+  — 2.18×. `specificity_vs_ai_reference` is 88.52%, so roughly 11.5% of the 44,597
+  deprioritize rows would have been retained by the second reading. The evidence bundle
+  may therefore be missing relevant records. Details: `research/synthesis/screener_vs_ai_reference_v40.json`.
 - 1,475 of 3,374 retain rows (43.7%) were dropped by the bundle's regex gate.
 - All 44,597 deprioritize rows carry `off_topic`, so exclusion reasons are not broken down.
 - The 60 `uncertain` rows are all abstract-less; the label means missing text, not doubt.
 - PubMed only. No second database, no grey literature, no citation searching.
 
-### What is still missing
+### The scoring arm (done 2026-07-30)
 
-**A scoring arm.** The screening has never been measured. There is no reference standard
-and no human decisions. Directive: `research/protocol/HANDOFF_v40_scoring.md`.
+The screening has now been measured against an **AI reference standard**, not a human one.
+There are still zero human decisions, so `independent_blinding` stays false and every metric
+name carries its comparator (see the naming rule below).
+
+- Directive: `research/protocol/HANDOFF_v40_scoring.md`. Judgment record:
+  `research/logs/DECISIONS_v40_scoring.md`. Tools: `tools/v40_scoring/`.
+- Design: stratified probability sample, seed `20260729`, SHA-256 rank ordering. Four
+  stratum families exhaustively partition all 48,031 rows (ΣN = 48,031): worker-retain and
+  worker-deprioritize at 36 per question, plus the 57 `uncertain` rows and all 616
+  adjudicated boundary rows as censuses. n = 1,033.
+- Blinding: cards carry only `record_id, question_id, title, abstract, publication_types,
+  mesh_terms`; a leak check passed and labels were hash-locked before the sealed truth was
+  opened (`lock_receipt.json`, `truth_opened_before_lock: false`).
+- Population-weighted result: `agreement_vs_ai_reference` 86.95%,
+  `sensitivity_vs_ai_reference` 66.23%, `specificity_vs_ai_reference` 88.52%,
+  `precision_vs_ai_reference` 30.35%, `f1_vs_ai_reference` 41.63%, Cohen κ 0.463
+  (unweighted, 3-class). Per layer: worker classifier κ 0.423, agent adjudication κ 0.494.
+- **Rogan–Gladen adds nothing in this design and must not be cited as corroboration.**
+  Because the strata are defined on the reference labels, the weighted marginal reproduces
+  the census retain count exactly, and the Se/Sp fed into the correction come from the same
+  sample; substituting N = P + Q collapses it to the design-based estimator (observed gap
+  5.8e-16). Only externally estimated Se/Sp would make it a correction.
+
+Still missing: any human-adjudicated reference, a second database, grey literature, and
+citation searching.
 
 ## Naming rule (violating it invalidates the reporting)
 

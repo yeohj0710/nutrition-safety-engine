@@ -1,0 +1,245 @@
+{
+  "round": 17,
+  "judgments": [
+    {
+      "record_id": "pubmed:37441102",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "종합비타민 약물결석에 의한 대장폐색 증례. 결장감압 내시경·내시경적 제거라는 침습적 시술 P, 종합비타민 I, 대장폐색이라는 이상사건 O가 모두 명시적이고 원인이 보충제로 특정됨."
+    },
+    {
+      "record_id": "pubmed:35267901",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "만성콩팥병 환자 혈관 칼슘화 예방을 위한 비타민 K 보충 종설. CKD·투석 P와 비타민 K 보충 I가 명확하고 결과가 혈관 칼슘화·경직·심혈관 예후."
+    },
+    {
+      "record_id": "pubmed:37598356",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "심장수술 246명의 비타민 K 농도·장내미생물과 와파린 개인차. 항응고 P가 명확하고 '비타민 K 농도 증가가 항응고를 감소시킨다'는 상호작용 결과와 INR을 함께 제시."
+    },
+    {
+      "record_id": "pubmed:37997897",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "10년 인구기반 등록자료의 경구항응고 연관 뇌내출혈 748례. 출혈 O는 명확하나 노출이 처방 항응고제."
+    },
+    {
+      "record_id": "pubmed:37970949",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "생약 사용에 의한 간성뇌증 환자의 피질 리본 징후. 초록 없음. 제목만으로도 간성뇌증 P·생약 I·이상결과 O가 모두 확인되고 문헌 유형이 Journal Article이라 명세 3.4의 배제 대상이 아님."
+    },
+    {
+      "record_id": "pubmed:36321995",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "아슈와간다 연관 급성 간부전으로 간이식 필요. 초록 없음. 제목상 P·I·O가 모두 주제에 정확히 맞지만 문헌 유형이 Letter뿐이라 명세 3.4에 따라 배제. pubmed:35066755·39059275와 같은 처리이며 판정이 갈릴 수 있는 경계."
+    },
+    {
+      "record_id": "pubmed:36014585",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "off_topic"],
+      "confidence": "medium",
+      "note": "Veratrum parviflorum의 스테로이드 알칼로이드 종설. 야생 산마늘로 오인한 섭취가 생명을 위협하는 이상반응을 낸다는 독성 서술은 있으나 대상 집단이 임신부가 아니고 배아 발달은 기전 맥락."
+    },
+    {
+      "record_id": "pubmed:37670818",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal"],
+      "confidence": "medium",
+      "note": "97세 위루 환자의 금식·항생제 후 와파린 PT-INR 10 초과 증례. 항응고 P와 검사치 이상 O가 명확하고 원인으로 금식·저영양에 의한 비타민 K 결핍을 제시."
+    },
+    {
+      "record_id": "pubmed:38920853",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "retain",
+      "reason_codes": ["exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "구강질환의 비타민 결핍 증상·치료 체계적고찰 15편. 비타민 B군·E·D 보충 I가 명확하고 포함 연구 중 하나가 경구항응고제로서의 비타민 K와 수술 전후 출혈을 다룸. HRS5의 항응고 P는 그 한 편 수준."
+    },
+    {
+      "record_id": "pubmed:41094541",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "수술 후 염증반응 조절에서 오메가-3 지방산의 역할. 초록 없음. 제목만으로 수술 후 P와 오메가-3 I는 확인되나 결과의 성격(효능 대 안전성)은 판단 정보가 없음. 명확한 부정은 없음."
+    },
+    {
+      "record_id": "pubmed:39244472",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "B형간염 관련 간섬유화의 한약 치료 증례 서신. 초록 없음. 문헌 유형이 Letter뿐."
+    },
+    {
+      "record_id": "pubmed:35506725",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "간생검 후 가성동맥류 영상 소견. 초록 없음. 침습적 시술 P와 합병증 O는 확인되나 보충제 노출이 전혀 없고 MeSH의 Yin-Yang은 영상 소견 명칭."
+    },
+    {
+      "record_id": "pubmed:40838840",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "지페노사이드의 지방자가포식 활성화를 통한 고지혈증 개선. 골든 시리안 햄스터와 HepG2 세포 전용."
+    },
+    {
+      "record_id": "pubmed:35124672",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "탄자니아 임신부 7,561명의 임신 중 체중증가 적정성과 신생아 결과. 사산·조산·저출생체중·미세두증 등 이상결과는 명확하나 분석 노출이 체중증가이고 미량영양소 보충은 모집단 출처 시험일 뿐."
+    },
+    {
+      "record_id": "pubmed:41515248",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "신장질환 환자의 비타민 C·벤조산 섭취와 벤젠 노출 위험 종설. CKD·이식 환자 P와 비타민 C 보충 I가 명확하고 체내 벤조산-비타민 C 반응으로 발암성 벤젠이 생성될 위험을 결과로 제시."
+    },
+    {
+      "record_id": "pubmed:41585876",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "medium",
+      "note": "HIV 관련 만성 동반질환의 한약 종설. 만성콩팥병이 대상 중 하나로 언급되나 근거 대부분이 시험관·동물 연구라고 저자가 명시하고 안전성은 향후 과제."
+    },
+    {
+      "record_id": "pubmed:36876558",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal"],
+      "confidence": "low",
+      "note": "산전 항응고 치료와 신생아 출혈증후군 증례. 초록이 한 문장뿐이나 항응고 노출 P, 비타민 K 결핍 I, 신생아 출혈 O를 모두 명시. 정보가 극히 제한적이라 신뢰도 낮음."
+    },
+    {
+      "record_id": "pubmed:40113040",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "비타민 D 대사의 신장 비의존적 장 역할. 초록 없음. 제목이 기전 질문이고 대상 집단·결과가 없음."
+    },
+    {
+      "record_id": "pubmed:42343512",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "패혈증 연관 위장관 기능장애의 승청강탁 침법 RCT 96명. 대상이 패혈증 환자로 수술 전후가 아니고 노출이 침."
+    },
+    {
+      "record_id": "pubmed:39099617",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "EFSA 비타민 E 상한섭취량 과학의견. 상한 설정의 결정적 이상반응이 응고 장애·출혈 위험이고, 상한이 항응고제·항혈소판제 복용자와 비타민 K 흡수장애 환자에게는 적용되지 않는다고 명시해 항응고 P가 직접 성립."
+    },
+    {
+      "record_id": "pubmed:35081550",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "북미 급성간부전 등록자료의 중증 특이체질 약물유발 간손상 277례 20년 추세. 허브·식이보충제 원인이 15%이고 9.7%→22%로 유의하게 증가했으며 결과가 간부전·이식·생존."
+    },
+    {
+      "record_id": "pubmed:41550412",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "양성자펌프억제제 유발 위체부 선폴립의 대량출혈 증례. 와파린 복용 P와 출혈·INR 연장 O는 명확하나 노출이 처방약이고 비타민 K는 지혈용."
+    },
+    {
+      "record_id": "pubmed:36780948",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "기형유발성 비규제 비타민 A 여드름 보충제와 낙태권 논평 서신. 초록 없음. 제목상 임신 P·비타민 A 보충 I·기형유발 O가 모두 맞지만 문헌 유형이 Letter·Comment뿐. 판정이 갈릴 수 있는 경계."
+    },
+    {
+      "record_id": "pubmed:35621008",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "디페나쿰 은밀 중독의 진단·추적 어려움 서신. 초록 없음. 노출이 쥐약(수퍼와파린)이고 비타민 K는 해독제."
+    },
+    {
+      "record_id": "pubmed:39288907",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "식품·생약과 경구항응고제의 약동·약력학 상호작용 근거고찰과 실무 권고. 항응고 P, 크랜베리·녹색잎채소·생강·망고·성요한초·자몽 I, 출혈 위험·효력 감소라는 상호작용 O가 모두 명시적."
+    },
+    {
+      "record_id": "pubmed:40491104",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "원인불명 반복임신상실 170명의 저분자량헤파린 RCT. 항응고 P와 생존출생·제왕절개·조산 O는 명확하나 종합비타민이 위약 대조로만 쓰여 보충 노출이 아님."
+    },
+    {
+      "record_id": "pubmed:34939363",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "폐결핵 환자의 대추(Ziziphus) 시럽으로 항결핵제 간독성 예방 이중맹검 위약대조 예비 RCT. 약물유발 간손상 P, 생약 시럽 I, 간효소와 위약군 간독성 27.3% 대 대추군 0%라는 안전성 결과가 모두 명확."
+    },
+    {
+      "record_id": "pubmed:35948268",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "흡연 임신부 28명의 고용량 오메가-3 4.2 g/일 내성 평가 예비 RCT(FORTUNE). 임신 P와 고용량 보충 I가 명확하고 주 결과가 트림·속쓰림·설사·복통·오심 등 위장관 이상반응 내성. 어유군 탈락이 많았다는 점도 기록."
+    },
+    {
+      "record_id": "pubmed:39339698",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "만성콩팥병의 저단백 식이·영양불량·골대사 종설. CKD P와 케토유사체 보충 I가 명확하고 '이 식이의 장기 안전성, 특히 영양상태와 골·미네랄 장애에 대한 우려'를 주제로 다룸."
+    },
+    {
+      "record_id": "pubmed:40157645",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "스페인 내과 심방세동 1,215명 등록자료 프로파일. 항응고 P와 영양불량 위험 52.9% 기술은 있으나 노출이 처방 항응고제이고 결과가 환자 특성 서술."
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "round": 2,
+  "judgments": [
+    {
+      "record_id": "pubmed:38265798",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "생체 신장공여자 2,132명 25년 골절 위험 설문연구. 수술 집단 P와 척추골절 O 명확. 명시된 노출은 '신장 공여'이고 비타민 D3 보충은 결론의 제언으로만 등장해 I는 불명확하나 부정되지도 않음."
+    },
+    {
+      "record_id": "pubmed:42486830",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "숙지황의 CKD 완화 기전. C57BL/6 생쥐 UIRI 모델과 분자도킹 전용, 결과도 효능."
+    },
+    {
+      "record_id": "pubmed:37831331",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "곽산석곡 다당의 고지방식이 간손상 개선. 생쥐 전용, 장-간 축 기전 규명."
+    },
+    {
+      "record_id": "pubmed:41351981",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "방기황기탕의 장내세균 조절 CKD 지연. 랫드·생쥐 독소루비신 모델 전용."
+    },
+    {
+      "record_id": "pubmed:34598893",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "생후 7~13개월 영아 이유식 조리 방식(퓨레·으깨기·다지기) 조사. 임신 아님(P 부정), 노출도 일반 식품 조리라 I 부정. MeSH의 Dietary Supplements는 WIC 사업명 맥락."
+    },
+    {
+      "record_id": "pubmed:37346024",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "ACL 재건 후 보충제·유청단백의 근질량·근력 체계적고찰(RCT 6편 186명). P·I 명확하나 결과가 근질량·근력 효능 전용이고 이상반응 보고가 없어 O 부정(명세 3.3)."
+    },
+    {
+      "record_id": "pubmed:38878318",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic", "animal_term_present"],
+      "confidence": "high",
+      "note": "오존-페레이트 폐수 산화 처리와 아트라진 분해. 제브라피시 배아 독성평가뿐, 임신·보충제와 무관."
+    },
+    {
+      "record_id": "pubmed:35710217",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "폐암 환자 치료적 운동 범위고찰. 수술 전후 중재를 포함해 P는 일부 충족하나 노출이 운동요법이라 보충제 I 부정."
+    },
+    {
+      "record_id": "pubmed:39821381",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "식물유래 나노입자의 골형성·골융합 종설. 치과·정형·구강외과 응용을 언급하나 노출이 생체재료 나노입자(금·은·산화아연)라 보충 섭취 I 아님."
+    },
+    {
+      "record_id": "pubmed:39852880",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "개 담낭질환의 영양 인자 범위고찰. 오메가-3·섬유·메티오닌·비타민 D 보충을 다루지만 대상이 개라 사람 P 부정."
+    },
+    {
+      "record_id": "pubmed:35272407",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "요천추 척수손상 랫드 신경인성 방광의 뜸 효과와 M2·P2X3 수용체. 보충제 노출 아님, 동물 전용."
+    },
+    {
+      "record_id": "pubmed:35531767",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic", "animal_term_present"],
+      "confidence": "high",
+      "note": "초고압·고압균질 처리가 양배추 식이섬유 특성에 미치는 영향. 식품 가공 시험관 연구로 CKD 환자 P 없음. MeSH의 Renal Dialysis는 glucose dialysis retardation index 시험법 맥락."
+    },
+    {
+      "record_id": "pubmed:40678709",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "간세포암 자가포식 조절 한약 단일성분 종설(케르세틴·바이칼레인·베르베린·에모딘). P·I 명확하나 결과가 예방·치료 효능 전용이고 안전성 신호가 없어 O 부정."
+    },
+    {
+      "record_id": "pubmed:36721726",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "uncertain",
+      "reason_codes": ["population", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "임신 3분기 227명의 PTH와 혈청 25(OH)D 관계·역치. 임신 P만 명확하고, 노출이 보충 섭취가 아닌 혈중 상태이며 결과도 PTH 역치 산출이라 I·O 모두 판단 정보 부족. 명확한 부정은 없어 uncertain."
+    },
+    {
+      "record_id": "pubmed:39789056",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "animal_term_present"],
+      "confidence": "high",
+      "note": "NADH 보충이 마취 회복을 개선하지 못함. 주제는 수술 전후 보충제 안전성에 정확히 맞고 활동성 저하라는 불리한 결과까지 있으나 C57BL/6 생쥐 전용이라 명세 3.1에 따라 deprioritize."
+    },
+    {
+      "record_id": "pubmed:36278236",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "약용식물 19종의 CYP3A4·글루타티온·P-gp 시험관 영향과 약물감시 권고. HepG2·Caco-2·HeLa 세포 전용. HRS3로 들어온 것은 pregnane X receptor 용어 일치로 보임."
+    },
+    {
+      "record_id": "pubmed:39855518",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "Tridax procumbens 추출물 함유 나노섬유 창상피복재. 생쥐·세포주 전용이고 노출이 국소 피복재라 보충 섭취 아님."
+    },
+    {
+      "record_id": "pubmed:37056637",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "아세트아미노펜 독성 랫드에서 타임 추출물과 N-아세틸시스테인 비교. Wistar 랫드 48마리 전용."
+    },
+    {
+      "record_id": "pubmed:40338349",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "두경부암 수술 전 재활과 ERAS 개념 CME 종설. 수술 전후 P와 영양보충 방식 I를 함께 다룸. 초록이 개괄적이어서 안전성 결과는 제시되지 않으나 부정되지도 않음."
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "round": 5,
+  "judgments": [
+    {
+      "record_id": "pubmed:40671181",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "중증 외상·수술 환자 500명 장관 단백 보충 RCT. 보충군에서 BUN 상승과 재삽관 필요 증가, 결론이 '합병증 증가와 연관'이라 위해 신호가 명확."
+    },
+    {
+      "record_id": "pubmed:37641263",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "젖소 96마리의 DGAT1 다형성과 아세트산 보충, 유지방 합성. 소 전용."
+    },
+    {
+      "record_id": "pubmed:39893884",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "임신·수유기 메틸수은 노출의 자손 신경독성 기전. ICR 생쥐 전용이고 노출 물질이 수은이라 보충제 아님."
+    },
+    {
+      "record_id": "pubmed:41173402",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "아연-글루타티온 복합체의 알코올성 간손상 회복. 아연 보충 노출은 명확하나 생쥐·MT 녹아웃 모델 전용."
+    },
+    {
+      "record_id": "pubmed:34353994",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "대장암 수술 176명 수술 전 면역영양 RCT. 아르기닌·오메가-3 경구보충 400 mL/일, 결과가 감염성·전체 합병증률과 재원기간이라 P·I·O 모두 명시적."
+    },
+    {
+      "record_id": "pubmed:34955035",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "신생아 발뒤꿈치 채혈 통증에 대한 이압·발반사요법 RCT 105명. 소아 전용이라 명세 4절 HRS1에서 P 부정, 노출도 보충제 아님."
+    },
+    {
+      "record_id": "pubmed:37677965",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "상표소(桑螵蛸)의 신간질섬유화 완화와 장내세균·글루타민 대사. UUO 생쥐 모델 전용."
+    },
+    {
+      "record_id": "pubmed:35933874",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic"],
+      "confidence": "high",
+      "note": "팜유 공장 폐수의 혐기성 생물막 반응기 처리 종설. 환경공학으로 주제가 완전히 다름."
+    },
+    {
+      "record_id": "pubmed:40549033",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "비판막성 심방세동의 좌심방귀 폐색술 대 약물치료 네트워크 메타분석. 출혈·사망 O는 충족하나 노출이 시술과 처방 항응고제라 I 부정."
+    },
+    {
+      "record_id": "pubmed:38664207",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "무릎 골절 수술 후 전기침 재활 RCT 80명. 수술 후 P는 충족하나 노출이 전기침이라 보충제 I 부정."
+    },
+    {
+      "record_id": "pubmed:38235198",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic"],
+      "confidence": "high",
+      "note": "식물 생산 항체의 Protein A 자성비드 1단계 정제법. 공정 기술로 주제가 완전히 다름."
+    },
+    {
+      "record_id": "pubmed:36065821",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "심방세동 급성 허혈성 뇌졸중 후 NOAC 조기 대 지연 개시 RCT 888명(TIMING). 두개내출혈 O는 충족하나 노출이 처방 항응고제."
+    },
+    {
+      "record_id": "pubmed:38721636",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "악성 난소갑상선종 170명 후향 증례군. 임신과 무관하고 노출도 수술·방사성요오드 치료. HRS3 유입은 산부인과·요오드 용어로 보임."
+    },
+    {
+      "record_id": "pubmed:40582580",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "대사이상 지방간염 한의학 치료 기전 종설(전임상 77·임상 32편). P·I 명확하나 결과가 간기능·혈중지질·증후점수 개선 효능 전용."
+    },
+    {
+      "record_id": "pubmed:36484095",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "전자간증 예방 영양 개념틀 근거고찰. 칼슘·비타민 D 보충이 보호 인자, 높은 혈청 철이 명확한 위험 인자로 제시되어 보충 노출과 위해 방향이 함께 있음."
+    },
+    {
+      "record_id": "pubmed:38673694",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "심방세동 항응고와 인지장애·치매 체계적고찰 22편 606,404명. 노출이 처방 항응고제라 I 부정."
+    },
+    {
+      "record_id": "pubmed:35688763",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "지질유탁액의 수술 후 복강내 유착 예방. 돼지 31마리 전용이고 노출이 복강내 투여 물리적 장벽."
+    },
+    {
+      "record_id": "pubmed:38996947",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "육미지황환 유래 1,4-GL의 DEN 유발 간세포암 개선. 랫드와 세포주 전용, 결과도 보호 효능."
+    },
+    {
+      "record_id": "pubmed:34879420",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "독일 외래 암환자 혈전증 7,313명 항응고 처방 실태. 위장관 출혈 1.76% O는 충족하나 노출이 LMWH·VKA·DOAC 처방약."
+    },
+    {
+      "record_id": "pubmed:35346480",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "젖소 송아지 48마리의 식물성 생약 추출물 혼합 급여. 소 전용."
+    }
+  ]
+}

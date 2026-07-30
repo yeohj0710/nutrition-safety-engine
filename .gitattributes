@@ -24,3 +24,11 @@ research/logs/v40_local_only_manifest.json      -text
 research/logs/v40_phase_b_verification.json     -text
 research/protocol/protocol-v4.0-mecir-search.md -text
 research/protocol/amendments.csv                -text
+
+# 채점 arm(2026-07-30). lock_receipt.json 과 v40_scoring_report.json 이 이 경로들의
+# SHA-256 을 기록한다. 특히 scored_labels_locked.json 의 해시는 "정답을 열기 전에 잠갔다"는
+# 유일한 증거이므로 개행 변환이 일어나면 그 증거가 무효가 된다.
+research/validation/screening_ai_reference_v40/** -text
+research/synthesis/screener_vs_ai_reference_v40.json -text
+research/logs/v40_scoring_report.json           -text
+research/logs/DECISIONS_v40_scoring.md          -text

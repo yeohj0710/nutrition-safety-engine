@@ -1,0 +1,245 @@
+{
+  "round": 20,
+  "judgments": [
+    {
+      "record_id": "pubmed:31937153",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "임신 중 오심·구토에 대한 생강 대 비타민 B6·위약 메타분석 13편 1,174명. 임신 P와 생강·비타민 B6 보충 I가 명확하나 보고 결과가 증상 개선 효능 전용이고 이상반응이 없음. 판정이 갈릴 수 있는 경계."
+    },
+    {
+      "record_id": "pubmed:36916357",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "모체-태아 철 동태. 초록 없음. 제목·MeSH로 임신·태아 P와 철 I는 확인되나 결과의 성격은 판단 정보가 없고 명확한 부정도 없음."
+    },
+    {
+      "record_id": "pubmed:35870823",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "불응성 저칼슘혈증 임신부 증례. 초록 없음. 임신 P와 저칼슘혈증이라는 전해질 이상 O는 확인되나 칼슘이 치료 노출인지 질환 자체인지 판단 정보가 부족."
+    },
+    {
+      "record_id": "pubmed:34999018",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "항결핵제 유발 간독성의 대사체·미생물체 표지자 탐색 74명. 간손상 P는 명확하나 노출이 처방 항결핵제이고 결과가 대사·미생물 서명."
+    },
+    {
+      "record_id": "pubmed:40920409",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "미오이노시톨의 임신 합병증 예방 논평. 초록 없음. 제목상 P·I·O가 맞지만 문헌 유형이 Comment뿐."
+    },
+    {
+      "record_id": "pubmed:37148409",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "임신 중 비타민 D 상태와 세대 간 생식건강. 초록 없음. 제목·MeSH로 임신 P와 비타민 D I가 확인되고 임신 합병증·불임이 결과축으로 등장."
+    },
+    {
+      "record_id": "pubmed:36515339",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "허브·식이보충제 유발 간손상 증례 428건 통합분석. 허발라이프·하수오·하이드록시컷·녹차·옥시엘리트프로·카바차 등 원인 제품이 특정되고 입원 82.6%·사망 3.6%·간이식 8.9%라는 결과가 명시적."
+    },
+    {
+      "record_id": "pubmed:34417867",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "렌바티닙 치료 간세포암 46명의 인삼양영탕 병용 후향평가. 간질환 P와 한약 I가 명확하고 피로 감소와 함께 인삼양영탕군에서 AST 상승이 45.5% 대 14.3%로 유의하게 높았다는 위해 방향 결과가 있음."
+    },
+    {
+      "record_id": "pubmed:35230570",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "신기능 저하 39,585명의 진료과별 조혈제 처방률. 철 보충 처방률이 측정 변수이나 결과가 처방률이라는 의료이용 지표이고 임상·검사치 결과가 아님. pubmed:35507237과 달리 결과가 서비스 이용."
+    },
+    {
+      "record_id": "pubmed:38196441",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "5세대 세팔로스포린(세프타롤린) 유발 간손상 증례. 간손상 P·O는 명확하나 노출이 처방 항생제."
+    },
+    {
+      "record_id": "pubmed:33342276",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "에스트로겐 수용체 양성 유방암 비만 폐경후 여성의 오메가-3 유리지방산 보충과 수술 후 합병증 평가. 초록 없음. 제목·MeSH로 수술 P·보충 I·수술 후 합병증 O가 모두 확인됨."
+    },
+    {
+      "record_id": "pubmed:41150979",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "멕시코 만성 투석 환자의 비타민 D 농도 예측인자. 초록 없음. 투석 P와 비타민 D I가 제목에서 확인되고 결과가 비타민 D 농도라는 검사치."
+    },
+    {
+      "record_id": "pubmed:42144196",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "산전 고용량 비타민 D와 소아 아토피피부염 논문에 대한 서신 회신. 초록 없음. 문헌 유형이 Letter뿐."
+    },
+    {
+      "record_id": "pubmed:33861657",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "유방암 AC-T 요법 유발 간독성 30명의 경구 실리마린 삼중맹검 위약대조 RCT. 약물유발 간독성 P와 실리마린 140 mg 1일 3회 I가 명확하고 결과가 초음파 간침범 등급·FibroScan·간기능검사."
+    },
+    {
+      "record_id": "pubmed:37156908",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "배아이식 후 프로게스테론 보충 경로와 유산 위험 1,988명. 임신 P와 유산 O는 명확하나 노출이 처방 호르몬제라 영양 보충이 아님."
+    },
+    {
+      "record_id": "pubmed:38106681",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "고령 비뇨기 수술 44명의 완과침 자극과 프로포폴 용량 RCT. 수술 P는 명확하나 노출이 침."
+    },
+    {
+      "record_id": "pubmed:38143595",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "장내미생물과 비만 조절 종설. 프리·프로바이오틱·분변이식 I는 명확하나 대상이 비만이고 임신 중 모체 비만은 발생 기원 설명으로만 등장."
+    },
+    {
+      "record_id": "pubmed:38278730",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "만성콩팥병 미세염증 상태에 대한 연신1호방 효과 서신. 초록 없음. 문헌 유형이 Letter뿐."
+    },
+    {
+      "record_id": "pubmed:34309798",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "플라보콕시드의 고비타민 D3·니코틴 유발 대동맥 칼슘화 완화. Wistar 랫드 전용이고 비타민 D 과다는 모델 유발 수단."
+    },
+    {
+      "record_id": "pubmed:37660283",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "혈액투석 6,797명(COSMOS)의 혈청 인과 골취약성 골절. 투석 P와 골절이라는 임상 이상결과가 명확하고 인 6.1 mg/dL 초과에서 위험 HR 1.53. 노출은 칼슘·인·PTH 혈중 상태."
+    },
+    {
+      "record_id": "pubmed:34888693",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "uncertain",
+      "reason_codes": ["population", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "투석 이차성 부갑상선기능항진증 환자의 비타민 D 결합단백·수용체 다형성과 치료 반응. 초록 없음. 투석 P는 확인되나 노출이 유전 다형성인지 비타민 D 치료인지, 결과가 무엇인지 판단 정보가 부족."
+    },
+    {
+      "record_id": "pubmed:35027389",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "human_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "매크로-B12가 B12 결핍을 가린 증례. B12 보충·주사 노출과 검사치 오류 결과는 명확하나 환자가 간질환자가 아니고 간질환은 혈중 B12 상승의 일반 원인으로만 언급되어 HRS4의 P가 부정됨."
+    },
+    {
+      "record_id": "pubmed:33143761",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "수술이 혈중 비타민 C 농도에 미치는 영향 체계적고찰·메타분석 23편 642명. 수술 P가 명확하고 결과가 수술 후 1주 39%·2~3개월 21% 감소라는 비타민 C 검사치 변화. 노출축이 수술이고 비타민이 결과인 역방향."
+    },
+    {
+      "record_id": "pubmed:41317185",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "항인지질항체와 죽상경화성 혈관질환 종설. 항응고 P와 혈전 O는 명확하나 노출이 항혈소판제·VKA 처방약."
+    },
+    {
+      "record_id": "pubmed:39979646",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "모체 주산기 흡연의 신생아 혈액 대사체 전장연관연구 899명. 임신 P는 명확하나 노출이 담배이고 비타민 A 대사는 영향받은 경로(결과)로 등장."
+    },
+    {
+      "record_id": "pubmed:36329175",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "건강한 후기 조산아의 신경발달과 철 보충 RCT에 대한 논평. 초록 없음. 대상이 신생아 보충이고 문헌 유형이 Letter·Comment뿐."
+    },
+    {
+      "record_id": "pubmed:35821184",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "임신 중 원발성 부갑상선기능항진증 치료 전략 3례·종설. 임신 P와 고칼슘혈증·모체·태아 합병증 O는 명확하나 노출이 저칼슘 식이 제한과 시나칼세트 처방약이라 보충 노출이 아님. 판정이 갈릴 수 있는 경계."
+    },
+    {
+      "record_id": "pubmed:37429783",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "무릎·고관절 전치환 후 통증 조절을 위한 간호사 주도 이압요법 RCT. 초록 없음. 노출이 이압요법."
+    },
+    {
+      "record_id": "pubmed:37224052",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "꽃양하(Alpinia japonica) 추출물의 간암세포 세포사 유도. HepG2 세포주 전용."
+    },
+    {
+      "record_id": "pubmed:35647164",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "무통 대장내시경 200명의 완과침과 프로포폴 용량 RCT. 저산소증·저혈압 등 이상반응 O는 있으나 노출이 침."
+    }
+  ]
+}
