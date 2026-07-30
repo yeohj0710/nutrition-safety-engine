@@ -70,13 +70,30 @@ describe("personalized safety API", () => {
       const base = ruleFor(situation, "base");
       const { status, body } = await ask({ situation });
       expect(status, situation).toBe(200);
+      // 핵심 근거는 all_evidence 다. 규칙 파일의 `evidence` 는 빌더가 만든 상위 3건
+      // 미리보기이므로 표시 개수의 기준이 아니다.
       expect(body.evidence.length, situation).toBe(
-        Math.min(5, base!.evidence.length),
+        Math.min(5, base!.all_evidence.length),
       );
       expect(body.core_evidence_count, situation).toBe(
         base!.all_evidence.length,
       );
       expect(body.applied_axes, situation).toEqual([]);
+    }
+  });
+
+  it("never shows fewer papers with no filter than with a filter", async () => {
+    // 조건을 안 넣은 화면이 조건을 넣은 화면보다 좁으면 안 된다. 예전에 아무 축도
+    // 적용하지 않은 경로만 상위 3건 미리보기를 써서 이 역전이 실제로 있었다.
+    for (const situation of situationIds) {
+      const { body: unfiltered } = await ask({ situation });
+      for (const axis of ["age", "medication", "dose", "sex", "condition"]) {
+        const { body: filtered } = await ask({ situation, [axis]: "확인" });
+        expect(
+          unfiltered.evidence.length,
+          `${situation} / ${axis}`,
+        ).toBeGreaterThanOrEqual(filtered.evidence.length);
+      }
     }
   });
 
