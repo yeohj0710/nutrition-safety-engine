@@ -1,0 +1,245 @@
+{
+  "round": 37,
+  "judgments": [
+    {
+      "record_id": "pubmed:38973681",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "영아기 철 보충, 어떤 제형을 언제 시작할 것인가. 초록 없음. 대상이 영아 직접 보충으로 임신 중 모체 노출이 아님. pubmed:35718375과 같은 처리."
+    },
+    {
+      "record_id": "pubmed:42168761",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "필리핀 모성 영양 상담 강화, 에티오피아 근거에 대한 성찰. 초록 없음. 노출이 상담·교육 사업이고 보충 노출이 특정되지 않음."
+    },
+    {
+      "record_id": "pubmed:35049594",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "커큐미노이드와 시스플라틴을 동시 담지한 헤파린-폴록사머 나노젤. 노출이 약물전달 제형이고 헤파린은 고분자 구성성분, 근거가 시험관·마우스."
+    },
+    {
+      "record_id": "pubmed:39713552",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "off_topic"],
+      "confidence": "high",
+      "note": "기계판막 임신부의 저분자량 헤파린 관리 네덜란드 전국 실태조사. 임신·항응고 P는 명확하나 노출이 처방 항응고제이고 결과가 항Xa 감시 실태."
+    },
+    {
+      "record_id": "pubmed:42487941",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "B형·C형 간염 75명의 요골 맥파 조화분석. 간질환 P는 명확하나 노출이 맥진 파형 분석."
+    },
+    {
+      "record_id": "pubmed:35309585",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "경구 항응고제 관련 뇌내출혈 401명의 성별 차이. 항응고 P와 출혈 O는 명확하나 노출이 처방 항응고제와 성별."
+    },
+    {
+      "record_id": "pubmed:41577393",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "복막투석 환자에서 진단된 괴혈병 증례. 초록 없음. 제목만으로 투석 P·비타민 C 결핍 I·괴혈병 O가 확인되고 문헌 유형에 Case Reports가 포함됨. 투석 환자의 수용성 비타민 결핍은 HRS2 축에 직접 부합."
+    },
+    {
+      "record_id": "pubmed:33580868",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "NHANES 2003~2006 성인 5,698명의 혈청 인과 사망률. 대상이 비임신·비만성콩팥병 성인으로 명시되어 만성콩팥병 환자가 아니고 신기능은 층화 변수일 뿐. 부갑상선호르몬·비타민 D·인 섭취는 보정 교란변수."
+    },
+    {
+      "record_id": "pubmed:36912744",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "외상성 전방출혈의 내과적 개입 코크란 고찰 30편 2,969명. 개입 목록에 한방 치료가 포함되나 포함 기준 자체가 비수술적 치료이고 대상이 수술 전후 집단이 아니며 한방에 대한 개별 결과가 제시되지 않음."
+    },
+    {
+      "record_id": "pubmed:35834313",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "자연 임신 시도 여성 362명의 수태 전 비타민 D와 유산 전향 코호트. 임신 P가 명확하고 수태 전 25(OH)D 농도가 측정 노출(선례 4), 결과가 20주 이내 유산까지의 위험비. 연관 없음이 결론."
+    },
+    {
+      "record_id": "pubmed:42164031",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "감염성 심내막염 후 기계판막 승모판 치환 환자의 와파린·헤파린 이중 저항 증례. 항응고 P와 치료역 미달 INR·혈전 위험 O는 명확하나 노출이 처방 항응고제이고 식이 영향은 원인 후보로 검토·배제되었을 뿐 측정 노출이 아님."
+    },
+    {
+      "record_id": "pubmed:39518052",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "구강편평세포암의 식물 유래 생물활성 물질 분자 표적 종설. 생약 보조요법 I는 확인되나 수술은 배경 서술이고 보고 내용이 시험관·동물 모델의 세포자멸·종양 억제 기전. 수술 후 결과를 보고한 pubmed:40777177과 대조됨."
+    },
+    {
+      "record_id": "pubmed:40620505",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "2025년 중국 간보호의 날, 한의·서양의학 통합으로 간경변 되돌리기. 초록 없음. 간경변 P와 한약 I는 확인되나 문헌 유형이 Letter."
+    },
+    {
+      "record_id": "pubmed:38696076",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "비타민 E 코팅 막이 혈액투석 중 발진성 소양을 역전. 초록 없음. 투석 P와 발진 O는 확인되나 노출이 투석막 표면 코팅으로 섭취·전신 투여가 아님. 투석액 첨가로 전신 도달하는 pubmed:40768773과 구분."
+    },
+    {
+      "record_id": "pubmed:40762285",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "알파토코페롤이 Nrf2 핵내이동을 촉진해 간섬유화를 개선하는 기전. 비타민 E I는 명확하나 근거가 사염화탄소·담관결찰 마우스 모델과 간성상세포 실험."
+    },
+    {
+      "record_id": "pubmed:35658342",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "CT 자료 기반 디지털 6축 외고정 장치를 이용한 경비골 골절 43명. 수술 P와 합병증 O는 명확하나 노출이 고정 기구."
+    },
+    {
+      "record_id": "pubmed:42491231",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "만성 B형간염 임신부 171명의 일관전 가감방 간보호 치료. 간질환 P와 한약 I가 명확하고 결과가 ALT·AST·총빌리루빈·총담즙산과 III·IV형 프로콜라겐 등 섬유화 지표, 문맥 직경·비장 크기, 자궁동맥 저항지수·에스트리올, 그리고 양군의 임상 안전성 비교."
+    },
+    {
+      "record_id": "pubmed:39179476",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "일반외과 위임가능 전문활동 피드백 논문에 대한 초청 논평. 초록 없음. 주제가 의학교육이고 문헌 유형이 Editorial."
+    },
+    {
+      "record_id": "pubmed:38533255",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "신생아의 약물 사용·자료 수집·이상반응 연구 과제 사설. 초록 없음. 대상이 신생아이고 문헌 유형이 Editorial."
+    },
+    {
+      "record_id": "pubmed:35866154",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "MAVIDOS 무작위시험의 사전계획 추적, 임신 14주부터 콜레칼시페롤 1,000 IU/일 대 위약을 투여한 산모의 자녀 452명을 4세에 이중에너지 X선 흡수계측. 보충군의 전신(두부 제외) 골밀도가 유의하게 높음. HRS3 대표 레코드."
+    },
+    {
+      "record_id": "pubmed:40340094",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "에독사반에 의한 좌심방이 혈전 소실(REFLEX 연구). 초록 없음. 노출이 처방 항응고제."
+    },
+    {
+      "record_id": "pubmed:40898905",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "off_topic"],
+      "confidence": "high",
+      "note": "재발성 비강 전정 침습성 혈관근종 1례. 수술 P는 명확하나 노출이 수술 자체이고 보충 노출이 없음."
+    },
+    {
+      "record_id": "pubmed:39687551",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "off_topic"],
+      "confidence": "high",
+      "note": "대사이상 지방간질환 동반 만성 B형간염 368명의 진동제어 일시탄성초음파 진단능. 노출이 영상 검사이고 간생검은 진단 목적."
+    },
+    {
+      "record_id": "pubmed:36316693",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "코로나 연관 급성 폐색전 20명의 3개월 이상 항응고 후 SPECT/CT 폐관류 평가. 항응고 P와 출혈·재발 O는 명확하나 노출이 처방 항응고제."
+    },
+    {
+      "record_id": "pubmed:34420167",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "스트렙토조신 유발 당뇨 임신 랫의 셀레늄 나노입자 보충과 당뇨병성 신증. 동물 실험 전용."
+    },
+    {
+      "record_id": "pubmed:38703301",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "인도 대사이상 지방간질환 환자의 혈청 미량원소 변화 서신. 초록 없음. 간질환 P와 미량원소 상태 I는 확인되나 문헌 유형이 Letter."
+    },
+    {
+      "record_id": "pubmed:38415296",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "유지투석 1,850명의 전원인 사망 예측모형 개발·검증. 투석 P와 사망 O는 명확하나 노출이 연령·체질량지수·알부민 등 임상 예측변수."
+    },
+    {
+      "record_id": "pubmed:31082119",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "human_signal"],
+      "confidence": "medium",
+      "note": "밀크시슬 개요 장. 지방간질환·간염·간경변 등 간질환 P와 생약 제품 I가 명확하고 수백만 명이 간기능 목적으로 복용한다는 사용 실태를 제시. 제공된 초록 범위에 안전성 결과가 보이지 않아 O는 부여하지 않음. pubmed:31643760과 같은 처리."
+    },
+    {
+      "record_id": "pubmed:35204301",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "무릎관절 전치환 44명을 코엔자임 Q10 300 mg 28일·허혈전처치·병용·대조 4군으로 배정. 수술 P와 보충 I가 명확하고 결과가 말초혈액 단핵세포 미토콘드리아 산소소비율과 수술후 통증·모르핀 요구량. 병용군에서 CoQ10의 진통 효과와 전처치의 미토콘드리아 보호가 서로 상쇄된 상호작용 소견이 핵심."
+    },
+    {
+      "record_id": "pubmed:36299672",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "발작질환으로 여러 아유르베다 생약을 만성 복용한 14세 소녀의 간부전 증례. 조직검사가 간문맥 경화·불완전 격막성 간경변 배경의 알코올성 간염을 시사했고 회수한 약재의 기체크로마토그래피-질량분석에서 알코올과 비소 등 유기·무기 독소가 확인됨. 중단 6개월 후 재생검에서 알코올 관련 변화는 소실. 생약 오염에 의한 중증 간손상을 물질 분석까지 제시한 HRS4 대표 레코드."
+    }
+  ]
+}

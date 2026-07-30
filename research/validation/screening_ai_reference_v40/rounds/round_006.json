@@ -1,0 +1,157 @@
+{
+  "round": 6,
+  "judgments": [
+    {
+      "record_id": "pubmed:37099902",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "간이식 대기자 47명 HMB 3g 이중맹검 RCT. 이식 전 P와 보충 I는 명확하나 결과가 근질량·근력·기능·삶의질 효능 전용이고 이상반응 보고 없음. pubmed:37346024와 같은 유형."
+    },
+    {
+      "record_id": "pubmed:36370127",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "소 임신 손상 모델에서 멜라토닌 보충과 태반 혈관·시계유전자. Brangus 육성우 54마리 전용. HRS1 유입은 초록의 Cesarean section 용어 일치로 보임."
+    },
+    {
+      "record_id": "pubmed:38674932",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "NHANES 성인 3,956명 혈청 지용성 미량영양소와 대사이상 지방간. α-토코페롤 OR 1.53, γ-토코페롤 OR 4.15로 위해 방향 연관이 명확. 노출이 혈청 상태라 I는 불명확하나 부정되지 않음."
+    },
+    {
+      "record_id": "pubmed:35037701",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "만성 설사만 나타난 고양이 리슈만편모충증 증례. 뉴클레오티드·AHCC 보충 언급은 있으나 대상이 고양이."
+    },
+    {
+      "record_id": "pubmed:37393033",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "APrON 코호트 2,189명의 임신 중 철 지표 변동과 출생 결과. 3분기 페리틴·헵시딘 상승이 저출생체중과 역연관되어 위해 방향 임상 결과가 명확. 노출은 혈중 지표."
+    },
+    {
+      "record_id": "pubmed:39217653",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "아스트라갈로사이드 IV의 당뇨병성 신장병 세뇨관 손상 완화. 랫드와 NRK-52E 세포 전용."
+    },
+    {
+      "record_id": "pubmed:38621725",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "고령 고관절 전치환 180명의 경피 전기 혈위자극과 수술 후 배뇨기능 RCT. 요저류·요로감염·인공관절감염 O는 충족하나 노출이 전기자극."
+    },
+    {
+      "record_id": "pubmed:38442241",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "에르고트 오염 곡물의 비육 거세우 급여 시험 60마리. 소 전용이고 노출이 곰팡이독소 오염물."
+    },
+    {
+      "record_id": "pubmed:36765459",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "레졸빈 D1의 화상 후 기계적 이상통증 완화. 랫드 전용이고 노출이 복강내 투여 지질 매개체."
+    },
+    {
+      "record_id": "pubmed:38933248",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "당뇨 전단계 224명의 다발신경병증 유병률. 만성신부전과 비타민 B12·엽산 결핍이 모두 제외기준이라 CKD 대상 P가 명확히 부정되고 보충 노출도 없음."
+    },
+    {
+      "record_id": "pubmed:41960392",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "중국 취안저우 0~6세 아동 1,183명의 경계성 비타민 A 결핍 유병률. 임신 중 노출과 무관하고 노출도 혈청 레티놀 상태."
+    },
+    {
+      "record_id": "pubmed:38763368",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "황금 유래 우고닌의 아세트아미노펜 간손상 완화. C57BL/6 생쥐와 대식세포 전용."
+    },
+    {
+      "record_id": "pubmed:36057144",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "단삼 유래 살비아놀산 A·B의 신간질섬유화 효과. 동물 실험과 HK-2 세포 전용."
+    },
+    {
+      "record_id": "pubmed:39275203",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "모유 올리고당 조성에 영향을 주는 인자 종설. 모유 성분 변동을 다루며 보충 노출이나 안전성 결과가 없음."
+    },
+    {
+      "record_id": "pubmed:37523538",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "칼프로텍틴 감지 조작 프로바이오틱의 염증성 장질환 감시. 프로바이오틱이 진단용 바이오센서로 쓰였고 결과가 민감도·특이도, 대상도 수술 전후 아님."
+    },
+    {
+      "record_id": "pubmed:40830877",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "필발(Piper longum)의 항섬유화 성분 탐색. HK-2 세포와 C57BL/6 생쥐 uIRI 모델 전용."
+    },
+    {
+      "record_id": "pubmed:38480498",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "비알코올성 지방간의 FXR 조절 천연물 종설(실리마린·글리시리진·베르베린 등). P·I 명확하나 보고 결과가 기전과 치료 표적. '이상반응이 적다'는 언급은 있으나 측정된 안전성 결과가 아님."
+    },
+    {
+      "record_id": "pubmed:36206809",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "피부 노화의 경구 보충과 전신 약물 서술적 종설. 가수분해 콜라겐·히알루론산의 내성 양호, 저용량 아이소트레티노인의 이상반응 위험 증가 등 안전성 결과가 명시적이고 비타민·플라보노이드·식물추출물 I도 명확. P는 최소침습 시술 언급 수준이라 약하지만 명확히 부정되지 않음."
+    },
+    {
+      "record_id": "pubmed:42089253",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "산성 세포외 pH의 부갑상선호르몬 분비 유도와 OGR1 의존성. 수컷 생쥐 부갑상선 배양 전용. CKD는 고찰에서만 언급."
+    }
+  ]
+}

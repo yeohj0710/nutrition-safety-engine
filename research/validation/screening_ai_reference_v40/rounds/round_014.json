@@ -1,0 +1,245 @@
+{
+  "round": 14,
+  "judgments": [
+    {
+      "record_id": "pubmed:39070472",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "비만수술 후 맞춤형 대 표준 종합비타민 체계적고찰 7편. 수술 후 P와 종합비타민 보충 I가 명확하고 결과가 B1·B6·B12·D·PTH·칼슘·철·아연 등 혈중 수치와 결핍률."
+    },
+    {
+      "record_id": "pubmed:37148437",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "죽상경화성 심혈관질환의 저용량 리바록사반 종설. 출혈 O는 충족하나 노출이 처방 항응고제."
+    },
+    {
+      "record_id": "pubmed:40992150",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "비만수술 621명의 단백 섭취·단백 보충과 체성분. 수술 P와 보충 순응도 I는 명확하나 결과가 제지방량·체지방률 효능이고 이상사건·검사치 보고가 없음."
+    },
+    {
+      "record_id": "pubmed:37397275",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "수술 전후 의학에서 침 연구의 계량서지학 분석 814편. 노출이 침·전기침이고 결과가 연구 동향."
+    },
+    {
+      "record_id": "pubmed:40447223",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "위암 수술 45명의 고열량 경구영양보충제 2상. 수술 후 P와 보충 I가 명확하고 3등급 고중성지방혈증·2등급 설사 각 1명이라는 이상사건을 보고."
+    },
+    {
+      "record_id": "pubmed:40550664",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "중국 항암협회 2025 대장·항문암 지침 개정 요점 해설. 영양치료·한의 재활을 강조한다는 언급만 있고 보충 노출 특정과 결과 제시가 없음."
+    },
+    {
+      "record_id": "pubmed:38448313",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "임신부 프로바이오틱 투여로 B군 사슬알균 집락·수직전파를 줄일 수 있는가에 대한 사설. 초록 없음. 문헌 유형이 Editorial뿐."
+    },
+    {
+      "record_id": "pubmed:36704806",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "신장이식 수여자의 전이성 폐 칼슘화 증례. 골다공증에 처방된 비스포스포네이트와 비타민 D 보충이 숨은 무형성 골질환을 악화시켜 칼슘화를 유발했을 가능성으로 둘 다 중단. 보충제 위해 귀속이 직접적."
+    },
+    {
+      "record_id": "pubmed:36231778",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "수술 불가 거대 간세포암 1,618명의 한약 사용자 특성·사망률 후향코호트. 간질환 P와 실제 한약 처방 I가 명확하고 결과가 3년 생존율·전체 사망 위험·알파태아단백·알부민."
+    },
+    {
+      "record_id": "pubmed:36654552",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal"],
+      "confidence": "medium",
+      "note": "농약 중독에 의한 메트헤모글로빈혈증·급성신손상·저산소성 뇌손상 증례. 혈액투석 P와 급성신손상 O가 명확하고 아스코르브산이 해독제로 실제 투여됨. 다만 위해 원인은 농약이라 보충제-결과 축은 간접적."
+    },
+    {
+      "record_id": "pubmed:34045136",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "식물성 우유 대체품의 신결석·만성콩팥병 위험 인자 비교. 노출이 식품의 나트륨·칼슘·칼륨·옥살산 함량이라 명세 4절 HRS2의 '식품 영양소 함량만 다루면 I가 아니다'에 정확히 해당."
+    },
+    {
+      "record_id": "pubmed:38372059",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "간절제 수술 전 재활 프로그램 서술적 종설. 수술 P가 명확하고 영양결핍 보충·분지사슬아미노산 보충이 구성요소로 제시되며 결과가 수술 후 합병증·회복."
+    },
+    {
+      "record_id": "pubmed:36323905",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "경구항응고제 복용자의 트라마돌 사용과 출혈 위험 체계적고찰·메타분석 17편. 중대 출혈 RR 2.68이라는 상호작용 결과는 명확하나 노출이 처방 오피오이드."
+    },
+    {
+      "record_id": "pubmed:42000078",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "Nrf2 매개 천연물의 대사이상 지방간 치료 역할 종설. 식이보충제 후보 언급은 있으나 보고 결과가 산화스트레스·지방증·염증·섬유화 완화 효능."
+    },
+    {
+      "record_id": "pubmed:36208925",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "암환자 항응고 신권고. 노출이 DOAC·저분자량헤파린·VKA 처방약."
+    },
+    {
+      "record_id": "pubmed:42334764",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "만성간질환 환자·보호자 323명의 허브·식이보충제·미량원소 섭취 단면조사. 간질환 P와 실제 보충 섭취 I가 명확하고 이상반응·약물상호작용 발생률 3.6%를 측정 보고."
+    },
+    {
+      "record_id": "pubmed:35120154",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "장출혈성 대장균 감염 중재와 용혈성요독증후군 위험 짝지음 환자대조연구. 프로바이오틱이 중재 노출로 측정(짝지음 OR 0.86)되고 결과가 용혈성요독증후군 발생이라는 급성 신장 이상결과."
+    },
+    {
+      "record_id": "pubmed:40315727",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "위장관 수술 1,442명의 n-3 다불포화지방산 강화 경장영양 메타분석 15편. 수술 P와 보충 I가 명확하고 결과가 창상감염 OR 0.68·합병증 OR 0.56."
+    },
+    {
+      "record_id": "pubmed:36709541",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "신장이식 496명의 이식 후 지속성 부갑상선기능항진증 위험인자. 고칼슘혈증 O는 명확하나 노출이 칼시미메틱 처방약이고 칼슘은 위험인자 검사치."
+    },
+    {
+      "record_id": "pubmed:35326214",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "만성 음주에 대한 비타민 보충 전략 최신 종설. 만성간질환 P와 비타민 보충 I가 명확하고 '보충이 간독성을 줄일 수 있다'는 간독성 축의 결과를 다룸."
+    },
+    {
+      "record_id": "pubmed:42015786",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "비만대사수술 60명에서 한의 설진 색조와 간 조직소견 연관. 수술 P는 충족하나 노출이 진단 방법(설진)이라 보충제 I가 부정됨."
+    },
+    {
+      "record_id": "pubmed:42073531",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "췌장암의 근감소증과 면역대사 취약성 종설. 수술 전후 P가 명확하고 영양보충·저항운동 중재가 임상적으로 의미 있는 수술 후 결과 개선에 제한적이었다는 결과를 제시."
+    },
+    {
+      "record_id": "pubmed:36117063",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "변형 근치적 유방절제술 환자의 수술 전후 간호 서신. 초록 없음. 보충제 노출 없음."
+    },
+    {
+      "record_id": "pubmed:36244517",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "DOAC 대 VKA의 사망·주요출혈 논평 서신. 초록 없음. 노출이 처방 항응고제."
+    },
+    {
+      "record_id": "pubmed:42338488",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "간실패 간이식 60명의 장내미생물 재건과 조기 수술 후 감염. 프로바이오틱군 대 비프로바이오틱군 비교이고 결과가 수술 후 세균감염·복강내감염 발생률."
+    },
+    {
+      "record_id": "pubmed:37688392",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "트립토판의 내독소 유발 간손상 완화. 이유자돈 18마리 전용."
+    },
+    {
+      "record_id": "pubmed:35895982",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "간경변 159명의 혈청 비타민 A 저하와 간기능·임상 악화 전향연구. 간경변 P와 MELD·Child-Pugh, 복수·간성뇌증·간신증후군·감염·사망이라는 임상 결과가 명확. 노출은 혈중 상태."
+    },
+    {
+      "record_id": "pubmed:41517692",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "복막투석 환자의 임신·분만 성공 증례. 투석 P가 명확하고 빈혈 교정에 철 보충제가 실제 투여되었으며 결과가 30주 조기 제왕절개·1,100 g 출생·복강내 감염."
+    },
+    {
+      "record_id": "pubmed:37337249",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "비소세포폐암 절제 후 보조화학요법 81명의 조기 영양보충 환자대조연구. 수술 후 P와 면역영양 보충 I가 명확하고 결과가 합병증·사망·재발·생존."
+    },
+    {
+      "record_id": "pubmed:38267238",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "이차성 부갑상선기능항진증 관동맥 칼슘화 예방의 칼시미메틱 조기중재 RCT 프로토콜. 투석 P와 칼슘화·안전성 평가변수는 있으나 무작위 비교 노출이 우파시칼세트이고 저용량 비타민 D 수용체 활성제는 양군 공통 배경치료."
+    }
+  ]
+}

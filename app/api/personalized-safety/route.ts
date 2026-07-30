@@ -149,7 +149,12 @@ export async function POST(req: Request) {
     pool = pool.filter((entry) => ids.has(entry.record_id));
   }
 
-  const ranked = rankEvidence(applied.length ? pool : base.evidence);
+  // 축을 하나도 적용하지 않았을 때도 `all_evidence` 에서 고른다. 규칙 파일의
+  // `evidence` 는 build_site_v4.py 가 만든 상위 3건 미리보기(`matched[:3]`)이므로,
+  // 그것을 쓰면 조건을 아무것도 안 넣은 화면이 조건을 넣은 화면보다 좁아진다
+  // (핵심근거 15건인데 3건만 나오고, 축 두 개를 넣으면 5건이 나왔다).
+  // 두 경로 모두 all_evidence 를 쓰고 표시 개수는 SELECTED_LIMIT 하나로 정한다.
+  const ranked = rankEvidence(applied.length ? pool : base.all_evidence);
   const selected = ranked.slice(0, SELECTED_LIMIT);
 
   const meta = situationById.get(situation);

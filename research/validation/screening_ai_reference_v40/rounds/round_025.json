@@ -1,0 +1,245 @@
+{
+  "round": 25,
+  "judgments": [
+    {
+      "record_id": "pubmed:37309815",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "뇌전증 산모의 임신 중 고용량 엽산과 자녀 암 위험 주장에 대한 반박 논평. 초록 없음. 제목만으로 임신 P·엽산 I·소아암 O가 모두 확인되지만 문헌 유형이 Comment. 판정이 갈릴 수 있는 경계."
+    },
+    {
+      "record_id": "pubmed:39671973",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "대퇴경부 골절 내고정 후 불유합 55세 여성 증례. 수술 후 P와 골펩타이드정·귀갑장골캡슐 한약 I가 명확하고 결과가 골유합·대퇴두 무혈성 괴사 없음·이상반응 없음으로 안전성이 명시됨."
+    },
+    {
+      "record_id": "pubmed:35064405",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "exposure", "off_topic"],
+      "confidence": "high",
+      "note": "호로파 종자 추출물의 에탄올 유발 세포사 억제, HepG2·Huh7 세포. MeSH에 Humans가 있으나 사람 세포주 실험이고 사람 대상 연구가 아님."
+    },
+    {
+      "record_id": "pubmed:40343657",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "비만수술 후 종합비타민 순응도와 환자중심 진료 적용에 관한 다기관 관찰연구. 초록 없음. 제목상 결과가 순응도·진료 과정 지표. pubmed:40622207과 같은 처리."
+    },
+    {
+      "record_id": "pubmed:34609004",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "궤양성대장염 결장절제 92명의 수술 전후 어유 보강 정맥영양. 수술 전후 P와 어유 I가 명확하고 결과가 D-이합체·혈전탄성도·주요 수술후합병증 6.3% 대 22.7%. 응고 기능이 직접 측정된 HRS1 핵심 레코드."
+    },
+    {
+      "record_id": "pubmed:39379965",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "animal_term_present", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "호주 방목 앵거스·헤리퍼드·와규 소의 근육 오메가-3 조성 정정문. 초록 없음. 대상이 소이고 문헌 유형이 Published Erratum."
+    },
+    {
+      "record_id": "pubmed:40144413",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "human_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "비타민 K 결핍 78세 남성의 세프메타졸 유발 응고장애 증례. 비타민 K 보충으로 개선된 응고 결과가 명확하지만 대상이 항응고제 복용자가 아니라 워파린 유사 기전의 항생제 투여 환자. 명세 4절 HRS5의 대상 요건에 걸림. 판정이 갈릴 수 있는 경계."
+    },
+    {
+      "record_id": "pubmed:40551307",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "경피 대동맥판 치환 후 심방세동 10,041명의 DOAC 대 VKA 국가자료 분석. 항응고 P와 혈전·출혈 O는 명확하나 노출이 처방 항응고제."
+    },
+    {
+      "record_id": "pubmed:35745263",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "코로나 유행기 임신부의 면역·심리 상태와 미량영양소 지지 종설. 임신 P와 비타민·미량영양소 I는 명확하나 보고 내용이 불안·우울 완화와 면역 개선이라는 효능 방향이고 이상반응 보고가 없음."
+    },
+    {
+      "record_id": "pubmed:35088388",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "간세포암 요오드화유 CT 유도 고주파열치료 서신. 초록 없음. 요오드화유는 조영제이고 보충 노출이 아님."
+    },
+    {
+      "record_id": "pubmed:41859737",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "혈액투석 506명의 설진 영상과 이화학 지표 융합 심혈관 사건 예측. 투석 P와 심혈관 O는 명확하나 노출이 영상 특징."
+    },
+    {
+      "record_id": "pubmed:20301720",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "human_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "셀리악병 GeneReviews 개요. 관리에 철·아연·칼슘·지용성 비타민·엽산 결핍 치료가 포함되나 대상이 유전질환 전반이고 임신은 반복 태아소실이라는 증상 목록에만 등장. 임신 연계 노출이 아님."
+    },
+    {
+      "record_id": "pubmed:35063205",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "전립선 근치절제 130명의 장쇄 오메가-3 MAG-EPA 3 g 일일 무작위 위약대조. 수술 P와 보충 I가 명확하고 결과가 수술 전후 출혈량·혈소판·수술후합병증. 수술 전 중단 권고 자체를 검정한 HRS1 핵심 레코드로 위험 증가 없음이 결론."
+    },
+    {
+      "record_id": "pubmed:39538043",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "비만수술 후 임신부의 적절한 영양보충 필요성 사설. 초록 없음. 제목상 P·I가 맞지만 문헌 유형이 Editorial뿐."
+    },
+    {
+      "record_id": "pubmed:35144414",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "중국 혈액투석 668명의 정맥 파리칼시톨 실사용 분석. 투석 P와 iPTH·칼슘·내약성 O는 명확하나 노출이 처방 정맥 비타민 D 유사체(젬플라)로 명세 4절 HRS2의 비처방 요건에 걸림."
+    },
+    {
+      "record_id": "pubmed:41766153",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "소아 헤노흐-쇤라인 자반 신염 259명의 사구체 손상 진행 예측모형. 노출이 요·혈액 검사 지표이고 신생검이라는 침습 시술이 등장하지만 수술 전후 노출을 다루지 않음."
+    },
+    {
+      "record_id": "pubmed:41730175",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "아토피피부염 치료제. 초록 없음. 제목만으로는 임신 P도 보충 I도 확인되지 않음."
+    },
+    {
+      "record_id": "pubmed:35038554",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "재조합 헤파린 생산을 위한 포유류 세포 다중 유전체 편집. 마우스·돼지 유래 세포 실험이고 노출이 항응고 의약품."
+    },
+    {
+      "record_id": "pubmed:40638899",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "가공 음양곽의 항골다공증 성분 스펙트럼-효능 분석. 제브라피시 배아·마우스 MC3T3 세포 실험이고 임신 P가 없음."
+    },
+    {
+      "record_id": "pubmed:30000695",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "off_topic"],
+      "confidence": "medium",
+      "note": "이소트레티노인 수유 중 사용 정보 단문. 노출이 처방 레티노이드 의약품이고 대상이 수유기로 임신 연계 노출이 아님."
+    },
+    {
+      "record_id": "pubmed:34903587",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "design_signal"],
+      "confidence": "medium",
+      "note": "간질환 치료에서 위타페린 A의 진행과 약동학 종설. 간질환 P와 Withania somnifera(아쉬와간다) 유래 성분 I가 명확하고 본문이 WA의 독성과 대사를 명시적으로 다룸. 사람 근거는 약해 human_signal은 부여하지 않음."
+    },
+    {
+      "record_id": "pubmed:35960048",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "약물유발 간손상 726명의 한약 대 서양약 원인 비교. 하수오 38례·보골지 35례·음양곽 26례가 원인으로 특정되고 결과가 ALT·AST·총빌리루빈·항핵항체 양성률과 중증도. HRS4 핵심 레코드."
+    },
+    {
+      "record_id": "pubmed:37936745",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "다분절 요추 디스크 75명의 경피 경추간공 내시경 디스크제거술 유효성·안전성. 수술 P와 합병증 O는 명확하나 노출이 수술 기법."
+    },
+    {
+      "record_id": "pubmed:36698500",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "EFSA 셀레늄 상한섭취량 과학적 의견서. 임신부·수유부를 포함한 성인 상한 255 μg/day를 설정하고 탈모를 임계 유해영향으로, SELECT 시험의 LOAEL 330 μg/day를 근거로 제시. 고용량 셀레늄 보충제 상용자를 초과 위험군으로 명시."
+    },
+    {
+      "record_id": "pubmed:35276810",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "철결핍 임신부 120명의 비스글리시네이트철·폴린산 무작위 대조. 임신 P와 경구 보충 I가 명확하고 결과에 혈액학 지표와 함께 오심·복통·복부팽만·변비·금속맛 이상반응 빈도가 포함됨."
+    },
+    {
+      "record_id": "pubmed:37046263",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "exposure", "off_topic"],
+      "confidence": "high",
+      "note": "뽕나무 열매 다당의 H2O2 유발 간손상 개선, HepG2 세포. 사람 대상 연구가 아니고 보고 내용이 PI3K/Akt-Nrf2 경로 기전."
+    },
+    {
+      "record_id": "pubmed:35649428",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "off_topic"],
+      "confidence": "high",
+      "note": "루푸스 항응고인자 검사 종설. 항응고 치료 중 검사 간섭을 다루지만 노출이 보충제가 아니고 결과가 검사 성능. MeSH의 Vitamin K는 VKA에서 유래."
+    },
+    {
+      "record_id": "pubmed:37428483",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "신생아 중환자실 프로바이오틱 제품 기준 최적화 프레임워크. 초록 없음. 대상이 신생아로 임신 중 노출과 연결되지 않음."
+    },
+    {
+      "record_id": "pubmed:36584689",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "임신부 159명의 임신 중 모체 혈장 콜린과 부당경량아. 임신 P와 부당경량아 O가 명확하고 28주 콜린 7 μM 미만의 OR 16.6. 노출 측정치가 혈장 농도지만 산전 비타민·엽산 복용 순응도가 함께 평가되고 콜린·포스파티딜콜린 보충이 상승 경로로 제시됨."
+    },
+    {
+      "record_id": "pubmed:36154592",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "치아씨드 오일의 HepG2 세포 리포솜 독소루비신 내성 억제. 사람 대상 연구가 아니고 대상이 간암 세포주의 항암제 내성."
+    }
+  ]
+}

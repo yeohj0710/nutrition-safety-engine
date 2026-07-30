@@ -1,0 +1,245 @@
+{
+  "round": 19,
+  "judgments": [
+    {
+      "record_id": "pubmed:37762897",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "임상 실무와 까다로운 상황에서의 DOAC 환자 관리 종설. 노출이 처방 항응고제."
+    },
+    {
+      "record_id": "pubmed:34350609",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "비판막성 심방세동 경구항응고제 전환 서술적 종설 39편. 노출이 처방 항응고제 간 전환."
+    },
+    {
+      "record_id": "pubmed:42136797",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "단삼과 경구항응고제 병용 처방 525명의 자기대조 증례군. 항응고 P, 단삼 I, 출혈 위험 aIRR 3.98(위장관 3.79·두개내 3.59)이라는 정량적 위해 결과가 모두 명시적."
+    },
+    {
+      "record_id": "pubmed:39388923",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "비알코올성 지방간 중성약 5종 베이지안 네트워크 메타분석 77편 7,770명. 간질환 P와 비처방 한약제제 I가 명확하고 결과가 ALT·AST·중성지방·LDL 검사치."
+    },
+    {
+      "record_id": "pubmed:35444556",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "인종 다양성과 와파린 약물유전체학 종설. 노출이 처방약과 유전형이고 결과가 용량 알고리즘 대표성."
+    },
+    {
+      "record_id": "pubmed:34242404",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "심방세동 39,989명의 VKA 대 DOAC 사용과 암 발생. 노출이 처방 항응고제."
+    },
+    {
+      "record_id": "pubmed:35899384",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "AASLD의 약물·허브·식이보충제 유발 간손상 진료지침. 초록 없음. 제목만으로 간손상 P·보충제 I·간손상 O가 모두 확인되고 문헌 유형이 배제 대상이 아님."
+    },
+    {
+      "record_id": "pubmed:39153884",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "retain",
+      "reason_codes": ["exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "프랑스 산부인과학회 태아사망 전문가 합의. '태아사망 위험 감소만을 목적으로 비타민 A·D·미량영양소 보충을 처방하지 않도록 권고'라는 보충 노출 권고가 명시적이고 결과가 태아사망. HRS5의 항응고 P는 아스피린·헤파린 권고 수준."
+    },
+    {
+      "record_id": "pubmed:39831189",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "만성콩팥병 환자와 건강인의 설진 변수 비교. CKD P는 명확하나 노출이 자동 설진 진단이라 보충제가 아님."
+    },
+    {
+      "record_id": "pubmed:38403917",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "산전·산후 장애 진단 통보에서 간호사의 역할. 초록 없음. 보충 노출과 안전성 결과가 없고 MeSH의 Vitamins만 부수적."
+    },
+    {
+      "record_id": "pubmed:38370002",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "영양이 피부 창상치유·미용 결과에 미치는 영향 서술적 종설. 수술 전 영양상태 P와 오메가-3·아미노산·비타민 A·B·C·아연·E I가 명확하고 결과가 수술 후 합병증·감염, 비타민 E는 결과가 일관되지 않음."
+    },
+    {
+      "record_id": "pubmed:42147312",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "간질환에서 글리시리진 제제 종설. 간염·약물유발 간손상·알코올성·비알코올성 지방간 P와 감초 유래 I가 명확하고 가성알도스테론증 위험과 약물상호작용을 안전성 결과로 명시."
+    },
+    {
+      "record_id": "pubmed:38283477",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "주스 다이어트로 인한 옥살산 신병증 급성신손상 증례. 아스코르브산이 옥살산으로 전환되어 세뇨관 손상을 일으킨다는 기전과 '비타민 C를 천연 형태든 약물이든 보충하기 전 주의'라는 결론이 명시적이고 결과가 투석 필요."
+    },
+    {
+      "record_id": "pubmed:35767124",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "프랑스 정맥혈전 환자의 아픽사반 대 VKA 의료자원 이용·비용 비교. 노출이 처방약이고 결과가 비용."
+    },
+    {
+      "record_id": "pubmed:35353431",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "약물유발 간손상 발생률·위험인자 종설. 동양에서는 한약이 주요 원인이고 허브·식이보충제 유발 간독성 발생이 전세계적으로 증가한다고 명시하며 결과가 간손상 발생률."
+    },
+    {
+      "record_id": "pubmed:35507237",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "일본 비투석 만성콩팥병 4,460명의 빈혈·조혈제 저반응 단면조사. CKD P가 명확하고 철 보충 시행률이 측정 변수이며 결과가 헤모글로빈·조혈제 저항지수 검사치."
+    },
+    {
+      "record_id": "pubmed:34625983",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "의사·약사의 DOAC 사용 인식·경험 설문. 노출이 처방약이고 결과가 자기인지 지식 수준."
+    },
+    {
+      "record_id": "pubmed:34837121",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "간질환 동반 간세포암 간절제 전 프로바이오틱 투여 RCT 54명. 수술 P와 프로바이오틱 I가 명확하고 결과가 내독소·수술 후 간기능·합병증률. 프로바이오틱군에서 TNF-α와 IL-1β가 오히려 유의하게 증가한 불리한 신호가 있음."
+    },
+    {
+      "record_id": "pubmed:38714632",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "비만수술 20명의 전용 종합비타민·무기질 제제 12개월 전향관찰. 수술 후 P와 보충 I가 명확하고 결과가 B12·25-OH 비타민 D·엽산·PTH 등 검사치와 이상사건·위장관 부작용 없음."
+    },
+    {
+      "record_id": "pubmed:41919876",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "일조량 많은 지역 임신부의 비타민 D와 갑상선기능 관련 서신. 초록 없음. 문헌 유형이 Letter뿐."
+    },
+    {
+      "record_id": "pubmed:38172964",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "지질과 비타민 K 대사의 상호연결 종설. 고지혈증 약이 와파린과 상호작용하고 스타틴이 비타민 K 전환을 방해해 비타민 K 의존 단백 기능에 영향한다는 상호작용 결과가 명시적. 요독 환자 MK-7 보충 실패 설명도 포함."
+    },
+    {
+      "record_id": "pubmed:34586605",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "투석 전 3단계 CKD와 혈액투석 환자의 필수·독성 미량원소 혈중 불균형. 투석·CKD P가 명확하고 알루미늄·망간·구리·아연·셀레늄·납 등 14종 농도 이상이 검사치 결과이며 이환 기여 가능성을 제시. 노출은 혈중 상태."
+    },
+    {
+      "record_id": "pubmed:36942299",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "CYP2C9·VKORC1 변이와 상부 위장관 출혈 감수성 환자대조연구 906명. 출혈 O는 명확하나 노출이 NSAID·저용량 아스피린 처방약이고 항응고제 사용 환자가 아님."
+    },
+    {
+      "record_id": "pubmed:35219268",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "태아기 담배·알코올 노출과 청년기 불안 증상 코호트 1,190명. 임신 중 노출 P와 결과는 명확하나 노출 물질이 담배·알코올이라 보충제 I 부정."
+    },
+    {
+      "record_id": "pubmed:37409723",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "3b~5단계 만성콩팥병 45명의 저단백식이+이눌린 10 g 보충 무작위연구. CKD P와 이눌린 보충 I가 명확하고 결과가 인독실황산·p-크레실황산·염증지표·신기능 검사치."
+    },
+    {
+      "record_id": "pubmed:37878827",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "겸상적혈구병 임신부 49명의 영양불량 종단연구. 임신 P는 명확하나 노출이 식이 섭취량(단백·비타민 A·E)이라 명세 3.2에 해당하고 결과가 영양상태."
+    },
+    {
+      "record_id": "pubmed:34883213",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "간질환에서 Saccharomyces boulardii의 치료 가능성 종설. 간질환 P와 프로바이오틱 I는 명확하나 보고 내용이 작용기전과 치료 잠재력."
+    },
+    {
+      "record_id": "pubmed:34809518",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal"],
+      "confidence": "medium",
+      "note": "USP53 양대립 변이에 의한 진행성 간내 담즙정체 증례. 간질환 P와 담즙정체·섬유화 O가 명확하고 환자가 비타민 보충제와 콜레스티라민을 실제 투여 중. pubmed:40892003과 같은 처리."
+    },
+    {
+      "record_id": "pubmed:35736361",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal"],
+      "confidence": "medium",
+      "note": "고칼륨혈증 치료 후 고칼슘혈증 증례. 만성콩팥병 P가 명확하고 칼슘 폴리스티렌 설포네이트를 '칼륨 결합 보충제'로 기술하며 혈청 칼슘 3.25 mmol/L의 이상사건을 해당 제제의 알려진 부작용으로 귀속."
+    },
+    {
+      "record_id": "pubmed:35781402",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "악성 복막 중피종의 냉동절제와 한약 병용 증례. 초록 없음. 문헌 유형이 Case Reports·Letter뿐."
+    }
+  ]
+}

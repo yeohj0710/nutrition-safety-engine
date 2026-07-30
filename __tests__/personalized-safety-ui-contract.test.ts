@@ -71,4 +71,34 @@ describe("personalized safety UI contract", () => {
     );
     expect([...covered].sort()).toEqual([...situationIds].sort());
   });
+
+  it("keeps the numbered citation structure in the result view", () => {
+    // 요약에 번호 인용 표시를 붙이고 그 번호가 아래 출처 항목으로 이동하는 구조는
+    // cbc8a22 재구축에서 사라졌다가 되살린 것이다. 앵커 id 와 마크가 짝을 이뤄야
+    // 인용 번호를 눌러도 아무 일이 없는 상태가 되지 않는다.
+    expect(componentSource).toContain("CitationMarks");
+    expect(componentSource).toContain("#result-ref-");
+    expect(componentSource).toContain("id={`result-ref-${n}`}");
+    expect(componentSource).toContain("scroll-mt-24");
+  });
+
+  it("never ships a bare validated / gold-standard claim", () => {
+    // AGENTS.md 명명 규칙: 사람 참조표준이 0건이므로 배포되는 산출물에 맨
+    // validated·gold_standard·accuracy·민감도를 쓰지 않는다. 비교 상대를 이름에
+    // 넣은 형태(_vs_ai_reference)만 허용한다. 예전에 <main> 의
+    // data-scope 가 "validated_thesis_scope" 로 배포돼 있었다.
+    const shipped = [
+      path.join(root, "app", "page.tsx"),
+      path.join(root, "app", "api", "personalized-safety", "route.ts"),
+      path.join(root, "src", "lib", "clinical-situations.ts"),
+      path.join(root, "src", "components", "personalized-safety-query.tsx"),
+    ].map((file) => [file, readFileSync(file, "utf8")] as const);
+
+    for (const [file, source] of shipped) {
+      const stripped = source.replace(/_vs_ai_reference/g, "");
+      expect(stripped, file).not.toMatch(
+        /validated|gold_standard|민감도|특이도/,
+      );
+    }
+  });
 });

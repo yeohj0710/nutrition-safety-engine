@@ -1,0 +1,157 @@
+{
+  "round": 1,
+  "judgments": [
+    {
+      "record_id": "pubmed:39779014",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "두충 잎 다당·추출물의 알코올성 간질환 개선. 수술·수술전후 맥락 없음(P 부정), 생쥐 전용."
+    },
+    {
+      "record_id": "pubmed:35997262",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "심방세동 환자 경구항응고제 코호트로 P·O는 충족하나 보충제·허브 노출이 전혀 없음(I 부정)."
+    },
+    {
+      "record_id": "pubmed:39253189",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "알란토락톤 신섬유화 개선. UUO 랫드 모델과 HK-2 세포 전용이라 CKD 환자 P 미충족, 결과도 효능."
+    },
+    {
+      "record_id": "pubmed:34647596",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "임신부 5,983명 전향코호트, 철 상태와 임신성 고혈압질환. P·O 명확. 노출이 보충 섭취가 아니라 혈청 철 지표라 I는 불명확하나 부정되지도 않음."
+    },
+    {
+      "record_id": "pubmed:33899631",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic", "animal_term_present"],
+      "confidence": "high",
+      "note": "치주조직공학 스캐폴드 세포배양 비교. 임신·보충제와 무관, 시험관 전용."
+    },
+    {
+      "record_id": "pubmed:41191399",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["outcome", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "신생아 갑상선중독증에 따른 고칼슘혈증 증례. 임신 중 노출과 연결되지 않고 노출도 저칼슘 분유·카비마졸이라 I 부정."
+    },
+    {
+      "record_id": "pubmed:40060059",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "투석 CKD 빈혈 HIF-PHI 체계적고찰. P·O·설계 충족하나 노출이 처방의약품 단독이라 I 부정. 철 보충은 결과 지표로만 등장."
+    },
+    {
+      "record_id": "pubmed:35646921",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "소속명탕 뇌졸중 네트워크 약리학. 수술 전후 맥락 없음, PC12·HT22 세포 전용."
+    },
+    {
+      "record_id": "pubmed:38394188",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "위장관 수술 84명 경구영양보충제 3군 비교. 수술 전후 P, 보충제 I 명확, 내성·불편 호소와 재원기간이 안전성 결과."
+    },
+    {
+      "record_id": "pubmed:38976478",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "혈액투석 환자 투석중 비경구영양(IDPN) 서술적 종설. 안전성 감시 항목을 명시적으로 다룸. 임상 투여 영양요법이라 비처방 여부는 불명확하나 부정되지 않음."
+    },
+    {
+      "record_id": "pubmed:37367644",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic", "animal_term_present"],
+      "confidence": "high",
+      "note": "해조 바이오매스 추출 공정 최적화와 HeLa 세포독성. 사람 투여 없음, 수술 맥락 없음."
+    },
+    {
+      "record_id": "pubmed:38698583",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "전기침의 랫드 허혈재관류 뇌연결성. 보충제 노출 아님, 동물 전용."
+    },
+    {
+      "record_id": "pubmed:39401813",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "전기침 풍륭혈의 고지혈증 랫드 간 콜레스테롤 대사. 보충제 노출 아님, 수술 맥락 없음."
+    },
+    {
+      "record_id": "pubmed:38622918",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "난치성 뇌전증 성인 케톤생성식이와 영양보충. 보충 노출과 내성 보고는 있으나 대상이 CKD·투석 환자가 아님(P 부정)."
+    },
+    {
+      "record_id": "pubmed:40309873",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "비타민 C의 병아리 배아 망막 세포 PI3K/AKT 조절. 사람 임신 아님, 시험관 전용, 결과도 기전."
+    },
+    {
+      "record_id": "pubmed:40979188",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "호두(Juglans regia) 추출물 성분분석과 PT·aPTT 항응고 활성. 항응고제 사용 환자 없음, 시험관·랫드 전용."
+    },
+    {
+      "record_id": "pubmed:38903928",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "익지인 추출물과 중간엽줄기세포 병용의 D-갈락토스 유발 신기능 저하 개선. WKY 랫드 전용."
+    },
+    {
+      "record_id": "pubmed:36577449",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "PLPBP 결핍 피리독신 의존성 뇌전증 영아 증례. 비타민 B6 노출은 있으나 임신 중 노출과 연결되지 않아 P·I 동시 충족 안 됨."
+    },
+    {
+      "record_id": "pubmed:36807818",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "DOAC 검사실 과제와 해독제 종설. 항응고 환자 P와 출혈 O는 충족하나 보충제 노출 없음. MeSH의 Vitamin K는 VKA 약물군 맥락."
+    }
+  ]
+}

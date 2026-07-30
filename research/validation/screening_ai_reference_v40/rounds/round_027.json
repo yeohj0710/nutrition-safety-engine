@@ -1,0 +1,245 @@
+{
+  "round": 27,
+  "judgments": [
+    {
+      "record_id": "pubmed:40175068",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "중국 뇌전증 임신부 1,110 임신의 발작 조절과 태아 결과. 임신 P와 주요 선천기형·저체중·태아사망 O는 명확하나 분석 노출이 발작과 항경련제이고 엽산 보충은 보정 공변량으로만 수집됨. 선례 11 적용."
+    },
+    {
+      "record_id": "pubmed:35051605",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "비알코올 지방간질환의 소요산 체계적고찰·메타분석 12편 1,012명. 간질환 P와 한약 처방 I가 명확하고 ALT·AST·GGT와 함께 3편에서 방귀·변비·설사·발진 이상사건이 보고됨. 선례 15 적용."
+    },
+    {
+      "record_id": "pubmed:40340755",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "임신성 당뇨·당뇨전단계 여성의 오메가-3와 비타민 병용 메타분석 철회 성명. 초록 없음. 원논문이 철회되어 근거가 소멸했고 문헌 유형이 Retraction Notice. pubmed:36459002과 같은 처리."
+    },
+    {
+      "record_id": "pubmed:36513549",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "흉강경 폐수술 후 한방 치료 적용 서신. 초록 없음. 수술 P는 확인되나 한방 치료의 실체가 한약인지 침구인지 특정되지 않고 문헌 유형이 Letter."
+    },
+    {
+      "record_id": "pubmed:39182001",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "대사수술 후 임신 중 영양 상태·보충제 사용 다기관 코호트에 대한 짝지은 사설. 초록 없음. 제목·MeSH상 P·I가 맞지만 문헌 유형이 Editorial."
+    },
+    {
+      "record_id": "pubmed:41398102",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "off_topic"],
+      "confidence": "high",
+      "note": "직접 경구 항응고제의 검사실 검사 종설. 항응고 P는 명확하나 노출이 처방 항응고제이고 결과가 측정법 성능·간섭 제거 시약."
+    },
+    {
+      "record_id": "pubmed:39199344",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "NOAC 대 낫토키나제의 심장보호 효과 비교 서술적 종설. 낫토키나제는 식품 유래 천연 효소로 보충 노출에 해당하고 혈액 희석·혈전 용해·피브린 분해 활성이 결과로 제시됨. 처방 항응고제와 직접 비교한 구도라 HRS5 축에 정확히 부합. 대상이 심혈관질환 전반이어서 confidence는 medium."
+    },
+    {
+      "record_id": "pubmed:38910077",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "신생아 저칼슘혈증의 다양한 기저 원인 규명 증례. 초록 없음. 대상이 신생아이고 MeSH의 Calcium은 질병 지표. 임신 연계 노출이 아님."
+    },
+    {
+      "record_id": "pubmed:35243603",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "비만수술 환자의 프로바이오틱 보충과 체중감소·염증인자·대사 효과. 초록 없음. 제목만으로 수술 P·프로바이오틱 보충 I·염증인자 O가 확인되고 문헌 유형이 Journal Article."
+    },
+    {
+      "record_id": "pubmed:41376433",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "투석 의존 만성콩팥병 빈혈의 바다두스타트 대 다베포에틴 3상 하위분석. 투석 P와 주요 심혈관사건 O는 명확하나 노출이 처방약이고 철 보충은 서론의 표준치료 배경 언급. pubmed:40060059과 같은 처리."
+    },
+    {
+      "record_id": "pubmed:29261922",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "off_topic"],
+      "confidence": "medium",
+      "note": "와파린 약물 개요. 항응고 P와 출혈 O가 명확하고 용량 조절 요인으로 식이가 언급되나 측정·검토 노출이 와파린 자체이고 특정 영양소 보충이 다뤄지지 않음."
+    },
+    {
+      "record_id": "pubmed:35158075",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "만성콩팥병 117명의 자동 설진 지표. 투석 P는 명확하나 노출이 혀 소견 영상 분석."
+    },
+    {
+      "record_id": "pubmed:35367109",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "갑상선 결절 682명의 수술 전 악성 위험 예측모형. 수술 전 P는 명확하나 노출이 초음파·세포검사·유전자·칼시토닌 지표."
+    },
+    {
+      "record_id": "pubmed:40501231",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "발프로산 장기 투여 소아 뇌전증 137명의 혈청 미량원소와 간독성. 약물유발 간손상 P가 명확하고 철·코발트·셀레늄 혈중 농도가 측정 노출이며 간독성 위험이 철 OR 2.387, 셀레늄 OR 0.813. 선례 4 적용."
+    },
+    {
+      "record_id": "pubmed:34059194",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "대수술 예정 404명의 정맥 철 보충 시점과 수술 전 헤모글로빈. 수술 P와 철 보충 I가 명확하고 결과가 헤모글로빈 변화. 3명이 반복 투여로 4 g/dL 초과 상승을 보인 과교정 신호가 있음. 효능 방향이나 검사치 결과라 O를 인정."
+    },
+    {
+      "record_id": "pubmed:36460269",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "off_topic"],
+      "confidence": "high",
+      "note": "미국 만성콩팥병 환자용 저단백 동물성·식물성 식단의 영양 적정성 분석. 만성콩팥병 P는 명확하나 노출이 이론적 식단의 영양소 함량이라 명세 4절 HRS2가 명시적으로 배제하는 경우이고 결과가 권장섭취량 충족 여부."
+    },
+    {
+      "record_id": "pubmed:40947440",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "로봇수술 시스템의 비수술 수술실 점유시간 논문에 대한 서신. 초록 없음. 주제가 수술실 운영 효율."
+    },
+    {
+      "record_id": "pubmed:34865048",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "보조생식술 부가요법의 근거 기반 사용과 환자 관점 학술지 클럽 보고. 초록 없음. MeSH에 Dietary Supplements·Live Birth·Pregnancy Rate가 색인되어 임신 연계 P·보충 I·임신 결과 O가 확인되고 문헌 유형이 Journal Article."
+    },
+    {
+      "record_id": "pubmed:39519500",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "간 건강을 위한 S-아데노실메티오닌 체계적고찰 15편. 간질환 P와 보충제 I가 명확하고 목적 자체가 유효성·안전성·최적 용량. 일 1,000~1,200 mg에서 경증·일시적 위장 이상반응이 소수 보고됨. HRS4 대표 레코드."
+    },
+    {
+      "record_id": "pubmed:37383116",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "경피 경추간공 내시경 요추 디스크제거술의 동축 방사선 유도 천자 무작위시험 65명. 수술 P는 명확하나 노출이 천자 기법."
+    },
+    {
+      "record_id": "pubmed:38739708",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "VKA 대 DOAC 복용자의 D-이합체 판단 타당성. 초록 없음. 노출이 검사 지표이고 MeSH의 Vitamin K는 VKA에서 유래."
+    },
+    {
+      "record_id": "pubmed:39150621",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "위암 수술 후 경구 영양보충제의 예후 영향에 대한 저자 회고. 초록 없음. 제목·MeSH상 수술 후 P·보충 I·예후·생존율 O가 확인되고 문헌 유형 필드가 Journal Article. 회고문 성격이라 유형 판정이 갈릴 수 있는 경계."
+    },
+    {
+      "record_id": "pubmed:38541742",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "만성콩팥병 무기질골질환과 혈관 석회화 개요. 만성콩팥병 P와 심혈관 사건·사망 O는 명확하나 칼슘·인·PTH·비타민 D는 내인성 무기질 대사 이상으로 다뤄지고 보충 개입이 없음. 선례 11·16 적용."
+    },
+    {
+      "record_id": "pubmed:38219807",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "세인트존스워트 성분 하이페리신·하이퍼포린의 간세포 독성 기전, HepG2·HepaRG 세포. 생약 보충제의 간독성이라는 주제는 정확히 맞지만 근거가 세포주 실험뿐이고 사람 대상 연구가 아님."
+    },
+    {
+      "record_id": "pubmed:40208135",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "좌심실 보조장치 628명의 동반 수술과 아스피린 회피 무작위시험. VKA 유지 P와 출혈 O는 명확하나 노출이 아스피린이고 MeSH의 Vitamin K는 VKA에서 유래."
+    },
+    {
+      "record_id": "pubmed:31643760",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "human_signal"],
+      "confidence": "medium",
+      "note": "허브·식이보충제 개요 장. 간 클리닉 내원 환자 40%가 보충제를 사용하고 대부분이 주치의에게 알리지 않는다는 점, 사용자 특성과 사용 이유를 제시. 간질환 P와 보충제 I는 명확하나 제공된 초록 범위에 안전성 결과가 보이지 않아 O는 부여하지 않음."
+    },
+    {
+      "record_id": "pubmed:36096375",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "노르웨이 모자코호트 77,927 임신의 요오드 섭취와 주산기 정서적 고통·우울. 요오드 보충제 사용이 분석 노출이고 보충제 사용군에서 임신 중 정서적 고통 고점수 위험이 오히려 증가, 결론에 보충제의 비유익 가능성을 명시. 보충제 위해 방향이 관찰된 HRS3 대표 레코드."
+    },
+    {
+      "record_id": "pubmed:38337627",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "역류성 식도염 110명의 Bifidobacterium animalis MH-02 보조요법 이중맹검 무작위시험. 프로바이오틱 I와 증상·재발 O는 명확하나 대상이 수술·침습 시술 집단이 아니고 내시경은 진단 목적."
+    },
+    {
+      "record_id": "pubmed:38915010",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "off_topic"],
+      "confidence": "high",
+      "note": "섭식장애 보조요법으로서 요가에 대한 질적 연구 16명. 노출이 요가이고 수술 집단이 아님."
+    },
+    {
+      "record_id": "pubmed:32551976",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "납 아세테이트 중독 위스타 랫의 산자나무 잎추출물 간보호 효과. 동물 실험 전용."
+    }
+  ]
+}

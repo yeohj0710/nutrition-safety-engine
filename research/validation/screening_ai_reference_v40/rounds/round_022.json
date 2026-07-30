@@ -1,0 +1,245 @@
+{
+  "round": 22,
+  "judgments": [
+    {
+      "record_id": "pubmed:41689925",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "태반 484례의 DNA 메틸화 프로파일링과 조직병리. 임신 P는 명확하나 노출이 후성유전 변화이고 보충 노출이 없음."
+    },
+    {
+      "record_id": "pubmed:33783312",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "이탈리아 비만수술 290명의 미량영양소 보충 비순응 설문. 수술 P와 보충 I는 명확하나 결과가 순응률과 예측인자이고 결핍·이상사건이 측정되지 않음."
+    },
+    {
+      "record_id": "pubmed:36536235",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "하지불안증후군 임신부의 혈청 셀레늄·수면의 질 논문에 대한 논평. 초록 없음. 문헌 유형이 Comment뿐."
+    },
+    {
+      "record_id": "pubmed:32456494",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "조산아 1,966명의 DHA 보충과 기관지폐이상 체계적고찰·메타분석 4편. 보충 I와 기관지폐이상·사망·장염·뇌실내출혈 O가 명확하나 노출이 임신 중이 아닌 조산아 직접 보충이라 명세 4절 HRS3 단서에 해당. pubmed:40072608(모유 경유)과 구분."
+    },
+    {
+      "record_id": "pubmed:38223365",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "중증 다리에병 임신부의 염화마그네슘-탄산칼슘 치료 증례. 초록 없음. 임신 P와 무기질 제제 I는 제목에서 확인되나 결과의 성격은 판단 정보가 부족."
+    },
+    {
+      "record_id": "pubmed:35701778",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "부인과 질환 수술 전 빈혈 30명의 인삼양영탕+철 보충 2상 RCT. 수술 전 P와 한약·철 보충 I가 명확하고 헤모글로빈·피로·불안 결과와 함께 인삼양영탕군 1명에서 간기능 이상이 발생했다는 이상사건을 보고."
+    },
+    {
+      "record_id": "pubmed:36774497",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "모체 균형 에너지-단백 보충 연구 7건의 개별참여자 메타분석용 변수 조화. 임신·수유 P와 보충 I는 명확하나 보고 내용이 변수 정의 표준화라는 방법론이고 임상 결과가 없음."
+    },
+    {
+      "record_id": "pubmed:38232970",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "건강보조식품 HemoHIM 사용과 관련된 간손상 서신. 초록 없음. 제목상 P·I·O가 모두 주제에 맞지만 문헌 유형이 Letter뿐이라 명세 3.4에 따라 배제. 판정이 갈릴 수 있는 경계."
+    },
+    {
+      "record_id": "pubmed:35075212",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "대만 복막투석 4,356명의 빈혈·철 지표와 사망률(AIM-PD). 투석 P가 명확하고 철 보충으로 목표 헤모글로빈을 맞추는 진료 맥락이 노출이며 혈청 페리틴 800 ng/mL 초과가 전체 사망 위험 증가와 연관된 위해 결과가 있음."
+    },
+    {
+      "record_id": "pubmed:31588816",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "비만 비알코올성 지방간 79명의 레티놀 결합단백 4와 당뇨 전단계. 간질환 P와 검사치 O는 명확하나 RBP4가 지방조직 유래 수송단백이라 영양소 보충·상태 노출이 아님."
+    },
+    {
+      "record_id": "pubmed:38767642",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "당뇨병성 신장질환 435명의 한의 변증 분포와 관련 요인. CKD P는 명확하나 노출이 변증 분류라는 진단 범주. pubmed:35144413과 같은 처리."
+    },
+    {
+      "record_id": "pubmed:35776157",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "VigiBase 리바록사반+아스피린 치명적 이상반응 120례 분석. 항응고 P와 두개내·위장관 출혈 사망 O가 명확하고 출혈 위험인자 목록에 '생강·어유의 과다 섭취'가 명시적으로 포함됨."
+    },
+    {
+      "record_id": "pubmed:35122190",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "성인 특이체질 약물유발 간손상 127명의 사전 약물알레르기 영향. 원인 약물군에 허브·식이보충제가 9.5%로 포함되고 결과가 간손상 중증도·사망·이식."
+    },
+    {
+      "record_id": "pubmed:35675909",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "임신·수유기 혈청 엽산의 검사법별 판단 기준 설정 사설. 초록 없음. 문헌 유형이 Editorial·Comment뿐."
+    },
+    {
+      "record_id": "pubmed:42377292",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "2026 미국심장학회 DOAC 과학성명. 항응고 P와 출혈 O는 명확하나 노출이 처방 항응고제이고 상호작용도 약물 간."
+    },
+    {
+      "record_id": "pubmed:39479767",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "와파린 복용 환자의 장내미생물 다양성과 치료범위내시간 예비연구 서신. 초록 없음. 노출이 미생물군이고 문헌 유형이 Letter뿐."
+    },
+    {
+      "record_id": "pubmed:42214109",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "미국 2021~2023년 식이보충제 사용 실태 보고. 보충제 사용 I는 명확하나 대상이 전체 연령 인구로 임신 P가 아니고 결과가 사용률·추세."
+    },
+    {
+      "record_id": "pubmed:36524620",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "animal_term_present"],
+      "confidence": "high",
+      "note": "생약 보충제 성분 14종의 간독성·CYP3A4 유도 세포 기반 안전성 평가. 루테올린 독성과 케르세틴의 CYP3A4 유도라는 안전성 결과가 핵심이지만 HepG2 세포 전용."
+    },
+    {
+      "record_id": "pubmed:42495460",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "투석 환자 이차성 부갑상선기능항진증의 칼시미메틱·비타민 D 유사체·인결합제 약물관리 종설 22편. 투석 P가 명확하고 '비타민 D 유사체는 치료역이 좁아 고칼슘혈증·고인산혈증 위험이 있다'는 안전성 결과가 명시적."
+    },
+    {
+      "record_id": "pubmed:20301613",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "HFE 관련 혈색소증 임상요약. 간경변·당뇨·심근증 등 철 과부하 합병증이 결과이고 회피 대상에 '의약용 철, 철 함유 무기질 보충제, 과량 비타민 C'가 명시됨. pubmed:20301523과 같은 처리."
+    },
+    {
+      "record_id": "pubmed:35703216",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "만성콩팥병 환자의 골대사회전 표지자 임상 유용성 종설. CKD P와 골절 O는 명확하나 노출이 생화학 표지자이고 보충 노출이 없음."
+    },
+    {
+      "record_id": "pubmed:37269895",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "구두치(Tinospora) 유발 급성 간염 편집자 서신. 초록 없음. 제목상 P·I·O가 모두 맞지만 문헌 유형이 Letter뿐. 판정이 갈릴 수 있는 경계."
+    },
+    {
+      "record_id": "pubmed:38767573",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "수술 전후 음악 중재 RCT에 대한 논평. 초록 없음. 노출이 음악치료."
+    },
+    {
+      "record_id": "pubmed:37528995",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "uncertain",
+      "reason_codes": ["population", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "정형외과 수술 연구에서 식이 인자와 환자 회복의 잠재적 연관. 초록 없음. 수술 P만 확인되고 '식이 인자'가 보충 섭취를 포함하는지, 결과가 무엇인지 판단 정보가 부족."
+    },
+    {
+      "record_id": "pubmed:36282944",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "리간드 결합 검사법의 임신부 25(OH)D 과소평가 서신. 초록 없음. 결과가 검사법 편향이고 문헌 유형이 Letter뿐."
+    },
+    {
+      "record_id": "pubmed:37962867",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "게니파 식물추출물 함유 임시 문신 마커에 의한 알레르기성 접촉피부염 증례. 초록 없음. 식물추출물 노출과 이상반응은 있으나 문신은 수술·침습적 시술이 아니라 HRS1의 P가 부정됨."
+    },
+    {
+      "record_id": "pubmed:36827667",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "리바록사반 관련 출혈 위험인자와 약물유전학 증례군 13명. 항응고 P와 출혈 O는 명확하나 노출이 처방약·유전형·약물상호작용."
+    },
+    {
+      "record_id": "pubmed:38976611",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "FRAIL-AF 시험 관련 서신에 대한 저자 회신. 초록 없음. 노출이 처방 항응고제 전환이고 문헌 유형이 Letter뿐."
+    },
+    {
+      "record_id": "pubmed:39163029",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "임신 중 철결핍·철결핍빈혈 선별. 초록 없음. 임신 P와 철·식이보충제 I가 제목·MeSH에서 확인됨. 문헌 유형이 환자교육 자료라 근거 설계로는 약하지만 명세 3.4의 명시적 배제 대상은 아님."
+    },
+    {
+      "record_id": "pubmed:35441210",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "자궁 내 비타민 D 부족 상태로 태어난 영아의 1000 IU 대 400 IU 비타민 D 무작위 비교. 선정 기준이 자궁 내 노출 상태라 임신 축과 연결되고 결과가 제지방량·체지방·혈중 25(OH)D. 용량 대비 설계라 보충 안전성과 직결."
+    }
+  ]
+}

@@ -1,0 +1,245 @@
+{
+  "round": 9,
+  "judgments": [
+    {
+      "record_id": "pubmed:40556073",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "고용량 베타카로틴의 비알코올성 지방간염 진행 억제. C57BL/6J 생쥐 전용."
+    },
+    {
+      "record_id": "pubmed:37164270",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "약물유발 자가면역성 간염(DI-ALH) 명명·진단·관리 전문가 회의 보고. 원인 약물 40종 이상에 허브·식이보충제(Khat, Tinospora cordifolia)가 명시적으로 포함되고 결과가 간손상."
+    },
+    {
+      "record_id": "pubmed:41754125",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "알코올성 간질환 프로바이오틱 치료 효과 체계적고찰 36편. 전부 동물 모델 전임상 연구(SYRCLE 도구 사용)."
+    },
+    {
+      "record_id": "pubmed:38255747",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "폐정맥 격리술 전 NOAC 1일 중단과 CT 좌심방 혈전 배제 187명. 출혈 O는 충족하나 노출이 처방 항응고제."
+    },
+    {
+      "record_id": "pubmed:42429050",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "아스트라갈로사이드 IV의 간질환 보호효과 서술적 종설. P·I 명확하나 보고 결과가 항염·항산화·항세포사 효능과 신호경로 전용."
+    },
+    {
+      "record_id": "pubmed:36746889",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "좌측 생체판막 환자 5,808명의 DOAC 대 VKA 체계적고찰·메타분석. 주요출혈 O는 충족하나 노출이 처방 항응고제."
+    },
+    {
+      "record_id": "pubmed:36627617",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "animal_term_present"],
+      "confidence": "high",
+      "note": "뇌공등(Tripterygium wilfordii) 주요 간독성 성분 스크리닝. 간독성이라는 안전성 결과가 핵심이지만 제브라피시·간세포주·대식세포·생쥐 전용."
+    },
+    {
+      "record_id": "pubmed:34759208",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "PCI·급성관동맥증후군 심방세동 환자 11,532명 항혈전 요법 네트워크 메타분석. 노출이 처방 항혈전제."
+    },
+    {
+      "record_id": "pubmed:41930007",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "백내장 수술 후 후낭 혼탁 예방 은행잎 추출물 RCT에 대한 서신. 초록 없음. 제목상 수술 P와 은행잎 I가 모두 확인되지만 문헌 유형이 Letter뿐이라 명세 3.4에 따라 배제."
+    },
+    {
+      "record_id": "pubmed:36671395",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "유전자 변형 프로바이오틱의 면역·심대사질환 예방 전략. 프로바이오틱 I는 있으나 대상이 비만·당뇨·대사증후군이고 간질환이 아니며 결과도 PI3K/AKT/mTOR 경로."
+    },
+    {
+      "record_id": "pubmed:36183848",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "소아 비알코올성 지방간 치료 비교 체계적고찰·네트워크 메타분석 18편 1,241명. 오메가-3·프로바이오틱·비타민 D·E 보충 노출이 명확하고 결과가 ALT·AST·지질 등 검사치."
+    },
+    {
+      "record_id": "pubmed:41213461",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "KLF7의 대장암 간전이 촉진 기전. 세포주·누드마우스 전용이고 EGCG는 전사활성 억제 실험 시약."
+    },
+    {
+      "record_id": "pubmed:41719785",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic"],
+      "confidence": "high",
+      "note": "조제 헤파린의 콘드로이친·더마탄 설페이트 NMR 동시 정량. 품질관리 분석법 연구로 대상자·보충 노출 없음."
+    },
+    {
+      "record_id": "pubmed:38438726",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "아시아 심방세동 3,172명의 수축기혈압 방문간 변동성과 예후. 사망·출혈·두개내출혈 O는 충족하나 노출이 혈압 변동성."
+    },
+    {
+      "record_id": "pubmed:35508343",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "uncertain",
+      "reason_codes": ["exposure", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "모체 DHA 보충 후 초극소 조산아의 미취학기 신경발달 추적 연구 프로토콜. 보충 노출 I는 명확하나 임신 중이 아니라 수유기 노출이고, 프로토콜이라 주 결과가 '장기 모집 역량'이어서 안전성 결과 정보가 없음. 명확한 부정도 없어 uncertain."
+    },
+    {
+      "record_id": "pubmed:40423532",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "데노수맙과 철 주입 병용 후 증상성 저칼슘혈증 3례. 정상·저하 신기능을 축으로 삼고, 한 환자는 칼슘·콜레칼시페롤 보충 중에도 발생. 저칼슘혈증·저인산혈증이 전해질 이상 O로 명확."
+    },
+    {
+      "record_id": "pubmed:36902432",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "간세포암 치료제와 간이식 관련 약물유발 간손상의 면역학적 기전 종설. 간이식이라는 수술 P와 간손상 O가 명확. 허브·식이보충제는 DILI 원인으로 정의부에만 언급되어 I는 불명확하나 부정되지 않음."
+    },
+    {
+      "record_id": "pubmed:37244382",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "경피 대동맥판 삽입술 후 판막 비후에 대한 VKA 대 DOAC 비교 46명. 노출이 처방 항응고제."
+    },
+    {
+      "record_id": "pubmed:38741412",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "Boerhavia diffusa의 아데닌 유발 만성콩팥병 랫드 족세포 손상 완화. Wistar 랫드 전용."
+    },
+    {
+      "record_id": "pubmed:37195242",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "FGF23·클로토·헤파린 기전 종설. CKD P는 충족하나 노출이 헤파란설페이트 보조수용체이고 결과가 신호전달 기전. 비타민 D는 FGF23의 조절 대상으로만 등장."
+    },
+    {
+      "record_id": "pubmed:35790296",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "위암 위절제 83명의 아미노산 영양(말초정맥영양+단백 강화 경구보충제) 후향비교. 수술 후 P와 보충 I가 명확하고 혈액 영양지표를 함께 보고. 주 결과는 체중·근육 감소 효능이라 pubmed:37346024보다 검사치 보고가 있는 점이 차이."
+    },
+    {
+      "record_id": "pubmed:39127117",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "Syzygium cumini 동종요법 제제의 당뇨병성 신증 완화. 스트렙토조토신 랫드와 HEK-293 세포 전용."
+    },
+    {
+      "record_id": "pubmed:40253212",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "덩굴차(Ampelopsis grossedentata)의 만성 알코올 유발 간지방증 개선과 YTHDF2/PGC-1α/SIRT3 축. C57BL/6 생쥐 전용."
+    },
+    {
+      "record_id": "pubmed:42335503",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "요독청 과립의 세뇨관간질 섬유화 완화와 트립토판 공동대사. UUO 랫드와 NRK-52E 세포 전용."
+    },
+    {
+      "record_id": "pubmed:42062034",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "실리비닌 메글루민의 간성뇌증 개선과 UCP2 표적. 티오아세트아미드 생쥐 전용."
+    },
+    {
+      "record_id": "pubmed:41166079",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "실리콘 주입 후 다뇨·다갈 환자 증례. 초록·MeSH 없음. 제목만으로도 노출이 실리콘 주입이라 보충제 I가 부정됨."
+    },
+    {
+      "record_id": "pubmed:39256890",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "홍국(red yeast rice) 함유 기능성표시식품 섭취 후 Fanconi 증후군·급성 세뇨관 괴사 2례. 보충제 노출과 신손상 결과가 모두 명확하고 장기 섭취 시 만성콩팥병 이행 가능성까지 기술."
+    },
+    {
+      "record_id": "pubmed:35956362",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "비만과 동반질환에서 비타민 D·칼슘 상호관계 종설 87편. 보충 노출은 명확하나 대상이 비만이고 비알코올성 지방간은 동반질환 하나로만 언급, 결과도 체중·체지방 효능."
+    },
+    {
+      "record_id": "pubmed:39607258",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "브라질너트 껍질 페놀 추출물의 간보호·항산화 활성. Wistar 랫드와 세포주 전용."
+    },
+    {
+      "record_id": "pubmed:35598524",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "18β-글리시레틴산의 피롤리지딘 알칼로이드 간독성 보호와 Nrf2 경로. 랫드와 사람 간세포 전용. 사람 PA 중독은 배경 서술."
+    }
+  ]
+}

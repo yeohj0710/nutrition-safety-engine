@@ -1,0 +1,245 @@
+{
+  "round": 29,
+  "judgments": [
+    {
+      "record_id": "pubmed:38344377",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "유치 근관충전재로서 커큐민 평가, 4~8세 소아 30개 치아. 병적 치근흡수가 55.6% 대 10%로 위해 결과가 명확하지만 대상이 소아 전용이라 명세 4절 HRS1의 P 요건에 걸리고, 노출도 충전재 국소 적용이라 선례 17에 해당."
+    },
+    {
+      "record_id": "pubmed:35933171",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "자궁내시경 수술의 착용형 경피 경혈 전기자극 팔찌와 수술후 오심·구토 무작위시험. 초록 없음. 노출이 전기자극이고 문헌 유형에 Letter가 포함됨."
+    },
+    {
+      "record_id": "pubmed:31736373",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "허브차 추출물 8종의 간독성 모델별 차등 효과, FL83B 마우스 간세포. 모든 추출물이 에탄올 유발 간독성을 오히려 증강했다는 위해 신호가 있으나 마우스 세포 실험 전용."
+    },
+    {
+      "record_id": "pubmed:41910938",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "VKA 복용자 긴급 정형외과 수술 51명의 4인자 프로트롬빈복합체 대 혈장 사후분석. 항응고 P와 지혈·INR O는 명확하나 노출이 역전용 혈액제제이고 비타민 K 의존인자는 측정 지표. 선례 14 적용."
+    },
+    {
+      "record_id": "pubmed:20301501",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal"],
+      "confidence": "medium",
+      "note": "PKHD1 상염색체 열성 다낭성 신질환 GeneReviews. 간담도 침범(카롤리병·담즙정체·문맥고혈압)이 질환의 축이라 HRS4 P가 충족되고, 회피 항목에 '잠재적 간독성 물질: 아세트아미노펜 고용량, 허브 보충제, 알코올'이 명시됨. pubmed:20301300과 같은 처리."
+    },
+    {
+      "record_id": "pubmed:38599387",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "간경변·추가 프로바이오틱·알코올 섭취와 간섬유화·장내미생물 서신. 초록 없음. 제목·MeSH상 P·I·O가 맞지만 문헌 유형이 Letter·Comment."
+    },
+    {
+      "record_id": "pubmed:38665787",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "간경변 환자 영양평가 실태 개선 필요, ENRICH 연구. 초록 없음. 제목상 결과가 평가 실태라는 진료 과정 지표이고 보충 노출이 확인되지 않음."
+    },
+    {
+      "record_id": "pubmed:38972090",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "홍경천의 수술 전후 의학에서의 생약-약물 상호작용 가능성 서신. 초록 없음. 제목·MeSH의 Herb-Drug Interactions로 P·I·O가 모두 HRS1 축에 정확히 맞지만 문헌 유형이 Letter·Comment. 판정이 갈릴 수 있는 경계."
+    },
+    {
+      "record_id": "pubmed:39485595",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal"],
+      "confidence": "medium",
+      "note": "그리스 기미 환자 150명의 임상·역학 관찰연구. 임신 유발 기미가 36.1%로 임신이 명시적 유발 요인이고 비타민 D 농도를 측정해 22%에서 경증 결핍을 확인, 결론이 비타민 D 결핍을 유발 인자로 제시. 대상이 임신 코호트가 아니어서 P 축은 약함."
+    },
+    {
+      "record_id": "pubmed:38695465",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "브라질 심방세동 에독사반 관찰연구 EdoBRA의 연구설계 논문. 항응고 P와 출혈 O는 명확하나 노출이 처방 항응고제."
+    },
+    {
+      "record_id": "pubmed:34411017",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "두개골조기유합 수술 157명의 수술 전 경구 푸마르산철 보충과 수혈. 보충 I와 실혈량·수혈률 O가 명확해 다른 조건이면 retain이지만, 국립 소아 두개안면센터의 소아 전용 코호트라 명세 4절 HRS1의 '소아만 다루면 P가 아니다'에 해당. 판정이 갈릴 수 있는 경계."
+    },
+    {
+      "record_id": "pubmed:39312012",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "모스 수술의사의 프로바이오틱·항생제 병용 진료 실태 서신. 초록 없음. 수술 P와 프로바이오틱 I는 확인되나 결과가 진료 실태이고 문헌 유형이 Letter."
+    },
+    {
+      "record_id": "pubmed:41754818",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "자궁내막증의 한약 관장 체계적고찰·메타분석 9편 614명. 한약 I와 중대 이상사건 미보고·호르몬요법 대비 전신 이상반응 감소라는 O는 명확하나 대상이 비임신 자궁내막증 환자이고 임신 결과는 부차 지표의 경향(p=0.05)으로만 등장."
+    },
+    {
+      "record_id": "pubmed:38970659",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "소아 만성콩팥병 CKiD 코호트 370명의 비타민 D와 혈압. 만성콩팥병 P가 명확하고 25OHD 농도가 측정 노출이며 10 ng/mL 낮을 때 진료실 수축기 혈압지수가 1.0% 높음. HRS2는 소아 배제 조항이 없음."
+    },
+    {
+      "record_id": "pubmed:36630492",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "만성콩팥병에서 칼륨 섭취의 고저 논평. 초록 없음. 문헌 유형이 Comment이고 노출도 식이 칼륨 섭취라 선례 13에 해당."
+    },
+    {
+      "record_id": "pubmed:36632272",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "off_topic"],
+      "confidence": "medium",
+      "note": "델리 도시 재정착지 임신·수유부 365명의 통합아동발달서비스 영양보충 이용 실태. 임신 P는 명확하나 노출이 배급 식품이고 결과가 이용률과 열량·단백 부족이라는 사업 성과 지표. 선례 19 적용."
+    },
+    {
+      "record_id": "pubmed:20301288",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "off_topic"],
+      "confidence": "medium",
+      "note": "1형 신경섬유종증 GeneReviews. 골다공증 위험 감소를 위한 비타민 D·칼슘 보충 권고가 명시되나 임신은 산전 유전검사 문맥에만 등장해 임신 중 노출이 아님. pubmed:20301501과 달리 질문 축과 대상이 어긋남."
+    },
+    {
+      "record_id": "pubmed:35640263",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "독일 단일기관 수술 환자 21,168명의 발레리안과 수술후 수면장애 후향 코호트. 부인과·요로계·일반외과 수술 P와 발레리안 단독요법 814명(26.4%)이라는 I가 명확하고 약물로 치료된 수술후 수면장애 15%가 결과. 발레리안 자체의 이상반응 자료는 없고 사용 실태 기반 추정이라 confidence는 medium."
+    },
+    {
+      "record_id": "pubmed:34800885",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "생약 오약 유래 린데란의 CYP2C9 기전기반 불활성화와 약물상호작용. 와파린 7-수산화 대사가 실제로 억제된 직접적 생약-와파린 상호작용 신호지만 근거가 랫과 재조합 효소 실험뿐."
+    },
+    {
+      "record_id": "pubmed:39796357",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "off_topic"],
+      "confidence": "medium",
+      "note": "오메가-3 보충제 97종의 건강기능 표시 규정 준수 평가. 임신부용 제품이 별도 분석군으로 등장하고 보충제 I는 명확하나 결과가 표시 적합성 점수라는 규제 지표이고 건강 결과가 아님."
+    },
+    {
+      "record_id": "pubmed:39134103",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "심장수술 환자의 수술 전 호흡운동과 수술후 폐기능. 초록 없음. 노출이 호흡운동."
+    },
+    {
+      "record_id": "pubmed:35956361",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "중국 10개 도시 수유부 326명의 비타민 A 영양 상태. 모유 비타민 A 농도를 통해 신생아 노출과 연결되고 혈청·모유 농도가 측정 노출이며 보충제 미사용군을 층화 분석. 모유 농도 1.05 μmol/L 미만이 20.6%. 결과가 영양 적정성 지표라 confidence는 medium."
+    },
+    {
+      "record_id": "pubmed:42467982",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "원발성 담도경화증 등록자료 160명의 비타민 D 보충과 간담도암. 간질환 P와 시간의존 보충 노출 I가 명확하고 결과가 간담도암 위험비 0.15, 5년 누적발생 1.1% 대 11.5%. 보충제와 경성 임상 종점을 연결한 HRS4 대표 레코드."
+    },
+    {
+      "record_id": "pubmed:39711121",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "혈액투석 말기신질환 198명의 비타민 D 수준과 코로나 감염·중증도·사망. 투석 P가 명확하고 결핍 여부와 비타민 D 보충제 사용을 결합해 3군으로 분류한 것이 노출, 중증도 OR 22.57·사망 OR 12.93이 결과."
+    },
+    {
+      "record_id": "pubmed:38761888",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "산전 지역사회 급식 보충 프로그램의 타당성 예비연구. 초록 없음. 노출이 급식 제공이고 결과가 실행 타당성. 선례 13·19에 해당."
+    },
+    {
+      "record_id": "pubmed:32482111",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "아크릴아마이드 독성에 대한 라즈베리 케톤·백차의 간보호 효과, 위스타 랫 60마리. 동물 실험 전용."
+    },
+    {
+      "record_id": "pubmed:41674238",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "off_topic"],
+      "confidence": "high",
+      "note": "사람 혈장 내 항응고제 4종 동시 정량 크로마토그래피법 개발. 분석법 연구이고 노출·결과가 모두 측정법 성능."
+    },
+    {
+      "record_id": "pubmed:36986153",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "중국 마안산 출생코호트 3,064 모자쌍의 임신 전후 엽산 보충과 아동 신체발달. 임신 P와 주 노출인 모체 엽산 보충 상태 I가 명확하고 결과가 0~6세 BMI-Z 궤적·체지방률 궤적, 미보충군에서 OR 1.423~1.833."
+    },
+    {
+      "record_id": "pubmed:40777177",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "구강암 환자의 미량영양 역할과 영양 개입 전략 종설. 아연·구리·셀레늄과 비타민 A·D·E·C·B군, 오메가-3·아르기닌 면역영양이 I이고 수술 후 결과·치료 내성이 O. 구리 과잉이 혈관신생을 촉진한다는 과잉 위해 기전이 명시됨."
+    },
+    {
+      "record_id": "pubmed:40629641",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "off_topic"],
+      "confidence": "high",
+      "note": "눈꺼풀 황색판종 79명의 약선구 치료 효과·안전성 후향 코호트. 노출이 뜸 시술이고 대상이 수술·침습 시술 집단이 아님. 선례 5 적용."
+    }
+  ]
+}

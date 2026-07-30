@@ -1,0 +1,245 @@
+{
+  "round": 24,
+  "judgments": [
+    {
+      "record_id": "pubmed:37565442",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "만삭 정상체중아 철 보충에 대한 저자 회신. 초록 없음. 대상이 영아 직접 보충이고 문헌 유형이 Letter뿐."
+    },
+    {
+      "record_id": "pubmed:35472458",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "좌심실 혈전의 DOAC 대 VKA 체계적고찰 서신. 초록 없음. 노출이 처방 항응고제."
+    },
+    {
+      "record_id": "pubmed:41879405",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "백내장 수술 후 고령 120명의 명목지황탕 보조요법 RCT. 수술 후 P와 한약 I가 명확하고 결과가 항산화효소·염증사이토카인 검사치와 합병증률 6.21%."
+    },
+    {
+      "record_id": "pubmed:36332223",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "알벤다졸 유발 소아 급성 간염 증례. 간손상 P·O는 명확하나 실제 노출이 처방 구충제로 특정되고 보충제·생약은 서론의 일반 배경 언급."
+    },
+    {
+      "record_id": "pubmed:35998204",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "대만 건강보험 자료 4,470명의 한약-항응고제 병용과 주요출혈. 항응고 P, 감초·삼칠·인삼·길경·두충 등 한약 I, 출혈성 뇌졸중·위장관·요생식기 출혈 O가 모두 명시적이며 위험 감소 방향."
+    },
+    {
+      "record_id": "pubmed:41405700",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "전립선 수증기 열치료 환자의 NOAC 관리 체계적고찰. 시술 전후 항응고 P와 출혈 위험 O는 명확하나 노출이 처방 항응고제."
+    },
+    {
+      "record_id": "pubmed:35998793",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "미국 성인 4,038명의 30년 추적, 식이 비타민 E·토코페롤 이성체 섭취와 만성콩팥병 발생. 델타토코페롤 고섭취가 CKD 발생 증가와 연관된 위해 신호가 있으나, 노출이 식이 섭취라 명세 4절 HRS2에 해당하고 CKD가 결과여서 대상 집단도 CKD 환자가 아님. 판정이 갈릴 수 있는 경계."
+    },
+    {
+      "record_id": "pubmed:36814196",
+      "question_id": "HRS5_ANTICOAGULATION",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "중증 비만 정맥혈전 30,895명의 Xa 억제제 대 VKA 체계적고찰. 주요출혈 O는 명확하나 노출이 처방 항응고제."
+    },
+    {
+      "record_id": "pubmed:35695692",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "치주염 비수술적 치주치료 후 생강 400 mg 대 NSAID 비교. 시술 후 P와 생강 I는 명확하나 결과가 통증·치태·치은지수 개선 효능 전용이고 이상반응 보고가 없음."
+    },
+    {
+      "record_id": "pubmed:37202214",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "투석 전 만성콩팥병 1,416명의 혈청 철 지표·철 보충과 심혈관 이환. CKD P와 철 보충 I가 명확하고 결과가 심혈관 사건·심부전 발생. 트랜스페린 포화도가 보충 효과의 수정변수로 검정됨."
+    },
+    {
+      "record_id": "pubmed:31711319",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "간섬유화 예방을 위한 천연물·생약추출물·영양성분의 항섬유화 활성 종설. P·I 명확하나 보고 내용이 사이토카인 억제·간성상세포 억제 등 기전."
+    },
+    {
+      "record_id": "pubmed:38911421",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "발치 후 발치창 내 비타민 E 국소 적용과 통증·건성 발치창 RCT 90명. 발치라는 시술 P와 통증·창상치유 O는 명확하나 노출이 국소 도포이고 섭취 보충이 아님. pubmed:34984493(비타민 C 필러)와 같은 처리."
+    },
+    {
+      "record_id": "pubmed:35081550",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "북미 급성간부전 등록자료 DILI 277례. 허브·식이보충제 원인 15%와 이식·사망 결과가 명확. 같은 레코드가 HRS4로도 배포되었고 그쪽은 P가 강함. HRS1에서는 간이식이라는 수술이 결과 쪽에 있어 수술 전후 노출 축은 약함."
+    },
+    {
+      "record_id": "pubmed:40744977",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "비투석 3~5단계 만성콩팥병 환자의 Lacticaseibacillus rhamnosus L34·LGG 4주 무작위 위약대조. CKD P와 프로바이오틱 I가 명확하고 결과가 장유래 요독소·전신 염증 지표·장투과성·미생물군."
+    },
+    {
+      "record_id": "pubmed:39312315",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "고령 고관절 골절 223명의 수술 전 심부정맥혈전 위험 예측모형. 수술 전 P와 혈전 O는 명확하나 노출이 연령·당뇨·D-이합체 등 위험인자."
+    },
+    {
+      "record_id": "pubmed:41568849",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "off_topic"],
+      "confidence": "high",
+      "note": "혈액투석 간호사의 윤리 프레임워크 질적연구. 투석 P는 있으나 주제가 간호윤리로 보충제·안전성과 무관."
+    },
+    {
+      "record_id": "pubmed:35314072",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "메디케어 투석 379,835명의 부갑상선절제술 시행률 추이. 투석 P와 비타민 D 유사체 사용 4.6%가 집계되나 결과가 수술 시행률이라는 의료이용 지표."
+    },
+    {
+      "record_id": "pubmed:42327478",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "소아 투석에서 비타민 D 결핍과 사망률의 교란·역인과 서신. 초록 없음. 문헌 유형이 Letter뿐."
+    },
+    {
+      "record_id": "pubmed:35382835",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "흉강경 수술의 덱스메데토미딘 보조 투여 메타분석 6편. 수술 P와 통증·중환자실 O는 명확하나 'supplementation'이 처방 마취보조제 투여를 뜻하고 영양 보충이 아님."
+    },
+    {
+      "record_id": "pubmed:38659606",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "구강 임플란트 수술 100명의 혈위 마사지·터치 병용과 불안·통증. 시술 P는 명확하나 노출이 마사지."
+    },
+    {
+      "record_id": "pubmed:34983656",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "에티오피아 공공병원 분만 495명의 불량 출생결과 결정요인 환자대조연구. 임신 P와 불량 출생결과 O가 명확하고 '식이 보충을 받지 못함'이 보정 OR 2.47로 유의한 측정 노출."
+    },
+    {
+      "record_id": "pubmed:40622207",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "위암 수술 후 505명의 퇴원교육 질과 경구영양보충 순응도 구조방정식. 수술 후 P와 보충 I는 명확하나 결과가 순응도라는 행동 지표. pubmed:33783312과 같은 처리."
+    },
+    {
+      "record_id": "pubmed:40934969",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "2025 ESPE·ESE 학회 주요 자료, 임신 중 무증상 갑상선기능저하·부갑상선기능저하 관리 서신. 초록 없음. 학회 소식·서신 유형이라 명세 3.4에 해당."
+    },
+    {
+      "record_id": "pubmed:42211108",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "임신성 당뇨 관리·재활에서 비타민 D의 역할. 초록 없음. 제목만으로 임신성 당뇨 P와 비타민 D I가 확인되고 문헌 유형이 Journal Article."
+    },
+    {
+      "record_id": "pubmed:40425973",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "outcome", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "수술 전 종합비타민 사용 근거 평가: 유효성·안전성·연구설계 사설. 초록 없음. 제목상 P·I·O가 모두 맞지만 문헌 유형이 Editorial뿐. 판정이 갈릴 수 있는 경계."
+    },
+    {
+      "record_id": "pubmed:42402093",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "만성콩팥병 소아의 근육경련 증상 관리에 비타민 E 사용 실사용 경험. 초록 없음. 제목만으로 CKD 소아 P와 비타민 E I가 확인되고 문헌 유형이 Journal Article."
+    },
+    {
+      "record_id": "pubmed:35710615",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "간손상과 식이보충제: 하이드록시시트르산이 간독성을 유발하는가. Garcinia cambogia 함유 체중감량 보충제에 의한 급성 간손상 증례들과 유럽 식품경보를 검토. 문헌 유형에 Review가 포함되고 실질 초록이 있어 초록 없는 순수 Letter와 구분."
+    },
+    {
+      "record_id": "pubmed:39844484",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "영아 우유단백 알레르기 예방 전략 종설. 초록 없음. 프로바이오틱 I는 MeSH에서 보이나 대상이 영아로 임신 중 노출과 연결되지 않음."
+    },
+    {
+      "record_id": "pubmed:35561708",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "exposure", "insufficient_abstract", "off_topic"],
+      "confidence": "low",
+      "note": "임신 중 복합 미량영양소 보충제 처방의 정밀성 논평. 초록 없음. 문헌 유형이 Comment뿐."
+    },
+    {
+      "record_id": "pubmed:41665460",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "위암 수술 후 경구영양보충 순응도 논문에 대한 서신. 초록 없음. 문헌 유형이 Letter뿐."
+    }
+  ]
+}

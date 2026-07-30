@@ -1,0 +1,173 @@
+{
+  "round": 3,
+  "judgments": [
+    {
+      "record_id": "pubmed:39524550",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "신생아중환자실 수술환자 클로르헥시딘 이중세정의 수술부위감염 예방. 안전성 결과는 있으나 노출이 소독제이고 임신 중 노출과 연결되지 않음."
+    },
+    {
+      "record_id": "pubmed:39794448",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "리위캡슐 만성 비위축성 위염 2상 RCT 301명. 한약 노출과 안전성 평가는 있으나 대상이 위염 환자로 수술 전후 상황이 아님. 내시경은 결과 평가 수단."
+    },
+    {
+      "record_id": "pubmed:41558711",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "천일신 교수의 소아 열민구법 임상경험. 노출이 뜸이고 대상이 소아 전용이라 명세 4절 HRS1 단서에 따라 P 부정."
+    },
+    {
+      "record_id": "pubmed:40908477",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "산화균형점수와 임신성 당뇨 환자대조연구 320명. 임신 P와 GDM O는 충족하나 노출이 168항목 FFQ 기반 식이·생활습관 지수라 보충 섭취가 아님(명세 3.2)."
+    },
+    {
+      "record_id": "pubmed:35037744",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "high",
+      "note": "인도 13개 기관 43명의 Giloy(Tinospora cordifolia) 유발 간손상. 허브 보충제 노출, 급성 간염·간부전·기존 간질환 악화, 인과성 평가 67.4% probable. P·I·O 모두 명시적."
+    },
+    {
+      "record_id": "pubmed:41787772",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "태아기 알코올 노출 아동의 흑질 철 감소(QSM MRI). 임신 중 노출 P는 충족하나 노출 물질이 알코올이고 철은 결과 지표라 보충제 I 부정."
+    },
+    {
+      "record_id": "pubmed:35506742",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "원인불명 불임 부부 17쌍의 유산균 PS11610 6개월 보충. 프로바이오틱 노출은 명확하나 대상이 임신 전 보조생식 단계이고 결과가 미생물군·면역·임신 성공률 효능 전용."
+    },
+    {
+      "record_id": "pubmed:36875100",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "CKD 면역세포 침윤 유전 지표 공발현 네트워크 분석. 엽산은 신독성 유발 모델(folic acid-induced nephropathy) 시약으로 쓰였을 뿐 보충 노출이 아니고 결과도 유전자 지표."
+    },
+    {
+      "record_id": "pubmed:41164370",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "medium",
+      "note": "NHANES 11,904명 종합식이항산화지수와 CKD·사망률. 비타민 A가 심혈관 사망 위험을 높인 신호(HR 1.266)는 미량영양소 안전성과 관련되나, 노출이 식이 섭취 지수라 명세 4절 HRS2의 '식품 영양소 함량·식사 패턴은 I가 아니다'에 해당. 판정이 갈릴 수 있는 경계."
+    },
+    {
+      "record_id": "pubmed:41115327",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "인공와우 사용자 20명의 신호처리(ASM 3.0) 소음 속 어음인지. 보충제 노출 없음, 결과도 효능."
+    },
+    {
+      "record_id": "pubmed:38967873",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic", "insufficient_abstract"],
+      "confidence": "low",
+      "note": "복강경 위소매절제술 후 오심구토 이압요법 논문에 대한 편집자 서신. 초록 없음. 제목만으로도 노출이 이압요법이고 문헌 유형이 Letter·Comment라 명세 3.4에 해당."
+    },
+    {
+      "record_id": "pubmed:40284403",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "animal_term_present"],
+      "confidence": "high",
+      "note": "미역취 추출물·아미노산 제제·3D 프린팅 제형의 독성과 간보호 활성. LD50 등 독성 결과는 있으나 동물·시험관·도킹 전용."
+    },
+    {
+      "record_id": "pubmed:37984740",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "생쥐 배아 해마 뉴런 배양에서 철 결핍이 갑상선호르몬 반응 유전자 발현을 교란. 킬레이터 유도 결핍이고 시험관 전용."
+    },
+    {
+      "record_id": "pubmed:39788675",
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic"],
+      "confidence": "high",
+      "note": "타액 요산 측정용 목재 막 전기화학 센서 개발. CKD는 배경 설명으로만 등장하고 환자·보충제 노출 없음."
+    },
+    {
+      "record_id": "pubmed:36915313",
+      "question_id": "HRS1_PERIOPERATIVE",
+      "decision": "deprioritize",
+      "reason_codes": ["population", "outcome", "human_signal", "design_signal", "off_topic"],
+      "confidence": "high",
+      "note": "형질세포성 유방염의 초음파 유도 마이크로파 소작 대 전통 수술 68명. 수술 전후 P와 출혈·통증 O는 충족하나 보충제 노출 없음."
+    },
+    {
+      "record_id": "pubmed:39467528",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "human_signal", "off_topic"],
+      "confidence": "high",
+      "note": "티아민 반응성 거대적혈모구빈혈 증례. 경구 티아민 노출은 있으나 대상이 38세 남성이라 임신 P 부정."
+    },
+    {
+      "record_id": "pubmed:33786878",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic"],
+      "confidence": "high",
+      "note": "임신성 당뇨 감시용 실리카-알루미나 용량형 포도당 센서 개발. 환자 없이 센서 성능만 평가."
+    },
+    {
+      "record_id": "pubmed:40098906",
+      "question_id": "HRS4_LIVER_DISEASE",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "animal_term_present", "off_topic"],
+      "confidence": "high",
+      "note": "랑칭아타의 비알코올성 지방간염 기전. 대사체·네트워크 약리학과 HFHC 생쥐 모델 전용, 결과도 효능."
+    },
+    {
+      "record_id": "pubmed:41106115",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "retain",
+      "reason_codes": ["population", "exposure", "outcome", "human_signal", "design_signal"],
+      "confidence": "medium",
+      "note": "에티오피아 신생아 빈혈 체계적고찰·메타분석. 임신 중 철-엽산 보충 순응도 불량이 신생아 빈혈과 연관(OR 1.88)되어 임신 노출-신생아 결과 축이 성립. 결과가 결핍 방향이라 보충제 이상반응은 아니지만 O가 부정되지도 않음."
+    },
+    {
+      "record_id": "pubmed:39009411",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["exposure", "outcome", "animal_term_present"],
+      "confidence": "high",
+      "note": "예쁜꼬마선충 idh-1 돌연변이의 비타민 B12 민감성과 배아 치사. 비타민 노출과 불리한 결과가 있으나 무척추동물 모델 전용."
+    },
+    {
+      "record_id": "pubmed:35219236",
+      "question_id": "HRS3_PREGNANCY",
+      "decision": "deprioritize",
+      "reason_codes": ["off_topic"],
+      "confidence": "high",
+      "note": "중국 시판 조제분유 39종의 지방산·TAG 조성 비교. 식품 조성 분석으로 대상자·보충 노출·안전성 결과가 모두 없음."
+    }
+  ]
+}
