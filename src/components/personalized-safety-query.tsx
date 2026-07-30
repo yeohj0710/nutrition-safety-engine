@@ -60,6 +60,30 @@ function splitLocator(locator: string) {
   return { label: `초록 ${match[2]}번째 문장`, sentence: match[3] };
 }
 
+/**
+ * 요약 문장 뒤에 붙는 번호 인용 표시. 누르면 아래 출처 항목으로 이동한다.
+ * 번호는 화면에 보여주는 근거의 순서(priority_score 내림차순)를 그대로 쓴다.
+ * 어떤 문장이 어떤 논문에서 나왔다고 주장하지 않는다 — 이 요약은 데이터에서
+ * 결정론적으로 만든 문장이고, 번호는 "아래 목록의 이 항목들"을 가리키는 표시다.
+ */
+function CitationMarks({ count }: { count: number }) {
+  if (count <= 0) return null;
+  return (
+    <span className="ml-1 inline-flex flex-wrap gap-1 align-super">
+      {Array.from({ length: count }, (_, i) => i + 1).map((n) => (
+        <a
+          key={`mark-${n}`}
+          href={`#result-ref-${n}`}
+          aria-label={`${n}번 출처로 이동`}
+          className="rounded bg-blue-100 px-1 text-[0.62em] font-bold leading-4 text-blue-800 no-underline transition hover:bg-blue-200"
+        >
+          {n}
+        </a>
+      ))}
+    </span>
+  );
+}
+
 export function PersonalizedSafetyQuery() {
   const [form, setForm] = useState(emptyForm);
   const [result, setResult] = useState<ApiResult | null>(null);
@@ -205,7 +229,10 @@ export function PersonalizedSafetyQuery() {
             <span className="block text-[11px] font-bold text-blue-600">
               {result.situation_label}
             </span>
-            <p className="text-sm leading-6 text-stone-800">{result.summary}</p>
+            <p className="break-keep text-base font-semibold leading-7 text-stone-950 md:text-xl md:leading-9">
+              {result.summary}
+              <CitationMarks count={result.evidence.length} />
+            </p>
             {result.unavailable_axes.length ? (
               <p className="text-xs leading-5 text-stone-500">
                 이 상황의 문헌에는{" "}
@@ -219,21 +246,32 @@ export function PersonalizedSafetyQuery() {
 
           {result.evidence.length ? (
             <ol className="divide-y divide-stone-200 border-t border-stone-200 px-5">
-              {result.evidence.map((item) => {
+              {result.evidence.map((item, index) => {
                 const locator = splitLocator(item.locator);
+                const n = index + 1;
                 return (
-                  <li key={item.record_id} className="flex flex-col gap-2 py-4">
-                    <a
-                      href={item.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-sm font-bold leading-6 text-stone-950 underline decoration-stone-300 underline-offset-4"
-                    >
-                      {item.title}
-                    </a>
+                  <li
+                    key={item.record_id}
+                    id={`result-ref-${n}`}
+                    className="flex scroll-mt-24 flex-col gap-2 py-4"
+                  >
+                    <div className="flex items-start gap-2.5">
+                      <span className="mt-0.5 shrink-0 rounded-md bg-stone-950 px-2 py-0.5 text-xs font-bold text-white">
+                        {n}
+                      </span>
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-sm font-bold leading-6 text-stone-950 underline decoration-stone-300 underline-offset-4"
+                      >
+                        {item.title}
+                      </a>
+                    </div>
                     <p className="text-xs leading-5 text-stone-500">
                       {item.authors} · {item.venue} · {item.year} ·{" "}
                       {item.publication_types.split("|")[0]}
+                      {item.dose ? ` · ${item.dose}` : ""}
                     </p>
                     {item.key_finding_ko ? (
                       <p className="text-sm leading-6 text-stone-800">
