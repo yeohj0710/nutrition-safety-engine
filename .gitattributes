@@ -30,6 +30,7 @@ research/protocol/amendments.csv                -text
 research/protocol/protocol-shared-ai-screening.md -text
 research/protocol/HANDOFF_scoring_arm_comparability.md -text
 research/protocol/PROMPT_v50_scoring_wrapup.md      -text
+research/protocol/PROMPT_v50_contribution_rescope.md -text
 docs/version_map.md                                 -text
 
 # 채점 arm(2026-07-30). lock_receipt.json 과 v40_scoring_report.json 이 이 경로들의
