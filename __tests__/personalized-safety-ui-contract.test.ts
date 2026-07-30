@@ -71,4 +71,24 @@ describe("personalized safety UI contract", () => {
     );
     expect([...covered].sort()).toEqual([...situationIds].sort());
   });
+
+  it("never ships a bare validated / gold-standard claim", () => {
+    // AGENTS.md 명명 규칙: 사람 참조표준이 0건이므로 배포되는 산출물에 맨
+    // validated·gold_standard·accuracy·민감도를 쓰지 않는다. 비교 상대를 이름에
+    // 넣은 형태(_vs_ai_reference)만 허용한다. 예전에 <main> 의
+    // data-scope 가 "validated_thesis_scope" 로 배포돼 있었다.
+    const shipped = [
+      path.join(root, "app", "page.tsx"),
+      path.join(root, "app", "api", "personalized-safety", "route.ts"),
+      path.join(root, "src", "lib", "clinical-situations.ts"),
+      path.join(root, "src", "components", "personalized-safety-query.tsx"),
+    ].map((file) => [file, readFileSync(file, "utf8")] as const);
+
+    for (const [file, source] of shipped) {
+      const stripped = source.replace(/_vs_ai_reference/g, "");
+      expect(stripped, file).not.toMatch(
+        /validated|gold_standard|민감도|특이도/,
+      );
+    }
+  });
 });
