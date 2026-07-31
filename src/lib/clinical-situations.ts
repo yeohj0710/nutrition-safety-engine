@@ -28,6 +28,11 @@ export type SituationMeta = {
   label: string;
   short: string;
   question: string;
+  /**
+   * 요약 첫 문장에서 입력을 되짚을 때 쓰는 말투.
+   * "…라고 하셨어요" 앞에 붙는 연결형이라 뒤에 다른 조건이 이어질 수 있다.
+   */
+  spoken: string;
 };
 
 export const situations: SituationMeta[] = [
@@ -37,6 +42,7 @@ export const situations: SituationMeta[] = [
     short: "수술 전후",
     question:
       "수술 또는 침습적 시술을 받는 성인에서 수술 전 보충제 복용이 출혈, 수혈, 마취 상호작용 또는 수술 주위 합병증과 관련되는지를 다룬 문헌",
+    spoken: "수술·시술을 앞두고 계시고",
   },
   {
     id: "HRS2_KIDNEY_DISEASE",
@@ -44,6 +50,7 @@ export const situations: SituationMeta[] = [
     short: "만성콩팥병·투석",
     question:
       "만성콩팥병 또는 투석 중인 성인에서 보충제 복용이 전해질 이상, 신기능 변화 또는 축적 독성과 관련되는지를 다룬 문헌",
+    spoken: "콩팥이 걱정되는 상황이고",
   },
   {
     id: "HRS3_PREGNANCY",
@@ -51,6 +58,7 @@ export const situations: SituationMeta[] = [
     short: "임신 중",
     question:
       "임신한 사람에서 보충제 복용이 산모 또는 태아의 이상반응과 관련되는지를 다룬 문헌",
+    spoken: "임신 중이시고",
   },
   {
     id: "HRS4_LIVER_DISEASE",
@@ -58,6 +66,7 @@ export const situations: SituationMeta[] = [
     short: "간질환",
     question:
       "간질환이 있는 성인에서 보충제 복용이 간손상 또는 간기능 악화와 관련되는지를 다룬 문헌",
+    spoken: "간이 걱정되는 상황이고",
   },
   {
     id: "HRS5_ANTICOAGULATION",
@@ -65,6 +74,7 @@ export const situations: SituationMeta[] = [
     short: "항응고제 복용",
     question:
       "항응고제 또는 항혈소판제를 복용하는 성인에서 보충제 복용이 출혈 또는 응고 지표 변화와 관련되는지를 다룬 문헌",
+    spoken: "항응고제를 드시고 계시고",
   },
 ];
 

@@ -40,6 +40,8 @@ type ApiResult = {
   evidence_total_after_filter: number;
   checks: string[];
   summary: string;
+  /** 상담하듯 읽히는 문단들. 두 번째 문단이 실제로 문헌을 가리킨다. */
+  narrative?: string[];
   disclaimer: string;
   expanded: boolean;
   expanded_offset: number;
@@ -436,10 +438,28 @@ export function PersonalizedSafetyQuery() {
                     : ` · 이 상황 핵심 근거 ${result.core_evidence_count.toLocaleString("ko-KR")}건 중`}
                 </span>
               </div>
-              <p className="break-keep text-base font-semibold leading-7 text-stone-950 md:text-xl md:leading-9">
-                {result.summary}
-                <CitationMarks items={result.evidence} />
-              </p>
+              {(result.narrative?.length
+                ? result.narrative
+                : [result.summary]
+              ).map((paragraph, index, all) => {
+                // 첫 문단은 사용자가 말한 내용을 되짚는 자리라 크게, 나머지는 본문 크기로.
+                // 인용 번호는 문헌을 실제로 가리키는 문단 끝에만 붙인다.
+                const lead = index === 0;
+                const citesHere = all.length > 1 ? index === 1 : index === 0;
+                return (
+                  <p
+                    key={paragraph.slice(0, 24) + index}
+                    className={
+                      lead
+                        ? "break-keep text-base font-semibold leading-7 text-stone-950 md:text-lg md:leading-8"
+                        : "break-keep text-sm leading-7 text-stone-700 md:text-[0.95rem] md:leading-8"
+                    }
+                  >
+                    {paragraph}
+                    {citesHere ? <CitationMarks items={result.evidence} /> : null}
+                  </p>
+                );
+              })}
               {result.applied_axes.length ? (
                 <div className="flex flex-wrap items-center gap-1.5">
                   <span className="text-[11px] font-semibold text-stone-500">
