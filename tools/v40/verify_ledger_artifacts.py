@@ -18,7 +18,6 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import sys
 from pathlib import Path
 from typing import Any
 
@@ -71,7 +70,8 @@ def main() -> None:
     missing: list[str] = []
 
     for rel, expected in sorted(recorded.items()):
-        target = ROOT / rel.replace("/", "\\") if sys.platform == "win32" else ROOT / rel
+        # 원장의 경로는 항상 "/" 구분자다. pathlib 이 두 OS 모두에서 알아서 처리한다.
+        target = ROOT.joinpath(*rel.split("/"))
         if not target.is_file():
             missing.append(rel)
             continue

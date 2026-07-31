@@ -30,19 +30,23 @@ jobs:
       - run: npm test
       - run: npm run build
 
-      # 선별 분류기 불변식. 읽기 전용이다 — 보고서 파일은 `--write-report` 를 줄 때만
-      # 쓰는데 그 파일은 원장이 SHA-256 을 기록하므로 CI 에서 다시 쓰지 않는다.
-      - run: npm run check:screening-invariants
-
       # 원장이 기록한 297 경로의 SHA-256 재대조. 로컬 전용 대용량 파일은 저장소에
       # 없으므로 체크아웃에 실제로 있는 경로만 대조하고, 없는 것은 건너뛴 수를 보고한다.
+      # CI 체크아웃에서는 54 개를 대조하고 243 개를 건너뛴다.
       - run: python tools/v40/verify_ledger_artifacts.py
 
 # CI 에서 돌릴 수 없는 검증 (로컬에서만 가능)
 #
-#   npm run validate:evidence          build_site_v4.py 가 data/curated_v4/evidence_map.csv
-#                                      (114.5 MiB, GitHub 파일 한도 초과라 로컬 전용)를 읽고,
-#                                      게다가 검증하면서 산출물을 다시 쓴다.
-#   npm run check:screening-regression 같은 코퍼스 파일이 필요하다.
+# 셋 다 data/curated_v4/evidence_map.csv 를 읽는데, 그 파일은 114.5 MiB 로 GitHub 의
+# 파일 한도를 넘어 저장소에 없다(해시는 research/logs/v40_local_only_manifest.json).
 #
-# 두 검증의 마지막 실행 기록은 research/logs/ 와 04_검증자료 에 남아 있다.
+#   npm run validate:evidence           build_site_v4.py 가 코퍼스를 읽고, 게다가
+#                                       검증하면서 산출물을 다시 쓴다.
+#   npm run check:screening-regression  같은 코퍼스가 필요하다.
+#   npm run check:screening-invariants  분류기가 판정할 때 agent_screen_worker.py 의
+#                                       load_semantic_adjudications() 가 코퍼스 해시를
+#                                       대조하므로 코퍼스 없이는 돌지 않는다. 그 워커는
+#                                       원장이 SHA-256 을 기록한 봉인 파일이라 코퍼스
+#                                       없이 돌도록 고칠 수 없다.
+#
+# 세 검증의 마지막 실행 기록은 research/logs/ 와 G드라이브 04_검증자료 에 남아 있다.
