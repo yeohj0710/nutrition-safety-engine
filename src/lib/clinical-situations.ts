@@ -78,6 +78,11 @@ export type AxisMeta = {
   placeholder: string;
   /** 이 축이 적용됐을 때 근거 목록 위에 붙는 설명. */
   applied: string;
+  /**
+   * 여러 축이 함께 적용됐을 때 한 문장으로 묶기 위한 명사.
+   * 축마다 "…를 보고한 문헌만 남겼습니다."를 따로 붙이면 같은 문장이 반복돼 읽기 어렵다.
+   */
+  noun: string;
 };
 
 export const axes: AxisMeta[] = [
@@ -87,6 +92,7 @@ export const axes: AxisMeta[] = [
     label: "나이",
     placeholder: "예: 68세",
     applied: "연령대를 보고한 문헌만 남겼습니다.",
+    noun: "연령대",
   },
   {
     id: "concomitant_medication",
@@ -94,6 +100,7 @@ export const axes: AxisMeta[] = [
     label: "함께 먹는 약",
     placeholder: "예: 와파린",
     applied: "병용약을 보고한 문헌만 남겼습니다.",
+    noun: "병용약",
   },
   {
     id: "dose_range",
@@ -101,6 +108,7 @@ export const axes: AxisMeta[] = [
     label: "하루 섭취량",
     placeholder: "예: 2000 mg",
     applied: "복용량을 보고한 문헌만 남겼습니다.",
+    noun: "복용량",
   },
   {
     id: "sex",
@@ -108,6 +116,7 @@ export const axes: AxisMeta[] = [
     label: "성별",
     placeholder: "예: 여성",
     applied: "성별을 보고한 문헌만 남겼습니다.",
+    noun: "성별",
   },
   {
     id: "underlying_condition",
@@ -115,6 +124,7 @@ export const axes: AxisMeta[] = [
     label: "기저질환·증상",
     placeholder: "예: 고혈압",
     applied: "기저질환을 보고한 문헌만 남겼습니다.",
+    noun: "기저질환",
   },
 ];
 

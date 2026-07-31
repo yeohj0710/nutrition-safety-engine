@@ -16,6 +16,14 @@ import { joinMultiValue, splitMultiValue } from "@/src/lib/multi-value-input";
 // 논문이 주장하는 "결정론적 탐색 도구"가 성립하고, 예전 구현이 쓰던 요약 API 키는
 // 운영 서비스와 공유되어 한 번 소진되면 그쪽까지 멈춘다.
 
+/** 한글 목적격 조사. 마지막 글자에 받침이 있으면 "을", 없으면 "를". */
+function objectParticle(word: string) {
+  const last = word.at(-1) ?? "";
+  const code = last.charCodeAt(0);
+  if (Number.isNaN(code) || code < 0xac00 || code > 0xd7a3) return "를";
+  return (code - 0xac00) % 28 === 0 ? "를" : "을";
+}
+
 type Evidence = {
   record_id: string;
   title: string;
@@ -215,9 +223,15 @@ export async function POST(req: Request) {
     }),
   ) as Record<AxisId, number | null>;
 
-  const narrowed = applied
-    .map((item) => axisByField.get(item.field as never)?.applied)
+  // 축마다 "…를 보고한 문헌만 남겼습니다."를 따로 붙이면 같은 문장이 반복된다.
+  // 적용된 축의 명사를 한 문장으로 묶어 읽기 쉽게 만든다.
+  const narrowedNouns = applied
+    .map((item) => axisByField.get(item.field as never)?.noun)
     .filter(Boolean) as string[];
+  const joinedNouns = narrowedNouns.join("·");
+  const narrowed = joinedNouns
+    ? [`${joinedNouns}${objectParticle(joinedNouns)} 보고한 문헌만 남겼습니다.`]
+    : [];
 
   const expandedSummary = [
     `${meta?.short ?? "이 상황"}의 근거 ${extendedAll.length.toLocaleString("ko-KR")}건 가운데`,
