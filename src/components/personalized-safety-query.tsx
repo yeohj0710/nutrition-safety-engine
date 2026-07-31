@@ -227,12 +227,16 @@ function EvidenceSentence({
             </a>
           );
         })}
+        {/*
+          아래 확장 보기 버튼도 "모두 보기"라 두 버튼이 같은 말을 하면 헷갈린다.
+          이 버튼은 목록으로 이동만 하고, 저쪽은 더 넓은 근거를 불러온다.
+        */}
         <button
           type="button"
           onClick={onShowAll}
           className="mt-2 flex w-full items-center justify-between rounded-lg border border-blue-100 bg-white px-2.5 py-2 text-[11px] font-bold text-blue-700 transition hover:bg-blue-50"
         >
-          <span>이 결과에 쓰인 문헌 {items.length}건 모두 보기</span>
+          <span>아래 근거 목록 {items.length}건으로 이동</span>
           <span aria-hidden="true">↓</span>
         </button>
       </span>

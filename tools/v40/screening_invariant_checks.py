@@ -3,14 +3,23 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from tools.v40.agent_screen_worker import WORKER_VERSION, classify
+# `python tools/v40/screening_invariant_checks.py` 로 부르면 파이썬이 sys.path 에
+# 넣는 것은 이 파일이 있는 폴더이지 저장소 루트가 아니라서 `tools.v40...` 임포트가
+# 깨진다. PYTHONPATH 를 따로 걸어야 돌아가는 상태였고, package.json 의
+# `check:screening-invariants` 도 그래서 그냥은 실행되지 않았다.
+_ROOT = Path(__file__).resolve().parents[2]
+if str(_ROOT) not in sys.path:
+    sys.path.insert(0, str(_ROOT))
+
+from tools.v40.agent_screen_worker import WORKER_VERSION, classify  # noqa: E402
 
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = _ROOT
 WORKER = ROOT / "tools" / "v40" / "agent_screen_worker.py"
 REPORT = ROOT / "research" / "screening" / "v40_agent" / "invariant_checks.json"
 

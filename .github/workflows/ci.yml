@@ -1,5 +1,10 @@
 name: CI
 
+# 이 워크플로는 2026-07-28 단일 트랙 정리 이후 v4.0 만 검사한다.
+# 그 전에는 v1.0·v2.x 트랙의 검증 75단계를 돌렸는데, 그 트랙의 도구 63개와
+# npm 스크립트 7개가 함께 삭제되어 모든 푸시가 첫 단계에서 실패하고 있었다.
+# 남은 것만 돌리고, 여기서 돌릴 수 없는 검증은 아래에 이유와 함께 적어 둔다.
+
 on:
   push:
   pull_request:
@@ -18,77 +23,26 @@ jobs:
           python-version: "3.14"
       - run: npm ci
       - run: python -m pip install -r requirements-research.lock.txt
+
+      # 사이트
       - run: npm run lint
       - run: npm run typecheck
-      - run: npm run test:unit
-      - run: npm run test:contract
-      - run: npm run test:provenance
-      - run: npm run test:scenarios:smoke
-      - run: npm run validate:phase07:proxy
-      - run: python tools/validate_phase07_review_queues.py
-      - run: python tools/validate_phase07_queue_preservation.py
-      - run: npm run evaluate:phase07:gold
-      - run: python tools/build_phase07_release_readiness.py
+      - run: npm test
       - run: npm run build
-      - run: python tools/validate_phase01.py
-      - run: python tools/validate_phase02.py
-      - run: python tools/validate_protocol_v2.py
-      - run: python tools/build_ai_exploratory_screening.py
-      - run: python tools/validate_ai_exploratory_screening.py
-      - run: python tools/build_ai_exploratory_nonpubmed.py
-      - run: python tools/validate_ai_exploratory_nonpubmed.py
-      - run: python tools/build_ai_exploratory_evidence_map.py
-      - run: python tools/validate_ai_exploratory_evidence_map.py
-      - run: python tools/validate_ai_exploratory_bundle.py
-      - run: npm run evaluate:ai-exploratory-scenarios
-      - run: python tools/validate_ai_exploratory_scenarios.py
-      - run: python tools/validate_ai_exploratory_thesis.py
-      - run: python tools/validate_phase02_evidence_manifest.py
-      # Phase 03 full raw-PubMed rehash is local-only because 266 MB XML is not distributed in Git.
-      - run: python tools/validate_phase03_queue_preservation.py
-      - run: python tools/build_duplicate_review_context.py
-      - run: python tools/validate_duplicate_review_context.py
-      - run: python tools/build_registry_link_review_context.py
-      - run: python tools/validate_registry_link_review_context.py
-      - run: python tools/build_screening_review_context.py
-      - run: python tools/validate_screening_review_context.py
-      - run: python tools/build_nonpubmed_screening_context.py
-      - run: python tools/validate_nonpubmed_screening_context.py
-      - run: python tools/validate_extraction_data_dictionary.py
-      - run: python tools/validate_synthesis_authoring_docs.py
-      - run: python tools/validate_independent_gold_authoring_guide.py
-      - run: python tools/validate_thesis_writing_guides.py
-      - run: python tools/validate_external_review_workbook.py
-      - run: python tools/build_registry_linkage_decisions.py
-      - run: python tools/validate_registry_linkage_decisions.py
-      - run: python tools/validate_registry_linkage_preservation.py
-      - run: python tools/validate_primary_screening_preservation.py
-      - run: python tools/build_screening_batches.py
-      - run: python tools/validate_screening_batches.py
-      - run: python tools/validate_nonpubmed_review_preservation.py
-      - run: python tools/validate_clinicaltrials_proxy.py
-      - run: python tools/validate_pmc_fulltext_candidates.py
-      - run: python tools/validate_pmc_sentinel_fulltext.py
-      - run: python tools/validate_central_hitcount_observations.py
-      - run: python tools/validate_koreamed_designpilot.py
-      - run: python tools/validate_korean_db_split_pilot.py
-      - run: python tools/validate_korean_db_press_queue.py
-      - run: python tools/validate_korean_db_press_preservation.py
-      - run: python tools/validate_phase04_proxy.py
-      - run: python tools/validate_phase05_proxy.py
-      - run: python tools/validate_claim_rule_contract.py
-      - run: python tools/validate_phase06_gate.py
-      - run: python tools/validate_methods_checkpoint.py
-      - run: python tools/validate_finalization_readiness.py
-      - run: python tools/validate_results_freeze.py
-      - run: python tools/validate_local_production_smoke.py
-      - run: python tools/validate_human_handoff_manifest.py
-      - run: python tools/validate_secondary_screening_queue.py
-      - run: python tools/validate_secondary_queue_preservation.py
-      - run: python tools/validate_fulltext_review_queue.py
-      - run: python tools/validate_fulltext_queue_preservation.py
-      - run: python tools/validate_extraction_rob_work_queues.py
-      - run: python tools/validate_extraction_rob_queue_preservation.py
-      - run: python tools/validate_phase05_preservation.py
-      - run: python tools/validate_human_extraction_rob_rows.py
-      - run: python tools/evaluate_ai_extraction.py
+
+      # 선별 분류기 불변식. 읽기 전용이다 — 보고서 파일은 `--write-report` 를 줄 때만
+      # 쓰는데 그 파일은 원장이 SHA-256 을 기록하므로 CI 에서 다시 쓰지 않는다.
+      - run: npm run check:screening-invariants
+
+      # 원장이 기록한 297 경로의 SHA-256 재대조. 로컬 전용 대용량 파일은 저장소에
+      # 없으므로 체크아웃에 실제로 있는 경로만 대조하고, 없는 것은 건너뛴 수를 보고한다.
+      - run: python tools/v40/verify_ledger_artifacts.py
+
+# CI 에서 돌릴 수 없는 검증 (로컬에서만 가능)
+#
+#   npm run validate:evidence          build_site_v4.py 가 data/curated_v4/evidence_map.csv
+#                                      (114.5 MiB, GitHub 파일 한도 초과라 로컬 전용)를 읽고,
+#                                      게다가 검증하면서 산출물을 다시 쓴다.
+#   npm run check:screening-regression 같은 코퍼스 파일이 필요하다.
+#
+# 두 검증의 마지막 실행 기록은 research/logs/ 와 04_검증자료 에 남아 있다.
