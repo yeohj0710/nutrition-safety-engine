@@ -9,6 +9,7 @@ import {
   type SituationId,
 } from "@/src/lib/clinical-situations";
 import { publicInputExamples } from "@/src/lib/personalized-safety-examples";
+import { axisCoverage, coreCoverage } from "@/src/lib/axis-coverage";
 
 type EvidenceItem = {
   record_id: string;
@@ -462,17 +463,33 @@ export function PersonalizedSafetyQuery() {
             </span>
             {filledAxisCount ? (
               <span className="rounded-full bg-blue-100 px-2 py-0.5 text-[11px] font-bold text-blue-800">
-                {filledAxisCount}개 입력됨
+                {filledAxisCount}개 켬
               </span>
             ) : null}
           </legend>
           <div className="grid gap-3 sm:grid-cols-2">
             {axes.map((axis) => {
               const filled = Boolean(form[axis.field].trim());
+              const coverage = form.situation
+                ? axisCoverage[form.situation][axis.id]
+                : undefined;
+              const missing = form.situation ? coverage === null : false;
               return (
-                <label key={axis.id} className="flex flex-col gap-1">
-                  <span className="block text-[11px] font-bold text-blue-700">
-                    {axis.label}
+                <label
+                  key={axis.id}
+                  className={`flex flex-col gap-1 ${missing ? "opacity-60" : ""}`}
+                >
+                  <span className="flex flex-wrap items-baseline gap-x-1.5">
+                    <span className="text-[11px] font-bold text-blue-700">
+                      {axis.label}
+                    </span>
+                    {form.situation ? (
+                      <span className="text-[10px] font-medium text-stone-500">
+                        {missing
+                          ? "이 상황에는 이 축의 근거가 없어요"
+                          : `이 항목을 보고한 문헌 ${coverage}건`}
+                      </span>
+                    ) : null}
                   </span>
                   <input
                     value={form[axis.field]}
@@ -489,9 +506,23 @@ export function PersonalizedSafetyQuery() {
               );
             })}
           </div>
-          <p className="text-[11px] leading-5 text-stone-500">
-            조건을 넣을수록 그 조건을 모두 보고한 문헌만 남아 결과가 줄어듭니다.
-            줄어드는 모습 자체가 이 도구가 보여주려는 것입니다.
+          {/*
+            여기를 정확히 적어야 한다. 칸을 채우면 "그 항목을 보고한 문헌"만 남을 뿐,
+            적으신 값과 문헌을 대조하지는 않는다. 값까지 걸러낸다고 읽히면 결과를
+            실제보다 개인화된 것으로 오해하게 된다.
+          */}
+          <p className="rounded-lg border border-stone-200 bg-stone-50 px-3 py-2 text-[11px] leading-5 text-stone-600">
+            칸을 채우면 <b className="text-stone-800">그 항목을 보고한 문헌</b>만
+            남습니다. 적으신 값 자체로 문헌을 고르지는 않아요 — 예를 들어 함께 먹는
+            약에 무엇을 적든, 병용약을 보고한 문헌이 남습니다. 적어두신 값은 결과
+            설명에 그대로 옮겨 보여드립니다.
+            {form.situation ? (
+              <>
+                {" "}
+                조건을 켜지 않으면 이 상황의 핵심 근거{" "}
+                {coreCoverage[form.situation]}건을 그대로 보여드려요.
+              </>
+            ) : null}
           </p>
         </fieldset>
 
@@ -663,19 +694,26 @@ export function PersonalizedSafetyQuery() {
               {result.applied_axes.length ? (
                 <div className="flex flex-wrap items-center gap-1.5">
                   <span className="text-[11px] font-semibold text-stone-500">
-                    반영한 조건
+                    켜진 조건
                   </span>
-                  {result.applied_axes.map((axis) => (
-                    <span
-                      key={axis.field}
-                      className="rounded-full border border-blue-200 bg-blue-50 px-2 py-0.5 text-[11px] font-semibold text-blue-800"
-                    >
-                      {axis.value}
-                      <span className="ml-1 font-normal text-blue-600">
-                        {axis.reported.toLocaleString("ko-KR")}건
+                  {result.applied_axes.map((axis) => {
+                    const meta = axes.find((item) => item.field === axis.field);
+                    return (
+                      <span
+                        key={axis.field}
+                        title={`적어주신 값: ${axis.value}`}
+                        className="rounded-full border border-blue-200 bg-blue-50 px-2 py-0.5 text-[11px] font-semibold text-blue-800"
+                      >
+                        {meta?.noun ?? axis.field} 보고
+                        <span className="ml-1 font-normal text-blue-600">
+                          {axis.reported.toLocaleString("ko-KR")}건
+                        </span>
+                        <span className="ml-1 font-normal text-stone-500">
+                          · {axis.value}
+                        </span>
                       </span>
-                    </span>
-                  ))}
+                    );
+                  })}
                 </div>
               ) : null}
               {result.unavailable_axes.length ? (

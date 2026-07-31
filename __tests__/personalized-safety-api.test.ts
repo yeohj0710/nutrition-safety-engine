@@ -7,6 +7,7 @@ import {
   situations,
 } from "@/src/lib/clinical-situations";
 import { publicInputExamples } from "@/src/lib/personalized-safety-examples";
+import { axisCoverage, coreCoverage } from "@/src/lib/axis-coverage";
 
 type Rule = {
   question_id: string;
@@ -208,5 +209,46 @@ describe("personalized safety API", () => {
       );
       expect(found, axis.id).toBe(true);
     }
+  });
+
+  // 화면은 입력 전에 축별 건수를 보여주려고 규칙 파일에서 뽑아 둔 상수를 읽는다.
+  // 그 상수가 규칙 파일과 어긋나면 화면이 없는 숫자를 말하게 되므로 여기서 묶어 둔다.
+  it("keeps the prebuilt axis coverage identical to the rules file", () => {
+    for (const situation of situationIds) {
+      expect(coreCoverage[situation], situation).toBe(
+        ruleFor(situation, "base")!.all_evidence.length,
+      );
+      for (const axis of axes) {
+        const rule = ruleFor(situation, axis.id);
+        expect(
+          axisCoverage[situation][axis.id],
+          `${situation}/${axis.id}`,
+        ).toBe(rule ? rule.all_evidence.length : null);
+      }
+    }
+  });
+
+  // 축은 "그 항목을 보고했는가"로만 걸린다. 값은 대조하지 않는다(AGENTS.md 참고).
+  // 화면 문구가 이 성질에 맞춰져 있으므로, 성질이 바뀌면 문구도 함께 바꿔야 한다.
+  it("filters by whether an axis is reported, not by the value typed in", async () => {
+    const ask = async (medication: string) => {
+      const response = await POST(
+        new Request("http://localhost/api/personalized-safety", {
+          method: "POST",
+          body: JSON.stringify({
+            situation: "HRS5_ANTICOAGULATION",
+            medication,
+          }),
+        }),
+      );
+      const body = (await response.json()) as {
+        evidence: { record_id: string }[];
+      };
+      return body.evidence.map((item) => item.record_id).join("|");
+    };
+    const warfarin = await ask("와파린");
+    const nonsense = await ask("zzzz아무말이나");
+    expect(warfarin).toBe(nonsense);
+    expect(warfarin.length).toBeGreaterThan(0);
   });
 });

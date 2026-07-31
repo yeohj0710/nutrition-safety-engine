@@ -141,7 +141,11 @@ function buildEvidenceLine(items: Evidence[]) {
 }
 
 /** 이 문헌들이 말하지 않는 것. 세어서 말할 수 있는 것만 적는다. */
-function buildLimitLine(items: Evidence[], doseInput: string) {
+function buildLimitLine(
+  items: Evidence[],
+  doseInput: string,
+  appliedNouns: string[],
+) {
   const withDose = items.filter((item) =>
     String(item.dose ?? "").trim(),
   ).length;
@@ -152,6 +156,12 @@ function buildLimitLine(items: Evidence[], doseInput: string) {
   const parts = [
     "다만 이 문헌들은 개인별 안전 상한을 정하지 않았습니다.",
   ];
+  // 축은 "그 항목을 보고했는가"로만 걸린다. 적어주신 값과 문헌을 대조하지 않으므로
+  // 결과가 그 값을 직접 다룬 것처럼 읽히지 않게 여기서 분명히 해 둔다.
+  if (appliedNouns.length)
+    parts.push(
+      `${appliedNouns.join("·")}${objectParticle(appliedNouns.join("·"))} 보고한 문헌만 남겼을 뿐, 적어주신 값을 직접 다룬 문헌이라는 뜻은 아닙니다.`,
+    );
   if (doseInput)
     parts.push(
       withDose === 0
@@ -407,7 +417,7 @@ export async function POST(req: Request) {
       ? [
           profileLine,
           buildEvidenceLine(selected),
-          buildLimitLine(selected, inputs.dose),
+          buildLimitLine(selected, inputs.dose, narrowedNouns),
           buildNextLine(selected, applied.length),
         ]
       : [
