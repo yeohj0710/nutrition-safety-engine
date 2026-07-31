@@ -1,6 +1,7 @@
 "use client";
 
-import { FormEvent, useCallback, useRef, useState } from "react";
+import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
+import { AnimatedDetails } from "@/src/components/animated-details";
 import {
   axes,
   evidenceOnlyDisclaimer,
@@ -119,6 +120,125 @@ function CitationMarks({ items }: { items: EvidenceItem[] }) {
   );
 }
 
+/**
+ * 문장 하나에 마우스를 올리면 그 문장을 뒷받침하는 문헌을 툴팁으로 보여준다.
+ *
+ * CSS group-hover 만으로는 문장에서 툴팁까지 커서를 옮기는 사이(특히 문장이 여러 줄로
+ * 감길 때 툴팁과 커서 사이 빈 구간) hover 가 끊겨 툴팁이 닫힌다. 상태와 닫힘 유예시간으로
+ * 이동 중에도 열림을 유지한다.
+ */
+function EvidenceSentence({
+  children,
+  items,
+  onShowAll,
+}: {
+  children: string;
+  items: EvidenceItem[];
+  onShowAll: () => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const show = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setOpen(true);
+  };
+  const hide = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setOpen(false), 200);
+  };
+  useEffect(
+    () => () => {
+      if (closeTimer.current) clearTimeout(closeTimer.current);
+    },
+    [],
+  );
+
+  if (!items.length) return <>{children}</>;
+  const shown = items.slice(0, 4);
+
+  return (
+    <span
+      className="group relative inline rounded-md px-0.5 transition-colors hover:bg-blue-100"
+      onMouseEnter={show}
+      onMouseLeave={hide}
+      onFocus={show}
+      onBlur={hide}
+    >
+      {children}
+      <a
+        href="#result-ref-1"
+        className="ml-1 align-super text-[10px] font-bold text-blue-600 hover:underline"
+      >
+        근거
+      </a>
+      <span
+        role="tooltip"
+        className={`absolute -left-12 bottom-[calc(100%+0.75rem)] z-50 block max-h-[70vh] w-96 max-w-[calc(100vw-2rem)] overflow-y-auto overscroll-contain rounded-xl border border-blue-100 bg-white p-3 text-left shadow-[0_12px_36px_rgba(15,23,42,0.16)] transition-opacity duration-150 after:absolute after:left-0 after:top-full after:h-3 after:w-full after:content-[''] sm:left-0 ${
+          open
+            ? "pointer-events-auto visible opacity-100"
+            : "pointer-events-none invisible opacity-0"
+        }`}
+      >
+        <span className="block text-[11px] font-bold text-blue-600">
+          이 문장의 근거 {items.length}건
+        </span>
+        <span className="mb-2 mt-0.5 block text-[10px] leading-4 text-stone-500">
+          이번 결과에 연결된 문헌만 보여요.
+        </span>
+        {shown.map((item, index) => {
+          const locator = splitLocator(item.locator);
+          return (
+            <a
+              key={item.record_id}
+              href={item.url}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-1 block rounded-lg bg-blue-50/60 px-2.5 py-2 transition hover:bg-blue-100"
+            >
+              <span className="block text-[11px] font-bold leading-4 text-blue-700">
+                {index + 1}. {item.venue || "출처"} · {item.year}
+              </span>
+              {item.key_finding_ko ? (
+                <span className="mt-0.5 block text-[11px] font-medium leading-[1.55] text-stone-700">
+                  {item.key_finding_ko}
+                </span>
+              ) : null}
+              {locator.sentence ? (
+                <span className="mt-2 block border-l-2 border-blue-200 pl-2">
+                  <span className="block text-[10px] font-semibold leading-4 text-stone-500">
+                    원문 · {locator.label || "근거 문장"}
+                  </span>
+                  <span
+                    lang="en"
+                    className="mt-0.5 block text-[10px] leading-4 text-stone-600"
+                  >
+                    &ldquo;{locator.sentence}&rdquo;
+                  </span>
+                </span>
+              ) : null}
+              <span
+                lang="en"
+                title={item.title}
+                className="mt-1 block break-words text-[10px] leading-4 text-stone-500"
+              >
+                {item.title}
+              </span>
+            </a>
+          );
+        })}
+        <button
+          type="button"
+          onClick={onShowAll}
+          className="mt-2 flex w-full items-center justify-between rounded-lg border border-blue-100 bg-white px-2.5 py-2 text-[11px] font-bold text-blue-700 transition hover:bg-blue-50"
+        >
+          <span>이 결과에 쓰인 문헌 {items.length}건 모두 보기</span>
+          <span aria-hidden="true">↓</span>
+        </button>
+      </span>
+    </span>
+  );
+}
+
 const loadingStages = ["입력 조건 확인", "근거 문헌 연결", "결과 정리"];
 
 /** 결과를 기다리는 동안 자리를 잡아 두는 뼈대. 화면이 튀지 않게 한다. */
@@ -172,6 +292,15 @@ export function PersonalizedSafetyQuery() {
   const [error, setError] = useState("");
   const [activeExample, setActiveExample] = useState("");
   const resultRef = useRef<HTMLDivElement | null>(null);
+  const evidenceListRef = useRef<HTMLOListElement | null>(null);
+
+  /** 툴팁의 "모두 보기"에서 근거 목록으로 데려간다. */
+  const showAllEvidence = useCallback(() => {
+    evidenceListRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }, []);
 
   const update = (key: keyof FormState, value: string) => {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -438,28 +567,99 @@ export function PersonalizedSafetyQuery() {
                     : ` · 이 상황 핵심 근거 ${result.core_evidence_count.toLocaleString("ko-KR")}건 중`}
                 </span>
               </div>
-              {(result.narrative?.length
-                ? result.narrative
-                : [result.summary]
-              ).map((paragraph, index, all) => {
-                // 첫 문단은 사용자가 말한 내용을 되짚는 자리라 크게, 나머지는 본문 크기로.
-                // 인용 번호는 문헌을 실제로 가리키는 문단 끝에만 붙인다.
-                const lead = index === 0;
-                const citesHere = all.length > 1 ? index === 1 : index === 0;
-                return (
-                  <p
-                    key={paragraph.slice(0, 24) + index}
-                    className={
-                      lead
-                        ? "break-keep text-base font-semibold leading-7 text-stone-950 md:text-lg md:leading-8"
-                        : "break-keep text-sm leading-7 text-stone-700 md:text-[0.95rem] md:leading-8"
-                    }
-                  >
-                    {paragraph}
-                    {citesHere ? <CitationMarks items={result.evidence} /> : null}
-                  </p>
-                );
-              })}
+              <div className="break-keep rounded-2xl bg-[#f2f6ff] px-5 py-5 text-[15px] font-medium leading-7 text-[#333d4b]">
+                {(result.narrative?.length
+                  ? result.narrative
+                  : [result.summary]
+                ).map((paragraph, index, all) => {
+                  // 첫 문단은 사용자가 말한 것을 되짚는 자리라 문헌을 붙이지 않는다.
+                  // 마지막 문단은 화면 안내라 역시 붙이지 않는다.
+                  const lead = index === 0;
+                  const last = index === all.length - 1;
+                  const backed = all.length > 1 ? !lead && !last : true;
+                  const body = (
+                    <>
+                      {backed ? (
+                        <EvidenceSentence
+                          items={result.evidence}
+                          onShowAll={showAllEvidence}
+                        >
+                          {paragraph}
+                        </EvidenceSentence>
+                      ) : (
+                        paragraph
+                      )}
+                      {index === Math.min(1, all.length - 1) ? (
+                        <CitationMarks items={result.evidence} />
+                      ) : null}
+                    </>
+                  );
+                  return (
+                    <p
+                      key={paragraph.slice(0, 24) + index}
+                      className={
+                        lead
+                          ? "font-semibold text-stone-950"
+                          : "mt-5 text-[#333d4b]"
+                      }
+                    >
+                      {body}
+                    </p>
+                  );
+                })}
+              </div>
+              <AnimatedDetails
+                className="rounded-xl border border-stone-200"
+                summaryClassName="flex min-h-11 list-none items-center justify-between px-4 py-2.5 text-[13px] font-semibold text-stone-800"
+                bodyClassName="border-t border-stone-200 p-4"
+                summary={
+                  <>
+                    <span>이 결과를 무엇으로 판단했나</span>
+                    <span className="collapsible-chevron text-stone-500">
+                      <svg
+                        aria-hidden="true"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="h-4 w-4"
+                      >
+                        <path d="m5 7.5 5 5 5-5" />
+                      </svg>
+                    </span>
+                  </>
+                }
+              >
+                <p className="text-xs leading-6 text-stone-600">
+                  <span className="font-semibold text-stone-800">연구 질문</span>
+                  <br />
+                  {result.research_question}
+                </p>
+                {result.checks?.length ? (
+                  <div className="mt-3">
+                    <p className="text-xs font-semibold text-stone-800">
+                      문헌마다 확인한 것
+                    </p>
+                    <ul className="mt-1.5 flex flex-wrap gap-1.5">
+                      {result.checks.map((check) => (
+                        <li
+                          key={check}
+                          className="rounded-full bg-stone-100 px-2.5 py-1 text-[11px] font-semibold text-stone-600"
+                        >
+                          {check}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+                <p className="mt-3 text-[11px] leading-5 text-stone-500">
+                  이 상황의 핵심 근거는 {result.core_evidence_count}건이고, 확장
+                  보기까지 포함하면 {result.extended_total.toLocaleString("ko-KR")}건입니다.
+                  조건을 넣으면 그 조건을 실제로 보고한 문헌만 남습니다.
+                </p>
+              </AnimatedDetails>
               {result.applied_axes.length ? (
                 <div className="flex flex-wrap items-center gap-1.5">
                   <span className="text-[11px] font-semibold text-stone-500">
@@ -488,7 +688,10 @@ export function PersonalizedSafetyQuery() {
             </header>
 
             {result.evidence.length ? (
-              <ol className="divide-y divide-stone-200 border-t border-stone-200 px-5">
+              <ol
+                ref={evidenceListRef}
+                className="scroll-mt-20 divide-y divide-stone-200 border-t border-stone-200 px-5"
+              >
                 {result.evidence.map((item, index) => {
                   const locator = splitLocator(item.locator);
                   const n = index + 1;

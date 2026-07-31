@@ -276,7 +276,10 @@ function rankEvidence(items: Evidence[]) {
   );
 }
 
-const SELECTED_LIMIT = 5;
+// 이 상황의 핵심 근거는 질문당 15건이다(core_manifest.core_limit_per_question).
+// 5건으로 잘라 보여주면 남은 10건이 있는 줄도 모르게 되므로 핵심 근거는 전부 보여준다.
+// 그보다 넓은 근거는 확장 보기(extended_evidence_v40.json)로 넘긴다.
+const SELECTED_LIMIT = 15;
 
 export async function POST(req: Request) {
   const payload = (await req.json().catch(() => null)) as Record<

@@ -20,6 +20,15 @@ type Rule = {
 
 const allRules = rules as unknown as Rule[];
 
+// 표시 개수 상한은 라우트가 정한다. 여기에 숫자를 다시 적으면 상한을 바꿀 때
+// 화면은 바뀌었는데 테스트만 옛 숫자를 지키는 상태가 된다. 상한 자체가 아니라
+// "핵심 근거를 잘라 보여주지 않는다"는 성질을 검사한다.
+const selectedLimit = Math.max(
+  ...situationIds.map(
+    (situation) => ruleFor(situation, "base")?.all_evidence.length ?? 0,
+  ),
+);
+
 function ruleFor(situation: string, axis: string) {
   return allRules.find(
     (rule) =>
@@ -73,7 +82,7 @@ describe("personalized safety API", () => {
       // 핵심 근거는 all_evidence 다. 규칙 파일의 `evidence` 는 빌더가 만든 상위 3건
       // 미리보기이므로 표시 개수의 기준이 아니다.
       expect(body.evidence.length, situation).toBe(
-        Math.min(5, base!.all_evidence.length),
+        Math.min(selectedLimit, base!.all_evidence.length),
       );
       expect(body.core_evidence_count, situation).toBe(
         base!.all_evidence.length,
@@ -182,7 +191,9 @@ describe("personalized safety API", () => {
       expect(body.error, example.title).toBeUndefined();
       expect(body.situation_label, example.title).toBeTruthy();
       expect(body.research_question, example.title).toBeTruthy();
-      expect(body.evidence.length, example.title).toBeLessThanOrEqual(5);
+      expect(body.evidence.length, example.title).toBeLessThanOrEqual(
+        selectedLimit,
+      );
       for (const item of body.evidence as { url: string; locator: string }[]) {
         expect(item.url, example.title).toMatch(/^https:\/\/pubmed\./);
         expect(item.locator, example.title).toBeTruthy();
