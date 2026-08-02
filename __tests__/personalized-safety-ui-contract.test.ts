@@ -133,8 +133,8 @@ describe("personalized safety UI contract", () => {
   it("uses a 4px spacing scale, aligned shell, and 48px controls", () => {
     expect(globalCss).toContain("--space-1: 0.25rem");
     expect(globalCss).toContain("--space-2: 0.5rem");
-    expect(globalCss).toContain("--page-shell-max: 64rem");
-    expect(globalCss).toContain("--measure-readable: 66ch");
+    expect(globalCss).toContain("--page-shell-max: 54rem");
+    expect(globalCss).toContain("--measure-readable: 54ch");
     expect(componentSource).toContain("min-h-12");
   });
 
@@ -180,10 +180,12 @@ describe("personalized safety UI contract", () => {
   });
 
   it("puts the honest lookup purpose before research statistics", () => {
-    expect(pageSource.indexOf("<PersonalizedSafetyQuery />")).toBeLessThan(
+    // 통계 숫자를 먼저 읽으면 이 화면이 무엇을 하는 도구인지 오해한다.
+    // 어떤 배치를 쓰든 한계 문장이 숫자보다 위에 있어야 한다.
+    expect(pageSource.indexOf("입력값과 논문 내용을 대조하는 도구가 아닙니다")).toBeLessThan(
       pageSource.indexOf("stats.map"),
     );
-    expect(pageSource).toContain("입력값과 논문 내용을 대조하는 도구가 아닙니다");
+    expect(pageSource).toContain("<PersonalizedSafetyQuery />");
   });
 
   it("gives loading and error states a usable accessibility contract", () => {

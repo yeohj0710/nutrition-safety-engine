@@ -508,87 +508,79 @@ export function PersonalizedSafetyQuery() {
 
   const staleResult = result ? !isSameQuery(form, result) : false;
   const selectedSituation = situations.find((item) => item.id === form.situation);
-  const featuredExample = publicInputExamples[0];
-  const otherExamples = publicInputExamples.slice(1);
   const findingSentences = result
     ? flattenTranslatedFindings(result.evidence)
     : [];
 
   return (
-    <div className="flex flex-col gap-8">
-      <section aria-labelledby="demo-title" className="rounded-2xl bg-blue-50 p-4 sm:p-6">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <p id="demo-title" className="text-base font-bold text-stone-950">
-              20초 데모
-            </p>
-            <p className="mt-1 text-sm leading-6 text-stone-600">
-              연구 자료에 표시된 표현 종류로 결과를 좁히는 과정을 재현합니다.
-            </p>
-          </div>
-          <InfoTip label="데모">
-            데모는 개인 상태를 판정하지 않습니다. 연구 질문과 초록에서 포착한 표현을
-            연결하는 방식만 보여줍니다.
-          </InfoTip>
-        </div>
+    <div>
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <h2 className="text-[1.05rem] font-bold leading-snug text-foreground">
+          상황과 초록 표현으로 좁히는 근거 기록
+        </h2>
+        <InfoTip label="조회 방식">
+          이 화면은 개인 상태를 판정하지 않습니다. 연구 질문과 초록에서 포착한
+          표현을 연결하는 방식만 보여줍니다.
+        </InfoTip>
+      </div>
+      <div className="mt-3 border-l-2 border-blue-500 pl-3.5">
+        <p className="text-[0.72rem] font-bold text-blue-600">조회 순서</p>
+        <p className="mt-1 break-keep text-sm leading-6 text-muted">
+          상황 하나를 고르면 그 질문의 핵심 근거를 보여줍니다. 초록 표현을 함께
+          고르면 그 표현이 잡힌 기록만 남기고, 확장 근거까지 같은 조건으로
+          넓혀 볼 수 있습니다.
+        </p>
+      </div>
 
-        <button
-          type="button"
-          disabled={pending}
-          aria-pressed={activeExample === featuredExample.id}
-          onClick={() => runExample(featuredExample)}
-          className="mt-4 flex min-h-12 w-full items-center justify-between gap-4 rounded-xl border border-blue-200 bg-white px-4 py-3 text-left transition-colors hover:border-blue-400 disabled:cursor-wait disabled:opacity-60"
-        >
-          <span className="min-w-0">
-            <span className="block text-sm font-bold text-stone-950">
-              {featuredExample.title}
+      <AnimatedDetails
+        className="mt-4 rounded-xl bg-stone-50"
+        summaryClassName="flex min-h-12 list-none items-center justify-between gap-4 rounded-xl px-4 py-3 text-left"
+        bodyClassName="grid gap-1 border-t border-stone-200 px-2 py-2 sm:grid-cols-2"
+        summary={
+          <>
+            <span className="text-sm font-bold text-foreground">
+              상황별 예시 {publicInputExamples.length}개
             </span>
-            <span className="mt-1 block text-xs leading-5 text-stone-600">
-              {featuredExample.summary}
-            </span>
-          </span>
-          <span className="shrink-0 rounded-full bg-blue-700 px-3 py-1 text-xs font-bold text-white">
-            {featuredExample.expectedEvidenceCount}건
-          </span>
-        </button>
-
-        <AnimatedDetails
-          className="mt-3 rounded-xl border border-blue-200 bg-white/80"
-          summaryClassName="flex min-h-12 list-none items-center justify-between px-4 py-3 text-sm font-semibold text-blue-800"
-          bodyClassName="grid gap-2 border-t border-blue-100 p-3 sm:grid-cols-2"
-          summary={
-            <>
-              <span>다른 상황 데모 {otherExamples.length}개</span>
-              <span aria-hidden="true" className="collapsible-chevron">↓</span>
-            </>
-          }
-        >
-          {otherExamples.map((example) => (
-            <button
-              key={example.id}
-              type="button"
-              disabled={pending}
-              aria-pressed={activeExample === example.id}
-              onClick={() => runExample(example)}
-              className="flex min-h-12 flex-col rounded-xl border border-stone-200 bg-white p-4 text-left transition-colors hover:border-blue-300 hover:bg-blue-50 disabled:cursor-wait disabled:opacity-60"
+            <span
+              aria-hidden="true"
+              className="collapsible-chevron text-stone-500"
             >
-              <span className="text-sm font-bold text-stone-900">{example.title}</span>
-              <span className="mt-1 text-xs leading-5 text-stone-600">
-                {example.summary}
-              </span>
-            </button>
-          ))}
-        </AnimatedDetails>
-      </section>
+              ↓
+            </span>
+          </>
+        }
+      >
+        {publicInputExamples.map((example) => (
+          <button
+            key={example.id}
+            type="button"
+            disabled={pending}
+            aria-pressed={activeExample === example.id}
+            onClick={() => runExample(example)}
+            className="flex min-h-12 flex-col rounded-lg px-3 py-2.5 text-left transition-colors hover:bg-blue-50 disabled:cursor-wait disabled:opacity-60"
+          >
+            <span className="text-sm font-bold text-foreground">
+              {example.title}
+            </span>
+            <span className="mt-1 text-xs leading-5 text-muted">
+              {example.summary}
+            </span>
+          </button>
+        ))}
+      </AnimatedDetails>
 
-      <form id="evidence-query-form" onSubmit={submit} className="scroll-mt-20">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
+      <form
+        id="evidence-query-form"
+        onSubmit={submit}
+        className="mt-6 scroll-mt-20 border-t border-stone-200 pt-6"
+      >
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
           <fieldset>
-            <legend className="text-base font-bold text-stone-950">
+            <legend className="text-[0.95rem] font-bold text-foreground">
               1. 문헌을 찾을 상황
               <span className="ml-2 text-xs font-semibold text-red-600">필수</span>
             </legend>
-            <div className="mt-4 grid gap-2">
+            <div className="mt-3 grid gap-2">
               {situations.map((situation, index) => {
                 const checked = form.situation === situation.id;
                 return (
@@ -615,14 +607,14 @@ export function PersonalizedSafetyQuery() {
           </fieldset>
 
           <fieldset>
-            <legend className="text-base font-bold text-stone-950">
+            <legend className="text-[0.95rem] font-bold text-foreground">
               2. 초록 표현으로 좁히기
               <span className="ml-2 text-xs font-normal text-stone-500">선택</span>
             </legend>
-            <p className="mt-2 text-sm leading-6 text-stone-600">
+            <p className="mt-2 text-[0.8rem] leading-6 text-muted">
               선택한 표현이 포착된 기록만 남깁니다. 나이·약 이름·용량 값 자체를 대조하지 않습니다.
             </p>
-            <div className="mt-4 grid gap-2 sm:grid-cols-2">
+            <div className="mt-3 grid gap-2 sm:grid-cols-2">
               {axes.map((axis) => {
                 const coverage = form.situation
                   ? axisCoverage[form.situation][axis.id]
@@ -666,7 +658,7 @@ export function PersonalizedSafetyQuery() {
           </fieldset>
         </div>
 
-        <div className="sticky bottom-3 z-20 -mx-2 mt-8 flex flex-wrap items-center gap-3 rounded-2xl border border-stone-200 bg-white/95 p-3 shadow-lg backdrop-blur sm:static sm:mx-0 sm:rounded-none sm:border-x-0 sm:border-b-0 sm:bg-transparent sm:px-0 sm:pb-0 sm:pt-6 sm:shadow-none">
+        <div className="sticky bottom-3 z-20 -mx-2 mt-6 flex flex-wrap items-center gap-3 rounded-2xl border border-stone-200 bg-white/95 p-3 shadow-lg backdrop-blur sm:static sm:mx-0 sm:rounded-none sm:border-x-0 sm:border-b-0 sm:bg-transparent sm:px-0 sm:pb-0 sm:pt-5 sm:shadow-none">
           <button
             type="submit"
             disabled={pending}
@@ -689,7 +681,7 @@ export function PersonalizedSafetyQuery() {
         </div>
       </form>
 
-      <div ref={resultRef} className="scroll-mt-20">
+      <div ref={resultRef} className="mt-6 scroll-mt-20">
         <p role="status" aria-live="polite" className="sr-only">
           {pending
             ? "문헌 결과를 불러오는 중입니다."
@@ -715,9 +707,11 @@ export function PersonalizedSafetyQuery() {
 
         {!pending && !result && !error ? (
           <div className="rounded-2xl border border-dashed border-stone-300 bg-stone-50 px-6 py-12 text-center">
-            <p className="text-base font-bold text-stone-800">아직 표시할 문헌이 없습니다</p>
+            <p className="text-[0.95rem] font-bold text-stone-800">
+              표시할 문헌 없음
+            </p>
             <p className="mx-auto mt-2 max-w-[42rem] text-sm leading-6 text-stone-500">
-              위 데모를 실행하거나 상황을 선택해 문헌 결과를 확인하세요.
+              위에서 상황을 하나 고르거나 예시를 누르면 문헌 결과를 보여줍니다.
             </p>
           </div>
         ) : null}
@@ -823,7 +817,7 @@ export function PersonalizedSafetyQuery() {
               ) : null}
 
               <div className="max-w-[66ch] rounded-xl border border-blue-100 bg-blue-50 p-4 text-sm leading-6 text-stone-700">
-                <p className="font-bold text-stone-950">근거 범위를 먼저 확인하세요</p>
+                <p className="font-bold text-stone-950">이 결과의 근거 범위</p>
                 <p className="mt-1">{resultBasisCopy(result)}</p>
                 <p className="mt-2 text-xs text-stone-600">
                   초록 자동 추출 기록 {result.evidence_summary.ai_extracted_sentences}건 · AI 자동 번역 문장{" "}

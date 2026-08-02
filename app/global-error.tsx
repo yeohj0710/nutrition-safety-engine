@@ -36,7 +36,7 @@ export default function GlobalError({
               tabIndex={-1}
               className="mt-3 text-2xl font-bold tracking-[-0.02em] text-foreground focus:outline-none sm:text-3xl"
             >
-              화면을 열지 못했습니다
+              화면 열기 실패
             </h1>
             <p className="measure-copy mt-4 text-sm leading-6 text-muted">
               잠시 후 다시 시도하세요. 같은 문제가 계속되면 페이지를 새로고침해

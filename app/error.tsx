@@ -38,7 +38,7 @@ export default function Error({
             tabIndex={-1}
             className="mt-3 text-2xl font-bold tracking-[-0.02em] text-foreground sm:text-3xl"
           >
-            연구 자료를 불러오지 못했습니다
+            연구 자료 불러오기 실패
           </h1>
           <p className="measure-copy mt-4 text-sm leading-6 text-muted">
             잠시 후 다시 시도하세요. 문제가 계속되면 페이지를 새로고침해 주세요.
