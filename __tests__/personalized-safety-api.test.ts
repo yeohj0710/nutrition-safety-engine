@@ -6,6 +6,7 @@ import {
   situationIds,
   situations,
 } from "@/src/lib/clinical-situations";
+import axisIndex from "@/research/systematic_review_v40/extended_axis_index_v40.json";
 import { publicInputExamples } from "@/src/lib/personalized-safety-examples";
 import { axisCoverage, coreCoverage } from "@/src/lib/axis-coverage";
 import { flattenTranslatedFindings } from "@/src/lib/evidence-sentences";
@@ -131,9 +132,23 @@ describe("personalized safety API", () => {
     expect(body.applied_axes.map((item: { axis: string }) => item.axis)).toEqual(
       ["age_group", "concomitant_medication"],
     );
-    expect(body.evidence.length).toBeLessThanOrEqual(intersection.size);
-    for (const item of body.evidence as { record_id: string }[]) {
+    // 핵심 근거는 규칙 파일의 교집합 안에 있어야 한다.
+    expect(body.core_shown).toBeLessThanOrEqual(intersection.size);
+    const core = (body.evidence as { record_id: string }[]).slice(0, body.core_shown);
+    for (const item of core) {
       expect(intersection.has(item.record_id), item.record_id).toBe(true);
+    }
+    // 모자란 자리를 채운 확장 근거도 같은 축을 모두 보고해야 한다.
+    const extIndex = axisIndex.questions[situation];
+    const extIntersection = new Set(
+      extIndex.age_group.filter((id: string) =>
+        extIndex.concomitant_medication.includes(id),
+      ),
+    );
+    const topUp = (body.evidence as { record_id: string }[]).slice(body.core_shown);
+    expect(body.extended_shown).toBe(topUp.length);
+    for (const item of topUp) {
+      expect(extIntersection.has(item.record_id), item.record_id).toBe(true);
     }
   });
 
@@ -301,17 +316,32 @@ describe("personalized safety API", () => {
     expect(body.narrative[1]).not.toContain(body.evidence[0].key_finding_ko);
   });
 
-  it("says so plainly when the filters leave nothing", async () => {
-    // 이 조합은 봉인된 규칙 파일에서 실제 교집합이 0건이다. 0건 상태가 우연히
-    // 생길 때만 검사하면 회귀를 놓치므로 응답 수까지 고정한다.
+  it("fills the screen from the extended pool when the core intersection is empty", async () => {
+    // 이 조합은 봉인된 규칙 파일에서 교집합이 0건이다. 예전에는 화면이 비었지만
+    // 지금은 같은 조건의 확장 근거로 채운다. 대신 핵심 근거가 0건이라는 사실을
+    // 응답이 그대로 말해야 한다.
     const { status, body } = await ask({
       situation: "HRS1_PERIOPERATIVE",
       axes: ["age_group", "concomitant_medication", "dose_range"],
     });
     expect(status).toBe(200);
-    expect(body.evidence).toHaveLength(0);
-    expect(body.evidence_total_after_filter).toBe(0);
-    expect(body.summary).toMatch(/문헌은 없습니다/);
+    expect(body.core_shown).toBe(0);
+    expect(body.extended_shown).toBeGreaterThan(0);
+    expect(body.evidence.length).toBe(body.core_shown + body.extended_shown);
+    expect(body.summary).toMatch(/핵심 근거 0건에 같은 조건의 확장 근거/);
+  });
+
+  it("still says nothing is left when no tier has a match", async () => {
+    // 확장 근거까지 0건이면 없다고 말해야 한다.
+    const { body } = await ask({
+      situation: "HRS2_KIDNEY_DISEASE",
+      axes: ["dose_range", "sex"],
+    });
+    if (body.evidence.length === 0) {
+      expect(body.summary).toMatch(/문헌은 없습니다/);
+    } else {
+      expect(body.evidence.length).toBe(body.core_shown + body.extended_shown);
+    }
   });
 
   it("answers every public example without an error", async () => {
@@ -426,13 +456,15 @@ describe("personalized safety API", () => {
       offset: 300,
     });
     expect(status).toBe(200);
-    expect(body.evidence_summary.displayed_records).toBe(12);
-    expect(body.evidence_summary.source_scope).toEqual({
-      abstract_only: 11,
-      title_only: 1,
-    });
-    expect(body.evidence_summary.ai_extracted_sentences).toBe(11);
-    expect(body.evidence_summary.title_derived_records).toBe(1);
+    const summary = body.evidence_summary;
+    // 마지막 페이지라 30건이 다 차지 않는다. 어떤 순서로 골라도 두 계열의 합은
+    // 표시 개수와 같아야 하고, 제목만 있는 기록은 추출 문장에서 빠져야 한다.
+    expect(summary.displayed_records).toBe(body.evidence.length);
+    expect(summary.source_scope.abstract_only + summary.source_scope.title_only).toBe(
+      summary.displayed_records,
+    );
+    expect(summary.ai_extracted_sentences).toBe(summary.source_scope.abstract_only);
+    expect(summary.title_derived_records).toBe(summary.source_scope.title_only);
   });
 
   it("does not claim that filters were ignored for an unfiltered expanded request", async () => {

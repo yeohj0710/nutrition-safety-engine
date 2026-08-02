@@ -92,6 +92,8 @@ type ApiResult = {
   expanded: boolean;
   expanded_offset: number;
   expanded_page_size: number;
+  core_shown: number;
+  extended_shown: number;
   extended_total: number;
   extended_pool_total: number;
   extended_match_total: number;
@@ -132,6 +134,8 @@ function resultCountLabel(result: ApiResult) {
 }
 
 function resultHeading(result: ApiResult) {
+  if (!result.expanded && result.extended_shown > 0)
+    return "선택한 표현이 있는 근거";
   if (result.expanded)
     return result.applied_axes.length
       ? "선택한 표현이 있는 확장 근거"
@@ -142,6 +146,8 @@ function resultHeading(result: ApiResult) {
 }
 
 function resultBasisCopy(result: ApiResult) {
+  if (!result.expanded && result.extended_shown > 0)
+    return `핵심 근거 ${result.core_shown}건에 같은 조건의 확장 근거 ${result.extended_shown}건을 더해 보여드립니다. 확장 근거는 한국어 번역 없이 영어 원문 문장입니다. 실제 값과 논문 내용을 대조하지는 않습니다.`;
   if (result.expanded)
     return result.applied_axes.length
       ? `이 상황의 근거 ${result.extended_pool_total.toLocaleString("ko-KR")}건 전체에 같은 표현 필터를 걸었습니다. 핵심 근거 15건 밖까지 포함합니다. 실제 값과 논문 내용을 대조하지는 않습니다.`

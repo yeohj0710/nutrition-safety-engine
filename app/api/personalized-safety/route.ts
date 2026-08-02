@@ -342,6 +342,204 @@ function rankEvidence(items: Evidence[]) {
   );
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 근거 고르기 — 조건에 맞으면서 서로 다른 문헌이 골고루 나오게 한다.
+//
+// 이전에는 확장 목록을 파일 순서대로 잘라 보여줬다. 그래서 어떤 조건을 넣든 같은
+// 문헌이 앞에 오고, 1,899건 가운데 실제로 화면에 닿는 것은 650건(34%)뿐이었다.
+// 상위 20% 문장이 전체 노출의 84%를 가져갔다.
+//
+// 세 가지를 함께 쓴다.
+//   ① 조건 적합도  적용한 축을 몇 개나 보고하는 문헌인지, 인용 문장 자체에 그 축이
+//      드러나는지를 센다. 조건을 많이 반영한 문헌이 위로 온다.
+//   ② 다양성       이미 고른 문장과 낱말이 겹치면 점수를 깎는다(MMR). 비슷한 문장이
+//      앞을 채우는 것을 막는다.
+//   ③ 질의별 회전  동점 후보는 SHA-256(질의 · record_id) 순으로 가른다. 질의가 다르면
+//      다른 문헌이 앞에 온다. 난수가 아니라 질의에서 나온 값이므로 같은 입력은 항상
+//      같은 결과를 준다(결정론 계약 유지).
+// ─────────────────────────────────────────────────────────────────────────────
+
+const AXIS_SIGNALS: Partial<Record<AxisId, RegExp>> = {
+  age_group: /child|adolesc|adult|elder|older|aged|years? old|age[sd]?\b/i,
+  sex: /\bmen\b|\bwomen\b|\bmale\b|\bfemale\b|\bsex\b|\bgender\b/i,
+  concomitant_medication: /warfarin|anticoag|aspirin|heparin|medication|drug|therapy/i,
+  underlying_condition:
+    /kidney|renal|dialysis|pregnan|liver|hepatic|cirrho|surg|diabet|hypertens|cancer/i,
+  dose_range:
+    /\b\d+(?:[.,]\d+)?(?:\s*(?:-|–|to)\s*\d+(?:[.,]\d+)?)?\s*(?:mg|g|µg|μg|mcg|iu|units?|ml|mmol|%)\b/i,
+};
+
+/** 32비트 결정적 해시. 질의마다 다른 순서를 주되 난수는 쓰지 않는다. */
+function rotationKey(seed: string, recordId: string) {
+  let hash = 2166136261;
+  const text = `${seed}|${recordId}`;
+  for (let index = 0; index < text.length; index += 1) {
+    hash ^= text.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return (hash >>> 0) / 4294967296;
+}
+
+const STOP_WORDS = new Set([
+  "the", "and", "for", "with", "that", "this", "were", "was", "are", "from",
+  "have", "has", "had", "not", "but", "than", "into", "also", "may", "can",
+  "results", "conclusions", "background", "methods", "objective", "study",
+  "patients", "group", "groups", "among", "between", "after", "before",
+]);
+
+function contentTokens(text: string) {
+  return new Set(
+    text
+      .toLowerCase()
+      .split(/[^a-z0-9]+/)
+      .filter((word) => word.length > 3 && !STOP_WORDS.has(word)),
+  );
+}
+
+function overlapRatio(left: Set<string>, right: Set<string>) {
+  if (!left.size || !right.size) return 0;
+  let shared = 0;
+  for (const token of left) if (right.has(token)) shared += 1;
+  return shared / Math.min(left.size, right.size);
+}
+
+/** 조건 적합도. 적용한 축이 인용 문장에 드러나면 더 크게 친다. */
+function conditionFit(item: Evidence, applied: AxisId[]) {
+  if (!applied.length) return 0;
+  const sentence = String(item.key_finding ?? "");
+  const wider = `${item.title ?? ""} ${item.population ?? ""} ${item.dose ?? ""}`;
+  let score = 0;
+  for (const axis of applied) {
+    const signal = AXIS_SIGNALS[axis];
+    if (!signal) continue;
+    if (signal.test(sentence)) score += 3;
+    else if (signal.test(wider)) score += 1;
+  }
+  return score / applied.length;
+}
+
+/** 인용할 만한 문장인지. 결과·결론 문장과 수치가 있는 문장을 위로 올린다. */
+function sentenceQuality(item: Evidence) {
+  const sentence = String(item.key_finding ?? "");
+  let score = 0;
+  if (/^(?:RESULTS?|CONCLUSIONS?|FINDINGS?|SYNTHESIS OF RESULTS):/i.test(sentence))
+    score += 1.5;
+  if (/(?<![A-Za-z])\d/.test(sentence)) score += 1;
+  if (/increase|decrease|reduc|associat|risk|higher|lower|significant/i.test(sentence))
+    score += 1;
+  if (sentence.length >= 90) score += 0.5;
+  if (String(item.source_scope ?? "") === "title_only") score -= 2;
+  return score;
+}
+
+/**
+ * 조건 적합도 · 다양성 · 질의별 회전을 함께 써서 고른다.
+ * 같은 입력은 항상 같은 결과를 돌려준다.
+ */
+function scoreCandidates(items: Evidence[], applied: AxisId[], seed: string) {
+  const scored = items.map((item) => ({
+    item,
+    tokens: contentTokens(String(item.key_finding ?? item.title ?? "")),
+    base:
+      conditionFit(item, applied) * 3 +
+      sentenceQuality(item) +
+      Math.min(Number(item.priority_score ?? 0), 30) / 30,
+    rotation: rotationKey(seed, item.record_id),
+  }));
+  scored.sort(
+    (a, b) => b.base - a.base || a.item.record_id.localeCompare(b.item.record_id),
+  );
+  return scored;
+}
+
+type Scored = ReturnType<typeof scoreCandidates>[number];
+
+/** 이미 고른 것과 낱말이 겹치면 그만큼 뒤로 민다(MMR). */
+function diversify(entries: Scored[], limit: number) {
+  if (entries.length <= 2) return entries;
+  const chosen: Scored[] = [];
+  const rest = [...entries];
+  const take = Math.min(limit, entries.length);
+  while (chosen.length < take && rest.length) {
+    let bestIndex = 0;
+    let bestValue = -Infinity;
+    for (let index = 0; index < rest.length; index += 1) {
+      let penalty = 0;
+      for (const picked of chosen) {
+        const ratio = overlapRatio(rest[index].tokens, picked.tokens);
+        if (ratio > penalty) penalty = ratio;
+      }
+      // 원래 순서를 살짝 존중하되(앞일수록 가산) 겹치는 문장은 뒤로 민다.
+      const value = (entries.length - index) / entries.length - penalty * 2.5;
+      if (value > bestValue) {
+        bestValue = value;
+        bestIndex = index;
+      }
+    }
+    chosen.push(rest[bestIndex]);
+    rest.splice(bestIndex, 1);
+  }
+  return [...chosen, ...rest];
+}
+
+/** 짧은 목록에서 조건 적합도·다양성으로 고른다. 핵심 근거 15건 경로가 쓴다. */
+function selectDiverse(
+  items: Evidence[],
+  applied: AxisId[],
+  seed: string,
+  limit: number,
+) {
+  if (items.length <= 1 || limit <= 0) return items.slice(0, limit);
+  const scored = scoreCandidates(items, applied, seed);
+  return diversify(scored, limit)
+    .slice(0, limit)
+    .map((entry) => entry.item);
+}
+
+/**
+ * 확장 목록 전체의 순서를 만든다. 한 페이지가 점수 구간 전체를 훑도록 엮는다.
+ *
+ * 점수순으로 정렬한 뒤 페이지 크기만큼의 띠로 자르고, 띠 안에서는 질의별 회전값으로
+ * 정렬한다. 그다음 띠에서 한 개씩 번갈아 꺼내 페이지를 만든다. 그래서
+ *   · 한 페이지에 상위·중위·하위 근거가 함께 오고
+ *   · 조건이 달라지면 띠 안 순서가 달라져 다른 문헌이 앞 페이지에 올라온다.
+ * 회전값은 질의 서명에서 나온 결정적 해시라 같은 입력은 항상 같은 순서를 준다.
+ */
+function orderForPaging(
+  items: Evidence[],
+  applied: AxisId[],
+  seed: string,
+  pageSize: number,
+) {
+  if (items.length <= pageSize) {
+    return selectDiverse(items, applied, seed, items.length);
+  }
+  const scored = scoreCandidates(items, applied, seed);
+  const bandCount = pageSize;
+  const bandSize = scored.length / bandCount;
+  const bands: Scored[][] = [];
+  for (let band = 0; band < bandCount; band += 1) {
+    const from = Math.floor(band * bandSize);
+    const to = band === bandCount - 1
+      ? scored.length
+      : Math.max(from, Math.floor((band + 1) * bandSize));
+    const slice = scored.slice(from, to);
+    slice.sort(
+      (a, b) => b.rotation - a.rotation || a.item.record_id.localeCompare(b.item.record_id),
+    );
+    bands.push(slice);
+  }
+  const ordered: Scored[] = [];
+  const depth = Math.max(...bands.map((band) => band.length));
+  for (let index = 0; index < depth; index += 1) {
+    const page: Scored[] = [];
+    for (const band of bands) if (index < band.length) page.push(band[index]);
+    // 페이지 안에서만 다양성을 건다. 페이지 경계를 넘지 않으므로 페이징이 안정적이다.
+    ordered.push(...diversify(page, page.length));
+  }
+  return ordered.map((entry) => entry.item);
+}
+
 // 이 상황의 핵심 근거는 질문당 15건이다(core_manifest.core_limit_per_question).
 // 5건으로 잘라 보여주면 남은 10건이 있는 줄도 모르게 되므로 핵심 근거는 전부 보여준다.
 // 그보다 넓은 근거는 확장 보기(extended_evidence_v40.json)로 넘긴다.
@@ -463,12 +661,16 @@ export async function POST(req: Request) {
   // 그것을 쓰면 조건을 아무것도 안 넣은 화면이 조건을 넣은 화면보다 좁아진다
   // (핵심근거 15건인데 3건만 나오고, 축 두 개를 넣으면 5건이 나왔다).
   // 두 경로 모두 all_evidence 를 쓰고 표시 개수는 SELECTED_LIMIT 하나로 정한다.
+  const appliedAxisIds = applied.map((item) => item.axis);
+  // 질의 서명. 상황과 적용한 축이 같으면 같은 순서를 준다.
+  const querySeed = `${situation}|${[...appliedAxisIds].sort().join(",")}`;
   const ranked = rankEvidence(applied.length ? pool : base.all_evidence);
 
   // 확장 보기: 이 상황의 근거 전체에 같은 조건을 건다. 축 색인이 확장 근거에도
   // 생겼으므로(extended_axis_index_v40.json) 핵심근거 15건 밖에서도 조건이 걸린다.
   const expanded = payload.expanded === true;
-  const extendedByQuestion = expanded ? await loadExtendedEvidence() : null;
+  const needExtended = expanded || applied.length > 0;
+  const extendedByQuestion = needExtended ? await loadExtendedEvidence() : null;
   // 축 색인은 140 KB 라 기본 조회에서도 읽는다. 조건을 건 확장 근거가 몇 건인지를
   // 확장 보기를 열기 전에 알려주려면 이 수가 먼저 있어야 한다.
   const extendedAxisIndex = await loadExtendedAxisIndex();
@@ -514,9 +716,33 @@ export async function POST(req: Request) {
       ? Math.min(Math.floor(rawOffset), finalPageOffset)
       : 0;
 
+  // 확장 목록은 조건 적합도·다양성·질의별 회전으로 다시 정렬한 뒤 페이지를 자른다.
+  // 페이지를 넘겨도 순서가 흔들리지 않도록 정렬은 목록 전체에 한 번만 건다.
+  const extendedOrdered = expanded
+    ? orderForPaging(extendedAll, appliedAxisIds, querySeed, EXTENDED_PAGE)
+    : extendedAll;
+
+  // 기본 화면 채우기. 조건을 여러 개 걸면 핵심 근거 15건 안에서 1~3건까지 줄어드는데,
+  // 같은 조건에 맞는 확장 근거는 수십 건이 남아 있다. 핵심 근거를 먼저 두고 모자란
+  // 자리를 확장 근거로 채운다. 두 층의 지위가 다르므로 응답에서 몇 건씩인지 밝힌다.
+  const coreSelected = expanded
+    ? []
+    : selectDiverse(ranked, appliedAxisIds, querySeed, SELECTED_LIMIT);
+  const coreIds = new Set(coreSelected.map((item) => item.record_id));
+  const topUpNeeded = expanded ? 0 : SELECTED_LIMIT - coreSelected.length;
+  const topUp =
+    topUpNeeded > 0 && applied.length
+      ? orderForPaging(
+          extendedAll.filter((item) => !coreIds.has(item.record_id)),
+          appliedAxisIds,
+          `${querySeed}|topup`,
+          EXTENDED_PAGE,
+        ).slice(0, topUpNeeded)
+      : [];
+
   const selectedRaw = expanded
-    ? extendedAll.slice(offset, offset + EXTENDED_PAGE)
-    : ranked.slice(0, SELECTED_LIMIT);
+    ? extendedOrdered.slice(offset, offset + EXTENDED_PAGE)
+    : [...coreSelected, ...topUp];
   const selected = selectedRaw.map(presentEvidence);
 
   const meta = situationById.get(situation);
@@ -577,12 +803,15 @@ export async function POST(req: Request) {
     : axesProvided
       ? `${meta?.short ?? "이 상황"}에서 표현 필터 없이 핵심 근거를 확인했습니다.`
       : buildProfileLine(meta?.spoken ?? "이 상황을 고르셨고", requestedProfile);
+  const tierLine = topUp.length
+    ? `핵심 근거 ${coreSelected.length}건에 같은 조건의 확장 근거 ${topUp.length}건을 더했습니다. 확장 근거는 아직 한국어로 옮기지 않아 영어 원문 문장으로 보여드립니다.`
+    : "";
   const narrative = expanded
     ? [expandedSummary]
     : selected.length
       ? [
           profileLine,
-          buildEvidenceOverview(selected),
+          [buildEvidenceOverview(selected), tierLine].filter(Boolean).join(" "),
           buildLimitLine(selectedRaw, inputs.dose, narrowedNouns),
           buildNextLine(selected, applied.length),
         ]
@@ -630,6 +859,8 @@ export async function POST(req: Request) {
       expanded,
       expanded_offset: offset,
       expanded_page_size: EXTENDED_PAGE,
+      core_shown: coreSelected.length,
+      extended_shown: topUp.length,
       extended_total: extendedTotal,
       extended_pool_total: questionPoolTotal,
       extended_match_total: extendedMatchTotal,
