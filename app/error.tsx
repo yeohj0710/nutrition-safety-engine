@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Error({
   error,
@@ -9,31 +9,46 @@ export default function Error({
   error: Error & { digest?: string };
   unstable_retry: () => void;
 }) {
+  const headingRef = useRef<HTMLHeadingElement>(null);
+
   useEffect(() => {
     console.error("[app-error]", {
       message: error.message,
       digest: error.digest ?? null,
     });
+    headingRef.current?.focus();
   }, [error]);
 
   return (
-    <main className="app-page min-h-screen px-4 py-8 md:px-6 md:py-10">
+    <main
+      id="main-content"
+      tabIndex={-1}
+      className="app-page min-h-[60vh] px-4 py-12 sm:px-6 sm:py-16"
+    >
       <div className="page-shell-narrow">
-        <section className="surface-card-strong rounded-[2.2rem] px-7 py-9 md:px-10 md:py-12">
-          <p className="eyebrow">Error</p>
-          <h1 className="mt-5 font-display text-[clamp(1.72rem,3.25vw,2.65rem)] leading-[1.03] tracking-[-0.04em] text-foreground">
-            페이지를 불러오지 못했어요.
+        <section
+          role="alert"
+          aria-labelledby="route-error-title"
+          className="surface-card-strong rounded-3xl px-6 py-8 sm:px-9 sm:py-10"
+        >
+          <p className="eyebrow">문헌 불러오기 오류</p>
+          <h1
+            id="route-error-title"
+            ref={headingRef}
+            tabIndex={-1}
+            className="mt-3 text-2xl font-bold tracking-[-0.02em] text-foreground sm:text-3xl"
+          >
+            연구 자료를 불러오지 못했습니다
           </h1>
-          <p className="measure-copy mt-5 text-base leading-7 text-muted">
-            예기치 않은 오류가 발생했어요. 개인 정보는 브라우저 밖으로 보내지
-            않으며, 다시 시도하면 일시적인 문제는 복구될 수 있어요.
+          <p className="measure-copy mt-4 text-sm leading-6 text-muted">
+            잠시 후 다시 시도하세요. 문제가 계속되면 페이지를 새로고침해 주세요.
           </p>
           <button
             type="button"
             onClick={() => unstable_retry()}
-            className="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-accent px-6 py-[0.68rem] text-[0.84rem] font-medium text-white transition duration-200 hover:-translate-y-0.5 hover:bg-accent-strong"
+            className="mt-7 inline-flex min-h-12 items-center justify-center rounded-xl bg-accent px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-accent-strong"
           >
-            다시 시도
+            다시 불러오기
           </button>
         </section>
       </div>

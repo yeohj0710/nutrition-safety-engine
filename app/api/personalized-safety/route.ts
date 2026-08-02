@@ -1,15 +1,21 @@
 import { NextResponse } from "next/server";
 import rules from "@/research/systematic_review_v40/personalized_rules.json";
-import extended from "@/research/systematic_review_v40/extended_evidence_v40.json";
+import evidenceManifest from "@/research/systematic_review_v40/manifest.json";
 import {
   axes,
   axisByField,
+  axisById,
+  axisIds,
   evidenceOnlyDisclaimer,
   situationById,
   situationIds,
   type AxisId,
   type SituationId,
 } from "@/src/lib/clinical-situations";
+import {
+  deriveEvidenceSource,
+  flattenTranslatedFindings,
+} from "@/src/lib/evidence-sentences";
 import { joinMultiValue, splitMultiValue } from "@/src/lib/multi-value-input";
 
 // 이 라우트는 외부 모델을 호출하지 않는다. 같은 입력에 같은 근거 목록이 나와야
@@ -22,19 +28,6 @@ function objectParticle(word: string) {
   const code = last.charCodeAt(0);
   if (Number.isNaN(code) || code < 0xac00 || code > 0xd7a3) return "를";
   return (code - 0xac00) % 28 === 0 ? "를" : "을";
-}
-
-/** 받침이 있으면 true. 한글이 아니면 받침 없는 것으로 본다(단위·숫자가 자주 온다). */
-function hasFinalConsonant(word: string) {
-  const last = word.at(-1) ?? "";
-  const code = last.charCodeAt(0);
-  if (Number.isNaN(code) || code < 0xac00 || code > 0xd7a3) return false;
-  return (code - 0xac00) % 28 !== 0;
-}
-
-/** 한글 보조사 은/는. */
-function topicParticle(word: string) {
-  return hasFinalConsonant(word) ? "은" : "는";
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -54,26 +47,6 @@ function studyKind(item: Evidence) {
   if (/clinical trial/i.test(types)) return "임상시험";
   if (/review/i.test(types)) return "문헌고찰";
   return "연구";
-}
-
-/**
- * 인용은 문장 경계에서만 줄인다. 문장 중간을 자르면 의미가 뒤집힐 수 있어서
- * 줄인 경우에는 줄였다는 사실을 함께 알린다.
- */
-const QUOTE_LIMIT = 200;
-function trimToSentences(text: string) {
-  const clean = text.replace(/\s+/g, " ").trim();
-  if (clean.length <= QUOTE_LIMIT) return { text: clean, trimmed: false };
-  const sentences = clean.split(/(?<=[.!?。])\s+/);
-  let kept = "";
-  for (const sentence of sentences) {
-    const next = kept ? `${kept} ${sentence}` : sentence;
-    if (kept && next.length > QUOTE_LIMIT) break;
-    kept = next;
-    if (kept.length >= QUOTE_LIMIT) break;
-  }
-  const out = kept || clean.slice(0, QUOTE_LIMIT);
-  return { text: out, trimmed: out.length < clean.length };
 }
 
 /**
@@ -104,8 +77,8 @@ function buildProfileLine(
   return `${spoken}, ${said.join(" · ")} 이렇게 적어주셨어요.`;
 }
 
-/** 고른 문헌이 실제로 무엇을 보고했는지. 가장 관련 높은 한 편은 원문 그대로 인용한다. */
-function buildEvidenceLine(items: Evidence[]) {
+/** 고른 문헌 묶음의 구성만 설명한다. 개별 결과는 화면에서 문헌별로 표시한다. */
+function buildEvidenceOverview(items: Evidence[]) {
   const counts = new Map<string, number>();
   for (const item of items) {
     const kind = studyKind(item);
@@ -124,20 +97,9 @@ function buildEvidenceLine(items: Evidence[]) {
       ? ` 모두 ${lo}년 문헌입니다.`
       : ` ${lo}년부터 ${hi}년 사이에 나왔습니다.`;
 
-  const head = `연결된 문헌은 ${items.length}편입니다.${
-    mix ? ` ${mix}이고,` : ""
+  return `연결된 문헌은 ${items.length}편입니다.${
+    mix ? ` 연구유형은 ${mix}입니다.` : ""
   }${span}`;
-
-  const top = items[0];
-  const finding = String(top?.key_finding_ko ?? "").replace(/\s+/g, " ").trim();
-  if (!finding) return head;
-  const quote = trimToSentences(finding);
-  const kind = studyKind(top);
-  return `${head} 그중 가장 관련이 높은 ${top.year ? `${top.year}년 ` : ""}${kind}${topicParticle(
-    kind,
-  )} “${quote.text}”라고 보고했습니다.${
-    quote.trimmed ? " 이어지는 문장은 아래 목록에서 볼 수 있어요." : ""
-  }`;
 }
 
 /** 이 문헌들이 말하지 않는 것. 세어서 말할 수 있는 것만 적는다. */
@@ -207,6 +169,13 @@ type Evidence = {
   effect_status: string;
 };
 
+type PresentedEvidence = Evidence & {
+  source_locator: string;
+  source_sentence: string;
+  translation_authorship: "ai_generated" | null;
+  sentence_role: "result_or_conclusion" | "background_or_methods" | "unclassified";
+};
+
 type Rule = {
   rule_id: string;
   question_id: string;
@@ -232,22 +201,109 @@ const allRules = rules as unknown as Rule[];
 // 확장 항목에는 한국어 번역(key_finding_ko)과 효과 판정(effect_status)이 없다.
 // 그 둘은 핵심근거 75건에만 있으므로 빈 값으로 채워 형태만 맞춘다. 화면은 번역이
 // 비어 있으면 그 줄을 그리지 않으므로 영어 근거 문장만 보인다.
-const extendedByQuestion = Object.fromEntries(
-  Object.entries(
-    (extended as { questions: Record<string, Record<string, unknown>[]> }).questions,
-  ).map(([question, items]) => [
-    question,
-    items.map(
-      (item) =>
-        ({
-          key_finding_ko: "",
-          effect_status: "",
-          ...item,
-        }) as unknown as Evidence,
-    ),
-  ]),
-) as Record<string, Evidence[]>;
+let extendedEvidencePromise: Promise<Record<string, Evidence[]>> | null = null;
+
+/** 3.4 MB 확장 목록은 사용자가 확장 보기를 열 때만 읽는다. */
+function loadExtendedEvidence() {
+  if (!extendedEvidencePromise) {
+    extendedEvidencePromise = import(
+      "@/research/systematic_review_v40/extended_evidence_v40.json"
+    ).then((module) =>
+      Object.fromEntries(
+        Object.entries(
+          (module.default as {
+            questions: Record<string, Record<string, unknown>[]>;
+          }).questions,
+        ).map(([question, items]) => [
+          question,
+          items.map(
+            (item) =>
+              ({
+                key_finding_ko: "",
+                effect_status: "",
+                ...item,
+              }) as unknown as Evidence,
+          ),
+        ]),
+      ),
+    );
+  }
+  return extendedEvidencePromise;
+}
+
+/**
+ * 확장 근거의 축 색인. 규칙 파일의 축 규칙은 질문당 핵심근거 15건 위에서만 계산돼
+ * 있어서 확장 보기에 조건을 걸 수 없었다. `tools/v40/build_extended_axis_index.py`
+ * 가 v3.0 `extract_observed_axes` 와 같은 판정식을 확장 근거 1,899행에 적용해 만든
+ * 색인이다. 핵심근거 360건 대조에서 규칙 파일과 전건 일치한다.
+ */
+let extendedAxisPromise: Promise<Record<string, Record<string, string[]>>> | null =
+  null;
+
+function loadExtendedAxisIndex() {
+  if (!extendedAxisPromise) {
+    extendedAxisPromise = import(
+      "@/research/systematic_review_v40/extended_axis_index_v40.json"
+    ).then(
+      (module) =>
+        (module.default as {
+          questions: Record<string, Record<string, string[]>>;
+        }).questions,
+    );
+  }
+  return extendedAxisPromise;
+}
 const EXTENDED_PAGE = 30;
+
+function sentenceRole(sentence: string): PresentedEvidence["sentence_role"] {
+  if (/^(?:RESULTS?|CONCLUSIONS?|FINDINGS?|SYNTHESIS OF RESULTS):/i.test(sentence))
+    return "result_or_conclusion";
+  if (/^(?:BACKGROUND|INTRODUCTION|METHODS?|OBJECTIVES?|BACKGROUND\/OBJECTIVES):/i.test(sentence))
+    return "background_or_methods";
+  return "unclassified";
+}
+
+/** 봉인 데이터는 그대로 두고 표시 계층에서 위치와 실제 문장을 분리한다. */
+function presentEvidence(item: Evidence): PresentedEvidence {
+  const { sourceLocator, sourceSentence } = deriveEvidenceSource(
+    String(item.key_finding ?? ""),
+    String(item.locator ?? ""),
+  );
+  return {
+    ...item,
+    source_locator: sourceLocator,
+    source_sentence: sourceSentence,
+    translation_authorship: item.key_finding_ko ? "ai_generated" : null,
+    sentence_role: sentenceRole(sourceSentence),
+  };
+}
+
+function normalizedTitle(title: string) {
+  return title.toLocaleLowerCase("en-US").replace(/[^a-z0-9가-힣]+/gu, " ").trim();
+}
+
+function evidenceSummary(items: PresentedEvidence[]) {
+  const sourceScope = { abstract_only: 0, title_only: 0 };
+  for (const item of items) {
+    if (item.source_scope === "title_only") sourceScope.title_only += 1;
+    else sourceScope.abstract_only += 1;
+  }
+  return {
+    displayed_records: items.length,
+    unique_titles: new Set(items.map((item) => normalizedTitle(item.title))).size,
+    source_scope: sourceScope,
+    ai_extracted_sentences: items.filter(
+      (item) =>
+        item.source_scope !== "title_only" && Boolean(item.source_sentence),
+    ).length,
+    title_derived_records: items.filter(
+      (item) => item.source_scope === "title_only",
+    ).length,
+    ai_translated_sentences: flattenTranslatedFindings(
+      items.filter((item) => item.translation_authorship === "ai_generated"),
+    ).length,
+  };
+}
 
 function findRule(situation: SituationId, axis: AxisId | "base") {
   return allRules.find(
@@ -291,6 +347,19 @@ function rankEvidence(items: Evidence[]) {
 // 그보다 넓은 근거는 확장 보기(extended_evidence_v40.json)로 넘긴다.
 const SELECTED_LIMIT = 15;
 
+function readAxes(value: unknown) {
+  if (value === undefined) return { ok: true as const, axes: [] as AxisId[] };
+  if (!Array.isArray(value)) return { ok: false as const, axes: [] as AxisId[] };
+  const values = Array.from(new Set(value));
+  if (
+    values.some(
+      (item) => typeof item !== "string" || !axisIds.includes(item as AxisId),
+    )
+  )
+    return { ok: false as const, axes: [] as AxisId[] };
+  return { ok: true as const, axes: values as AxisId[] };
+}
+
 export async function POST(req: Request) {
   const payload = (await req.json().catch(() => null)) as Record<
     string,
@@ -309,6 +378,13 @@ export async function POST(req: Request) {
       { status: 400, headers: { "Cache-Control": "no-store" } },
     );
 
+  const explicitAxes = readAxes(payload.axes);
+  if (!explicitAxes.ok)
+    return NextResponse.json(
+      { error: "지원하는 표현 필터만 선택하세요." },
+      { status: 400, headers: { "Cache-Control": "no-store" } },
+    );
+
   const base = findRule(situation, "base");
   if (!base)
     return NextResponse.json(
@@ -316,16 +392,26 @@ export async function POST(req: Request) {
       { status: 503, headers: { "Cache-Control": "no-store" } },
     );
 
-  const inputs = {
+  const axesProvided = Object.prototype.hasOwnProperty.call(payload, "axes");
+  const submittedInputs = {
     age: normalizeMultiValue(readField(payload.age)),
     medication: normalizeMultiValue(readField(payload.medication)),
     dose: normalizeMultiValue(readField(payload.dose)),
     sex: normalizeMultiValue(readField(payload.sex)),
     condition: normalizeMultiValue(readField(payload.condition)),
   };
+  const inputs = axesProvided
+    ? { age: "", medication: "", dose: "", sex: "", condition: "" }
+    : submittedInputs;
+  const legacyRequestedAxes = axes
+    .filter((axis) => !isBlank(inputs[axis.field]))
+    .map((axis) => axis.id);
+  const requestedAxes = axesProvided
+    ? explicitAxes.axes
+    : legacyRequestedAxes;
 
-  // 사용자가 채운 입력란만 축으로 바꾼다. 규칙 파일에 그 축이 없는 상황도 있으므로
-  // (예: HRS2 에는 sex 축이 없다) 없으면 적용하지 않고 그 사실을 그대로 알린다.
+  // axes 배열이 있으면 그 배열만 사용한다. 이전 UI의 값 입력 요청은 axes 배열이
+  // 없을 때만 축으로 바꾼다. 규칙 파일에 축이 없으면 적용하지 않고 그대로 알린다.
   const applied: {
     axis: AxisId;
     field: string;
@@ -336,16 +422,20 @@ export async function POST(req: Request) {
 
   for (const axis of axes) {
     const value = inputs[axis.field];
-    if (isBlank(value)) continue;
+    if (!requestedAxes.includes(axis.id)) continue;
     const rule = findRule(situation, axis.id);
     if (!rule) {
-      unavailable.push({ axis: axis.id, field: axis.field, value });
+      unavailable.push({
+        axis: axis.id,
+        field: axis.field,
+        value: axesProvided ? "" : value,
+      });
       continue;
     }
     applied.push({
       axis: axis.id,
       field: axis.field,
-      value,
+      value: axesProvided ? "" : value,
       reported: rule.all_evidence.length,
     });
   }
@@ -353,11 +443,19 @@ export async function POST(req: Request) {
   // 적용된 축을 모두 보고한 문헌만 남긴다. 축을 하나도 적용하지 않았으면 이 상황의
   // 핵심 근거를 그대로 보여준다.
   let pool = base.all_evidence;
+  const filterTrace: { axis: AxisId | "base"; label: string; count: number }[] = [
+    { axis: "base", label: "핵심 근거", count: pool.length },
+  ];
   for (const item of applied) {
     const rule = findRule(situation, item.axis);
     if (!rule) continue;
     const ids = new Set(rule.all_evidence.map((entry) => entry.record_id));
     pool = pool.filter((entry) => ids.has(entry.record_id));
+    filterTrace.push({
+      axis: item.axis,
+      label: axisById.get(item.axis)?.label ?? item.axis,
+      count: pool.length,
+    });
   }
 
   // 축을 하나도 적용하지 않았을 때도 `all_evidence` 에서 고른다. 규칙 파일의
@@ -367,19 +465,59 @@ export async function POST(req: Request) {
   // 두 경로 모두 all_evidence 를 쓰고 표시 개수는 SELECTED_LIMIT 하나로 정한다.
   const ranked = rankEvidence(applied.length ? pool : base.all_evidence);
 
-  // 확장 보기: 이 상황의 근거 전체를 순서대로 넘긴다. 축 부분집합이 핵심근거 위에서만
-  // 계산돼 있어 조건 필터를 걸 수 없으므로, 조건을 적용하지 않는다는 사실을 함께 보낸다.
-  const extendedAll = extendedByQuestion[situation] ?? [];
+  // 확장 보기: 이 상황의 근거 전체에 같은 조건을 건다. 축 색인이 확장 근거에도
+  // 생겼으므로(extended_axis_index_v40.json) 핵심근거 15건 밖에서도 조건이 걸린다.
   const expanded = payload.expanded === true;
+  const extendedByQuestion = expanded ? await loadExtendedEvidence() : null;
+  // 축 색인은 140 KB 라 기본 조회에서도 읽는다. 조건을 건 확장 근거가 몇 건인지를
+  // 확장 보기를 열기 전에 알려주려면 이 수가 먼저 있어야 한다.
+  const extendedAxisIndex = await loadExtendedAxisIndex();
+  const perQuestionAxes = extendedAxisIndex[situation] ?? {};
+  const questionPoolTotal = Number(
+    (evidenceManifest.by_question as Record<string, number>)[situation] ?? 0,
+  );
+
+  // 조건을 건 확장 근거 수. 확장 보기 여부와 무관하게 항상 센다.
+  let extendedMatchIds: Set<string> | null = null;
+  const intersect = (left: Set<string>, right: Set<string>) =>
+    new Set<string>([...left].filter((id) => right.has(id)));
+  const extendedTrace: { axis: AxisId | "base"; label: string; count: number }[] = [
+    { axis: "base", label: "이 상황의 근거", count: questionPoolTotal },
+  ];
+  for (const item of applied) {
+    const ids = new Set<string>(perQuestionAxes[item.axis] ?? []);
+    extendedMatchIds = extendedMatchIds
+      ? intersect(extendedMatchIds, ids)
+      : ids;
+    extendedTrace.push({
+      axis: item.axis,
+      label: axisById.get(item.axis)?.label ?? item.axis,
+      count: extendedMatchIds.size,
+    });
+  }
+  const extendedMatchTotal = extendedMatchIds
+    ? extendedMatchIds.size
+    : questionPoolTotal;
+
+  const extendedBase = extendedByQuestion?.[situation] ?? [];
+  const extendedAll = extendedMatchIds
+    ? extendedBase.filter((entry) => extendedMatchIds.has(entry.record_id))
+    : extendedBase;
+
+  const extendedTotal = expanded ? extendedAll.length : extendedMatchTotal;
   const rawOffset = Number(payload.offset);
+  const finalPageOffset = extendedTotal
+    ? Math.floor((extendedTotal - 1) / EXTENDED_PAGE) * EXTENDED_PAGE
+    : 0;
   const offset =
     Number.isFinite(rawOffset) && rawOffset > 0
-      ? Math.min(Math.floor(rawOffset), extendedAll.length)
+      ? Math.min(Math.floor(rawOffset), finalPageOffset)
       : 0;
 
-  const selected = expanded
+  const selectedRaw = expanded
     ? extendedAll.slice(offset, offset + EXTENDED_PAGE)
     : ranked.slice(0, SELECTED_LIMIT);
+  const selected = selectedRaw.map(presentEvidence);
 
   const meta = situationById.get(situation);
   const axisCoverage = Object.fromEntries(
@@ -394,30 +532,58 @@ export async function POST(req: Request) {
     .map((item) => axisByField.get(item.field as never)?.noun)
     .filter(Boolean) as string[];
 
-  const expandedSummary = [
-    `${meta?.short ?? "이 상황"}의 근거 ${extendedAll.length.toLocaleString("ko-KR")}건 가운데`,
-    `${offset + 1}~${offset + selected.length}번째를 보여드립니다.`,
-    applied.length
-      ? "확장 보기에서는 입력하신 조건을 적용하지 않습니다."
-      : "",
-    "근거 문장은 영어 원문입니다.",
-  ]
+  const appliedNounsForExpanded = applied
+    .map((item) => axisById.get(item.axis)?.noun)
+    .filter(Boolean) as string[];
+
+  const expandedSummary = (
+    selected.length
+      ? [
+          applied.length
+            ? `${meta?.short ?? "이 상황"}의 근거 ${questionPoolTotal.toLocaleString("ko-KR")}건 가운데 ${appliedNounsForExpanded.join("·")}${objectParticle(appliedNounsForExpanded.join("·"))} 보고한 ${extendedTotal.toLocaleString("ko-KR")}건이 남았고,`
+            : `${meta?.short ?? "이 상황"}의 근거 ${extendedTotal.toLocaleString("ko-KR")}건 가운데`,
+          `${offset + 1}~${offset + selected.length}번째를 보여드립니다.`,
+          applied.length
+            ? "핵심 근거 15건 밖까지 같은 조건으로 걸렀습니다. 적어주신 값 자체로 문헌을 고르지는 않습니다."
+            : "",
+          "근거 문장은 영어 원문입니다.",
+        ]
+      : [
+          `${meta?.short ?? "이 상황"}의 근거 ${questionPoolTotal.toLocaleString("ko-KR")}건 가운데`,
+          appliedNounsForExpanded.length
+            ? `${appliedNounsForExpanded.join("·")}을 모두 보고한 문헌은 없습니다.`
+            : "보여드릴 근거가 없습니다.",
+          "조건을 하나씩 지우면 어느 조건에서 문헌이 사라지는지 확인하실 수 있어요.",
+        ]
+  )
     .filter(Boolean)
     .join(" ");
 
   // 상담하듯 읽히는 네 문단. 도구가 무엇을 했는지가 아니라 문헌이 무엇을 보고했는지를
   // 말한다. 각 문단은 이번 응답이 실제로 고른 문헌에서만 만든다.
-  const profileLine = buildProfileLine(
-    meta?.spoken ?? "이 상황을 고르셨고",
-    applied,
-  );
+  const requestedProfile = requestedAxes.map((axisId) => {
+    const axis = axisById.get(axisId);
+    return {
+      field: axis?.field ?? axisId,
+      value: axis ? inputs[axis.field] : "",
+    };
+  });
+  const profileLine = axesProvided && requestedAxes.length
+    ? applied.length
+      ? `${meta?.short ?? "이 상황"}에서 ${applied
+          .map((item) => axisById.get(item.axis)?.noun ?? item.axis)
+          .join("·")} 필터를 선택했습니다.`
+      : `${meta?.short ?? "이 상황"}에서 적용 가능한 표현 필터가 선택되지 않았습니다.`
+    : axesProvided
+      ? `${meta?.short ?? "이 상황"}에서 표현 필터 없이 핵심 근거를 확인했습니다.`
+      : buildProfileLine(meta?.spoken ?? "이 상황을 고르셨고", requestedProfile);
   const narrative = expanded
     ? [expandedSummary]
     : selected.length
       ? [
           profileLine,
-          buildEvidenceLine(selected),
-          buildLimitLine(selected, inputs.dose, narrowedNouns),
+          buildEvidenceOverview(selected),
+          buildLimitLine(selectedRaw, inputs.dose, narrowedNouns),
           buildNextLine(selected, applied.length),
         ]
       : [
@@ -440,17 +606,36 @@ export async function POST(req: Request) {
       research_question: meta?.question ?? "",
       inputs,
       applied_axes: applied,
+      ignored_axes: [],
       unavailable_axes: unavailable,
       axis_coverage: axisCoverage,
       core_evidence_count: base.all_evidence.length,
       evidence: selected,
-      evidence_total_after_filter: ranked.length,
+      evidence_total_after_filter: expanded ? extendedTotal : ranked.length,
+      evidence_summary: evidenceSummary(selected),
+      matching_basis: expanded
+        ? applied.length
+          ? "metadata_axis_presence_extended"
+          : "expanded_question_corpus"
+        : applied.length
+          ? "metadata_axis_presence"
+          : "question_core_evidence",
+      filter_mode: applied.length ? "metadata_axis_presence" : "core",
+      filter_trace: expanded ? extendedTrace : filterTrace,
+      query_snapshot: {
+        situation,
+        requested_axes: requestedAxes,
+        active_axes: applied.map((item) => item.axis),
+      },
       expanded,
       expanded_offset: offset,
       expanded_page_size: EXTENDED_PAGE,
-      extended_total: extendedAll.length,
-      extended_note:
-        "확장 보기는 핵심근거 15건 상한 밖의 근거까지 포함합니다. 조건 필터가 적용되지 않고 근거 문장은 영어 원문입니다.",
+      extended_total: extendedTotal,
+      extended_pool_total: questionPoolTotal,
+      extended_match_total: extendedMatchTotal,
+      extended_note: applied.length
+        ? "확장 보기는 핵심근거 15건 상한 밖까지 포함하며, 선택한 항목을 보고한 문헌만 남깁니다. 적어주신 값 자체로 문헌을 고르지는 않습니다. 근거 문장은 영어 원문입니다."
+        : "확장 보기는 핵심근거 15건 상한 밖에 있는 이 상황의 전체 후보 기록을 포함합니다. 근거 문장은 영어 원문입니다.",
       checks: base.checks,
       summary,
       narrative,

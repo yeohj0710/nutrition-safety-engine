@@ -10,7 +10,7 @@ import {
   useState,
 } from "react";
 
-const disclosureCloseDuration = 340;
+const disclosureCloseDuration = 220;
 
 export type AnimatedDetailsHandle = { close: () => void; open: () => void };
 

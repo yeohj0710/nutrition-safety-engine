@@ -8,6 +8,7 @@ import {
 } from "@/src/lib/clinical-situations";
 import { publicInputExamples } from "@/src/lib/personalized-safety-examples";
 import { axisCoverage, coreCoverage } from "@/src/lib/axis-coverage";
+import { flattenTranslatedFindings } from "@/src/lib/evidence-sentences";
 
 type Rule = {
   question_id: string;
@@ -37,7 +38,7 @@ function ruleFor(situation: string, axis: string) {
   );
 }
 
-async function ask(input: Record<string, string>) {
+async function ask(input: Record<string, unknown>) {
   const response = await POST(
     new Request("http://localhost/api/personalized-safety", {
       method: "POST",
@@ -171,18 +172,146 @@ describe("personalized safety API", () => {
     }
   });
 
-  it("says so plainly when the filters leave nothing", async () => {
-    // 다섯 축을 모두 채우면 교집합이 빌 수 있다. 그때도 200 이고 이유를 말해야 한다.
+  it("accepts explicit metadata-axis filters without pretending to match values", async () => {
+    const { status, body } = await ask({
+      situation: "HRS1_PERIOPERATIVE",
+      axes: ["age_group", "concomitant_medication"],
+    });
+    expect(status).toBe(200);
+    expect(body.matching_basis).toBe("metadata_axis_presence");
+    expect(body.applied_axes.map((item: { axis: string }) => item.axis)).toEqual([
+      "age_group",
+      "concomitant_medication",
+    ]);
+    expect(body.query_snapshot.requested_axes).toEqual([
+      "age_group",
+      "concomitant_medication",
+    ]);
+    expect(body.filter_trace.map((item: { count: number }) => item.count)).toEqual([
+      15,
+      7,
+      1,
+    ]);
+  });
+
+  it("treats an explicit axes array as authoritative over legacy value fields", async () => {
+    const { status, body } = await ask({
+      situation: "HRS1_PERIOPERATIVE",
+      axes: ["age_group"],
+      medication: "와파린",
+      dose: "2000 mg",
+    });
+    expect(status).toBe(200);
+    expect(body.query_snapshot.requested_axes).toEqual(["age_group"]);
+    expect(body.query_snapshot.active_axes).toEqual(["age_group"]);
+    expect(body.applied_axes.map((item: { axis: string }) => item.axis)).toEqual([
+      "age_group",
+    ]);
+    expect(body.filter_trace).toHaveLength(2);
+  });
+
+  it("ignores every legacy value in all derived output when axes is present", async () => {
+    const baseline = await ask({
+      situation: "HRS1_PERIOPERATIVE",
+      axes: [],
+    });
+    const withLegacyDose = await ask({
+      situation: "HRS1_PERIOPERATIVE",
+      axes: [],
+      dose: "2000 mg",
+    });
+
+    expect(withLegacyDose.status).toBe(200);
+    expect(withLegacyDose.body.inputs).toEqual({
+      age: "",
+      medication: "",
+      dose: "",
+      sex: "",
+      condition: "",
+    });
+    expect(withLegacyDose.body.query_snapshot).toEqual(
+      baseline.body.query_snapshot,
+    );
+    expect(withLegacyDose.body.summary).toBe(baseline.body.summary);
+    expect(withLegacyDose.body.narrative).toEqual(baseline.body.narrative);
+    expect(
+      withLegacyDose.body.evidence.map((item: { record_id: string }) => item.record_id),
+    ).toEqual(
+      baseline.body.evidence.map((item: { record_id: string }) => item.record_id),
+    );
+  });
+
+  it("rejects unknown metadata-axis filters", async () => {
+    const { status, body } = await ask({
+      situation: "HRS1_PERIOPERATIVE",
+      axes: ["age_group", "made_up_axis"],
+    });
+    expect(status).toBe(400);
+    expect(body.error).toMatch(/필터/);
+  });
+
+  it("reports a requested filter that this situation cannot apply", async () => {
+    const { status, body } = await ask({
+      situation: "HRS2_KIDNEY_DISEASE",
+      axes: ["sex"],
+    });
+    expect(status).toBe(200);
+    expect(body.applied_axes).toEqual([]);
+    expect(body.unavailable_axes).toEqual([
+      { axis: "sex", field: "sex", value: "" },
+    ]);
+    expect(body.query_snapshot.requested_axes).toEqual(["sex"]);
+    expect(body.narrative[0]).toMatch(/적용 가능한 표현 필터가/);
+  });
+
+  it("keeps an unavailable legacy field in the requested snapshot", async () => {
+    const { status, body } = await ask({
+      situation: "HRS2_KIDNEY_DISEASE",
+      sex: "여성",
+    });
+    expect(status).toBe(200);
+    expect(body.query_snapshot.requested_axes).toEqual(["sex"]);
+    expect(body.query_snapshot.active_axes).toEqual([]);
+    expect(body.unavailable_axes.map((item: { axis: string }) => item.axis)).toEqual([
+      "sex",
+    ]);
+  });
+
+  it("keeps available and unavailable legacy fields in one coherent snapshot", async () => {
     const { status, body } = await ask({
       situation: "HRS2_KIDNEY_DISEASE",
       age: "68세",
-      medication: "와파린",
-      dose: "2000 mg",
-      condition: "고혈압",
+      sex: "여성",
     });
     expect(status).toBe(200);
-    if (body.evidence.length === 0)
-      expect(body.summary).toMatch(/문헌은 없습니다/);
+    expect(body.query_snapshot.requested_axes).toEqual(["age_group", "sex"]);
+    expect(body.query_snapshot.active_axes).toEqual(["age_group"]);
+    expect(body.applied_axes.map((item: { axis: string }) => item.axis)).toEqual([
+      "age_group",
+    ]);
+    expect(body.unavailable_axes.map((item: { axis: string }) => item.axis)).toEqual([
+      "sex",
+    ]);
+  });
+
+  it("keeps the collection overview separate from an individual paper finding", async () => {
+    const { status, body } = await ask({ situation: "HRS1_PERIOPERATIVE" });
+    expect(status).toBe(200);
+    expect(body.evidence.length).toBeGreaterThan(1);
+    expect(body.narrative[1]).not.toContain(body.evidence[0].key_finding_ko);
+  });
+
+  it("says so plainly when the filters leave nothing", async () => {
+    // 이 조합은 봉인된 규칙 파일에서 실제 교집합이 0건이다. 0건 상태가 우연히
+    // 생길 때만 검사하면 회귀를 놓치므로 응답 수까지 고정한다.
+    const { status, body } = await ask({
+      situation: "HRS1_PERIOPERATIVE",
+      axes: ["age_group", "concomitant_medication", "dose_range"],
+    });
+    expect(status).toBe(200);
+    expect(body.evidence).toHaveLength(0);
+    expect(body.evidence_total_after_filter).toBe(0);
+    expect(body.summary).toMatch(/문헌은 없습니다/);
   });
 
   it("answers every public example without an error", async () => {
@@ -195,11 +324,128 @@ describe("personalized safety API", () => {
       expect(body.evidence.length, example.title).toBeLessThanOrEqual(
         selectedLimit,
       );
+      expect(body.evidence_total_after_filter, example.title).toBe(
+        example.expectedEvidenceCount,
+      );
       for (const item of body.evidence as { url: string; locator: string }[]) {
         expect(item.url, example.title).toMatch(/^https:\/\/pubmed\./);
         expect(item.locator, example.title).toBeTruthy();
       }
     }
+  });
+
+  it("returns an explicit evidence display summary", async () => {
+    const { status, body } = await ask({ situation: "HRS4_LIVER_DISEASE" });
+    expect(status).toBe(200);
+    expect(body.evidence_summary.displayed_records).toBe(15);
+    expect(body.evidence_summary.unique_titles).toBe(14);
+    expect(body.evidence_summary.source_scope).toEqual({
+      abstract_only: 15,
+      title_only: 0,
+    });
+    expect(body.evidence_summary.ai_extracted_sentences).toBe(15);
+    expect(body.evidence_summary.ai_translated_sentences).toBe(
+      flattenTranslatedFindings(body.evidence).length,
+    );
+  });
+
+  it("counts rendered translated sentences instead of translated papers", async () => {
+    const { status, body } = await ask({ situation: "HRS1_PERIOPERATIVE" });
+    expect(status).toBe(200);
+    expect(body.evidence_summary.ai_translated_sentences).toBe(
+      flattenTranslatedFindings(body.evidence).length,
+    );
+    expect(body.evidence_summary.ai_translated_sentences).toBeGreaterThan(
+      body.evidence_summary.displayed_records,
+    );
+  });
+
+  it("applies the same axis filter beyond the 15-item core in expanded mode", async () => {
+    const { status, body } = await ask({
+      situation: "HRS1_PERIOPERATIVE",
+      axes: ["age_group"],
+      expanded: true,
+      offset: 0,
+    });
+    expect(status).toBe(200);
+    // 축 색인이 확장 근거에도 있으므로 확장 보기에서도 조건이 걸린다.
+    expect(body.filter_mode).toBe("metadata_axis_presence");
+    expect(body.matching_basis).toBe("metadata_axis_presence_extended");
+    expect(body.applied_axes.map((item: { axis: string }) => item.axis)).toEqual([
+      "age_group",
+    ]);
+    expect(body.ignored_axes).toEqual([]);
+    // 걸린 결과는 그 상황 전체보다 좁고, 핵심 근거 15건보다는 넓다.
+    expect(body.extended_total).toBeLessThan(body.extended_pool_total);
+    expect(body.extended_total).toBeGreaterThan(body.core_evidence_count);
+    expect(body.evidence_total_after_filter).toBe(body.extended_total);
+    expect(body.filter_trace.at(-1)).toMatchObject({
+      axis: "age_group",
+      count: body.extended_total,
+    });
+    expect(body.evidence[0].source_sentence).toBe(body.evidence[0].key_finding);
+    expect(body.evidence[0].translation_authorship).toBeNull();
+  });
+
+  it("reports the condition-matched extended count before opening expanded view", async () => {
+    const { status, body } = await ask({
+      situation: "HRS3_PREGNANCY",
+      axes: ["age_group", "concomitant_medication", "underlying_condition"],
+    });
+    expect(status).toBe(200);
+    // 기본 화면은 핵심 근거 15건 안에서만 좁혀 몇 건 남지 않는다.
+    expect(body.evidence.length).toBeLessThanOrEqual(15);
+    // 그런데 같은 조건에 해당하는 확장 근거 수는 확장 보기를 열기 전에 이미 알려준다.
+    expect(body.extended_match_total).toBeGreaterThan(body.evidence.length);
+    expect(body.extended_match_total).toBeLessThan(body.extended_pool_total);
+    expect(body.extended_total).toBe(body.extended_match_total);
+  });
+
+  it("narrows the expanded pool further as axes stack", async () => {
+    const counts: number[] = [];
+    for (const axes of [[], ["age_group"], ["age_group", "concomitant_medication"]]) {
+      const { status, body } = await ask({
+        situation: "HRS1_PERIOPERATIVE",
+        axes,
+        expanded: true,
+        offset: 0,
+      });
+      expect(status).toBe(200);
+      counts.push(body.extended_total);
+    }
+    expect(counts[0]).toBeGreaterThan(counts[1]);
+    expect(counts[1]).toBeGreaterThan(counts[2]);
+    // 조건 두 개를 걸어도 핵심 근거 15건짜리 경로보다 넓게 남는다.
+    expect(counts[2]).toBeGreaterThan(15);
+  });
+
+  it("counts title-derived expanded records separately from extracted abstract sentences", async () => {
+    const { status, body } = await ask({
+      situation: "HRS1_PERIOPERATIVE",
+      expanded: true,
+      offset: 300,
+    });
+    expect(status).toBe(200);
+    expect(body.evidence_summary.displayed_records).toBe(12);
+    expect(body.evidence_summary.source_scope).toEqual({
+      abstract_only: 11,
+      title_only: 1,
+    });
+    expect(body.evidence_summary.ai_extracted_sentences).toBe(11);
+    expect(body.evidence_summary.title_derived_records).toBe(1);
+  });
+
+  it("does not claim that filters were ignored for an unfiltered expanded request", async () => {
+    const { status, body } = await ask({
+      situation: "HRS1_PERIOPERATIVE",
+      axes: [],
+      expanded: true,
+    });
+    expect(status).toBe(200);
+    expect(body.query_snapshot.requested_axes).toEqual([]);
+    expect(body.ignored_axes).toEqual([]);
+    expect(body.extended_note).not.toMatch(/필터.*적용하지/);
+    expect(body.summary).not.toMatch(/필터.*적용하지/);
   });
 
   it("covers every axis the UI shows with a real rule in at least one situation", () => {

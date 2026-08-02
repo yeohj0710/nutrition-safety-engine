@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+
 import "./globals.css";
 
 export default function GlobalError({
@@ -8,27 +10,46 @@ export default function GlobalError({
   error: Error & { digest?: string };
   unstable_retry: () => void;
 }) {
+  const headingRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    headingRef.current?.focus();
+  }, []);
+
   return (
     <html lang="ko">
-      <body className="min-h-screen bg-[linear-gradient(180deg,_#f7f4ee_0%,_#f2efe7_100%)] px-4 py-8 md:px-6">
-        <main className="mx-auto max-w-3xl rounded-[2rem] border border-red-200 bg-white p-8 shadow-sm">
-          <p className="text-xs uppercase tracking-[0.24em] text-red-700">
-            Global Error
-          </p>
-          <h1 className="mt-2 text-[1.55rem] font-semibold text-stone-950">
-            앱을 정상적으로 렌더링하지 못했습니다.
-          </h1>
-          <p className="mt-3 text-sm leading-6 text-stone-700">
-            루트 수준에서 오류가 발생했습니다. 다시 시도해도 문제가 계속되면
-            배포 환경과 빌드 로그를 확인해 주세요.
-          </p>
-          <button
-            type="button"
-            onClick={() => unstable_retry()}
-            className="mt-6 rounded-full bg-stone-950 px-5 py-[0.62rem] text-[0.84rem] font-medium text-white"
+      <body>
+        <main
+          id="main-content"
+          tabIndex={-1}
+          className="app-page min-h-screen px-4 py-12 sm:px-6 sm:py-16"
+        >
+          <section
+            role="alert"
+            aria-labelledby="global-error-title"
+            className="surface-card-strong page-shell-narrow rounded-3xl px-6 py-8 sm:px-9 sm:py-10"
           >
-            다시 시도
-          </button>
+            <p className="eyebrow">화면 불러오기 오류</p>
+            <h1
+              id="global-error-title"
+              ref={headingRef}
+              tabIndex={-1}
+              className="mt-3 text-2xl font-bold tracking-[-0.02em] text-foreground focus:outline-none sm:text-3xl"
+            >
+              화면을 열지 못했습니다
+            </h1>
+            <p className="measure-copy mt-4 text-sm leading-6 text-muted">
+              잠시 후 다시 시도하세요. 같은 문제가 계속되면 페이지를 새로고침해
+              주세요.
+            </p>
+            <button
+              type="button"
+              onClick={() => unstable_retry()}
+              className="mt-7 inline-flex min-h-12 items-center justify-center rounded-xl bg-accent px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-accent-strong"
+            >
+              다시 불러오기
+            </button>
+          </section>
         </main>
       </body>
     </html>

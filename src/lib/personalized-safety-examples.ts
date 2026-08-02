@@ -1,99 +1,67 @@
-import type { SituationId } from "@/src/lib/clinical-situations";
+import type { AxisId, SituationId } from "@/src/lib/clinical-situations";
 
 export type PersonalizedSafetyExample = {
   id: string;
   title: string;
   summary: string;
+  expectedEvidenceCount: number;
   input: {
     situation: SituationId;
-    age: string;
-    medication: string;
-    dose: string;
-    sex: string;
-    condition: string;
+    axes: AxisId[];
   };
 };
 
-// 다섯 상황을 모두 덮고, 축을 하나도 안 채운 경우와 여러 개 채운 경우를 함께 둔다.
-// 축을 많이 채울수록 그 조건을 모두 보고한 문헌만 남아 결과가 줄어드는데,
-// 줄어드는 모습 자체가 이 도구가 보여주려는 것이다.
+// 구체적인 환자값을 예시로 넣으면 값까지 대조하는 검색처럼 보인다. 이 예시는
+// 실제 규칙이 하는 일 그대로, 초록에서 포착한 메타데이터 표현만 선택한다.
 export const publicInputExamples: PersonalizedSafetyExample[] = [
   {
-    id: "perioperative-plain",
-    title: "다음 달에 수술이 잡혀 있어요",
-    summary: "조건을 더 넣지 않고 이 상황의 핵심 근거부터 봅니다.",
-    input: {
-      situation: "HRS1_PERIOPERATIVE",
-      age: "",
-      medication: "",
-      dose: "",
-      sex: "",
-      condition: "",
-    },
-  },
-  {
-    id: "perioperative-elderly-antiplatelet",
-    title: "68세, 수술 전인데 아스피린을 먹고 있어요",
-    summary: "연령과 병용약을 모두 보고한 문헌만 남깁니다.",
-    input: {
-      situation: "HRS1_PERIOPERATIVE",
-      age: "68세",
-      medication: "아스피린",
-      dose: "",
-      sex: "",
-      condition: "",
-    },
-  },
-  {
-    id: "kidney-dialysis",
-    title: "투석 중인데 보충제를 먹어도 되는지 궁금해요",
-    summary: "만성콩팥병·투석 상황의 근거를 봅니다.",
+    id: "kidney-dose-metadata",
+    title: "콩팥질환 · 용량 표현",
+    summary: "핵심 15건 중 수치·단위 표현이 있는 기록 9건을 봅니다.",
+    expectedEvidenceCount: 9,
     input: {
       situation: "HRS2_KIDNEY_DISEASE",
-      age: "",
-      medication: "",
-      dose: "",
-      sex: "",
-      condition: "투석 중",
+      axes: ["dose_range"],
     },
   },
   {
-    id: "pregnancy-dose",
-    title: "임신 중이고 하루 2000 mg을 먹고 있어요",
-    summary: "복용량을 보고한 문헌만 남깁니다.",
+    id: "perioperative-core",
+    title: "수술 전후 핵심 근거",
+    summary: "표현 필터 없이 핵심 기록 15건을 봅니다.",
+    expectedEvidenceCount: 15,
+    input: {
+      situation: "HRS1_PERIOPERATIVE",
+      axes: [],
+    },
+  },
+  {
+    id: "pregnancy-dose-metadata",
+    title: "임신 · 용량 표현",
+    summary: "핵심 15건 중 수치·단위 표현이 있는 기록 8건을 봅니다.",
+    expectedEvidenceCount: 8,
     input: {
       situation: "HRS3_PREGNANCY",
-      age: "",
-      medication: "",
-      dose: "2000 mg",
-      sex: "",
-      condition: "",
+      axes: ["dose_range"],
     },
   },
   {
-    id: "liver-elevated-enzymes",
-    title: "간수치가 높다고 들었어요",
-    summary: "간질환 상황에서 기저질환을 보고한 문헌만 남깁니다.",
+    id: "liver-age-metadata",
+    title: "간질환 · 연령 표현",
+    summary: "핵심 15건 중 연령 관련 표현이 있는 기록 6건을 봅니다.",
+    expectedEvidenceCount: 6,
     input: {
       situation: "HRS4_LIVER_DISEASE",
-      age: "",
-      medication: "",
-      dose: "",
-      sex: "",
-      condition: "간수치 상승",
+      axes: ["age_group"],
     },
   },
   {
-    id: "anticoagulation-warfarin",
-    title: "와파린을 먹는데 멍이 잘 들어요",
-    summary: "항응고제 복용 상황에서 병용약을 보고한 문헌만 남깁니다.",
+    id: "anticoagulation-sex-metadata",
+    title: "항응고제 · 성별 표현",
+    summary: "핵심 15건 중 성별 관련 표현이 있는 기록 4건을 봅니다.",
+    expectedEvidenceCount: 4,
     input: {
       situation: "HRS5_ANTICOAGULATION",
-      age: "",
-      medication: "와파린",
-      dose: "",
-      sex: "",
-      condition: "멍이 잘 듦",
+      axes: ["sex"],
     },
   },
 ];

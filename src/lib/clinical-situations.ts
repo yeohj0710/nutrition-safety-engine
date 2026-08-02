@@ -86,6 +86,8 @@ export type AxisMeta = {
   field: "age" | "medication" | "dose" | "sex" | "condition";
   label: string;
   placeholder: string;
+  /** 화면에서 이 필터가 실제로 포착하는 메타데이터 표현. */
+  filterHint: string;
   /** 이 축이 적용됐을 때 근거 목록 위에 붙는 설명. */
   applied: string;
   /**
@@ -99,42 +101,47 @@ export const axes: AxisMeta[] = [
   {
     id: "age_group",
     field: "age",
-    label: "나이",
+    label: "연령 관련 표현",
     placeholder: "예: 68세",
-    applied: "연령대를 보고한 문헌만 남겼습니다.",
-    noun: "연령대",
+    filterHint: "age, adult, older 같은 연령 표현이 있는 기록",
+    applied: "연령 관련 표현이 포착된 문헌만 남겼습니다.",
+    noun: "연령 표현",
   },
   {
     id: "concomitant_medication",
     field: "medication",
-    label: "함께 먹는 약",
+    label: "약물 관련 표현",
     placeholder: "예: 와파린",
-    applied: "병용약을 보고한 문헌만 남겼습니다.",
-    noun: "병용약",
+    filterHint: "drug, therapy, anticoagulation 같은 약물 표현이 있는 기록",
+    applied: "약물 관련 표현이 포착된 문헌만 남겼습니다.",
+    noun: "약물 표현",
   },
   {
     id: "dose_range",
     field: "dose",
-    label: "하루 섭취량",
+    label: "용량 관련 표현",
     placeholder: "예: 2000 mg",
-    applied: "복용량을 보고한 문헌만 남겼습니다.",
-    noun: "복용량",
+    filterHint: "mg, IU 같은 수치·단위 표현이 있는 기록",
+    applied: "용량 관련 표현이 포착된 문헌만 남겼습니다.",
+    noun: "용량 표현",
   },
   {
     id: "sex",
     field: "sex",
-    label: "성별",
+    label: "성별 관련 표현",
     placeholder: "예: 여성",
-    applied: "성별을 보고한 문헌만 남겼습니다.",
-    noun: "성별",
+    filterHint: "female, male, sex, gender 같은 표현이 있는 기록",
+    applied: "성별 관련 표현이 포착된 문헌만 남겼습니다.",
+    noun: "성별 표현",
   },
   {
     id: "underlying_condition",
     field: "condition",
-    label: "기저질환·증상",
+    label: "질환 관련 표현",
     placeholder: "예: 고혈압",
-    applied: "기저질환을 보고한 문헌만 남겼습니다.",
-    noun: "기저질환",
+    filterHint: "kidney, liver, surgery, diabetes 같은 질환·상황 표현이 있는 기록",
+    applied: "질환 관련 표현이 포착된 문헌만 남겼습니다.",
+    noun: "질환 표현",
   },
 ];
 
