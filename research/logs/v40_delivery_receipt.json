@@ -10,40 +10,17 @@
   },
   "git": {
     "branch": "main",
-    "head": "fc3f0228a4c5b3574bca292d97568689f1e28d96",
+    "head": "b20daa5961ab351d00229c1818a8b9f3ea2a03cd",
+    "head_subject": "feat(audit): 학위논문 수치 감사를 자동화한다",
+    "head_date": "2026-07-31T18:14:32+09:00",
     "remote": "https://github.com/yeohj0710/nutrition-safety-engine.git",
     "pushed": true,
-    "working_tree_clean": true,
-    "commits": [
-      {
-        "sha": "fc3f0228a4c5b3574bca292d97568689f1e28d96",
-        "subject": "refactor: 이전 트랙 전부 제거하고 단일 트랙 저장소로 정리"
-      },
-      {
-        "sha": "cbc8a22aaa4d558a82076eac508a9a0357e1849c",
-        "subject": "feat(site): 사이트를 v4.0 임상상황 축으로 재구축"
-      },
-      {
-        "sha": "8e3d5e2c62e620268d20c1d63544933a8da87ce0",
-        "subject": "wip(cleanup): 레거시 트랙 제거와 엔진 v4 전환 (테스트 8건 미해결)"
-      },
-      {
-        "sha": "76b681d204f1b90524cd1060e85a6ce8786947a2",
-        "subject": "docs(v40): 커밋·푸시·배포 인계 영수증과 생성 도구 추가"
-      },
-      {
-        "sha": "f01a56978dcd3099b44dc84023e55e46437e86de",
-        "subject": "fix(deploy): v4.0 원자료를 배포 업로드에서 제외"
-      },
-      {
-        "sha": "d1faa91143881b9d69b1fc10cd2938dcc980f464",
-        "subject": "wip(screening): v2.1 LLM 선별 재개분 400행과 API 경로 차단 가드 보존"
-      },
-      {
-        "sha": "b1e30ba38ccd027f28b283742703b9850f78be8d",
-        "subject": "feat(v40): MECIR 검색 재설계 트랙 전체 산출물 추가"
-      }
-    ]
+    "origin_divergence": "0\t0",
+    "working_tree_clean": false,
+    "uncommitted_tracked_files": 17,
+    "untracked_files": 5,
+    "uncommitted_research_paths": 0,
+    "uncommitted_note": "작업 트리에 사이트 UX 개편이 미커밋으로 남아 있다. 연구 경로(research/·data/·tools/)에는 변경이 없다. 제출 기준은 커밋된 HEAD 이며 미커밋 변경은 제출 범위 밖이다."
   },
   "deployment": {
     "provider": "vercel",
@@ -63,5 +40,44 @@
     "build": "npm run build"
   },
   "release_ready": false,
-  "release_ready_note": "사이트 배포는 임상적 공개 승인이 아니다. 사람 독립 선별, 편향 평가, 근거 확실성 평가가 없으므로 false 를 유지한다."
+  "release_ready_note": "사이트 배포는 임상적 공개 승인이 아니다. 사람 독립 선별, 편향 평가, 근거 확실성 평가가 없으므로 false 를 유지한다.",
+  "submission": {
+    "sealed_at": "2026-08-02",
+    "submission_baseline_commit": "b20daa5961ab351d00229c1818a8b9f3ea2a03cd",
+    "thesis": {
+      "path": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/02_졸업논문/여형준_졸업논문_최종본.docx",
+      "pages": 20,
+      "tables": 5,
+      "figures": 2
+    },
+    "deliverable_list": "G:/내 드라이브/여형준님/24 전공심화실습(1)/여형준/00_안내/제출물_목록_260802.md",
+    "verification": {
+      "executed_at": "2026-08-02",
+      "execution_note": "커밋된 정본을 별도 worktree 로 체크아웃해 실행했다.",
+      "ledger_artifacts": {
+        "command": "python tools/v40/verify_ledger_artifacts.py",
+        "distinct_paths": 297,
+        "matched": 297,
+        "mismatched": 0,
+        "missing": 0
+      },
+      "typecheck": "pass",
+      "lint": "pass",
+      "test": {
+        "status": "pass",
+        "tests": "22/22",
+        "files": "2/2"
+      },
+      "build": "pass",
+      "site": {
+        "url": "https://nutrition-safety-engine.vercel.app",
+        "http_status": 200
+      }
+    },
+    "remaining_for_researcher": [
+      "논문 표지에 소속(연세대학교 약학대학)과 학번(2020194025) 입력",
+      "제출 정보 절의 학과 양식 행정 정보 입력 (표지·심사위원·제출일)",
+      "논문 통독 확인"
+    ]
+  }
 }
