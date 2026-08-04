@@ -49,10 +49,30 @@ Two rules the site must not break:
   `decision_authority: "none"`, `output_scope: "evidence_linking_only"`. The site links
   evidence and shows where each sentence came from. It does not tell anyone to start, stop,
   or change a dose. `__tests__/personalized-safety-ui-contract.test.ts` enforces this.
-- **No external model call.** The thesis claims a deterministic tool, so the same input must
-  return the same evidence. A previous implementation called OpenAI for input normalization
-  and summaries; that key is shared with a production service and exhausting it stops that
-  service too.
+- **No model call in the lookup.** The thesis claims a deterministic tool, so the same
+  situation + axis set must return the same evidence. `app/api/personalized-safety/route.ts`
+  therefore calls nothing external, and `__tests__/consult-referee.test.ts` fails the build if
+  `callLuna` or an OpenAI URL ever appears in it.
+
+Since 2026-08-04 the site has a model layer, but only at the two edges — it cannot change
+which records are selected:
+
+- `POST /api/consult/interpret` turns a Korean sentence into a situation id and a set of axis
+  switches. It never reads the rules file or the evidence bundle; it only flips the same
+  radio and checkboxes a person would. The resolved conditions are shown on screen and the
+  user can correct them. **The free-text sentence is never sent to the lookup route.**
+- `POST /api/consult/compose` writes the consultation paragraphs from the records the
+  deterministic lookup already picked, and every paragraph must clear
+  `src/lib/consult-referee.ts` — no clinical direction, no safety verdict, no question marks,
+  and no number that is absent from the supplied evidence. One violation and the response is
+  the deterministic narrative the route already builds. Both routes degrade to that narrative
+  when `OPENAI_API_KEY` is missing, so the site works unchanged without a key.
+
+Model is `gpt-5.6-luna` (`OPENAI_CONSULT_MODEL` to override). The old quota incident was bulk
+classification on a shared key; per-request site usage at luna pricing is not that. Do not
+move either call into the lookup path, and do not relax the referee — the rules file carries
+`decision_authority: "none"`, and the referee is what makes that true on screen rather than a
+request in a prompt.
 
 ## The research pipeline
 

@@ -110,6 +110,22 @@ type FormState = {
 const emptyForm: FormState = { situation: "", axes: [] };
 const SUMMARY_SENTENCE_LIMIT = 3;
 
+/** 문장 정리기가 돌려주는 것. 값이 아니라 어떤 축을 켤지만 화면에 반영한다. */
+type Interpreted = {
+  situation: SituationId | null;
+  applied_axes: { axis: AxisId; field: string; value: string }[];
+  unavailable_axes: { axis: AxisId; field: string; value: string }[];
+  unmatched: string;
+  notice: string;
+  error?: string;
+};
+
+/** 상담문. AI 가 쓴 것과 시스템이 계산한 것을 화면에서 구분해 표시한다. */
+type ConsultText = {
+  paragraphs: string[];
+  source: "ai_written" | "deterministic";
+} | null;
+
 /** 카드 안에서 반복되는 버튼 모양. 높이와 모서리를 한곳에서 정한다. */
 const buttonBase =
   "inline-flex min-h-12 items-center justify-center rounded-[var(--radius-control)] px-5 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50";
@@ -424,7 +440,13 @@ export function PersonalizedSafetyQuery() {
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
   const [activeExample, setActiveExample] = useState("");
+  const [sentence, setSentence] = useState("");
+  const [interpreting, setInterpreting] = useState(false);
+  const [interpreted, setInterpreted] = useState<Interpreted | null>(null);
+  const [consult, setConsult] = useState<ConsultText>(null);
+  const [composing, setComposing] = useState(false);
   const requestRef = useRef<AbortController | null>(null);
+  const composeRef = useRef<AbortController | null>(null);
   const resultRef = useRef<HTMLDivElement | null>(null);
   const resultHeadingRef = useRef<HTMLHeadingElement | null>(null);
   const errorRef = useRef<HTMLDivElement | null>(null);
@@ -433,9 +455,69 @@ export function PersonalizedSafetyQuery() {
   useEffect(
     () => () => {
       requestRef.current?.abort();
+      composeRef.current?.abort();
     },
     [],
   );
+
+  // 결과가 확정된 뒤에만 상담문을 만든다. 모델은 이미 고른 문헌만 읽으므로
+  // 어떤 문헌이 뽑혔는지는 여기서 바뀌지 않는다. 실패하면 서버가 결정론 문단을
+  // 그대로 돌려주고, 그것마저 없으면 상담문 칸을 아예 띄우지 않는다.
+  useEffect(() => {
+    if (!result?.narrative?.length) {
+      setConsult(null);
+      return;
+    }
+    composeRef.current?.abort();
+    const controller = new AbortController();
+    composeRef.current = controller;
+    setComposing(true);
+    // 결정론 문단을 먼저 띄웠다가 몇 초 뒤 갈아끼우면 읽는 중에 글이 바뀐다.
+    // 자리만 잡아 두고, 어느 쪽으로 확정되든 한 번만 그린다.
+    setConsult(null);
+    const fallback: ConsultText = {
+      paragraphs: result.narrative,
+      source: "deterministic",
+    };
+
+    fetch("/api/consult/compose", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      signal: controller.signal,
+      body: JSON.stringify({
+        situation_label: result.situation_label,
+        condition_line: result.query_snapshot.requested_axes
+          .map((axis) => axisById.get(axis)?.label ?? axis)
+          .join(" · "),
+        narrative: result.narrative,
+        evidence: result.evidence.map((item) => ({
+          title: item.title,
+          year: item.year,
+          publication_types: item.publication_types,
+          key_finding_ko: item.key_finding_ko,
+          source_sentence: item.source_sentence,
+        })),
+      }),
+    })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((body: ConsultText | null) => {
+        if (controller.signal.aborted) return;
+        setConsult(
+          body?.paragraphs?.length
+            ? { paragraphs: body.paragraphs, source: body.source }
+            : fallback,
+        );
+      })
+      .catch(() => {
+        if (!controller.signal.aborted) setConsult(fallback);
+      })
+      .finally(() => {
+        if (composeRef.current === controller) {
+          composeRef.current = null;
+          setComposing(false);
+        }
+      });
+  }, [result]);
 
   const run = useCallback(
     async (
@@ -528,6 +610,49 @@ export function PersonalizedSafetyQuery() {
     void run(example.input);
   }
 
+  // 문장 → 조건. 여기서 나온 값은 화면의 라디오·체크박스를 켜는 데만 쓰고,
+  // 근거 조회는 그다음부터 지금까지와 똑같은 결정론 경로로 돈다. 사용자가 켜진
+  // 조건을 직접 고칠 수 있으므로 모델이 틀려도 막다른 길이 아니다.
+  async function interpretSentence() {
+    const text = sentence.trim();
+    if (!text) {
+      setError("찾으시는 상황을 한두 문장으로 적어 주세요.");
+      return;
+    }
+    setInterpreting(true);
+    setError("");
+    try {
+      const response = await fetch("/api/consult/interpret", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ text }),
+      });
+      const body = (await response.json()) as Interpreted;
+      if (!response.ok || !body.situation) {
+        setInterpreted(null);
+        setError(
+          body.error ??
+            "문장에서 다섯 상황 중 어느 것인지 찾지 못했습니다. 아래에서 직접 골라 주세요.",
+        );
+        focusSoon(firstSituationRef);
+        return;
+      }
+      const next: FormState = {
+        situation: body.situation,
+        axes: body.applied_axes.map((item) => item.axis),
+      };
+      setInterpreted(body);
+      setForm(next);
+      setActiveExample("");
+      void run(next);
+    } catch {
+      setInterpreted(null);
+      setError("문장을 정리하지 못했습니다. 아래에서 직접 고르셔도 됩니다.");
+    } finally {
+      setInterpreting(false);
+    }
+  }
+
   function runResultPage(extra: { expanded?: boolean; offset?: number }) {
     if (!result) return;
     void run(
@@ -543,11 +668,16 @@ export function PersonalizedSafetyQuery() {
   function reset() {
     requestRef.current?.abort();
     requestRef.current = null;
+    composeRef.current?.abort();
+    composeRef.current = null;
     setForm(emptyForm);
     setResult(null);
     setPending(false);
     setError("");
     setActiveExample("");
+    setSentence("");
+    setInterpreted(null);
+    setConsult(null);
     focusSoon(firstSituationRef);
   }
 
@@ -570,8 +700,76 @@ export function PersonalizedSafetyQuery() {
           </InfoTip>
         </div>
 
+        {/* 문장으로 찾기. 모델은 조건을 켜는 일만 하고, 켜진 조건은 아래 목록에
+            그대로 보이므로 사용자가 언제든 고칠 수 있다. */}
         <div className="inset-block inset-block-note mt-4">
-          <p className="text-[0.72rem] font-bold text-accent-strong">조회 순서</p>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="chip inline-flex bg-accent text-white">AI</span>
+            <p className="text-sm font-bold text-foreground">문장으로 찾기</p>
+          </div>
+          <p className="mt-1.5 text-[0.8rem] leading-6 text-muted">
+            상황을 그대로 적으면 다섯 상황 중 하나와 초록 표현 조건을 골라 드립니다.
+            고른 조건은 아래에 그대로 표시하고, 근거 조회는 그다음부터 조건만 보고
+            돌아갑니다.
+          </p>
+          <textarea
+            value={sentence}
+            onChange={(event) => setSentence(event.target.value)}
+            rows={2}
+            maxLength={600}
+            placeholder="예: 임신 중인데 철분제를 하루 얼마나 먹는 연구가 있는지 보고 싶어요"
+            aria-label="찾으시는 상황"
+            className="mt-3 block w-full resize-y rounded-[var(--radius-control)] border border-border-subtle bg-surface px-3.5 py-2.5 text-sm leading-6 text-foreground placeholder:text-muted"
+          />
+          <div className="mt-2 flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              onClick={() => void interpretSentence()}
+              disabled={interpreting || pending || !sentence.trim()}
+              className={`${buttonPrimary} px-4`}
+            >
+              {interpreting ? "조건을 정리하는 중…" : "조건 정리하고 찾기"}
+            </button>
+            <span className="text-xs leading-5 text-muted">
+              값 자체와 논문 내용을 대조하지는 않습니다.
+            </span>
+          </div>
+          {interpreted ? (
+            <div className="mt-3 border-t border-border-subtle pt-3">
+              <p className="text-[0.72rem] font-bold text-accent-strong">
+                정리한 조건
+              </p>
+              <p className="mt-1 text-[0.8rem] leading-6 text-muted">
+                {situations.find((item) => item.id === interpreted.situation)?.label ??
+                  "상황 미확인"}
+                {interpreted.applied_axes.length
+                  ? ` · ${interpreted.applied_axes
+                      .map((item) => axisById.get(item.axis)?.label ?? item.axis)
+                      .join(" · ")}`
+                  : " · 표현 필터 없음"}
+              </p>
+              <p className="mt-1 text-[0.72rem] leading-5 text-muted">
+                {interpreted.notice}
+              </p>
+              {interpreted.unavailable_axes.length ? (
+                <p className="mt-1 text-[0.72rem] leading-5 text-muted">
+                  {interpreted.unavailable_axes
+                    .map((item) => axisById.get(item.axis)?.label ?? item.axis)
+                    .join(", ")}
+                  는 이 상황에 필터 규칙이 없어 켜지 않았습니다.
+                </p>
+              ) : null}
+              {interpreted.unmatched ? (
+                <p className="mt-1 text-[0.72rem] leading-5 text-muted">
+                  조건으로 옮기지 못한 내용: {interpreted.unmatched}
+                </p>
+              ) : null}
+            </div>
+          ) : null}
+        </div>
+
+        <div className="inset-block inset-block-quiet mt-3">
+          <p className="text-[0.72rem] font-bold text-foreground">직접 고르기</p>
           <p className="mt-1 break-keep text-sm leading-6 text-muted">
             상황 하나를 고르면 그 질문의 핵심 근거를 보여줍니다. 초록 표현을 함께
             고르면 그 표현이 잡힌 기록만 남기고, 확장 근거까지 같은 조건으로
@@ -809,6 +1007,59 @@ export function PersonalizedSafetyQuery() {
                     : " · 표현 필터 없음"}
                 </p>
               </div>
+
+              {/* 상담문. 문단은 위에 연결된 문헌만 읽고 쓴 것이고, 어떤 문헌이
+                  뽑히는지는 이 칸과 무관하다. 서버 심판이 지시 표현·근거에 없는
+                  숫자를 잡으면 시스템이 계산한 문단으로 되돌아온다. */}
+              {composing && !consult ? (
+                <div
+                  aria-hidden="true"
+                  className="inset-block inset-block-note flex flex-col gap-2"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-accent/25 border-t-accent" />
+                    <span className="text-sm font-semibold text-muted">
+                      이번 결과로 상담문을 쓰는 중…
+                    </span>
+                  </div>
+                  <span className="loading-skeleton block h-4 w-full rounded" />
+                  <span className="loading-skeleton block h-4 w-11/12 rounded" />
+                  <span className="loading-skeleton block h-4 w-3/4 rounded" />
+                </div>
+              ) : null}
+
+              {consult ? (
+                <section
+                  aria-labelledby="consult-title"
+                  className="inset-block inset-block-note"
+                >
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="chip inline-flex bg-accent text-white">
+                      {consult.source === "ai_written" ? "AI 작성" : "자동 생성"}
+                    </span>
+                    <h3
+                      id="consult-title"
+                      className="text-[0.95rem] font-bold text-foreground"
+                    >
+                      이번 결과 상담문
+                    </h3>
+                    <InfoTip label="상담문">
+                      위에 연결된 문헌만 읽고 쓴 문단입니다. 어떤 문헌이 뽑히는지는 이
+                      문단과 무관하게 규칙 파일이 정합니다. AI가 쓴 문장에 복용 지시나
+                      근거에 없는 숫자가 있으면 서버가 걸러 내고 시스템이 계산한 문단을
+                      대신 보여줍니다.
+                    </InfoTip>
+                  </div>
+                  <div className="mt-2 flex flex-col gap-2 text-sm leading-6 text-foreground">
+                    {consult.paragraphs.map((paragraph, index) => (
+                      <p key={`consult-${index}`}>{paragraph}</p>
+                    ))}
+                  </div>
+                  <p className="mt-2 text-[0.72rem] leading-5 text-muted">
+                    복용 시작·중단·용량 변경은 판단하지 않습니다.
+                  </p>
+                </section>
+              ) : null}
 
               <dl className="grid gap-2 sm:grid-cols-3">
                 <SummaryTile
