@@ -44,6 +44,14 @@ export type RefereeVerdict =
 
 const MAX_PARAGRAPHS = 4;
 const MAX_PARAGRAPH_CHARS = 320;
+/**
+ * 한 문단이 댈 수 있는 근거 수.
+ *
+ * 전부를 가리키는 출처는 아무것도 가리키지 않는 것과 같다. 실제로 모델이
+ * 문단마다 15건 전부를 달아 화면이 칩 30개로 덮인 적이 있다. 특정 문헌을 짚는
+ * 문단만 인용하고, 총평이나 화면 안내 문단은 빈 배열로 두게 한다.
+ */
+const MAX_RECORD_REFS = 3;
 
 function collectNumbers(text: string) {
   return new Set(
@@ -105,6 +113,9 @@ export function refereeConsult({
     const unknownIds = recordIds.filter((id) => !(id in recordText));
     if (unknownIds.length) {
       rejections.push(`unknown_record:${index}:${unknownIds[0]}`);
+    }
+    if (recordIds.length > MAX_RECORD_REFS) {
+      rejections.push(`too_many_refs:${index}:${recordIds.length}`);
     }
 
     // 숫자는 이 문단이 인용한 기록 + 공용 텍스트 안에서만 허용한다.

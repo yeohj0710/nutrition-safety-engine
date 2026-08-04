@@ -97,6 +97,26 @@ describe("consult referee", () => {
     }
   });
 
+  it("rejects a paragraph that points at everything", () => {
+    // 전부를 가리키는 출처는 아무것도 가리키지 않는 것과 같다.
+    const verdict = refereeConsult({
+      paragraphs: [
+        {
+          text: "여러 연구가 보고했습니다.",
+          recordIds: ["PMID-1", "PMID-2", "PMID-1", "PMID-2"],
+        },
+      ],
+      recordText,
+      sharedText,
+    });
+    expect(verdict.ok).toBe(false);
+    if (!verdict.ok) {
+      expect(verdict.rejections.some((item) => item.startsWith("too_many_refs"))).toBe(
+        true,
+      );
+    }
+  });
+
   it("rejects a paragraph that cites a record the lookup never returned", () => {
     const verdict = refereeConsult({
       paragraphs: [{ text: "한 연구가 그렇게 보고했습니다.", recordIds: ["PMID-GHOST"] }],
