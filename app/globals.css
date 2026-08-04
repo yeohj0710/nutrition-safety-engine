@@ -8,9 +8,11 @@
   --surface-strong: oklch(0.989 0.002 90);
   --border-subtle: color-mix(in oklab, var(--foreground) 12%, transparent);
   --muted: oklch(0.51 0.01 52);
-  --accent: oklch(0.39 0.028 170);
-  --accent-strong: oklch(0.29 0.021 170);
-  --accent-soft: oklch(0.96 0.006 170);
+  /* 화면의 유일한 강조색. 예전에는 본문 버튼이 파랑, 오류 화면 버튼이 청록으로
+     갈라져 있었다. 두 곳이 같은 토큰을 보게 한다. */
+  --accent: oklch(0.488 0.217 264.4);
+  --accent-strong: oklch(0.424 0.191 265.6);
+  --accent-soft: oklch(0.97 0.014 254.6);
   --warning: oklch(0.57 0.08 60);
   --danger: oklch(0.56 0.11 28);
   --success: oklch(0.56 0.07 160);
@@ -34,6 +36,14 @@
   --space-8: 2rem;
   --space-12: 3rem;
   --space-16: 4rem;
+  /* 카드·컨트롤·칩 세 단계만 쓴다. 화면에 반지름이 네 종류로 늘어나면
+     같은 위계의 상자가 서로 다른 모서리로 보인다. */
+  --radius-card: 1rem;
+  --radius-control: 0.75rem;
+  --radius-pill: 999px;
+  /* 카드 안쪽 여백과 카드 사이 간격은 각각 값 하나로 고정한다. */
+  --card-pad: 1.25rem;
+  --stack-gap: 1rem;
   --page-shell-max: 54rem;
   --page-shell-narrow-max: 48rem;
   --measure-readable: 54ch;
@@ -41,6 +51,13 @@
     Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Segoe UI", sans-serif;
   --font-fallback-display: var(--font-fallback-sans);
   color-scheme: light;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --card-pad: 1.5rem;
+    --stack-gap: 1.25rem;
+  }
 }
 
 @theme inline {
@@ -131,227 +148,379 @@ summary:focus-visible {
   color: var(--foreground);
 }
 
-.app-page {
-  position: relative;
-  isolation: isolate;
-  background:
-    radial-gradient(
-      72rem 28rem at 50% -12rem,
-      color-mix(in oklab, var(--accent-soft) 38%, white) 0%,
-      transparent 72%
-    ),
-    linear-gradient(
-      180deg,
-      color-mix(in oklab, var(--background) 97%, white) 0%,
-      var(--background) 42%,
-      var(--background) 100%
-    );
-}
-
-.page-shell {
-  width: 100%;
-  max-width: var(--page-shell-max);
-  margin-inline: auto;
-}
-
-.page-shell-narrow {
-  width: 100%;
-  max-width: var(--page-shell-narrow-max);
-  margin-inline: auto;
-}
-
-.measure-copy {
-  max-width: var(--measure-readable);
-}
-
-.surface-card {
-  border: 1px solid var(--border-subtle);
-  background: color-mix(in oklab, var(--surface) 98%, var(--background));
-  box-shadow: var(--shadow-soft);
-}
-
-.surface-card-strong {
-  border: 1px solid var(--border-subtle);
-  background: color-mix(
-    in oklab,
-    var(--surface-elevated) 98%,
-    var(--background)
-  );
-  box-shadow: var(--shadow-panel);
-}
-
-.site-masthead {
-  border: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.94) 0%,
-      rgba(255, 255, 255, 0.82) 100%
-    ),
-    color-mix(in oklab, var(--surface-elevated) 96%, var(--background));
-  box-shadow: 0 4px 12px rgba(27, 25, 22, 0.03);
-  backdrop-filter: blur(12px);
-}
-
-.site-brand-mark {
-  display: inline-flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow: 0 4px 10px rgba(27, 25, 22, 0.04);
-}
-
-.eyebrow,
-.editorial-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.animated-details {
-  overflow: visible;
-}
-
-.animated-details > summary {
-  transition:
-    background-color var(--duration-toggle) var(--ease-soft),
-    color var(--duration-toggle) var(--ease-soft);
-}
-
-.animated-details > summary::marker,
-.animated-details > summary::-webkit-details-marker,
-.info-tip > summary::marker,
-.info-tip > summary::-webkit-details-marker {
-  display: none;
-  content: "";
-}
-
-.animated-details > summary:hover {
-  background: color-mix(in oklab, var(--foreground) 4%, transparent);
-}
-
-.animated-details > summary:active {
-  background: color-mix(in oklab, var(--foreground) 7%, transparent);
-}
-
-.collapsible-chevron {
-  display: inline-flex;
-  width: 1.75rem;
-  height: 1.75rem;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  transition:
-    transform var(--duration-expand) var(--ease-emphasized),
-    color var(--duration-toggle) var(--ease-soft),
-    background-color var(--duration-toggle) var(--ease-soft);
-  transform-origin: center;
-}
-
-.animated-details[data-open="true"] > summary .collapsible-chevron {
-  transform: rotate(180deg);
-}
-
-.animated-details > summary:hover .collapsible-chevron {
-  background: color-mix(in oklab, var(--foreground) 5%, transparent);
-  color: var(--foreground);
-}
-
-.collapsible-panel {
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-  transition:
-    opacity var(--duration-expand) var(--ease-soft),
-    visibility 0s linear var(--duration-expand);
-}
-
-.collapsible-panel[data-open="true"] {
-  opacity: 1;
-  pointer-events: auto;
-  visibility: visible;
-  transition-delay: 0s;
-}
-
-.collapsible-panel-inner {
-  min-height: 0;
-  overflow: hidden;
-}
-
-.collapsible-panel-body {
-  transform: translate3d(0, -6px, 0);
-  transition: transform var(--duration-expand) var(--ease-emphasized);
-}
-
-.collapsible-panel[data-open="true"] .collapsible-panel-body {
-  transform: translate3d(0, 0, 0);
-}
-
-.info-tip[open] > summary {
-  border-color: color-mix(in oklab, var(--accent) 42%, white);
-  background: var(--accent-soft);
-  color: var(--accent-strong);
-}
-
-.evidence-record {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 32rem;
-}
-
-@keyframes rise-in {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 8px, 0);
+/* 컴포넌트 클래스는 components 레이어에 둔다. 레이어 밖에 두면 Tailwind
+   유틸리티보다 항상 우선해서 hidden·border-dashed 같은 유틸리티가 조용히
+   무시된다. */
+@layer components {
+  .app-page {
+    position: relative;
+    isolation: isolate;
+    background:
+      radial-gradient(
+        72rem 28rem at 50% -12rem,
+        color-mix(in oklab, var(--accent-soft) 38%, white) 0%,
+        transparent 72%
+      ),
+      linear-gradient(
+        180deg,
+        color-mix(in oklab, var(--background) 97%, white) 0%,
+        var(--background) 42%,
+        var(--background) 100%
+      );
   }
 
-  to {
+  .page-shell {
+    width: 100%;
+    max-width: var(--page-shell-max);
+    margin-inline: auto;
+  }
+
+  .page-shell-narrow {
+    width: 100%;
+    max-width: var(--page-shell-narrow-max);
+    margin-inline: auto;
+  }
+
+  .measure-copy {
+    max-width: var(--measure-readable);
+  }
+
+  /* 세로로 쌓이는 카드 사이 간격. 페이지도 결과 화면도 같은 값을 쓴다. */
+  .page-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--stack-gap);
+  }
+
+  /* 화면의 모든 카드는 이 한 클래스만 쓴다. 테두리·모서리·여백을 유틸리티로
+     따로 붙이면 카드마다 값이 갈라진다. */
+  .card {
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-card);
+    background: color-mix(in oklab, var(--surface) 98%, var(--background));
+    box-shadow: var(--shadow-soft);
+    padding: var(--card-pad);
+  }
+
+  /* 내부를 구분선으로 나눠 쓰는 카드는 바깥 여백을 각 구획이 갖는다. */
+  .card-flush {
+    padding: 0;
+  }
+
+  /* 아직 결과가 없는 자리. 카드 자리는 그대로 두고 채움만 비운다. */
+  .card-dashed {
+    border-style: dashed;
+    background: color-mix(in oklab, var(--foreground) 2.5%, transparent);
+    box-shadow: none;
+  }
+
+  .card-danger {
+    border-color: color-mix(in oklab, var(--danger) 38%, transparent);
+    background: color-mix(in oklab, var(--danger) 7%, white);
+    color: var(--danger);
+  }
+
+  .card-section {
+    padding: var(--card-pad);
+  }
+
+  .card-section + .card-section,
+  .card-divider {
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  /* 카드 안에 두는 보조 상자: 설명 블록, 요약 타일, 인용문. */
+  .inset-block {
+    border-radius: var(--radius-control);
+    padding: var(--space-4);
+  }
+
+  .inset-block-quiet {
+    background: color-mix(in oklab, var(--foreground) 3.5%, transparent);
+  }
+
+  .inset-block-note {
+    border: 1px solid color-mix(in oklab, var(--accent) 18%, transparent);
+    background: color-mix(in oklab, var(--accent) 6%, white);
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-height: 1.75rem;
+    padding: 0 0.75rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .chip-quiet {
+    background: color-mix(in oklab, var(--foreground) 5%, transparent);
+    color: var(--muted);
+  }
+
+  /* 상황·표현 선택 줄. 두 목록이 같은 높이로 나란히 서도록 한곳에서 정한다. */
+  .choice-row {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+    min-height: 3.5rem;
+    padding: 0.75rem 0.875rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-control);
+    background: var(--surface);
+    cursor: pointer;
+    transition:
+      border-color var(--duration-toggle) var(--ease-soft),
+      background-color var(--duration-toggle) var(--ease-soft);
+  }
+
+  .choice-row:hover {
+    border-color: color-mix(in oklab, var(--accent) 45%, white);
+  }
+
+  .choice-row:has(input:checked) {
+    border-color: var(--accent);
+    background: color-mix(in oklab, var(--accent) 7%, white);
+  }
+
+  .choice-row:has(input:focus-visible) {
+    outline: 2px solid color-mix(in oklab, var(--accent) 78%, white);
+    outline-offset: 2px;
+  }
+
+  .choice-row:has(input:disabled) {
+    cursor: not-allowed;
+    border-color: var(--border-subtle);
+    background: color-mix(in oklab, var(--foreground) 3%, transparent);
+    color: var(--muted);
+  }
+
+  .choice-row > input {
+    margin-top: 0.125rem;
+    width: 1.05rem;
+    height: 1.05rem;
+    flex-shrink: 0;
+    accent-color: var(--accent);
+  }
+
+  /* 문헌 번호 배지. 줄 높이 1.5rem 에 정확히 맞춰 첫 줄과 중심이 어긋나지 않게 한다. */
+  .ref-badge {
+    display: inline-flex;
+    width: 1.5rem;
+    height: 1.5rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* 44px 터치 영역은 유지하면서 음수 여백으로 배치 폭만 1.5rem 으로 되돌린다. */
+  .ref-hit {
+    margin: -0.625rem;
+  }
+
+  .info-hit {
+    margin: -0.75rem;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .animated-details {
+    overflow: visible;
+  }
+
+  .animated-details > summary {
+    border-radius: inherit;
+    transition:
+      background-color var(--duration-toggle) var(--ease-soft),
+      color var(--duration-toggle) var(--ease-soft);
+  }
+
+  /* 접었다 펴는 상자는 네 군데에 있고 전부 같은 줄 높이·여백을 쓴다. */
+  .disclosure {
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-control);
+    background: var(--surface);
+  }
+
+  .disclosure-summary {
+    display: flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: 0.625rem 0.875rem;
+    list-style: none;
+    text-align: left;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .disclosure-body {
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .animated-details > summary::marker,
+  .animated-details > summary::-webkit-details-marker,
+  .info-tip > summary::marker,
+  .info-tip > summary::-webkit-details-marker {
+    display: none;
+    content: "";
+  }
+
+  .animated-details > summary:hover {
+    background: color-mix(in oklab, var(--foreground) 4%, transparent);
+  }
+
+  .animated-details > summary:active {
+    background: color-mix(in oklab, var(--foreground) 7%, transparent);
+  }
+
+  .collapsible-chevron {
+    display: inline-flex;
+    width: 1.75rem;
+    height: 1.75rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    transition:
+      transform var(--duration-expand) var(--ease-emphasized),
+      color var(--duration-toggle) var(--ease-soft),
+      background-color var(--duration-toggle) var(--ease-soft);
+    transform-origin: center;
+  }
+
+  .animated-details[data-open="true"] > summary .collapsible-chevron {
+    transform: rotate(180deg);
+  }
+
+  .animated-details > summary:hover .collapsible-chevron {
+    background: color-mix(in oklab, var(--foreground) 5%, transparent);
+    color: var(--foreground);
+  }
+
+  .collapsible-panel {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition:
+      opacity var(--duration-expand) var(--ease-soft),
+      visibility 0s linear var(--duration-expand);
+  }
+
+  .collapsible-panel[data-open="true"] {
     opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transition-delay: 0s;
+  }
+
+  .collapsible-panel-inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .collapsible-panel-body {
+    transform: translate3d(0, -6px, 0);
+    transition: transform var(--duration-expand) var(--ease-emphasized);
+  }
+
+  .collapsible-panel[data-open="true"] .collapsible-panel-body {
     transform: translate3d(0, 0, 0);
   }
-}
 
-.motion-enter {
-  animation: rise-in var(--duration-expand) var(--ease-emphasized);
-}
-
-@keyframes skeleton-shimmer {
-  from {
-    transform: translateX(-100%);
+  .info-tip-mark {
+    display: inline-flex;
+    width: 1.25rem;
+    height: 1.25rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid color-mix(in oklab, var(--foreground) 22%, transparent);
+    border-radius: var(--radius-pill);
+    background: var(--surface);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--muted);
+    transition:
+      border-color var(--duration-toggle) var(--ease-soft),
+      background-color var(--duration-toggle) var(--ease-soft),
+      color var(--duration-toggle) var(--ease-soft);
   }
 
-  to {
-    transform: translateX(100%);
+  .info-tip > summary:hover .info-tip-mark,
+  .info-tip[open] > summary .info-tip-mark {
+    border-color: color-mix(in oklab, var(--accent) 42%, white);
+    background: var(--accent-soft);
+    color: var(--accent-strong);
   }
-}
 
-.loading-skeleton {
-  position: relative;
-  overflow: hidden;
-  background: color-mix(in oklab, var(--foreground) 8%, transparent);
-}
+  .evidence-record {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 32rem;
+  }
 
-.loading-skeleton::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.72) 50%,
-    transparent 100%
-  );
-  animation: skeleton-shimmer 1.2s ease-in-out infinite;
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 8px, 0);
+    }
+
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .motion-enter {
+    animation: rise-in var(--duration-expand) var(--ease-emphasized);
+  }
+
+  @keyframes skeleton-shimmer {
+    from {
+      transform: translateX(-100%);
+    }
+
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  .loading-skeleton {
+    position: relative;
+    overflow: hidden;
+    background: color-mix(in oklab, var(--foreground) 8%, transparent);
+  }
+
+  .loading-skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.72) 50%,
+      transparent 100%
+    );
+    animation: skeleton-shimmer 1.2s ease-in-out infinite;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

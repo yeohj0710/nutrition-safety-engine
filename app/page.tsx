@@ -12,9 +12,10 @@ export const metadata: Metadata = {
 
 export default function Home() {
   const perQuestion = Object.values(core.per_question);
-  const coreRange = `상황별 ${Math.min(...perQuestion)}~${Math.max(
-    ...perQuestion,
-  )}건`;
+  const lowest = Math.min(...perQuestion);
+  const highest = Math.max(...perQuestion);
+  const coreRange =
+    lowest === highest ? `상황별 ${lowest}건씩` : `상황별 ${lowest}~${highest}건`;
 
   const stats = [
     {
@@ -44,25 +45,22 @@ export default function Home() {
       id="main-content"
       tabIndex={-1}
       data-scope="ai_selected_thesis_scope_v40"
-      className="app-page min-h-screen px-4 pb-24 pt-4 sm:px-6 sm:pb-36 lg:pb-52"
+      className="app-page flex-1 px-4 py-4 sm:px-6 sm:py-6"
     >
-      <div className="page-shell flex flex-col gap-4">
-        <section
-          aria-labelledby="page-title"
-          className="surface-card rounded-[1.15rem] px-4 py-4"
-        >
+      <div className="page-shell page-stack">
+        <section aria-labelledby="page-title" className="card">
           <h1
             id="page-title"
             className="text-[1.25rem] font-bold leading-snug text-foreground"
           >
             고위험 상황에서 확인하는 보충제 안전성 근거
           </h1>
-          <p className="mt-1 text-sm leading-6 text-muted">
+          <p className="mt-2 text-sm leading-6 text-muted">
             수술 전후, 만성콩팥병, 임신, 간질환, 항응고 치료 중 하나를 고르면
             초록에 연령·약물·용량·성별·질환 표현이 있는 근거 기록을 좁혀
             보여줍니다.
           </p>
-          <p className="mt-2 text-[0.8rem] leading-6 text-muted">
+          <p className="mt-3 text-[0.8rem] leading-6 text-muted">
             <span className="font-semibold text-foreground">
               입력값과 논문 내용을 대조하는 도구가 아닙니다.
             </span>{" "}
@@ -71,44 +69,37 @@ export default function Home() {
           </p>
         </section>
 
-        <section aria-label="연구 자료 규모" className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+        <section
+          aria-label="연구 자료 규모"
+          className="grid gap-[var(--stack-gap)] sm:grid-cols-2 lg:grid-cols-4"
+        >
           {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="surface-card rounded-[0.95rem] px-3.5 py-3"
-            >
+            <div key={stat.label} className="card flex flex-col">
               <p className="text-[0.72rem] font-semibold text-muted">
                 {stat.label}
               </p>
-              <p className="mt-1 text-[1.35rem] font-semibold leading-none tabular-nums text-foreground">
+              <p className="mt-2 text-[1.5rem] font-semibold leading-none tabular-nums text-foreground">
                 {stat.value.toLocaleString("ko-KR")}
               </p>
-              <p className="mt-1.5 text-[0.76rem] leading-5 text-muted">
+              <p className="mt-2 text-[0.76rem] leading-5 text-muted">
                 {stat.note}
               </p>
             </div>
           ))}
         </section>
 
-        <section
-          className="surface-card rounded-[1.15rem] px-4 py-4 sm:px-5 sm:py-5"
-          id="explorer"
-          aria-label="근거 기록 찾기"
-        >
+        <section id="explorer" aria-label="근거 기록 찾기">
           <PersonalizedSafetyQuery />
         </section>
 
-        <section
-          aria-labelledby="limits-title"
-          className="surface-card rounded-[1.15rem] px-4 py-4"
-        >
+        <section aria-labelledby="limits-title" className="card">
           <h2
             id="limits-title"
             className="text-[0.95rem] font-bold text-foreground"
           >
             해석할 때 확인할 점
           </h2>
-          <ul className="mt-2 flex flex-col gap-1.5 text-[0.8rem] leading-6 text-muted">
+          <ul className="mt-3 flex flex-col gap-2 text-[0.8rem] leading-6 text-muted">
             <li>
               전량 분류에서 결정적 분류기가 전체 기록을 분류했고, 재판정에서
               경계 기록을 다시 판정했습니다. 사람 참조표준은 없습니다.

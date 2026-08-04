@@ -22,12 +22,12 @@ export default function GlobalError({
         <main
           id="main-content"
           tabIndex={-1}
-          className="app-page min-h-screen px-4 py-12 sm:px-6 sm:py-16"
+          className="app-page min-h-screen px-4 py-10 sm:px-6 sm:py-14"
         >
           <section
             role="alert"
             aria-labelledby="global-error-title"
-            className="surface-card-strong page-shell-narrow rounded-3xl px-6 py-8 sm:px-9 sm:py-10"
+            className="card page-shell-narrow"
           >
             <p className="eyebrow">화면 불러오기 오류</p>
             <h1
@@ -45,7 +45,7 @@ export default function GlobalError({
             <button
               type="button"
               onClick={() => unstable_retry()}
-              className="mt-7 inline-flex min-h-12 items-center justify-center rounded-xl bg-accent px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-accent-strong"
+              className="mt-6 inline-flex min-h-12 items-center justify-center rounded-[var(--radius-control)] bg-accent px-6 text-sm font-semibold text-white transition-colors hover:bg-accent-strong"
             >
               다시 불러오기
             </button>

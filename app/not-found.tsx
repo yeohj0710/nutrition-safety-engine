@@ -5,10 +5,10 @@ export default function NotFound() {
     <main
       id="main-content"
       tabIndex={-1}
-      className="app-page min-h-[60vh] px-4 py-12 sm:px-6 sm:py-16"
+      className="app-page flex-1 px-4 py-10 sm:px-6 sm:py-14"
     >
       <div className="page-shell-narrow">
-        <section className="surface-card-strong rounded-3xl px-6 py-8 sm:px-9 sm:py-10">
+        <section className="card">
           <p className="eyebrow">페이지 없음</p>
           <h1 className="mt-3 text-2xl font-bold tracking-[-0.02em] text-foreground sm:text-3xl">
             찾을 수 없는 페이지
@@ -19,7 +19,7 @@ export default function NotFound() {
           </p>
           <Link
             href="/"
-            className="mt-7 inline-flex min-h-12 items-center justify-center rounded-xl bg-accent px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-accent-strong"
+            className="mt-6 inline-flex min-h-12 items-center justify-center rounded-[var(--radius-control)] bg-accent px-6 text-sm font-semibold text-white transition-colors hover:bg-accent-strong"
           >
             메인 화면으로 이동
           </Link>

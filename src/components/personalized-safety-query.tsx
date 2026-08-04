@@ -2,6 +2,7 @@
 
 import {
   type FormEvent,
+  type ReactNode,
   type RefObject,
   useCallback,
   useEffect,
@@ -109,6 +110,12 @@ type FormState = {
 const emptyForm: FormState = { situation: "", axes: [] };
 const SUMMARY_SENTENCE_LIMIT = 3;
 
+/** 카드 안에서 반복되는 버튼 모양. 높이와 모서리를 한곳에서 정한다. */
+const buttonBase =
+  "inline-flex min-h-12 items-center justify-center rounded-[var(--radius-control)] px-5 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50";
+const buttonPrimary = `${buttonBase} bg-accent text-white hover:bg-accent-strong`;
+const buttonQuiet = `${buttonBase} border border-border-subtle bg-surface text-foreground hover:border-accent/40`;
+
 function sortedAxes(values: AxisId[]) {
   return [...values].sort().join("|");
 }
@@ -181,6 +188,43 @@ function sentenceRoleLabel(role: EvidenceItem["sentence_role"]) {
   return "문장 역할 자동 구분 안 됨";
 }
 
+/** 요약 타일 한 칸. 라벨 줄 높이를 고정해 세 칸의 숫자 높이를 맞춘다. */
+function SummaryTile({
+  label,
+  value,
+  unit,
+  note,
+  tip,
+}: {
+  label: string;
+  value: number;
+  unit: string;
+  note?: string;
+  tip?: ReactNode;
+}) {
+  return (
+    <div className="inset-block inset-block-quiet">
+      <dt className="flex min-h-5 items-center gap-1.5 text-xs font-semibold text-muted">
+        {label}
+        {tip}
+      </dt>
+      <dd className="mt-2">
+        <span className="text-[1.35rem] font-semibold leading-none tabular-nums text-foreground">
+          {value.toLocaleString("ko-KR")}
+        </span>
+        <span className="ml-0.5 text-[0.8rem] font-semibold text-muted">
+          {unit}
+        </span>
+        {note ? (
+          <span className="mt-1.5 block text-[0.72rem] leading-5 text-muted">
+            {note}
+          </span>
+        ) : null}
+      </dd>
+    </div>
+  );
+}
+
 function EvidenceFinding({
   item,
   number,
@@ -195,8 +239,8 @@ function EvidenceFinding({
   const kind = item.publication_types.split("|")[0] || "연구유형 미표시";
 
   return (
-    <li className="border-t border-blue-100 py-4 first:border-t-0">
-      <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-blue-800">
+    <li className="grid grid-cols-[1.5rem_minmax(0,1fr)] items-start gap-x-3 gap-y-2 border-t border-accent/15 py-4 first:border-t-0">
+      <p className="col-span-2 flex flex-wrap items-center gap-x-2 text-[0.72rem] font-semibold text-accent-strong">
         <span>AI 자동 번역</span>
         <span aria-hidden="true">·</span>
         <span>{item.year || "연도 미표시"}</span>
@@ -204,20 +248,18 @@ function EvidenceFinding({
         <span>{kind}</span>
         <span aria-hidden="true">·</span>
         <span>문장 {sentenceIndex + 1}</span>
-      </div>
-      <div className="mt-2 flex items-start gap-3">
-        <a
-          href={`#result-ref-${number}`}
-          aria-label={`${number}번 문헌의 ${sentenceIndex + 1}번째 문장 출처로 이동`}
-          className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-xl bg-blue-700 px-2 text-xs font-bold text-white no-underline transition-colors hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
-        >
-          {number}
-        </a>
-        <p className="pt-2 text-sm font-medium leading-6 text-[#333d4b]">
-          {sentence}
-        </p>
-      </div>
-      <p lang="en" className="mt-3 break-words text-xs leading-5 text-stone-600">
+      </p>
+      {/* 터치 영역 44px 은 유지하고 ref-hit 의 음수 여백으로 배치 폭만 1.5rem 으로
+          되돌린다. 번호 배지가 본문 첫 줄과 같은 높이에서 시작한다. */}
+      <a
+        href={`#result-ref-${number}`}
+        aria-label={`${number}번 문헌의 ${sentenceIndex + 1}번째 문장 출처로 이동`}
+        className="ref-hit flex min-h-11 min-w-11 items-center justify-center no-underline"
+      >
+        <span className="ref-badge bg-accent text-white">{number}</span>
+      </a>
+      <p className="text-sm leading-6 text-foreground">{sentence}</p>
+      <p lang="en" className="col-start-2 break-words text-xs leading-5 text-muted">
         {item.title}
       </p>
     </li>
@@ -226,16 +268,13 @@ function EvidenceFinding({
 
 function ResultSkeleton() {
   return (
-    <div
-      aria-hidden="true"
-      className="surface-card motion-enter flex min-h-40 flex-col justify-center gap-4 rounded-2xl p-6"
-    >
+    <div aria-hidden="true" className="card motion-enter flex flex-col gap-4">
       <div className="flex items-center gap-3">
         <span
           aria-hidden="true"
-          className="h-5 w-5 animate-spin rounded-full border-2 border-blue-200 border-t-blue-600"
+          className="h-5 w-5 animate-spin rounded-full border-2 border-accent/25 border-t-accent"
         />
-        <p className="text-sm font-semibold text-stone-800">
+        <p className="text-sm font-semibold text-foreground">
           선택한 표현 필터로 문헌을 연결하는 중…
         </p>
       </div>
@@ -265,38 +304,34 @@ function EvidenceRecord({
   return (
     <li
       id={`result-ref-${number}`}
-      className="evidence-record flex scroll-mt-24 flex-col gap-4 py-6"
+      className="evidence-record grid scroll-mt-24 grid-cols-[1.5rem_minmax(0,1fr)] items-start gap-x-3 gap-y-4 py-5"
     >
-      <div className="flex items-start gap-3">
-        <span className="inline-flex h-8 min-w-8 shrink-0 items-center justify-center rounded-lg bg-stone-950 px-2 text-xs font-bold text-white">
-          {number}
-        </span>
-        <div className="min-w-0">
-          <a
-            href={item.url}
-            target="_blank"
-            rel="noreferrer"
-            lang="en"
-            className="break-words text-base font-bold leading-6 text-stone-950 underline decoration-stone-300 underline-offset-4 transition-colors hover:decoration-blue-500"
-          >
-            {item.title}
-            <span className="sr-only"> 새 탭에서 PubMed 열림</span>
-          </a>
-          <p lang="en" className="mt-2 break-words text-xs leading-5 text-stone-500">
-            {metadata.join(" · ") || "서지정보 미표시"}
-          </p>
-        </div>
+      <span className="ref-badge bg-foreground text-white">{number}</span>
+      <div className="min-w-0">
+        <a
+          href={item.url}
+          target="_blank"
+          rel="noreferrer"
+          lang="en"
+          className="break-words text-[0.95rem] font-bold leading-6 text-foreground underline decoration-border-subtle underline-offset-4 transition-colors hover:decoration-accent"
+        >
+          {item.title}
+          <span className="sr-only"> 새 탭에서 PubMed 열림</span>
+        </a>
+        <p lang="en" className="mt-1.5 break-words text-xs leading-5 text-muted">
+          {metadata.join(" · ") || "서지정보 미표시"}
+        </p>
       </div>
 
-      <div className="flex flex-wrap gap-2 pl-11 text-xs font-semibold">
-        <span className="rounded-full bg-blue-50 px-3 py-1 text-blue-700">
+      <div className="col-start-2 flex flex-wrap gap-1.5">
+        <span className="chip bg-accent/10 text-accent-strong">
           {item.source_scope === "abstract_only" ? "초록 범위" : "제목만"}
         </span>
         <span
-          className={`rounded-full px-3 py-1 ${
+          className={`chip ${
             item.sentence_role === "background_or_methods"
-              ? "bg-amber-50 text-amber-800"
-              : "bg-stone-100 text-stone-600"
+              ? "bg-warning/10 text-warning"
+              : "chip-quiet"
           }`}
         >
           {item.source_scope === "title_only"
@@ -306,9 +341,11 @@ function EvidenceRecord({
       </div>
 
       {item.key_finding_ko ? (
-        <div className="ml-11 rounded-xl bg-blue-50/70 p-4">
-          <p className="text-xs font-bold text-blue-700">AI 자동 번역</p>
-          <div className="mt-1 space-y-2 text-sm leading-6 text-stone-800">
+        <div className="inset-block inset-block-note col-start-2">
+          <p className="text-[0.72rem] font-bold text-accent-strong">
+            AI 자동 번역
+          </p>
+          <div className="mt-1.5 space-y-2 text-sm leading-6 text-foreground">
             {splitEvidenceSentences(item.key_finding_ko).map(
               (sentence, sentenceIndex) => (
                 <p key={`${item.record_id}-detail-${sentenceIndex}`}>
@@ -320,50 +357,58 @@ function EvidenceRecord({
         </div>
       ) : null}
 
-      <blockquote className="ml-11 border-l-2 border-blue-300 pl-4">
-        <p className="text-xs font-bold text-blue-700">
+      <blockquote className="inset-block inset-block-quiet col-start-2">
+        <p className="text-[0.72rem] font-bold text-muted">
           {item.source_scope === "title_only"
             ? `제목에서 가져옴 · ${locator}`
             : `AI 자동 추출 · ${locator}`}
         </p>
-        <p lang="en" className="mt-1 break-words text-sm leading-6 text-stone-700">
+        <p lang="en" className="mt-1.5 break-words text-sm leading-6 text-foreground">
           {item.source_sentence || "표시할 원문 문장이 없습니다."}
         </p>
       </blockquote>
 
       {item.population || item.dose || item.outcome ? (
-        <details className="ml-11 rounded-xl border border-stone-200 bg-stone-50/70">
-          <summary className="flex min-h-12 list-none items-center justify-between px-4 py-3 text-sm font-semibold text-stone-700">
-            <span>자동 추출 정보 더 보기</span>
-            <span aria-hidden="true" className="text-stone-400">↓</span>
-          </summary>
-          <dl className="grid gap-4 border-t border-stone-200 p-4 text-xs leading-5">
+        <AnimatedDetails
+          className="disclosure col-start-2"
+          summaryClassName="disclosure-summary text-muted"
+          bodyClassName="disclosure-body"
+          summary={
+            <>
+              <span>자동 추출 정보 더 보기</span>
+              <span aria-hidden="true" className="collapsible-chevron">
+                ↓
+              </span>
+            </>
+          }
+        >
+          <dl className="grid gap-3 p-4 text-xs leading-5">
             {item.population ? (
               <div>
-                <dt className="font-bold text-stone-700">연구 대상 표현</dt>
-                <dd lang="en" className="mt-1 break-words text-stone-600">
+                <dt className="font-bold text-foreground">연구 대상 표현</dt>
+                <dd lang="en" className="mt-1 break-words text-muted">
                   {item.population}
                 </dd>
               </div>
             ) : null}
             {item.dose ? (
               <div>
-                <dt className="font-bold text-stone-700">포착된 용량 표현</dt>
-                <dd lang="en" className="mt-1 break-words text-stone-600">
+                <dt className="font-bold text-foreground">포착된 용량 표현</dt>
+                <dd lang="en" className="mt-1 break-words text-muted">
                   {item.dose}
                 </dd>
               </div>
             ) : null}
             {item.outcome ? (
               <div>
-                <dt className="font-bold text-stone-700">결과 관련 표현</dt>
-                <dd lang="en" className="mt-1 break-words text-stone-600">
+                <dt className="font-bold text-foreground">결과 관련 표현</dt>
+                <dd lang="en" className="mt-1 break-words text-muted">
                   {item.outcome}
                 </dd>
               </div>
             ) : null}
           </dl>
-        </details>
+        </AnimatedDetails>
       ) : null}
     </li>
   );
@@ -513,175 +558,173 @@ export function PersonalizedSafetyQuery() {
     : [];
 
   return (
-    <div>
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <h2 className="text-[1.05rem] font-bold leading-snug text-foreground">
-          상황과 초록 표현으로 좁히는 근거 기록
-        </h2>
-        <InfoTip label="조회 방식">
-          이 화면은 개인 상태를 판정하지 않습니다. 연구 질문과 초록에서 포착한
-          표현을 연결하는 방식만 보여줍니다.
-        </InfoTip>
-      </div>
-      <div className="mt-3 border-l-2 border-blue-500 pl-3.5">
-        <p className="text-[0.72rem] font-bold text-blue-600">조회 순서</p>
-        <p className="mt-1 break-keep text-sm leading-6 text-muted">
-          상황 하나를 고르면 그 질문의 핵심 근거를 보여줍니다. 초록 표현을 함께
-          고르면 그 표현이 잡힌 기록만 남기고, 확장 근거까지 같은 조건으로
-          넓혀 볼 수 있습니다.
-        </p>
-      </div>
+    <div className="page-stack">
+      <section className="card">
+        <div className="flex items-center justify-between gap-3">
+          <h2 className="text-[1.05rem] font-bold leading-snug text-foreground">
+            상황과 초록 표현으로 좁히는 근거 기록
+          </h2>
+          <InfoTip label="조회 방식">
+            이 화면은 개인 상태를 판정하지 않습니다. 연구 질문과 초록에서 포착한
+            표현을 연결하는 방식만 보여줍니다.
+          </InfoTip>
+        </div>
 
-      <AnimatedDetails
-        className="mt-4 rounded-xl bg-stone-50"
-        summaryClassName="flex min-h-12 list-none items-center justify-between gap-4 rounded-xl px-4 py-3 text-left"
-        bodyClassName="grid gap-1 border-t border-stone-200 px-2 py-2 sm:grid-cols-2"
-        summary={
-          <>
-            <span className="text-sm font-bold text-foreground">
-              상황별 예시 {publicInputExamples.length}개
-            </span>
-            <span
-              aria-hidden="true"
-              className="collapsible-chevron text-stone-500"
+        <div className="inset-block inset-block-note mt-4">
+          <p className="text-[0.72rem] font-bold text-accent-strong">조회 순서</p>
+          <p className="mt-1 break-keep text-sm leading-6 text-muted">
+            상황 하나를 고르면 그 질문의 핵심 근거를 보여줍니다. 초록 표현을 함께
+            고르면 그 표현이 잡힌 기록만 남기고, 확장 근거까지 같은 조건으로
+            넓혀 볼 수 있습니다.
+          </p>
+        </div>
+
+        <AnimatedDetails
+          className="disclosure mt-3"
+          summaryClassName="disclosure-summary text-foreground"
+          bodyClassName="disclosure-body grid gap-1 p-2 sm:grid-cols-2"
+          summary={
+            <>
+              <span>상황별 예시 {publicInputExamples.length}개</span>
+              <span
+                aria-hidden="true"
+                className="collapsible-chevron text-muted"
+              >
+                ↓
+              </span>
+            </>
+          }
+        >
+          {publicInputExamples.map((example) => (
+            <button
+              key={example.id}
+              type="button"
+              disabled={pending}
+              aria-pressed={activeExample === example.id}
+              onClick={() => runExample(example)}
+              className="flex min-h-12 flex-col justify-center rounded-[var(--radius-control)] px-3 py-2 text-left transition-colors hover:bg-accent/5 disabled:cursor-wait disabled:opacity-60"
             >
-              ↓
-            </span>
-          </>
-        }
-      >
-        {publicInputExamples.map((example) => (
-          <button
-            key={example.id}
-            type="button"
-            disabled={pending}
-            aria-pressed={activeExample === example.id}
-            onClick={() => runExample(example)}
-            className="flex min-h-12 flex-col rounded-lg px-3 py-2.5 text-left transition-colors hover:bg-blue-50 disabled:cursor-wait disabled:opacity-60"
-          >
-            <span className="text-sm font-bold text-foreground">
-              {example.title}
-            </span>
-            <span className="mt-1 text-xs leading-5 text-muted">
-              {example.summary}
-            </span>
-          </button>
-        ))}
-      </AnimatedDetails>
+              <span className="text-sm font-bold text-foreground">
+                {example.title}
+              </span>
+              <span className="mt-0.5 text-xs leading-5 text-muted">
+                {example.summary}
+              </span>
+            </button>
+          ))}
+        </AnimatedDetails>
 
-      <form
-        id="evidence-query-form"
-        onSubmit={submit}
-        className="mt-6 scroll-mt-20 border-t border-stone-200 pt-6"
-      >
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
-          <fieldset>
-            <legend className="text-[0.95rem] font-bold text-foreground">
-              1. 문헌을 찾을 상황
-              <span className="ml-2 text-xs font-semibold text-red-600">필수</span>
-            </legend>
-            <div className="mt-3 grid gap-2">
-              {situations.map((situation, index) => {
-                const checked = form.situation === situation.id;
-                return (
-                  <label key={situation.id} className="block cursor-pointer">
+        <form
+          id="evidence-query-form"
+          onSubmit={submit}
+          className="mt-5 scroll-mt-20 border-t border-border-subtle pt-5"
+        >
+          {/* 두 목록은 같은 줄 수·같은 줄 높이로 맞춰 좌우가 한 줄씩 마주 보게 한다. */}
+          <div className="grid gap-5 lg:grid-cols-2">
+            <fieldset className="min-w-0">
+              <legend className="text-[0.95rem] font-bold text-foreground">
+                1. 문헌을 찾을 상황
+                <span className="ml-2 text-xs font-semibold text-danger">
+                  필수
+                </span>
+              </legend>
+              <p className="mt-2 text-[0.8rem] leading-6 text-muted lg:min-h-12">
+                다섯 가지 중 하나만 고릅니다. 고른 상황의 핵심 근거부터
+                보여줍니다.
+              </p>
+              <div className="mt-3 grid gap-2">
+                {situations.map((situation, index) => (
+                  <label key={situation.id} className="choice-row">
                     <input
                       ref={index === 0 ? firstSituationRef : undefined}
                       type="radio"
                       name="situation"
                       value={situation.id}
-                      checked={checked}
+                      checked={form.situation === situation.id}
                       onChange={() => selectSituation(situation.id)}
-                      className="peer sr-only"
-                    />
-                    <span className="flex min-h-12 items-center justify-between gap-3 rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm font-semibold text-stone-700 transition-colors hover:border-blue-300 peer-checked:border-blue-600 peer-checked:bg-blue-50 peer-checked:text-blue-800 peer-focus-visible:ring-2 peer-focus-visible:ring-blue-500 peer-focus-visible:ring-offset-2">
-                      <span>{situation.label}</span>
-                      <span className="shrink-0 text-xs font-medium text-stone-500">
-                        핵심 {coreCoverage[situation.id]}건
-                      </span>
-                    </span>
-                  </label>
-                );
-              })}
-            </div>
-          </fieldset>
-
-          <fieldset>
-            <legend className="text-[0.95rem] font-bold text-foreground">
-              2. 초록 표현으로 좁히기
-              <span className="ml-2 text-xs font-normal text-stone-500">선택</span>
-            </legend>
-            <p className="mt-2 text-[0.8rem] leading-6 text-muted">
-              선택한 표현이 포착된 기록만 남깁니다. 나이·약 이름·용량 값 자체를 대조하지 않습니다.
-            </p>
-            <div className="mt-3 grid gap-2 sm:grid-cols-2">
-              {axes.map((axis) => {
-                const coverage = form.situation
-                  ? axisCoverage[form.situation][axis.id]
-                  : undefined;
-                const unavailable = coverage === null;
-                const checked = form.axes.includes(axis.id);
-                return (
-                  <label
-                    key={axis.id}
-                    className={`flex min-h-12 items-start gap-3 rounded-xl border px-4 py-3 transition-colors ${
-                      unavailable
-                        ? "cursor-not-allowed border-stone-200 bg-stone-50 text-stone-400"
-                        : checked
-                          ? "cursor-pointer border-blue-500 bg-blue-50"
-                          : "cursor-pointer border-stone-200 bg-white hover:border-blue-300"
-                    }`}
-                  >
-                    <input
-                      type="checkbox"
-                      name="evidence-axis"
-                      value={axis.id}
-                      checked={checked}
-                      disabled={!form.situation || unavailable}
-                      onChange={() => toggleAxis(axis.id)}
-                      className="mt-1 h-4 w-4 shrink-0 accent-blue-600"
                     />
                     <span className="min-w-0">
-                      <span className="block text-sm font-bold">{axis.label}</span>
-                      <span className="mt-1 block text-xs leading-5">
-                        {!form.situation
-                          ? "상황을 먼저 선택하세요"
-                          : unavailable
-                            ? "이 상황에는 필터 규칙이 없습니다"
-                            : `${axis.filterHint} · ${coverage}건`}
+                      <span className="block text-sm font-bold leading-5 text-foreground">
+                        {situation.label}
+                      </span>
+                      <span className="mt-0.5 block text-xs leading-[1.125rem] text-muted">
+                        핵심 근거 {coreCoverage[situation.id]}건
                       </span>
                     </span>
                   </label>
-                );
-              })}
-            </div>
-          </fieldset>
-        </div>
+                ))}
+              </div>
+            </fieldset>
 
-        <div className="sticky bottom-3 z-20 -mx-2 mt-6 flex flex-wrap items-center gap-3 rounded-2xl border border-stone-200 bg-white/95 p-3 shadow-lg backdrop-blur sm:static sm:mx-0 sm:rounded-none sm:border-x-0 sm:border-b-0 sm:bg-transparent sm:px-0 sm:pb-0 sm:pt-5 sm:shadow-none">
-          <button
-            type="submit"
-            disabled={pending}
-            className="inline-flex min-h-12 flex-1 items-center justify-center rounded-xl bg-blue-700 px-6 text-sm font-bold text-white transition-colors hover:bg-blue-800 disabled:cursor-wait disabled:opacity-60 sm:flex-none"
-          >
-            {pending ? "문헌을 연결하는 중…" : "문헌 결과 보기"}
-          </button>
-          <button
-            type="button"
-            onClick={reset}
-            className="inline-flex min-h-12 items-center justify-center rounded-xl border border-stone-300 bg-white px-5 text-sm font-semibold text-stone-700 transition-colors hover:border-stone-400 hover:bg-stone-50"
-          >
-            선택 초기화
-          </button>
-          {selectedSituation ? (
-            <span className="text-sm text-stone-500">
-              {selectedSituation.short} · 필터 {form.axes.length}개
-            </span>
-          ) : null}
-        </div>
-      </form>
+            <fieldset className="min-w-0">
+              <legend className="text-[0.95rem] font-bold text-foreground">
+                2. 초록 표현으로 좁히기
+                <span className="ml-2 text-xs font-semibold text-muted">
+                  선택
+                </span>
+              </legend>
+              <p className="mt-2 text-[0.8rem] leading-6 text-muted lg:min-h-12">
+                선택한 표현이 포착된 기록만 남깁니다. 나이·약 이름·용량 값 자체를 대조하지 않습니다.
+              </p>
+              <div className="mt-3 grid gap-2">
+                {axes.map((axis) => {
+                  const coverage = form.situation
+                    ? axisCoverage[form.situation][axis.id]
+                    : undefined;
+                  const unavailable = coverage === null;
+                  return (
+                    <label key={axis.id} className="choice-row">
+                      <input
+                        type="checkbox"
+                        name="evidence-axis"
+                        value={axis.id}
+                        checked={form.axes.includes(axis.id)}
+                        disabled={!form.situation || unavailable}
+                        onChange={() => toggleAxis(axis.id)}
+                      />
+                      <span className="min-w-0">
+                        <span className="block text-sm font-bold leading-5">
+                          {axis.label}
+                        </span>
+                        {/* 좁은 화면에서 잘리더라도 건수가 먼저 남도록 순서를 둔다.
+                            truncate 는 nowrap 이라 min-content 를 키워 가로 넘침을
+                            만들었다. line-clamp 는 줄바꿈을 막지 않는다. */}
+                        <span className="mt-0.5 line-clamp-1 text-xs leading-[1.125rem] text-muted">
+                          {!form.situation
+                            ? "상황을 먼저 선택하세요"
+                            : unavailable
+                              ? "이 상황에는 필터 규칙이 없습니다"
+                              : `${coverage}건 · ${axis.filterHint}`}
+                        </span>
+                      </span>
+                    </label>
+                  );
+                })}
+              </div>
+            </fieldset>
+          </div>
 
-      <div ref={resultRef} className="mt-6 scroll-mt-20">
+          <div className="sticky bottom-3 z-20 mt-5 flex flex-wrap items-center gap-2 rounded-[var(--radius-control)] border border-border-subtle bg-white/95 p-3 shadow-lg backdrop-blur sm:static sm:mt-5 sm:rounded-none sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none">
+            <button
+              type="submit"
+              disabled={pending}
+              className={`${buttonPrimary} flex-1 font-bold disabled:cursor-wait disabled:opacity-60 sm:flex-none`}
+            >
+              {pending ? "문헌을 연결하는 중…" : "문헌 결과 보기"}
+            </button>
+            <button type="button" onClick={reset} className={buttonQuiet}>
+              선택 초기화
+            </button>
+            {selectedSituation ? (
+              <span className="text-xs text-muted">
+                {selectedSituation.short} · 필터 {form.axes.length}개
+              </span>
+            ) : null}
+          </div>
+        </form>
+      </section>
+
+      <div ref={resultRef} className="page-stack scroll-mt-20">
         <p role="status" aria-live="polite" className="sr-only">
           {pending
             ? "문헌 결과를 불러오는 중입니다."
@@ -697,7 +740,7 @@ export function PersonalizedSafetyQuery() {
             ref={errorRef}
             tabIndex={-1}
             aria-label="문헌 결과 오류"
-            className="mb-4 rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-semibold leading-6 text-red-700"
+            className="card card-danger text-sm font-semibold leading-6"
           >
             {error}
           </div>
@@ -706,11 +749,11 @@ export function PersonalizedSafetyQuery() {
         {pending && !result ? <ResultSkeleton /> : null}
 
         {!pending && !result && !error ? (
-          <div className="rounded-2xl border border-dashed border-stone-300 bg-stone-50 px-6 py-12 text-center">
-            <p className="text-[0.95rem] font-bold text-stone-800">
+          <div className="card card-dashed text-center">
+            <p className="text-[0.95rem] font-bold text-foreground">
               표시할 문헌 없음
             </p>
-            <p className="mx-auto mt-2 max-w-[42rem] text-sm leading-6 text-stone-500">
+            <p className="mx-auto mt-2 max-w-[36rem] text-sm leading-6 text-muted">
               위에서 상황을 하나 고르거나 예시를 누르면 문헌 결과를 보여줍니다.
             </p>
           </div>
@@ -719,23 +762,21 @@ export function PersonalizedSafetyQuery() {
         {result ? (
           <article
             aria-busy={pending}
-            className={`rounded-2xl border border-stone-200 bg-white ${
-              pending ? "opacity-60" : "motion-enter"
-            }`}
+            className={`card card-flush ${pending ? "opacity-60" : "motion-enter"}`}
           >
-            <header className="flex flex-col gap-6 p-4 sm:p-6">
+            <header className="card-section flex flex-col gap-5">
               {pending ? (
-                <p className="rounded-xl bg-blue-50 p-3 text-sm font-semibold text-blue-800">
+                <p className="inset-block inset-block-note text-sm font-semibold text-accent-strong">
                   새 조건의 문헌을 연결하는 중… 현재 결과는 요청이 끝날 때까지 유지합니다.
                 </p>
               ) : null}
               {staleResult ? (
-                <p className="rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm leading-6 text-amber-900">
+                <p className="inset-block border border-warning/30 bg-warning/10 text-sm leading-6 text-foreground">
                   입력 선택이 바뀌었습니다. 아래 내용은 요청 당시 조건의 결과입니다.
                 </p>
               ) : null}
               {result.expanded ? (
-                <p className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-900">
+                <p className="inset-block border border-warning/30 bg-warning/10 text-sm leading-6 text-foreground">
                   {result.applied_axes.length
                     ? `확장 목록에도 같은 표현 필터를 걸었습니다. 이 상황의 근거 ${result.extended_pool_total.toLocaleString("ko-KR")}건 가운데 ${result.extended_total.toLocaleString("ko-KR")}건이 남았습니다. `
                     : "확장 목록은 이 상황의 전체 후보 기록입니다. "}
@@ -745,21 +786,21 @@ export function PersonalizedSafetyQuery() {
 
               <div>
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="rounded-full bg-blue-700 px-3 py-1 text-xs font-bold text-white">
+                  <span className="chip bg-accent text-white">
                     {result.situation_label}
                   </span>
-                  <span className="text-xs font-semibold text-stone-500">
+                  <span className="text-xs font-semibold text-muted">
                     {resultCountLabel(result)}
                   </span>
                 </div>
                 <h2
                   ref={resultHeadingRef}
                   tabIndex={-1}
-                  className="mt-3 max-w-[66ch] text-xl font-bold leading-8 text-stone-950 focus:outline-none sm:text-2xl"
+                  className="mt-3 text-xl font-bold leading-8 text-foreground focus:outline-none sm:text-2xl"
                 >
                   {resultHeading(result)}
                 </h2>
-                <p className="mt-2 max-w-[66ch] text-sm leading-6 text-stone-600">
+                <p className="mt-1.5 text-sm leading-6 text-muted">
                   요청 당시 조건: {result.situation_label}
                   {result.query_snapshot.requested_axes.length
                     ? ` · ${result.query_snapshot.requested_axes
@@ -770,44 +811,43 @@ export function PersonalizedSafetyQuery() {
               </div>
 
               <dl className="grid gap-2 sm:grid-cols-3">
-                <div className="rounded-xl bg-stone-50 p-4">
-                  <dt className="text-xs font-semibold text-stone-600">
-                    {result.expanded ? "현재 페이지 기록" : "현재 표시 기록"}
-                  </dt>
-                  <dd className="mt-1 text-xl font-bold tabular-nums text-stone-950">
-                    {result.evidence_summary.displayed_records.toLocaleString("ko-KR")}건
-                  </dd>
-                </div>
-                <div className="rounded-xl bg-stone-50 p-4">
-                  <dt className="flex items-center gap-2 text-xs font-semibold text-stone-600">
-                    제목 기준 고유 문헌
+                <SummaryTile
+                  label={result.expanded ? "현재 페이지 기록" : "현재 표시 기록"}
+                  value={result.evidence_summary.displayed_records}
+                  unit="건"
+                />
+                <SummaryTile
+                  label="제목 기준 고유 문헌"
+                  value={result.evidence_summary.unique_titles}
+                  unit="편"
+                  tip={
                     <InfoTip label="제목 기준 고유 문헌">
                       제목을 영문 소문자와 공백 기준으로 정규화해 중복 제목을 한 편으로
                       계산했습니다. record ID 수와 다를 수 있습니다.
                     </InfoTip>
-                  </dt>
-                  <dd className="mt-1 text-xl font-bold tabular-nums text-stone-950">
-                    {result.evidence_summary.unique_titles.toLocaleString("ko-KR")}편
-                  </dd>
-                </div>
-                <div className="rounded-xl bg-stone-50 p-4">
-                  <dt className="text-xs font-semibold text-stone-600">출처 범위</dt>
-                  <dd className="mt-1 text-sm font-bold leading-7 text-stone-950">
-                    초록 {result.evidence_summary.source_scope.abstract_only}건 · 제목만{" "}
-                    {result.evidence_summary.source_scope.title_only}건
-                  </dd>
-                </div>
+                  }
+                />
+                <SummaryTile
+                  label="초록에서 확인한 기록"
+                  value={result.evidence_summary.source_scope.abstract_only}
+                  unit="건"
+                  note={`제목만 ${result.evidence_summary.source_scope.title_only}건`}
+                />
               </dl>
 
               {result.filter_mode === "metadata_axis_presence" &&
               result.filter_trace.length > 1 ? (
                 <div>
-                  <p className="text-xs font-bold text-stone-700">필터별 기록 수</p>
-                  <ol className="mt-2 flex flex-wrap items-center gap-2 text-xs font-semibold text-stone-600">
+                  <p className="text-xs font-bold text-foreground">필터별 기록 수</p>
+                  <ol className="mt-2 flex flex-wrap items-center gap-2">
                     {result.filter_trace.map((step, index) => (
                       <li key={step.axis} className="flex items-center gap-2">
-                        {index ? <span aria-hidden="true">→</span> : null}
-                        <span className="rounded-full bg-stone-100 px-3 py-1.5">
+                        {index ? (
+                          <span aria-hidden="true" className="text-xs text-muted">
+                            →
+                          </span>
+                        ) : null}
+                        <span className="chip chip-quiet">
                           {step.label} {step.count}건
                         </span>
                       </li>
@@ -816,10 +856,10 @@ export function PersonalizedSafetyQuery() {
                 </div>
               ) : null}
 
-              <div className="max-w-[66ch] rounded-xl border border-blue-100 bg-blue-50 p-4 text-sm leading-6 text-stone-700">
-                <p className="font-bold text-stone-950">이 결과의 근거 범위</p>
+              <div className="inset-block inset-block-note text-sm leading-6 text-muted">
+                <p className="font-bold text-foreground">이 결과의 근거 범위</p>
                 <p className="mt-1">{resultBasisCopy(result)}</p>
-                <p className="mt-2 text-xs text-stone-600">
+                <p className="mt-2 text-xs leading-5">
                   초록 자동 추출 기록 {result.evidence_summary.ai_extracted_sentences}건 · AI 자동 번역 문장{" "}
                   {result.evidence_summary.ai_translated_sentences}개
                   {result.evidence_summary.title_derived_records
@@ -829,9 +869,12 @@ export function PersonalizedSafetyQuery() {
               </div>
 
               {!result.expanded && findingSentences.length ? (
-                <section aria-labelledby="evidence-findings-title" className="max-w-[66ch]">
+                <section aria-labelledby="evidence-findings-title">
                   <div className="flex items-center gap-2">
-                    <h3 id="evidence-findings-title" className="text-base font-bold text-stone-950">
+                    <h3
+                      id="evidence-findings-title"
+                      className="text-[0.95rem] font-bold text-foreground"
+                    >
                       초록에서 자동 추출한 문장
                     </h3>
                     <InfoTip label="AI 자동 추출 문장">
@@ -839,10 +882,10 @@ export function PersonalizedSafetyQuery() {
                       사람의 원문 대조를 거친 문장이라는 뜻은 아닙니다.
                     </InfoTip>
                   </div>
-                  <p className="mt-2 text-sm leading-6 text-stone-600">
+                  <p className="mt-1.5 text-sm leading-6 text-muted">
                     각 번역 문장은 그 문장을 가져온 문헌 번호 하나와 연결됩니다.
                   </p>
-                  <ol className="mt-3 rounded-xl border border-blue-100 bg-blue-50/40 px-4">
+                  <ol className="inset-block-note mt-3 rounded-[var(--radius-control)] px-4">
                     {findingSentences
                       .slice(0, SUMMARY_SENTENCE_LIMIT)
                       .map((finding) => (
@@ -857,15 +900,17 @@ export function PersonalizedSafetyQuery() {
                   </ol>
                   {findingSentences.length > SUMMARY_SENTENCE_LIMIT ? (
                     <AnimatedDetails
-                      className="mt-3 rounded-xl border border-blue-100"
-                      summaryClassName="flex min-h-12 list-none items-center justify-between px-4 py-3 text-sm font-bold text-blue-700"
-                      bodyClassName="border-t border-blue-100 px-4"
+                      className="disclosure mt-2"
+                      summaryClassName="disclosure-summary text-accent-strong"
+                      bodyClassName="disclosure-body px-4"
                       summary={
                         <>
                           <span>
                             나머지 {findingSentences.length - SUMMARY_SENTENCE_LIMIT}개 자동 추출 문장 보기
                           </span>
-                          <span aria-hidden="true" className="collapsible-chevron">↓</span>
+                          <span aria-hidden="true" className="collapsible-chevron">
+                            ↓
+                          </span>
                         </>
                       }
                     >
@@ -889,15 +934,12 @@ export function PersonalizedSafetyQuery() {
 
               {result.evidence.length ? (
                 <nav aria-label="결과 안에서 이동" className="flex flex-wrap gap-2">
-                  <a
-                    href="#evidence-list"
-                    className="inline-flex min-h-12 items-center justify-center rounded-xl bg-stone-950 px-5 text-sm font-bold text-white no-underline transition-colors hover:bg-stone-800"
-                  >
+                  <a href="#evidence-list" className={`${buttonPrimary} no-underline`}>
                     전체 문헌 목록 보기
                   </a>
                   <a
                     href="#evidence-query-form"
-                    className="inline-flex min-h-12 items-center justify-center rounded-xl border border-stone-300 bg-white px-5 text-sm font-bold text-stone-700 no-underline transition-colors hover:border-blue-400"
+                    className={`${buttonQuiet} no-underline`}
                   >
                     선택 조건으로 돌아가기
                   </a>
@@ -905,28 +947,27 @@ export function PersonalizedSafetyQuery() {
               ) : null}
 
               <AnimatedDetails
-                className="rounded-xl border border-stone-200"
-                summaryClassName="flex min-h-12 list-none items-center justify-between px-4 py-3 text-sm font-semibold text-stone-800"
-                bodyClassName="border-t border-stone-200 p-4"
+                className="disclosure"
+                summaryClassName="disclosure-summary text-foreground"
+                bodyClassName="disclosure-body p-4"
                 summary={
                   <>
                     <span>연구 질문과 추출 기준 보기</span>
-                    <span aria-hidden="true" className="collapsible-chevron">↓</span>
+                    <span aria-hidden="true" className="collapsible-chevron">
+                      ↓
+                    </span>
                   </>
                 }
               >
-                <p className="max-w-[66ch] text-sm leading-6 text-stone-600">
-                  <span className="font-bold text-stone-800">연구 질문</span>
+                <p className="text-sm leading-6 text-muted">
+                  <span className="font-bold text-foreground">연구 질문</span>
                   <br />
                   {result.research_question}
                 </p>
                 {result.checks.length ? (
-                  <ul className="mt-3 flex flex-wrap gap-2">
+                  <ul className="mt-3 flex flex-wrap gap-1.5">
                     {result.checks.map((check) => (
-                      <li
-                        key={check}
-                        className="rounded-full bg-stone-100 px-3 py-1.5 text-xs font-semibold text-stone-600"
-                      >
+                      <li key={check} className="chip chip-quiet">
                         {check}
                       </li>
                     ))}
@@ -935,7 +976,7 @@ export function PersonalizedSafetyQuery() {
               </AnimatedDetails>
 
               {result.unavailable_axes.length ? (
-                <p className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-900">
+                <p className="inset-block border border-warning/30 bg-warning/10 text-sm leading-6 text-foreground">
                   이 상황에는 {result.unavailable_axes
                     .map((item) => axisById.get(item.axis)?.label ?? item.axis)
                     .join(", ")} 필터 규칙이 없어 적용하지 않았습니다.
@@ -946,7 +987,7 @@ export function PersonalizedSafetyQuery() {
             {result.evidence.length ? (
               <ol
                 id="evidence-list"
-                className="scroll-mt-20 divide-y divide-stone-200 border-t border-stone-200 px-4 sm:px-6"
+                className="card-section scroll-mt-20 divide-y divide-border-subtle"
               >
                 {result.evidence.map((item, index) => {
                   const number = result.expanded
@@ -956,8 +997,8 @@ export function PersonalizedSafetyQuery() {
                 })}
               </ol>
             ) : (
-              <div className="border-t border-stone-200 px-4 py-8 sm:px-6">
-                <p className="text-sm leading-6 text-stone-700">
+              <div className="card-section">
+                <p className="text-sm leading-6 text-muted">
                   {result.expanded
                     ? "선택한 표현 종류를 모두 가진 확장 기록이 없습니다."
                     : result.filter_mode === "metadata_axis_presence"
@@ -977,7 +1018,7 @@ export function PersonalizedSafetyQuery() {
                       void run(next);
                     }}
                     disabled={pending}
-                    className="mt-4 inline-flex min-h-12 items-center rounded-xl border border-blue-700 px-5 text-sm font-bold text-blue-800 transition-colors hover:bg-blue-50 disabled:opacity-50"
+                    className={`${buttonQuiet} mt-4 border-accent/40 font-bold text-accent-strong`}
                   >
                     마지막 필터 하나 빼기
                   </button>
@@ -986,7 +1027,7 @@ export function PersonalizedSafetyQuery() {
             )}
 
             {result.extended_total > result.evidence.length || result.expanded ? (
-              <div className="flex flex-col gap-3 border-t border-stone-200 px-4 py-5 sm:px-6">
+              <div className="card-section flex flex-col gap-3">
                 <div className="flex flex-wrap items-center gap-2">
                   {result.expanded && result.expanded_offset > 0 ? (
                     <button
@@ -1001,7 +1042,7 @@ export function PersonalizedSafetyQuery() {
                           ),
                         })
                       }
-                      className="inline-flex min-h-12 items-center rounded-xl border border-stone-300 bg-white px-5 text-sm font-semibold text-stone-700 transition-colors hover:border-blue-400 disabled:opacity-50"
+                      className={buttonQuiet}
                     >
                       이전 {result.expanded_page_size}건
                     </button>
@@ -1018,7 +1059,7 @@ export function PersonalizedSafetyQuery() {
                             : 0,
                         })
                       }
-                      className="inline-flex min-h-12 items-center rounded-xl bg-blue-700 px-5 text-sm font-semibold text-white transition-colors hover:bg-blue-800 disabled:opacity-50"
+                      className={buttonPrimary}
                     >
                       {result.expanded
                         ? `다음 ${result.expanded_page_size}건`
@@ -1032,19 +1073,19 @@ export function PersonalizedSafetyQuery() {
                       type="button"
                       disabled={pending}
                       onClick={() => runResultPage({})}
-                      className="inline-flex min-h-12 items-center rounded-xl border border-stone-300 bg-white px-5 text-sm font-semibold text-stone-700 transition-colors hover:border-blue-400 disabled:opacity-50"
+                      className={buttonQuiet}
                     >
                       핵심 근거로 돌아가기
                     </button>
                   ) : null}
                 </div>
-                <p className="max-w-[66ch] text-xs leading-5 text-stone-500">
+                <p className="text-xs leading-5 text-muted">
                   {result.extended_note}
                 </p>
               </div>
             ) : null}
 
-            <footer className="rounded-b-2xl border-t border-stone-200 bg-blue-50/60 px-4 py-4 text-xs leading-5 text-stone-700 sm:px-6">
+            <footer className="card-section rounded-b-[var(--radius-card)] bg-accent/5 text-xs leading-5 text-muted">
               {result.disclaimer || evidenceOnlyDisclaimer}
             </footer>
           </article>
