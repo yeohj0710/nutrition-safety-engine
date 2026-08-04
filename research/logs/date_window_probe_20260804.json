@@ -1,0 +1,50 @@
+{
+  "purpose": "기간 제한이 잘라낸 크기를 건수로만 진단. 인출·선별·채점 없음.",
+  "upper_bound_unchanged": "2026/07/28",
+  "start_original": "2022/01/01",
+  "start_probe": "1900/01/01",
+  "per_question": [
+    {
+      "question_id": "HRS1_PERIOPERATIVE",
+      "recorded_hit": 12296,
+      "recheck_hit": 12351,
+      "hit_without_start_limit": 61562,
+      "ratio": 4.9844
+    },
+    {
+      "question_id": "HRS2_KIDNEY_DISEASE",
+      "recorded_hit": 4704,
+      "recheck_hit": 4724,
+      "hit_without_start_limit": 28426,
+      "ratio": 6.0174
+    },
+    {
+      "question_id": "HRS3_PREGNANCY",
+      "recorded_hit": 20376,
+      "recheck_hit": 20448,
+      "hit_without_start_limit": 126636,
+      "ratio": 6.1931
+    },
+    {
+      "question_id": "HRS4_LIVER_DISEASE",
+      "recorded_hit": 6919,
+      "recheck_hit": 6945,
+      "hit_without_start_limit": 25181,
+      "ratio": 3.6258
+    },
+    {
+      "question_id": "HRS5_ANTICOAGULATION",
+      "recorded_hit": 3751,
+      "recheck_hit": 3762,
+      "hit_without_start_limit": 22024,
+      "ratio": 5.8543
+    }
+  ],
+  "total": {
+    "recorded": 48046,
+    "recheck": 48230,
+    "without_start_limit": 263829,
+    "ratio": 5.4702,
+    "outside_window": 215599
+  }
+}
