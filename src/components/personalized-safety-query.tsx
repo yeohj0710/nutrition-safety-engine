@@ -472,6 +472,52 @@ export function PersonalizedSafetyQuery() {
     [],
   );
 
+  // 조건을 하나 빼면 몇 건이 되는지 미리 재 둔다. 조건이 겹칠수록 남는 문헌이
+  // 빠르게 줄어드는데, 지금 화면은 "몇 건 남았다"까지만 말하고 어느 조건이
+  // 좁혔는지는 안 알려 준다. 조회 라우트는 외부 호출이 없어 여러 번 불러도 된다.
+  const [widen, setWiden] = useState<{ axis: AxisId; count: number }[]>([]);
+  const widenKey = result
+    ? `${result.query_snapshot.situation}|${sortedAxes(result.query_snapshot.requested_axes)}`
+    : "";
+  useEffect(() => {
+    const snapshot = result?.query_snapshot;
+    if (!snapshot || snapshot.requested_axes.length < 2) {
+      setWiden([]);
+      return;
+    }
+    const controller = new AbortController();
+    setWiden([]);
+    Promise.all(
+      snapshot.requested_axes.map(async (axis) => {
+        const rest = snapshot.requested_axes.filter((item) => item !== axis);
+        try {
+          const res = await fetch("/api/personalized-safety", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            signal: controller.signal,
+            body: JSON.stringify({ situation: snapshot.situation, axes: rest }),
+          });
+          const body = (await res.json()) as { evidence_total_after_filter?: number };
+          const count = body?.evidence_total_after_filter ?? 0;
+          return { axis, count };
+        } catch {
+          return null;
+        }
+      }),
+    ).then((rows) => {
+      if (controller.signal.aborted) return;
+      const current = result?.evidence_total_after_filter ?? 0;
+      setWiden(
+        (rows.filter(Boolean) as { axis: AxisId; count: number }[])
+          // 늘어나지 않는 조건은 제안할 이유가 없다.
+          .filter((row) => row.count > current)
+          .sort((a, b) => b.count - a.count),
+      );
+    });
+    return () => controller.abort();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [widenKey]);
+
   // 한국어 번역이 없는 기록만 한 줄로 옮긴다. 핵심 근거는 이미 번역이 붙어
   // 있고, 확장 근거만 영어 원문 문장으로 남는다(임신·용량 조건에서 15건 중 7건).
   // 기록마다 따로 부른다 — 한 번에 넘기면 개별 논문의 요지가 뭉개진다.
@@ -1208,6 +1254,39 @@ export function PersonalizedSafetyQuery() {
                     : ""}
                 </p>
               </div>
+
+              {widen.length ? (
+                <div className="inset-block inset-block-quiet">
+                  <p className="text-xs font-bold text-foreground">조건을 빼면</p>
+                  <p className="mt-1 text-[0.8rem] leading-6 text-muted">
+                    조건이 겹칠수록 남는 문헌이 빠르게 줄어듭니다. 하나를 빼면
+                    핵심 근거가 몇 건이 되는지 미리 세어 봤습니다. 화면에는 같은
+                    조건의 확장 근거를 더해 더 많이 보일 수 있습니다.
+                  </p>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {widen.map((row) => (
+                      <button
+                        key={row.axis}
+                        type="button"
+                        disabled={pending}
+                        onClick={() => {
+                          const next: FormState = {
+                            situation: result.query_snapshot.situation,
+                            axes: result.query_snapshot.requested_axes.filter(
+                              (item) => item !== row.axis,
+                            ),
+                          };
+                          setForm(next);
+                          void run(next);
+                        }}
+                        className={`${buttonQuiet} min-h-10 px-3 text-xs`}
+                      >
+                        {axisById.get(row.axis)?.label ?? row.axis} 빼기 · 핵심 {row.count}건
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
 
               {!result.expanded && findingSentences.length ? (
                 <section aria-labelledby="evidence-findings-title">

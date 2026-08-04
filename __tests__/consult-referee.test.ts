@@ -213,11 +213,23 @@ describe("ai layer boundary", () => {
       path.join(root, "src", "components", "personalized-safety-query.tsx"),
       "utf8",
     );
-    const start = component.indexOf('fetch("/api/personalized-safety"');
-    expect(start).toBeGreaterThan(-1);
-    const lookupCall = component.slice(start, start + 400);
-    expect(lookupCall).toContain("JSON.stringify({ ...values, ...extra })");
-    expect(lookupCall).not.toMatch(/sentence|age:|medication:|dose:|condition:/);
+    // 조회 호출이 여러 곳에서 일어난다(조회 실행, 조건 빼기 미리보기).
+    // 첫 한 곳만 보면 나중에 늘어난 호출이 검사에서 빠진다. 전부 본다.
+    const calls: string[] = [];
+    for (let at = 0; ; ) {
+      const start = component.indexOf('fetch("/api/personalized-safety"', at);
+      if (start === -1) break;
+      calls.push(component.slice(start, start + 400));
+      at = start + 1;
+    }
+    expect(calls.length).toBeGreaterThan(0);
+    for (const call of calls) {
+      // 자유 문장은 어느 조회 요청에도 실리지 않는다.
+      expect(call).not.toMatch(/sentence|age:|medication:|dose:|condition:/);
+      // 보내는 것은 상황과 축뿐이다.
+      expect(call).toMatch(/situation|\.\.\.values/);
+    }
+    expect(component).toContain("JSON.stringify({ ...values, ...extra })");
     // 화면은 상담문의 출처를 항상 밝힌다.
     expect(component).toContain('consult.source === "ai_written" ? "AI 작성" : "자동 생성"');
   });
