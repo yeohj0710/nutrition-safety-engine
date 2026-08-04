@@ -61,7 +61,7 @@ type Brief = {
 function readBriefs(value: unknown): Brief[] {
   if (!Array.isArray(value)) return [];
   return value
-    .slice(0, 12)
+    .slice(0, 15)
     .map((item) => {
       const row = item as Record<string, unknown>;
       return {
@@ -115,7 +115,10 @@ export async function POST(req: Request) {
     "사실 기록(시스템이 계산한 것):",
     ...narrative.map((line) => `- ${line}`),
     "",
-    `연결된 문헌 ${briefs.length}편:`,
+    // 발췌 목록의 개수를 알려 주면 그 수를 화면 표시 건수인 양 문단에 쓴다.
+    // 건수는 위 "사실 기록"에만 있고, 아래 목록은 내용 참고용이다.
+    "아래는 연결된 문헌의 제목과 보고 내용이다. 이 목록의 항목 수는 화면에 표시된",
+    "건수가 아니므로 세지 말고, 건수는 위 사실 기록에 적힌 숫자만 쓴다.",
     evidenceBlock,
   ]
     .filter(Boolean)
