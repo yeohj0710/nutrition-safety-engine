@@ -724,7 +724,7 @@ export function PersonalizedSafetyQuery() {
             aria-label="찾으시는 상황"
             className="mt-3 block w-full resize-y rounded-[var(--radius-control)] border border-border-subtle bg-surface px-3.5 py-2.5 text-sm leading-6 text-foreground placeholder:text-muted"
           />
-          <div className="mt-2 flex flex-wrap items-center gap-2">
+          <div className="mt-3 flex flex-wrap items-center gap-2">
             <button
               type="button"
               onClick={() => void interpretSentence()}
@@ -771,7 +771,7 @@ export function PersonalizedSafetyQuery() {
           ) : null}
         </div>
 
-        <div className="inset-block inset-block-quiet mt-3">
+        <div className="inset-block inset-block-quiet mt-4">
           <p className="text-[0.72rem] font-bold text-foreground">직접 고르기</p>
           <p className="mt-1 break-keep text-sm leading-6 text-muted">
             상황 하나를 고르면 그 질문의 핵심 근거를 보여줍니다. 초록 표현을 함께
@@ -781,7 +781,7 @@ export function PersonalizedSafetyQuery() {
         </div>
 
         <AnimatedDetails
-          className="disclosure mt-3"
+          className="disclosure mt-4"
           summaryClassName="disclosure-summary text-foreground"
           bodyClassName="disclosure-body grid gap-1 p-2 sm:grid-cols-2"
           summary={
@@ -818,10 +818,10 @@ export function PersonalizedSafetyQuery() {
         <form
           id="evidence-query-form"
           onSubmit={submit}
-          className="mt-5 scroll-mt-20 border-t border-border-subtle pt-5"
+          className="mt-4 scroll-mt-20 border-t border-border-subtle pt-4"
         >
           {/* 두 목록은 같은 줄 수·같은 줄 높이로 맞춰 좌우가 한 줄씩 마주 보게 한다. */}
-          <div className="grid gap-5 lg:grid-cols-2">
+          <div className="grid gap-4 lg:grid-cols-2">
             <fieldset className="min-w-0">
               <legend className="text-[0.95rem] font-bold text-foreground">
                 1. 문헌을 찾을 상황
@@ -905,7 +905,7 @@ export function PersonalizedSafetyQuery() {
             </fieldset>
           </div>
 
-          <div className="sticky bottom-3 z-20 mt-5 flex flex-wrap items-center gap-2 rounded-[var(--radius-control)] border border-border-subtle bg-white/95 p-3 shadow-lg backdrop-blur sm:static sm:mt-5 sm:rounded-none sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none">
+          <div className="sticky bottom-3 z-20 mt-4 flex flex-wrap items-center gap-2 rounded-[var(--radius-control)] border border-border-subtle bg-white/95 p-3 shadow-lg backdrop-blur sm:static sm:mt-4 sm:rounded-none sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none">
             <button
               type="submit"
               disabled={pending}
