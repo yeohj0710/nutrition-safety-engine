@@ -7,22 +7,28 @@ import { refereeConsult } from "@/src/lib/consult-referee";
 // 유일한 관문이다. 규칙 파일이 decision_authority=none 으로 못 박은 권한을
 // 프롬프트가 아니라 코드로 지킨다. 여기가 느슨해지면 논문 계약이 조용히 깨진다.
 
-const allowed = [
+// 시스템이 계산한 사실 기록. 어느 문단이든 쓸 수 있는 값이다.
+const sharedText = [
   "연결된 문헌은 15편입니다. 연구유형은 체계적 문헌고찰 6편, 무작위 대조시험 4편입니다.",
   "2022년부터 2025년 사이에 나왔습니다.",
-  "엽산 800 µg 을 보고한 기록이 있습니다.",
 ].join("\n");
 
+// 기록별 원문. 문단은 자기가 인용한 기록 안의 숫자만 쓸 수 있다.
+const recordText: Record<string, string> = {
+  "PMID-1": "2025 Systematic Review 엽산 800 µg 을 보고했습니다.",
+  "PMID-2": "2024 Randomized Controlled Trial 철분 65 mg 을 보고했습니다.",
+};
+
 const okParagraphs = [
-  "임신 중 상황에서 용량 관련 표현을 조건으로 걸어 찾았습니다.",
-  "연결된 문헌은 15편이고 2022년부터 2025년 사이에 나왔습니다.",
-  "이 문헌들은 개인별 안전 상한을 정하지 않았습니다.",
-  "아래 문헌 목록에서 각 기록의 출처 문장을 확인하실 수 있습니다.",
+  { text: "임신 중 상황에서 용량 관련 표현을 조건으로 걸어 찾았습니다.", recordIds: [] },
+  { text: "연결된 문헌은 15편이고 2022년부터 2025년 사이에 나왔습니다.", recordIds: [] },
+  { text: "이 문헌들은 개인별 안전 상한을 정하지 않았습니다.", recordIds: [] },
+  { text: "아래 문헌 목록에서 각 기록의 출처 문장을 확인하실 수 있습니다.", recordIds: [] },
 ];
 
 describe("consult referee", () => {
   it("passes paragraphs that only restate the supplied evidence", () => {
-    const verdict = refereeConsult({ paragraphs: okParagraphs, allowedText: allowed });
+    const verdict = refereeConsult({ paragraphs: okParagraphs, recordText, sharedText });
     expect(verdict.ok).toBe(true);
     if (verdict.ok) expect(verdict.paragraphs).toHaveLength(4);
   });
@@ -37,8 +43,8 @@ describe("consult referee", () => {
     ["복용을 피하세요.", "direction"],
   ])("rejects clinical direction: %s", (sentence) => {
     const verdict = refereeConsult({
-      paragraphs: [...okParagraphs.slice(0, 3), sentence],
-      allowedText: allowed,
+      paragraphs: [...okParagraphs.slice(0, 3), { text: sentence, recordIds: [] }],
+      recordText, sharedText,
     });
     expect(verdict.ok).toBe(false);
     if (!verdict.ok) {
@@ -48,8 +54,8 @@ describe("consult referee", () => {
 
   it("rejects numbers that the supplied evidence never mentions", () => {
     const verdict = refereeConsult({
-      paragraphs: ["하루 5000 µg 까지 보고된 기록이 있습니다."],
-      allowedText: allowed,
+      paragraphs: [{ text: "하루 5000 µg 까지 보고된 기록이 있습니다.", recordIds: [] }],
+      recordText, sharedText,
     });
     expect(verdict.ok).toBe(false);
     if (!verdict.ok) {
@@ -59,46 +65,84 @@ describe("consult referee", () => {
     }
   });
 
-  it("accepts numbers that appear in the supplied evidence", () => {
+  it("accepts a number once the paragraph cites the record that reports it", () => {
     const verdict = refereeConsult({
-      paragraphs: ["엽산 800 µg 을 보고한 기록이 15편 가운데 있습니다."],
-      allowedText: allowed,
+      paragraphs: [
+        {
+          text: "엽산 800 µg 을 보고한 기록이 15편 가운데 있습니다.",
+          recordIds: ["PMID-1"],
+        },
+      ],
+      recordText,
+      sharedText,
     });
     expect(verdict.ok).toBe(true);
   });
 
+  it("rejects a number that lives in a record the paragraph did not cite", () => {
+    // 예전 심판은 payload 전체를 뭉쳐 봐서 이런 문장을 통과시켰다. 값이 어딘가
+    // 있다는 것과 이 문장이 근거로 든 기록에 있다는 것은 다르다.
+    const verdict = refereeConsult({
+      paragraphs: [
+        { text: "이 연구는 철분 65 mg 을 보고했습니다.", recordIds: ["PMID-1"] },
+      ],
+      recordText,
+      sharedText,
+    });
+    expect(verdict.ok).toBe(false);
+    if (!verdict.ok) {
+      expect(
+        verdict.rejections.some((item) => item.startsWith("unsupported_number")),
+      ).toBe(true);
+    }
+  });
+
+  it("rejects a paragraph that cites a record the lookup never returned", () => {
+    const verdict = refereeConsult({
+      paragraphs: [{ text: "한 연구가 그렇게 보고했습니다.", recordIds: ["PMID-GHOST"] }],
+      recordText,
+      sharedText,
+    });
+    expect(verdict.ok).toBe(false);
+    if (!verdict.ok) {
+      expect(verdict.rejections.some((item) => item.startsWith("unknown_record"))).toBe(
+        true,
+      );
+    }
+  });
+
   it("rejects questions because the screen has nowhere to put an answer", () => {
     const verdict = refereeConsult({
-      paragraphs: ["혹시 다른 약도 함께 드시나요"],
-      allowedText: allowed,
+      paragraphs: [{ text: "혹시 다른 약도 함께 드시나요", recordIds: [] }],
+      recordText, sharedText,
     });
     expect(verdict.ok).toBe(true);
     const withMark = refereeConsult({
-      paragraphs: ["혹시 다른 약도 함께 드시나요?"],
-      allowedText: allowed,
+      paragraphs: [{ text: "혹시 다른 약도 함께 드시나요?", recordIds: [] }],
+      recordText, sharedText,
     });
     expect(withMark.ok).toBe(false);
   });
 
   it("rejects verdicts aimed at the reader instead of the literature", () => {
     const verdict = refereeConsult({
-      paragraphs: ["당신의 경우에는 문제가 없습니다."],
-      allowedText: allowed,
+      paragraphs: [{ text: "당신의 경우에는 문제가 없습니다.", recordIds: [] }],
+      recordText, sharedText,
     });
     expect(verdict.ok).toBe(false);
   });
 
   it("rejects malformed or oversized output", () => {
-    expect(refereeConsult({ paragraphs: "문단", allowedText: allowed }).ok).toBe(false);
-    expect(refereeConsult({ paragraphs: [], allowedText: allowed }).ok).toBe(false);
+    expect(refereeConsult({ paragraphs: "문단", recordText, sharedText }).ok).toBe(false);
+    expect(refereeConsult({ paragraphs: [], recordText, sharedText }).ok).toBe(false);
     expect(
       refereeConsult({
         paragraphs: [okParagraphs[0], okParagraphs[1], okParagraphs[2], okParagraphs[3], okParagraphs[0]],
-        allowedText: allowed,
+        recordText, sharedText,
       }).ok,
     ).toBe(false);
     expect(
-      refereeConsult({ paragraphs: ["가".repeat(400)], allowedText: allowed }).ok,
+      refereeConsult({ paragraphs: [{ text: "가".repeat(400), recordIds: [] }], recordText, sharedText }).ok,
     ).toBe(false);
   });
 });

@@ -9,9 +9,9 @@ export const dynamic = "force-dynamic";
 // 하나도 바뀌지 않는다 — 근거 목록은 결정론 라우트가 이미 확정해 보낸 것이고,
 // 이 라우트는 그 목록 밖의 사실을 말할 수단이 없다.
 //
-// 심판(consult-referee)이 지시 표현·되묻기·근거에 없는 숫자를 하나라도 잡으면
-// 이 응답은 결정론 문단을 그대로 돌려준다. 그래서 모델이 어떻게 나가든 화면이
-// 규칙 파일의 decision_authority=none 을 벗어나지 않는다.
+// 문단마다 근거로 삼은 기록 번호를 같이 받는다. 그래야 심판이 "이 값이 어딘가
+// 있다"가 아니라 "이 문장이 근거로 든 기록 안에 있다"를 볼 수 있고, 화면도
+// 문단 옆에 출처를 표시할 수 있다.
 
 const DEVELOPER = `너는 임상약학 연구실이 만든 문헌 조회 화면의 상담문 작성기다.
 아래에 이번 조회가 실제로 고른 문헌과, 시스템이 계산해 둔 사실 기록이 주어진다.
@@ -22,6 +22,10 @@ const DEVELOPER = `너는 임상약학 연구실이 만든 문헌 조회 화면�
 2. 연결된 문헌이 무엇을 보고했는지 말한다. 연구유형과 연도 구성을 함께 적는다.
 3. 이 문헌들이 말하지 않는 것을 적는다.
 4. 화면에서 지금 무엇을 보면 되는지 안내한다.
+
+각 문단에는 recordIds 를 함께 낸다. 그 문단이 근거로 삼은 문헌의 번호를 아래
+목록의 [id] 그대로 적는다. 특정 문헌을 가리키지 않는 문단이면 빈 배열로 둔다.
+문단에 쓰는 숫자는 그 문단이 인용한 문헌이나 사실 기록에 있는 값만 쓴다.
 
 절대 규칙:
 - 복용을 시작·중단·조절하라고 쓰지 마라. 안전하다·위험하다고 단정하지 마라.
@@ -40,7 +44,18 @@ const SCHEMA = {
   required: ["paragraphs"],
   properties: {
     // strict 모드는 minItems/maxItems 를 안 받는다. 개수는 심판에서 자른다.
-    paragraphs: { type: "array", items: { type: "string" } },
+    paragraphs: {
+      type: "array",
+      items: {
+        type: "object",
+        additionalProperties: false,
+        required: ["text", "recordIds"],
+        properties: {
+          text: { type: "string" },
+          recordIds: { type: "array", items: { type: "string" } },
+        },
+      },
+    },
   },
 } as const;
 
@@ -52,6 +67,7 @@ type ComposePayload = {
 };
 
 type Brief = {
+  recordId: string;
   title: string;
   year: number | string;
   kind: string;
@@ -62,9 +78,10 @@ function readBriefs(value: unknown): Brief[] {
   if (!Array.isArray(value)) return [];
   return value
     .slice(0, 15)
-    .map((item) => {
+    .map((item, index) => {
       const row = item as Record<string, unknown>;
       return {
+        recordId: String(row.record_id ?? `R${index + 1}`).slice(0, 40),
         title: String(row.title ?? "").slice(0, 240),
         year: typeof row.year === "number" ? row.year : String(row.year ?? ""),
         kind: String(row.publication_types ?? "").split("|")[0] ?? "",
@@ -93,7 +110,7 @@ export async function POST(req: Request) {
   }
 
   const fallback = {
-    paragraphs: narrative,
+    paragraphs: narrative.map((text) => ({ text, recordIds: [] as string[] })),
     source: "deterministic" as const,
   };
 
@@ -103,8 +120,8 @@ export async function POST(req: Request) {
 
   const evidenceBlock = briefs
     .map(
-      (row, index) =>
-        `[${index + 1}] ${row.year} · ${row.kind || "연구유형 미표시"}\n제목: ${row.title}\n보고 내용: ${row.finding}`,
+      (row) =>
+        `[${row.recordId}] ${row.year} · ${row.kind || "연구유형 미표시"}\n제목: ${row.title}\n보고 내용: ${row.finding}`,
     )
     .join("\n\n");
 
@@ -119,6 +136,7 @@ export async function POST(req: Request) {
     // 건수는 위 "사실 기록"에만 있고, 아래 목록은 내용 참고용이다.
     "아래는 연결된 문헌의 제목과 보고 내용이다. 이 목록의 항목 수는 화면에 표시된",
     "건수가 아니므로 세지 말고, 건수는 위 사실 기록에 적힌 숫자만 쓴다.",
+    "각 문단의 recordIds 에는 아래 대괄호 안의 id 를 그대로 적는다.",
     evidenceBlock,
   ]
     .filter(Boolean)
@@ -136,12 +154,20 @@ export async function POST(req: Request) {
     return NextResponse.json({ ...fallback, reason: result.reason });
   }
 
-  // 심판이 보는 허용 목록: 이번 응답이 실제로 고른 문헌 문자열 + 결정론 문단.
-  // 여기 없는 숫자가 문단에 나오면 그 문단은 근거 없는 문장이다.
-  const allowedText = [user, narrative.join("\n")].join("\n");
+  // 문단이 인용한 기록 안에서만 숫자를 허용한다. 공용으로 쓸 수 있는 값은
+  // 시스템이 계산한 결정론 문단과 조건 줄뿐이다.
+  const recordText = Object.fromEntries(
+    briefs.map((row) => [
+      row.recordId,
+      `${row.year} ${row.kind} ${row.title} ${row.finding}`,
+    ]),
+  );
+  const sharedText = [situationLabel, conditionLine, narrative.join("\n")].join("\n");
+
   const verdict = refereeConsult({
     paragraphs: result.value.paragraphs,
-    allowedText,
+    recordText,
+    sharedText,
   });
 
   if (!verdict.ok) {

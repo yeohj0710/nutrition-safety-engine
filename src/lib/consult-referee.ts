@@ -2,6 +2,11 @@
 // 쓰지 않고 결정론 문단을 그대로 내보낸다(무해 폴백). 프롬프트로 부탁하는 것과
 // 달리 이 검사는 반드시 실행되므로, 규칙 파일이 정한
 // decision_authority=none · clinical_recommendation=false 가 화면까지 지켜진다.
+//
+// ★ 문단은 자기가 근거로 삼은 기록 id 를 들고 와야 한다. 예전에는 숫자를 payload
+//   전체와 대조했는데, 그러면 "그 값이 어딘가 있다"만 볼 뿐 무엇을 가리키는지는
+//   못 본다. 실제로 발췌 목록 개수 12 를 화면 표시 건수로 쓴 문장이 그대로
+//   통과한 적이 있다. 인용한 기록 안에서만 숫자를 허용하면 그 종류가 닫힌다.
 
 /** 복용을 지시하거나 안전을 단정하는 표현. 규칙 파일이 금지한 권한이다. */
 const DIRECTION = [
@@ -27,64 +32,90 @@ const PERSONAL_CLAIM = [
   /(?:틀림없|분명히|반드시)\s*/,
 ];
 
+export type ComposedParagraph = {
+  text: string;
+  /** 이 문단이 근거로 삼은 기록 id. 화면에도 출처로 표시한다. */
+  recordIds: string[];
+};
+
 export type RefereeVerdict =
-  | { ok: true; paragraphs: string[] }
+  | { ok: true; paragraphs: ComposedParagraph[] }
   | { ok: false; rejections: string[] };
 
 const MAX_PARAGRAPHS = 4;
 const MAX_PARAGRAPH_CHARS = 320;
 
-/**
- * 숫자는 근거에 있는 것만 쓰게 한다.
- *
- * 모델이 "하루 800 µg 까지" 같은 문장을 지어내면 그 숫자가 어디서 왔는지 화면이
- * 설명할 수 없다. 이번 응답이 실제로 고른 문헌 문자열과 결정론 문단에 등장하는
- * 숫자만 허용 목록에 넣고, 그 밖의 숫자가 나오면 문단 전체를 버린다.
- */
 function collectNumbers(text: string) {
-  return new Set((text.match(/\d+(?:[.,]\d+)*/g) ?? []).map((n) => n.replace(/,/g, "")));
+  return new Set(
+    (text.match(/\d+(?:[.,]\d+)*/g) ?? []).map((n) => n.replace(/,/g, "")),
+  );
 }
 
 export function refereeConsult({
   paragraphs,
-  allowedText,
+  recordText,
+  sharedText,
 }: {
   paragraphs: unknown;
-  /** 이번 응답이 실제로 고른 문헌 문자열 + 결정론 문단을 모두 이어 붙인 것. */
-  allowedText: string;
+  /** 기록 id → 그 기록의 문자열 전부. 문단이 인용한 것만 골라 숫자를 대조한다. */
+  recordText: Record<string, string>;
+  /** 어느 문단이든 쓸 수 있는 값. 시스템이 계산한 결정론 문단과 조건 줄. */
+  sharedText: string;
 }): RefereeVerdict {
   const rejections: string[] = [];
 
   if (!Array.isArray(paragraphs)) return { ok: false, rejections: ["not_array"] };
 
-  const cleaned = paragraphs
-    .map((item) => (typeof item === "string" ? item.trim() : ""))
-    .filter(Boolean);
+  const cleaned: ComposedParagraph[] = [];
+  for (const item of paragraphs) {
+    if (!item || typeof item !== "object") continue;
+    const row = item as Record<string, unknown>;
+    const text = typeof row.text === "string" ? row.text.trim() : "";
+    if (!text) continue;
+    const recordIds = Array.isArray(row.recordIds)
+      ? row.recordIds.filter((id): id is string => typeof id === "string")
+      : [];
+    cleaned.push({ text, recordIds });
+  }
 
   if (!cleaned.length) return { ok: false, rejections: ["empty"] };
   if (cleaned.length > MAX_PARAGRAPHS) rejections.push("too_many_paragraphs");
 
-  const allowedNumbers = collectNumbers(allowedText);
+  const sharedNumbers = collectNumbers(sharedText);
 
   for (const [index, paragraph] of cleaned.entries()) {
-    if (paragraph.length > MAX_PARAGRAPH_CHARS) {
-      rejections.push(`too_long:${index}`);
-    }
-    if (QUESTION.test(paragraph)) rejections.push(`question:${index}`);
+    const { text, recordIds } = paragraph;
+
+    if (text.length > MAX_PARAGRAPH_CHARS) rejections.push(`too_long:${index}`);
+    if (QUESTION.test(text)) rejections.push(`question:${index}`);
     for (const pattern of DIRECTION) {
-      if (pattern.test(paragraph)) {
+      if (pattern.test(text)) {
         rejections.push(`direction:${index}:${pattern.source}`);
         break;
       }
     }
     for (const pattern of PERSONAL_CLAIM) {
-      if (pattern.test(paragraph)) {
+      if (pattern.test(text)) {
         rejections.push(`personal_claim:${index}:${pattern.source}`);
         break;
       }
     }
-    for (const number of collectNumbers(paragraph)) {
-      if (!allowedNumbers.has(number)) {
+
+    // 없는 기록을 인용하면 그 문단이 무엇을 근거로 하는지 화면이 설명할 수 없다.
+    const unknownIds = recordIds.filter((id) => !(id in recordText));
+    if (unknownIds.length) {
+      rejections.push(`unknown_record:${index}:${unknownIds[0]}`);
+    }
+
+    // 숫자는 이 문단이 인용한 기록 + 공용 텍스트 안에서만 허용한다.
+    const allowed = new Set(sharedNumbers);
+    for (const id of recordIds) {
+      const source = recordText[id];
+      if (!source) continue;
+      for (const number of collectNumbers(source)) allowed.add(number);
+    }
+    for (const number of collectNumbers(text)) {
+      if (!allowed.has(number)) {
         rejections.push(`unsupported_number:${index}:${number}`);
         break;
       }

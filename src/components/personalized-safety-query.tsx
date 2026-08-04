@@ -120,9 +120,11 @@ type Interpreted = {
   error?: string;
 };
 
-/** 상담문. AI 가 쓴 것과 시스템이 계산한 것을 화면에서 구분해 표시한다. */
+/** 상담문. AI 가 쓴 것과 시스템이 계산한 것을 화면에서 구분해 표시한다.
+ *  문단마다 근거로 삼은 기록 번호를 들고 있어 출처를 그 자리에서 보여준다. */
+type ConsultParagraph = { text: string; recordIds: string[] };
 type ConsultText = {
-  paragraphs: string[];
+  paragraphs: ConsultParagraph[];
   source: "ai_written" | "deterministic";
 } | null;
 
@@ -476,7 +478,7 @@ export function PersonalizedSafetyQuery() {
     // 자리만 잡아 두고, 어느 쪽으로 확정되든 한 번만 그린다.
     setConsult(null);
     const fallback: ConsultText = {
-      paragraphs: result.narrative,
+      paragraphs: result.narrative.map((text) => ({ text, recordIds: [] })),
       source: "deterministic",
     };
 
@@ -491,6 +493,7 @@ export function PersonalizedSafetyQuery() {
           .join(" · "),
         narrative: result.narrative,
         evidence: result.evidence.map((item) => ({
+          record_id: item.record_id,
           title: item.title,
           year: item.year,
           publication_types: item.publication_types,
@@ -1050,10 +1053,41 @@ export function PersonalizedSafetyQuery() {
                       대신 보여줍니다.
                     </InfoTip>
                   </div>
-                  <div className="mt-2 flex flex-col gap-2 text-sm leading-6 text-foreground">
-                    {consult.paragraphs.map((paragraph, index) => (
-                      <p key={`consult-${index}`}>{paragraph}</p>
-                    ))}
+                  <div className="mt-2 flex flex-col gap-3 text-sm leading-6 text-foreground">
+                    {consult.paragraphs.map((paragraph, index) => {
+                      // 인용한 기록을 이번 목록의 번호로 바꿔 보여준다. 목록에 없는
+                      // 기록은 심판이 이미 걸러 내므로 여기서는 나올 수 없다.
+                      const numbers = paragraph.recordIds
+                        .map((id) =>
+                          result.evidence.findIndex((item) => item.record_id === id),
+                        )
+                        .filter((position) => position >= 0)
+                        .map((position) =>
+                          result.expanded
+                            ? result.expanded_offset + position + 1
+                            : position + 1,
+                        )
+                        .sort((a, b) => a - b);
+                      return (
+                        <div key={`consult-${index}`}>
+                          <p>{paragraph.text}</p>
+                          {numbers.length ? (
+                            <p className="mt-1 flex flex-wrap items-center gap-1.5 text-[0.72rem] text-muted">
+                              <span>근거</span>
+                              {numbers.map((number) => (
+                                <a
+                                  key={number}
+                                  href={`#result-ref-${number}`}
+                                  className="ref-badge bg-accent/12 text-accent-strong no-underline"
+                                >
+                                  {number}
+                                </a>
+                              ))}
+                            </p>
+                          ) : null}
+                        </div>
+                      );
+                    })}
                   </div>
                   <p className="mt-2 text-[0.72rem] leading-5 text-muted">
                     복용 시작·중단·용량 변경은 판단하지 않습니다.
