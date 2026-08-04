@@ -110,8 +110,8 @@ export default function Home() {
           </h2>
           <ul className="mt-2 flex flex-col gap-1.5 text-[0.8rem] leading-6 text-muted">
             <li>
-              1층 결정적 분류기가 전체 기록을 분류했고, 2층에서 경계 기록을
-              다시 판정했습니다. 사람 참조표준은 없습니다.
+              전량 분류에서 결정적 분류기가 전체 기록을 분류했고, 재판정에서
+              경계 기록을 다시 판정했습니다. 사람 참조표준은 없습니다.
             </li>
             <li>
               화면의 기록 수는 임상적 정확도나 효과 크기를 뜻하지 않습니다.
