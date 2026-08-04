@@ -307,9 +307,12 @@ function ResultSkeleton() {
 function EvidenceRecord({
   item,
   number,
+  plainLine,
 }: {
   item: EvidenceItem;
   number: number;
+  /** 한국어 번역이 없는 확장 근거에만 붙는 한 줄 요약. */
+  plainLine?: string;
 }) {
   const metadata = [
     item.authors,
@@ -372,6 +375,13 @@ function EvidenceRecord({
               ),
             )}
           </div>
+        </div>
+      ) : null}
+
+      {plainLine ? (
+        <div className="inset-block inset-block-note col-start-2">
+          <p className="text-[0.72rem] font-bold text-accent-strong">AI 한 줄 요약</p>
+          <p className="mt-1.5 text-sm leading-6 text-foreground">{plainLine}</p>
         </div>
       ) : null}
 
@@ -461,6 +471,52 @@ export function PersonalizedSafetyQuery() {
     },
     [],
   );
+
+  // 한국어 번역이 없는 기록만 한 줄로 옮긴다. 핵심 근거는 이미 번역이 붙어
+  // 있고, 확장 근거만 영어 원문 문장으로 남는다(임신·용량 조건에서 15건 중 7건).
+  // 기록마다 따로 부른다 — 한 번에 넘기면 개별 논문의 요지가 뭉개진다.
+  const [recordLines, setRecordLines] = useState<Record<string, string>>({});
+  const recordKey = result
+    ? result.evidence.filter((item) => !item.key_finding_ko).map((item) => item.record_id).join("|")
+    : "";
+  useEffect(() => {
+    if (!recordKey) {
+      setRecordLines({});
+      return;
+    }
+    const controller = new AbortController();
+    const targets = (result?.evidence ?? []).filter((item) => !item.key_finding_ko);
+    setRecordLines({});
+    Promise.all(
+      targets.slice(0, 12).map(async (item) => {
+        try {
+          const res = await fetch("/api/consult/record", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            signal: controller.signal,
+            body: JSON.stringify({
+              title: item.title,
+              year: item.year,
+              publication_types: item.publication_types,
+              source_sentence: item.source_sentence,
+            }),
+          });
+          const body = (await res.json()) as { ok?: boolean; line?: string };
+          if (body?.ok && body.line) return [item.record_id, body.line] as const;
+        } catch {
+          // 개별 실패는 그 카드만 요약 없이 둔다.
+        }
+        return null;
+      }),
+    ).then((pairs) => {
+      if (controller.signal.aborted) return;
+      setRecordLines(
+        Object.fromEntries(pairs.filter(Boolean) as (readonly [string, string])[]),
+      );
+    });
+    return () => controller.abort();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [recordKey]);
 
   // 결과가 확정된 뒤에만 상담문을 만든다. 모델은 이미 고른 문헌만 읽으므로
   // 어떤 문헌이 뽑혔는지는 여기서 바뀌지 않는다. 실패하면 서버가 결정론 문단을
@@ -1278,7 +1334,14 @@ export function PersonalizedSafetyQuery() {
                   const number = result.expanded
                     ? result.expanded_offset + index + 1
                     : index + 1;
-                  return <EvidenceRecord key={item.record_id} item={item} number={number} />;
+                  return (
+                    <EvidenceRecord
+                      key={item.record_id}
+                      item={item}
+                      number={number}
+                      plainLine={recordLines[item.record_id]}
+                    />
+                  );
                 })}
               </ol>
             ) : (

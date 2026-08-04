@@ -136,3 +136,36 @@ export function refereeConsult({
   if (rejections.length) return { ok: false, rejections };
   return { ok: true, paragraphs: cleaned };
 }
+
+/**
+ * 기록 한 건을 풀어 쓴 한 줄을 검사한다.
+ *
+ * 핵심 근거는 이미 한국어 번역이 붙지만 확장 근거는 영어 원문만 보인다. 그
+ * 문장을 한 줄로 옮기는 자리다. 옮기는 대상이 그 기록 하나뿐이므로 숫자도 그
+ * 기록 안에서만 나와야 한다.
+ */
+export function refereeRecordLine({
+  line,
+  allowedText,
+}: {
+  line: unknown;
+  /** 그 기록이 담은 문자열 전부. 제목·연도·연구유형·원문 문장. */
+  allowedText: string;
+}): { ok: true; line: string } | { ok: false; reason: string } {
+  if (typeof line !== "string") return { ok: false, reason: "not_string" };
+  const text = line.trim();
+  if (!text) return { ok: false, reason: "empty" };
+  if (text.length > 150) return { ok: false, reason: "too_long" };
+  if (QUESTION.test(text)) return { ok: false, reason: "question" };
+  for (const pattern of DIRECTION) {
+    if (pattern.test(text)) return { ok: false, reason: `direction:${pattern.source}` };
+  }
+  for (const pattern of PERSONAL_CLAIM) {
+    if (pattern.test(text)) return { ok: false, reason: `personal_claim:${pattern.source}` };
+  }
+  const allowed = collectNumbers(allowedText);
+  for (const number of collectNumbers(text)) {
+    if (!allowed.has(number)) return { ok: false, reason: `unsupported_number:${number}` };
+  }
+  return { ok: true, line: text };
+}
