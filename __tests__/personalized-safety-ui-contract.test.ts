@@ -167,6 +167,14 @@ describe("personalized safety UI contract", () => {
     expect(infoTipSource).toContain("min-w-11");
     expect(infoTipSource).toContain("fixed inset-x-4 bottom-4");
     expect(infoTipSource).toContain("max-h-[calc(100dvh-2rem)]");
+    // 이 테스트 이름이 "unclipped" 인데 정작 잘리는 경로를 못 잡고 있었다.
+    // sm 이상에서 팁의 오른쪽 끝에 288px 말풍선을 붙이던 시절, 팁이 왼쪽에서
+    // 304px 안쪽이면 화면 밖으로 나갔다(768px 에서 -19px·-56px 실측, 640~1090px
+    // 구간 전체). 팁마다 필요한 방향이 반대라 정적인 정렬로는 못 고친다.
+    // 화면 기준으로 두는 한 팁 위치와 무관하게 안 잘린다.
+    expect(infoTipSource).not.toMatch(/sm:(absolute|right-0|left-0|top-7|inset-x-auto)/);
+    expect(infoTipSource).toContain("mx-auto");
+    expect(infoTipSource).toContain("max-w-sm");
     expect(globalCss).toContain(".animated-details");
     expect(globalCss).toContain("overflow: visible");
     expect(globalCss).not.toContain(
