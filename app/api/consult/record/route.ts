@@ -4,6 +4,7 @@ import { refereeRecordLine } from "@/src/lib/consult-referee";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const maxDuration = 60;
 
 // 기록 한 건만 한국어 한 줄로 옮긴다. 확장 근거는 한국어 번역이 없어 영어 원문
 // 문장만 보이는데(임신·용량 조건에서 15건 중 7건이 그렇다), 그 문장이 무엇을
@@ -20,7 +21,10 @@ const DEVELOPER = `너는 문헌 조회 화면에서 논문 한 편의 결과 �
   너에게는 그 판단 권한이 없다. 이 화면은 근거를 연결해 보여주기만 한다.
 - 개인에게 일어날 일로 쓰지 않는다. 연구가 무엇을 관찰했는지로 쓴다.
 - 되묻지 않는다. 물음표를 쓰지 않는다.
-- 입으로 쓰는 말로, 한 문장 70자 안팎으로 쓴다.`;
+- 능동형으로 쓴다. "확인됐습니다·보고되었습니다" 대신 "확인했습니다·보고했습니다"
+  로 쓴다. 무엇을 말하는지 목적어를 밝힌다.
+- 입으로 쓰는 말로, 한 문장 70자 안팎으로 쓴다. 섭취·유의·권장 대신
+  먹다·보다·권하다를 쓴다.`;
 
 const SCHEMA = {
   type: "object",
@@ -54,10 +58,19 @@ export async function POST(req: Request) {
     maxOutputTokens: 1600,
   });
 
-  if (!result.ok) return NextResponse.json({ ok: false, reason: result.reason });
+  if (!result.ok) {
+    console.warn("[consult/record] fallback", {
+      reason: result.reason,
+      detail: result.detail,
+    });
+    return NextResponse.json({ ok: false, reason: result.reason });
+  }
 
   const verdict = refereeRecordLine({ line: result.value.line, allowedText: source });
-  if (!verdict.ok) return NextResponse.json({ ok: false, reason: verdict.reason });
+  if (!verdict.ok) {
+    console.warn("[consult/record] refereed out", { reason: verdict.reason });
+    return NextResponse.json({ ok: false, reason: verdict.reason });
+  }
 
   return NextResponse.json({ ok: true, line: verdict.line });
 }

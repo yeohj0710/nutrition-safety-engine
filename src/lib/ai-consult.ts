@@ -16,7 +16,16 @@ const ENDPOINT = "https://api.openai.com/v1/responses";
 /** 2026-07-30 인하로 입력 $0.20 / 출력 $1.20 per 1M. 이 용도에 sol·terra 는 과하다. */
 export const CONSULT_MODEL = process.env.OPENAI_CONSULT_MODEL ?? "gpt-5.6-luna";
 const CONSULT_EFFORT = process.env.OPENAI_CONSULT_EFFORT ?? "low";
-const TIMEOUT_MS = Number(process.env.OPENAI_CONSULT_TIMEOUT_MS ?? 12_000);
+
+/**
+ * 기본 제한 시간. 부르는 쪽에서 늘릴 수 있다.
+ *
+ * 12초로 두고 있었는데 프로덕션 상담문 실측이 10.9초였다. 1초 남기고 자르는
+ * 설정이라 조금만 느려지면 폴백으로 떨어지고, 화면은 왜 떨어졌는지 말하지
+ * 않으니 "AI 가 안 붙었다"로만 보인다. 글이 길수록 오래 걸리므로 부르는 쪽이
+ * 자기 길이에 맞는 값을 준다.
+ */
+const TIMEOUT_MS = Number(process.env.OPENAI_CONSULT_TIMEOUT_MS ?? 15_000);
 
 export type LunaFailure =
   | "no_key"
@@ -53,18 +62,20 @@ export async function callLuna<T>({
   schemaName,
   schema,
   maxOutputTokens = 2400,
+  timeoutMs = TIMEOUT_MS,
 }: {
   developer: string;
   user: string;
   schemaName: string;
   schema: JsonSchema;
   maxOutputTokens?: number;
+  timeoutMs?: number;
 }): Promise<LunaResult<T>> {
   const key = process.env.OPENAI_API_KEY;
   if (!key) return { ok: false, reason: "no_key" };
 
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
 
   try {
     const response = await fetch(ENDPOINT, {

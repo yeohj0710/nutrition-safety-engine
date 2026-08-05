@@ -126,7 +126,28 @@ type ConsultParagraph = { text: string; recordIds: string[] };
 type ConsultText = {
   paragraphs: ConsultParagraph[];
   source: "ai_written" | "deterministic";
+  reason?: string;
 } | null;
+
+/**
+ * 상담문이 결정론 문단으로 떨어진 까닭을 사람 말로 옮긴다.
+ *
+ * 배지만 "자동 생성"으로 바뀌면 두 상황이 한 모양이 된다 — 이 서버에 애초에
+ * 작성 기능이 없는 것과, 이번 호출이 실패한 것. 둘은 사용자가 할 일이 다르다
+ * (앞은 원래 그런 화면이고, 뒤는 다시 조회하면 붙는다).
+ */
+function consultFallbackReason(reason?: string) {
+  if (!reason) return "";
+  if (reason === "no_key")
+    return "이 서버에는 상담문 작성 기능이 켜져 있지 않아, 시스템이 계산한 문장을 그대로 보여드립니다.";
+  if (reason === "no_evidence")
+    return "연결된 문헌이 없어 시스템이 계산한 문장을 보여드립니다.";
+  if (reason === "refereed_out")
+    return "AI 가 쓴 문장이 검토 규칙에 걸려 버렸습니다. 시스템이 계산한 문장을 대신 보여드립니다.";
+  if (reason === "timeout")
+    return "AI 응답이 제때 오지 않아 시스템이 계산한 문장을 보여드립니다. 다시 조회하면 붙을 수 있어요.";
+  return "AI 문장을 받지 못해 시스템이 계산한 문장을 보여드립니다. 다시 조회하면 붙을 수 있어요.";
+}
 
 /** 카드 안에서 반복되는 버튼 모양. 높이와 모서리를 한곳에서 정한다. */
 const buttonBase =
@@ -152,8 +173,17 @@ function resultCountLabel(result: ApiResult) {
     const scope = result.applied_axes.length ? "표현 필터 뒤" : "확장 근거 전체";
     return `${scope} ${result.extended_total.toLocaleString("ko-KR")}건 · ${first}–${last}`;
   }
+  // 핵심 근거가 모자라 확장 근거로 채운 화면에서는 두 층을 갈라 적는다.
+  //
+  // 여기에 핵심 건수만 쓰면 "표현 필터 뒤 2건"이라고 해놓고 아래에 15건이
+  // 깔린다. 합계만 쓰면 이번에는 "조건을 빼면 핵심 8건" 제안과 세는 대상이
+  // 달라진다. 두 수를 같이 적어야 세 자리(머리 라벨·표시 기록 타일·조건 빼기
+  // 제안)가 같은 뜻의 숫자를 쓴다.
+  if (result.extended_shown > 0) {
+    return `핵심 ${result.core_shown.toLocaleString("ko-KR")}건 + 확장 ${result.extended_shown.toLocaleString("ko-KR")}건`;
+  }
   if (result.filter_mode === "metadata_axis_presence") {
-    return `표현 필터 뒤 ${result.evidence_total_after_filter.toLocaleString("ko-KR")}건`;
+    return `표현 필터 뒤 핵심 ${result.evidence_total_after_filter.toLocaleString("ko-KR")}건`;
   }
   return `핵심 근거 ${result.evidence_total_after_filter.toLocaleString("ko-KR")}건`;
 }
@@ -190,6 +220,9 @@ function resultStatusMessage(result: ApiResult) {
     const first = result.expanded_offset + 1;
     const last = result.expanded_offset + result.evidence.length;
     return `${scope} ${result.extended_total.toLocaleString("ko-KR")}건 중 ${first}번째부터 ${last}번째 기록을 표시했습니다.`;
+  }
+  if (result.extended_shown > 0) {
+    return `핵심 근거 ${result.core_shown}건에 확장 근거 ${result.extended_shown}건을 더해 모두 ${result.evidence.length}건을 표시했습니다.`;
   }
   return `${result.evidence.length}건을 표시했습니다.`;
 }
@@ -579,10 +612,16 @@ export function PersonalizedSafetyQuery() {
     // 결정론 문단을 먼저 띄웠다가 몇 초 뒤 갈아끼우면 읽는 중에 글이 바뀐다.
     // 자리만 잡아 두고, 어느 쪽으로 확정되든 한 번만 그린다.
     setConsult(null);
-    const fallback: ConsultText = {
-      paragraphs: result.narrative.map((text) => ({ text, recordIds: [] })),
+    // 클로저 안에서 다시 읽으면 좁혀진 타입이 풀린다. 여기서 값으로 떠 둔다.
+    const deterministic = result.narrative.map((text) => ({
+      text,
+      recordIds: [] as string[],
+    }));
+    const fallback = (reason: string): ConsultText => ({
+      paragraphs: deterministic,
       source: "deterministic",
-    };
+      reason,
+    });
 
     fetch("/api/consult/compose", {
       method: "POST",
@@ -609,12 +648,16 @@ export function PersonalizedSafetyQuery() {
         if (controller.signal.aborted) return;
         setConsult(
           body?.paragraphs?.length
-            ? { paragraphs: body.paragraphs, source: body.source }
-            : fallback,
+            ? {
+                paragraphs: body.paragraphs,
+                source: body.source,
+                reason: body.reason,
+              }
+            : fallback("empty_response"),
         );
       })
       .catch(() => {
-        if (!controller.signal.aborted) setConsult(fallback);
+        if (!controller.signal.aborted) setConsult(fallback("network"));
       })
       .finally(() => {
         if (composeRef.current === controller) {
@@ -1155,6 +1198,12 @@ export function PersonalizedSafetyQuery() {
                       대신 보여줍니다.
                     </InfoTip>
                   </div>
+                  {consult.source === "deterministic" &&
+                  consultFallbackReason(consult.reason) ? (
+                    <p className="mt-2 text-[0.72rem] leading-5 text-muted">
+                      {consultFallbackReason(consult.reason)}
+                    </p>
+                  ) : null}
                   <div className="mt-2 flex flex-col gap-3 text-sm leading-6 text-foreground">
                     {consult.paragraphs.map((paragraph, index) => {
                       // 인용한 기록을 이번 목록의 번호로 바꿔 보여준다. 목록에 없는
@@ -1202,6 +1251,11 @@ export function PersonalizedSafetyQuery() {
                   label={result.expanded ? "현재 페이지 기록" : "현재 표시 기록"}
                   value={result.evidence_summary.displayed_records}
                   unit="건"
+                  note={
+                    result.extended_shown > 0
+                      ? `핵심 ${result.core_shown} + 확장 ${result.extended_shown}`
+                      : undefined
+                  }
                 />
                 <SummaryTile
                   label="제목 기준 고유 문헌"
@@ -1260,8 +1314,9 @@ export function PersonalizedSafetyQuery() {
                   <p className="text-xs font-bold text-foreground">조건을 빼면</p>
                   <p className="mt-1 text-[0.8rem] leading-6 text-muted">
                     조건이 겹칠수록 남는 문헌이 빠르게 줄어듭니다. 하나를 빼면
-                    핵심 근거가 몇 건이 되는지 미리 세어 봤습니다. 화면에는 같은
-                    조건의 확장 근거를 더해 더 많이 보일 수 있습니다.
+                    핵심 근거가 몇 건이 되는지 미리 세어 봤습니다. 맨 위에 적힌
+                    핵심 {result.core_shown}건과 같은 방식으로 센 숫자입니다.
+                    화면에는 여기에 확장 근거를 더해 보여드립니다.
                   </p>
                   <div className="mt-2 flex flex-wrap gap-2">
                     {widen.map((row) => (

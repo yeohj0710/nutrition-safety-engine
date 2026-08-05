@@ -181,6 +181,14 @@ describe("ai layer boundary", () => {
     path.join(root, "app", "api", "consult", "compose", "route.ts"),
     "utf8",
   );
+  const recordRoute = readFileSync(
+    path.join(root, "app", "api", "consult", "record", "route.ts"),
+    "utf8",
+  );
+  const consultComponent = readFileSync(
+    path.join(root, "src", "components", "personalized-safety-query.tsx"),
+    "utf8",
+  );
 
   it("keeps the evidence lookup free of any model call", () => {
     // 논문이 주장하는 "같은 입력에 같은 근거"는 이 라우트의 성질이다.
@@ -203,7 +211,33 @@ describe("ai layer boundary", () => {
 
   it("falls back instead of failing when the key or model is unavailable", () => {
     expect(composeRoute).toContain("hasConsultKey");
-    expect(composeRoute).toMatch(/no_key_or_evidence/);
+    // 키가 없으면 오류가 아니라 결정론 문단을 돌려준다.
+    expect(composeRoute).toMatch(/\.\.\.fallback,\s*reason:\s*"no_key"/);
+  });
+
+  it("names why it fell back, and the screen can say it in Korean", () => {
+    // 배지만 "자동 생성"으로 바뀌면 원래 그런 서버인지 이번에 실패한 것인지
+    // 구분이 안 된다. 라우트가 까닭에 이름을 달고, 화면이 그 이름을 사람 말로
+    // 옮긴다. 한쪽만 고치면 이름 없는 폴백이 조용히 지나간다.
+    const reasons = ["no_key", "no_evidence", "refereed_out"];
+    for (const reason of reasons) {
+      expect(composeRoute).toMatch(new RegExp(`reason:\\s*"${reason}"`));
+      expect(consultComponent).toMatch(new RegExp(`reason === "${reason}"`));
+    }
+    // callLuna 가 내는 실패는 그대로 흘러나온다. timeout 은 이름을 갖고,
+    // 나머지는 마지막 갈래가 받는다.
+    expect(composeRoute).toMatch(/reason:\s*result\.reason/);
+    expect(consultComponent).toMatch(/reason === "timeout"/);
+    expect(consultComponent).toContain("consultFallbackReason");
+  });
+
+  it("gives each model call a timeout under the platform limit", () => {
+    // 제한 시간이 함수 상한보다 길면 모델이 답을 쓰는 중에 함수가 끊기고,
+    // 폴백 이름조차 안 남는다. 실측 10.9초짜리 호출을 12초로 자르고 있었다.
+    for (const route of [composeRoute, interpretRoute, recordRoute]) {
+      expect(route).toMatch(/export const maxDuration = 60/);
+    }
+    expect(composeRoute).toMatch(/timeoutMs:\s*35_000/);
   });
 
   it("sends only the situation and axis switches to the lookup", () => {

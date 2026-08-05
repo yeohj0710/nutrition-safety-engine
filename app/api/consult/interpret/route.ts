@@ -11,6 +11,7 @@ import {
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const maxDuration = 60;
 
 // 사람이 문장으로 쓴 상황을 다섯 입력칸으로 옮긴다. 여기서 나온 값은 그대로
 // 화면에 보이고 사용자가 고칠 수 있으며, 근거 조회는 이 값을 받은 뒤에도
@@ -114,6 +115,10 @@ export async function POST(req: Request) {
   });
 
   if (!result.ok) {
+    console.warn("[consult/interpret] failed", {
+      reason: result.reason,
+      detail: result.detail,
+    });
     return NextResponse.json(
       {
         error: "문장을 정리하지 못했습니다. 아래에서 직접 고르셔도 됩니다.",

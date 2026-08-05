@@ -4,6 +4,9 @@ import { refereeConsult } from "@/src/lib/consult-referee";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+// 네 문단을 쓰는 호출이라 실측 10.9초가 나온다. 이 값을 안 두면 플랫폼 기본
+// 상한에 먼저 걸려, 모델이 답을 쓰고 있는 중에 함수가 끊긴다.
+export const maxDuration = 60;
 
 // 이미 고른 문헌만 가지고 상담 어조 문단을 쓴다. 어떤 문헌이 뽑히는지는 여기서
 // 하나도 바뀌지 않는다 — 근거 목록은 결정론 라우트가 이미 확정해 보낸 것이고,
@@ -39,7 +42,14 @@ const DEVELOPER = `너는 임상약학 연구실이 만든 문헌 조회 화면�
   않고, 그 종류의 표현이 초록에 있는 기록만 남긴다.
 - 아래 "사실 기록"은 사실의 목록이지 네가 다듬을 문구가 아니다. 표현은 새로
   쓰되 없는 사실을 더하지 마라.
-- 입니다체를 쓴다. 문단마다 같은 어미로 끝내지 마라.`;
+- 입니다체를 쓴다. 문단마다 같은 어미로 끝내지 마라.
+
+문체:
+- 능동형으로 쓴다. "설정되었습니다·확인됩니다·보여집니다" 대신 "골랐습니다·
+  확인합니다·보여드립니다"로 쓴다. "~게 되다"도 쓰지 마라.
+- 무엇을 말하는지 목적어를 밝힌다. "집계해서 보여줍니다"가 아니라 "연결된
+  문헌을 연구유형별로 나눠 보여줍니다"로 쓴다.
+- 입으로 쓰는 말을 쓴다. 섭취·유의·권장 대신 먹다·보다·권하다를 쓴다.`;
 
 const SCHEMA = {
   type: "object",
@@ -117,8 +127,15 @@ export async function POST(req: Request) {
     source: "deterministic" as const,
   };
 
-  if (!hasConsultKey() || !briefs.length) {
-    return NextResponse.json({ ...fallback, reason: "no_key_or_evidence" });
+  // 폴백은 화면에서 티가 안 난다. 왜 떨어졌는지 여기서 갈라 두어야 화면이
+  // 사람 말로 옮길 수 있고, 로그로도 원인이 남는다.
+  if (!hasConsultKey()) {
+    console.warn("[consult/compose] fallback", { reason: "no_key" });
+    return NextResponse.json({ ...fallback, reason: "no_key" });
+  }
+  if (!briefs.length) {
+    console.warn("[consult/compose] fallback", { reason: "no_evidence" });
+    return NextResponse.json({ ...fallback, reason: "no_evidence" });
   }
 
   const evidenceBlock = briefs
@@ -151,9 +168,14 @@ export async function POST(req: Request) {
     schemaName: "consult_paragraphs",
     schema: SCHEMA,
     maxOutputTokens: 2600,
+    timeoutMs: 35_000,
   });
 
   if (!result.ok) {
+    console.warn("[consult/compose] fallback", {
+      reason: result.reason,
+      detail: result.detail,
+    });
     return NextResponse.json({ ...fallback, reason: result.reason });
   }
 
@@ -174,6 +196,9 @@ export async function POST(req: Request) {
   });
 
   if (!verdict.ok) {
+    console.warn("[consult/compose] refereed out", {
+      rejections: verdict.rejections.slice(0, 6),
+    });
     return NextResponse.json({
       ...fallback,
       reason: "refereed_out",
