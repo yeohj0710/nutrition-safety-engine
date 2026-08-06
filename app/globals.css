@@ -260,7 +260,7 @@ summary:focus-visible {
     min-height: 1.75rem;
     padding: 0 0.75rem;
     border-radius: var(--radius-pill);
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     font-weight: 600;
     line-height: 1.25;
   }
@@ -276,7 +276,7 @@ summary:focus-visible {
     gap: var(--space-3);
     align-items: flex-start;
     min-height: 3.5rem;
-    padding: 0.75rem 0.875rem;
+    padding: 0.875rem 1rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-control);
     background: var(--surface);
@@ -324,7 +324,7 @@ summary:focus-visible {
     align-items: center;
     justify-content: center;
     border-radius: 0.5rem;
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     font-weight: 700;
     line-height: 1;
     font-variant-numeric: tabular-nums;
@@ -343,7 +343,7 @@ summary:focus-visible {
     display: inline-flex;
     align-items: center;
     gap: 0.65rem;
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     font-weight: 600;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -464,7 +464,7 @@ summary:focus-visible {
     border: 1px solid color-mix(in oklab, var(--foreground) 22%, transparent);
     border-radius: var(--radius-pill);
     background: var(--surface);
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     font-weight: 700;
     line-height: 1;
     color: var(--muted);

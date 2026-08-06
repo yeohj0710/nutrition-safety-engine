@@ -31,7 +31,7 @@ export function InfoTip({
           한다. 화면 기준으로 두면 팁이 어디 있든 안 잘린다. */}
       <div
         role="note"
-        className="fixed inset-x-4 bottom-4 z-50 mx-auto max-h-[calc(100dvh-2rem)] max-w-sm overflow-y-auto rounded-xl border border-border-subtle bg-surface p-4 text-left text-xs font-normal leading-5 text-muted shadow-lg"
+        className="fixed inset-x-4 bottom-4 z-50 mx-auto max-h-[calc(100dvh-2rem)] max-w-sm overflow-y-auto rounded-xl border border-border-subtle bg-surface p-4 text-left text-[0.8125rem] font-normal leading-5 text-muted shadow-lg"
       >
         {children}
       </div>

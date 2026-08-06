@@ -74,13 +74,13 @@ export default function Home() {
         >
           {stats.map((stat) => (
             <div key={stat.label} className="card flex flex-col">
-              <p className="text-xs font-semibold text-muted">
+              <p className="text-[0.8125rem] font-semibold text-muted">
                 {stat.label}
               </p>
               <p className="mt-2 text-[1.5rem] font-semibold leading-none tabular-nums text-foreground">
                 {stat.value.toLocaleString("ko-KR")}
               </p>
-              <p className="mt-2 text-xs leading-5 text-muted">
+              <p className="mt-2 text-[0.8125rem] leading-5 text-muted">
                 {stat.note}
               </p>
             </div>
@@ -94,7 +94,7 @@ export default function Home() {
         <section aria-labelledby="limits-title" className="card">
           <h2
             id="limits-title"
-            className="text-[0.95rem] font-bold text-foreground"
+            className="text-base font-bold text-foreground"
           >
             읽으실 때 같이 봐 주실 것
           </h2>

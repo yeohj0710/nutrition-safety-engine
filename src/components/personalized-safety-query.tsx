@@ -268,7 +268,7 @@ function SummaryTile({
 }) {
   return (
     <div className="inset-block inset-block-quiet">
-      <dt className="flex min-h-5 items-center gap-1.5 text-xs font-semibold text-muted">
+      <dt className="flex min-h-5 items-center gap-1.5 text-[0.8125rem] font-semibold text-muted">
         {label}
         {tip}
       </dt>
@@ -280,7 +280,7 @@ function SummaryTile({
           {unit}
         </span>
         {note ? (
-          <span className="mt-1.5 block text-xs leading-5 text-muted">
+          <span className="mt-1.5 block text-[0.8125rem] leading-5 text-muted">
             {note}
           </span>
         ) : null}
@@ -304,7 +304,7 @@ function EvidenceFinding({
 
   return (
     <li className="grid grid-cols-[1.5rem_minmax(0,1fr)] items-start gap-x-3 gap-y-2 border-t border-accent/15 py-4 first:border-t-0">
-      <p className="col-span-2 flex flex-wrap items-center gap-x-2 text-xs font-semibold text-accent-strong">
+      <p className="col-span-2 flex flex-wrap items-center gap-x-2 text-[0.8125rem] font-semibold text-accent-strong">
         <span>AI 자동 번역</span>
         <span aria-hidden="true">·</span>
         <span>{item.year || "연도 미표시"}</span>
@@ -323,7 +323,7 @@ function EvidenceFinding({
         <span className="ref-badge bg-accent text-white">{number}</span>
       </a>
       <p className="text-sm leading-6 text-foreground">{sentence}</p>
-      <p lang="en" className="col-start-2 break-words text-xs leading-5 text-muted">
+      <p lang="en" className="col-start-2 break-words text-[0.8125rem] leading-5 text-muted">
         {item.title}
       </p>
     </li>
@@ -383,12 +383,12 @@ function EvidenceRecord({
           target="_blank"
           rel="noreferrer"
           lang="en"
-          className="break-words text-[0.95rem] font-bold leading-6 text-foreground underline decoration-border-subtle underline-offset-4 transition-colors hover:decoration-accent"
+          className="break-words text-base font-bold leading-6 text-foreground underline decoration-border-subtle underline-offset-4 transition-colors hover:decoration-accent"
         >
           {item.title}
           <span className="sr-only"> 새 탭에서 PubMed 열림</span>
         </a>
-        <p lang="en" className="mt-1.5 break-words text-xs leading-5 text-muted">
+        <p lang="en" className="mt-1.5 break-words text-[0.8125rem] leading-5 text-muted">
           {metadata.join(" · ") || "서지정보 미표시"}
         </p>
       </div>
@@ -412,7 +412,7 @@ function EvidenceRecord({
 
       {item.key_finding_ko ? (
         <div className="inset-block inset-block-note col-start-2">
-          <p className="text-xs font-bold text-accent-strong">
+          <p className="text-[0.8125rem] font-bold text-accent-strong">
             AI 자동 번역
           </p>
           <div className="mt-1.5 space-y-2 text-sm leading-6 text-foreground">
@@ -429,7 +429,7 @@ function EvidenceRecord({
 
       {plainLine ? (
         <div className="motion-enter inset-block inset-block-note col-start-2">
-          <p className="text-xs font-bold text-accent-strong">AI 한 줄 요약</p>
+          <p className="text-[0.8125rem] font-bold text-accent-strong">AI 한 줄 요약</p>
           <p className="mt-1.5 text-sm leading-6 text-foreground">{plainLine}</p>
         </div>
       ) : pendingLine ? (
@@ -437,7 +437,7 @@ function EvidenceRecord({
           aria-hidden="true"
           className="inset-block inset-block-note col-start-2"
         >
-          <p className="text-xs font-bold text-accent-strong">
+          <p className="text-[0.8125rem] font-bold text-accent-strong">
             AI 한 줄 요약을 쓰는 중…
           </p>
           <span className="loading-skeleton mt-2 block h-4 w-full rounded" />
@@ -446,7 +446,7 @@ function EvidenceRecord({
       ) : null}
 
       <blockquote className="inset-block inset-block-quiet col-start-2">
-        <p className="text-xs font-bold text-muted">
+        <p className="text-[0.8125rem] font-bold text-muted">
           {item.source_scope === "title_only"
             ? `제목에서 가져옴 · ${locator}`
             : `AI 자동 추출 · ${locator}`}
@@ -470,7 +470,7 @@ function EvidenceRecord({
             </>
           }
         >
-          <dl className="grid gap-3 p-4 text-xs leading-5">
+          <dl className="grid gap-3 p-4 text-[0.8125rem] leading-5">
             {item.population ? (
               <div>
                 <dt className="font-bold text-foreground">연구에 참여한 사람</dt>
@@ -920,7 +920,7 @@ export function PersonalizedSafetyQuery() {
                 </span>
                 <span className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1">
                   <span className="chip chip-quiet">{example.title}</span>
-                  <span className="text-xs leading-5 text-muted">
+                  <span className="text-[0.8125rem] leading-5 text-muted">
                     {example.summary}
                   </span>
                 </span>
@@ -928,7 +928,7 @@ export function PersonalizedSafetyQuery() {
             ))}
           </div>
           {activeExample ? (
-            <p className="mt-3 text-xs leading-5 text-accent-strong">
+            <p className="mt-3 text-[0.8125rem] leading-5 text-accent-strong">
               예시 문장을 넣고 아래 조건까지 맞춰 뒀습니다. 문장을 고쳐서 다시
               찾아보셔도 됩니다.
             </p>
@@ -955,7 +955,7 @@ export function PersonalizedSafetyQuery() {
             maxLength={600}
             placeholder="예: 임신 중인데 철분제를 하루 얼마씩 먹는 연구가 있는지 보고 싶어요"
             aria-label="찾으시는 상황"
-            className="mt-3 block w-full resize-y rounded-[var(--radius-control)] border border-border-subtle bg-surface px-3.5 py-2.5 text-sm leading-6 text-foreground placeholder:text-muted"
+            className="mt-3 block w-full resize-y rounded-[var(--radius-control)] border border-border-subtle bg-surface px-4 py-3 text-sm leading-6 text-foreground placeholder:text-muted"
           />
           <div className="mt-3 flex flex-wrap items-center gap-2">
             <button
@@ -976,14 +976,14 @@ export function PersonalizedSafetyQuery() {
                 "이 문장으로 찾기"
               )}
             </button>
-            <span className="text-xs leading-5 text-muted">
+            <span className="text-[0.8125rem] leading-5 text-muted">
               값 자체와 논문 내용을 대조하지는 않습니다.
             </span>
           </div>
 
           {interpreted ? (
             <div className="motion-enter mt-3 border-t border-border-subtle pt-3">
-              <p className="text-xs font-bold text-accent-strong">
+              <p className="text-[0.8125rem] font-bold text-accent-strong">
                 이렇게 알아들었어요
               </p>
               <p className="mt-1 text-sm leading-6 text-muted">
@@ -995,11 +995,11 @@ export function PersonalizedSafetyQuery() {
                       .join(" · ")}`
                   : " · 조건 없이"}
               </p>
-              <p className="mt-1 text-xs leading-5 text-muted">
+              <p className="mt-1 text-[0.8125rem] leading-5 text-muted">
                 {interpreted.notice}
               </p>
               {interpreted.unavailable_axes.length ? (
-                <p className="mt-1 text-xs leading-5 text-muted">
+                <p className="mt-1 text-[0.8125rem] leading-5 text-muted">
                   {interpreted.unavailable_axes
                     .map((item) => axisById.get(item.axis)?.label ?? item.axis)
                     .join(", ")}
@@ -1007,7 +1007,7 @@ export function PersonalizedSafetyQuery() {
                 </p>
               ) : null}
               {interpreted.unmatched ? (
-                <p className="mt-1 text-xs leading-5 text-muted">
+                <p className="mt-1 text-[0.8125rem] leading-5 text-muted">
                   조건으로 못 옮긴 말: {interpreted.unmatched}
                 </p>
               ) : null}
@@ -1032,9 +1032,9 @@ export function PersonalizedSafetyQuery() {
           {/* 두 목록은 같은 줄 수·같은 줄 높이로 맞춰 좌우가 한 줄씩 마주 보게 한다. */}
           <div className="grid gap-4 lg:grid-cols-2">
             <fieldset className="min-w-0">
-              <legend className="text-[0.95rem] font-bold text-foreground">
+              <legend className="text-base font-bold text-foreground">
                 1. 어떤 상황인가요
-                <span className="ml-2 text-xs font-semibold text-danger">
+                <span className="ml-2 text-[0.8125rem] font-semibold text-danger">
                   필수
                 </span>
               </legend>
@@ -1057,7 +1057,7 @@ export function PersonalizedSafetyQuery() {
                       <span className="block text-sm font-bold leading-5 text-foreground">
                         {situation.label}
                       </span>
-                      <span className="mt-0.5 block text-xs leading-[1.125rem] text-muted">
+                      <span className="mt-0.5 block text-[0.8125rem] leading-[1.125rem] text-muted">
                         핵심 문헌 {coreCoverage[situation.id]}건
                       </span>
                     </span>
@@ -1067,9 +1067,9 @@ export function PersonalizedSafetyQuery() {
             </fieldset>
 
             <fieldset className="min-w-0">
-              <legend className="text-[0.95rem] font-bold text-foreground">
+              <legend className="text-base font-bold text-foreground">
                 2. 무슨 이야기가 나온 문헌만 볼까요
-                <span className="ml-2 text-xs font-semibold text-muted">
+                <span className="ml-2 text-[0.8125rem] font-semibold text-muted">
                   선택
                 </span>
               </legend>
@@ -1099,7 +1099,7 @@ export function PersonalizedSafetyQuery() {
                         {/* 좁은 화면에서 잘리더라도 건수가 먼저 남도록 순서를 둔다.
                             truncate 는 nowrap 이라 min-content 를 키워 가로 넘침을
                             만들었다. line-clamp 는 줄바꿈을 막지 않는다. */}
-                        <span className="mt-0.5 line-clamp-1 text-xs leading-[1.125rem] text-muted">
+                        <span className="mt-0.5 line-clamp-1 text-[0.8125rem] leading-[1.125rem] text-muted">
                           {!form.situation
                             ? "상황을 먼저 골라 주세요"
                             : unavailable
@@ -1126,7 +1126,7 @@ export function PersonalizedSafetyQuery() {
               고른 것 지우기
             </button>
             {selectedSituation ? (
-              <span className="text-xs text-muted">
+              <span className="text-[0.8125rem] text-muted">
                 {selectedSituation.short} · 조건 {form.axes.length}개
               </span>
             ) : null}
@@ -1160,7 +1160,7 @@ export function PersonalizedSafetyQuery() {
 
         {!pending && !result && !error ? (
           <div className="card card-dashed text-center">
-            <p className="text-[0.95rem] font-bold text-foreground">
+            <p className="text-base font-bold text-foreground">
               아직 찾은 문헌이 없어요
             </p>
             <p className="mx-auto mt-2 max-w-[36rem] text-sm leading-6 text-muted">
@@ -1200,7 +1200,7 @@ export function PersonalizedSafetyQuery() {
                   <span className="chip bg-accent text-white">
                     {result.situation_label}
                   </span>
-                  <span className="text-xs font-semibold text-muted">
+                  <span className="text-[0.8125rem] font-semibold text-muted">
                     {resultCountLabel(result)}
                   </span>
                 </div>
@@ -1252,7 +1252,7 @@ export function PersonalizedSafetyQuery() {
                     </span>
                     <h3
                       id="consult-title"
-                      className="text-[0.95rem] font-bold text-foreground"
+                      className="text-base font-bold text-foreground"
                     >
                       이번 결과를 말로 풀면
                     </h3>
@@ -1265,7 +1265,7 @@ export function PersonalizedSafetyQuery() {
                   </div>
                   {consult.source === "deterministic" &&
                   consultFallbackReason(consult.reason) ? (
-                    <p className="mt-2 text-xs leading-5 text-muted">
+                    <p className="mt-2 text-[0.8125rem] leading-5 text-muted">
                       {consultFallbackReason(consult.reason)}
                     </p>
                   ) : null}
@@ -1288,7 +1288,7 @@ export function PersonalizedSafetyQuery() {
                         <div key={`consult-${index}`}>
                           <p>{paragraph.text}</p>
                           {numbers.length ? (
-                            <p className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-muted">
+                            <p className="mt-1 flex flex-wrap items-center gap-1.5 text-[0.8125rem] text-muted">
                               <span>근거</span>
                               {numbers.map((number) => (
                                 <a
@@ -1305,7 +1305,7 @@ export function PersonalizedSafetyQuery() {
                       );
                     })}
                   </div>
-                  <p className="mt-2 text-xs leading-5 text-muted">
+                  <p className="mt-2 text-[0.8125rem] leading-5 text-muted">
                     먹기 시작할지 끊을지, 양을 얼마로 할지는 여기서 판단하지 않습니다.
                   </p>
                 </section>
@@ -1344,14 +1344,14 @@ export function PersonalizedSafetyQuery() {
               {result.filter_mode === "metadata_axis_presence" &&
               result.filter_trace.length > 1 ? (
                 <div>
-                  <p className="text-xs font-bold text-foreground">
+                  <p className="text-[0.8125rem] font-bold text-foreground">
                     조건을 하나씩 걸었을 때
                   </p>
                   <ol className="mt-2 flex flex-wrap items-center gap-2">
                     {result.filter_trace.map((step, index) => (
                       <li key={step.axis} className="flex items-center gap-2">
                         {index ? (
-                          <span aria-hidden="true" className="text-xs text-muted">
+                          <span aria-hidden="true" className="text-[0.8125rem] text-muted">
                             →
                           </span>
                         ) : null}
@@ -1369,7 +1369,7 @@ export function PersonalizedSafetyQuery() {
                   이 화면이 무엇을 보여드리는지
                 </p>
                 <p className="mt-1">{resultBasisCopy(result)}</p>
-                <p className="mt-2 text-xs leading-5">
+                <p className="mt-2 text-[0.8125rem] leading-5">
                   AI가 초록에서 뽑은 문장 {result.evidence_summary.ai_extracted_sentences}건 · 한국어로 옮긴 문장{" "}
                   {result.evidence_summary.ai_translated_sentences}개
                   {result.evidence_summary.title_derived_records
@@ -1380,7 +1380,7 @@ export function PersonalizedSafetyQuery() {
 
               {widen.length ? (
                 <div className="inset-block inset-block-quiet">
-                  <p className="text-xs font-bold text-foreground">조건을 빼면</p>
+                  <p className="text-[0.8125rem] font-bold text-foreground">조건을 빼면</p>
                   <p className="mt-1 text-sm leading-6 text-muted">
                     조건을 여러 개 걸수록 남는 문헌이 빠르게 줄어듭니다. 하나씩
                     빼면 몇 건이 되는지 미리 세어 봤어요. 맨 위에 적힌 핵심{" "}
@@ -1403,7 +1403,7 @@ export function PersonalizedSafetyQuery() {
                           setForm(next);
                           void run(next);
                         }}
-                        className={`${buttonQuiet} min-h-10 px-3 text-xs`}
+                        className={`${buttonQuiet} min-h-10 px-3 text-[0.8125rem]`}
                       >
                         {axisById.get(row.axis)?.label ?? row.axis} 빼면 핵심 {row.count}건
                       </button>
@@ -1417,7 +1417,7 @@ export function PersonalizedSafetyQuery() {
                   <div className="flex items-center gap-2">
                     <h3
                       id="evidence-findings-title"
-                      className="text-[0.95rem] font-bold text-foreground"
+                      className="text-base font-bold text-foreground"
                     >
                       AI가 뽑아 옮긴 문장
                     </h3>
@@ -1634,13 +1634,13 @@ export function PersonalizedSafetyQuery() {
                     </button>
                   ) : null}
                 </div>
-                <p className="text-xs leading-5 text-muted">
+                <p className="text-[0.8125rem] leading-5 text-muted">
                   {result.extended_note}
                 </p>
               </div>
             ) : null}
 
-            <footer className="card-section rounded-b-[var(--radius-card)] bg-accent/5 text-xs leading-5 text-muted">
+            <footer className="card-section rounded-b-[var(--radius-card)] bg-accent/5 text-[0.8125rem] leading-5 text-muted">
               {result.disclaimer || evidenceOnlyDisclaimer}
             </footer>
           </article>
