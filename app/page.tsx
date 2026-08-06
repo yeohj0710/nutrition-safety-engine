@@ -19,22 +19,22 @@ export default function Home() {
 
   const stats = [
     {
-      label: "근거 후보 기록",
+      label: "모아 둔 근거",
       value: manifest.records,
-      note: "선별과 근거 게이트를 통과한 PubMed 기록",
+      note: "선별과 근거 검사를 통과한 PubMed 문헌",
     },
     {
-      label: "용량 보고 기록",
+      label: "먹은 양이 적힌 것",
       value: manifest.with_dose,
-      note: "초록에 mg·IU 등 용량 표현이 있는 기록",
+      note: "초록에 mg·IU 처럼 양이 적힌 문헌",
     },
     {
-      label: "초록 문장 확인",
+      label: "초록까지 확인",
       value: manifest.source_scope.abstract_only,
-      note: `초록에서 문장 위치를 확인한 기록 · 제목만 ${manifest.source_scope.title_only}건`,
+      note: `초록에서 문장 자리까지 확인한 문헌 · 제목만 본 것 ${manifest.source_scope.title_only}건`,
     },
     {
-      label: "핵심 근거 기록",
+      label: "상황별 핵심 근거",
       value: core.core_records,
       note: coreRange,
     },
@@ -56,16 +56,15 @@ export default function Home() {
             고위험 상황에서 확인하는 보충제 안전성 근거
           </h1>
           <p className="mt-2 text-sm leading-6 text-muted">
-            수술 전후, 만성콩팥병, 임신, 간질환, 항응고 치료 중 하나를 고르면
-            초록에 연령·약물·용량·성별·질환 표현이 있는 근거 기록을 좁혀
-            보여줍니다.
+            수술 전후, 콩팥, 임신, 간, 항응고제 다섯 가운데 하나를 고르면 나이·약·
+            용량·남녀·앓는 병 이야기가 나온 문헌만 좁혀 보여드립니다.
           </p>
           <p className="mt-3 text-[0.8rem] leading-6 text-muted">
             <span className="font-semibold text-foreground">
               입력값과 논문 내용을 대조하는 도구가 아닙니다.
             </span>{" "}
-            연구 자료에 그 종류의 표현이 표시됐는지 찾아 줍니다. 복용
-            시작·중단·용량 변경이나 개인별 안전성은 판단하지 않습니다.
+            그 이야기가 초록에 나왔는지만 찾아 드립니다. 먹기 시작할지 끊을지, 양을
+            얼마로 할지, 이 사람에게 안전한지는 판단하지 않습니다.
           </p>
         </section>
 
@@ -97,22 +96,22 @@ export default function Home() {
             id="limits-title"
             className="text-[0.95rem] font-bold text-foreground"
           >
-            해석할 때 확인할 점
+            읽으실 때 같이 봐 주실 것
           </h2>
           <ul className="mt-3 flex flex-col gap-2 text-[0.8rem] leading-6 text-muted">
             <li>
-              전량 분류에서 결정적 분류기가 전체 기록을 분류했고, 재판정에서
-              경계 기록을 다시 판정했습니다. 사람 참조표준은 없습니다.
+              전량 분류에서 결정적 분류기가 문헌 전체를 갈랐고, 재판정에서 경계에
+              놓인 것을 다시 봤습니다. 사람이 만든 정답지는 없습니다.
             </li>
             <li>
-              화면의 기록 수는 임상적 정확도나 효과 크기를 뜻하지 않습니다.
+              화면에 나온 건수는 그만큼 맞다거나 효과가 크다는 뜻이 아닙니다.
             </li>
             <li>
-              자료원은 PubMed 하나이고 제목과 초록만 사용했습니다. 원문을
-              확보하거나 개별 환자의 상태를 평가하지 않았습니다.
+              자료는 PubMed 한 곳에서만 모았고 제목과 초록만 봤습니다. 원문을
+              구하거나 개별 환자 상태를 따져 보지 않았습니다.
             </li>
             <li>
-              2022년 1월 이후에 출판된 문헌만 모았습니다. 그보다 앞서 확립된
+              2022년 1월 뒤에 나온 문헌만 모았습니다. 그보다 앞서 자리 잡은
               상호작용이나 안전성 근거는 이 화면에 나오지 않습니다.
             </li>
           </ul>

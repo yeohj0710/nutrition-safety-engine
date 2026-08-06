@@ -118,7 +118,7 @@ describe("personalized safety UI contract", () => {
   it("labels AI extraction, AI translation, source scope, and unique titles", () => {
     expect(componentSource).toContain("AI 자동 추출");
     expect(componentSource).toContain("AI 자동 번역");
-    expect(componentSource).toContain("제목 기준 고유 문헌");
+    expect(componentSource).toContain("겹치는 제목 뺀 문헌");
     expect(componentSource).toContain("source_scope");
     expect(componentSource).not.toContain("문헌별 핵심 결과");
   });
@@ -126,8 +126,33 @@ describe("personalized safety UI contract", () => {
   it("cancels stale requests and keeps a submitted query snapshot", () => {
     expect(componentSource).toContain("AbortController");
     expect(componentSource).toContain("query_snapshot");
-    expect(componentSource).toContain("요청 당시 조건");
+    expect(componentSource).toContain("이때 고른 조건");
     expect(componentSource).toContain("prefers-reduced-motion");
+  });
+
+  it("fills the sentence box and the checkboxes from one example click", () => {
+    // 예시가 조건만 켜면 "문장으로 찾기" 칸이 무엇을 받는지 예시로는 알 수 없고,
+    // 사람이 문장을 직접 지어내야 그 경로를 시험할 수 있다. 예시 한 번이 문장과
+    // 조건을 함께 채워야 화면 전체가 한 번에 돈다.
+    for (const example of publicInputExamples) {
+      expect(example.sentence, example.id).toMatch(/[가-힣]/);
+      expect(example.sentence.length, example.id).toBeGreaterThan(10);
+    }
+    expect(componentSource).toMatch(
+      /function runExample[\s\S]*?setSentence\(example\.sentence\)[\s\S]*?setForm\(example\.input\)/,
+    );
+    // 예시는 문장칸과 같은 상자 안에 둔다. 따로 떨어져 있으면 둘이 한 흐름이라는
+    // 것이 화면에 안 보인다.
+    const sentenceBox = componentSource.indexOf('placeholder="예: 임신 중인데');
+    const exampleList = componentSource.indexOf("이렇게 적어 보세요");
+    const form = componentSource.indexOf('id="evidence-query-form"');
+    expect(sentenceBox).toBeGreaterThan(-1);
+    expect(exampleList).toBeGreaterThan(sentenceBox);
+    expect(exampleList).toBeLessThan(form);
+    // 앞선 AI 해석이 남아 있으면 지금 문장과 다른 조건을 설명하게 된다.
+    expect(componentSource).toMatch(
+      /function runExample[\s\S]*?setInterpreted\(null\)/,
+    );
   });
 
   it("uses a 4px spacing scale, aligned shell, and 48px controls", () => {
@@ -142,18 +167,21 @@ describe("personalized safety UI contract", () => {
     expect(componentSource).toContain("result.expanded");
     expect(componentSource).toContain('result.filter_mode === "metadata_axis_presence"');
     expect(componentSource).toContain("핵심 근거");
-    expect(componentSource).toContain("표현 필터 뒤");
-    expect(componentSource).toContain("확장 근거 전체");
+    expect(componentSource).toContain("조건에 맞는 핵심");
+    expect(componentSource).toContain("이 상황의 문헌");
     expect(componentSource).toContain("title_derived_records");
+    // 화면에 도구 안쪽 이름을 그대로 쓰면 읽는 쪽이 매번 자기 말로 옮겨야 한다.
+    expect(componentSource).not.toContain("표현 필터 뒤");
+    expect(componentSource).not.toContain("확장 근거 전체");
   });
 
   it("says the axis filter also applies beyond the core in expanded mode", () => {
     // 확장 보기에도 축 색인이 있으므로 "적용하지 않았습니다" 문구가 남아 있으면 안 된다.
     expect(componentSource).not.toContain("표현 필터를 적용하지 않았습니다");
-    expect(componentSource).toContain("확장 목록에도 같은 표현 필터를 걸었습니다");
+    expect(componentSource).toContain("넓힌 목록에도 같은 조건을 걸었습니다");
     expect(componentSource).toContain("extended_pool_total");
     // 값 대조를 하지 않는다는 단서는 확장 보기에서도 유지한다.
-    expect(componentSource).toContain("실제 값과 논문 내용을 대조하지는 않습니다");
+    expect(componentSource).toContain("값을 논문 내용과 맞춰 보지는 않습니다");
   });
 
   it("recovers a zero result from the submitted query snapshot", () => {
@@ -208,9 +236,9 @@ describe("personalized safety UI contract", () => {
   it("uses one live region and announces expanded pagination ranges", () => {
     expect(componentSource.match(/aria-live="polite"/g)).toHaveLength(1);
     expect(componentSource).toContain("expanded_offset + 1");
-    expect(componentSource).toContain("번째 기록을 표시했습니다");
+    expect(componentSource).toContain("번째까지 보여드립니다");
     expect(componentSource).toMatch(
-      /pending\s*\?\s*"문헌 결과를 불러오는 중입니다\."\s*:\s*error\s*\?\s*error\s*:\s*result/,
+      /pending\s*\?\s*"문헌을 찾는 중입니다\."\s*:\s*error\s*\?\s*error\s*:\s*result/,
     );
   });
 
@@ -251,7 +279,7 @@ describe("personalized safety UI contract", () => {
     expect(componentSource).toContain(
       "result.query_snapshot.requested_axes.length",
     );
-    expect(componentSource).toContain("이 상황의 전체 후보 기록입니다");
+    expect(componentSource).toContain("이 상황의 문헌을 전부 폈습니다");
   });
 
   it("focuses updated result headings without moving pagination scroll", () => {

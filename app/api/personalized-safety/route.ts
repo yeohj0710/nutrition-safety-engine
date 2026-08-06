@@ -22,14 +22,6 @@ import { joinMultiValue, splitMultiValue } from "@/src/lib/multi-value-input";
 // 논문이 주장하는 "결정론적 탐색 도구"가 성립하고, 예전 구현이 쓰던 요약 API 키는
 // 운영 서비스와 공유되어 한 번 소진되면 그쪽까지 멈춘다.
 
-/** 한글 목적격 조사. 마지막 글자에 받침이 있으면 "을", 없으면 "를". */
-function objectParticle(word: string) {
-  const last = word.at(-1) ?? "";
-  const code = last.charCodeAt(0);
-  if (Number.isNaN(code) || code < 0xac00 || code > 0xd7a3) return "를";
-  return (code - 0xac00) % 28 === 0 ? "를" : "을";
-}
-
 // ─────────────────────────────────────────────────────────────────────────────
 // 요약은 이번 응답이 실제로 고른 문헌에서만 만든다. 상수 문장을 쓰면 본문과 근거가
 // 서로 다른 것을 가리키게 된다(10529da 에서 한 번 고쳤던 문제다).
@@ -57,9 +49,9 @@ function studyKind(item: Evidence) {
 const profileLabels: Record<string, string> = {
   age: "나이",
   medication: "함께 드시는 약",
-  dose: "하루 섭취량",
+  dose: "하루 먹는 양",
   sex: "성별",
-  condition: "기저질환·증상",
+  condition: "앓는 병·증상",
 };
 
 function buildProfileLine(
@@ -94,11 +86,11 @@ function buildEvidenceOverview(items: Evidence[]) {
   const span = !years.length
     ? ""
     : lo === hi
-      ? ` 모두 ${lo}년 문헌입니다.`
+      ? ` 모두 ${lo}년에 나온 것입니다.`
       : ` ${lo}년부터 ${hi}년 사이에 나왔습니다.`;
 
-  return `연결된 문헌은 ${items.length}편입니다.${
-    mix ? ` 연구유형은 ${mix}입니다.` : ""
+  return `찾은 문헌은 ${items.length}편이에요.${
+    mix ? ` ${mix}으로 나뉩니다.` : ""
   }${span}`;
 }
 
@@ -116,26 +108,26 @@ function buildLimitLine(
   ).length;
 
   const parts = [
-    "다만 이 문헌들은 개인별 안전 상한을 정하지 않았습니다.",
+    "다만 이 문헌들은 한 사람이 얼마까지 먹어도 되는지를 정해 주지 않습니다.",
   ];
   // 축은 "그 항목을 보고했는가"로만 걸린다. 적어주신 값과 문헌을 대조하지 않으므로
   // 결과가 그 값을 직접 다룬 것처럼 읽히지 않게 여기서 분명히 해 둔다.
   if (appliedNouns.length)
     parts.push(
-      `${appliedNouns.join("·")}${objectParticle(appliedNouns.join("·"))} 보고한 문헌만 남겼을 뿐, 적어주신 값을 직접 다룬 문헌이라는 뜻은 아닙니다.`,
+      `${appliedNouns.join("·")} 이야기가 나온 문헌만 골랐을 뿐, 적어주신 값을 직접 다룬 문헌이라는 뜻은 아닙니다.`,
     );
   if (doseInput)
     parts.push(
       withDose === 0
-        ? "이 가운데 복용량을 초록에 적은 문헌은 없습니다."
+        ? "이 가운데 얼마씩 먹었는지를 초록에 적은 문헌은 없습니다."
         : withDose === items.length
-          ? `${items.length}편 모두 복용량을 초록에 적었지만, 그 값이 말씀하신 양과 같다는 뜻은 아닙니다.`
-          : `${items.length}편 가운데 복용량을 초록에 적은 것은 ${withDose}편입니다.`,
+          ? `${items.length}편 모두 얼마씩 먹었는지를 초록에 적었지만, 그 양이 말씀하신 양과 같다는 뜻은 아닙니다.`
+          : `${items.length}편 가운데 얼마씩 먹었는지를 초록에 적은 것은 ${withDose}편입니다.`,
     );
   parts.push(
     titleOnly
-      ? `초록을 확인한 문헌이 ${items.length - titleOnly}편, 제목만 있는 문헌이 ${titleOnly}편이고 원문은 확보하지 않았습니다.`
-      : "제목과 초록만 확인했고 원문은 확보하지 않았습니다.",
+      ? `초록까지 본 것이 ${items.length - titleOnly}편, 제목만 있는 것이 ${titleOnly}편이고 원문은 구하지 않았습니다.`
+      : "제목과 초록만 봤고 원문은 구하지 않았습니다.",
   );
   return parts.join(" ");
 }
@@ -143,9 +135,9 @@ function buildLimitLine(
 /** 지금 무엇을 볼지. 화면에 실제로 있는 것만 가리킨다. */
 function buildNextLine(items: Evidence[], appliedCount: number) {
   const base =
-    "아래 목록에서 문헌마다 연구 대상과 관찰된 결과, 그리고 그 문장이 초록의 몇 번째인지까지 확인하실 수 있어요.";
+    "아래 목록에서는 문헌마다 누구를 봤는지, 무엇이 달라졌는지, 그 문장이 초록 몇 번째 줄인지까지 짚어 드립니다.";
   if (appliedCount && items.length <= 2)
-    return `${base} 남은 문헌이 적으면 조건을 하나씩 지워 더 넓은 근거를 보실 수 있습니다.`;
+    return `${base} 남은 문헌이 적으면 조건을 하나씩 지워 더 넓게 보실 수 있어요.`;
   return base;
 }
 
@@ -766,20 +758,20 @@ export async function POST(req: Request) {
     selected.length
       ? [
           applied.length
-            ? `${meta?.short ?? "이 상황"}의 근거 ${questionPoolTotal.toLocaleString("ko-KR")}건 가운데 ${appliedNounsForExpanded.join("·")}${objectParticle(appliedNounsForExpanded.join("·"))} 보고한 ${extendedTotal.toLocaleString("ko-KR")}건이 남았고,`
-            : `${meta?.short ?? "이 상황"}의 근거 ${extendedTotal.toLocaleString("ko-KR")}건 가운데`,
+            ? `${meta?.short ?? "이 상황"} 문헌 ${questionPoolTotal.toLocaleString("ko-KR")}건 가운데 ${appliedNounsForExpanded.join("·")} 이야기가 나온 ${extendedTotal.toLocaleString("ko-KR")}건이 남았고,`
+            : `${meta?.short ?? "이 상황"} 문헌 ${extendedTotal.toLocaleString("ko-KR")}건 가운데`,
           `${offset + 1}~${offset + selected.length}번째를 보여드립니다.`,
           applied.length
-            ? "핵심 근거 15건 밖까지 같은 조건으로 걸렀습니다. 적어주신 값 자체로 문헌을 고르지는 않습니다."
+            ? "핵심 15건 밖에 있던 문헌까지 같은 조건으로 걸렀습니다. 적어주신 값 자체로 문헌을 고르지는 않습니다."
             : "",
-          "근거 문장은 영어 원문입니다.",
+          "아직 한국어로 옮기지 않아 영어 문장 그대로 보입니다.",
         ]
       : [
-          `${meta?.short ?? "이 상황"}의 근거 ${questionPoolTotal.toLocaleString("ko-KR")}건 가운데`,
+          `${meta?.short ?? "이 상황"} 문헌 ${questionPoolTotal.toLocaleString("ko-KR")}건 가운데`,
           appliedNounsForExpanded.length
-            ? `${appliedNounsForExpanded.join("·")}을 모두 보고한 문헌은 없습니다.`
-            : "보여드릴 근거가 없습니다.",
-          "조건을 하나씩 지우면 어느 조건에서 문헌이 사라지는지 확인하실 수 있어요.",
+            ? `${appliedNounsForExpanded.join("·")} 이야기를 한 편에서 모두 말한 문헌은 없습니다.`
+            : "보여드릴 문헌이 없습니다.",
+          "조건을 하나씩 지우면 어느 조건에서 문헌이 사라지는지 보실 수 있어요.",
         ]
   )
     .filter(Boolean)
@@ -796,15 +788,15 @@ export async function POST(req: Request) {
   });
   const profileLine = axesProvided && requestedAxes.length
     ? applied.length
-      ? `${meta?.short ?? "이 상황"}에서 ${applied
+      ? `${meta?.short ?? "이 상황"} 문헌 가운데 ${applied
           .map((item) => axisById.get(item.axis)?.noun ?? item.axis)
-          .join("·")} 필터를 선택했습니다.`
-      : `${meta?.short ?? "이 상황"}에서 적용 가능한 표현 필터가 선택되지 않았습니다.`
+          .join("·")} 이야기가 나온 것만 골랐습니다.`
+      : `${meta?.short ?? "이 상황"}에는 걸 수 있는 조건이 없어, 핵심 문헌을 그대로 보여드립니다.`
     : axesProvided
-      ? `${meta?.short ?? "이 상황"}에서 표현 필터 없이 핵심 근거를 확인했습니다.`
+      ? `${meta?.short ?? "이 상황"} 문헌을 조건 없이 살펴봤습니다.`
       : buildProfileLine(meta?.spoken ?? "이 상황을 고르셨고", requestedProfile);
   const tierLine = topUp.length
-    ? `핵심 근거 ${coreSelected.length}건에 같은 조건의 확장 근거 ${topUp.length}건을 더했습니다. 확장 근거는 아직 한국어로 옮기지 않아 영어 원문 문장으로 보여드립니다.`
+    ? `핵심 문헌만으로는 ${coreSelected.length}건뿐이라, 같은 조건에 걸린 문헌 ${topUp.length}건을 더 찾아 붙였어요. 뒤에 붙인 것은 아직 한국어로 옮기지 않아 영어 문장 그대로 보입니다.`
     : "";
   const narrative = expanded
     ? [expandedSummary]
@@ -817,13 +809,13 @@ export async function POST(req: Request) {
         ]
       : [
           profileLine,
-          `그런데 ${meta?.short ?? "이 상황"}에서 선별된 핵심 근거 ${base.all_evidence.length}건 가운데 말씀하신 조건을 모두 보고한 문헌은 없습니다.`,
+          `그런데 ${meta?.short ?? "이 상황"}의 핵심 문헌 ${base.all_evidence.length}건 가운데 고르신 이야기를 모두 말한 것은 없습니다.`,
           narrowedNouns.length > 1
-            ? `${narrowedNouns.join("·")}을 한 편에서 모두 보고해야 남는데, 조건이 겹칠수록 남는 문헌이 빠르게 줄어듭니다.`
+            ? `${narrowedNouns.join("·")} 이야기가 한 편에 다 나와야 남는데, 조건을 겹칠수록 남는 문헌이 빠르게 줄어듭니다.`
             : narrowedNouns.length === 1
-              ? `${narrowedNouns[0]}${objectParticle(narrowedNouns[0])} 보고한 문헌이 이 상황에는 없었습니다.`
+              ? `${narrowedNouns[0]} 이야기가 나온 문헌이 이 상황에는 없었습니다.`
               : "",
-          "조건을 하나씩 지우면 어느 조건에서 문헌이 사라지는지 확인하실 수 있어요.",
+          "조건을 하나씩 지우면 어느 조건에서 문헌이 사라지는지 보실 수 있어요.",
         ].filter(Boolean);
 
   const summary = narrative.join("\n\n");
@@ -865,8 +857,8 @@ export async function POST(req: Request) {
       extended_pool_total: questionPoolTotal,
       extended_match_total: extendedMatchTotal,
       extended_note: applied.length
-        ? "확장 보기는 핵심근거 15건 상한 밖까지 포함하며, 선택한 항목을 보고한 문헌만 남깁니다. 적어주신 값 자체로 문헌을 고르지는 않습니다. 근거 문장은 영어 원문입니다."
-        : "확장 보기는 핵심근거 15건 상한 밖에 있는 이 상황의 전체 후보 기록을 포함합니다. 근거 문장은 영어 원문입니다.",
+        ? "넓혀 보기는 핵심 15건 밖에 있던 문헌까지 담고, 거기에도 같은 조건을 걸어 고르신 이야기가 나온 것만 남깁니다. 적어주신 값 자체로 문헌을 고르지는 않습니다. 아직 한국어로 옮기지 않아 영어 문장 그대로 보입니다."
+        : "넓혀 보기는 핵심 15건 밖에 있던 이 상황의 문헌을 모두 담습니다. 아직 한국어로 옮기지 않아 영어 문장 그대로 보입니다.",
       checks: base.checks,
       summary,
       narrative,

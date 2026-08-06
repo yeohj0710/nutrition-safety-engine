@@ -276,7 +276,7 @@ describe("personalized safety API", () => {
       { axis: "sex", field: "sex", value: "" },
     ]);
     expect(body.query_snapshot.requested_axes).toEqual(["sex"]);
-    expect(body.narrative[0]).toMatch(/적용 가능한 표현 필터가/);
+    expect(body.narrative[0]).toMatch(/걸 수 있는 조건이 없어/);
   });
 
   it("keeps an unavailable legacy field in the requested snapshot", async () => {
@@ -328,7 +328,9 @@ describe("personalized safety API", () => {
     expect(body.core_shown).toBe(0);
     expect(body.extended_shown).toBeGreaterThan(0);
     expect(body.evidence.length).toBe(body.core_shown + body.extended_shown);
-    expect(body.summary).toMatch(/핵심 근거 0건에 같은 조건의 확장 근거/);
+    expect(body.summary).toMatch(
+      /핵심 문헌만으로는 0건뿐이라, 같은 조건에 걸린 문헌 \d+건/,
+    );
   });
 
   it("still says nothing is left when no tier has a match", async () => {

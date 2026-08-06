@@ -166,77 +166,90 @@ function isSameQuery(form: FormState, result: ApiResult) {
   );
 }
 
+/**
+ * 화면에 쓰는 말.
+ *
+ * 예전 문구는 도구가 자기 내부 이름을 그대로 읽었다 — 표현·필터·축·기록·
+ * metadata_axis_presence. 정확하긴 해도 사람에게 하는 말이 아니라, 읽는 쪽이
+ * 매번 자기 말로 옮겨야 했다. 숫자는 그대로 두고 부르는 이름만 입으로 하는 말로
+ * 바꾼다. 조건은 "표현 필터"가 아니라 "고른 이야기"이고, 넓힌 목록은 "확장 근거"가
+ * 아니라 "넓혀 찾은 문헌"이다.
+ */
 function resultCountLabel(result: ApiResult) {
   if (result.expanded) {
     const first = result.evidence.length ? result.expanded_offset + 1 : 0;
     const last = result.expanded_offset + result.evidence.length;
-    const scope = result.applied_axes.length ? "표현 필터 뒤" : "확장 근거 전체";
-    return `${scope} ${result.extended_total.toLocaleString("ko-KR")}건 · ${first}–${last}`;
+    const scope = result.applied_axes.length
+      ? "조건에 맞는 문헌"
+      : "이 상황의 문헌";
+    return `${scope} ${result.extended_total.toLocaleString("ko-KR")}건 중 ${first}–${last}번째`;
   }
-  // 핵심 근거가 모자라 확장 근거로 채운 화면에서는 두 층을 갈라 적는다.
+  // 핵심 근거가 모자라 넓혀 찾은 문헌으로 채운 화면에서는 두 층을 갈라 적는다.
   //
-  // 여기에 핵심 건수만 쓰면 "표현 필터 뒤 2건"이라고 해놓고 아래에 15건이
+  // 여기에 핵심 건수만 쓰면 "조건에 맞는 핵심 2건"이라고 해놓고 아래에 15건이
   // 깔린다. 합계만 쓰면 이번에는 "조건을 빼면 핵심 8건" 제안과 세는 대상이
-  // 달라진다. 두 수를 같이 적어야 세 자리(머리 라벨·표시 기록 타일·조건 빼기
+  // 달라진다. 두 수를 같이 적어야 세 자리(머리 라벨·표시 건수 타일·조건 빼기
   // 제안)가 같은 뜻의 숫자를 쓴다.
   if (result.extended_shown > 0) {
-    return `핵심 ${result.core_shown.toLocaleString("ko-KR")}건 + 확장 ${result.extended_shown.toLocaleString("ko-KR")}건`;
+    return `핵심 ${result.core_shown.toLocaleString("ko-KR")}건 + 넓혀 찾은 ${result.extended_shown.toLocaleString("ko-KR")}건`;
   }
   if (result.filter_mode === "metadata_axis_presence") {
-    return `표현 필터 뒤 핵심 ${result.evidence_total_after_filter.toLocaleString("ko-KR")}건`;
+    return `조건에 맞는 핵심 ${result.evidence_total_after_filter.toLocaleString("ko-KR")}건`;
   }
   return `핵심 근거 ${result.evidence_total_after_filter.toLocaleString("ko-KR")}건`;
 }
 
 function resultHeading(result: ApiResult) {
   if (!result.expanded && result.extended_shown > 0)
-    return "선택한 표현이 있는 근거";
+    return "고른 이야기가 나온 문헌";
   if (result.expanded)
     return result.applied_axes.length
-      ? "선택한 표현이 있는 확장 근거"
-      : "이 상황의 확장 근거";
+      ? "조건에 맞는 문헌 전체"
+      : "이 상황의 문헌 전체";
   if (result.filter_mode === "metadata_axis_presence")
-    return "선택한 표현이 있는 핵심 근거";
-  return "이 상황의 핵심 근거";
+    return "고른 이야기가 나온 핵심 문헌";
+  return "이 상황의 핵심 문헌";
 }
 
 function resultBasisCopy(result: ApiResult) {
   if (!result.expanded && result.extended_shown > 0)
-    return `핵심 근거 ${result.core_shown}건에 같은 조건의 확장 근거 ${result.extended_shown}건을 더해 보여드립니다. 확장 근거는 한국어 번역 없이 영어 원문 문장입니다. 실제 값과 논문 내용을 대조하지는 않습니다.`;
+    return `핵심 문헌만으로는 ${result.core_shown}건뿐이라, 같은 조건에 걸린 문헌 ${result.extended_shown}건을 더 찾아 붙였습니다. 뒤에 붙인 ${result.extended_shown}건은 아직 한국어로 옮기지 않아 영어 문장 그대로 보입니다. 고른 조건은 그 이야기가 초록에 나왔는지만 볼 뿐, 값을 논문 내용과 맞춰 보지는 않습니다.`;
   if (result.expanded)
     return result.applied_axes.length
-      ? `이 상황의 근거 ${result.extended_pool_total.toLocaleString("ko-KR")}건 전체에 같은 표현 필터를 걸었습니다. 핵심 근거 15건 밖까지 포함합니다. 실제 값과 논문 내용을 대조하지는 않습니다.`
-      : "확장 근거는 이 상황의 전체 후보 기록입니다. 기록을 페이지별로 보여줍니다.";
+      ? `이 상황의 문헌 ${result.extended_pool_total.toLocaleString("ko-KR")}건 전부에 같은 조건을 걸었습니다. 핵심 15건 밖에 있던 문헌까지 들어옵니다. 고른 조건은 그 이야기가 초록에 나왔는지만 볼 뿐, 값을 논문 내용과 맞춰 보지는 않습니다.`
+      : "조건을 걸지 않고 이 상황의 문헌을 전부 폈습니다. 한 쪽에 30건씩 나눠 보여드립니다.";
   if (result.filter_mode === "metadata_axis_presence")
-    return "실제 나이·약 이름·용량 값과 논문 내용을 대조하지 않습니다. 선택한 종류의 표현이 초록에 포착됐는지만 확인합니다.";
-  return "표현 필터를 적용하지 않은 상황별 핵심 근거입니다. 연구 질문별 우선순위에 따라 고른 기록을 보여줍니다.";
+    return "고른 이야기가 초록에 나왔는지만 봅니다. 나이나 용량 값을 논문 내용과 하나하나 맞춰 보지는 않습니다.";
+  return "조건을 걸지 않은 이 상황의 핵심 문헌입니다. 연구 질문마다 정해 둔 순서로 골라 보여드립니다.";
 }
 
 function resultStatusMessage(result: ApiResult) {
   if (result.expanded) {
-    const scope = result.applied_axes.length ? "표현 필터 뒤" : "확장 근거 전체";
+    const scope = result.applied_axes.length
+      ? "조건에 맞는 문헌"
+      : "이 상황의 문헌";
     if (!result.evidence.length)
-      return `${scope} ${result.extended_total.toLocaleString("ko-KR")}건 중 표시할 기록이 없습니다.`;
+      return `${scope} ${result.extended_total.toLocaleString("ko-KR")}건 가운데 보여드릴 것이 없습니다.`;
     const first = result.expanded_offset + 1;
     const last = result.expanded_offset + result.evidence.length;
-    return `${scope} ${result.extended_total.toLocaleString("ko-KR")}건 중 ${first}번째부터 ${last}번째 기록을 표시했습니다.`;
+    return `${scope} ${result.extended_total.toLocaleString("ko-KR")}건 가운데 ${first}번째부터 ${last}번째까지 보여드립니다.`;
   }
   if (result.extended_shown > 0) {
-    return `핵심 근거 ${result.core_shown}건에 확장 근거 ${result.extended_shown}건을 더해 모두 ${result.evidence.length}건을 표시했습니다.`;
+    return `핵심 문헌 ${result.core_shown}건에 넓혀 찾은 ${result.extended_shown}건을 더해 모두 ${result.evidence.length}건을 보여드립니다.`;
   }
-  return `${result.evidence.length}건을 표시했습니다.`;
+  return `${result.evidence.length}건을 보여드립니다.`;
 }
 
 function locatorLabel(locator: string, sourceScope: EvidenceItem["source_scope"]) {
-  if (sourceScope === "title_only" || locator === "TITLE") return "제목만 확인";
+  if (sourceScope === "title_only" || locator === "TITLE") return "제목에서만 확인";
   const match = /^ABSTRACT_SENTENCE_(\d+)$/.exec(locator);
   return match ? `초록 ${match[1]}번째 문장` : locator || "초록 문장";
 }
 
 function sentenceRoleLabel(role: EvidenceItem["sentence_role"]) {
-  if (role === "result_or_conclusion") return "결과·결론 문장";
-  if (role === "background_or_methods") return "배경·방법 문장 · 해석 주의";
-  return "문장 역할 자동 구분 안 됨";
+  if (role === "result_or_conclusion") return "결과·결론을 적은 문장";
+  if (role === "background_or_methods") return "배경·방법을 적은 문장 · 결과 아님";
+  return "어느 대목인지 못 갈랐음";
 }
 
 /** 요약 타일 한 칸. 라벨 줄 높이를 고정해 세 칸의 숫자 높이를 맞춘다. */
@@ -326,7 +339,7 @@ function ResultSkeleton() {
           className="h-5 w-5 animate-spin rounded-full border-2 border-accent/25 border-t-accent"
         />
         <p className="text-sm font-semibold text-foreground">
-          선택한 표현 필터로 문헌을 연결하는 중…
+          고른 조건으로 문헌을 찾는 중…
         </p>
       </div>
       <div aria-hidden="true" className="grid gap-2">
@@ -379,7 +392,7 @@ function EvidenceRecord({
 
       <div className="col-start-2 flex flex-wrap gap-1.5">
         <span className="chip bg-accent/10 text-accent-strong">
-          {item.source_scope === "abstract_only" ? "초록 범위" : "제목만"}
+          {item.source_scope === "abstract_only" ? "초록까지 봄" : "제목만 봄"}
         </span>
         <span
           className={`chip ${
@@ -389,7 +402,7 @@ function EvidenceRecord({
           }`}
         >
           {item.source_scope === "title_only"
-            ? "제목 기반 · 문장 역할 구분 안 함"
+            ? "제목에서 가져와 대목을 못 가름"
             : sentenceRoleLabel(item.sentence_role)}
         </span>
       </div>
@@ -425,7 +438,7 @@ function EvidenceRecord({
             : `AI 자동 추출 · ${locator}`}
         </p>
         <p lang="en" className="mt-1.5 break-words text-sm leading-6 text-foreground">
-          {item.source_sentence || "표시할 원문 문장이 없습니다."}
+          {item.source_sentence || "가져올 원문 문장이 없습니다."}
         </p>
       </blockquote>
 
@@ -436,7 +449,7 @@ function EvidenceRecord({
           bodyClassName="disclosure-body"
           summary={
             <>
-              <span>자동 추출 정보 더 보기</span>
+              <span>이 문헌에서 더 뽑은 것</span>
               <span aria-hidden="true" className="collapsible-chevron">
                 ↓
               </span>
@@ -446,7 +459,7 @@ function EvidenceRecord({
           <dl className="grid gap-3 p-4 text-xs leading-5">
             {item.population ? (
               <div>
-                <dt className="font-bold text-foreground">연구 대상 표현</dt>
+                <dt className="font-bold text-foreground">연구에 참여한 사람</dt>
                 <dd lang="en" className="mt-1 break-words text-muted">
                   {item.population}
                 </dd>
@@ -454,7 +467,7 @@ function EvidenceRecord({
             ) : null}
             {item.dose ? (
               <div>
-                <dt className="font-bold text-foreground">포착된 용량 표현</dt>
+                <dt className="font-bold text-foreground">초록에 적힌 양</dt>
                 <dd lang="en" className="mt-1 break-words text-muted">
                   {item.dose}
                 </dd>
@@ -462,7 +475,7 @@ function EvidenceRecord({
             ) : null}
             {item.outcome ? (
               <div>
-                <dt className="font-bold text-foreground">결과 관련 표현</dt>
+                <dt className="font-bold text-foreground">무엇을 봤는지</dt>
                 <dd lang="en" className="mt-1 break-words text-muted">
                   {item.outcome}
                 </dd>
@@ -694,7 +707,7 @@ export function PersonalizedSafetyQuery() {
         });
         const body = (await response.json()) as ApiResult;
         if (!response.ok) {
-          setError(body.error ?? "문헌 결과를 불러오지 못했습니다. 다시 시도하세요.");
+          setError(body.error ?? "문헌을 찾지 못했습니다. 다시 눌러 주세요.");
           focusSoon(errorRef);
           return;
         }
@@ -716,7 +729,7 @@ export function PersonalizedSafetyQuery() {
         });
       } catch (caught) {
         if (caught instanceof DOMException && caught.name === "AbortError") return;
-        setError("네트워크 문제로 문헌 결과를 불러오지 못했습니다. 다시 시도하세요.");
+        setError("연결이 끊겨 문헌을 찾지 못했습니다. 다시 눌러 주세요.");
         focusSoon(errorRef);
       } finally {
         if (requestRef.current === controller) {
@@ -752,9 +765,16 @@ export function PersonalizedSafetyQuery() {
     void run(form);
   }
 
+  // 예시는 문장칸과 조건을 함께 채운다. 조건만 켜면 "문장으로 찾기"가 무엇을 받는
+  // 칸인지 예시로는 알 수 없어서, 사람이 문장을 직접 지어내야 그 경로를 시험해 볼
+  // 수 있었다. 문장까지 채워 두면 그대로 눌러 보고 고쳐 쓰는 것도 된다.
   function runExample(example: (typeof publicInputExamples)[number]) {
+    setSentence(example.sentence);
+    // 앞선 AI 결과가 남아 있으면 지금 문장과 다른 조건을 설명하게 된다.
+    setInterpreted(null);
     setForm(example.input);
     setActiveExample(example.id);
+    setError("");
     void run(example.input);
   }
 
@@ -840,32 +860,35 @@ export function PersonalizedSafetyQuery() {
       <section className="card">
         <div className="flex items-center justify-between gap-3">
           <h2 className="text-[1.05rem] font-bold leading-snug text-foreground">
-            상황과 초록 표현으로 좁히는 근거 기록
+            상황과 이야기로 좁혀 보는 문헌
           </h2>
-          <InfoTip label="조회 방식">
-            이 화면은 개인 상태를 판정하지 않습니다. 연구 질문과 초록에서 포착한
-            표현을 연결하는 방식만 보여줍니다.
+          <InfoTip label="찾는 방식">
+            이 화면은 개인 상태를 판정하지 않습니다. 연구 질문 하나를 고르고, 그
+            질문에 걸린 문헌 가운데 고르신 이야기가 초록에 나온 것만 남깁니다.
           </InfoTip>
         </div>
 
         {/* 문장으로 찾기. 모델은 조건을 켜는 일만 하고, 켜진 조건은 아래 목록에
-            그대로 보이므로 사용자가 언제든 고칠 수 있다. */}
+            그대로 보이므로 사용자가 언제든 고칠 수 있다.
+            예시도 이 칸 안에 둔다 — 예전에는 문장칸과 예시가 따로 떨어져 있어서,
+            예시를 눌러도 문장칸은 빈 채였고 이 칸에 무엇을 적는지 예시가 보여주지
+            못했다. 문장과 조건을 함께 채워야 예시 한 번으로 화면 전체가 돈다. */}
         <div className="inset-block inset-block-note mt-4">
           <div className="flex flex-wrap items-center gap-2">
             <span className="chip inline-flex bg-accent text-white">AI</span>
             <p className="text-sm font-bold text-foreground">문장으로 찾기</p>
           </div>
           <p className="mt-1.5 text-[0.8rem] leading-6 text-muted">
-            상황을 그대로 적으면 다섯 상황 중 하나와 초록 표현 조건을 골라 드립니다.
-            고른 조건은 아래에 그대로 표시하고, 근거 조회는 그다음부터 조건만 보고
-            돌아갑니다.
+            겪고 계신 일을 그대로 적으면 다섯 상황 가운데 하나와 볼 이야기를 대신
+            골라 드립니다. 고른 조건은 아래 목록에 그대로 켜지니 직접 고쳐도 됩니다.
+            문헌을 찾는 일은 그다음부터 조건만 보고 똑같이 돌아갑니다.
           </p>
           <textarea
             value={sentence}
             onChange={(event) => setSentence(event.target.value)}
             rows={2}
             maxLength={600}
-            placeholder="예: 임신 중인데 철분제를 하루 얼마나 먹는 연구가 있는지 보고 싶어요"
+            placeholder="예: 임신 중인데 철분제를 하루 얼마씩 먹는 연구가 있는지 보고 싶어요"
             aria-label="찾으시는 상황"
             className="mt-3 block w-full resize-y rounded-[var(--radius-control)] border border-border-subtle bg-surface px-3.5 py-2.5 text-sm leading-6 text-foreground placeholder:text-muted"
           />
@@ -876,25 +899,67 @@ export function PersonalizedSafetyQuery() {
               disabled={interpreting || pending || !sentence.trim()}
               className={`${buttonPrimary} px-4`}
             >
-              {interpreting ? "조건을 정리하는 중…" : "조건 정리하고 찾기"}
+              {interpreting ? "조건을 고르는 중…" : "이 문장으로 찾기"}
             </button>
             <span className="text-xs leading-5 text-muted">
               값 자체와 논문 내용을 대조하지는 않습니다.
             </span>
           </div>
+
+          <div className="mt-4 border-t border-border-subtle pt-3">
+            <p className="text-[0.72rem] font-bold text-foreground">
+              이렇게 적어 보세요
+            </p>
+            <p className="mt-1 text-[0.72rem] leading-5 text-muted">
+              누르면 위 문장칸과 아래 조건을 한 번에 채우고 바로 찾아 드립니다.
+            </p>
+            <div className="mt-2 grid gap-1.5">
+              {publicInputExamples.map((example) => (
+                <button
+                  key={example.id}
+                  type="button"
+                  disabled={pending}
+                  aria-pressed={activeExample === example.id}
+                  onClick={() => runExample(example)}
+                  className={`flex min-h-12 flex-col justify-center rounded-[var(--radius-control)] border px-3 py-2 text-left transition-colors disabled:cursor-wait disabled:opacity-60 ${
+                    activeExample === example.id
+                      ? "border-accent bg-accent/10"
+                      : "border-border-subtle bg-surface hover:border-accent/40"
+                  }`}
+                >
+                  <span className="text-[0.8rem] font-semibold leading-6 text-foreground">
+                    “{example.sentence}”
+                  </span>
+                  <span className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1">
+                    <span className="chip chip-quiet">{example.title}</span>
+                    <span className="text-[0.72rem] leading-5 text-muted">
+                      {example.summary}
+                    </span>
+                  </span>
+                </button>
+              ))}
+            </div>
+            {activeExample ? (
+              <p className="mt-2 text-[0.72rem] leading-5 text-muted">
+                예시 문장을 넣고 아래 조건까지 맞춰 뒀습니다. 문장을 고쳐서 다시
+                찾아보셔도 됩니다.
+              </p>
+            ) : null}
+          </div>
+
           {interpreted ? (
             <div className="mt-3 border-t border-border-subtle pt-3">
               <p className="text-[0.72rem] font-bold text-accent-strong">
-                정리한 조건
+                이렇게 알아들었어요
               </p>
               <p className="mt-1 text-[0.8rem] leading-6 text-muted">
                 {situations.find((item) => item.id === interpreted.situation)?.label ??
-                  "상황 미확인"}
+                  "상황 못 찾음"}
                 {interpreted.applied_axes.length
                   ? ` · ${interpreted.applied_axes
                       .map((item) => axisById.get(item.axis)?.label ?? item.axis)
                       .join(" · ")}`
-                  : " · 표현 필터 없음"}
+                  : " · 조건 없이"}
               </p>
               <p className="mt-1 text-[0.72rem] leading-5 text-muted">
                 {interpreted.notice}
@@ -904,12 +969,12 @@ export function PersonalizedSafetyQuery() {
                   {interpreted.unavailable_axes
                     .map((item) => axisById.get(item.axis)?.label ?? item.axis)
                     .join(", ")}
-                  는 이 상황에 필터 규칙이 없어 켜지 않았습니다.
+                  는 이 상황에 규칙이 없어 켜지 못했습니다.
                 </p>
               ) : null}
               {interpreted.unmatched ? (
                 <p className="mt-1 text-[0.72rem] leading-5 text-muted">
-                  조건으로 옮기지 못한 내용: {interpreted.unmatched}
+                  조건으로 못 옮긴 말: {interpreted.unmatched}
                 </p>
               ) : null}
             </div>
@@ -919,46 +984,11 @@ export function PersonalizedSafetyQuery() {
         <div className="inset-block inset-block-quiet mt-4">
           <p className="text-[0.72rem] font-bold text-foreground">직접 고르기</p>
           <p className="mt-1 break-keep text-sm leading-6 text-muted">
-            상황 하나를 고르면 그 질문의 핵심 근거를 보여줍니다. 초록 표현을 함께
-            고르면 그 표현이 잡힌 기록만 남기고, 확장 근거까지 같은 조건으로
+            상황 하나를 고르면 그 질문의 핵심 문헌을 보여드립니다. 볼 이야기를 함께
+            고르면 그 이야기가 나온 문헌만 남기고, 핵심 15건 밖까지 같은 조건으로
             넓혀 볼 수 있습니다.
           </p>
         </div>
-
-        <AnimatedDetails
-          className="disclosure mt-4"
-          summaryClassName="disclosure-summary text-foreground"
-          bodyClassName="disclosure-body grid gap-1 p-2 sm:grid-cols-2"
-          summary={
-            <>
-              <span>상황별 예시 {publicInputExamples.length}개</span>
-              <span
-                aria-hidden="true"
-                className="collapsible-chevron text-muted"
-              >
-                ↓
-              </span>
-            </>
-          }
-        >
-          {publicInputExamples.map((example) => (
-            <button
-              key={example.id}
-              type="button"
-              disabled={pending}
-              aria-pressed={activeExample === example.id}
-              onClick={() => runExample(example)}
-              className="flex min-h-12 flex-col justify-center rounded-[var(--radius-control)] px-3 py-2 text-left transition-colors hover:bg-accent/5 disabled:cursor-wait disabled:opacity-60"
-            >
-              <span className="text-sm font-bold text-foreground">
-                {example.title}
-              </span>
-              <span className="mt-0.5 text-xs leading-5 text-muted">
-                {example.summary}
-              </span>
-            </button>
-          ))}
-        </AnimatedDetails>
 
         <form
           id="evidence-query-form"
@@ -969,14 +999,14 @@ export function PersonalizedSafetyQuery() {
           <div className="grid gap-4 lg:grid-cols-2">
             <fieldset className="min-w-0">
               <legend className="text-[0.95rem] font-bold text-foreground">
-                1. 문헌을 찾을 상황
+                1. 어떤 상황인가요
                 <span className="ml-2 text-xs font-semibold text-danger">
                   필수
                 </span>
               </legend>
               <p className="mt-2 text-[0.8rem] leading-6 text-muted lg:min-h-12">
-                다섯 가지 중 하나만 고릅니다. 고른 상황의 핵심 근거부터
-                보여줍니다.
+                다섯 가지 가운데 하나만 고를 수 있어요. 고른 상황의 핵심 문헌부터
+                보여드립니다.
               </p>
               <div className="mt-3 grid gap-2">
                 {situations.map((situation, index) => (
@@ -994,7 +1024,7 @@ export function PersonalizedSafetyQuery() {
                         {situation.label}
                       </span>
                       <span className="mt-0.5 block text-xs leading-[1.125rem] text-muted">
-                        핵심 근거 {coreCoverage[situation.id]}건
+                        핵심 문헌 {coreCoverage[situation.id]}건
                       </span>
                     </span>
                   </label>
@@ -1004,13 +1034,13 @@ export function PersonalizedSafetyQuery() {
 
             <fieldset className="min-w-0">
               <legend className="text-[0.95rem] font-bold text-foreground">
-                2. 초록 표현으로 좁히기
+                2. 무슨 이야기가 나온 문헌만 볼까요
                 <span className="ml-2 text-xs font-semibold text-muted">
                   선택
                 </span>
               </legend>
               <p className="mt-2 text-[0.8rem] leading-6 text-muted lg:min-h-12">
-                선택한 표현이 포착된 기록만 남깁니다. 나이·약 이름·용량 값 자체를 대조하지 않습니다.
+                고른 이야기가 초록에 나온 문헌만 남깁니다. 나이·약 이름·용량 값 자체를 대조하지 않습니다.
               </p>
               <div className="mt-3 grid gap-2">
                 {axes.map((axis) => {
@@ -1037,9 +1067,9 @@ export function PersonalizedSafetyQuery() {
                             만들었다. line-clamp 는 줄바꿈을 막지 않는다. */}
                         <span className="mt-0.5 line-clamp-1 text-xs leading-[1.125rem] text-muted">
                           {!form.situation
-                            ? "상황을 먼저 선택하세요"
+                            ? "상황을 먼저 골라 주세요"
                             : unavailable
-                              ? "이 상황에는 필터 규칙이 없습니다"
+                              ? "이 상황에는 이 조건 규칙이 없어요"
                               : `${coverage}건 · ${axis.filterHint}`}
                         </span>
                       </span>
@@ -1056,14 +1086,14 @@ export function PersonalizedSafetyQuery() {
               disabled={pending}
               className={`${buttonPrimary} flex-1 font-bold disabled:cursor-wait disabled:opacity-60 sm:flex-none`}
             >
-              {pending ? "문헌을 연결하는 중…" : "문헌 결과 보기"}
+              {pending ? "문헌을 찾는 중…" : "문헌 찾기"}
             </button>
             <button type="button" onClick={reset} className={buttonQuiet}>
-              선택 초기화
+              고른 것 지우기
             </button>
             {selectedSituation ? (
               <span className="text-xs text-muted">
-                {selectedSituation.short} · 필터 {form.axes.length}개
+                {selectedSituation.short} · 조건 {form.axes.length}개
               </span>
             ) : null}
           </div>
@@ -1073,7 +1103,7 @@ export function PersonalizedSafetyQuery() {
       <div ref={resultRef} className="page-stack scroll-mt-20">
         <p role="status" aria-live="polite" className="sr-only">
           {pending
-            ? "문헌 결과를 불러오는 중입니다."
+            ? "문헌을 찾는 중입니다."
             : error
               ? error
               : result
@@ -1085,7 +1115,7 @@ export function PersonalizedSafetyQuery() {
           <div
             ref={errorRef}
             tabIndex={-1}
-            aria-label="문헌 결과 오류"
+            aria-label="문헌 찾기 오류"
             className="card card-danger text-sm font-semibold leading-6"
           >
             {error}
@@ -1097,10 +1127,11 @@ export function PersonalizedSafetyQuery() {
         {!pending && !result && !error ? (
           <div className="card card-dashed text-center">
             <p className="text-[0.95rem] font-bold text-foreground">
-              표시할 문헌 없음
+              아직 찾은 문헌이 없어요
             </p>
             <p className="mx-auto mt-2 max-w-[36rem] text-sm leading-6 text-muted">
-              위에서 상황을 하나 고르거나 예시를 누르면 문헌 결과를 보여줍니다.
+              위에서 예시를 하나 눌러 보시거나, 상황을 골라 문헌 찾기를 누르면
+              여기에 결과를 보여드립니다.
             </p>
           </div>
         ) : null}
@@ -1113,20 +1144,20 @@ export function PersonalizedSafetyQuery() {
             <header className="card-section flex flex-col gap-5">
               {pending ? (
                 <p className="inset-block inset-block-note text-sm font-semibold text-accent-strong">
-                  새 조건의 문헌을 연결하는 중… 현재 결과는 요청이 끝날 때까지 유지합니다.
+                  새 조건으로 다시 찾는 중이에요. 다 찾을 때까지 지금 결과를 그대로 둡니다.
                 </p>
               ) : null}
               {staleResult ? (
                 <p className="inset-block border border-warning/30 bg-warning/10 text-sm leading-6 text-foreground">
-                  입력 선택이 바뀌었습니다. 아래 내용은 요청 당시 조건의 결과입니다.
+                  고르신 조건을 바꾸셨어요. 아래는 바꾸기 전 조건으로 찾은 결과입니다.
                 </p>
               ) : null}
               {result.expanded ? (
                 <p className="inset-block border border-warning/30 bg-warning/10 text-sm leading-6 text-foreground">
                   {result.applied_axes.length
-                    ? `확장 목록에도 같은 표현 필터를 걸었습니다. 이 상황의 근거 ${result.extended_pool_total.toLocaleString("ko-KR")}건 가운데 ${result.extended_total.toLocaleString("ko-KR")}건이 남았습니다. `
-                    : "확장 목록은 이 상황의 전체 후보 기록입니다. "}
-                  한국어 번역 없이 영어 근거 문장을 표시합니다.
+                    ? `핵심 15건 밖까지 넓힌 목록에도 같은 조건을 걸었습니다. 이 상황의 문헌 ${result.extended_pool_total.toLocaleString("ko-KR")}건 가운데 ${result.extended_total.toLocaleString("ko-KR")}건이 남았습니다. `
+                    : "여기는 이 상황의 문헌 전체입니다. "}
+                  아직 한국어로 옮기지 않아 영어 문장 그대로 보입니다.
                 </p>
               ) : null}
 
@@ -1147,12 +1178,12 @@ export function PersonalizedSafetyQuery() {
                   {resultHeading(result)}
                 </h2>
                 <p className="mt-1.5 text-sm leading-6 text-muted">
-                  요청 당시 조건: {result.situation_label}
+                  이때 고른 조건: {result.situation_label}
                   {result.query_snapshot.requested_axes.length
                     ? ` · ${result.query_snapshot.requested_axes
                         .map((axis) => axisById.get(axis)?.label ?? axis)
                         .join(" · ")}`
-                    : " · 표현 필터 없음"}
+                    : " · 조건 없이"}
                 </p>
               </div>
 
@@ -1167,7 +1198,7 @@ export function PersonalizedSafetyQuery() {
                   <div className="flex items-center gap-2">
                     <span className="h-4 w-4 animate-spin rounded-full border-2 border-accent/25 border-t-accent" />
                     <span className="text-sm font-semibold text-muted">
-                      이번 결과로 상담문을 쓰는 중…
+                      이번 결과를 말로 풀어 쓰는 중…
                     </span>
                   </div>
                   <span className="loading-skeleton block h-4 w-full rounded" />
@@ -1189,13 +1220,13 @@ export function PersonalizedSafetyQuery() {
                       id="consult-title"
                       className="text-[0.95rem] font-bold text-foreground"
                     >
-                      이번 결과 상담문
+                      이번 결과를 말로 풀면
                     </h3>
-                    <InfoTip label="상담문">
-                      위에 연결된 문헌만 읽고 쓴 문단입니다. 어떤 문헌이 뽑히는지는 이
-                      문단과 무관하게 규칙 파일이 정합니다. AI가 쓴 문장에 복용 지시나
-                      근거에 없는 숫자가 있으면 서버가 걸러 내고 시스템이 계산한 문단을
-                      대신 보여줍니다.
+                    <InfoTip label="말로 풀어 쓴 글">
+                      아래에 붙은 문헌만 읽고 쓴 글입니다. 어떤 문헌이 뽑히는지는 이
+                      글과 상관없이 규칙 파일이 정합니다. AI가 쓴 문장에 복용 지시나
+                      근거에 없는 숫자가 있으면 서버가 걸러 내고, 시스템이 계산한
+                      문장을 대신 보여드립니다.
                     </InfoTip>
                   </div>
                   {consult.source === "deterministic" &&
@@ -1241,45 +1272,47 @@ export function PersonalizedSafetyQuery() {
                     })}
                   </div>
                   <p className="mt-2 text-[0.72rem] leading-5 text-muted">
-                    복용 시작·중단·용량 변경은 판단하지 않습니다.
+                    먹기 시작할지 끊을지, 양을 얼마로 할지는 여기서 판단하지 않습니다.
                   </p>
                 </section>
               ) : null}
 
               <dl className="grid gap-2 sm:grid-cols-3">
                 <SummaryTile
-                  label={result.expanded ? "현재 페이지 기록" : "현재 표시 기록"}
+                  label={result.expanded ? "이 쪽에 보이는 것" : "지금 보이는 것"}
                   value={result.evidence_summary.displayed_records}
                   unit="건"
                   note={
                     result.extended_shown > 0
-                      ? `핵심 ${result.core_shown} + 확장 ${result.extended_shown}`
+                      ? `핵심 ${result.core_shown} + 넓혀 찾은 ${result.extended_shown}`
                       : undefined
                   }
                 />
                 <SummaryTile
-                  label="제목 기준 고유 문헌"
+                  label="겹치는 제목 뺀 문헌"
                   value={result.evidence_summary.unique_titles}
                   unit="편"
                   tip={
-                    <InfoTip label="제목 기준 고유 문헌">
-                      제목을 영문 소문자와 공백 기준으로 정규화해 중복 제목을 한 편으로
-                      계산했습니다. record ID 수와 다를 수 있습니다.
+                    <InfoTip label="겹치는 제목 뺀 문헌">
+                      제목이 같으면 한 편으로 셌습니다. 영문 소문자와 띄어쓰기를 맞춰
+                      비교하므로, 위에 적은 건수보다 적게 나올 수 있습니다.
                     </InfoTip>
                   }
                 />
                 <SummaryTile
-                  label="초록에서 확인한 기록"
+                  label="초록까지 확인한 것"
                   value={result.evidence_summary.source_scope.abstract_only}
                   unit="건"
-                  note={`제목만 ${result.evidence_summary.source_scope.title_only}건`}
+                  note={`제목만 본 것 ${result.evidence_summary.source_scope.title_only}건`}
                 />
               </dl>
 
               {result.filter_mode === "metadata_axis_presence" &&
               result.filter_trace.length > 1 ? (
                 <div>
-                  <p className="text-xs font-bold text-foreground">필터별 기록 수</p>
+                  <p className="text-xs font-bold text-foreground">
+                    조건을 하나씩 걸었을 때
+                  </p>
                   <ol className="mt-2 flex flex-wrap items-center gap-2">
                     {result.filter_trace.map((step, index) => (
                       <li key={step.axis} className="flex items-center gap-2">
@@ -1298,13 +1331,15 @@ export function PersonalizedSafetyQuery() {
               ) : null}
 
               <div className="inset-block inset-block-note text-sm leading-6 text-muted">
-                <p className="font-bold text-foreground">이 결과의 근거 범위</p>
+                <p className="font-bold text-foreground">
+                  이 화면이 무엇을 보여드리는지
+                </p>
                 <p className="mt-1">{resultBasisCopy(result)}</p>
                 <p className="mt-2 text-xs leading-5">
-                  초록 자동 추출 기록 {result.evidence_summary.ai_extracted_sentences}건 · AI 자동 번역 문장{" "}
+                  AI가 초록에서 뽑은 문장 {result.evidence_summary.ai_extracted_sentences}건 · 한국어로 옮긴 문장{" "}
                   {result.evidence_summary.ai_translated_sentences}개
                   {result.evidence_summary.title_derived_records
-                    ? ` · 제목에서 가져온 기록 ${result.evidence_summary.title_derived_records}건`
+                    ? ` · 제목에서 가져온 것 ${result.evidence_summary.title_derived_records}건`
                     : ""}
                 </p>
               </div>
@@ -1313,10 +1348,10 @@ export function PersonalizedSafetyQuery() {
                 <div className="inset-block inset-block-quiet">
                   <p className="text-xs font-bold text-foreground">조건을 빼면</p>
                   <p className="mt-1 text-[0.8rem] leading-6 text-muted">
-                    조건이 겹칠수록 남는 문헌이 빠르게 줄어듭니다. 하나를 빼면
-                    핵심 근거가 몇 건이 되는지 미리 세어 봤습니다. 맨 위에 적힌
-                    핵심 {result.core_shown}건과 같은 방식으로 센 숫자입니다.
-                    화면에는 여기에 확장 근거를 더해 보여드립니다.
+                    조건을 여러 개 걸수록 남는 문헌이 빠르게 줄어듭니다. 하나씩
+                    빼면 몇 건이 되는지 미리 세어 봤어요. 맨 위에 적힌 핵심{" "}
+                    {result.core_shown}건과 같은 방식으로 센 숫자이고, 화면에는
+                    여기에 넓혀 찾은 문헌을 더해 보여드립니다.
                   </p>
                   <div className="mt-2 flex flex-wrap gap-2">
                     {widen.map((row) => (
@@ -1336,7 +1371,7 @@ export function PersonalizedSafetyQuery() {
                         }}
                         className={`${buttonQuiet} min-h-10 px-3 text-xs`}
                       >
-                        {axisById.get(row.axis)?.label ?? row.axis} 빼기 · 핵심 {row.count}건
+                        {axisById.get(row.axis)?.label ?? row.axis} 빼면 핵심 {row.count}건
                       </button>
                     ))}
                   </div>
@@ -1350,15 +1385,16 @@ export function PersonalizedSafetyQuery() {
                       id="evidence-findings-title"
                       className="text-[0.95rem] font-bold text-foreground"
                     >
-                      초록에서 자동 추출한 문장
+                      AI가 뽑아 옮긴 문장
                     </h3>
                     <InfoTip label="AI 자동 추출 문장">
-                      초록 문장 중 자동 점수가 높은 문장을 골라 AI가 한국어로 번역했습니다.
-                      사람의 원문 대조를 거친 문장이라는 뜻은 아닙니다.
+                      초록 문장 가운데 점수가 높은 것을 골라 AI가 한국어로 옮겼습니다.
+                      사람이 원문과 맞춰 본 문장이라는 뜻은 아닙니다.
                     </InfoTip>
                   </div>
                   <p className="mt-1.5 text-sm leading-6 text-muted">
-                    각 번역 문장은 그 문장을 가져온 문헌 번호 하나와 연결됩니다.
+                    문장마다 어느 문헌에서 가져왔는지 번호를 붙였습니다. 번호를
+                    누르면 그 문헌으로 갑니다.
                   </p>
                   <ol className="inset-block-note mt-3 rounded-[var(--radius-control)] px-4">
                     {findingSentences
@@ -1410,13 +1446,13 @@ export function PersonalizedSafetyQuery() {
               {result.evidence.length ? (
                 <nav aria-label="결과 안에서 이동" className="flex flex-wrap gap-2">
                   <a href="#evidence-list" className={`${buttonPrimary} no-underline`}>
-                    전체 문헌 목록 보기
+                    문헌 목록으로 내려가기
                   </a>
                   <a
                     href="#evidence-query-form"
                     className={`${buttonQuiet} no-underline`}
                   >
-                    선택 조건으로 돌아가기
+                    조건 다시 고르기
                   </a>
                 </nav>
               ) : null}
@@ -1427,7 +1463,7 @@ export function PersonalizedSafetyQuery() {
                 bodyClassName="disclosure-body p-4"
                 summary={
                   <>
-                    <span>연구 질문과 추출 기준 보기</span>
+                    <span>이 상황의 연구 질문 보기</span>
                     <span aria-hidden="true" className="collapsible-chevron">
                       ↓
                     </span>
@@ -1454,7 +1490,7 @@ export function PersonalizedSafetyQuery() {
                 <p className="inset-block border border-warning/30 bg-warning/10 text-sm leading-6 text-foreground">
                   이 상황에는 {result.unavailable_axes
                     .map((item) => axisById.get(item.axis)?.label ?? item.axis)
-                    .join(", ")} 필터 규칙이 없어 적용하지 않았습니다.
+                    .join(", ")} 규칙이 없어 그 조건은 걸지 못했습니다.
                 </p>
               ) : null}
             </header>
@@ -1482,10 +1518,10 @@ export function PersonalizedSafetyQuery() {
               <div className="card-section">
                 <p className="text-sm leading-6 text-muted">
                   {result.expanded
-                    ? "선택한 표현 종류를 모두 가진 확장 기록이 없습니다."
+                    ? "고르신 이야기를 한 편에서 모두 말한 문헌이 넓힌 목록에도 없습니다."
                     : result.filter_mode === "metadata_axis_presence"
-                      ? "선택한 표현 종류를 모두 가진 핵심 기록이 없습니다."
-                      : "이 상황에는 표시할 핵심 기록이 없습니다."}
+                      ? "고르신 이야기를 한 편에서 모두 말한 핵심 문헌이 없습니다."
+                      : "이 상황에는 보여드릴 핵심 문헌이 없습니다."}
                 </p>
                 {result.filter_mode === "metadata_axis_presence" &&
                 result.query_snapshot.requested_axes.length ? (
@@ -1502,7 +1538,7 @@ export function PersonalizedSafetyQuery() {
                     disabled={pending}
                     className={`${buttonQuiet} mt-4 border-accent/40 font-bold text-accent-strong`}
                   >
-                    마지막 필터 하나 빼기
+                    마지막 조건 하나 빼기
                   </button>
                 ) : null}
               </div>
@@ -1546,8 +1582,8 @@ export function PersonalizedSafetyQuery() {
                       {result.expanded
                         ? `다음 ${result.expanded_page_size}건`
                         : result.applied_axes.length
-                          ? `조건에 맞는 확장 근거 ${result.extended_match_total.toLocaleString("ko-KR")}건 보기`
-                          : `이 상황의 확장 근거 ${result.extended_total.toLocaleString("ko-KR")}건 보기`}
+                          ? `같은 조건으로 ${result.extended_match_total.toLocaleString("ko-KR")}건까지 넓혀 보기`
+                          : `이 상황의 문헌 ${result.extended_total.toLocaleString("ko-KR")}건 모두 보기`}
                     </button>
                   ) : null}
                   {result.expanded ? (
@@ -1557,7 +1593,7 @@ export function PersonalizedSafetyQuery() {
                       onClick={() => runResultPage({})}
                       className={buttonQuiet}
                     >
-                      핵심 근거로 돌아가기
+                      핵심 문헌으로 돌아가기
                     </button>
                   ) : null}
                 </div>

@@ -82,17 +82,22 @@ export const situationById = new Map(situations.map((item) => [item.id, item]));
 
 export type AxisMeta = {
   id: AxisId;
-  /** 사용자가 채우는 입력란 이름. 비어 있으면 그 축은 적용되지 않는다. */
+  /** 사용자가 채우는 입력란 이름. 비어 있으면 그 축은 적용되지 않습니다. */
   field: "age" | "medication" | "dose" | "sex" | "condition";
+  /**
+   * 화면에 거는 이름.
+   *
+   * "연령 관련 표현"처럼 쓰면 정확하긴 해도 입으로 하는 말이 아니라, 무엇을 고르는
+   * 것인지 읽는 사람이 한 번 더 옮겨야 한다. 이 화면이 실제로 하는 일은 "그 이야기가
+   * 초록에 나왔는가"를 보는 것이므로 이름도 그렇게 적는다.
+   */
   label: string;
   placeholder: string;
-  /** 화면에서 이 필터가 실제로 포착하는 메타데이터 표현. */
+  /** 이 조건이 실제로 무엇을 잡는지. 체크박스 아래 한 줄로 붙는다. */
   filterHint: string;
-  /** 이 축이 적용됐을 때 근거 목록 위에 붙는 설명. */
-  applied: string;
   /**
-   * 여러 축이 함께 적용됐을 때 한 문장으로 묶기 위한 명사.
-   * 축마다 "…를 보고한 문헌만 남겼습니다."를 따로 붙이면 같은 문장이 반복돼 읽기 어렵다.
+   * 여러 조건이 함께 걸렸을 때 한 문장으로 묶기 위한 명사.
+   * 조건마다 문장을 따로 붙이면 같은 말이 반복돼 읽기 어렵다.
    */
   noun: string;
 };
@@ -101,47 +106,42 @@ export const axes: AxisMeta[] = [
   {
     id: "age_group",
     field: "age",
-    label: "연령 관련 표현",
+    label: "나이 이야기",
     placeholder: "예: 68세",
-    filterHint: "age, adult, older 같은 연령 표현이 있는 기록",
-    applied: "연령 관련 표현이 포착된 문헌만 남겼습니다.",
-    noun: "연령 표현",
+    filterHint: "age, older 처럼 나이를 말한 문헌",
+    noun: "나이",
   },
   {
     id: "concomitant_medication",
     field: "medication",
-    label: "약물 관련 표현",
+    label: "함께 먹는 약 이야기",
     placeholder: "예: 와파린",
-    filterHint: "drug, therapy, anticoagulation 같은 약물 표현이 있는 기록",
-    applied: "약물 관련 표현이 포착된 문헌만 남겼습니다.",
-    noun: "약물 표현",
+    filterHint: "drug, anticoagulation 처럼 약을 말한 문헌",
+    noun: "함께 먹는 약",
   },
   {
     id: "dose_range",
     field: "dose",
-    label: "용량 관련 표현",
+    label: "용량 이야기",
     placeholder: "예: 2000 mg",
-    filterHint: "mg, IU 같은 수치·단위 표현이 있는 기록",
-    applied: "용량 관련 표현이 포착된 문헌만 남겼습니다.",
-    noun: "용량 표현",
+    filterHint: "500 mg, 2000 IU 처럼 양을 적은 문헌",
+    noun: "용량",
   },
   {
     id: "sex",
     field: "sex",
-    label: "성별 관련 표현",
+    label: "남녀 구분",
     placeholder: "예: 여성",
-    filterHint: "female, male, sex, gender 같은 표현이 있는 기록",
-    applied: "성별 관련 표현이 포착된 문헌만 남겼습니다.",
-    noun: "성별 표현",
+    filterHint: "female, male 처럼 성별을 나눈 문헌",
+    noun: "남녀",
   },
   {
     id: "underlying_condition",
     field: "condition",
-    label: "질환 관련 표현",
+    label: "앓는 병 이야기",
     placeholder: "예: 고혈압",
-    filterHint: "kidney, liver, surgery, diabetes 같은 질환·상황 표현이 있는 기록",
-    applied: "질환 관련 표현이 포착된 문헌만 남겼습니다.",
-    noun: "질환 표현",
+    filterHint: "kidney, liver 처럼 병이나 상황을 말한 문헌",
+    noun: "앓는 병",
   },
 ];
 
@@ -150,4 +150,4 @@ export const axisByField = new Map(axes.map((item) => [item.field, item]));
 
 /** 이 사이트가 무엇을 하지 않는지. 모든 응답과 화면에 그대로 붙는다. */
 export const evidenceOnlyDisclaimer =
-  "연구에서 관찰된 대상·노출·결과와 근거 문장을 연결해 보여줍니다. 복용 시작·중단이나 용량 변경을 지시하지 않으며 진료를 대신하지 않습니다.";
+  "연구가 누구를 보고 무엇을 확인했는지, 그 문장이 초록 어디에 있는지까지 이어서 보여드립니다. 먹기 시작할지 끊을지, 양을 얼마로 할지는 지시하지 않으며 진료를 대신하지 않습니다.";
