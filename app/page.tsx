@@ -59,7 +59,7 @@ export default function Home() {
             수술 전후, 콩팥, 임신, 간, 항응고제 다섯 가운데 하나를 고르면 나이·약·
             용량·남녀·앓는 병 이야기가 나온 문헌만 좁혀 보여드립니다.
           </p>
-          <p className="mt-3 text-[0.8rem] leading-6 text-muted">
+          <p className="mt-3 text-sm leading-6 text-muted">
             <span className="font-semibold text-foreground">
               입력값과 논문 내용을 대조하는 도구가 아닙니다.
             </span>{" "}
@@ -74,13 +74,13 @@ export default function Home() {
         >
           {stats.map((stat) => (
             <div key={stat.label} className="card flex flex-col">
-              <p className="text-[0.72rem] font-semibold text-muted">
+              <p className="text-xs font-semibold text-muted">
                 {stat.label}
               </p>
               <p className="mt-2 text-[1.5rem] font-semibold leading-none tabular-nums text-foreground">
                 {stat.value.toLocaleString("ko-KR")}
               </p>
-              <p className="mt-2 text-[0.76rem] leading-5 text-muted">
+              <p className="mt-2 text-xs leading-5 text-muted">
                 {stat.note}
               </p>
             </div>
@@ -98,7 +98,7 @@ export default function Home() {
           >
             읽으실 때 같이 봐 주실 것
           </h2>
-          <ul className="mt-3 flex flex-col gap-2 text-[0.8rem] leading-6 text-muted">
+          <ul className="mt-3 flex flex-col gap-2 text-sm leading-6 text-muted">
             <li>
               전량 분류에서 결정적 분류기가 문헌 전체를 갈랐고, 재판정에서 경계에
               놓인 것을 다시 봤습니다. 사람이 만든 정답지는 없습니다.

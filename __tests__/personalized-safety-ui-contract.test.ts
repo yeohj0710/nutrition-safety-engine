@@ -141,14 +141,15 @@ describe("personalized safety UI contract", () => {
     expect(componentSource).toMatch(
       /function runExample[\s\S]*?setSentence\(example\.sentence\)[\s\S]*?setForm\(example\.input\)/,
     );
-    // 예시는 문장칸과 같은 상자 안에 둔다. 따로 떨어져 있으면 둘이 한 흐름이라는
-    // 것이 화면에 안 보인다.
+    // 예시가 문장칸보다 먼저 와야 한다. 뒤에 두면 이 화면을 처음 보는 사람이
+    // 무엇을 적어야 할지 모르는 채로 빈 칸부터 마주치고, 예시는 이미 지나친
+    // 자리에서 나타난다. 노력이 적은 것부터: 눌러 보기 → 직접 적기 → 직접 고르기.
+    const exampleList = componentSource.indexOf("처음이시면 여기서 눌러 보세요");
     const sentenceBox = componentSource.indexOf('placeholder="예: 임신 중인데');
-    const exampleList = componentSource.indexOf("이렇게 적어 보세요");
     const form = componentSource.indexOf('id="evidence-query-form"');
-    expect(sentenceBox).toBeGreaterThan(-1);
-    expect(exampleList).toBeGreaterThan(sentenceBox);
-    expect(exampleList).toBeLessThan(form);
+    expect(exampleList).toBeGreaterThan(-1);
+    expect(exampleList).toBeLessThan(sentenceBox);
+    expect(sentenceBox).toBeLessThan(form);
     // 앞선 AI 해석이 남아 있으면 지금 문장과 다른 조건을 설명하게 된다.
     expect(componentSource).toMatch(
       /function runExample[\s\S]*?setInterpreted\(null\)/,
@@ -161,6 +162,18 @@ describe("personalized safety UI contract", () => {
     expect(globalCss).toContain("--page-shell-max: 54rem");
     expect(globalCss).toContain("--measure-readable: 54ch");
     expect(componentSource).toContain("min-h-12");
+  });
+
+  it("keeps every on-screen size at or above 12px", () => {
+    // 11.5px(0.72rem)·12.2px(0.76rem) 짜리 설명줄이 화면 곳곳에 있었다. 한글은
+    // 같은 px 에서 라틴 문자보다 작아 보여서, 그 크기에 보조색까지 겹치면 읽는
+    // 일 자체가 일이 된다. 12px(text-xs)을 바닥으로 두고 그 아래를 막는다.
+    for (const source of [componentSource, pageSource, infoTipSource]) {
+      expect(source).not.toMatch(/text-\[0\.(?:[0-6]\d*|7[0-4]\d*)rem\]/);
+    }
+    expect(globalCss).not.toMatch(/font-size:\s*0\.(?:[0-6]\d*|7[0-4]\d*)rem/);
+    // 보조 글자색은 흰 배경에서 AA(4.5:1)를 넘겨야 한다. oklch 밝기로 고정한다.
+    expect(globalCss).toMatch(/--muted:\s*oklch\(0\.4[0-5]/);
   });
 
   it("labels core, filtered, and expanded counts by their actual scope", () => {

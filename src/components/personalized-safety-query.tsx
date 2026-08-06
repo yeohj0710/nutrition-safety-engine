@@ -276,11 +276,11 @@ function SummaryTile({
         <span className="text-[1.35rem] font-semibold leading-none tabular-nums text-foreground">
           {value.toLocaleString("ko-KR")}
         </span>
-        <span className="ml-0.5 text-[0.8rem] font-semibold text-muted">
+        <span className="ml-0.5 text-sm font-semibold text-muted">
           {unit}
         </span>
         {note ? (
-          <span className="mt-1.5 block text-[0.72rem] leading-5 text-muted">
+          <span className="mt-1.5 block text-xs leading-5 text-muted">
             {note}
           </span>
         ) : null}
@@ -304,7 +304,7 @@ function EvidenceFinding({
 
   return (
     <li className="grid grid-cols-[1.5rem_minmax(0,1fr)] items-start gap-x-3 gap-y-2 border-t border-accent/15 py-4 first:border-t-0">
-      <p className="col-span-2 flex flex-wrap items-center gap-x-2 text-[0.72rem] font-semibold text-accent-strong">
+      <p className="col-span-2 flex flex-wrap items-center gap-x-2 text-xs font-semibold text-accent-strong">
         <span>AI 자동 번역</span>
         <span aria-hidden="true">·</span>
         <span>{item.year || "연도 미표시"}</span>
@@ -354,11 +354,14 @@ function EvidenceRecord({
   item,
   number,
   plainLine,
+  pendingLine,
 }: {
   item: EvidenceItem;
   number: number;
   /** 한국어 번역이 없는 확장 근거에만 붙는 한 줄 요약. */
   plainLine?: string;
+  /** 그 한 줄이 아직 오는 중인지. 자리만 잡아 두고 빈 카드로 두지 않는다. */
+  pendingLine?: boolean;
 }) {
   const metadata = [
     item.authors,
@@ -409,7 +412,7 @@ function EvidenceRecord({
 
       {item.key_finding_ko ? (
         <div className="inset-block inset-block-note col-start-2">
-          <p className="text-[0.72rem] font-bold text-accent-strong">
+          <p className="text-xs font-bold text-accent-strong">
             AI 자동 번역
           </p>
           <div className="mt-1.5 space-y-2 text-sm leading-6 text-foreground">
@@ -425,14 +428,25 @@ function EvidenceRecord({
       ) : null}
 
       {plainLine ? (
-        <div className="inset-block inset-block-note col-start-2">
-          <p className="text-[0.72rem] font-bold text-accent-strong">AI 한 줄 요약</p>
+        <div className="motion-enter inset-block inset-block-note col-start-2">
+          <p className="text-xs font-bold text-accent-strong">AI 한 줄 요약</p>
           <p className="mt-1.5 text-sm leading-6 text-foreground">{plainLine}</p>
+        </div>
+      ) : pendingLine ? (
+        <div
+          aria-hidden="true"
+          className="inset-block inset-block-note col-start-2"
+        >
+          <p className="text-xs font-bold text-accent-strong">
+            AI 한 줄 요약을 쓰는 중…
+          </p>
+          <span className="loading-skeleton mt-2 block h-4 w-full rounded" />
+          <span className="loading-skeleton mt-1.5 block h-4 w-4/5 rounded" />
         </div>
       ) : null}
 
       <blockquote className="inset-block inset-block-quiet col-start-2">
-        <p className="text-[0.72rem] font-bold text-muted">
+        <p className="text-xs font-bold text-muted">
           {item.source_scope === "title_only"
             ? `제목에서 가져옴 · ${locator}`
             : `AI 자동 추출 · ${locator}`}
@@ -568,17 +582,22 @@ export function PersonalizedSafetyQuery() {
   // 있고, 확장 근거만 영어 원문 문장으로 남는다(임신·용량 조건에서 15건 중 7건).
   // 기록마다 따로 부른다 — 한 번에 넘기면 개별 논문의 요지가 뭉개진다.
   const [recordLines, setRecordLines] = useState<Record<string, string>>({});
+  // 한 줄 요약이 오는 데 몇 초 걸린다. 그동안 카드가 영어 문장만 보여주면
+  // 번역이 아예 없는 문헌인지 아직 오는 중인지 구분이 안 된다. 자리를 잡아 둔다.
+  const [recordLinesPending, setRecordLinesPending] = useState(false);
   const recordKey = result
     ? result.evidence.filter((item) => !item.key_finding_ko).map((item) => item.record_id).join("|")
     : "";
   useEffect(() => {
     if (!recordKey) {
       setRecordLines({});
+      setRecordLinesPending(false);
       return;
     }
     const controller = new AbortController();
     const targets = (result?.evidence ?? []).filter((item) => !item.key_finding_ko);
     setRecordLines({});
+    setRecordLinesPending(true);
     Promise.all(
       targets.slice(0, 12).map(async (item) => {
         try {
@@ -605,6 +624,7 @@ export function PersonalizedSafetyQuery() {
       setRecordLines(
         Object.fromEntries(pairs.filter(Boolean) as (readonly [string, string])[]),
       );
+      setRecordLinesPending(false);
     });
     return () => controller.abort();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -868,20 +888,65 @@ export function PersonalizedSafetyQuery() {
           </InfoTip>
         </div>
 
+        {/* 처음 오신 분이 가장 먼저 만나는 자리.
+            예전에는 빈 문장칸이 먼저 나오고 예시가 그 버튼 아래에 있었다. 이
+            화면을 처음 보는 사람은 무엇을 적어야 할지 모르는 채로 빈 칸부터
+            마주쳤고, 예시는 이미 지나친 뒤에 나타났다. 순서를 뒤집어, 누르면
+            문장·조건·결과가 한 번에 도는 예시를 맨 앞에 둔다. */}
+        <div className="inset-block inset-block-note mt-5">
+          <p className="text-base font-bold text-foreground">
+            처음이시면 여기서 눌러 보세요
+          </p>
+          <p className="mt-1.5 text-sm leading-6 text-muted">
+            아래 문장칸과 조건을 한 번에 채우고 바로 찾아 드립니다. 그다음 문장을
+            고쳐 쓰셔도 됩니다.
+          </p>
+          <div className="mt-3 grid gap-2">
+            {publicInputExamples.map((example) => (
+              <button
+                key={example.id}
+                type="button"
+                disabled={pending}
+                aria-pressed={activeExample === example.id}
+                onClick={() => runExample(example)}
+                className={`flex min-h-14 flex-col justify-center rounded-[var(--radius-control)] border px-4 py-3 text-left transition-colors disabled:cursor-wait disabled:opacity-60 ${
+                  activeExample === example.id
+                    ? "border-accent bg-accent/10"
+                    : "border-border-subtle bg-surface hover:border-accent/50 hover:bg-accent/5"
+                }`}
+              >
+                <span className="text-sm font-semibold leading-6 text-foreground">
+                  “{example.sentence}”
+                </span>
+                <span className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1">
+                  <span className="chip chip-quiet">{example.title}</span>
+                  <span className="text-xs leading-5 text-muted">
+                    {example.summary}
+                  </span>
+                </span>
+              </button>
+            ))}
+          </div>
+          {activeExample ? (
+            <p className="mt-3 text-xs leading-5 text-accent-strong">
+              예시 문장을 넣고 아래 조건까지 맞춰 뒀습니다. 문장을 고쳐서 다시
+              찾아보셔도 됩니다.
+            </p>
+          ) : null}
+        </div>
+
         {/* 문장으로 찾기. 모델은 조건을 켜는 일만 하고, 켜진 조건은 아래 목록에
-            그대로 보이므로 사용자가 언제든 고칠 수 있다.
-            예시도 이 칸 안에 둔다 — 예전에는 문장칸과 예시가 따로 떨어져 있어서,
-            예시를 눌러도 문장칸은 빈 채였고 이 칸에 무엇을 적는지 예시가 보여주지
-            못했다. 문장과 조건을 함께 채워야 예시 한 번으로 화면 전체가 돈다. */}
-        <div className="inset-block inset-block-note mt-4">
+            그대로 보이므로 사용자가 언제든 고칠 수 있다. */}
+        <div className="inset-block inset-block-quiet mt-4">
           <div className="flex flex-wrap items-center gap-2">
             <span className="chip inline-flex bg-accent text-white">AI</span>
-            <p className="text-sm font-bold text-foreground">문장으로 찾기</p>
+            <p className="text-base font-bold text-foreground">
+              직접 적어서 찾기
+            </p>
           </div>
-          <p className="mt-1.5 text-[0.8rem] leading-6 text-muted">
+          <p className="mt-1.5 text-sm leading-6 text-muted">
             겪고 계신 일을 그대로 적으면 다섯 상황 가운데 하나와 볼 이야기를 대신
             골라 드립니다. 고른 조건은 아래 목록에 그대로 켜지니 직접 고쳐도 됩니다.
-            문헌을 찾는 일은 그다음부터 조건만 보고 똑같이 돌아갑니다.
           </p>
           <textarea
             value={sentence}
@@ -899,60 +964,29 @@ export function PersonalizedSafetyQuery() {
               disabled={interpreting || pending || !sentence.trim()}
               className={`${buttonPrimary} px-4`}
             >
-              {interpreting ? "조건을 고르는 중…" : "이 문장으로 찾기"}
+              {interpreting ? (
+                <>
+                  <span
+                    aria-hidden="true"
+                    className="mr-2 inline-block h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white align-[-2px]"
+                  />
+                  조건을 고르는 중…
+                </>
+              ) : (
+                "이 문장으로 찾기"
+              )}
             </button>
             <span className="text-xs leading-5 text-muted">
               값 자체와 논문 내용을 대조하지는 않습니다.
             </span>
           </div>
 
-          <div className="mt-4 border-t border-border-subtle pt-3">
-            <p className="text-[0.72rem] font-bold text-foreground">
-              이렇게 적어 보세요
-            </p>
-            <p className="mt-1 text-[0.72rem] leading-5 text-muted">
-              누르면 위 문장칸과 아래 조건을 한 번에 채우고 바로 찾아 드립니다.
-            </p>
-            <div className="mt-2 grid gap-1.5">
-              {publicInputExamples.map((example) => (
-                <button
-                  key={example.id}
-                  type="button"
-                  disabled={pending}
-                  aria-pressed={activeExample === example.id}
-                  onClick={() => runExample(example)}
-                  className={`flex min-h-12 flex-col justify-center rounded-[var(--radius-control)] border px-3 py-2 text-left transition-colors disabled:cursor-wait disabled:opacity-60 ${
-                    activeExample === example.id
-                      ? "border-accent bg-accent/10"
-                      : "border-border-subtle bg-surface hover:border-accent/40"
-                  }`}
-                >
-                  <span className="text-[0.8rem] font-semibold leading-6 text-foreground">
-                    “{example.sentence}”
-                  </span>
-                  <span className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1">
-                    <span className="chip chip-quiet">{example.title}</span>
-                    <span className="text-[0.72rem] leading-5 text-muted">
-                      {example.summary}
-                    </span>
-                  </span>
-                </button>
-              ))}
-            </div>
-            {activeExample ? (
-              <p className="mt-2 text-[0.72rem] leading-5 text-muted">
-                예시 문장을 넣고 아래 조건까지 맞춰 뒀습니다. 문장을 고쳐서 다시
-                찾아보셔도 됩니다.
-              </p>
-            ) : null}
-          </div>
-
           {interpreted ? (
-            <div className="mt-3 border-t border-border-subtle pt-3">
-              <p className="text-[0.72rem] font-bold text-accent-strong">
+            <div className="motion-enter mt-3 border-t border-border-subtle pt-3">
+              <p className="text-xs font-bold text-accent-strong">
                 이렇게 알아들었어요
               </p>
-              <p className="mt-1 text-[0.8rem] leading-6 text-muted">
+              <p className="mt-1 text-sm leading-6 text-muted">
                 {situations.find((item) => item.id === interpreted.situation)?.label ??
                   "상황 못 찾음"}
                 {interpreted.applied_axes.length
@@ -961,11 +995,11 @@ export function PersonalizedSafetyQuery() {
                       .join(" · ")}`
                   : " · 조건 없이"}
               </p>
-              <p className="mt-1 text-[0.72rem] leading-5 text-muted">
+              <p className="mt-1 text-xs leading-5 text-muted">
                 {interpreted.notice}
               </p>
               {interpreted.unavailable_axes.length ? (
-                <p className="mt-1 text-[0.72rem] leading-5 text-muted">
+                <p className="mt-1 text-xs leading-5 text-muted">
                   {interpreted.unavailable_axes
                     .map((item) => axisById.get(item.axis)?.label ?? item.axis)
                     .join(", ")}
@@ -973,7 +1007,7 @@ export function PersonalizedSafetyQuery() {
                 </p>
               ) : null}
               {interpreted.unmatched ? (
-                <p className="mt-1 text-[0.72rem] leading-5 text-muted">
+                <p className="mt-1 text-xs leading-5 text-muted">
                   조건으로 못 옮긴 말: {interpreted.unmatched}
                 </p>
               ) : null}
@@ -982,8 +1016,8 @@ export function PersonalizedSafetyQuery() {
         </div>
 
         <div className="inset-block inset-block-quiet mt-4">
-          <p className="text-[0.72rem] font-bold text-foreground">직접 고르기</p>
-          <p className="mt-1 break-keep text-sm leading-6 text-muted">
+          <p className="text-base font-bold text-foreground">직접 고르기</p>
+          <p className="mt-1.5 break-keep text-sm leading-6 text-muted">
             상황 하나를 고르면 그 질문의 핵심 문헌을 보여드립니다. 볼 이야기를 함께
             고르면 그 이야기가 나온 문헌만 남기고, 핵심 15건 밖까지 같은 조건으로
             넓혀 볼 수 있습니다.
@@ -1004,7 +1038,7 @@ export function PersonalizedSafetyQuery() {
                   필수
                 </span>
               </legend>
-              <p className="mt-2 text-[0.8rem] leading-6 text-muted lg:min-h-12">
+              <p className="mt-2 text-sm leading-6 text-muted lg:min-h-12">
                 다섯 가지 가운데 하나만 고를 수 있어요. 고른 상황의 핵심 문헌부터
                 보여드립니다.
               </p>
@@ -1039,7 +1073,7 @@ export function PersonalizedSafetyQuery() {
                   선택
                 </span>
               </legend>
-              <p className="mt-2 text-[0.8rem] leading-6 text-muted lg:min-h-12">
+              <p className="mt-2 text-sm leading-6 text-muted lg:min-h-12">
                 고른 이야기가 초록에 나온 문헌만 남깁니다. 나이·약 이름·용량 값 자체를 대조하지 않습니다.
               </p>
               <div className="mt-3 grid gap-2">
@@ -1231,7 +1265,7 @@ export function PersonalizedSafetyQuery() {
                   </div>
                   {consult.source === "deterministic" &&
                   consultFallbackReason(consult.reason) ? (
-                    <p className="mt-2 text-[0.72rem] leading-5 text-muted">
+                    <p className="mt-2 text-xs leading-5 text-muted">
                       {consultFallbackReason(consult.reason)}
                     </p>
                   ) : null}
@@ -1254,7 +1288,7 @@ export function PersonalizedSafetyQuery() {
                         <div key={`consult-${index}`}>
                           <p>{paragraph.text}</p>
                           {numbers.length ? (
-                            <p className="mt-1 flex flex-wrap items-center gap-1.5 text-[0.72rem] text-muted">
+                            <p className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-muted">
                               <span>근거</span>
                               {numbers.map((number) => (
                                 <a
@@ -1271,7 +1305,7 @@ export function PersonalizedSafetyQuery() {
                       );
                     })}
                   </div>
-                  <p className="mt-2 text-[0.72rem] leading-5 text-muted">
+                  <p className="mt-2 text-xs leading-5 text-muted">
                     먹기 시작할지 끊을지, 양을 얼마로 할지는 여기서 판단하지 않습니다.
                   </p>
                 </section>
@@ -1347,7 +1381,7 @@ export function PersonalizedSafetyQuery() {
               {widen.length ? (
                 <div className="inset-block inset-block-quiet">
                   <p className="text-xs font-bold text-foreground">조건을 빼면</p>
-                  <p className="mt-1 text-[0.8rem] leading-6 text-muted">
+                  <p className="mt-1 text-sm leading-6 text-muted">
                     조건을 여러 개 걸수록 남는 문헌이 빠르게 줄어듭니다. 하나씩
                     빼면 몇 건이 되는지 미리 세어 봤어요. 맨 위에 적힌 핵심{" "}
                     {result.core_shown}건과 같은 방식으로 센 숫자이고, 화면에는
@@ -1510,6 +1544,9 @@ export function PersonalizedSafetyQuery() {
                       item={item}
                       number={number}
                       plainLine={recordLines[item.record_id]}
+                      pendingLine={
+                        recordLinesPending && !item.key_finding_ko
+                      }
                     />
                   );
                 })}
