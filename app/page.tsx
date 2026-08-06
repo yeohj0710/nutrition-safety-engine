@@ -68,9 +68,11 @@ export default function Home() {
           </p>
         </section>
 
+        {/* 좁은 화면에서 한 줄에 하나씩 쌓으면 이 네 칸만으로 한 화면이 넘어가,
+            도구에 닿기까지 두 화면을 넘겨야 했다. 두 칸씩 세운다. */}
         <section
           aria-label="연구 자료 규모"
-          className="grid gap-[var(--stack-gap)] sm:grid-cols-2 lg:grid-cols-4"
+          className="grid grid-cols-2 gap-[var(--stack-gap)] lg:grid-cols-4"
         >
           {stats.map((stat) => (
             <div key={stat.label} className="card flex flex-col">
