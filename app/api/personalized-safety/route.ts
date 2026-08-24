@@ -193,34 +193,33 @@ const allRules = rules as unknown as Rule[];
 // 확장 항목에는 한국어 번역(key_finding_ko)과 효과 판정(effect_status)이 없다.
 // 그 둘은 핵심근거 75건에만 있으므로 빈 값으로 채워 형태만 맞춘다. 화면은 번역이
 // 비어 있으면 그 줄을 그리지 않으므로 영어 근거 문장만 보인다.
-let extendedEvidencePromise: Promise<Record<string, Evidence[]>> | null = null;
+/**
+ * 확장 목록은 질문별로 따로 읽는다.
+ *
+ * 처음에는 다섯 질문을 한 파일(40MB)에 담고 통째로 읽었다. 프로덕션 콜드 요청이
+ * 6.3초였다. 방문자는 한 번에 상황 하나만 보므로 그 가운데 자기 질문 몫만
+ * 필요하다. 질문별 파일은 3.7MB에서 17MB 사이다.
+ */
+const extendedEvidencePromises = new Map<string, Promise<Evidence[]>>();
 
-/** 3.4 MB 확장 목록은 사용자가 확장 보기를 열 때만 읽는다. */
-function loadExtendedEvidence() {
-  if (!extendedEvidencePromise) {
-    extendedEvidencePromise = import(
-      "@/research/systematic_review_v41/extended_evidence_v41.json"
+function loadExtendedEvidence(situation: SituationId) {
+  let promise = extendedEvidencePromises.get(situation);
+  if (!promise) {
+    promise = import(
+      `@/research/systematic_review_v41/extended_evidence_v41/${situation}.json`
     ).then((module) =>
-      Object.fromEntries(
-        Object.entries(
-          (module.default as {
-            questions: Record<string, Record<string, unknown>[]>;
-          }).questions,
-        ).map(([question, items]) => [
-          question,
-          items.map(
-            (item) =>
-              ({
-                key_finding_ko: "",
-                effect_status: "",
-                ...item,
-              }) as unknown as Evidence,
-          ),
-        ]),
+      ((module.default as { evidence: Record<string, unknown>[] }).evidence ?? []).map(
+        (item) =>
+          ({
+            key_finding_ko: "",
+            effect_status: "",
+            ...item,
+          }) as unknown as Evidence,
       ),
     );
+    extendedEvidencePromises.set(situation, promise);
   }
-  return extendedEvidencePromise;
+  return promise;
 }
 
 /**
@@ -734,7 +733,9 @@ export async function POST(req: Request) {
   // 생겼으므로(extended_axis_index_v41.json) 핵심근거 15건 밖에서도 조건이 걸린다.
   const expanded = payload.expanded === true;
   const needExtended = expanded || applied.length > 0;
-  const extendedByQuestion = needExtended ? await loadExtendedEvidence() : null;
+  const extendedForQuestion = needExtended
+    ? await loadExtendedEvidence(situation)
+    : null;
   // 축 색인은 140 KB 라 기본 조회에서도 읽는다. 조건을 건 확장 근거가 몇 건인지를
   // 확장 보기를 열기 전에 알려주려면 이 수가 먼저 있어야 한다.
   const extendedAxisIndex = await loadExtendedAxisIndex();
@@ -765,7 +766,7 @@ export async function POST(req: Request) {
     ? extendedMatchIds.size
     : questionPoolTotal;
 
-  const extendedBase = extendedByQuestion?.[situation] ?? [];
+  const extendedBase = extendedForQuestion ?? [];
   const extendedAll = extendedMatchIds
     ? extendedBase.filter((entry) => extendedMatchIds.has(entry.record_id))
     : extendedBase;
