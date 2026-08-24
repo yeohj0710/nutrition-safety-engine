@@ -304,13 +304,12 @@ function EvidenceFinding({
 
   return (
     <li className="grid grid-cols-[1.5rem_minmax(0,1fr)] items-start gap-x-3 gap-y-2 border-t border-accent/15 py-4 first:border-t-0">
+      {/* 항목마다 <span> 을 끊고 그 사이에 구분자 span 을 두면 쉼표 앞에도 flex
+          간격이 붙어 "번역 , 2023" 처럼 벌어진다. 쉼표는 앞말에 붙여야 한다. */}
       <p className="col-span-2 flex flex-wrap items-center gap-x-2 text-[0.8125rem] font-semibold text-accent-strong">
-        <span>AI 자동 번역</span>
-        <span aria-hidden="true">,</span>
-        <span>{item.year || "연도 미표시"}</span>
-        <span aria-hidden="true">,</span>
-        <span>{kind}</span>
-        <span aria-hidden="true">,</span>
+        <span>AI 자동 번역,</span>
+        <span>{item.year || "연도 미표시"},</span>
+        <span>{kind},</span>
         <span>문장 {sentenceIndex + 1}</span>
       </p>
       {/* 터치 영역 44px 은 유지하고 ref-hit 의 음수 여백으로 배치 폭만 1.5rem 으로

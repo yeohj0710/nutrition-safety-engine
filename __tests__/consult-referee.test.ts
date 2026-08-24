@@ -103,7 +103,14 @@ describe("consult referee", () => {
       paragraphs: [
         {
           text: "여러 연구가 보고했습니다.",
-          recordIds: ["PMID-1", "PMID-2", "PMID-1", "PMID-2"],
+          recordIds: [
+            "PMID-1",
+            "PMID-2",
+            "PMID-1",
+            "PMID-2",
+            "PMID-1",
+            "PMID-2",
+          ],
         },
       ],
       recordText,

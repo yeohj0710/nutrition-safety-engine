@@ -56,8 +56,13 @@ const MAX_PARAGRAPH_CHARS = 380;
  * 전부를 가리키는 출처는 아무것도 가리키지 않는 것과 같다. 실제로 모델이
  * 문단마다 15건 전부를 달아 화면이 칩 30개로 덮인 적이 있다. 특정 문헌을 짚는
  * 문단만 인용하고, 총평이나 화면 안내 문단은 빈 배열로 두게 한다.
+ *
+ * 3 이던 것을 올렸다. 문단이 문헌 넷 이상에서 수치를 끌어오는 경우가 생겼는데,
+ * 상한이 3 이면 나머지를 인용에서 빼야 하고 그러면 그 수치가
+ * unsupported_number 로 걸려 상담문 전체가 폴백으로 떨어졌다. 숫자를 쓴 문헌은
+ * 반드시 인용하게 하는 쪽이 맞고, 5 는 칩이 화면을 덮지 않는 선이다.
  */
-const MAX_RECORD_REFS = 3;
+const MAX_RECORD_REFS = 5;
 
 function collectNumbers(text: string) {
   return new Set(
