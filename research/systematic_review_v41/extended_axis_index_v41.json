@@ -16,18 +16,18 @@
     "picos_extraction": {
       "path": "research/systematic_review_v41/picos_extraction.csv",
       "rows": 25066,
-      "sha256": "bc4859012257c6896b9cc8f1b6e3592d902e1b002bf7e4d2172afc598aa1880b"
+      "sha256": "c01173d58471a2f5ed7b0b67e2cd3b800e17d2cb4c9bb4351e696c493e19b45d"
     },
     "personalized_rules": {
       "path": "research/systematic_review_v41/personalized_rules.json",
-      "sha256": "c8b5d7f7695d398a768fecbb69ec354406566470a00fc32dec0f04b5d9e9ef46",
+      "sha256": "ca0158891cc5f5b89fc31386e56c46901f9dd1bdfa8e7de2f9b02c6ab2baf6ce",
       "role": "대조 전용. 수정하지 않는다"
     }
   },
   "parity_check": {
     "note": "규칙 파일이 핵심 근거 75건에 기록한 축 소속과 재계산 결과를 대조한다",
-    "comparisons": 300,
-    "agree": 300,
+    "comparisons": 330,
+    "agree": 330,
     "disagree": 0,
     "disagree_detail": []
   },

@@ -10,42 +10,42 @@ import type { AxisId, SituationId } from "@/src/lib/clinical-situations";
 export const axisCoverage: Record<SituationId, Record<AxisId, number | null>> = {
   HRS1_PERIOPERATIVE: {
     age_group: 8,
-    concomitant_medication: 6,
-    dose_range: null,
+    concomitant_medication: 1,
+    dose_range: 8,
     sex: 4,
-    underlying_condition: 1,
+    underlying_condition: 8,
   },
   HRS2_KIDNEY_DISEASE: {
-    age_group: 10,
-    concomitant_medication: 1,
-    dose_range: 3,
-    sex: 2,
+    age_group: 8,
+    concomitant_medication: 2,
+    dose_range: 6,
+    sex: null,
     underlying_condition: 15,
   },
   HRS3_PREGNANCY: {
-    age_group: 13,
+    age_group: 11,
     concomitant_medication: null,
-    dose_range: 3,
-    sex: 13,
-    underlying_condition: 14,
+    dose_range: 9,
+    sex: 7,
+    underlying_condition: 13,
   },
   HRS4_LIVER_DISEASE: {
-    age_group: 8,
-    concomitant_medication: 1,
-    dose_range: null,
-    sex: 2,
-    underlying_condition: 11,
+    age_group: 9,
+    concomitant_medication: null,
+    dose_range: 7,
+    sex: 1,
+    underlying_condition: 14,
   },
   HRS5_ANTICOAGULATION: {
-    age_group: 4,
+    age_group: 10,
     concomitant_medication: 15,
-    dose_range: null,
-    sex: null,
-    underlying_condition: 2,
+    dose_range: 8,
+    sex: 1,
+    underlying_condition: 4,
   },
 };
 
-/** 이 상황의 핵심 근거 수(축을 하나도 켜지 않았을 때 나오는 수). */
+/** 이 상황의 핵심 근거 수. 규칙 파일의 base 규칙 건수와 같아야 한다. */
 export const coreCoverage: Record<SituationId, number> = {
   HRS1_PERIOPERATIVE: 15,
   HRS2_KIDNEY_DISEASE: 15,

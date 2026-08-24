@@ -212,7 +212,7 @@ describe("personalized safety API", () => {
     expect(body.filter_trace.map((item: { count: number }) => item.count)).toEqual([
       15,
       8,
-      3,
+      1,
     ]);
   });
 
@@ -334,9 +334,11 @@ describe("personalized safety API", () => {
     // 이 조합은 봉인된 규칙 파일에서 교집합이 0건이다. 예전에는 화면이 비었지만
     // 지금은 같은 조건의 확장 근거로 채운다. 대신 핵심 근거가 0건이라는 사실을
     // 응답이 그대로 말해야 한다.
+    // 순위를 바꾸면 핵심 15건이 바뀌어 어떤 조합이 0건인지도 바뀐다. 조합을
+    // 고칠 때는 규칙 파일에서 교집합 0인 짝을 다시 찾아 넣는다.
     const { status, body } = await ask({
-      situation: "HRS1_PERIOPERATIVE",
-      axes: ["age_group", "underlying_condition"],
+      situation: "HRS5_ANTICOAGULATION",
+      axes: ["age_group", "sex"],
     });
     expect(status).toBe(200);
     expect(body.core_shown).toBe(0);

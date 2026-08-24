@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "track": "recollect-v2",
-  "generated_at": "2026-08-24T02:52:03+00:00",
+  "generated_at": "2026-08-24T04:07:01+00:00",
   "protocol": "recollect-v2",
   "input": "data/recollect_v41/evidence_map.csv",
   "input_sha256": "cc5dfd66357081941399deb03863bc8b3e4a0989ed31aa36d4582776669139d2",
@@ -53,13 +53,13 @@
     },
     "base_builder": {
       "path": "tools/v41/base_builder.py",
-      "sha256": "2028ba74495c2e162a0863effbb98a27f326453152c1698af831736d518084e8"
+      "sha256": "98e8bd0b1ada3aef027d810d8c188012f37f40603113c913d012c21f865e0717"
     }
   },
   "output_hashes": {
     "regex_gate_sha256": "e58db3da13071b6c558f7e091a3bd6acda6ac5f279db48cc9ca3fa9da25a681b",
-    "evidence_bundle_sha256": "bc4859012257c6896b9cc8f1b6e3592d902e1b002bf7e4d2172afc598aa1880b",
-    "core_evidence_sha256": "3a3c4a4d64774ad771d52fcfbd46d259b0e984cd68c979d545db1b51dc105437"
+    "evidence_bundle_sha256": "c01173d58471a2f5ed7b0b67e2cd3b800e17d2cb4c9bb4351e696c493e19b45d",
+    "core_evidence_sha256": "04fcbce917df3248c16682510e9f185919f83724800a3e959f9a1b8865d121ab"
   },
   "verbatim_source_fields": [
     "abstract",

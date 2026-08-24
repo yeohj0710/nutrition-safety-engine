@@ -216,12 +216,67 @@ def topic_relevant(row: dict[str, str]) -> bool:
     return topic_match_counts(row)["i_hits"] > 0
 
 
+ANIMAL_RE = re.compile(
+    r"\b(?:cats?|feline|dogs?|canine|mice|mouse|murine|rats?|rodent|rabbits?|"
+    r"piglets?|swine|porcine|bovine|calves|equine|horses?|zebrafish|"
+    r"in\s+vitro|cell\s+line|veterinary)\b",
+    re.IGNORECASE,
+)
+HUMAN_RE = re.compile(
+    r"\b(?:patients?|participants?|subjects?|volunteers?|adults?|children|women|men|"
+    r"humans?|infants?|neonates?|pregnan\w*)\b",
+    re.IGNORECASE,
+)
+
+
+def is_animal_study(row: dict[str, str]) -> bool:
+    """사람을 안 본 연구. 검색식에서 humans[Mesh] 를 뺐으므로 코퍼스에 섞여 있다."""
+    text = f"{row['title']} {row['abstract']}"
+    return bool(ANIMAL_RE.search(text)) and not HUMAN_RE.search(text)
+
+
 def priority_score(row: dict[str, str], key_finding: str) -> int:
-    """노출(I)·대상(P) 적합도를 앞에 두고 설계 점수를 동점자로 둔다."""
+    """적합도는 문턱으로만 쓰고, 순위는 연구 설계와 연도로 매긴다.
+
+    처음에는 노출 용어 적중 수를 그대로 앞자리에 곱했다(i_hits * 1_000_000).
+    그랬더니 보충제 이름을 많이 나열하는 2000년대 종설과 설문이 상위 15건을
+    거의 다 차지했다. 핵심 75건의 연도 중앙값이 2025년에서 2014년으로
+    내려갔고 2010년 이전이 25건이었다. 용어 빈도는 적합도의 대리값이 아니라
+    글의 종류를 재는 값이었다.
+
+    지금은 이렇게 나눈다.
+      1) 노출 용어가 하나도 안 걸리면 후보에서 뺀다(topic_relevant 가 이미 함).
+      2) 사람을 안 본 연구는 크게 내린다. 고양이 만성콩팥병 연구가 상담문에
+         올라온 적이 있다.
+      3) 그다음은 연구 설계, 연도, 근거 문장의 질로 매긴다.
+      4) 용어 적중은 상한을 둔 동점자로만 남긴다. 많이 나열했다고 위로
+         올리지 않는다.
+    """
     matches = topic_match_counts(row)
     legacy = legacy_priority_score(row, key_finding)
-    # P_terms 최대 90여 개, 기존 점수는 수십 점이므로 I 적중 하나가 항상 우선한다.
-    return matches["i_hits"] * 1_000_000 + matches["p_hits"] * 1_000 + legacy
+
+    animal_penalty = -60 if is_animal_study(row) else 0
+
+    # 연도를 설계와 같은 무게로 둔다.
+    #
+    # 처음에는 동점자로만 줬는데(recency * 2), 설계 점수가 0에서 3000 을 쓰는
+    # 사이에서 52 는 없는 것과 같았다. 1985년 논문이 상위 15건에 올라왔고
+    # 핵심 75건의 연도 중앙값이 2018년이었다. 후보가 25,066편이나 되는데
+    # 40년 전 논문을 핵심으로 올릴 이유가 없다.
+    #
+    # 1990년을 0점으로 잡고 한 해에 35점씩 준다. 2026년이 1,260점이라 설계
+    # 점수 12.6점어치다. 같은 해면 종설이 증례보고를 이기고, 25년 차이가
+    # 나면 최신 무작위시험이 옛 종설을 이긴다.
+    try:
+        year = int(str(row.get("year", "")).strip() or 0)
+    except ValueError:
+        year = 0
+    recency = max(0, min(year - 1990, 36)) if year else 0
+
+    # 적중은 셋까지만 센다. 나열이 많다고 이기지 않는다.
+    topical = min(matches["i_hits"], 3) * 2 + min(matches["p_hits"], 3)
+
+    return animal_penalty * 100 + legacy * 100 + recency * 35 + topical
 
 
 def legacy_extract_observed_axes(row: dict[str, str]) -> list[str]:

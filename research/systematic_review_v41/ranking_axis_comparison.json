@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-08-24T02:54:40+00:00",
+  "generated_at": "2026-08-24T04:15:49+00:00",
   "scope": {
     "old_core": "research/systematic_review_v40/core_evidence.csv",
     "new_core": "research/systematic_review_v41/core_evidence.csv",
@@ -11,7 +11,7 @@
     "HRS1_PERIOPERATIVE": {
       "old_count": 15,
       "new_count": 15,
-      "changed_positions": 15,
+      "changed_positions": 14,
       "old": [
         {
           "rank": 1,
@@ -107,123 +107,123 @@
       "new": [
         {
           "rank": 1,
-          "record_id": "pubmed:26949700",
-          "title": "Commonly Used Dietary Supplements on Coagulation Function during Surgery.",
-          "priority_score": 16003009,
+          "record_id": "pubmed:41114550",
+          "title": "Evaluation of TU-100 (Daikenchuto), a Traditional Japanese Kampo Medicine, as an Adjunct to Enhanced Recovery After Surgery, for Acceleration of Gastrointestinal Recovery After Bowel Resection: Results of a Proof-of-Concept, Phase 2, Randomized, Double-Blinded, Placebo-Controlled Trial.",
+          "priority_score": 3469,
           "p_hits": 3,
-          "i_hits": 16
+          "i_hits": 3
         },
         {
           "rank": 2,
-          "record_id": "pubmed:11448284",
-          "title": "Herbal medicines and perioperative care.",
-          "priority_score": 13004009,
-          "p_hits": 4,
-          "i_hits": 13
+          "record_id": "pubmed:37897197",
+          "title": "Pre-rehabilitation interventions for patients with head and neck cancers: A systematic review and meta-analysis.",
+          "priority_score": 3293,
+          "p_hits": 1,
+          "i_hits": 1
         },
         {
           "rank": 3,
-          "record_id": "pubmed:15461234",
-          "title": "Dietary supplements in primary care. Botanicals can affect surgical outcomes and follow-up.",
-          "priority_score": 12003007,
-          "p_hits": 3,
-          "i_hits": 12
+          "record_id": "pubmed:38299639",
+          "title": "Non-immunosuppressive treatment for IgA nephropathy.",
+          "priority_score": 3196,
+          "p_hits": 2,
+          "i_hits": 2
         },
         {
           "rank": 4,
-          "record_id": "pubmed:19994614",
-          "title": "[Knowledge of perioperative risk associated with use of medicinal plants].",
-          "priority_score": 11005005,
-          "p_hits": 5,
-          "i_hits": 11
+          "record_id": "pubmed:41754168",
+          "title": "Effect of Perioperative Supplementation with Arginine and Omega-3 on Postoperative Complications in Patients Undergoing Gastrointestinal Cancer Surgery: A Pilot Open-Label Randomized Controlled Trial.",
+          "priority_score": 3165,
+          "p_hits": 4,
+          "i_hits": 1
         },
         {
           "rank": 5,
-          "record_id": "pubmed:12190754",
-          "title": "The peri-operative implications of herbal medicines.",
-          "priority_score": 11002009,
-          "p_hits": 2,
-          "i_hits": 11
+          "record_id": "pubmed:42242853",
+          "title": "Dietary inflammatory index and unfavorable dietary patterns associated with ischemic stroke in China.",
+          "priority_score": 3165,
+          "p_hits": 3,
+          "i_hits": 1
         },
         {
           "rank": 6,
-          "record_id": "pubmed:14531370",
-          "title": "[Surgery patients' intake of herbal preparations and dietary supplements].",
-          "priority_score": 10003003,
-          "p_hits": 3,
-          "i_hits": 10
+          "record_id": "pubmed:40598717",
+          "title": "Efficacy and Safety of SmofKabiven® Versus Hospital-Compounded All-in-One Parenteral Nutrition in Chinese Patients Undergoing Gastrointestinal Surgery: A Multicenter, Randomized, Active-Controlled, Phase III Trial.",
+          "priority_score": 3133,
+          "p_hits": 2,
+          "i_hits": 3
         },
         {
           "rank": 7,
-          "record_id": "pubmed:11493302",
-          "title": "The impact of herbal medicines on dermatologic surgery.",
-          "priority_score": 10002009,
-          "p_hits": 2,
-          "i_hits": 10
+          "record_id": "pubmed:39626189",
+          "title": "Phase II Randomized Controlled Trial to Evaluate the Supportive Effect of Koujin (TJ-3020) Powder in Gemcitabine and Nab-Paclitaxel-Treated Unresectable or Recurrent Pancreatic Cancer.",
+          "priority_score": 3130,
+          "p_hits": 1,
+          "i_hits": 2
         },
         {
           "rank": 8,
-          "record_id": "pubmed:22300597",
-          "title": "Anticoagulant activity of select dietary supplements.",
-          "priority_score": 10001009,
+          "record_id": "pubmed:39509846",
+          "title": "Chinese herbal medicine (JianPi-BuShen) and completion rate of adjuvant chemotherapy for patients with stage II and III colon cancer: A randomized clinical trial.",
+          "priority_score": 3095,
           "p_hits": 1,
-          "i_hits": 10
+          "i_hits": 2
         },
         {
           "rank": 9,
-          "record_id": "pubmed:15769650",
-          "title": "Nutraceuticals and cancer management.",
-          "priority_score": 9002009,
-          "p_hits": 2,
-          "i_hits": 9
+          "record_id": "pubmed:33495257",
+          "title": "Effectiveness and safety of oral sedation in adult patients undergoing dental procedures: a systematic review.",
+          "priority_score": 3089,
+          "p_hits": 0,
+          "i_hits": 2
         },
         {
           "rank": 10,
-          "record_id": "pubmed:15500490",
-          "title": "Herbal medicine use by children presenting for ambulatory anesthesia and surgery.",
-          "priority_score": 8007005,
-          "p_hits": 7,
-          "i_hits": 8
+          "record_id": "pubmed:28252474",
+          "title": "Physical and Nutritional Prehabilitation in Older Patients With Colorectal Carcinoma: A Systematic Review.",
+          "priority_score": 3085,
+          "p_hits": 5,
+          "i_hits": 1
         },
         {
           "rank": 11,
-          "record_id": "pubmed:12393786",
-          "title": "Preoperative use of herbal medicines: a patient survey.",
-          "priority_score": 8005007,
-          "p_hits": 5,
-          "i_hits": 8
+          "record_id": "pubmed:37225860",
+          "title": "Phase II trial of delta-tocotrienol in neoadjuvant breast cancer with evaluation of treatment response using ctDNA.",
+          "priority_score": 3060,
+          "p_hits": 1,
+          "i_hits": 2
         },
         {
           "rank": 12,
-          "record_id": "pubmed:17169523",
-          "title": "[Anaesthetic preoperative assessment of chronic medications and herbal medicine use: a multicenter survey].",
-          "priority_score": 8005005,
-          "p_hits": 5,
-          "i_hits": 8
+          "record_id": "pubmed:37068377",
+          "title": "Phase III Study of Pemetrexed in Combination With Cisplatin Versus Cisplatin Alone in Patients With Malignant Pleural Mesothelioma.",
+          "priority_score": 3058,
+          "p_hits": 1,
+          "i_hits": 1
         },
         {
           "rank": 13,
-          "record_id": "pubmed:19371848",
-          "title": "Perioperative risks and benefits of herbal supplements in aesthetic surgery.",
-          "priority_score": 8004005,
-          "p_hits": 4,
-          "i_hits": 8
+          "record_id": "pubmed:35439754",
+          "title": "Postoperative Vitamin Profile after Receiving a Novel Peripheral Parenteral Nutrition Solution: Multicenter Randomized Controlled Phase III Trial.",
+          "priority_score": 3029,
+          "p_hits": 3,
+          "i_hits": 3
         },
         {
           "rank": 14,
-          "record_id": "pubmed:10861158",
-          "title": "Alternative medicine use in presurgical patients.",
-          "priority_score": 8001005,
-          "p_hits": 1,
-          "i_hits": 8
+          "record_id": "pubmed:27178770",
+          "title": "Quality of life after hip fracture in the elderly: A systematic literature review.",
+          "priority_score": 3014,
+          "p_hits": 2,
+          "i_hits": 1
         },
         {
           "rank": 15,
-          "record_id": "pubmed:11090733",
-          "title": "Herbal medicines: current trends in anesthesiology practice--a hospital survey.",
-          "priority_score": 7006009,
-          "p_hits": 6,
-          "i_hits": 7
+          "record_id": "pubmed:26123475",
+          "title": "A systematic review of the cost and cost effectiveness of using standard oral nutritional supplements in the hospital setting.",
+          "priority_score": 3013,
+          "p_hits": 1,
+          "i_hits": 1
         }
       ]
     },
@@ -326,130 +326,130 @@
       "new": [
         {
           "rank": 1,
-          "record_id": "pubmed:21132655",
-          "title": "[Herbal remedies: nephrotoxicity and drug interactions].",
-          "priority_score": 9001007,
+          "record_id": "pubmed:40589511",
+          "title": "Chinese herbal medicine (Tangshen Formula) formula treatment of patients with diabetic kidney disease: a systematic review and meta-analysis.",
+          "priority_score": 3332,
           "p_hits": 1,
-          "i_hits": 9
+          "i_hits": 3
         },
         {
           "rank": 2,
-          "record_id": "pubmed:31464251",
-          "title": "Actual diet and nutritional deficiencies status in children on peritoneal dialysis at the Vietnam National Hospital of Pediatrics.",
-          "priority_score": 8004005,
-          "p_hits": 4,
-          "i_hits": 8
+          "record_id": "pubmed:41377821",
+          "title": "Meta-analysis of Niaoduqing Granules for uremic pruritus in Chinese hemodialysis patients: efficacy and safety evidence from RCTs.",
+          "priority_score": 3329,
+          "p_hits": 2,
+          "i_hits": 1
         },
         {
           "rank": 3,
-          "record_id": "pubmed:41036659",
-          "title": "Klotho, Kidneys, and Micronutrient Signaling: A Promising Paradigm for Healthy Aging.",
-          "priority_score": 8001009,
+          "record_id": "pubmed:40906605",
+          "title": "Vitamin Profile of the Patients with Chronic Kidney Disease Receiving a Novel Total Parenteral Nutrition Formula: Multicenter Randomized Controlled Phase III Trial.",
+          "priority_score": 3167,
           "p_hits": 1,
-          "i_hits": 8
+          "i_hits": 4
         },
         {
           "rank": 4,
-          "record_id": "pubmed:28755953",
-          "title": "Kidney toxicity related to herbs and dietary supplements: Online table of case reports. Part 3 of 5 series.",
-          "priority_score": 8001009,
+          "record_id": "pubmed:30992658",
+          "title": "Efficacy and safety of paricalcitol in patients undergoing hemodialysis: a meta-analysis.",
+          "priority_score": 3122,
           "p_hits": 1,
-          "i_hits": 8
+          "i_hits": 3
         },
         {
           "rank": 5,
-          "record_id": "pubmed:32919822",
-          "title": "Differences in Dietary Intake and Vitamin and Mineral Status of Infants and Children on Dialysis Receiving Feeds or Eating Normal Food.",
-          "priority_score": 8001005,
+          "record_id": "pubmed:29481620",
+          "title": "Vitamin D status and mortality risk among patients on dialysis: a systematic review and meta-analysis of observational studies.",
+          "priority_score": 3085,
           "p_hits": 1,
-          "i_hits": 8
+          "i_hits": 2
         },
         {
           "rank": 6,
-          "record_id": "pubmed:26040915",
-          "title": "Association of herbal and dietary supplements with progression and complications of chronic kidney disease: A prospective cohort study.",
-          "priority_score": 7003016,
-          "p_hits": 3,
-          "i_hits": 7
+          "record_id": "pubmed:29566839",
+          "title": "Cost-Effectiveness of First-Line Sevelamer and Lanthanum versus Calcium-Based Binders for Hyperphosphatemia of Chronic Kidney Disease.",
+          "priority_score": 3085,
+          "p_hits": 5,
+          "i_hits": 1
         },
         {
           "rank": 7,
-          "record_id": "pubmed:8711172",
-          "title": "[Vitamin disturbances in chronic renal insufficiency. II. Fat soluble vitamins].",
-          "priority_score": 6007003,
-          "p_hits": 7,
-          "i_hits": 6
+          "record_id": "pubmed:26175145",
+          "title": "Ferric pyrophosphate citrate (Triferic™) administration via the dialysate maintains hemoglobin and iron balance in chronic hemodialysis patients.",
+          "priority_score": 3080,
+          "p_hits": 4,
+          "i_hits": 1
         },
         {
           "rank": 8,
-          "record_id": "pubmed:33679399",
-          "title": "Associations Between Using Chinese Herbal Medicine and Long-Term Outcome Among Pre-dialysis Diabetic Nephropathy Patients: A Retrospective Population-Based Cohort Study.",
-          "priority_score": 6006013,
-          "p_hits": 6,
-          "i_hits": 6
+          "record_id": "pubmed:41933167",
+          "title": "Effect of active vitamin D supplementation on muscle mass and function in peritoneal dialysis patients with sarcopenia: a randomized controlled trial.",
+          "priority_score": 3067,
+          "p_hits": 5,
+          "i_hits": 2
         },
         {
           "rank": 9,
-          "record_id": "pubmed:34896898",
-          "title": "Four prescribed Chinese herbal medicines provide renoprotection and survival benefit without hyperkalemia risk in patients with advanced chronic kidney disease: A nationwide cohort study.",
-          "priority_score": 6004013,
-          "p_hits": 4,
-          "i_hits": 6
+          "record_id": "pubmed:37812931",
+          "title": "Efficacy and Safety of Ferric Citrate on Hyperphosphatemia among Chinese Patients with Chronic Kidney Disease Undergoing Hemodialysis: A Phase III Multicenter Randomized Open-Label Active-Drug-Controlled Study.",
+          "priority_score": 3060,
+          "p_hits": 3,
+          "i_hits": 1
         },
         {
           "rank": 10,
-          "record_id": "pubmed:39548442",
-          "title": "Utilization of complementary and alternative medicine by patients undergoing maintenance hemodialysis for chronic kidney disease in Taiwan: a descriptive investigation.",
-          "priority_score": 6004009,
-          "p_hits": 4,
-          "i_hits": 6
+          "record_id": "pubmed:37696667",
+          "title": "Efficacy and Safety of Upacicalcet in Hemodialysis Patients with Secondary Hyperparathyroidism: A Randomized Placebo-Controlled Trial.",
+          "priority_score": 3058,
+          "p_hits": 1,
+          "i_hits": 1
         },
         {
           "rank": 11,
-          "record_id": "pubmed:10681665",
-          "title": "Vitamin replacement therapy in renal failure patients.",
-          "priority_score": 6004009,
-          "p_hits": 4,
-          "i_hits": 6
+          "record_id": "pubmed:38810556",
+          "title": "Add-on astragalus in type 2 diabetes and chronic kidney disease: A multi-center, assessor-blind, randomized controlled trial.",
+          "priority_score": 2999,
+          "p_hits": 3,
+          "i_hits": 3
         },
         {
           "rank": 12,
-          "record_id": "pubmed:28798802",
-          "title": "Prescribed Renoprotective Chinese Herbal Medicines Were Associated with a Lower Risk of All-Cause and Disease-Specific Mortality among Patients with Chronic Kidney Disease: A Population-Based Follow-Up Study in Taiwan.",
-          "priority_score": 6002009,
+          "record_id": "pubmed:39225105",
+          "title": "Vitamin D status and intermediate vascular and bone outcomes in chronic kidney disease: a secondary post hoc analysis of IMPROVE-CKD.",
+          "priority_score": 2998,
           "p_hits": 2,
-          "i_hits": 6
+          "i_hits": 3
         },
         {
           "rank": 13,
-          "record_id": "pubmed:21195933",
-          "title": "Guidelines for vitamin supplements in chronic kidney disease patients: what is the evidence?",
-          "priority_score": 6002009,
-          "p_hits": 2,
-          "i_hits": 6
+          "record_id": "pubmed:42047771",
+          "title": "Effects of turmeric and curcumin in patients on dialysis or using immunosuppressive agents: a systematic review.",
+          "priority_score": 2969,
+          "p_hits": 3,
+          "i_hits": 4
         },
         {
           "rank": 14,
-          "record_id": "pubmed:14708071",
-          "title": "Trace elements and vitamins in maintenance dialysis patients.",
-          "priority_score": 6002009,
-          "p_hits": 2,
-          "i_hits": 6
+          "record_id": "pubmed:42293210",
+          "title": "The role of nutritional vitamin D on microinflammation and nutritional status in maintenance hemodialysis patients: a meta-analysis of randomized controlled trials.",
+          "priority_score": 2967,
+          "p_hits": 3,
+          "i_hits": 2
         },
         {
           "rank": 15,
-          "record_id": "pubmed:29611144",
-          "title": "Treatment dose and the elimination rates of electrolytes, vitamins, and trace elements during continuous veno-venous hemodialysis (CVVHD).",
-          "priority_score": 6002005,
-          "p_hits": 2,
-          "i_hits": 6
+          "record_id": "pubmed:42246040",
+          "title": "Efficacy and safety of pharmacological treatments for restless legs syndrome in hemodialysis patients: a systematic review and meta-analysis.",
+          "priority_score": 2965,
+          "p_hits": 3,
+          "i_hits": 1
         }
       ]
     },
     "HRS3_PREGNANCY": {
       "old_count": 15,
       "new_count": 15,
-      "changed_positions": 15,
+      "changed_positions": 14,
       "old": [
         {
           "rank": 1,
@@ -545,123 +545,123 @@
       "new": [
         {
           "rank": 1,
-          "record_id": "pubmed:41180435",
-          "title": "Micronutrients in Obstetrics and Gynecology: Mini-Review Article.",
-          "priority_score": 18008013,
-          "p_hits": 8,
-          "i_hits": 18
+          "record_id": "pubmed:40869296",
+          "title": "Folic Acid Supplementation and Risk of Gestational Diabetes Mellitus: A Systematic Review of the Literature.",
+          "priority_score": 3634,
+          "p_hits": 4,
+          "i_hits": 4
         },
         {
           "rank": 2,
-          "record_id": "pubmed:41596115",
-          "title": "Dietary Supplements in Pregnancy and Postpartum: Evidence, Safety Challenges and a Precision Nutrition Framework (GAPSS).",
-          "priority_score": 16004009,
-          "p_hits": 4,
-          "i_hits": 16
+          "record_id": "pubmed:38870315",
+          "title": "Associations of Gestational Exposure to Air Pollution With Maternal Vitamin D Levels: A Meta-Analysis.",
+          "priority_score": 3632,
+          "p_hits": 5,
+          "i_hits": 2
         },
         {
           "rank": 3,
-          "record_id": "pubmed:21487490",
-          "title": "Vitamins and minerals for women: recent programs and intervention trials.",
-          "priority_score": 15004005,
-          "p_hits": 4,
-          "i_hits": 15
+          "record_id": "pubmed:38568994",
+          "title": "Dietary fat intake with risk of gestational diabetes mellitus and preeclampsia: a systematic review and meta-analysis of prospective cohort studies.",
+          "priority_score": 3630,
+          "p_hits": 3,
+          "i_hits": 1
         },
         {
           "rank": 4,
-          "record_id": "pubmed:32075071",
-          "title": "Vitamin and Mineral Supplementation During Pregnancy on Maternal, Birth, Child Health and Development Outcomes in Low- and Middle-Income Countries: A Systematic Review and Meta-Analysis.",
-          "priority_score": 14008017,
-          "p_hits": 8,
-          "i_hits": 14
+          "record_id": "pubmed:33842522",
+          "title": "Systematic Literature Review and Meta-Analysis of the Relationship Between Polyunsaturated and Trans Fatty Acids During Pregnancy and Offspring Weight Development.",
+          "priority_score": 3492,
+          "p_hits": 4,
+          "i_hits": 2
         },
         {
           "rank": 5,
-          "record_id": "pubmed:28436101",
-          "title": "Systematic review on evidence-based adolescent nutrition interventions.",
-          "priority_score": 14003013,
-          "p_hits": 3,
-          "i_hits": 14
+          "record_id": "pubmed:34128867",
+          "title": "Systematic review and meta-analysis of vitamin D deficiency in different pregnancy on preterm birth: Deficiency in middle pregnancy might be at risk.",
+          "priority_score": 3492,
+          "p_hits": 6,
+          "i_hits": 2
         },
         {
           "rank": 6,
-          "record_id": "pubmed:27571855",
-          "title": "[Supplements in pregnancy: the latest recommendations].",
-          "priority_score": 13010008,
-          "p_hits": 10,
-          "i_hits": 13
+          "record_id": "pubmed:41519415",
+          "title": "Benefits and risks of herbal medicine use during pregnancy on offspring outcomes: A systematic review and meta-analysis of randomized controlled trials and observational studies.",
+          "priority_score": 3367,
+          "p_hits": 5,
+          "i_hits": 2
         },
         {
           "rank": 7,
-          "record_id": "pubmed:22771225",
-          "title": "Influence of mineral and vitamin supplements on pregnancy outcome.",
-          "priority_score": 13010005,
-          "p_hits": 10,
-          "i_hits": 13
+          "record_id": "pubmed:42261719",
+          "title": "Vitamin D deficiency in pregnant women: obstetric implications and clinical management.",
+          "priority_score": 3367,
+          "p_hits": 11,
+          "i_hits": 2
         },
         {
           "rank": 8,
-          "record_id": "pubmed:31390765",
-          "title": "Preterm Birth: A Narrative Review of the Current Evidence on Nutritional and Bioactive Solutions for Risk Reduction.",
-          "priority_score": 13003009,
-          "p_hits": 3,
-          "i_hits": 13
+          "record_id": "pubmed:35953431",
+          "title": "DHA Supplementation During Pregnancy Enhances Maternal Vagally Mediated Cardiac Autonomic Control in Humans.",
+          "priority_score": 3362,
+          "p_hits": 7,
+          "i_hits": 2
         },
         {
           "rank": 9,
-          "record_id": "pubmed:38648170",
-          "title": "Nutrition: Micronutrients.",
-          "priority_score": 13001007,
-          "p_hits": 1,
-          "i_hits": 13
+          "record_id": "pubmed:27633659",
+          "title": "Elevated homocysteine levels in mothers with neural tube defects: a systematic review and meta-analysis.",
+          "priority_score": 3350,
+          "p_hits": 3,
+          "i_hits": 1
         },
         {
           "rank": 10,
-          "record_id": "pubmed:27032981",
-          "title": "Micronutrient deficiencies in pregnancy worldwide: health effects and prevention.",
-          "priority_score": 12008009,
-          "p_hits": 8,
-          "i_hits": 12
+          "record_id": "pubmed:40174967",
+          "title": "Nutrition and reproductive potential of women in low- and middle-income countries: a systematic review and meta-analysis.",
+          "priority_score": 3334,
+          "p_hits": 3,
+          "i_hits": 3
         },
         {
           "rank": 11,
-          "record_id": "pubmed:11509110",
-          "title": "Micronutrients in pregnancy.",
-          "priority_score": 12007005,
-          "p_hits": 7,
-          "i_hits": 12
+          "record_id": "pubmed:40362647",
+          "title": "Modifiable Nutritional Biomarkers in Autism Spectrum Disorder: A Systematic Review and Meta-Analysis of Vitamin D, B12, and Homocysteine Exposure Spanning Prenatal Development Through Late Adolescence.",
+          "priority_score": 3334,
+          "p_hits": 3,
+          "i_hits": 5
         },
         {
           "rank": 12,
-          "record_id": "pubmed:31318329",
-          "title": "Nutritional Supplements During Gestation and Autism Spectrum Disorder: What Do We Really Know and How Far Have We Gone?",
-          "priority_score": 12004009,
-          "p_hits": 4,
-          "i_hits": 12
+          "record_id": "pubmed:40284182",
+          "title": "Influence of Vitamin D on Developmental Defects of Enamel (DDE) in Children and Adolescents: A Systematic Review.",
+          "priority_score": 3332,
+          "p_hits": 3,
+          "i_hits": 2
         },
         {
           "rank": 13,
-          "record_id": "pubmed:17066209",
-          "title": "Effects of nutrients (in food) on the structure and function of the nervous system: update on dietary requirements for brain. Part 1: micronutrients.",
-          "priority_score": 12003007,
+          "record_id": "pubmed:40433851",
+          "title": "Selected laboratory-based biomarkers for assessing vitamin A deficiency in at-risk individuals.",
+          "priority_score": 3332,
           "p_hits": 3,
-          "i_hits": 12
+          "i_hits": 2
         },
         {
           "rank": 14,
-          "record_id": "pubmed:34951097",
-          "title": "Demographics, health literacy and health locus of control beliefs of Australian women who take complementary medicine products during pregnancy and breastfeeding: A cross-sectional, online, national survey.",
-          "priority_score": 12002009,
-          "p_hits": 2,
-          "i_hits": 12
+          "record_id": "pubmed:40636854",
+          "title": "Risk factors of neuroblastoma: a systematic review and meta-analysis.",
+          "priority_score": 3332,
+          "p_hits": 5,
+          "i_hits": 2
         },
         {
           "rank": 15,
-          "record_id": "pubmed:10523053",
-          "title": "Vitamins and brain development.",
-          "priority_score": 12001003,
-          "p_hits": 1,
-          "i_hits": 12
+          "record_id": "pubmed:38369772",
+          "title": "Maternal exposure to folate antagonists and susceptibility to congenital heart disease in offspring: A systematic review and meta-analysis.",
+          "priority_score": 3299,
+          "p_hits": 3,
+          "i_hits": 3
         }
       ]
     },
@@ -764,123 +764,123 @@
       "new": [
         {
           "rank": 1,
-          "record_id": "pubmed:39102266",
-          "title": "Estimated Exposure to 6 Potentially Hepatotoxic Botanicals in US Adults.",
-          "priority_score": 11000013,
-          "p_hits": 0,
-          "i_hits": 11
+          "record_id": "pubmed:34491307",
+          "title": "The Role of Micronutrients in the Pathogenesis of Alcohol-Related Liver Disease.",
+          "priority_score": 3227,
+          "p_hits": 3,
+          "i_hits": 2
         },
         {
           "rank": 2,
-          "record_id": "pubmed:23121117",
-          "title": "Review article: herbal and dietary supplement hepatotoxicity.",
-          "priority_score": 11000009,
-          "p_hits": 0,
-          "i_hits": 11
+          "record_id": "pubmed:34864457",
+          "title": "The effects of different parenteral nutrition lipid formulations on clinical and laboratory endpoints in patients receiving home parenteral nutrition: A systematic review.",
+          "priority_score": 3223,
+          "p_hits": 1,
+          "i_hits": 1
         },
         {
           "rank": 3,
-          "record_id": "pubmed:27070596",
-          "title": "Hepatotoxicity by Dietary Supplements: A Tabular Listing and Clinical Characteristics.",
-          "priority_score": 10000009,
-          "p_hits": 0,
-          "i_hits": 10
+          "record_id": "pubmed:37550264",
+          "title": "The impact of gut microbiome-targeted therapy on liver enzymes in patients with nonalcoholic fatty liver disease: an umbrella meta-analysis.",
+          "priority_score": 3199,
+          "p_hits": 5,
+          "i_hits": 3
         },
         {
           "rank": 4,
-          "record_id": "pubmed:39136211",
-          "title": "Challenges in herbal-induced liver injury identification and prevention.",
-          "priority_score": 10000005,
-          "p_hits": 0,
-          "i_hits": 10
+          "record_id": "pubmed:38232906",
+          "title": "Curcumin effects on glycaemic indices, lipid profile, blood pressure, inflammatory markers and anthropometric measurements of non-alcoholic fatty liver disease patients: A systematic review and meta-analysis of randomized clinical trials.",
+          "priority_score": 3197,
+          "p_hits": 5,
+          "i_hits": 2
         },
         {
           "rank": 5,
-          "record_id": "pubmed:36183923",
-          "title": "Hepatotoxicity due to herbal dietary supplements: Past, present and the future.",
-          "priority_score": 9000009,
-          "p_hits": 0,
-          "i_hits": 9
+          "record_id": "pubmed:34280304",
+          "title": "Nutritional supplementation for nonalcohol-related fatty liver disease: a network meta-analysis.",
+          "priority_score": 3194,
+          "p_hits": 6,
+          "i_hits": 5
         },
         {
           "rank": 6,
-          "record_id": "pubmed:25514914",
-          "title": "Phytotherapy and NAFLD--from goals and challenges to clinical practice.",
-          "priority_score": 8006003,
+          "record_id": "pubmed:36866059",
+          "title": "Functional foods and dietary supplements in the management of non-alcoholic fatty liver disease: A systematic review and meta-analysis.",
+          "priority_score": 3164,
           "p_hits": 6,
-          "i_hits": 8
+          "i_hits": 3
         },
         {
           "rank": 7,
-          "record_id": "pubmed:42092331",
-          "title": "An update on drug-induced liver injury-What's new?",
-          "priority_score": 8002009,
-          "p_hits": 2,
-          "i_hits": 8
+          "record_id": "pubmed:39110237",
+          "title": "Evaluation of oral silymarin formulation efficacy in prevention of doxorubicin induced hepatotoxicity in patients with non-metastatic breast cancer.",
+          "priority_score": 3030,
+          "p_hits": 1,
+          "i_hits": 2
         },
         {
           "rank": 8,
-          "record_id": "pubmed:36515339",
-          "title": "LIVER INJURY INDUCED BY HERBAL AND DIETARY SUPPLEMENTS: A POOLED ANALYSIS OF CASE REPORTS.",
-          "priority_score": 8002009,
-          "p_hits": 2,
-          "i_hits": 8
+          "record_id": "pubmed:31124558",
+          "title": "Gut microbiome-targeted therapies in nonalcoholic fatty liver disease: a systematic review, meta-analysis, and meta-regression.",
+          "priority_score": 3022,
+          "p_hits": 5,
+          "i_hits": 2
         },
         {
           "rank": 9,
-          "record_id": "pubmed:27402097",
-          "title": "Liver toxicity related to herbs and dietary supplements: Online table of case reports. Part 2 of 5 series.",
-          "priority_score": 8002009,
+          "record_id": "pubmed:39620369",
+          "title": "Impaired postprandial GLP-2 response enhances endotoxemia, systemic inflammation, and kidney injury in metabolic dysfunction-associated steatohepatitis (MASH): effect of phospholipid curcumin meriva.",
+          "priority_score": 2994,
           "p_hits": 2,
-          "i_hits": 8
+          "i_hits": 1
         },
         {
           "rank": 10,
-          "record_id": "pubmed:21457433",
-          "title": "Review of liver injury associated with dietary supplements.",
-          "priority_score": 8002009,
-          "p_hits": 2,
-          "i_hits": 8
+          "record_id": "pubmed:33933848",
+          "title": "Significant immunomodulatory and hepatoprotective impacts of Silymarin in MS patients: A double-blind placebo-controlled clinicaltrial.",
+          "priority_score": 2987,
+          "p_hits": 0,
+          "i_hits": 1
         },
         {
           "rank": 11,
-          "record_id": "pubmed:34307603",
-          "title": "Herb-induced liver injury: Systematic review and meta-analysis.",
-          "priority_score": 8002005,
-          "p_hits": 2,
-          "i_hits": 8
+          "record_id": "pubmed:30113661",
+          "title": "Prebiotic and probiotic treatment of nonalcoholic fatty liver disease: a systematic review and meta-analysis.",
+          "priority_score": 2987,
+          "p_hits": 4,
+          "i_hits": 2
         },
         {
           "rank": 12,
-          "record_id": "pubmed:15237372",
-          "title": "Consumption of dietary supplements in a liver transplant population.",
-          "priority_score": 7002009,
-          "p_hits": 2,
-          "i_hits": 7
+          "record_id": "pubmed:42038464",
+          "title": "The efficacy of gut microbiota-regulating drugs on metabolic dysfunction-associated steatotic liver disease: a systematic review and network meta-analysis.",
+          "priority_score": 2969,
+          "p_hits": 5,
+          "i_hits": 3
         },
         {
           "rank": 13,
-          "record_id": "pubmed:42475234",
-          "title": "The contemporary epidemiology, causes, and management of drug-induced liver injury.",
-          "priority_score": 7001009,
-          "p_hits": 1,
-          "i_hits": 7
+          "record_id": "pubmed:41852476",
+          "title": "Traditional Chinese medicine for type 2 diabetes with metabolic-associated steatotic liver disease: unified effects and design thresholds.",
+          "priority_score": 2967,
+          "p_hits": 4,
+          "i_hits": 2
         },
         {
           "rank": 14,
-          "record_id": "pubmed:40615075",
-          "title": "Unveiling the hidden risk: Herbal and dietary supplement consumption in liver disease patients.",
-          "priority_score": 7001009,
-          "p_hits": 1,
-          "i_hits": 7
+          "record_id": "pubmed:42381151",
+          "title": "Traditional Chinese Medicines for Metabolic Dysfunction-Associated Steatotic Liver Disease: A Mixed-Method Systematic Review.",
+          "priority_score": 2967,
+          "p_hits": 4,
+          "i_hits": 2
         },
         {
           "rank": 15,
-          "record_id": "pubmed:38640296",
-          "title": "A comprehensive review on the hepatotoxicity of herbs used in the Indian (Ayush) systems of alternative medicine.",
-          "priority_score": 7001009,
-          "p_hits": 1,
-          "i_hits": 7
+          "record_id": "pubmed:41517800",
+          "title": "The effectiveness and safety of Yi Guan Jian decoction in the treatment of primary liver cancer: A systematic review and meta-analysis of randomized controlled trials.",
+          "priority_score": 2964,
+          "p_hits": 0,
+          "i_hits": 2
         }
       ]
     },
@@ -983,123 +983,123 @@
       "new": [
         {
           "rank": 1,
-          "record_id": "pubmed:10675182",
-          "title": "Herb-drug interactions.",
-          "priority_score": 21003009,
-          "p_hits": 3,
-          "i_hits": 21
+          "record_id": "pubmed:38353592",
+          "title": "Fixed- Versus Variable-Dose Prothrombin Complex Concentrate for the Emergent Reversal of Vitamin K Antagonists: A Systematic Review and Meta-Analysis.",
+          "priority_score": 3297,
+          "p_hits": 5,
+          "i_hits": 2
         },
         {
           "rank": 2,
-          "record_id": "pubmed:36304597",
-          "title": "Dietary supplements and bleeding.",
-          "priority_score": 19002009,
-          "p_hits": 2,
-          "i_hits": 19
+          "record_id": "pubmed:39082575",
+          "title": "Direct Oral Anticoagulants versus Vitamin K Antagonists for Left Ventricular Thrombus: A Meta-Analysis with Trial Sequential Analysis.",
+          "priority_score": 3297,
+          "p_hits": 9,
+          "i_hits": 2
         },
         {
           "rank": 3,
-          "record_id": "pubmed:22292789",
-          "title": "Herb-drug interactions and mechanistic and clinical considerations.",
-          "priority_score": 18003005,
-          "p_hits": 3,
-          "i_hits": 18
+          "record_id": "pubmed:40634145",
+          "title": "Deterioration of renal function is delayed in patients with atrial fibrillation treated with direct oral anticoagulants compared to vitamin K antagonists: systematic review and meta-analysis.",
+          "priority_score": 3232,
+          "p_hits": 14,
+          "i_hits": 2
         },
         {
           "rank": 4,
-          "record_id": "pubmed:15916450",
-          "title": "Herb-drug interactions: a literature review.",
-          "priority_score": 17004009,
-          "p_hits": 4,
-          "i_hits": 17
+          "record_id": "pubmed:34986908",
+          "title": "A systematic review of the evidence supporting post-operative antithrombotic use following cardiopulmonary bypass in children with CHD.",
+          "priority_score": 3227,
+          "p_hits": 5,
+          "i_hits": 2
         },
         {
           "rank": 5,
-          "record_id": "pubmed:25233607",
-          "title": "Warfarin interactions with medicinal herbs.",
-          "priority_score": 17002007,
-          "p_hits": 2,
-          "i_hits": 17
+          "record_id": "pubmed:35244208",
+          "title": "Anticoagulants for people hospitalised with COVID-19: a rapid review.",
+          "priority_score": 3227,
+          "p_hits": 6,
+          "i_hits": 2
         },
         {
           "rank": 6,
-          "record_id": "pubmed:10902065",
-          "title": "Potential interactions between alternative therapies and warfarin.",
-          "priority_score": 17002007,
-          "p_hits": 2,
-          "i_hits": 17
+          "record_id": "pubmed:38772568",
+          "title": "Efficacy and Safety of Direct Oral Anticoagulants in Cerebral Venous Thrombosis: Meta-Analysis of Randomized Clinical Trials.",
+          "priority_score": 3197,
+          "p_hits": 10,
+          "i_hits": 2
         },
         {
           "rank": 7,
-          "record_id": "pubmed:19719333",
-          "title": "Interactions between herbal medicines and prescribed drugs: an updated systematic review.",
-          "priority_score": 16004013,
-          "p_hits": 4,
-          "i_hits": 16
+          "record_id": "pubmed:38299639",
+          "title": "Non-immunosuppressive treatment for IgA nephropathy.",
+          "priority_score": 3196,
+          "p_hits": 2,
+          "i_hits": 2
         },
         {
           "rank": 8,
-          "record_id": "pubmed:11772128",
-          "title": "Interactions between herbal medicines and prescribed drugs: a systematic review.",
-          "priority_score": 16003017,
-          "p_hits": 3,
-          "i_hits": 16
+          "record_id": "pubmed:33813916",
+          "title": "Safety and Efficacy of Non-Vitamin K Oral Anticoagulant Use Early After Cardiac Surgery: A Systematic Review.",
+          "priority_score": 3192,
+          "p_hits": 7,
+          "i_hits": 2
         },
         {
           "rank": 9,
-          "record_id": "pubmed:21919844",
-          "title": "Clinical herbal interactions with conventional drugs: from molecules to maladies.",
-          "priority_score": 16003005,
-          "p_hits": 3,
-          "i_hits": 16
+          "record_id": "pubmed:32333493",
+          "title": "Fatal intracranial haemorrhage occurring after oral anticoagulant treatment initiation for secondary stroke prevention in patients with atrial fibrillation.",
+          "priority_score": 3157,
+          "p_hits": 9,
+          "i_hits": 2
         },
         {
           "rank": 10,
-          "record_id": "pubmed:20617421",
-          "title": "Antithrombotic effects of naturally derived products on coagulation and platelet function.",
-          "priority_score": 15007005,
-          "p_hits": 7,
-          "i_hits": 15
+          "record_id": "pubmed:28151543",
+          "title": "Prediction of major and clinically relevant bleeding in patients with VTE treated with edoxaban or vitamin K antagonists.",
+          "priority_score": 3152,
+          "p_hits": 6,
+          "i_hits": 2
         },
         {
           "rank": 11,
-          "record_id": "pubmed:33624893",
-          "title": "A systematic review of possible interactions for herbal medicines and dietary supplements used concomitantly with disease-modifying or symptom-alleviating multiple sclerosis drugs.",
-          "priority_score": 13002013,
-          "p_hits": 2,
-          "i_hits": 13
+          "record_id": "pubmed:33759649",
+          "title": "Efficacy and safety of non-vitamin K antagonist oral anticoagulants combined with antiplatelet drugs for patients with peripheral artery disease: A systematic review and meta-analysis of randomized controlled trials.",
+          "priority_score": 3127,
+          "p_hits": 6,
+          "i_hits": 2
         },
         {
           "rank": 12,
-          "record_id": "pubmed:25839871",
-          "title": "The influence of herbal medicine on platelet function and coagulation: a narrative review.",
-          "priority_score": 13002009,
-          "p_hits": 2,
-          "i_hits": 13
+          "record_id": "pubmed:35783817",
+          "title": "An Updated Meta-Analysis of DOACs vs. VKAs in Atrial Fibrillation Patients With Bioprosthetic Heart Valve.",
+          "priority_score": 3127,
+          "p_hits": 9,
+          "i_hits": 2
         },
         {
           "rank": 13,
-          "record_id": "pubmed:22670731",
-          "title": "Herb-drug interactions: an overview of systematic reviews.",
-          "priority_score": 13002009,
-          "p_hits": 2,
-          "i_hits": 13
+          "record_id": "pubmed:31168416",
+          "title": "Management of thrombotic and obstetric antiphospholipid syndrome: a systematic literature review informing the EULAR recommendations for the management of antiphospholipid syndrome in adults.",
+          "priority_score": 3122,
+          "p_hits": 7,
+          "i_hits": 2
         },
         {
           "rank": 14,
-          "record_id": "pubmed:31721714",
-          "title": "Herbal Medicine of the 21st Century: A Focus on the Chemistry, Pharmacokinetics and Toxicity of Five Widely Advocated Phytotherapies.",
-          "priority_score": 12003009,
-          "p_hits": 3,
-          "i_hits": 12
+          "record_id": "pubmed:25700621",
+          "title": "Clinical safety, tolerability, pharmacokinetics and pharmacodynamics of the novel factor Xa inhibitor DY-807f in healthy volunteers.",
+          "priority_score": 3082,
+          "p_hits": 7,
+          "i_hits": 2
         },
         {
           "rank": 15,
-          "record_id": "pubmed:22300597",
-          "title": "Anticoagulant activity of select dietary supplements.",
-          "priority_score": 12001009,
-          "p_hits": 1,
-          "i_hits": 12
+          "record_id": "pubmed:24760401",
+          "title": "Phase 1 study of the effect of icosapent ethyl on warfarin pharmacokinetic and anticoagulation parameters.",
+          "priority_score": 3047,
+          "p_hits": 3,
+          "i_hits": 2
         }
       ]
     }
