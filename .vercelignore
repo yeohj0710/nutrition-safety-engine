@@ -18,3 +18,9 @@ research/screening/v40_agent
 research/logs
 data/curated_v4
 tools
+
+# 재수집 트랙(v41) 작업 산출물. 원자료 472MB 와 중간 CSV 100MB 는 런타임에
+# 안 읽는다. 앱이 import 하는 것은 v41 아래 *.json 뿐이라 CSV 만 빼면 된다.
+# 안 빼면 업로드가 다시 수백 MB 가 되어 "Upload aborted" 로 죽는다.
+data/recollect_v41
+research/systematic_review_v41/*.csv

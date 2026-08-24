@@ -141,15 +141,24 @@ describe("personalized safety UI contract", () => {
     expect(componentSource).toMatch(
       /function runExample[\s\S]*?setSentence\(example\.sentence\)[\s\S]*?setForm\(example\.input\)/,
     );
-    // 예시가 문장칸보다 먼저 와야 한다. 뒤에 두면 이 화면을 처음 보는 사람이
-    // 무엇을 적어야 할지 모르는 채로 빈 칸부터 마주치고, 예시는 이미 지나친
-    // 자리에서 나타난다. 노력이 적은 것부터: 눌러 보기 → 직접 적기 → 직접 고르기.
-    const exampleList = componentSource.indexOf("처음이시면 여기서 눌러 보세요");
+    // 예시와 문장칸은 붙어 있어야 한다. 예전에는 예시를 문장칸보다 위에 두어
+    // "빈 칸부터 마주치는" 문제를 막았는데, 그러느라 입력 경로가 세 덩어리로
+    // 늘어나 첫 화면에서 무엇부터 해야 할지 안 보였다. 지금은 문장칸 바로 아래
+    // 칩으로 붙여 한눈에 같이 보인다. 지켜야 할 것은 순서가 아니라 거리다.
+    // 라디오·체크박스 목록은 접혀 있으므로 둘보다 뒤에 온다.
+    const exampleChips = componentSource.indexOf("publicInputExamples.map");
     const sentenceBox = componentSource.indexOf('placeholder="예: 임신 중인데');
     const form = componentSource.indexOf('id="evidence-query-form"');
-    expect(exampleList).toBeGreaterThan(-1);
-    expect(exampleList).toBeLessThan(sentenceBox);
+    expect(exampleChips).toBeGreaterThan(-1);
+    expect(sentenceBox).toBeGreaterThan(-1);
+    expect(Math.abs(exampleChips - sentenceBox)).toBeLessThan(2000);
     expect(sentenceBox).toBeLessThan(form);
+    expect(exampleChips).toBeLessThan(form);
+    // 열 개짜리 목록은 접어 두고, 조건이 채워지는 자리에서 함께 펼친다.
+    expect(componentSource).toContain("pickerOpen");
+    expect(componentSource).toMatch(
+      /function runExample[\s\S]*?setPickerOpen\(true\)/,
+    );
     // 앞선 AI 해석이 남아 있으면 지금 문장과 다른 조건을 설명하게 된다.
     expect(componentSource).toMatch(
       /function runExample[\s\S]*?setInterpreted\(null\)/,

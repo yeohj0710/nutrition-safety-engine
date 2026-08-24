@@ -37,7 +37,7 @@ export const publicInputExamples: PersonalizedSafetyExample[] = [
   {
     id: "perioperative-core",
     sentence: "다음 달에 수술을 받는데 먹던 영양제 이야기가 나온 연구를 보고 싶어요",
-    title: "수술 전후 · 조건 없이",
+    title: "수술 전후, 조건 없이",
     summary: "조건을 걸지 않고 이 상황의 핵심 문헌 15건을 봅니다.",
     expectedEvidenceCount: 15,
     input: {

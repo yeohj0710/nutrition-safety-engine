@@ -169,7 +169,7 @@ export async function POST(req: Request) {
   const evidenceBlock = briefs
     .map((row) =>
       [
-        `[${row.recordId}] ${row.year} · ${row.kind || "연구유형 미표시"}`,
+        `[${row.recordId}] ${row.year}, ${row.kind || "연구유형 미표시"}`,
         `제목: ${row.title}`,
         row.population ? `대상: ${row.population}` : "",
         row.dose ? `먹은 양: ${row.dose}` : "",
@@ -203,12 +203,15 @@ export async function POST(req: Request) {
     user,
     schemaName: "consult_paragraphs",
     schema: SCHEMA,
-    maxOutputTokens: 3200,
+    // effort 를 올리면 추론 토큰이 이 예산에서 먼저 나간다. high + 3,200 으로
+    // 두었더니 추론에 다 쓰고 메시지 없이 status=incomplete 로 끝나 매 요청이
+    // 폴백이었다(프로덕션 실측). 예산은 추론 몫까지 잡아 둔다.
+    maxOutputTokens: 8000,
     timeoutMs: 45_000,
     // 문헌 15편의 문장을 읽고 갈리는 자리까지 찾아야 한다. low 로 두면 읽지
     // 않고 목록을 요약해 버린다. 값이 붙는 자리는 여기 하나뿐이고, 축 해석과
     // 한 줄 요약은 low 그대로 둔다.
-    effort: process.env.OPENAI_CONSULT_COMPOSE_EFFORT ?? "high",
+    effort: process.env.OPENAI_CONSULT_COMPOSE_EFFORT ?? "medium",
   });
 
   if (!result.ok) {
@@ -255,8 +258,11 @@ export async function POST(req: Request) {
     });
   }
 
+  // 이 라우트가 이 사이트에서 값이 붙는 유일한 자리다. 응답에 사용량을 실어
+  // 두면 값이 얼마나 드는지 브라우저 네트워크 탭에서 바로 센다.
   return NextResponse.json({
     paragraphs: verdict.paragraphs,
     source: "ai_written" as const,
+    usage: result.usage,
   });
 }

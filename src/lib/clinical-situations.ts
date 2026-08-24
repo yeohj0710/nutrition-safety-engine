@@ -38,16 +38,16 @@ export type SituationMeta = {
 export const situations: SituationMeta[] = [
   {
     id: "HRS1_PERIOPERATIVE",
-    label: "수술·시술을 앞두고 있어요",
+    label: "수술이나 시술을 앞두고 있어요",
     short: "수술 전후",
     question:
       "수술 또는 침습적 시술을 받는 성인에서 수술 전 보충제 복용이 출혈, 수혈, 마취 상호작용 또는 수술 주위 합병증과 관련되는지를 다룬 문헌",
-    spoken: "수술·시술을 앞두고 계시고",
+    spoken: "수술이나 시술을 앞두고 계시고",
   },
   {
     id: "HRS2_KIDNEY_DISEASE",
     label: "콩팥이 안 좋아요",
-    short: "만성콩팥병·투석",
+    short: "만성콩팥병과 투석",
     question:
       "만성콩팥병 또는 투석 중인 성인에서 보충제 복용이 전해질 이상, 신기능 변화 또는 축적 독성과 관련되는지를 다룬 문헌",
     spoken: "콩팥이 걱정되는 상황이고",

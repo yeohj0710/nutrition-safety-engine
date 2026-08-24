@@ -45,9 +45,9 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
 
       <footer className="border-t border-border-subtle bg-white px-4 py-6 sm:px-6">
         <div className="page-shell flex flex-col gap-2 text-xs leading-5 text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>졸업논문 연구용 · 의료적 진단이나 처방을 대신하지 않습니다.</p>
+          <p>졸업논문 연구용, 의료적 진단이나 처방을 대신하지 않습니다.</p>
           <p>
-            {projectAffiliation} · {projectAuthor}
+            {projectAffiliation}, {projectAuthor}
           </p>
         </div>
       </footer>

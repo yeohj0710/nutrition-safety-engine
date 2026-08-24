@@ -1,4 +1,4 @@
-export const MULTI_VALUE_SEPARATOR = " · ";
+export const MULTI_VALUE_SEPARATOR = ", ";
 
 export function splitMultiValue(value: string) {
   return Array.from(

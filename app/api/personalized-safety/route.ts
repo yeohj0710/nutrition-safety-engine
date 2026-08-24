@@ -51,7 +51,7 @@ const profileLabels: Record<string, string> = {
   medication: "함께 드시는 약",
   dose: "하루 먹는 양",
   sex: "성별",
-  condition: "앓는 병·증상",
+  condition: "앓는 병과 증상",
 };
 
 function buildProfileLine(
@@ -66,7 +66,7 @@ function buildProfileLine(
     .filter(Boolean);
   if (!said.length) return `${spoken}, 따로 적어주신 조건은 없으셨어요.`;
   // 값 끝에 mg·IU 같은 로마자가 자주 와서 조사를 붙이면 어색해진다. 조사를 쓰지 않는다.
-  return `${spoken}, ${said.join(" · ")} 이렇게 적어주셨어요.`;
+  return `${spoken}, ${said.join(", ")} 이렇게 적어주셨어요.`;
 }
 
 /** 고른 문헌 묶음의 구성만 설명한다. 개별 결과는 화면에서 문헌별로 표시한다. */
@@ -114,7 +114,7 @@ function buildLimitLine(
   // 결과가 그 값을 직접 다룬 것처럼 읽히지 않게 여기서 분명히 해 둔다.
   if (appliedNouns.length)
     parts.push(
-      `${appliedNouns.join("·")} 이야기가 나온 문헌만 골랐을 뿐, 적어주신 값을 직접 다룬 문헌이라는 뜻은 아닙니다.`,
+      `${appliedNouns.join(", ")} 이야기가 나온 문헌만 골랐을 뿐, 적어주신 값을 직접 다룬 문헌이라는 뜻은 아닙니다.`,
     );
   if (doseInput)
     parts.push(
@@ -758,7 +758,7 @@ export async function POST(req: Request) {
     selected.length
       ? [
           applied.length
-            ? `${meta?.short ?? "이 상황"} 문헌 ${questionPoolTotal.toLocaleString("ko-KR")}건 가운데 ${appliedNounsForExpanded.join("·")} 이야기가 나온 ${extendedTotal.toLocaleString("ko-KR")}건이 남았고,`
+            ? `${meta?.short ?? "이 상황"} 문헌 ${questionPoolTotal.toLocaleString("ko-KR")}건 가운데 ${appliedNounsForExpanded.join(", ")} 이야기가 나온 ${extendedTotal.toLocaleString("ko-KR")}건이 남았고,`
             : `${meta?.short ?? "이 상황"} 문헌 ${extendedTotal.toLocaleString("ko-KR")}건 가운데`,
           `${offset + 1}~${offset + selected.length}번째를 보여드립니다.`,
           applied.length
@@ -769,7 +769,7 @@ export async function POST(req: Request) {
       : [
           `${meta?.short ?? "이 상황"} 문헌 ${questionPoolTotal.toLocaleString("ko-KR")}건 가운데`,
           appliedNounsForExpanded.length
-            ? `${appliedNounsForExpanded.join("·")} 이야기를 한 편에서 모두 말한 문헌은 없습니다.`
+            ? `${appliedNounsForExpanded.join(", ")} 이야기를 한 편에서 모두 말한 문헌은 없습니다.`
             : "보여드릴 문헌이 없습니다.",
           "조건을 하나씩 지우면 어느 조건에서 문헌이 사라지는지 보실 수 있어요.",
         ]
@@ -790,7 +790,7 @@ export async function POST(req: Request) {
     ? applied.length
       ? `${meta?.short ?? "이 상황"} 문헌 가운데 ${applied
           .map((item) => axisById.get(item.axis)?.noun ?? item.axis)
-          .join("·")} 이야기가 나온 것만 골랐습니다.`
+          .join(", ")} 이야기가 나온 것만 골랐습니다.`
       : `${meta?.short ?? "이 상황"}에는 걸 수 있는 조건이 없어, 핵심 문헌을 그대로 보여드립니다.`
     : axesProvided
       ? `${meta?.short ?? "이 상황"} 문헌을 조건 없이 살펴봤습니다.`
@@ -811,7 +811,7 @@ export async function POST(req: Request) {
           profileLine,
           `그런데 ${meta?.short ?? "이 상황"}의 핵심 문헌 ${base.all_evidence.length}건 가운데 고르신 이야기를 모두 말한 것은 없습니다.`,
           narrowedNouns.length > 1
-            ? `${narrowedNouns.join("·")} 이야기가 한 편에 다 나와야 남는데, 조건을 겹칠수록 남는 문헌이 빠르게 줄어듭니다.`
+            ? `${narrowedNouns.join(", ")} 이야기가 한 편에 다 나와야 남는데, 조건을 겹칠수록 남는 문헌이 빠르게 줄어듭니다.`
             : narrowedNouns.length === 1
               ? `${narrowedNouns[0]} 이야기가 나온 문헌이 이 상황에는 없었습니다.`
               : "",

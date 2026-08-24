@@ -19,19 +19,19 @@ export default function Home() {
 
   const stats = [
     {
-      label: "모아 둔 근거",
+      label: "수집 근거",
       value: manifest.records,
       note: "선별과 근거 검사를 통과한 PubMed 문헌",
     },
     {
-      label: "먹은 양이 적힌 것",
+      label: "용량 기재 문헌",
       value: manifest.with_dose,
-      note: "초록에 mg·IU 처럼 양이 적힌 문헌",
+      note: "초록에 mg, IU 처럼 양이 적힌 문헌",
     },
     {
       label: "초록까지 확인",
       value: manifest.source_scope.abstract_only,
-      note: `초록에서 문장 자리까지 확인한 문헌 · 제목만 본 것 ${manifest.source_scope.title_only}건`,
+      note: `초록에서 문장 자리까지 확인한 문헌, 제목만 본 것 ${manifest.source_scope.title_only}건`,
     },
     {
       label: "상황별 핵심 근거",
@@ -53,11 +53,11 @@ export default function Home() {
             id="page-title"
             className="text-[1.25rem] font-bold leading-snug text-foreground"
           >
-            고위험 상황에서 확인하는 보충제 안전성 근거
+            고위험 상황 보충제 안전성 근거
           </h1>
           <p className="mt-2 text-sm leading-6 text-muted">
-            수술 전후, 콩팥, 임신, 간, 항응고제 다섯 가운데 하나를 고르면 나이·약·
-            용량·남녀·앓는 병 이야기가 나온 문헌만 좁혀 보여드립니다.
+            수술 전후, 콩팥, 임신, 간, 항응고제 다섯 가운데 하나를 고르면 나이, 약,
+            용량, 남녀, 앓는 병 이야기가 나온 문헌만 좁혀 보여드립니다.
           </p>
           <p className="mt-3 text-sm leading-6 text-muted">
             <span className="font-semibold text-foreground">
@@ -98,7 +98,7 @@ export default function Home() {
             id="limits-title"
             className="text-base font-bold text-foreground"
           >
-            읽으실 때 같이 봐 주실 것
+            읽기 전 참고
           </h2>
           <ul className="mt-3 flex flex-col gap-2 text-sm leading-6 text-muted">
             <li>
