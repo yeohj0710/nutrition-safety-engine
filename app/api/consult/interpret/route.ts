@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { callLuna, hasConsultKey } from "@/src/lib/ai-consult";
+import { clientKey, rateLimit, tooManyRequests } from "@/src/lib/rate-limit";
 import { axisCoverage } from "@/src/lib/axis-coverage";
 import {
   axes,
@@ -92,6 +93,17 @@ export async function POST(req: Request) {
       { error: "정리할 문장을 먼저 적어 주세요." },
       { status: 400 },
     );
+  }
+
+  // 사람이 문장을 고쳐 가며 여러 번 누르는 자리다. 분당 30번이면 충분하고,
+  // 그 위는 사람이 아니다.
+  const gate = rateLimit(`interpret:${clientKey(req)}`, {
+    capacity: 30,
+    windowMs: 60_000,
+  });
+  if (!gate.ok) {
+    console.warn("[consult/interpret] rate limited", { retry: gate.retryAfterSeconds });
+    return tooManyRequests(gate.retryAfterSeconds);
   }
   if (text.length > 600) {
     return NextResponse.json(

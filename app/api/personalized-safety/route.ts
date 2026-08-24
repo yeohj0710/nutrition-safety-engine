@@ -247,6 +247,44 @@ function loadExtendedAxisIndex() {
 }
 const EXTENDED_PAGE = 30;
 
+/**
+ * 같은 질의는 같은 응답을 낸다. 그것이 이 논문이 주장하는 성질이므로 결과를
+ * 인스턴스에 기억해도 답이 달라지지 않는다.
+ *
+ * 아끼는 일이 작지 않다. 확장 경로는 25,066건에 조건을 걸고 적합도와 다양성과
+ * 질의별 회전으로 다시 정렬한다. 상황이 다섯 개, 축이 다섯 개뿐이라 조합이
+ * 곧 다 채워지고 그 뒤로는 정렬을 건너뛴다.
+ *
+ * 응답 본문 문자열만 들고 있는다. NextResponse 객체는 스트림을 물고 있어
+ * 두 번 읽을 수 없다.
+ */
+const lookupCache = new Map<string, string>();
+const LOOKUP_CACHE_MAX = 300;
+
+function rememberLookup(key: string, response: NextResponse) {
+  void response
+    .clone()
+    .text()
+    .then((json) => {
+      if (lookupCache.size >= LOOKUP_CACHE_MAX) {
+        lookupCache.delete(lookupCache.keys().next().value as string);
+      }
+      lookupCache.set(key, json);
+    })
+    .catch(() => {});
+}
+
+function cachedLookup(key: string) {
+  const json = lookupCache.get(key);
+  if (!json) return null;
+  return new NextResponse(json, {
+    headers: {
+      "content-type": "application/json",
+      "Cache-Control": "no-store",
+    },
+  });
+}
+
 function sentenceRole(sentence: string): PresentedEvidence["sentence_role"] {
   if (/^(?:RESULTS?|CONCLUSIONS?|FINDINGS?|SYNTHESIS OF RESULTS):/i.test(sentence))
     return "result_or_conclusion";
@@ -255,17 +293,38 @@ function sentenceRole(sentence: string): PresentedEvidence["sentence_role"] {
   return "unclassified";
 }
 
+/**
+ * 번역 자리를 채우려고 만든 중립 표지. 사람이 읽을 문장이 아니다.
+ *
+ * v41 로 갈아끼울 때 핵심 75건이 거의 다 새 기록이라, 번역 파트 생성기가
+ * v40 에서 물려받을 문장이 없는 64건에 "원문에서 관찰된 결과를 확인합니다
+ * 수치 100 7.5 2 단위 g/d." 같은 표지를 넣었다. 빌더는 핵심 기록과 번역 키가
+ * 정확히 같아야 통과하므로 빈 값을 둘 수 없었다.
+ *
+ * 화면에 그대로 내보내면 두 가지가 망가진다. 로봇 문장이 근거 카드에 박히고,
+ * 번역이 있는 것으로 잡혀서 한국어 한 줄을 써 주는 경로(/api/consult/record)가
+ * 아예 안 돈다. 여기서 없는 것으로 되돌려 그 경로가 살아나게 한다.
+ */
+const PLACEHOLDER_KO = /^원문에서 관찰된 결과를 확인합니다/;
+
+function readableKo(value: unknown) {
+  const text = String(value ?? "").trim();
+  return PLACEHOLDER_KO.test(text) ? "" : text;
+}
+
 /** 봉인 데이터는 그대로 두고 표시 계층에서 위치와 실제 문장을 분리한다. */
 function presentEvidence(item: Evidence): PresentedEvidence {
   const { sourceLocator, sourceSentence } = deriveEvidenceSource(
     String(item.key_finding ?? ""),
     String(item.locator ?? ""),
   );
+  const keyFindingKo = readableKo(item.key_finding_ko);
   return {
     ...item,
+    key_finding_ko: keyFindingKo,
     source_locator: sourceLocator,
     source_sentence: sourceSentence,
-    translation_authorship: item.key_finding_ko ? "ai_generated" : null,
+    translation_authorship: keyFindingKo ? "ai_generated" : null,
     sentence_role: sentenceRole(sourceSentence),
   };
 }
@@ -600,6 +659,19 @@ export async function POST(req: Request) {
     ? explicitAxes.axes
     : legacyRequestedAxes;
 
+  // 응답을 정하는 입력 전부를 키로 만든다. offset 은 확장 총량을 알아야 잘리므로
+  // 클라이언트가 보낸 값을 그대로 쓴다. 같은 요청이면 같은 잘린 값이 나온다.
+  const lookupKey = JSON.stringify([
+    situation,
+    [...requestedAxes].sort(),
+    axesProvided,
+    axesProvided ? "" : Object.values(submittedInputs).join(""),
+    payload.expanded === true,
+    Number.isFinite(Number(payload.offset)) ? Number(payload.offset) : 0,
+  ]);
+  const memo = cachedLookup(lookupKey);
+  if (memo) return memo;
+
   // axes 배열이 있으면 그 배열만 사용한다. 이전 UI의 값 입력 요청은 axes 배열이
   // 없을 때만 축으로 바꾼다. 규칙 파일에 축이 없으면 적용하지 않고 그대로 알린다.
   const applied: {
@@ -820,7 +892,7 @@ export async function POST(req: Request) {
 
   const summary = narrative.join("\n\n");
 
-  return NextResponse.json(
+  const body = NextResponse.json(
     {
       situation,
       situation_label: meta?.label ?? situation,
@@ -869,4 +941,9 @@ export async function POST(req: Request) {
     },
     { headers: { "Cache-Control": "no-store" } },
   );
+
+  // 같은 질의는 같은 응답이다. 그 성질이 이 논문의 주장이므로 메모해도 안전하다.
+  // 확장 경로는 25,066건을 정렬하니 두 번째부터 그 일을 건너뛴다.
+  rememberLookup(lookupKey, body);
+  return body;
 }

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { callLuna, hasConsultKey } from "@/src/lib/ai-consult";
-import { refereeConsult } from "@/src/lib/consult-referee";
+import { clientKey, rateLimit, tooManyRequests } from "@/src/lib/rate-limit";
+import { refereeConsult, type ComposedParagraph } from "@/src/lib/consult-referee";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -116,6 +117,9 @@ type Brief = {
   outcome: string;
 };
 
+const composeCache = new Map<string, ComposedParagraph[]>();
+const COMPOSE_CACHE_MAX = 200;
+
 function readBriefs(value: unknown): Brief[] {
   if (!Array.isArray(value)) return [];
   return value
@@ -163,6 +167,41 @@ export async function POST(req: Request) {
     paragraphs: narrative.map((text) => ({ text, recordIds: [] as string[] })),
     source: "deterministic" as const,
   };
+
+  /**
+   * 같은 조회는 같은 문헌 묶음을 낸다. 조회 경로가 결정론이므로 상황과 조건이
+   * 같으면 문헌 15편이 그대로 같고, 그러면 상담문을 다시 살 이유가 없다.
+   *
+   * 이 사이트에서 값이 붙는 자리는 여기 하나뿐이고 호출당 약 0.003달러다.
+   * 캐시가 없으면 같은 상황을 누르는 방문자마다 같은 문단을 다시 산다. 상황이
+   * 다섯 개뿐이라 조건 조합까지 합쳐도 캐시가 곧 다 맞는다.
+   *
+   * 부수 효과가 하나 더 있다. 같은 조건을 다시 조회했을 때 문단이 매번 달라지지
+   * 않는다. 근거지도로서는 그게 맞는 성질이다.
+   */
+  const cacheKey = [
+    situationLabel,
+    conditionLine,
+    briefs.map((row) => row.recordId).join(","),
+  ].join("|");
+  const cachedParagraphs = composeCache.get(cacheKey);
+  if (cachedParagraphs) {
+    return NextResponse.json({
+      paragraphs: cachedParagraphs,
+      source: "ai_written" as const,
+      cached: true,
+    });
+  }
+
+  // 캐시가 빗나간 뒤에 한도를 본다. 캐시가 맞는 요청은 값이 안 들므로 세지 않는다.
+  const gate = rateLimit(`compose:${clientKey(req)}`, {
+    capacity: 60,
+    windowMs: 60_000,
+  });
+  if (!gate.ok) {
+    console.warn("[consult/compose] rate limited", { retry: gate.retryAfterSeconds });
+    return tooManyRequests(gate.retryAfterSeconds);
+  }
 
   // 폴백은 화면에서 티가 안 난다. 왜 떨어졌는지 여기서 갈라 두어야 화면이
   // 사람 말로 옮길 수 있고, 로그로도 원인이 남는다.
@@ -269,6 +308,11 @@ export async function POST(req: Request) {
 
   // 이 라우트가 이 사이트에서 값이 붙는 유일한 자리다. 응답에 사용량을 실어
   // 두면 값이 얼마나 드는지 브라우저 네트워크 탭에서 바로 센다.
+  if (composeCache.size >= COMPOSE_CACHE_MAX) {
+    composeCache.delete(composeCache.keys().next().value as string);
+  }
+  composeCache.set(cacheKey, verdict.paragraphs);
+
   return NextResponse.json({
     paragraphs: verdict.paragraphs,
     source: "ai_written" as const,

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { callLuna, hasConsultKey } from "@/src/lib/ai-consult";
+import { clientKey, rateLimit, tooManyRequests } from "@/src/lib/rate-limit";
 import { refereeRecordLine } from "@/src/lib/consult-referee";
 
 export const runtime = "nodejs";
@@ -69,8 +70,20 @@ export async function POST(req: Request) {
     `결과 문장: ${sentence}`,
   ].join("\n");
 
+  // 캐시를 먼저 본다. 이미 옮겨 둔 논문이면 한도를 깎지 않는다. 한 화면이 12건을
+  // 한꺼번에 부르므로 캐시가 맞는 요청까지 한도에 넣으면 두 번째 조회부터 걸린다.
   const cached = lineCache.get(source);
   if (cached) return NextResponse.json({ ok: true, line: cached, cached: true });
+
+  // 한 화면에 최대 12건이 나가므로 분당 20화면 몫으로 잡는다.
+  const gate = rateLimit(`record:${clientKey(req)}`, {
+    capacity: 240,
+    windowMs: 60_000,
+  });
+  if (!gate.ok) {
+    console.warn("[consult/record] rate limited", { retry: gate.retryAfterSeconds });
+    return tooManyRequests(gate.retryAfterSeconds);
+  }
 
   const result = await callLuna<{ line: unknown }>({
     developer: DEVELOPER,
