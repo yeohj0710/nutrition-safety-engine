@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0.0",
+  "track": "recollect-v2",
+  "generated_at": "2026-08-24T02:52:03+00:00",
+  "protocol": "recollect-v2",
+  "input": "data/recollect_v41/evidence_map.csv",
+  "input_sha256": "cc5dfd66357081941399deb03863bc8b3e4a0989ed31aa36d4582776669139d2",
+  "screening_input": "data/recollect_v41/agent_screening_classifications.csv",
+  "screening_sha256": "4d178457c29eb5862efa76f16d6e6794a9a7f55a4716ca9486e1b48b11ebb85d",
+  "records": 25066,
+  "by_question": {
+    "HRS1_PERIOPERATIVE": 3076,
+    "HRS2_KIDNEY_DISEASE": 5743,
+    "HRS3_PREGNANCY": 11096,
+    "HRS4_LIVER_DISEASE": 2370,
+    "HRS5_ANTICOAGULATION": 2781
+  },
+  "with_dose": 6559,
+  "with_fulltext_locator": 0,
+  "source_scope": {
+    "abstract_only": 25064,
+    "title_only": 2
+  },
+  "effect_status": {
+    "not_observed": 25066
+  },
+  "core_limit_per_question": 15,
+  "human_decisions": 0,
+  "limitations": [
+    "Codex title/abstract screening and extraction; no human reference decisions",
+    "PubMed title/abstract scope only; retained records are abstract_only or title_only",
+    "No effect estimate is imputed; unobserved values remain not_observed"
+  ],
+  "agent_gate": {
+    "applied": true,
+    "regex_passed": 51145,
+    "kept": 25066,
+    "decision_source": "data/recollect_v41/agent_screening_classifications.csv",
+    "dropped_by_agent": 26079
+  },
+  "input_provenance": {
+    "corpus_manifest": {
+      "path": "data/recollect_v41/corpus_manifest.json",
+      "sha256": "c5f8a5532e6b825e96862eddf598dd6f4ddea21a7a3b3f97dcf84e51802f1288"
+    },
+    "screening_manifest": {
+      "path": "data/recollect_v41/screening_manifest.json",
+      "sha256": "47499c3d3b1c200dfadb4a7c2eab8efccbd23f7db870bdd428e99ef2a5497fb6"
+    },
+    "adapter_report": {
+      "path": "data/recollect_v41/adapter_report.json",
+      "sha256": "e35ccde2498187e7066fcf3592294a97ce354c26ae7c504fb95ae152d831cc6f"
+    },
+    "base_builder": {
+      "path": "tools/v41/base_builder.py",
+      "sha256": "2028ba74495c2e162a0863effbb98a27f326453152c1698af831736d518084e8"
+    }
+  },
+  "output_hashes": {
+    "regex_gate_sha256": "e58db3da13071b6c558f7e091a3bd6acda6ac5f279db48cc9ca3fa9da25a681b",
+    "evidence_bundle_sha256": "bc4859012257c6896b9cc8f1b6e3592d902e1b002bf7e4d2172afc598aa1880b",
+    "core_evidence_sha256": "3a3c4a4d64774ad771d52fcfbd46d259b0e984cd68c979d545db1b51dc105437"
+  },
+  "verbatim_source_fields": [
+    "abstract",
+    "authors",
+    "doi",
+    "dose",
+    "key_finding",
+    "locator",
+    "locator_text",
+    "outcome",
+    "population",
+    "publication_types",
+    "raw_source_path",
+    "raw_source_sha256",
+    "source_text",
+    "title",
+    "url",
+    "venue"
+  ]
+}

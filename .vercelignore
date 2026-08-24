@@ -10,7 +10,7 @@ coverage
 # 연구 원자료는 배포 업로드에서 뺀다. 전부 올리면 약 1.4GB 라 Vercel CLI 가
 # "Upload aborted" 로 죽는다. 제외 후 60MB 미만.
 #
-# research/systematic_review_v40 은 여기 넣으면 안 된다. app/page.tsx 와
+# research/systematic_review_v41 은 여기 넣으면 안 된다. app/page.tsx 와
 # app/api/personalized-safety/route.ts 가 그 아래 manifest.json,
 # core_manifest.json, personalized_rules.json 을 import 하므로 빌드가 깨진다.
 research/searches_v4

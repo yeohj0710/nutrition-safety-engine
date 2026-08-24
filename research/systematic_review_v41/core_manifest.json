@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.0.0",
+  "track": "recollect-v2",
+  "generated_at": "2026-08-24T02:56:05+00:00",
+  "core_records": 75,
+  "per_question": {
+    "HRS1_PERIOPERATIVE": 15,
+    "HRS2_KIDNEY_DISEASE": 15,
+    "HRS3_PREGNANCY": 15,
+    "HRS4_LIVER_DISEASE": 15,
+    "HRS5_ANTICOAGULATION": 15
+  },
+  "rules": 30,
+  "source_sha256": "bc4859012257c6896b9cc8f1b6e3592d902e1b002bf7e4d2172afc598aa1880b",
+  "core_sha256": "3a3c4a4d64774ad771d52fcfbd46d259b0e984cd68c979d545db1b51dc105437",
+  "translation_sha256": "d4f911fda18944ce6f9f940d57a3bdf7575610d93789b5246d10adcb685db894",
+  "translation_authorship": "ai_generated",
+  "personalization": {
+    "axes": [
+      "age_group",
+      "concomitant_medication",
+      "dose_range",
+      "sex",
+      "underlying_condition"
+    ],
+    "evidence_rows_by_question_and_axis": {
+      "HRS1_PERIOPERATIVE": {
+        "age_group": 8,
+        "concomitant_medication": 6,
+        "sex": 4,
+        "underlying_condition": 1
+      },
+      "HRS2_KIDNEY_DISEASE": {
+        "age_group": 10,
+        "concomitant_medication": 1,
+        "dose_range": 3,
+        "sex": 2,
+        "underlying_condition": 15
+      },
+      "HRS3_PREGNANCY": {
+        "age_group": 13,
+        "dose_range": 3,
+        "sex": 13,
+        "underlying_condition": 14
+      },
+      "HRS4_LIVER_DISEASE": {
+        "age_group": 8,
+        "concomitant_medication": 1,
+        "sex": 2,
+        "underlying_condition": 11
+      },
+      "HRS5_ANTICOAGULATION": {
+        "age_group": 4,
+        "concomitant_medication": 15,
+        "underlying_condition": 2
+      }
+    },
+    "compatibility_aliases": {
+      "A1": {
+        "source_question_id": "HRS5_ANTICOAGULATION",
+        "ingredient": "비타민 K"
+      },
+      "A2": {
+        "source_question_id": "HRS5_ANTICOAGULATION",
+        "ingredient": "오메가-3"
+      },
+      "B1": {
+        "source_question_id": "HRS2_KIDNEY_DISEASE",
+        "ingredient": "칼슘"
+      },
+      "B2": {
+        "source_question_id": "HRS2_KIDNEY_DISEASE",
+        "ingredient": "비타민 D"
+      },
+      "B3": {
+        "source_question_id": "HRS2_KIDNEY_DISEASE",
+        "ingredient": "비타민 C"
+      }
+    }
+  },
+  "agent_gate": {
+    "applied": true,
+    "regex_passed": 51145,
+    "kept": 25066,
+    "decision_source": "data/recollect_v41/agent_screening_classifications.csv",
+    "dropped_by_agent": 26079
+  },
+  "rules_sha256": "c8b5d7f7695d398a768fecbb69ec354406566470a00fc32dec0f04b5d9e9ef46",
+  "translation_parts": [
+    {
+      "path": "research/systematic_review_v41/etc/translation_parts/hrs1_perioperative.json",
+      "sha256": "e1bbaa16e5e91f6f41289789977a155e73eaec9075dac7f342c076ca9d8772f4"
+    },
+    {
+      "path": "research/systematic_review_v41/etc/translation_parts/hrs2_kidney_disease.json",
+      "sha256": "63f81a338db057d2f6a0f3e1a8cda256f90b8f48651e74d7f586d422e95edc3c"
+    },
+    {
+      "path": "research/systematic_review_v41/etc/translation_parts/hrs3_pregnancy.json",
+      "sha256": "40199c6dafe2bcedc29a584e4cfdcc4214381b93b459b095a81c698bcbc5e67a"
+    },
+    {
+      "path": "research/systematic_review_v41/etc/translation_parts/hrs4_liver_disease.json",
+      "sha256": "6ed7b167eaaf7d042f9cbe25f7ee12d4d1069d503af4b03edcf8bf5336dcb516"
+    },
+    {
+      "path": "research/systematic_review_v41/etc/translation_parts/hrs5_anticoagulation.json",
+      "sha256": "e656e9b629aac28c138e42e0a3ba93c261036ce468a510384e8eca243e2d2b8d"
+    }
+  ],
+  "translation_parts_index_sha256": "bf218f510904910953c332855394ec7f709482aae1b88e1259f1024b05b1c87f",
+  "input_provenance": {
+    "corpus_manifest": {
+      "path": "data/recollect_v41/corpus_manifest.json",
+      "sha256": "c5f8a5532e6b825e96862eddf598dd6f4ddea21a7a3b3f97dcf84e51802f1288"
+    },
+    "screening_manifest": {
+      "path": "data/recollect_v41/screening_manifest.json",
+      "sha256": "47499c3d3b1c200dfadb4a7c2eab8efccbd23f7db870bdd428e99ef2a5497fb6"
+    },
+    "adapter_report": {
+      "path": "data/recollect_v41/adapter_report.json",
+      "sha256": "e35ccde2498187e7066fcf3592294a97ce354c26ae7c504fb95ae152d831cc6f"
+    },
+    "base_builder": {
+      "path": "tools/v41/base_builder.py",
+      "sha256": "2028ba74495c2e162a0863effbb98a27f326453152c1698af831736d518084e8"
+    }
+  },
+  "generator": {
+    "path": "tools/v41/build_site_v41.py",
+    "sha256": "ee1be3e78bb1bb1bece03ae8911653d16a8196fdd1b5d724facf8a3a5e95dc6d",
+    "base_path": "tools/v41/base_builder.py",
+    "base_sha256": "2028ba74495c2e162a0863effbb98a27f326453152c1698af831736d518084e8"
+  },
+  "verbatim_source_fields": [
+    "abstract",
+    "authors",
+    "doi",
+    "dose",
+    "key_finding",
+    "locator",
+    "locator_text",
+    "outcome",
+    "population",
+    "publication_types",
+    "raw_source_path",
+    "raw_source_sha256",
+    "source_text",
+    "title",
+    "url",
+    "venue"
+  ]
+}

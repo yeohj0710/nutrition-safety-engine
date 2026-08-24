@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import manifest from "@/research/systematic_review_v40/manifest.json";
-import core from "@/research/systematic_review_v40/core_manifest.json";
+import manifest from "@/research/systematic_review_v41/manifest.json";
+import core from "@/research/systematic_review_v41/core_manifest.json";
 import { PersonalizedSafetyQuery } from "@/src/components/personalized-safety-query";
 import { siteDescription, siteName } from "@/src/lib/site";
 
@@ -44,7 +44,7 @@ export default function Home() {
     <main
       id="main-content"
       tabIndex={-1}
-      data-scope="ai_selected_thesis_scope_v40"
+      data-scope="ai_selected_thesis_scope_v41"
       className="app-page flex-1 px-4 py-4 sm:px-6 sm:py-6"
     >
       <div className="page-shell page-stack">

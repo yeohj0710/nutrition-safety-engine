@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import rules from "@/research/systematic_review_v40/personalized_rules.json";
+import rules from "@/research/systematic_review_v41/personalized_rules.json";
 import {
   axes,
   evidenceOnlyDisclaimer,

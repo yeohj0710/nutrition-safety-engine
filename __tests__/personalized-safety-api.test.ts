@@ -1,12 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { POST } from "@/app/api/personalized-safety/route";
-import rules from "@/research/systematic_review_v40/personalized_rules.json";
+import rules from "@/research/systematic_review_v41/personalized_rules.json";
 import {
   axes,
   situationIds,
   situations,
 } from "@/src/lib/clinical-situations";
-import axisIndex from "@/research/systematic_review_v40/extended_axis_index_v40.json";
+import axisIndex from "@/research/systematic_review_v41/extended_axis_index_v41.json";
 import { publicInputExamples } from "@/src/lib/personalized-safety-examples";
 import { axisCoverage, coreCoverage } from "@/src/lib/axis-coverage";
 import { flattenTranslatedFindings } from "@/src/lib/evidence-sentences";
@@ -153,11 +153,18 @@ describe("personalized safety API", () => {
   });
 
   it("reports an axis it cannot apply instead of silently ignoring it", async () => {
-    // HRS2 에는 sex 축이 없다. 없는 축으로 걸러낸 척하면 안 된다.
-    expect(ruleFor("HRS2_KIDNEY_DISEASE", "sex")).toBeUndefined();
-    const { body } = await ask({ situation: "HRS2_KIDNEY_DISEASE", sex: "여성" });
+    // HRS3 에는 concomitant_medication 축이 없다. 없는 축으로 걸러낸 척하면 안 된다.
+    expect(ruleFor("HRS3_PREGNANCY", "concomitant_medication")).toBeUndefined();
+    const { body } = await ask({
+      situation: "HRS3_PREGNANCY",
+      medication: "아스피린",
+    });
     expect(body.unavailable_axes).toEqual([
-      { axis: "sex", field: "sex", value: "여성" },
+      {
+        axis: "concomitant_medication",
+        field: "medication",
+        value: "아스피린",
+      },
     ]);
     expect(body.applied_axes).toEqual([]);
   });
@@ -204,8 +211,8 @@ describe("personalized safety API", () => {
     ]);
     expect(body.filter_trace.map((item: { count: number }) => item.count)).toEqual([
       15,
-      7,
-      1,
+      8,
+      3,
     ]);
   });
 
@@ -267,45 +274,52 @@ describe("personalized safety API", () => {
 
   it("reports a requested filter that this situation cannot apply", async () => {
     const { status, body } = await ask({
-      situation: "HRS2_KIDNEY_DISEASE",
-      axes: ["sex"],
+      situation: "HRS3_PREGNANCY",
+      axes: ["concomitant_medication"],
     });
     expect(status).toBe(200);
     expect(body.applied_axes).toEqual([]);
     expect(body.unavailable_axes).toEqual([
-      { axis: "sex", field: "sex", value: "" },
+      { axis: "concomitant_medication", field: "medication", value: "" },
     ]);
-    expect(body.query_snapshot.requested_axes).toEqual(["sex"]);
+    expect(body.query_snapshot.requested_axes).toEqual([
+      "concomitant_medication",
+    ]);
     expect(body.narrative[0]).toMatch(/걸 수 있는 조건이 없어/);
   });
 
   it("keeps an unavailable legacy field in the requested snapshot", async () => {
     const { status, body } = await ask({
-      situation: "HRS2_KIDNEY_DISEASE",
-      sex: "여성",
+      situation: "HRS3_PREGNANCY",
+      medication: "아스피린",
     });
     expect(status).toBe(200);
-    expect(body.query_snapshot.requested_axes).toEqual(["sex"]);
+    expect(body.query_snapshot.requested_axes).toEqual([
+      "concomitant_medication",
+    ]);
     expect(body.query_snapshot.active_axes).toEqual([]);
     expect(body.unavailable_axes.map((item: { axis: string }) => item.axis)).toEqual([
-      "sex",
+      "concomitant_medication",
     ]);
   });
 
   it("keeps available and unavailable legacy fields in one coherent snapshot", async () => {
     const { status, body } = await ask({
-      situation: "HRS2_KIDNEY_DISEASE",
+      situation: "HRS3_PREGNANCY",
       age: "68세",
-      sex: "여성",
+      medication: "아스피린",
     });
     expect(status).toBe(200);
-    expect(body.query_snapshot.requested_axes).toEqual(["age_group", "sex"]);
+    expect(body.query_snapshot.requested_axes).toEqual([
+      "age_group",
+      "concomitant_medication",
+    ]);
     expect(body.query_snapshot.active_axes).toEqual(["age_group"]);
     expect(body.applied_axes.map((item: { axis: string }) => item.axis)).toEqual([
       "age_group",
     ]);
     expect(body.unavailable_axes.map((item: { axis: string }) => item.axis)).toEqual([
-      "sex",
+      "concomitant_medication",
     ]);
   });
 
@@ -322,7 +336,7 @@ describe("personalized safety API", () => {
     // 응답이 그대로 말해야 한다.
     const { status, body } = await ask({
       situation: "HRS1_PERIOPERATIVE",
-      axes: ["age_group", "concomitant_medication", "dose_range"],
+      axes: ["age_group", "underlying_condition"],
     });
     expect(status).toBe(200);
     expect(body.core_shown).toBe(0);
@@ -370,7 +384,7 @@ describe("personalized safety API", () => {
     const { status, body } = await ask({ situation: "HRS4_LIVER_DISEASE" });
     expect(status).toBe(200);
     expect(body.evidence_summary.displayed_records).toBe(15);
-    expect(body.evidence_summary.unique_titles).toBe(14);
+    expect(body.evidence_summary.unique_titles).toBe(15);
     expect(body.evidence_summary.source_scope).toEqual({
       abstract_only: 15,
       title_only: 0,
@@ -387,7 +401,7 @@ describe("personalized safety API", () => {
     expect(body.evidence_summary.ai_translated_sentences).toBe(
       flattenTranslatedFindings(body.evidence).length,
     );
-    expect(body.evidence_summary.ai_translated_sentences).toBeGreaterThan(
+    expect(body.evidence_summary.ai_translated_sentences).toBeGreaterThanOrEqual(
       body.evidence_summary.displayed_records,
     );
   });

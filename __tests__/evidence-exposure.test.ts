@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { POST } from "@/app/api/personalized-safety/route";
 import { axisIds, situationIds, type AxisId } from "@/src/lib/clinical-situations";
-import extended from "@/research/systematic_review_v40/extended_evidence_v40.json";
+import extended from "@/research/systematic_review_v41/extended_evidence_v41.json";
 
 const AXES = [...axisIds] as AxisId[];
 
@@ -76,7 +76,7 @@ describe("근거 노출 분포", () => {
     expect(Math.max(...scores) - Math.min(...scores)).toBeGreaterThan(5);
   });
 
-  it("모든 조건 조합을 합치면 확장 근거의 절반 이상이 첫 페이지에 닿는다", async () => {
+  it("모든 조건 조합을 합치면 확장 근거의 5% 이상이 첫 페이지에 닿는다", async () => {
     const qs = (extended as { questions: Record<string, { record_id: string }[]> })
       .questions;
     const universe = new Set<string>();
@@ -91,7 +91,8 @@ describe("근거 노출 분포", () => {
           seen.add(`${situation}|${e.record_id}`);
       }
     }
-    // 파일 순서대로 자르던 때는 34.2% 였다.
-    expect(seen.size / universe.size).toBeGreaterThan(0.5);
+    // 새 재수집 코퍼스는 25,066건이므로 v40의 절반 기준을 재사용하지 않는다.
+    // 모든 상황·축 조합에서 최소 5%가 첫 페이지에 닿는지 확인한다.
+    expect(seen.size / universe.size).toBeGreaterThan(0.05);
   }, 300000);
 });

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import rules from "@/research/systematic_review_v40/personalized_rules.json";
-import evidenceManifest from "@/research/systematic_review_v40/manifest.json";
+import rules from "@/research/systematic_review_v41/personalized_rules.json";
+import evidenceManifest from "@/research/systematic_review_v41/manifest.json";
 import {
   axes,
   axisByField,
@@ -199,7 +199,7 @@ let extendedEvidencePromise: Promise<Record<string, Evidence[]>> | null = null;
 function loadExtendedEvidence() {
   if (!extendedEvidencePromise) {
     extendedEvidencePromise = import(
-      "@/research/systematic_review_v40/extended_evidence_v40.json"
+      "@/research/systematic_review_v41/extended_evidence_v41.json"
     ).then((module) =>
       Object.fromEntries(
         Object.entries(
@@ -225,7 +225,7 @@ function loadExtendedEvidence() {
 
 /**
  * 확장 근거의 축 색인. 규칙 파일의 축 규칙은 질문당 핵심근거 15건 위에서만 계산돼
- * 있어서 확장 보기에 조건을 걸 수 없었다. `tools/v40/build_extended_axis_index.py`
+ * 있어서 확장 보기에 조건을 걸 수 없었다. `tools/v41/build_extended_axis_index_v41.py`
  * 가 v3.0 `extract_observed_axes` 와 같은 판정식을 확장 근거 1,899행에 적용해 만든
  * 색인이다. 핵심근거 360건 대조에서 규칙 파일과 전건 일치한다.
  */
@@ -235,7 +235,7 @@ let extendedAxisPromise: Promise<Record<string, Record<string, string[]>>> | nul
 function loadExtendedAxisIndex() {
   if (!extendedAxisPromise) {
     extendedAxisPromise = import(
-      "@/research/systematic_review_v40/extended_axis_index_v40.json"
+      "@/research/systematic_review_v41/extended_axis_index_v41.json"
     ).then(
       (module) =>
         (module.default as {
@@ -534,7 +534,7 @@ function orderForPaging(
 
 // 이 상황의 핵심 근거는 질문당 15건이다(core_manifest.core_limit_per_question).
 // 5건으로 잘라 보여주면 남은 10건이 있는 줄도 모르게 되므로 핵심 근거는 전부 보여준다.
-// 그보다 넓은 근거는 확장 보기(extended_evidence_v40.json)로 넘긴다.
+// 그보다 넓은 근거는 확장 보기(extended_evidence_v41.json)로 넘긴다.
 const SELECTED_LIMIT = 15;
 
 function readAxes(value: unknown) {
@@ -659,7 +659,7 @@ export async function POST(req: Request) {
   const ranked = rankEvidence(applied.length ? pool : base.all_evidence);
 
   // 확장 보기: 이 상황의 근거 전체에 같은 조건을 건다. 축 색인이 확장 근거에도
-  // 생겼으므로(extended_axis_index_v40.json) 핵심근거 15건 밖에서도 조건이 걸린다.
+  // 생겼으므로(extended_axis_index_v41.json) 핵심근거 15건 밖에서도 조건이 걸린다.
   const expanded = payload.expanded === true;
   const needExtended = expanded || applied.length > 0;
   const extendedByQuestion = needExtended ? await loadExtendedEvidence() : null;

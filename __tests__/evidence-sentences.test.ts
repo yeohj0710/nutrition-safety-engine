@@ -1,5 +1,4 @@
 import { describe, expect, it } from "vitest";
-import rules from "@/research/systematic_review_v40/personalized_rules.json";
 import {
   deriveEvidenceSource,
   flattenTranslatedFindings,
@@ -7,20 +6,19 @@ import {
 } from "@/src/lib/evidence-sentences";
 
 type EvidenceFixture = { record_id: string; key_finding_ko: string };
-type RuleFixture = {
-  personalization_axis: string;
-  all_evidence: EvidenceFixture[];
+const multiSentence: EvidenceFixture = {
+  record_id: "fixture:multi-sentence",
+  key_finding_ko:
+    "Hb는 0.7 g/dL에서 0.1 g/dL로 변했습니다. 0.5 units/patient에서 1.2 units/pt로 늘었습니다.",
 };
-
-const allRules = rules as unknown as RuleFixture[];
+const nextPaper: EvidenceFixture = {
+  record_id: "fixture:next-paper",
+  key_finding_ko: "두 번째 문헌의 결과입니다.",
+};
 
 describe("evidence sentence presentation", () => {
   it("splits an actual multi-sentence core finding without splitting decimals", () => {
-    const fixture = allRules
-      .find((rule) => rule.personalization_axis === "base")!
-      .all_evidence.find((item) => item.record_id === "pubmed:36580029")!;
-
-    const sentences = splitEvidenceSentences(fixture.key_finding_ko);
+    const sentences = splitEvidenceSentences(multiSentence.key_finding_ko);
     expect(sentences).toHaveLength(2);
     expect(sentences[0]).toContain("0.7 g/dL");
     expect(sentences[0]).toContain("0.1 g/dL");
@@ -52,16 +50,6 @@ describe("evidence sentence presentation", () => {
   });
 
   it("flattens papers before taking the first three displayed sentences", () => {
-    const baseEvidence = allRules.find(
-      (rule) => rule.personalization_axis === "base",
-    )!.all_evidence;
-    const multiSentence = baseEvidence.find(
-      (item) => item.record_id === "pubmed:36580029",
-    )!;
-    const nextPaper = baseEvidence.find(
-      (item) => item.record_id !== multiSentence.record_id,
-    )!;
-
     const flattened = flattenTranslatedFindings([multiSentence, nextPaper]);
     expect(flattened.slice(0, 3)).toHaveLength(3);
     expect(flattened.slice(0, 3).map((item) => item.paperNumber)).toEqual([

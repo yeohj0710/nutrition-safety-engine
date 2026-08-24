@@ -1,5 +1,5 @@
 // 연구가 다루는 임상 상황 다섯과 개인화 축 다섯을 한곳에 둔다.
-// 값은 research/systematic_review_v40/personalized_rules.json 의 question_id 및
+// 값은 research/systematic_review_v41/personalized_rules.json 의 question_id 및
 // personalization_axis 와 정확히 일치해야 한다. 사이트가 규칙 파일에 없는 조합을
 // 만들어내면 근거 없는 화면이 나오므로, 실제 존재 여부는 런타임에서 다시 확인한다.
 

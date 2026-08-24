@@ -71,3 +71,10 @@ research/searches_v4/*/pubmed/*/efetch_*.xml
 data/curated_v4/evidence_map.csv
 research/screening/v40_agent/batches/
 research/screening/v40_agent/etc/failed_classifier_*/
+
+# 재수집 트랙(v41) 대용량 산출물. 아래 두 CSV 는 82MiB 와 18MiB 라 저장소를
+# 부풀리고, 앱이 읽지 않는 중간 파일이다. tools/v41/build_site_v41.py 로 다시
+# 만든다. 코퍼스 입력도 같은 이유로 뺀다(472MiB).
+data/recollect_v41/
+research/systematic_review_v41/picos_extraction.csv
+research/systematic_review_v41/regex_gate.csv
