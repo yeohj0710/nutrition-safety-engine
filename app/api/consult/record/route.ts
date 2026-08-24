@@ -41,6 +41,18 @@ const SCHEMA = {
 
 const str = (v: unknown, n = 400) => (typeof v === "string" ? v.slice(0, n) : "");
 
+/**
+ * 같은 논문은 몇 번을 조회해도 같은 한 줄이 나온다. 이 라우트는 화면이 결과를
+ * 그릴 때마다 최대 12건을 한꺼번에 부르므로, 캐시가 없으면 같은 논문을 방문자
+ * 수만큼 다시 사 오게 된다. 75건짜리 핵심 근거는 한 바퀴 돌면 그 뒤로 값이
+ * 들지 않는다.
+ *
+ * 서버리스라 인스턴스가 재활용될 때만 산다. 그래도 한 사람이 상황 다섯 개를
+ * 눌러 보는 동안은 거의 다 맞는다. 영구 저장소를 붙일 일이 아니다.
+ */
+const lineCache = new Map<string, string>();
+const CACHE_MAX = 400;
+
 export async function POST(req: Request) {
   const body = (await req.json().catch(() => null)) as Record<string, unknown> | null;
   const sentence = str(body?.source_sentence);
@@ -55,6 +67,9 @@ export async function POST(req: Request) {
     `연구유형: ${str(String(body?.publication_types ?? "").split("|")[0], 60)}`,
     `결과 문장: ${sentence}`,
   ].join("\n");
+
+  const cached = lineCache.get(source);
+  if (cached) return NextResponse.json({ ok: true, line: cached, cached: true });
 
   const result = await callLuna<{ line: unknown }>({
     developer: DEVELOPER,
@@ -77,6 +92,11 @@ export async function POST(req: Request) {
     console.warn("[consult/record] refereed out", { reason: verdict.reason });
     return NextResponse.json({ ok: false, reason: verdict.reason });
   }
+
+  if (lineCache.size >= CACHE_MAX) {
+    lineCache.delete(lineCache.keys().next().value as string);
+  }
+  lineCache.set(source, verdict.line);
 
   return NextResponse.json({ ok: true, line: verdict.line });
 }

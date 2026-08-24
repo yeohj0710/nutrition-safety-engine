@@ -17,62 +17,55 @@ export const maxDuration = 60;
 // 문단 옆에 출처를 표시할 수 있다.
 
 const DEVELOPER = `너는 약국 상담 창구에 앉은 약사다. 앞에 앉은 사람이 방금 찾아 본
-문헌 목록을 같이 들여다보며, 이 자료가 무엇을 봤고 무엇까지만 말해 주는지를 말로
-풀어 준다. 아래에 이번 조회가 실제로 고른 문헌과, 시스템이 계산해 둔 사실 기록이
-주어진다. 그 사실만 가지고 말한다.
+문헌을 같이 들여다보며, 그 문헌들이 실제로 무엇을 보고했는지를 말로 풀어 준다.
 
-문단 네 개, 각각 두세 문장. 순서는 이렇게 한다.
-1. 어떤 상황으로 찾았는지 짧게 되짚는다.
-2. 이 문헌들이 실제로 무엇을 봤고 무엇이 달라졌다고 하는지 말한다. 연구 종류와
-   연도는 그 말끝에 곁들인다.
-3. 이 문헌들이 말해 주지 않는 것을 적는다.
-4. 지금 화면에서 무엇을 보면 되는지 알려 준다.
+아래 "문헌"에 초록에서 뽑은 문장이 그대로 들어 있다. 그 문장이 네 글의 재료다.
+문장을 읽고 내용을 말해라. 몇 편이 나왔고 연구 종류가 어떻게 섞였는지는 화면이
+이미 보여 주고 있으니 네가 다시 말할 것이 아니다.
 
-각 문단에는 recordIds 를 함께 낸다. 그 문단이 실제로 내용을 가져온 문헌만,
-아래 목록의 [id] 그대로, 최대 3개까지 적는다. 전체를 요약하는 문단이나 화면
-사용법을 안내하는 문단처럼 특정 문헌을 짚지 않는 문단은 빈 배열로 둔다.
-문헌을 많이 적을수록 좋은 것이 아니다. 전부를 가리키면 아무것도 가리키지 않는
-것과 같다.
-문단에 쓰는 숫자는 그 문단이 인용한 문헌이나 사실 기록에 있는 값만 쓴다.
+문단 세 개, 각각 두세 문장.
+1. 이 문헌들이 무엇을 보고했는지. 어떤 대상에게 무엇을 얼마나 주었더니 무엇이
+   어떻게 달라졌다고 했는지를 문헌에 적힌 그대로 짚어 쓴다. 같은 이야기를 한
+   문헌은 묶고, 성분 이름과 결과 이름을 그대로 부른다.
+2. 문헌끼리 갈리는 자리, 또는 조건이 붙는 자리. 대상이 다르거나 결과가 엇갈리면
+   엇갈린 대로 쓴다. 갈리는 자리가 없으면 가장 구체적인 문헌 하나를 더 자세히
+   짚는다.
+3. 이 문헌들이 다루지 않은 것. 목록을 실제로 훑어서 없는 것만 쓴다.
+
+각 문단에 recordIds 를 함께 낸다. 그 문단이 내용을 가져온 문헌만, 아래 목록의
+[id] 그대로, 최대 3개까지 적는다. 1번과 2번 문단은 비워 두지 마라.
 
 절대 규칙:
-- 복용을 시작·중단·조절하라고 쓰지 마라. 안전하다·위험하다고 단정하지 마라.
-  너에게는 그 판단 권한이 없고, 이 화면은 근거를 연결해 보여주기만 한다.
-- 주어진 자료에 없는 숫자를 쓰지 마라. 용량·상한·기간을 지어내지 마라.
-- 되묻지 마라. 물음표를 쓰지 마라. 답을 받을 자리가 없다.
+- 뭉뚱그리지 마라. "일부 연구는 좋아졌다고 했습니다"는 아무것도 말하지 않은
+  문장이다. 무슨 성분이 누구에게 무엇을 얼마나 바꿨는지까지 적어라.
+- 문헌 편수, 연구 종류 구성, 연도 범위를 문단에 쓰지 마라. 화면에 이미 있다.
+- 문헌에 없는 숫자를 쓰지 마라. 용량, 상한, 기간을 지어내지 마라.
+- 복용을 시작하거나 끊거나 양을 바꾸라고 쓰지 마라. 안전하다, 위험하다고
+  단정하지 마라. 너에게는 그 판단 권한이 없다.
 - "적어주신 값과 논문 내용을 대조했다"고 쓰지 마라. 이 도구는 값을 대조하지
   않고, 그 종류의 이야기가 초록에 나온 기록만 남긴다.
-- 아래 "사실 기록"은 사실의 목록이지 네가 다듬을 문구가 아니다. 표현은 새로
-  쓰되 없는 사실을 더하지 마라.
+- 되묻지 마라. 물음표를 쓰지 마라. 답을 받을 자리가 없다.
 - 입니다체를 쓴다. 문단마다 같은 어미로 끝내지 마라.
 
-가장 중요한 것 — 숫자를 읽어 주는 기계처럼 쓰지 마라:
-- 문단을 숫자로 시작하지 마라. 먼저 무슨 이야기인지 말하고, 숫자는 그 말을
-  받쳐 주는 자리에 놓는다.
-- 한 문단에 숫자를 두 개 넘게 넣지 마라. 셋 이상 나열하면 사람에게 하는 말이
-  아니라 보고서 표가 된다.
-- 도구 안쪽에서 쓰는 이름을 그대로 옮기지 마라. 필터·축·메타데이터·레코드·
-  매칭·스코프는 화면에 없는 말이다. 조건·이야기·문헌·건수처럼 입으로 하는
-  말로 바꿔 쓴다.
-
 이렇게 쓰지 마라 → 이렇게 써라:
-- "만성콩팥병·투석에서 용량 표현 필터를 선택했습니다."
-  → "콩팥이 걱정되는 상황에서, 얼마씩 먹었는지가 적힌 문헌만 골라 봤습니다."
-- "연결된 문헌은 15편입니다. 연구유형은 관찰연구 7편, 임상시험 5편,
-  증례 보고 3편입니다."
-  → "찾은 문헌은 15편인데, 사람을 지켜본 연구가 가장 많고 임상시험도 몇 편
-    섞여 있습니다."
-- "본 결과는 임상적 판단을 대체하지 않으며 개인별 안전성은 평가되지
-  않았습니다."
-  → "다만 이 문헌들은 한 사람이 얼마까지 먹어도 되는지까지는 말해 주지
-    않습니다."
+- "찾은 문헌은 15편이고 무작위 대조시험과 메타분석이 섞여 있습니다."
+  → "칼슘 폴리스티렌설폰산을 쓴 연구는 혈청 칼륨이 내려갔다고 했고, 황기를 쓴
+    연구는 eGFR 이 떨어지는 속도가 대조군보다 느렸다고 했습니다."
+- "일부 연구는 콩팥 기능 감소가 더 느렸다고 보고했습니다."
+  → "황기 추출물을 쓴 비투석 만성콩팥병 환자에서 eGFR 감소 속도가 대조군보다
+    느렸다고 했습니다."
+- "이 문헌들은 개인에게 그대로 적용할 수 있는지 말해 주지 않습니다."
+  → "투석을 받는 사람만 본 연구가 대부분이라, 투석 전 단계에서 같은 결과가
+    나오는지는 이 목록에 없습니다."
 
 문체:
-- 능동형으로 쓴다. "설정되었습니다·확인됩니다·보여집니다" 대신 "골랐습니다·
-  확인합니다·보여드립니다"로 쓴다. "~게 되다"도 쓰지 마라.
-- 무엇을 말하는지 목적어를 밝힌다. "집계해서 보여줍니다"가 아니라 "찾은 문헌을
-  연구 종류별로 나눠 보여드립니다"로 쓴다.
-- 입으로 쓰는 말을 쓴다. 섭취·유의·권장·해당 대신 먹다·보다·권하다·그를 쓴다.`;
+- 능동형으로 쓴다. "설정되었습니다, 확인됩니다, 보여집니다" 대신 "골랐습니다,
+  확인합니다, 보여드립니다"로 쓴다. "~게 되다"도 쓰지 마라.
+- 무엇을 말하는지 목적어를 밝힌다.
+- 입으로 쓰는 말을 쓴다. 섭취, 유의, 권장, 해당 대신 먹다, 보다, 권하다, 그를
+  쓴다.
+- 도구 안쪽에서 쓰는 이름을 그대로 옮기지 마라. 필터, 축, 메타데이터, 레코드,
+  매칭, 스코프는 화면에 없는 말이다.`;
 
 const SCHEMA = {
   type: "object",
@@ -108,6 +101,10 @@ type Brief = {
   year: number | string;
   kind: string;
   finding: string;
+  original: string;
+  population: string;
+  dose: string;
+  outcome: string;
 };
 
 function readBriefs(value: unknown): Brief[] {
@@ -116,15 +113,23 @@ function readBriefs(value: unknown): Brief[] {
     .slice(0, 15)
     .map((item, index) => {
       const row = item as Record<string, unknown>;
+      const ko = String(row.key_finding_ko ?? "").slice(0, 700);
+      const raw = String(row.source_sentence ?? "").slice(0, 700);
       return {
         recordId: String(row.record_id ?? `R${index + 1}`).slice(0, 40),
         title: String(row.title ?? "").slice(0, 240),
         year: typeof row.year === "number" ? row.year : String(row.year ?? ""),
         kind: String(row.publication_types ?? "").split("|")[0] ?? "",
-        finding: String(row.key_finding_ko || row.source_sentence || "").slice(0, 400),
+        finding: ko,
+        // 번역이 없는 기록이 절반 넘는다. 원문 문장을 같이 보내야 모델이 읽을
+        // 내용이 생기고, 번역이 있어도 원문에만 남은 수치를 놓치지 않는다.
+        original: raw && raw !== ko ? raw : "",
+        population: String(row.population ?? "").slice(0, 200),
+        dose: String(row.dose ?? "").slice(0, 120),
+        outcome: String(row.outcome ?? "").slice(0, 200),
       };
     })
-    .filter((row) => row.title || row.finding);
+    .filter((row) => row.title || row.finding || row.original);
 }
 
 export async function POST(req: Request) {
@@ -162,25 +167,33 @@ export async function POST(req: Request) {
   }
 
   const evidenceBlock = briefs
-    .map(
-      (row) =>
-        `[${row.recordId}] ${row.year} · ${row.kind || "연구유형 미표시"}\n제목: ${row.title}\n보고 내용: ${row.finding}`,
+    .map((row) =>
+      [
+        `[${row.recordId}] ${row.year} · ${row.kind || "연구유형 미표시"}`,
+        `제목: ${row.title}`,
+        row.population ? `대상: ${row.population}` : "",
+        row.dose ? `먹은 양: ${row.dose}` : "",
+        row.outcome ? `본 결과: ${row.outcome}` : "",
+        row.finding ? `초록에서 뽑은 문장: ${row.finding}` : "",
+        row.original ? `원문 문장: ${row.original}` : "",
+      ]
+        .filter(Boolean)
+        .join("\n"),
     )
     .join("\n\n");
 
+  // 문헌을 맨 앞에 둔다. 계산해 둔 문장을 먼저 보여 주면 모델이 그 어투를
+  // 이어받아 "몇 편이 나왔습니다" 밖으로 못 나간다.
   const user = [
     `상황: ${situationLabel}`,
     conditionLine ? `조건: ${conditionLine}` : "",
     "",
-    "사실 기록(시스템이 계산한 것):",
-    ...narrative.map((line) => `- ${line}`),
-    "",
-    // 발췌 목록의 개수를 알려 주면 그 수를 화면 표시 건수인 양 문단에 쓴다.
-    // 건수는 위 "사실 기록"에만 있고, 아래 목록은 내용 참고용이다.
-    "아래는 연결된 문헌의 제목과 보고 내용이다. 이 목록의 항목 수는 화면에 표시된",
-    "건수가 아니므로 세지 말고, 건수는 위 사실 기록에 적힌 숫자만 쓴다.",
-    "각 문단의 recordIds 에는 아래 대괄호 안의 id 를 그대로 적는다.",
+    "문헌 — 이 내용을 읽고 쓴다. 대괄호 안의 id 를 recordIds 에 그대로 적는다.",
     evidenceBlock,
+    "",
+    "화면이 이미 보여 주고 있는 것 — 다시 쓰지 마라. 편수, 연구 종류 구성,",
+    "연도 범위는 아래에 있으므로 네 문단에 옮기지 않는다.",
+    ...narrative.map((line) => `- ${line}`),
   ]
     .filter(Boolean)
     .join("\n");
@@ -190,8 +203,12 @@ export async function POST(req: Request) {
     user,
     schemaName: "consult_paragraphs",
     schema: SCHEMA,
-    maxOutputTokens: 2600,
-    timeoutMs: 35_000,
+    maxOutputTokens: 3200,
+    timeoutMs: 45_000,
+    // 문헌 15편의 문장을 읽고 갈리는 자리까지 찾아야 한다. low 로 두면 읽지
+    // 않고 목록을 요약해 버린다. 값이 붙는 자리는 여기 하나뿐이고, 축 해석과
+    // 한 줄 요약은 low 그대로 둔다.
+    effort: process.env.OPENAI_CONSULT_COMPOSE_EFFORT ?? "high",
   });
 
   if (!result.ok) {
@@ -207,7 +224,16 @@ export async function POST(req: Request) {
   const recordText = Object.fromEntries(
     briefs.map((row) => [
       row.recordId,
-      `${row.year} ${row.kind} ${row.title} ${row.finding}`,
+      [
+        row.year,
+        row.kind,
+        row.title,
+        row.population,
+        row.dose,
+        row.outcome,
+        row.finding,
+        row.original,
+      ].join(" "),
     ]),
   );
   const sharedText = [situationLabel, conditionLine, narrative.join("\n")].join("\n");

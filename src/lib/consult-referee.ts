@@ -43,7 +43,13 @@ export type RefereeVerdict =
   | { ok: false; rejections: string[] };
 
 const MAX_PARAGRAPHS = 4;
-const MAX_PARAGRAPH_CHARS = 320;
+/**
+ * 320 이던 것을 올렸다. 문단이 성분 이름과 대상과 수치를 다 짚게 바꾸고 나니
+ * 320 에서 잘려 나가는 문단이 생겼고, 잘린 문단 하나 때문에 상담문 전체가
+ * 결정론 폴백으로 떨어졌다. 뭉뚱그린 문장을 막으려고 고친 것을 길이 상한이
+ * 되돌리면 안 된다.
+ */
+const MAX_PARAGRAPH_CHARS = 380;
 /**
  * 한 문단이 댈 수 있는 근거 수.
  *

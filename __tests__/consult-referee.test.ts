@@ -237,7 +237,13 @@ describe("ai layer boundary", () => {
     for (const route of [composeRoute, interpretRoute, recordRoute]) {
       expect(route).toMatch(/export const maxDuration = 60/);
     }
-    expect(composeRoute).toMatch(/timeoutMs:\s*35_000/);
+    // 값을 못박으면 상담문을 깊게 쓰도록 바꿀 때마다 테스트가 먼저 깨진다.
+    // 지켜야 할 것은 숫자가 아니라 "함수 상한보다 짧다"는 관계다.
+    const timeout = composeRoute.match(/timeoutMs:\s*([\d_]+)/);
+    expect(timeout).not.toBeNull();
+    const seconds = Number(timeout![1].replace(/_/g, "")) / 1000;
+    expect(seconds).toBeGreaterThanOrEqual(30);
+    expect(seconds).toBeLessThan(60);
   });
 
   it("sends only the situation and axis switches to the lookup", () => {

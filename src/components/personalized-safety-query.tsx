@@ -666,6 +666,8 @@ export function PersonalizedSafetyQuery() {
           .map((axis) => axisById.get(axis)?.label ?? axis)
           .join(" · "),
         narrative: result.narrative,
+        // 상담문은 초록에서 뽑은 문장을 읽고 써야 한다. 제목과 연도만 보내면
+        // 모델이 볼 것이 건수뿐이라 "몇 편이 나왔습니다" 밖으로 못 나간다.
         evidence: result.evidence.map((item) => ({
           record_id: item.record_id,
           title: item.title,
@@ -673,6 +675,9 @@ export function PersonalizedSafetyQuery() {
           publication_types: item.publication_types,
           key_finding_ko: item.key_finding_ko,
           source_sentence: item.source_sentence,
+          population: item.population,
+          dose: item.dose,
+          outcome: item.outcome,
         })),
       }),
     })

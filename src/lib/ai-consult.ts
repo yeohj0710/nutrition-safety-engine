@@ -63,6 +63,7 @@ export async function callLuna<T>({
   schema,
   maxOutputTokens = 2400,
   timeoutMs = TIMEOUT_MS,
+  effort = CONSULT_EFFORT,
 }: {
   developer: string;
   user: string;
@@ -70,6 +71,12 @@ export async function callLuna<T>({
   schema: JsonSchema;
   maxOutputTokens?: number;
   timeoutMs?: number;
+  /**
+   * 부르는 쪽이 정한다. 축을 옮기거나 한 줄로 줄이는 일은 low 로 충분하고,
+   * 문헌 여러 편을 읽고 묶는 상담문만 올려 쓴다. 전부 올리면 값은 그만큼
+   * 붙는데 짧은 호출에서는 결과가 달라지지 않는다.
+   */
+  effort?: string;
 }): Promise<LunaResult<T>> {
   const key = process.env.OPENAI_API_KEY;
   if (!key) return { ok: false, reason: "no_key" };
@@ -92,7 +99,7 @@ export async function callLuna<T>({
           { role: "developer", content: developer },
           { role: "user", content: user },
         ],
-        reasoning: { effort: CONSULT_EFFORT },
+        reasoning: { effort },
         max_output_tokens: maxOutputTokens,
         text: {
           format: {
