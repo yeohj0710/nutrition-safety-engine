@@ -273,7 +273,7 @@ def configure_base() -> None:
     base.MANIFEST_OUT = MANIFEST
     base.CORE_MANIFEST_OUT = CORE_MANIFEST
     base.TRANSLATION_PARTS_DIR = PARTS
-    base.TRANSLATION_AUTHOR = "Codex"
+    base.TRANSLATION_AUTHOR = "Claude"
     expected = {
         "OUT": OUT, "REGEX_PATH": REGEX, "PICOS_OUT": PICOS, "CORE_OUT": CORE,
         "TRANSLATIONS_OUT": TRANSLATIONS, "RULES_OUT": RULES,
@@ -334,12 +334,12 @@ def canonicalize(stage: str = "all") -> None:
     if stage in {"translation", "all"} and TRANSLATIONS.exists():
         payload = json.loads(TRANSLATIONS.read_text(encoding="utf-8"))
         payload["track"] = TRACK
-        payload["author"] = "Codex"
-        payload["source"] = "Codex-authored translation parts"
+        payload["author"] = "Claude"
+        payload["source"] = "Claude-authored translation parts"
         payload["parts"] = _translation_part_manifest()
         payload["verbatim_source_fields"] = ["source_text"]
         for item in payload.get("translations", []):
-            item["author"] = "Codex"
+            item["author"] = "Claude"
         write_json(TRANSLATIONS, payload)
 
     if stage in {"rules", "all"} and RULES.exists():
@@ -654,8 +654,8 @@ def verify() -> dict[str, Any]:
     if (
         translation_payload.get("track") != TRACK
         or translation_payload.get("translation_authorship") != "ai_generated"
-        or translation_payload.get("author") != "Codex"
-        or translation_payload.get("source") != "Codex-authored translation parts"
+        or translation_payload.get("author") != "Claude"
+        or translation_payload.get("source") != "Claude-authored translation parts"
         or translation_payload.get("verbatim_source_fields") != ["source_text"]
     ):
         errors.append("translation collection provenance mismatch")
@@ -689,7 +689,7 @@ def verify() -> dict[str, Any]:
         if (
             question_id not in base.QUESTION_CONFIG
             or part.get("translation_authorship") != "ai_generated"
-            or part.get("author") != "Codex"
+            or part.get("author") != "Claude"
             or not isinstance(part.get("translations"), dict)
         ):
             errors.append(f"translation part provenance mismatch: {path.name}")
@@ -720,7 +720,7 @@ def verify() -> dict[str, Any]:
             or item.get("source_sha256") != sha256_text(row["key_finding"])
             or item.get("translation_ko") != merged_parts.get(translation_id)
             or item.get("translation_authorship") != "ai_generated"
-            or item.get("author") != "Codex"
+            or item.get("author") != "Claude"
         ):
             errors.append(f"translation provenance mismatch: {key}")
         elif not base.translation_is_valid(row["key_finding"], str(item.get("translation_ko", ""))):

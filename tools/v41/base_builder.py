@@ -498,11 +498,25 @@ def normalized_unit_tokens(text: str) -> list[str]:
 
 
 def translation_is_valid(source: str, translation: str) -> bool:
-    return (
-        bool(re.search(r"[가-힣]", translation))
-        and Counter(normalized_number_tokens(source)) == Counter(normalized_number_tokens(translation))
-        and Counter(normalized_unit_tokens(source)) == Counter(normalized_unit_tokens(translation))
-    )
+    """번역이 원문에 없는 숫자나 단위를 지어냈는지 본다.
+
+    예전에는 양쪽 토큰이 정확히 같아야 통과시켰다. 그 규칙은 "없는 숫자를 넣지
+    마라"에서 멈추지 않고 "원문의 숫자를 하나도 빼지 마라"까지 요구한다. 숫자가
+    열두 개 박힌 초록 문장을 사람이 읽는 한 줄로 옮길 길이 없어져서, 핵심 75건
+    중 64건이 숫자를 나열한 자리표시로 남았다.
+
+    막아야 할 것은 한쪽뿐이다. 번역에 있는 숫자와 단위는 모두 원문에 있어야
+    하고, 원문에 있는 것을 덜어내는 쪽은 요약이지 왜곡이 아니다. 방향은
+    direction_is_valid 가 따로 지킨다.
+    """
+    if not re.search(r"[가-힣]", translation):
+        return False
+    for extract in (normalized_number_tokens, normalized_unit_tokens):
+        available = Counter(extract(source))
+        for token, count in Counter(extract(translation)).items():
+            if count > available[token]:
+                return False
+    return True
 
 
 def direction_is_valid(source: str, translation: str) -> bool:

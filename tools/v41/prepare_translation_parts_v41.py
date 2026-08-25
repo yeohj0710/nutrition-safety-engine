@@ -1,7 +1,13 @@
 """v41 핵심 근거의 번역 파트 입력을 준비한다.
 
-유료 번역 API를 호출하지 않는다. v40에 이미 있는 동일 record의 번역은 검증 후
-재사용하고, 새 record는 원문 수치·단위와 방향을 보존하는 중립 표지로 만든다.
+유료 번역 API를 호출하지 않는다. 이미 있는 v41 번역을 먼저 살리고, 없으면 v40의
+같은 record 번역을 검증해 재사용하며, 그것도 없을 때만 원문 수치와 단위, 방향을
+보존하는 중립 표지로 채운다.
+
+중립 표지는 사람이 읽을 문장이 아니라 빈자리 표시다. 남아 있으면 화면이 번역
+없음으로 보고 조회 한 번에 모델을 12번 부른다. 이 스크립트가 표지를 하나라도
+남기면 그 키를 찍으니, tools/v41/translation_drafts_v41.py 에 문장을 쓰고
+apply_translation_drafts_v41 로 덮어써야 한다.
 """
 
 from __future__ import annotations
@@ -18,6 +24,7 @@ ROOT = Path(__file__).resolve().parents[2]
 CORE = ROOT / "research" / "systematic_review_v41" / "core_evidence.csv"
 OLD_PARTS = ROOT / "research" / "systematic_review_v40" / "etc" / "translation_parts"
 OUT = ROOT / "research" / "systematic_review_v41" / "etc" / "translation_parts"
+PLACEHOLDER = "원문에서 관찰된 결과를 확인합니다"
 
 
 def read_csv(path: Path) -> list[dict[str, str]]:
@@ -25,9 +32,9 @@ def read_csv(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
-def old_translations() -> dict[tuple[str, str], str]:
+def part_translations(directory: Path) -> dict[tuple[str, str], str]:
     result: dict[tuple[str, str], str] = {}
-    for path in sorted(OLD_PARTS.glob("*.json")):
+    for path in sorted(directory.glob("*.json")):
         payload = json.loads(path.read_text(encoding="utf-8"))
         question_id = payload.get("question_id", "")
         for translation_id, value in payload.get("translations", {}).items():
@@ -63,20 +70,33 @@ def main() -> None:
     if not CORE.is_file():
         raise FileNotFoundError(CORE)
     OUT.mkdir(parents=True, exist_ok=True)
-    old = old_translations()
+    current = part_translations(OUT)
+    old = part_translations(OLD_PARTS)
     rows = read_csv(CORE)
     by_question: dict[str, dict[str, str]] = {question: {} for question in base.QUESTION_CONFIG}
+    kept = 0
     reused = 0
     generated = 0
+    placeholders: list[str] = []
     for row in rows:
         key = (row["question_id"], row["record_id"])
-        candidate = old.get(key, "")
-        if candidate and base.translation_is_valid(row["key_finding"], candidate) and base.direction_is_valid(row["key_finding"], candidate):
-            value = candidate
+        source = row["key_finding"]
+
+        def usable(candidate: str) -> bool:
+            return bool(candidate) and not candidate.startswith(PLACEHOLDER) \
+                and base.translation_is_valid(source, candidate) \
+                and base.direction_is_valid(source, candidate)
+
+        if usable(current.get(key, "")):
+            value = current[key]
+            kept += 1
+        elif usable(old.get(key, "")):
+            value = old[key]
             reused += 1
         else:
-            value = neutral_translation(row["key_finding"])
+            value = neutral_translation(source)
             generated += 1
+            placeholders.append(f"{key[0]}|{key[1]}")
         by_question[row["question_id"]][f"{row['question_id']}|{row['record_id']}"] = value
     for question_id, translations in by_question.items():
         path = OUT / f"{question_id.lower()}.json"
@@ -84,12 +104,19 @@ def main() -> None:
             json.dumps({
                 "question_id": question_id,
                 "translation_authorship": "ai_generated",
-                "author": "Codex",
+                "author": "Claude",
                 "translations": translations,
             }, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
         )
-    print(json.dumps({"core_rows": len(rows), "reused": reused, "generated": generated, "out": str(OUT)}, ensure_ascii=False, indent=2))
+    print(json.dumps({
+        "core_rows": len(rows), "kept": kept, "reused": reused,
+        "generated": generated, "out": str(OUT),
+    }, ensure_ascii=False, indent=2))
+    if placeholders:
+        print("\n자리표시로 남은 키 (문장을 써서 덮어써야 한다):")
+        for key in placeholders:
+            print("  " + key)
 
 
 if __name__ == "__main__":

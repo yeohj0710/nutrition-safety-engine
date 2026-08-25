@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "track": "recollect-v2",
-  "generated_at": "2026-08-24T04:07:50+00:00",
+  "generated_at": "2026-08-25T04:41:55+00:00",
   "core_records": 75,
   "per_question": {
     "HRS1_PERIOPERATIVE": 15,
@@ -13,7 +13,7 @@
   "rules": 32,
   "source_sha256": "c01173d58471a2f5ed7b0b67e2cd3b800e17d2cb4c9bb4351e696c493e19b45d",
   "core_sha256": "04fcbce917df3248c16682510e9f185919f83724800a3e959f9a1b8865d121ab",
-  "translation_sha256": "49d9c309472b53a4f1a21479f9e22498f808e250a06118d13ee0cdaca5e77b65",
+  "translation_sha256": "45ce30b21b8d56ba9deb89391d94327cc65a57084cca4e9d5d63ae4bd3c5e238",
   "translation_authorship": "ai_generated",
   "personalization": {
     "axes": [
@@ -87,30 +87,30 @@
     "decision_source": "data/recollect_v41/agent_screening_classifications.csv",
     "dropped_by_agent": 26079
   },
-  "rules_sha256": "b04f6982cab6b72e306c318c97cd4f148397e93c60cb25dc45645a6710240cf2",
+  "rules_sha256": "b9e78c0d6603afd790e380e60959755577162173e8506b9ee8e3e144026361fe",
   "translation_parts": [
     {
       "path": "research/systematic_review_v41/etc/translation_parts/hrs1_perioperative.json",
-      "sha256": "3ddbbb90665f57fddfc0f11b4c0e0b7d244e7f0b7de4ab86fc607de0291c3a33"
+      "sha256": "cd34f64d70b87c5606439cfddaca09901f8f34e06c3dd3ad9a9e839821ed18bf"
     },
     {
       "path": "research/systematic_review_v41/etc/translation_parts/hrs2_kidney_disease.json",
-      "sha256": "1da1e3c0465717fbb7514e6ad35d4ec775b8c4b9f537449e05b5dd58b42f97f5"
+      "sha256": "497804107158352a781251782c92f10a0b7c37fe9ca159a8e135bb1d0c58fc70"
     },
     {
       "path": "research/systematic_review_v41/etc/translation_parts/hrs3_pregnancy.json",
-      "sha256": "2e3ab866810994d6b5e282dc7b3d6a9a682f2bda3e744e9f7bcc34ab47699135"
+      "sha256": "a5bb0782c9fcf2f7028dc3acfa1f5e97aee52edcb715f40d1d86470ec5a472c8"
     },
     {
       "path": "research/systematic_review_v41/etc/translation_parts/hrs4_liver_disease.json",
-      "sha256": "a4a759d140ae9a5166908a3282e4f8f4de64567f33e2a7856acd4296c9e3abcb"
+      "sha256": "930c59e8c68d558b929897bc2278711f67e4b954f3a8efe82db8832aa4c4164f"
     },
     {
       "path": "research/systematic_review_v41/etc/translation_parts/hrs5_anticoagulation.json",
-      "sha256": "1cb4abca7b3116280d9559e987a178ff8ab923966b9dcc2c9e02d38640f26332"
+      "sha256": "dce991312faa75ca5e75b4af64ed63e4670afa6843087db93676e9d50b46ffbc"
     }
   ],
-  "translation_parts_index_sha256": "cb6c75953d9514977db005ad492d448177c03f6611ece6b0bd776462ec232182",
+  "translation_parts_index_sha256": "62bef701e76131a7b80a1433abe09aacaa56b9b6abff6d309ba7085ecb0285e2",
   "input_provenance": {
     "corpus_manifest": {
       "path": "data/recollect_v41/corpus_manifest.json",
@@ -126,14 +126,14 @@
     },
     "base_builder": {
       "path": "tools/v41/base_builder.py",
-      "sha256": "98e8bd0b1ada3aef027d810d8c188012f37f40603113c913d012c21f865e0717"
+      "sha256": "beb09f552ea0e1379e270bb359732b26777ee7aae5d109cc4144dd5bc6d45c99"
     }
   },
   "generator": {
     "path": "tools/v41/build_site_v41.py",
-    "sha256": "ee1be3e78bb1bb1bece03ae8911653d16a8196fdd1b5d724facf8a3a5e95dc6d",
+    "sha256": "e1c314bb6fa2eea559d436515ad5eaacd9e5b207b5cce05f1b859a07f879e82c",
     "base_path": "tools/v41/base_builder.py",
-    "base_sha256": "98e8bd0b1ada3aef027d810d8c188012f37f40603113c913d012c21f865e0717"
+    "base_sha256": "beb09f552ea0e1379e270bb359732b26777ee7aae5d109cc4144dd5bc6d45c99"
   },
   "verbatim_source_fields": [
     "abstract",
