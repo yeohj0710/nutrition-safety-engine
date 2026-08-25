@@ -12,9 +12,9 @@
 
 **봉인 산출물을 고치지 않는다.** 읽기만 하고 새 파일 하나를 쓴다.
 
-    입력  research/systematic_review_v41/picos_extraction.csv   (1,899행, abstract 포함)
-          research/systematic_review_v41/personalized_rules.json (대조용, 읽기만)
-    출력  research/systematic_review_v41/extended_axis_index_v41.json
+    입력  research/systematic_review/picos_extraction.csv   (1,899행, abstract 포함)
+          research/systematic_review/personalized_rules.json (대조용, 읽기만)
+    출력  research/systematic_review/extended_axis_index.json
 """
 
 from __future__ import annotations
@@ -27,12 +27,12 @@ import sys
 from collections import Counter
 from pathlib import Path
 
-from tools.v41 import base_builder
+from tools.build import base_builder
 
 ROOT = Path(__file__).resolve().parents[2]
-PICOS = ROOT / "research" / "systematic_review_v41" / "picos_extraction.csv"
-RULES = ROOT / "research" / "systematic_review_v41" / "personalized_rules.json"
-OUT = ROOT / "research" / "systematic_review_v41" / "extended_axis_index_v41.json"
+PICOS = ROOT / "research" / "systematic_review" / "picos_extraction.csv"
+RULES = ROOT / "research" / "systematic_review" / "personalized_rules.json"
+OUT = ROOT / "research" / "systematic_review" / "extended_axis_index.json"
 
 def extract_observed_axes(title: str, abstract: str) -> list[str]:
     """핵심 규칙 생성에 사용한 v41 축 판정을 확장 목록에도 그대로 적용한다."""
@@ -132,12 +132,12 @@ def main() -> int:
         },
         "inputs": {
             "picos_extraction": {
-                "path": "research/systematic_review_v41/picos_extraction.csv",
+                "path": "research/systematic_review/picos_extraction.csv",
                 "rows": len(rows),
                 "sha256": sha256_file(PICOS),
             },
             "personalized_rules": {
-                "path": "research/systematic_review_v41/personalized_rules.json",
+                "path": "research/systematic_review/personalized_rules.json",
                 "sha256": sha256_file(RULES),
                 "role": "대조 전용. 수정하지 않는다",
             },

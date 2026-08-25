@@ -14,12 +14,12 @@
   },
   "inputs": {
     "picos_extraction": {
-      "path": "research/systematic_review_v41/picos_extraction.csv",
+      "path": "research/systematic_review/picos_extraction.csv",
       "rows": 25066,
       "sha256": "c01173d58471a2f5ed7b0b67e2cd3b800e17d2cb4c9bb4351e696c493e19b45d"
     },
     "personalized_rules": {
-      "path": "research/systematic_review_v41/personalized_rules.json",
+      "path": "research/systematic_review/personalized_rules.json",
       "sha256": "ca0158891cc5f5b89fc31386e56c46901f9dd1bdfa8e7de2f9b02c6ab2baf6ce",
       "role": "대조 전용. 수정하지 않는다"
     }

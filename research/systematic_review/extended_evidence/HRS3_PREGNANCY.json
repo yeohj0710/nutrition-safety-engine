@@ -1,7 +1,7 @@
 {
  "schema_version": "1.0.0",
  "track": "v4.1",
- "source": "research/systematic_review_v41/picos_extraction.csv",
+ "source": "research/systematic_review/picos_extraction.csv",
  "note": "핵심근거 15건 상한 밖의 근거까지 담은 확장 목록. 축 부분집합이 없어 조건 필터가 적용되지 않으며, 근거 문장은 영어 원문이다(한국어 번역은 핵심근거 75건에만 있다). 봉인된 산출물을 재생성하지 않기 위해 별도 파일로 둔다.",
  "clinical_recommendation": false,
  "decision_authority": "none",

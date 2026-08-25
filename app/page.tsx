@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import manifest from "@/research/systematic_review_v41/manifest.json";
-import core from "@/research/systematic_review_v41/core_manifest.json";
+import manifest from "@/research/systematic_review/manifest.json";
+import core from "@/research/systematic_review/core_manifest.json";
 import { PersonalizedSafetyQuery } from "@/src/components/personalized-safety-query";
 import { siteDescription, siteName } from "@/src/lib/site";
 

@@ -12,10 +12,13 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[2]
-CORPUS_PATH = ROOT / "data" / "recollect_v41" / "evidence_map.csv"
-SCREENING_PATH = ROOT / "data" / "recollect_v41" / "agent_screening_classifications.csv"
-PICOS_PATH = ROOT / "research" / "searches_v4" / "query_definitions.json"
-OUT = ROOT / "research" / "systematic_review_v41"
+CORPUS_PATH = ROOT / "data" / "corpus" / "evidence_map.csv"
+SCREENING_PATH = ROOT / "data" / "corpus" / "agent_screening_classifications.csv"
+# 검색식 정의는 살아 있는 입력이다. 순위 계산이 이 용어 목록을 읽는다.
+# 원본은 _보관/research/searches_v4/ 에 그대로 있고(제출본 원장이 해시로 기록한
+# 경로다), 이것은 그 사본이다. 둘은 같은 파일이어야 한다.
+PICOS_PATH = ROOT / "research" / "queries" / "query_definitions.json"
+OUT = ROOT / "research" / "systematic_review"
 REGEX_PATH = OUT / "regex_gate.csv"
 PICOS_OUT = OUT / "picos_extraction.csv"
 CORE_OUT = OUT / "core_evidence.csv"

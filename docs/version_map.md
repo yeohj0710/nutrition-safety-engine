@@ -13,7 +13,7 @@ G드라이브는 규칙이 다르다 — 옛 트랙 자료를 격리 폴더로 *
 |---|---|---|
 | `v4.0` | **최종 트랙** (MECIR 검색 재설계) | **폐기된 선행 트랙** (AM-OTC-001로 종결) |
 | `v5.0` | 없음 | **최종 트랙** (AM-OTC-002) |
-| 최종 원장 | `research/logs/v40_run_report.json` | `research_v3/logs/v50_run_report.json` |
+| 최종 원장 | `_보관/research/logs/v40_run_report.json` | `research_v3/logs/v50_run_report.json` |
 
 **두 저장소에 `v40_run_report.json` 이 각각 있다.** 여형준 것은 최종 원장이고, 권혁찬 것은
 폐기된 트랙의 기록이다. 파일명만 보고 옮기면 다른 연구의 수치를 섞게 된다.
@@ -29,12 +29,12 @@ git 히스토리에만 있고 **되살려 수치를 섞으면 안 된다** — �
 
 | 경로 | 내용 | 크기 | git |
 |---|---|---|---|
-| `data/curated_v4/` | 코퍼스 `evidence_map.csv` 48,031행 | — | `evidence_map.csv` 114.5 MiB는 로컬 전용 |
-| `research/searches_v4/` | PubMed 원본 XML 242개 | 1,078 MiB | 로컬 전용 |
-| `research/screening/v40_agent/` | 선별(분류기 + 재판정 616) | 180 MiB | 409 파일 |
-| `research/systematic_review_v40/` | 근거 번들 1,899·핵심 75·규칙 34 | 12 MiB | 추적 · **사이트가 import** |
-| `research/validation/screening_ai_reference_v40/` | 채점 arm 1,033행 | 3 MiB | 44 파일 |
-| `research/synthesis/screener_vs_ai_reference_v40.json` | 채점 대조 결과 | — | 추적 |
+| `_보관/data/curated_v4/` | 코퍼스 `evidence_map.csv` 48,031행 | — | `evidence_map.csv` 114.5 MiB는 로컬 전용 |
+| `_보관/research/searches_v4/` | PubMed 원본 XML 242개 | 1,078 MiB | 로컬 전용 |
+| `_보관/research/screening/v40_agent/` | 선별(분류기 + 재판정 616) | 180 MiB | 409 파일 |
+| `_보관/research/systematic_review_v40/` | 근거 번들 1,899·핵심 75·규칙 34 | 12 MiB | 추적 · **사이트가 import** |
+| `_보관/research/validation/screening_ai_reference_v40/` | 채점 arm 1,033행 | 3 MiB | 44 파일 |
+| `_보관/research/synthesis/screener_vs_ai_reference_v40.json` | 채점 대조 결과 | — | 추적 |
 | `research/logs/` | 원장 8개 | — | 추적 |
 | `research/protocol/` | v4.0 프로토콜 · 공유 프로토콜 · 비교 핸드오프 | — | 추적 |
 
@@ -46,7 +46,7 @@ git 히스토리에만 있고 **되살려 수치를 섞으면 안 된다** — �
 ### 일부러 남긴 예외 둘
 
 - `tools/search_pipeline/embase_adapter.py` — 제2 데이터베이스 공백용. 명시 요청 없이 삭제 금지.
-- `research/logs/reproducibility_diagnosis_20260720.md` — autocrlf 복구 기록.
+- `_보관/research/logs/reproducibility_diagnosis_20260720.md` — autocrlf 복구 기록.
 
 ## 2. 권혁찬 — 최종은 v5.0, 그리고 축이 둘이다
 

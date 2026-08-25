@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0.0",
   "track": "recollect-v2",
-  "generated_at": "2026-08-25T04:41:36+00:00",
+  "generated_at": "2026-08-25T05:38:23+00:00",
   "protocol": "recollect-v2",
-  "input": "data/recollect_v41/evidence_map.csv",
+  "input": "data/corpus/evidence_map.csv",
   "input_sha256": "cc5dfd66357081941399deb03863bc8b3e4a0989ed31aa36d4582776669139d2",
-  "screening_input": "data/recollect_v41/agent_screening_classifications.csv",
+  "screening_input": "data/corpus/agent_screening_classifications.csv",
   "screening_sha256": "4d178457c29eb5862efa76f16d6e6794a9a7f55a4716ca9486e1b48b11ebb85d",
   "records": 25066,
   "by_question": {
@@ -35,25 +35,25 @@
     "applied": true,
     "regex_passed": 51145,
     "kept": 25066,
-    "decision_source": "data/recollect_v41/agent_screening_classifications.csv",
+    "decision_source": "data/corpus/agent_screening_classifications.csv",
     "dropped_by_agent": 26079
   },
   "input_provenance": {
     "corpus_manifest": {
-      "path": "data/recollect_v41/corpus_manifest.json",
-      "sha256": "c5f8a5532e6b825e96862eddf598dd6f4ddea21a7a3b3f97dcf84e51802f1288"
+      "path": "data/corpus/corpus_manifest.json",
+      "sha256": "676b69376fa2cd5e66da52a49cac85a8d2780fc86a1a3456d86f3e47dbf319fd"
     },
     "screening_manifest": {
-      "path": "data/recollect_v41/screening_manifest.json",
-      "sha256": "47499c3d3b1c200dfadb4a7c2eab8efccbd23f7db870bdd428e99ef2a5497fb6"
+      "path": "data/corpus/screening_manifest.json",
+      "sha256": "d1f1e2ef3989a7a138f6e7e817a9469bcba658be025f94c116ca365294fbd58c"
     },
     "adapter_report": {
-      "path": "data/recollect_v41/adapter_report.json",
-      "sha256": "e35ccde2498187e7066fcf3592294a97ce354c26ae7c504fb95ae152d831cc6f"
+      "path": "data/corpus/adapter_report.json",
+      "sha256": "4f6eda9a3c76560f5abb5d56bd93a14dcd00e9b5e42f1889eabe4c81a8b15718"
     },
     "base_builder": {
-      "path": "tools/v41/base_builder.py",
-      "sha256": "beb09f552ea0e1379e270bb359732b26777ee7aae5d109cc4144dd5bc6d45c99"
+      "path": "tools/build/base_builder.py",
+      "sha256": "bf92fdf341364a64efc7b09b7c05597150c68b8486996379712dd657ad6c41c4"
     }
   },
   "output_hashes": {

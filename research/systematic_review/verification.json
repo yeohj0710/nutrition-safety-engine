@@ -1,0 +1,71 @@
+{
+  "schema_version": "2.0.0",
+  "checked_at": "2026-08-25T05:45:34+00:00",
+  "passed": true,
+  "errors": [],
+  "error_count": 0,
+  "corpus_rows": 257060,
+  "screening_rows": 257060,
+  "evidence_bundle_rows": 25066,
+  "core_records": 75,
+  "core_by_question": {
+    "HRS1_PERIOPERATIVE": 15,
+    "HRS2_KIDNEY_DISEASE": 15,
+    "HRS3_PREGNANCY": 15,
+    "HRS4_LIVER_DISEASE": 15,
+    "HRS5_ANTICOAGULATION": 15
+  },
+  "rules": 32,
+  "translations": 75,
+  "exact_gate_records": 25066,
+  "exact_core_records": 75,
+  "generated_terminology_gate": {
+    "passed": true,
+    "verbatim_source_field_exceptions": [
+      "abstract",
+      "authors",
+      "doi",
+      "dose",
+      "key_finding",
+      "locator",
+      "locator_text",
+      "outcome",
+      "population",
+      "publication_types",
+      "raw_source_path",
+      "raw_source_sha256",
+      "source_text",
+      "title",
+      "url",
+      "venue"
+    ]
+  },
+  "clinical_rule_gate": {
+    "passed": true,
+    "scope": "evidence_linking_only"
+  },
+  "hashes": {
+    "corpus_manifest_sha256": "676b69376fa2cd5e66da52a49cac85a8d2780fc86a1a3456d86f3e47dbf319fd",
+    "corpus_sha256": "cc5dfd66357081941399deb03863bc8b3e4a0989ed31aa36d4582776669139d2",
+    "screening_sha256": "4d178457c29eb5862efa76f16d6e6794a9a7f55a4716ca9486e1b48b11ebb85d",
+    "screening_manifest_sha256": "d1f1e2ef3989a7a138f6e7e817a9469bcba658be025f94c116ca365294fbd58c",
+    "adapter_report_sha256": "4f6eda9a3c76560f5abb5d56bd93a14dcd00e9b5e42f1889eabe4c81a8b15718",
+    "base_builder_sha256": "bf92fdf341364a64efc7b09b7c05597150c68b8486996379712dd657ad6c41c4",
+    "regex_gate_sha256": "e58db3da13071b6c558f7e091a3bd6acda6ac5f279db48cc9ca3fa9da25a681b",
+    "evidence_bundle_sha256": "c01173d58471a2f5ed7b0b67e2cd3b800e17d2cb4c9bb4351e696c493e19b45d",
+    "core_evidence_sha256": "04fcbce917df3248c16682510e9f185919f83724800a3e959f9a1b8865d121ab",
+    "translations_sha256": "771f340ce6da76f9056d5d3e191a75ef73a50b9f950c68586ef050dc6dcc215b",
+    "translation_parts": {
+      "research/systematic_review/etc/translation_parts/hrs1_perioperative.json": "cd34f64d70b87c5606439cfddaca09901f8f34e06c3dd3ad9a9e839821ed18bf",
+      "research/systematic_review/etc/translation_parts/hrs2_kidney_disease.json": "497804107158352a781251782c92f10a0b7c37fe9ca159a8e135bb1d0c58fc70",
+      "research/systematic_review/etc/translation_parts/hrs3_pregnancy.json": "a5bb0782c9fcf2f7028dc3acfa1f5e97aee52edcb715f40d1d86470ec5a472c8",
+      "research/systematic_review/etc/translation_parts/hrs4_liver_disease.json": "930c59e8c68d558b929897bc2278711f67e4b954f3a8efe82db8832aa4c4164f",
+      "research/systematic_review/etc/translation_parts/hrs5_anticoagulation.json": "dce991312faa75ca5e75b4af64ed63e4670afa6843087db93676e9d50b46ffbc"
+    },
+    "rules_sha256": "b9e78c0d6603afd790e380e60959755577162173e8506b9ee8e3e144026361fe",
+    "manifest_sha256": "d1e5161e3c66dc78212765364816ca69b8a2f0c6c8963aac2fc4bdb2c7d426a6",
+    "core_manifest_sha256": "39b27ac49aff59130e756cd3bd856e6019fd87231a3d9557b30d1f53c3bcb70e",
+    "generator_sha256": "8f068b926549e90ec6664ccd1b7a92489703780f63410c3d24cb7160be7ef822",
+    "base_generator_sha256": "bf92fdf341364a64efc7b09b7c05597150c68b8486996379712dd657ad6c41c4"
+  }
+}

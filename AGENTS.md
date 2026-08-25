@@ -17,16 +17,34 @@ and are not part of the thesis. Do not reintroduce them or cite their numbers.
 권혁찬's OTC study ends at v5.0.** Their repo also contains a `v40_run_report.json`, which is a
 *superseded* track there — do not read numbers across the two repos by filename.
 
-## Why paths still say `v40`
+## Layout after the 2026-08-25 tidy
 
-Artifact paths carry a `v40` / `v4` marker (`research/searches_v4/`,
-`research/systematic_review_v40/`, `research/screening/v40_agent/`, `data/curated_v4/`,
-`tools/v40/`). **Do not rename them.** `research/logs/v40_run_report.json` is a sealed ledger
-that records 297 artifact paths with SHA-256, and 296 of them contain that marker — including
-the `raw_source_path` on every evidence record. Renaming silently breaks the recorded chain,
-and the ledger cannot be regenerated: `tools/v40/finalize_run_report_v4.py` compares
-`git status` against a hardcoded baseline and refuses to run once the tree is committed.
-The marker is provenance, not a version label.
+Two tracks used to sit side by side at the top level, each with a version marker in its
+name. They were never two versions of one thing:
+
+| | what it is | state |
+|---|---|---|
+| v40, 48,031 rows | **the submitted thesis's evidence base** | sealed 2026-08-02, reference only |
+| v41, 257,060 rows | the site's data | deployed |
+
+The live one now sits at the top with no version marker — `research/systematic_review/`,
+`data/corpus/`, `tools/build/` — and the whole v40 track moved under `_보관/`.
+Read `_보관/README.md` before touching anything there.
+
+**Do not rename anything inside `_보관/`.** `_보관/research/logs/v40_run_report.json` is a
+sealed ledger recording 297 artifact paths with SHA-256, and 296 of them carry a `v40` / `v4`
+marker — including the `raw_source_path` on every evidence record. The ledger cannot be
+regenerated: `_보관/tools/v40/finalize_run_report_v4.py` compares `git status` against a
+hardcoded baseline and refuses to run once the tree is committed. The marker is provenance,
+not a version label.
+
+Moving the track put `_보관/` in front of every path that ledger recorded. A byte copy that
+keeps the original structure is at `C:\dev\_archive\nutrition-safety-engine_v40_260825\`
+(2,559 files, 1.4 GB, taken 2026-08-25). Verify the recorded chain there, not here.
+
+One live input still comes from that track. `research/queries/query_definitions.json` is a
+copy of `_보관/research/searches_v4/query_definitions.json`; the ranking reads its term
+lists. The two must stay identical.
 
 ## The site
 
@@ -35,7 +53,7 @@ The marker is provenance, not a version label.
 - Input UI: `src/components/personalized-safety-query.tsx`.
 - Situations and axes: `src/lib/clinical-situations.ts`. These strings must match
   `question_id` and `personalization_axis` in the rules file exactly.
-- Data: `research/systematic_review_v40/{manifest,core_manifest,personalized_rules}.json`.
+- Data: `research/systematic_review/{manifest,core_manifest,personalized_rules}.json`.
 
 How the lookup works: each situation has a `base` rule holding that question's core evidence,
 and each personalization axis holds the subset of those papers that actually report that
@@ -84,17 +102,17 @@ request in a prompt.
   arm design, and the naming discipline — plus an instance table and the disclosed deviations.
   It has no retroactive force: where this run diverges, the deviation is recorded there (§7),
   not fixed here.
-- Single ledger: `research/logs/v40_run_report.json` — phases A–E, `completion_conditions`,
-  `remaining_unresolved_items`. Judgment record: `research/logs/DECISIONS_v40.md`.
-  Post-run facts (commit, push, deploy) go in `research/logs/v40_delivery_receipt.json`,
+- Single ledger: `_보관/research/logs/v40_run_report.json` — phases A–E, `completion_conditions`,
+  `remaining_unresolved_items`. Judgment record: `_보관/research/logs/DECISIONS_v40.md`.
+  Post-run facts (commit, push, deploy) go in `_보관/research/logs/v40_delivery_receipt.json`,
   never by editing the ledger.
 - Questions: HRS1_PERIOPERATIVE, HRS2_KIDNEY_DISEASE, HRS3_PREGNANCY, HRS4_LIVER_DISEASE,
   HRS5_ANTICOAGULATION. Corpus 48,031 record-question rows, PubMed only, 2022-01-01–2026-07-28.
 - Screening is a two-layer agent method, not per-record inference. A deterministic text
-  classifier the agent authored and audited (`tools/v40/agent_screen_worker.py`,
+  classifier the agent authored and audited (`_보관/tools/v40/agent_screen_worker.py`,
   `v40_deterministic_text_assist_3.3.0`) labelled all 48,031 rows; the agent read and
   re-adjudicated the 616 boundary cases (1.3%) in
-  `research/screening/v40_agent/semantic_adjudications.json`, which override the worker.
+  `_보관/research/screening/v40_agent/semantic_adjudications.json`, which override the worker.
   Describe it that way. "The agent screened 100%" without that clause reads as per-record
   LLM reading and is the first thing a reviewer will challenge.
 - Result: retain 3,374 / deprioritize 44,597 / uncertain 60, coverage 1.0, zero human
@@ -112,7 +130,7 @@ request in a prompt.
   the retain share at 15.33% (95% CI 10.17–21.12%) against the pipeline's 7.02%
   — 2.18×. `specificity_vs_ai_reference` is 88.52%, so roughly 11.5% of the 44,597
   deprioritize rows would have been retained by the second reading. The evidence bundle
-  may therefore be missing relevant records. Details: `research/synthesis/screener_vs_ai_reference_v40.json`.
+  may therefore be missing relevant records. Details: `_보관/research/synthesis/screener_vs_ai_reference_v40.json`.
   This stays a limitation of **this** study and must not be generalised to the shared screening
   design: 권혁찬's v5.0 arm ran the same design and came out the other way (pipeline retain
   18.23% vs scorer estimate 11.95%, ratio 0.66×). See `HANDOFF_scoring_arm_comparability.md`.
@@ -136,7 +154,7 @@ There are still zero human decisions, so `independent_blinding` stays false and 
 name carries its comparator (see the naming rule below).
 
 - Directive: `research/protocol/HANDOFF_v40_scoring.md`. Judgment record:
-  `research/logs/DECISIONS_v40_scoring.md`. Tools: `tools/v40_scoring/`.
+  `_보관/research/logs/DECISIONS_v40_scoring.md`. Tools: `_보관/tools/v40_scoring/`.
 - Design: stratified probability sample, seed `20260729`, SHA-256 rank ordering. Four
   stratum families exhaustively partition all 48,031 rows (ΣN = 48,031): worker-retain and
   worker-deprioritize at 36 per question, plus the 57 `uncertain` rows and all 616
@@ -170,9 +188,9 @@ stays false. `release_ready` stays false — deployment is not clinical release 
 - `.gitattributes` pins every research path `-text`. With `core.autocrlf=true` an unmarked
   file is checked out with CRLF, which rewrites the LF inside quoted CSV abstract fields and
   breaks the recorded hashes with no content change. Recovery record:
-  `research/logs/reproducibility_diagnosis_20260720.md`.
-- Large payloads are local-only with hashes in `research/logs/v40_local_only_manifest.json`
-  (2,007 files, 1,336 MiB): efetch XML, `data/curated_v4/evidence_map.csv` (over GitHub's
+  `_보관/research/logs/reproducibility_diagnosis_20260720.md`.
+- Large payloads are local-only with hashes in `_보관/research/logs/v40_local_only_manifest.json`
+  (2,007 files, 1,336 MiB): efetch XML, `_보관/data/curated_v4/evidence_map.csv` (over GitHub's
   100 MiB file limit), `v40_agent/batches/`, `etc/failed_classifier_*/`.
 - `.vercelignore` must exclude the raw research data or deployment dies with
   `Upload aborted`. Uploading everything is about 1.4 GB; excluded it is under 60 MB.

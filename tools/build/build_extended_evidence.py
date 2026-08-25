@@ -20,9 +20,9 @@ import csv, json, os, hashlib, collections
 
 csv.field_size_limit(10**9)
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-SRC = os.path.join(ROOT, 'research', 'systematic_review_v41', 'picos_extraction.csv')
-CORE = os.path.join(ROOT, 'research', 'systematic_review_v41', 'core_evidence.csv')
-OUT = os.path.join(ROOT, 'research', 'systematic_review_v41', 'extended_evidence_v41.json')
+SRC = os.path.join(ROOT, 'research', 'systematic_review', 'picos_extraction.csv')
+CORE = os.path.join(ROOT, 'research', 'systematic_review', 'core_evidence.csv')
+OUT = os.path.join(ROOT, 'research', 'systematic_review', 'extended_evidence.json')
 
 FIELDS = ('record_id', 'question_id', 'title', 'authors', 'venue', 'year', 'doi', 'url',
           'locator', 'dose', 'outcome', 'key_finding', 'population', 'publication_types',
@@ -54,7 +54,7 @@ def main():
     payload = {
         'schema_version': '1.0.0',
         'track': 'v4.1',
-        'source': 'research/systematic_review_v41/picos_extraction.csv',
+        'source': 'research/systematic_review/picos_extraction.csv',
         'note': ('핵심근거 15건 상한 밖의 근거까지 담은 확장 목록. 축 부분집합이 없어 조건 '
                  '필터가 적용되지 않으며, 근거 문장은 영어 원문이다(한국어 번역은 핵심근거 '
                  '75건에만 있다). 봉인된 산출물을 재생성하지 않기 위해 별도 파일로 둔다.'),

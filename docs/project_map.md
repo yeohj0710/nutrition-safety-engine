@@ -71,13 +71,13 @@
   - 독립 PICOS 정의, 질문별 PubMed 검색 원문·체크섬, `search_log.csv`.
 - `data/curated_v3/evidence_map.csv`
   - v3.0 독립 코퍼스. `corpus_manifest.json`이 입력 계보와 해시를 기록.
-- `research/screening/v30_agent/`
+- `_보관/research/screening/v30_agent/`
   - AI 분류 프롬프트, 실행 로그, 배치 감사 기록, manifest.
 - `data/curated_v3/llm_screening_classifications.csv`
   - v3.0 AI 분류 결과. 라벨은 `retain`/`deprioritize`/`uncertain`.
-- `research/validation/screening_ai_reference_v3/`
+- `_보관/research/validation/screening_ai_reference_v3/`
   - 블라인드 표본, AI 참조표준 라운드, 점수와 실행 manifest.
-- `research/synthesis/screener_vs_ai_reference_v3.json`
+- `_보관/research/synthesis/screener_vs_ai_reference_v3.json`
   - AI 참조표준 대비 비교. `sensitivity_vs_ai_reference`,
     `specificity_vs_ai_reference`, `agreement_vs_ai_reference`만 사용. 참조표준과 상태 이름은
     `ai_reference_standard`, `ai_cross_checked`로 기록.
@@ -95,7 +95,7 @@
   - 규칙 기반 이중 프로파일 분류(`deterministic_dual_profile_v1`). 키워드 reason code + 0~4점.
 - `data/curated_v2/llm_screening_classifications.csv`
   - LLM 탐색 분류. `tools/llm_screening.py` 생성. `retain`/`deprioritize`/`uncertain`.
-- `research/synthesis/screening_method_comparison.json`
+- `_보관/research/synthesis/screening_method_comparison.json`
   - 두 자동 방식의 일치도·교차표. 정확도 지표는 산출하지 않음(프로토콜 §9).
 - `research/systematic_review_v3/picos_extraction.csv` → `core_evidence.csv` → `personalized_rules.json`
   - 정규식 PICOS 추출에 LLM 게이트를 적용한 동결 비교 산출물.

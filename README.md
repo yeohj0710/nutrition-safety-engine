@@ -72,10 +72,10 @@ v3.0 트랙은 v2.1의 질문, 검색식, 코퍼스와 분리되어 있습니다
 research/protocol/protocol-v3.0-full-ai.md
   └ research/searches_v3/                       독립 PICOS·검색식·PubMed 원문·검색 로그
        └ data/curated_v3/evidence_map.csv       독립 코퍼스
-            └ research/screening/v30_agent/     에이전트 직접 선별 실행·감사 기록
+            └ _보관/research/screening/v30_agent/     에이전트 직접 선별 실행·감사 기록
                  └ data/curated_v3/llm_screening_classifications.csv
-                      └ research/validation/screening_ai_reference_v3/
-                           └ research/synthesis/screener_vs_ai_reference_v3.json
+                      └ _보관/research/validation/screening_ai_reference_v3/
+                           └ _보관/research/synthesis/screener_vs_ai_reference_v3.json
                                 └ research/systematic_review_v30/
                                      ├ core_evidence.csv
                                      ├ key_finding_translations_ko.json

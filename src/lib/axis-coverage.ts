@@ -1,5 +1,5 @@
 // 이 파일은 생성물이다. 손으로 고치지 말 것.
-// 원본: research/systematic_review_v41/personalized_rules.json
+// 원본: research/systematic_review/personalized_rules.json
 // 규칙 파일은 원장이 SHA-256 을 기록하고 있어 재생성이 불가능하므로, 화면이 쓰는
 // 상황×축 건수만 여기에 옮겨 둔다. 값이 어긋나면
 // __tests__/personalized-safety-api.test.ts 가 잡는다.

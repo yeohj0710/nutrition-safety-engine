@@ -8,15 +8,15 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
-from tools.v41 import base_builder as base
+from tools.build import base_builder as base
 
 
 ROOT = Path(__file__).resolve().parents[2]
-OLD_CORE = ROOT / "research" / "systematic_review_v40" / "core_evidence.csv"
-NEW_CORPUS = ROOT / "data" / "recollect_v41" / "evidence_map.csv"
-NEW_CORE = ROOT / "research" / "systematic_review_v41" / "core_evidence.csv"
-OUT_JSON = ROOT / "research" / "systematic_review_v41" / "ranking_axis_comparison.json"
-OUT_MD = ROOT / "research" / "systematic_review_v41" / "ranking_axis_comparison.md"
+OLD_CORE = ROOT / "_보관" / "research" / "systematic_review_v40" / "core_evidence.csv"
+NEW_CORPUS = ROOT / "data" / "corpus" / "evidence_map.csv"
+NEW_CORE = ROOT / "research" / "systematic_review" / "core_evidence.csv"
+OUT_JSON = ROOT / "research" / "systematic_review" / "ranking_axis_comparison.json"
+OUT_MD = ROOT / "research" / "systematic_review" / "ranking_axis_comparison.md"
 
 
 def read_csv(path: Path) -> list[dict[str, str]]:
@@ -116,8 +116,8 @@ def main() -> None:
         "schema_version": "1.0.0",
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "scope": {
-            "old_core": "research/systematic_review_v40/core_evidence.csv",
-            "new_core": "research/systematic_review_v41/core_evidence.csv",
+            "old_core": "_보관/research/systematic_review_v40/core_evidence.csv",
+            "new_core": "research/systematic_review/core_evidence.csv",
             "axis_counts": "all 257,060 corpus rows",
             "core_limit_per_question": base.MAX_CORE_PER_QUESTION,
         },

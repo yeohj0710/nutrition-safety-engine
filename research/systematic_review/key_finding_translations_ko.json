@@ -1,29 +1,29 @@
 {
   "schema_version": "1.0.0",
   "track": "recollect-v2",
-  "generated_at": "2026-08-25T04:41:55+00:00",
+  "generated_at": "2026-08-25T05:38:34+00:00",
   "translation_authorship": "ai_generated",
   "author": "Claude",
   "source": "Claude-authored translation parts",
   "parts": [
     {
-      "path": "research/systematic_review_v41/etc/translation_parts/hrs1_perioperative.json",
+      "path": "research/systematic_review/etc/translation_parts/hrs1_perioperative.json",
       "sha256": "cd34f64d70b87c5606439cfddaca09901f8f34e06c3dd3ad9a9e839821ed18bf"
     },
     {
-      "path": "research/systematic_review_v41/etc/translation_parts/hrs2_kidney_disease.json",
+      "path": "research/systematic_review/etc/translation_parts/hrs2_kidney_disease.json",
       "sha256": "497804107158352a781251782c92f10a0b7c37fe9ca159a8e135bb1d0c58fc70"
     },
     {
-      "path": "research/systematic_review_v41/etc/translation_parts/hrs3_pregnancy.json",
+      "path": "research/systematic_review/etc/translation_parts/hrs3_pregnancy.json",
       "sha256": "a5bb0782c9fcf2f7028dc3acfa1f5e97aee52edcb715f40d1d86470ec5a472c8"
     },
     {
-      "path": "research/systematic_review_v41/etc/translation_parts/hrs4_liver_disease.json",
+      "path": "research/systematic_review/etc/translation_parts/hrs4_liver_disease.json",
       "sha256": "930c59e8c68d558b929897bc2278711f67e4b954f3a8efe82db8832aa4c4164f"
     },
     {
-      "path": "research/systematic_review_v41/etc/translation_parts/hrs5_anticoagulation.json",
+      "path": "research/systematic_review/etc/translation_parts/hrs5_anticoagulation.json",
       "sha256": "dce991312faa75ca5e75b4af64ed63e4670afa6843087db93676e9d50b46ffbc"
     }
   ],

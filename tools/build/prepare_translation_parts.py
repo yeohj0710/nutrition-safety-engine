@@ -6,8 +6,8 @@
 
 중립 표지는 사람이 읽을 문장이 아니라 빈자리 표시다. 남아 있으면 화면이 번역
 없음으로 보고 조회 한 번에 모델을 12번 부른다. 이 스크립트가 표지를 하나라도
-남기면 그 키를 찍으니, tools/v41/translation_drafts_v41.py 에 문장을 쓰고
-apply_translation_drafts_v41 로 덮어써야 한다.
+남기면 그 키를 찍으니, tools/build/translation_drafts.py 에 문장을 쓰고
+apply_translation_drafts 로 덮어써야 한다.
 """
 
 from __future__ import annotations
@@ -17,13 +17,13 @@ import json
 import re
 from pathlib import Path
 
-from tools.v41 import base_builder as base
+from tools.build import base_builder as base
 
 
 ROOT = Path(__file__).resolve().parents[2]
-CORE = ROOT / "research" / "systematic_review_v41" / "core_evidence.csv"
-OLD_PARTS = ROOT / "research" / "systematic_review_v40" / "etc" / "translation_parts"
-OUT = ROOT / "research" / "systematic_review_v41" / "etc" / "translation_parts"
+CORE = ROOT / "research" / "systematic_review" / "core_evidence.csv"
+OLD_PARTS = ROOT / "_보관" / "research" / "systematic_review_v40" / "etc" / "translation_parts"
+OUT = ROOT / "research" / "systematic_review" / "etc" / "translation_parts"
 PLACEHOLDER = "원문에서 관찰된 결과를 확인합니다"
 
 

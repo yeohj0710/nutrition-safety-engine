@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { POST } from "@/app/api/personalized-safety/route";
 import { axisIds, situationIds, type AxisId } from "@/src/lib/clinical-situations";
-import extended from "@/research/systematic_review_v41/extended_evidence_v41.json";
+import extended from "@/research/systematic_review/extended_evidence.json";
 
 const AXES = [...axisIds] as AxisId[];
 

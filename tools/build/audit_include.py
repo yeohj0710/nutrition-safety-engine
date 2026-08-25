@@ -21,9 +21,9 @@
 확실히 주제가 다르다"는 하한이 된다. 모델을 부르지 않는다. 같은 입력에 같은
 출력이다.
 
-    python tools/v41/audit_include_v41.py
+    python tools/build/audit_include.py
 
-결과는 research/logs/v41_include_audit_260825.md 에 적었다.
+결과는 research/logs/include_audit_260825.md 에 적었다.
 """
 
 from __future__ import annotations
@@ -34,8 +34,8 @@ import sys
 from collections import Counter, defaultdict
 
 csv.field_size_limit(10_000_000)
-CORPUS = "data/recollect_v41/evidence_map.csv"
-SCREEN = "data/recollect_v41/agent_screening_classifications.csv"
+CORPUS = "data/corpus/evidence_map.csv"
+SCREEN = "data/corpus/agent_screening_classifications.csv"
 
 SUPPLEMENT = re.compile(
     r"(?:supplement\w*|vitamin|multivitamin|micronutrient|mineral\s+status|"

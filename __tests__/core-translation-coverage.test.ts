@@ -23,14 +23,14 @@ type Rule = { rule_id: string; evidence?: Evidence[] };
 
 const rules = JSON.parse(
   readFileSync(
-    path.join(root, "research/systematic_review_v41/personalized_rules.json"),
+    path.join(root, "research/systematic_review/personalized_rules.json"),
     "utf8",
   ),
 ) as Rule[];
 
 const translations = JSON.parse(
   readFileSync(
-    path.join(root, "research/systematic_review_v41/key_finding_translations_ko.json"),
+    path.join(root, "research/systematic_review/key_finding_translations_ko.json"),
     "utf8",
   ),
 ) as {

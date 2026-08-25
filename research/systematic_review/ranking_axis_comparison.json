@@ -3,7 +3,7 @@
   "generated_at": "2026-08-24T04:15:49+00:00",
   "scope": {
     "old_core": "research/systematic_review_v40/core_evidence.csv",
-    "new_core": "research/systematic_review_v41/core_evidence.csv",
+    "new_core": "research/systematic_review/core_evidence.csv",
     "axis_counts": "all 257,060 corpus rows",
     "core_limit_per_question": 15
   },

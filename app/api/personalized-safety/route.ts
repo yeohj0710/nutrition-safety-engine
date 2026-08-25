@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import rules from "@/research/systematic_review_v41/personalized_rules.json";
-import evidenceManifest from "@/research/systematic_review_v41/manifest.json";
+import rules from "@/research/systematic_review/personalized_rules.json";
+import evidenceManifest from "@/research/systematic_review/manifest.json";
 import {
   axes,
   axisByField,
@@ -206,7 +206,7 @@ function loadExtendedEvidence(situation: SituationId) {
   let promise = extendedEvidencePromises.get(situation);
   if (!promise) {
     promise = import(
-      `@/research/systematic_review_v41/extended_evidence_v41/${situation}.json`
+      `@/research/systematic_review/extended_evidence/${situation}.json`
     ).then((module) =>
       ((module.default as { evidence: Record<string, unknown>[] }).evidence ?? []).map(
         (item) =>
@@ -224,7 +224,7 @@ function loadExtendedEvidence(situation: SituationId) {
 
 /**
  * 확장 근거의 축 색인. 규칙 파일의 축 규칙은 질문당 핵심근거 15건 위에서만 계산돼
- * 있어서 확장 보기에 조건을 걸 수 없었다. `tools/v41/build_extended_axis_index_v41.py`
+ * 있어서 확장 보기에 조건을 걸 수 없었다. `tools/build/build_extended_axis_index.py`
  * 가 v3.0 `extract_observed_axes` 와 같은 판정식을 확장 근거 1,899행에 적용해 만든
  * 색인이다. 핵심근거 360건 대조에서 규칙 파일과 전건 일치한다.
  */
@@ -234,7 +234,7 @@ let extendedAxisPromise: Promise<Record<string, Record<string, string[]>>> | nul
 function loadExtendedAxisIndex() {
   if (!extendedAxisPromise) {
     extendedAxisPromise = import(
-      "@/research/systematic_review_v41/extended_axis_index_v41.json"
+      "@/research/systematic_review/extended_axis_index.json"
     ).then(
       (module) =>
         (module.default as {
@@ -299,7 +299,7 @@ function sentenceRole(sentence: string): PresentedEvidence["sentence_role"] {
  * v40 에서 물려받을 문장이 없는 64건에 "원문에서 관찰된 결과를 확인합니다
  * 수치 100 7.5 2 단위 g/d." 같은 표지를 넣었다.
  *
- * 그 64건은 이제 tools/v41/translation_drafts_v41.py 에 사람이 읽는 문장으로
+ * 그 64건은 이제 tools/build/translation_drafts.py 에 사람이 읽는 문장으로
  * 들어갔다. 핵심 근거를 조회하면 번역이 다 붙어 나오므로 이 검사는 아무것도
  * 걸러내지 않는다. 그래도 남겨 둔다. 표지가 다시 새면 로봇 문장이 근거 카드에
  * 박히고, 번역이 있는 것으로 잡혀서 한국어 한 줄을 써 주는 경로
@@ -594,7 +594,7 @@ function orderForPaging(
 
 // 이 상황의 핵심 근거는 질문당 15건이다(core_manifest.core_limit_per_question).
 // 5건으로 잘라 보여주면 남은 10건이 있는 줄도 모르게 되므로 핵심 근거는 전부 보여준다.
-// 그보다 넓은 근거는 확장 보기(extended_evidence_v41.json)로 넘긴다.
+// 그보다 넓은 근거는 확장 보기(extended_evidence.json)로 넘긴다.
 const SELECTED_LIMIT = 15;
 
 function readAxes(value: unknown) {
@@ -732,7 +732,7 @@ export async function POST(req: Request) {
   const ranked = rankEvidence(applied.length ? pool : base.all_evidence);
 
   // 확장 보기: 이 상황의 근거 전체에 같은 조건을 건다. 축 색인이 확장 근거에도
-  // 생겼으므로(extended_axis_index_v41.json) 핵심근거 15건 밖에서도 조건이 걸린다.
+  // 생겼으므로(extended_axis_index.json) 핵심근거 15건 밖에서도 조건이 걸린다.
   const expanded = payload.expanded === true;
   const needExtended = expanded || applied.length > 0;
   const extendedForQuestion = needExtended

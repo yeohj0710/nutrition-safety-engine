@@ -14,7 +14,7 @@
 
 ## 어떻게 셌나
 
-`tools/v41/audit_include_v41.py`. 모델을 부르지 않는다. 같은 입력에 같은 출력이다.
+`tools/build/audit_include.py`. 모델을 부르지 않는다. 같은 입력에 같은 출력이다.
 
 선별 기준은 `evidence-recollect` 의 재판정 규칙과 같다. **이 질문의 대상(P)과 노출(I)에
 맞고 사람 대상 근거가 보이면 유지.** 결과(O)와 연구설계는 기준에 없다. 그래서 검토도
@@ -82,5 +82,5 @@ Wells 증후군(`pubmed:34466011`), 소장 점막 유전자 발현(`pubmed:15843
 ## 되풀이하려면
 
 ```bash
-python tools/v41/audit_include_v41.py
+python tools/build/audit_include.py
 ```

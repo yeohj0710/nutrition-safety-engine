@@ -1,12 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { POST } from "@/app/api/personalized-safety/route";
-import rules from "@/research/systematic_review_v41/personalized_rules.json";
+import rules from "@/research/systematic_review/personalized_rules.json";
 import {
   axes,
   situationIds,
   situations,
 } from "@/src/lib/clinical-situations";
-import axisIndex from "@/research/systematic_review_v41/extended_axis_index_v41.json";
+import axisIndex from "@/research/systematic_review/extended_axis_index.json";
 import { publicInputExamples } from "@/src/lib/personalized-safety-examples";
 import { axisCoverage, coreCoverage } from "@/src/lib/axis-coverage";
 import { flattenTranslatedFindings } from "@/src/lib/evidence-sentences";

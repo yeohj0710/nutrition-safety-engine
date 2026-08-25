@@ -10,18 +10,18 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from tools.v41 import base_builder as base
+from tools.build import base_builder as base
 
 
 ROOT = Path(__file__).resolve().parents[2]
-CORPUS = ROOT / "data" / "recollect_v41" / "evidence_map.csv"
-CORPUS_MANIFEST = ROOT / "data" / "recollect_v41" / "corpus_manifest.json"
-SCREENING = ROOT / "data" / "recollect_v41" / "agent_screening_classifications.csv"
-SCREENING_DIR = ROOT / "data" / "recollect_v41"
+CORPUS = ROOT / "data" / "corpus" / "evidence_map.csv"
+CORPUS_MANIFEST = ROOT / "data" / "corpus" / "corpus_manifest.json"
+SCREENING = ROOT / "data" / "corpus" / "agent_screening_classifications.csv"
+SCREENING_DIR = ROOT / "data" / "corpus"
 SCREENING_MANIFEST = SCREENING_DIR / "screening_manifest.json"
 ADAPTER_REPORT = SCREENING_DIR / "adapter_report.json"
-SCREENING_WORKER = ROOT / "tools" / "v41" / "base_builder.py"
-OUT = ROOT / "research" / "systematic_review_v41"
+SCREENING_WORKER = ROOT / "tools" / "build" / "base_builder.py"
+OUT = ROOT / "research" / "systematic_review"
 REGEX = OUT / "regex_gate.csv"
 PICOS = OUT / "picos_extraction.csv"
 CORE = OUT / "core_evidence.csv"
@@ -110,7 +110,7 @@ def _assert_v4_output_path(path: Path) -> None:
 
 
 def _assert_v4_write_preflight() -> None:
-    expected_out = ROOT / "research" / "systematic_review_v41"
+    expected_out = ROOT / "research" / "systematic_review"
     if OUT.resolve() != expected_out.resolve():
         raise RuntimeError(f"v4 output root mismatch: {OUT}")
     writable = {

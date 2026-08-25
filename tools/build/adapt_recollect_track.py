@@ -22,7 +22,7 @@ INPUT_ROOT = Path(r"C:\dev\evidence-recollect\data\yeo")
 CORPUS_INPUT = INPUT_ROOT / "corpus" / "evidence_map.csv"
 DECISIONS_INPUT = INPUT_ROOT / "screen" / "decisions.jsonl"
 FULLTEXT_INPUT = INPUT_ROOT / "fulltext" / "fulltext.jsonl"
-OUT = ROOT / "data" / "recollect_v41"
+OUT = ROOT / "data" / "corpus"
 
 CORPUS_COLUMNS = [
     "source", "record_id", "question_id", "provider_id", "title", "abstract",
@@ -314,8 +314,8 @@ def main() -> None:
             },
         },
         "output": {
-            "corpus": {"path": "data/recollect_v41/evidence_map.csv", "sha256": sha256_file(corpus_path)},
-            "screening": {"path": "data/recollect_v41/agent_screening_classifications.csv", "sha256": sha256_file(screening_path)},
+            "corpus": {"path": "data/corpus/evidence_map.csv", "sha256": sha256_file(corpus_path)},
+            "screening": {"path": "data/corpus/agent_screening_classifications.csv", "sha256": sha256_file(screening_path)},
         },
         "decision_reuse": {
             "reclassified": False,
@@ -334,14 +334,14 @@ def main() -> None:
         "source_constraint": "pubmed_only",
         "human_decisions": 0,
         "corpus": {
-            "path": "data/recollect_v41/evidence_map.csv",
+            "path": "data/corpus/evidence_map.csv",
             "sha256": sha256_file(corpus_path),
             "row_count": len(corpus),
             "row_distribution_by_question": corpus_report["per_question"],
             "schema": CORPUS_COLUMNS,
         },
         "fulltext": fulltext_report,
-        "adapter_report": "data/recollect_v41/adapter_report.json",
+        "adapter_report": "data/corpus/adapter_report.json",
     }
     (OUT / "corpus_manifest.json").write_text(
         json.dumps(corpus_manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
@@ -350,8 +350,8 @@ def main() -> None:
     screening_manifest = {
         "schema_version": "1.0.0",
         "track": TRACK,
-        "input_path": "data/recollect_v41/evidence_map.csv",
-        "output_path": "data/recollect_v41/agent_screening_classifications.csv",
+        "input_path": "data/corpus/evidence_map.csv",
+        "output_path": "data/corpus/agent_screening_classifications.csv",
         "input_sha256": sha256_file(corpus_path),
         "output_sha256": sha256_file(screening_path),
         "row_count": len(corpus),
@@ -363,7 +363,7 @@ def main() -> None:
         "duplicate_lines_folded": decision_report["duplicate_lines_folded"],
         "unique_key": ["question_id", "record_id"],
         "format": SCREENING_COLUMNS,
-        "adapter_report": "data/recollect_v41/adapter_report.json",
+        "adapter_report": "data/corpus/adapter_report.json",
     }
     (OUT / "screening_manifest.json").write_text(
         json.dumps(screening_manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
