@@ -112,7 +112,7 @@ describe("personalized safety API", () => {
   it("keeps only papers that report every axis the user filled", async () => {
     // 축을 채우면 그 축을 보고한 문헌만 남아야 한다. 규칙 파일이 축별로 이미
     // 부분집합을 갖고 있으므로 응답은 그 교집합 안에 있어야 한다.
-    const situation = "HRS1_PERIOPERATIVE";
+    const situation = "HRS2_KIDNEY_DISEASE";
     const ageRule = ruleFor(situation, "age_group")!;
     const medicationRule = ruleFor(situation, "concomitant_medication")!;
     const intersection = new Set(
@@ -196,7 +196,7 @@ describe("personalized safety API", () => {
 
   it("accepts explicit metadata-axis filters without pretending to match values", async () => {
     const { status, body } = await ask({
-      situation: "HRS1_PERIOPERATIVE",
+      situation: "HRS2_KIDNEY_DISEASE",
       axes: ["age_group", "concomitant_medication"],
     });
     expect(status).toBe(200);
@@ -209,10 +209,12 @@ describe("personalized safety API", () => {
       "age_group",
       "concomitant_medication",
     ]);
+    const base = ruleFor("HRS2_KIDNEY_DISEASE", "base")!.all_evidence;
+    const age = ruleFor("HRS2_KIDNEY_DISEASE", "age_group")!.all_evidence;
+    const medication = ruleFor("HRS2_KIDNEY_DISEASE", "concomitant_medication")!.all_evidence;
+    const intersection = age.filter((row) => medication.some((item) => item.record_id === row.record_id));
     expect(body.filter_trace.map((item: { count: number }) => item.count)).toEqual([
-      15,
-      8,
-      1,
+      base.length, age.length, intersection.length,
     ]);
   });
 
@@ -345,8 +347,8 @@ describe("personalized safety API", () => {
     // 순위를 바꾸면 핵심 15건이 바뀌어 어떤 조합이 0건인지도 바뀐다. 조합을
     // 고칠 때는 규칙 파일에서 교집합 0인 짝을 다시 찾아 넣는다.
     const { status, body } = await ask({
-      situation: "HRS5_ANTICOAGULATION",
-      axes: ["age_group", "sex"],
+      situation: "HRS1_PERIOPERATIVE",
+      axes: ["dose_range", "sex"],
     });
     expect(status).toBe(200);
     expect(body.core_shown).toBe(0);
@@ -380,9 +382,12 @@ describe("personalized safety API", () => {
       expect(body.evidence.length, example.title).toBeLessThanOrEqual(
         selectedLimit,
       );
-      expect(body.evidence_total_after_filter, example.title).toBe(
-        example.expectedEvidenceCount,
-      );
+      let expected = ruleFor(example.input.situation, "base")!.all_evidence;
+      for (const axis of example.input.axes) {
+        const rule = ruleFor(example.input.situation, axis);
+        if (rule) expected = expected.filter((row) => rule.all_evidence.some((r) => r.record_id === row.record_id));
+      }
+      expect(body.evidence_total_after_filter, example.title).toBe(expected.length);
       for (const item of body.evidence as { url: string; locator: string }[]) {
         expect(item.url, example.title).toMatch(/^https:\/\/pubmed\./);
         expect(item.locator, example.title).toBeTruthy();
@@ -393,13 +398,14 @@ describe("personalized safety API", () => {
   it("returns an explicit evidence display summary", async () => {
     const { status, body } = await ask({ situation: "HRS4_LIVER_DISEASE" });
     expect(status).toBe(200);
-    expect(body.evidence_summary.displayed_records).toBe(15);
-    expect(body.evidence_summary.unique_titles).toBe(15);
+    const count = ruleFor("HRS4_LIVER_DISEASE", "base")!.all_evidence.length;
+    expect(body.evidence_summary.displayed_records).toBe(count);
+    expect(body.evidence_summary.unique_titles).toBe(count);
     expect(body.evidence_summary.source_scope).toEqual({
-      abstract_only: 15,
+      abstract_only: count,
       title_only: 0,
     });
-    expect(body.evidence_summary.ai_extracted_sentences).toBe(15);
+    expect(body.evidence_summary.ai_extracted_sentences).toBe(count);
     expect(body.evidence_summary.ai_translated_sentences).toBe(
       flattenTranslatedFindings(body.evidence).length,
     );
@@ -469,7 +475,7 @@ describe("personalized safety API", () => {
     const counts: number[] = [];
     for (const axes of [[], ["age_group"], ["age_group", "concomitant_medication"]]) {
       const { status, body } = await ask({
-        situation: "HRS1_PERIOPERATIVE",
+        situation: "HRS2_KIDNEY_DISEASE",
         axes,
         expanded: true,
         offset: 0,

@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any
 
 from tools.build import base_builder as base
+from tools.build import reviewed_evidence
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -165,6 +166,7 @@ def _input_provenance_paths() -> dict[str, Path]:
         "screening_manifest": SCREENING_MANIFEST,
         "adapter_report": ADAPTER_REPORT,
         "base_builder": SCREENING_WORKER,
+        "core_review": reviewed_evidence.REVIEW,
     }
 
 
@@ -273,7 +275,7 @@ def configure_base() -> None:
     base.MANIFEST_OUT = MANIFEST
     base.CORE_MANIFEST_OUT = CORE_MANIFEST
     base.TRANSLATION_PARTS_DIR = PARTS
-    base.TRANSLATION_AUTHOR = "Claude"
+    base.TRANSLATION_AUTHOR = "Claude; gpt-5.6-luna posthoc corrections"
     expected = {
         "OUT": OUT, "REGEX_PATH": REGEX, "PICOS_OUT": PICOS, "CORE_OUT": CORE,
         "TRANSLATIONS_OUT": TRANSLATIONS, "RULES_OUT": RULES,
@@ -334,12 +336,12 @@ def canonicalize(stage: str = "all") -> None:
     if stage in {"translation", "all"} and TRANSLATIONS.exists():
         payload = json.loads(TRANSLATIONS.read_text(encoding="utf-8"))
         payload["track"] = TRACK
-        payload["author"] = "Claude"
-        payload["source"] = "Claude-authored translation parts"
+        payload["author"] = base.TRANSLATION_AUTHOR
+        payload["source"] = "AI translation parts with source-bound posthoc corrections"
         payload["parts"] = _translation_part_manifest()
         payload["verbatim_source_fields"] = ["source_text"]
         for item in payload.get("translations", []):
-            item["author"] = "Claude"
+            item["author"] = base.TRANSLATION_AUTHOR
         write_json(TRANSLATIONS, payload)
 
     if stage in {"rules", "all"} and RULES.exists():
@@ -389,6 +391,23 @@ def translate() -> dict[str, Any]:
     return json.loads(TRANSLATIONS.read_text(encoding="utf-8"))
 
 
+def write_coverage_module() -> None:
+    """Derive the small client-side counts whenever the final rules change."""
+    records = json.loads(RULES.read_text(encoding="utf-8"))
+    by_key = {(r['question_id'], r['personalization_axis']): r for r in records}
+    questions = sorted(q for q, axis in by_key if axis == 'base')
+    axes = ['age_group', 'concomitant_medication', 'dose_range', 'sex', 'underlying_condition']
+    coverage = {q: {a: len(by_key[(q,a)]['all_evidence']) if (q,a) in by_key else None for a in axes} for q in questions}
+    core = {q: len(by_key[(q,'base')]['all_evidence']) for q in questions}
+    text = '// 생성 명령: python -m tools.build.build_site rules\n'
+    text += '// 원본: research/systematic_review/personalized_rules.json\n'
+    text += 'import type { AxisId, SituationId } from "@/src/lib/clinical-situations";\n\n'
+    text += 'export const axisCoverage: Record<SituationId, Record<AxisId, number | null>> = '
+    text += json.dumps(coverage, ensure_ascii=False, indent=2)+';\n\n'
+    text += 'export const coreCoverage: Record<SituationId, number> = '+json.dumps(core, indent=2)+';\n'
+    (ROOT/'src/lib/axis-coverage.ts').write_text(text, encoding='utf-8')
+
+
 def rules() -> dict[str, Any]:
     _require_phase_d_inputs()
     if not all(path.is_file() for path in (REGEX, PICOS, CORE, MANIFEST, TRANSLATIONS)):
@@ -407,6 +426,7 @@ def rules() -> dict[str, Any]:
         if COMPAT_MANIFEST.exists():
             COMPAT_MANIFEST.unlink()
     canonicalize("rules")
+    write_coverage_module()
     return json.loads(CORE_MANIFEST.read_text(encoding="utf-8"))
 
 
@@ -475,7 +495,7 @@ def _expected_build_outputs(
         candidates = [
             row for row in picos_rows
             if row["question_id"] == question_id
-            and base.topic_relevant(row)
+            and reviewed_evidence.core_eligible(row)
         ]
         candidates.sort(key=lambda row: (-int(row["priority_score"]), -int(row["year"] or 0), row["record_id"]))
         core_rows.extend(candidates[:base.MAX_CORE_PER_QUESTION])
@@ -654,8 +674,8 @@ def verify() -> dict[str, Any]:
     if (
         translation_payload.get("track") != TRACK
         or translation_payload.get("translation_authorship") != "ai_generated"
-        or translation_payload.get("author") != "Claude"
-        or translation_payload.get("source") != "Claude-authored translation parts"
+        or translation_payload.get("author") != base.TRANSLATION_AUTHOR
+        or translation_payload.get("source") != "AI translation parts with source-bound posthoc corrections"
         or translation_payload.get("verbatim_source_fields") != ["source_text"]
     ):
         errors.append("translation collection provenance mismatch")
@@ -689,7 +709,7 @@ def verify() -> dict[str, Any]:
         if (
             question_id not in base.QUESTION_CONFIG
             or part.get("translation_authorship") != "ai_generated"
-            or part.get("author") != "Claude"
+            or part.get("author") != base.TRANSLATION_AUTHOR
             or not isinstance(part.get("translations"), dict)
         ):
             errors.append(f"translation part provenance mismatch: {path.name}")
@@ -720,7 +740,7 @@ def verify() -> dict[str, Any]:
             or item.get("source_sha256") != sha256_text(row["key_finding"])
             or item.get("translation_ko") != merged_parts.get(translation_id)
             or item.get("translation_authorship") != "ai_generated"
-            or item.get("author") != "Claude"
+            or item.get("author") != base.TRANSLATION_AUTHOR
         ):
             errors.append(f"translation provenance mismatch: {key}")
         elif not base.translation_is_valid(row["key_finding"], str(item.get("translation_ko", ""))):

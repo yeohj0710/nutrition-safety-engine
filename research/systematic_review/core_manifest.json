@@ -1,19 +1,19 @@
 {
   "schema_version": "1.0.0",
   "track": "recollect-v2",
-  "generated_at": "2026-08-25T05:38:34+00:00",
-  "core_records": 75,
+  "generated_at": "2026-09-05T09:29:12+00:00",
+  "core_records": 44,
   "per_question": {
-    "HRS1_PERIOPERATIVE": 15,
-    "HRS2_KIDNEY_DISEASE": 15,
-    "HRS3_PREGNANCY": 15,
-    "HRS4_LIVER_DISEASE": 15,
-    "HRS5_ANTICOAGULATION": 15
+    "HRS1_PERIOPERATIVE": 11,
+    "HRS2_KIDNEY_DISEASE": 9,
+    "HRS3_PREGNANCY": 7,
+    "HRS4_LIVER_DISEASE": 13,
+    "HRS5_ANTICOAGULATION": 4
   },
-  "rules": 32,
-  "source_sha256": "c01173d58471a2f5ed7b0b67e2cd3b800e17d2cb4c9bb4351e696c493e19b45d",
-  "core_sha256": "04fcbce917df3248c16682510e9f185919f83724800a3e959f9a1b8865d121ab",
-  "translation_sha256": "771f340ce6da76f9056d5d3e191a75ef73a50b9f950c68586ef050dc6dcc215b",
+  "rules": 30,
+  "source_sha256": "d1280439e0b7cfb74cdce95ffc0991b7a924bf57393d11ec436aab6c3fcc89ba",
+  "core_sha256": "8a3fde6800222bea2f20915579a02c3f22cf008d1d994fcd825f0c5f642c1c78",
+  "translation_sha256": "808c0a0480142090c55149d2e5fb277002bd8cb151cd3d499e413a654bf3b4a4",
   "translation_authorship": "ai_generated",
   "personalization": {
     "axes": [
@@ -25,36 +25,34 @@
     ],
     "evidence_rows_by_question_and_axis": {
       "HRS1_PERIOPERATIVE": {
-        "age_group": 8,
-        "concomitant_medication": 1,
-        "dose_range": 8,
-        "sex": 4,
-        "underlying_condition": 8
+        "age_group": 6,
+        "dose_range": 4,
+        "sex": 3,
+        "underlying_condition": 5
       },
       "HRS2_KIDNEY_DISEASE": {
-        "age_group": 8,
+        "age_group": 4,
         "concomitant_medication": 2,
-        "dose_range": 6,
-        "underlying_condition": 15
+        "dose_range": 3,
+        "underlying_condition": 9
       },
       "HRS3_PREGNANCY": {
-        "age_group": 11,
-        "dose_range": 9,
-        "sex": 7,
-        "underlying_condition": 13
+        "age_group": 5,
+        "dose_range": 4,
+        "sex": 3,
+        "underlying_condition": 6
       },
       "HRS4_LIVER_DISEASE": {
         "age_group": 9,
-        "dose_range": 7,
+        "dose_range": 6,
         "sex": 1,
-        "underlying_condition": 14
+        "underlying_condition": 12
       },
       "HRS5_ANTICOAGULATION": {
-        "age_group": 10,
-        "concomitant_medication": 15,
-        "dose_range": 8,
-        "sex": 1,
-        "underlying_condition": 4
+        "age_group": 2,
+        "concomitant_medication": 2,
+        "dose_range": 2,
+        "underlying_condition": 2
       }
     },
     "compatibility_aliases": {
@@ -82,58 +80,62 @@
   },
   "agent_gate": {
     "applied": true,
-    "regex_passed": 51145,
-    "kept": 25066,
+    "regex_passed": 54728,
+    "kept": 25747,
     "decision_source": "data/corpus/agent_screening_classifications.csv",
-    "dropped_by_agent": 26079
+    "dropped_by_agent": 28981
   },
-  "rules_sha256": "b9e78c0d6603afd790e380e60959755577162173e8506b9ee8e3e144026361fe",
+  "rules_sha256": "5e723a96e86b7a767a15d91cb7d88a9feda2a8f2647539b5506f2e3c24e965cf",
   "translation_parts": [
     {
       "path": "research/systematic_review/etc/translation_parts/hrs1_perioperative.json",
-      "sha256": "cd34f64d70b87c5606439cfddaca09901f8f34e06c3dd3ad9a9e839821ed18bf"
+      "sha256": "c3ecbc93b4ad3694e898d1dd53a1f3e138aba581b7f6d27c55e27e1f156d137e"
     },
     {
       "path": "research/systematic_review/etc/translation_parts/hrs2_kidney_disease.json",
-      "sha256": "497804107158352a781251782c92f10a0b7c37fe9ca159a8e135bb1d0c58fc70"
+      "sha256": "e340a344dcefd71b9c9c2776d68546f8ded0c67ce5f537f582b15e8bfade68b5"
     },
     {
       "path": "research/systematic_review/etc/translation_parts/hrs3_pregnancy.json",
-      "sha256": "a5bb0782c9fcf2f7028dc3acfa1f5e97aee52edcb715f40d1d86470ec5a472c8"
+      "sha256": "a6023caebfc44e84bcf52a332a72d2158f53b7f2bcc5de7aca1675f09678e525"
     },
     {
       "path": "research/systematic_review/etc/translation_parts/hrs4_liver_disease.json",
-      "sha256": "930c59e8c68d558b929897bc2278711f67e4b954f3a8efe82db8832aa4c4164f"
+      "sha256": "45664b9e375f260743afe0f0893f99a213804206fc598d728bf73c9332bacd5a"
     },
     {
       "path": "research/systematic_review/etc/translation_parts/hrs5_anticoagulation.json",
-      "sha256": "dce991312faa75ca5e75b4af64ed63e4670afa6843087db93676e9d50b46ffbc"
+      "sha256": "b58501716eb3047859e9539b2e1ca01a2f88ab8837d9b4666ba669237344fb2a"
     }
   ],
-  "translation_parts_index_sha256": "e0f0d536ee3ebdbf7d8379f0ff32d2d7f668e4eea78255709075527d5fe6b6f4",
+  "translation_parts_index_sha256": "438adc31d6a3c6b49962222f9fb62ded2f084f93c59db5ab4b12f519152fbff4",
   "input_provenance": {
     "corpus_manifest": {
       "path": "data/corpus/corpus_manifest.json",
-      "sha256": "676b69376fa2cd5e66da52a49cac85a8d2780fc86a1a3456d86f3e47dbf319fd"
+      "sha256": "6e0aa44b2e7765f0c630d6d1e47f641347b8ea5733fb2be8370a8b7d16ac3da8"
     },
     "screening_manifest": {
       "path": "data/corpus/screening_manifest.json",
-      "sha256": "d1f1e2ef3989a7a138f6e7e817a9469bcba658be025f94c116ca365294fbd58c"
+      "sha256": "eba22a7e2f84551df9be11e3160eacf72a84a2a9e3ad2bd343b3c32394d62d77"
     },
     "adapter_report": {
       "path": "data/corpus/adapter_report.json",
-      "sha256": "4f6eda9a3c76560f5abb5d56bd93a14dcd00e9b5e42f1889eabe4c81a8b15718"
+      "sha256": "856ced441d43afc483abc828822d211ce1b6ef6efc3c5198ab9fe16f2bdbb615"
     },
     "base_builder": {
       "path": "tools/build/base_builder.py",
-      "sha256": "bf92fdf341364a64efc7b09b7c05597150c68b8486996379712dd657ad6c41c4"
+      "sha256": "e4d0d3cb92ec890c4fa357ee50758ba095f4da7599c44cb63982bb99a08278a8"
+    },
+    "core_review": {
+      "path": "research/final/evidence-review.json",
+      "sha256": "8a2d5f2e40b553f1d02c7e20625d5b554722475a8be9cb7c3294dd2d92318bdc"
     }
   },
   "generator": {
     "path": "tools/build/build_site.py",
-    "sha256": "8f068b926549e90ec6664ccd1b7a92489703780f63410c3d24cb7160be7ef822",
+    "sha256": "c0ed81ae04199b4492cc1e91725c854c0761f8ee06ef85aedd3b460e08900891",
     "base_path": "tools/build/base_builder.py",
-    "base_sha256": "bf92fdf341364a64efc7b09b7c05597150c68b8486996379712dd657ad6c41c4"
+    "base_sha256": "e4d0d3cb92ec890c4fa357ee50758ba095f4da7599c44cb63982bb99a08278a8"
   },
   "verbatim_source_fields": [
     "abstract",

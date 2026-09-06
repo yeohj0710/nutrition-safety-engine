@@ -1,204 +1,33 @@
 <!-- BEGIN:nextjs-agent-rules -->
-# This is NOT the Next.js you know
-
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
+# Next.js 작업 안내
+프레임워크 코드를 바꾸기 전에 `node_modules/next/dist/docs/`의 해당 문서를 읽는다.
 <!-- END:nextjs-agent-rules -->
 
-## What this repository is
+# 여형준 최종 연구
 
-One study and one site. The study builds an AI-selected evidence map for supplement safety
-in five high-risk clinical situations; the site is the deterministic lookup tool over it.
-Earlier tracks (v1.0, v2.0/v2.1, v3.0) were removed on 2026-07-28 — they exist in git history
-and are not part of the thesis. Do not reintroduce them or cite their numbers.
+현재 논문·사이트의 자료는 사후 정정한 263,982행이다. `README.md`, `docs/version_map.md`, `research/final/manifest.json`을 읽고 시작한다. 과거 제출본의 버전 번호를 현재 정본으로 사용하지 않는다.
 
-## Which version is final
+## 원자료와 평가
 
-`docs/version_map.md` is the answer sheet. The one thing to remember: **this study ends at v4.0,
-권혁찬's OTC study ends at v5.0.** Their repo also contains a `v40_run_report.json`, which is a
-*superseded* track there — do not read numbers across the two repos by filename.
+- 실행 루트: `C:/dev/evidence-recollect`; 연구 자료: `data/yeo/`.
+- 채점 표본 3,250행, 표본 추출틀 253,810행. 표본·잠금·원래 판정은 보존한다.
+- 지표는 AI 비교 기준을 이름에 명시한다. 임상 정답률로 표현하지 않는다. `independent_blinding`은 사람 맹검이므로 false다. AI 맹검은 별도 속성으로 기록한다.
+- 판정 이유 감사는 사후 검토다. 원래 맹검 평가를 수정하거나 독립 평가로 바꾸어 설명하지 않는다.
+- 문헌을 대량으로 의미 검토할 때는 사용자 지정 모델 `gpt-5.6-luna`를 사용한다. 유료 API를 임의로 켜지 않는다.
 
-## Layout after the 2026-08-25 tidy
+## 유지할 경계
 
-Two tracks used to sit side by side at the top level, each with a version marker in its
-name. They were never two versions of one thing:
+- 근거지도는 `clinical_recommendation:false`, `decision_authority:"none"`, `output_scope:"evidence_linking_only"`를 유지한다.
+- `/api/personalized-safety`는 결정적 조회다. 모델 호출을 넣지 않는다. `consult/interpret`와 `consult/compose`는 조회 앞뒤의 표현 보조이며 안전 판정 권한이 없다.
+- `_보관/` 파일과 봉인 명세를 바꾸지 않는다. 원래 경로 기준 해시 검증은 외부 보관 사본에서 한다.
+- `research/queries/query_definitions.json`과 보관된 원본 검색어 목록의 동일성을 유지한다.
+- `data/corpus/`와 `research/systematic_review/`가 현행 자료다. `tools/build/`가 현행 생성기다.
 
-| | what it is | state |
-|---|---|---|
-| v40, 48,031 rows | **the submitted thesis's evidence base** | sealed 2026-08-02, reference only |
-| v41, 257,060 rows | the site's data | deployed |
+- `release_ready=false`를 유지한다. 공개 사이트 배포는 연구자의 명시적 요청 후 실시한다.
+- `tools/search_pipeline/embase_adapter.py`는 미실행된 후속 검색용 코드다. 제2 데이터베이스 검색을 완료한 것으로 보고하지 않는다.
+- `.gitattributes`의 연구 자료 줄바꿈 규칙과 `.vercelignore`의 대용량 원자료 제외를 유지한다.
+- 과거 기록 전체는 이번 정리 이전 `etc/remediation/backups/AGENTS.md`에서 확인할 수 있다. 현재 실행 지시로 해석하지 않는다.
 
-The live one now sits at the top with no version marker — `research/systematic_review/`,
-`data/corpus/`, `tools/build/` — and the whole v40 track moved under `_보관/`.
-Read `_보관/README.md` before touching anything there.
+## 검증
 
-**Do not rename anything inside `_보관/`.** `_보관/research/logs/v40_run_report.json` is a
-sealed ledger recording 297 artifact paths with SHA-256, and 296 of them carry a `v40` / `v4`
-marker — including the `raw_source_path` on every evidence record. The ledger cannot be
-regenerated: `_보관/tools/v40/finalize_run_report_v4.py` compares `git status` against a
-hardcoded baseline and refuses to run once the tree is committed. The marker is provenance,
-not a version label.
-
-Moving the track put `_보관/` in front of every path that ledger recorded. A byte copy that
-keeps the original structure is at `C:\dev\_archive\nutrition-safety-engine_v40_260825\`
-(2,559 files, 1.4 GB, taken 2026-08-25). Verify the recorded chain there, not here.
-
-One live input still comes from that track. `research/queries/query_definitions.json` is a
-copy of `_보관/research/searches_v4/query_definitions.json`; the ranking reads its term
-lists. The two must stay identical.
-
-## The site
-
-- Page: `app/page.tsx` — the only route.
-- API: `app/api/personalized-safety/route.ts`.
-- Input UI: `src/components/personalized-safety-query.tsx`.
-- Situations and axes: `src/lib/clinical-situations.ts`. These strings must match
-  `question_id` and `personalization_axis` in the rules file exactly.
-- Data: `research/systematic_review/{manifest,core_manifest,personalized_rules}.json`.
-
-How the lookup works: each situation has a `base` rule holding that question's core evidence,
-and each personalization axis holds the subset of those papers that actually report that
-axis. A filled input box becomes an axis; the result is the intersection. An empty form
-returns the situation's core evidence. A situation missing an axis (HRS2 has no `sex` rule)
-must be reported as unapplied, never silently filtered.
-
-Two rules the site must not break:
-
-- **No clinical direction.** The rules carry `clinical_recommendation: false`,
-  `decision_authority: "none"`, `output_scope: "evidence_linking_only"`. The site links
-  evidence and shows where each sentence came from. It does not tell anyone to start, stop,
-  or change a dose. `__tests__/personalized-safety-ui-contract.test.ts` enforces this.
-- **No model call in the lookup.** The thesis claims a deterministic tool, so the same
-  situation + axis set must return the same evidence. `app/api/personalized-safety/route.ts`
-  therefore calls nothing external, and `__tests__/consult-referee.test.ts` fails the build if
-  `callLuna` or an OpenAI URL ever appears in it.
-
-Since 2026-08-04 the site has a model layer, but only at the two edges — it cannot change
-which records are selected:
-
-- `POST /api/consult/interpret` turns a Korean sentence into a situation id and a set of axis
-  switches. It never reads the rules file or the evidence bundle; it only flips the same
-  radio and checkboxes a person would. The resolved conditions are shown on screen and the
-  user can correct them. **The free-text sentence is never sent to the lookup route.**
-- `POST /api/consult/compose` writes the consultation paragraphs from the records the
-  deterministic lookup already picked, and every paragraph must clear
-  `src/lib/consult-referee.ts` — no clinical direction, no safety verdict, no question marks,
-  and no number that is absent from the supplied evidence. One violation and the response is
-  the deterministic narrative the route already builds. Both routes degrade to that narrative
-  when `OPENAI_API_KEY` is missing, so the site works unchanged without a key.
-
-Model is `gpt-5.6-luna` (`OPENAI_CONSULT_MODEL` to override). The old quota incident was bulk
-classification on a shared key; per-request site usage at luna pricing is not that. Do not
-move either call into the lookup path, and do not relax the referee — the rules file carries
-`decision_authority: "none"`, and the referee is what makes that true on screen rather than a
-request in a prompt.
-
-## The research pipeline
-
-- Protocol: `research/protocol/protocol-v4.0-mecir-search.md`, amendment `AM-008`.
-- Shared upper protocol: `research/protocol/protocol-shared-ai-screening.md`. This study and
-  권혁찬's OTC study (`otc-nutrient-safety-engine`, v5.0) are two instances of it. It holds the
-  rules both studies reached independently — search design, the abolished 10,000-row corpus cap,
-  the label/reason-code spec, the classifier→re-adjudication→zero-human structure, the scoring
-  arm design, and the naming discipline — plus an instance table and the disclosed deviations.
-  It has no retroactive force: where this run diverges, the deviation is recorded there (§7),
-  not fixed here.
-- Single ledger: `_보관/research/logs/v40_run_report.json` — phases A–E, `completion_conditions`,
-  `remaining_unresolved_items`. Judgment record: `_보관/research/logs/DECISIONS_v40.md`.
-  Post-run facts (commit, push, deploy) go in `_보관/research/logs/v40_delivery_receipt.json`,
-  never by editing the ledger.
-- Questions: HRS1_PERIOPERATIVE, HRS2_KIDNEY_DISEASE, HRS3_PREGNANCY, HRS4_LIVER_DISEASE,
-  HRS5_ANTICOAGULATION. Corpus 48,031 record-question rows, PubMed only, 2022-01-01–2026-07-28.
-- Screening is a two-layer agent method, not per-record inference. A deterministic text
-  classifier the agent authored and audited (`_보관/tools/v40/agent_screen_worker.py`,
-  `v40_deterministic_text_assist_3.3.0`) labelled all 48,031 rows; the agent read and
-  re-adjudicated the 616 boundary cases (1.3%) in
-  `_보관/research/screening/v40_agent/semantic_adjudications.json`, which override the worker.
-  Describe it that way. "The agent screened 100%" without that clause reads as per-record
-  LLM reading and is the first thing a reviewer will challenge.
-- Result: retain 3,374 / deprioritize 44,597 / uncertain 60, coverage 1.0, zero human
-  decisions, zero screening-model calls. Evidence bundle 1,899 rows, core evidence 75
-  (cap 15 per question), personalization rules 34.
-
-### Disclosed weaknesses — keep them disclosed
-
-- The raw classifier rules differed from the agent re-adjudication on 226 of 616 boundary
-  cases (36.7%). That 226 is not a decision-disagreement count: it decomposes into 77
-  decision flips (12.5%) and 149 rows where only reason codes or confidence differed
-  (24.2%). Of the 77 flips, 53 were retain → deprioritize.
-- **The scoring arm found the screening retains too little.** An independent blinded second
-  reading of a stratified probability sample (1,033 rows, `_vs_ai_reference` metrics) puts
-  the retain share at 15.33% (95% CI 10.17–21.12%) against the pipeline's 7.02%
-  — 2.18×. `specificity_vs_ai_reference` is 88.52%, so roughly 11.5% of the 44,597
-  deprioritize rows would have been retained by the second reading. The evidence bundle
-  may therefore be missing relevant records. Details: `_보관/research/synthesis/screener_vs_ai_reference_v40.json`.
-  This stays a limitation of **this** study and must not be generalised to the shared screening
-  design: 권혁찬's v5.0 arm ran the same design and came out the other way (pipeline retain
-  18.23% vs scorer estimate 11.95%, ratio 0.66×). See `HANDOFF_scoring_arm_comparability.md`.
-- 1,475 of 3,374 retain rows (43.7%) were dropped by the bundle's regex gate.
-- All 44,597 deprioritize rows carry `off_topic`, so exclusion reasons are not broken down.
-- **The shared protocol's re-adjudication rule (a) was not applied.** Rule (a) sends every
-  classifier `uncertain` row to re-adjudication; here the 616 re-adjudicated rows are boundary
-  quota only, and the 60 `uncertain` rows were never re-read. The rule postdates this run, and
-  the sealed ledger blocks retrofitting. All 60 are abstract-less, so re-adjudication could only
-  have re-read titles. `protocol-shared-ai-screening.md` §7.1.
-- The 60 `uncertain` rows are all abstract-less; the label means missing text, not doubt. This
-  holds for v4.0 only — 권혁찬's v5.0 also attaches `uncertain` and `insufficient_abstract` to
-  rows that do have abstracts, so the two studies' `uncertain` counts are not like-for-like.
-  `protocol-shared-ai-screening.md` §7.3.
-- PubMed only. No second database, no grey literature, no citation searching.
-
-### The scoring arm (done 2026-07-30)
-
-The screening has now been measured against an **AI reference standard**, not a human one.
-There are still zero human decisions, so `independent_blinding` stays false and every metric
-name carries its comparator (see the naming rule below).
-
-- Directive: `research/protocol/HANDOFF_v40_scoring.md`. Judgment record:
-  `_보관/research/logs/DECISIONS_v40_scoring.md`. Tools: `_보관/tools/v40_scoring/`.
-- Design: stratified probability sample, seed `20260729`, SHA-256 rank ordering. Four
-  stratum families exhaustively partition all 48,031 rows (ΣN = 48,031): worker-retain and
-  worker-deprioritize at 36 per question, plus the 57 `uncertain` rows and all 616
-  adjudicated boundary rows as censuses. n = 1,033.
-- Blinding: cards carry only `record_id, question_id, title, abstract, publication_types,
-  mesh_terms`; a leak check passed and labels were hash-locked before the sealed truth was
-  opened (`lock_receipt.json`, `truth_opened_before_lock: false`).
-- Population-weighted result: `agreement_vs_ai_reference` 86.95%,
-  `sensitivity_vs_ai_reference` 66.23%, `specificity_vs_ai_reference` 88.52%,
-  `precision_vs_ai_reference` 30.35%, `f1_vs_ai_reference` 41.63%, Cohen κ 0.463
-  (unweighted, 3-class). Per layer: worker classifier κ 0.423, agent adjudication κ 0.494.
-- **Rogan–Gladen adds nothing in this design and must not be cited as corroboration.**
-  Because the strata are defined on the reference labels, the weighted marginal reproduces
-  the census retain count exactly, and the Se/Sp fed into the correction come from the same
-  sample; substituting N = P + Q collapses it to the design-based estimator (observed gap
-  5.8e-16). Only externally estimated Se/Sp would make it a correction.
-
-Still missing: any human-adjudicated reference, a second database, grey literature, and
-citation searching.
-
-## Naming rule (violating it invalidates the reporting)
-
-There is no human gold standard. Metrics must name their source:
-`sensitivity_vs_ai_reference`, `specificity_vs_ai_reference`, `agreement_vs_ai_reference`,
-`ai_reference_standard`, `ai_cross_checked`. Never a bare `sensitivity`, `specificity`,
-`accuracy`, `gold_standard`, or `validated`. `independent_blinding` means human blinding and
-stays false. `release_ready` stays false — deployment is not clinical release approval.
-
-## Operational traps
-
-- `.gitattributes` pins every research path `-text`. With `core.autocrlf=true` an unmarked
-  file is checked out with CRLF, which rewrites the LF inside quoted CSV abstract fields and
-  breaks the recorded hashes with no content change. Recovery record:
-  `_보관/research/logs/reproducibility_diagnosis_20260720.md`.
-- Large payloads are local-only with hashes in `_보관/research/logs/v40_local_only_manifest.json`
-  (2,007 files, 1,336 MiB): efetch XML, `_보관/data/curated_v4/evidence_map.csv` (over GitHub's
-  100 MiB file limit), `v40_agent/batches/`, `etc/failed_classifier_*/`.
-- `.vercelignore` must exclude the raw research data or deployment dies with
-  `Upload aborted`. Uploading everything is about 1.4 GB; excluded it is under 60 MB.
-- Deployment is Vercel CLI only (`npx vercel --prod --yes`). There is no GitHub integration,
-  so pushing does not deploy.
-- `tools/search_pipeline/` is kept for the unresolved second-database gap. Do not remove
-  `embase_adapter.py` unless the user explicitly asks.
-
-## Verification
-
-Run `npm run typecheck`, `npm run lint`, `npm test`, and `npm run build` after site changes.
+변경 범위에 맞는 회귀검사를 실행한다. 사이트 변경 뒤에는 `npm run typecheck`, `npm run lint`, `npm test`, `npm run build`를 완료한다. 연구 자료는 `npm run validate:research`로 검증한다.

@@ -17,8 +17,8 @@
   - 콩팥병을 "anephric" 으로 쓴 것
   - 감초를 "licorice" 로 쓴 것
 
-놓친 표현을 다 넣었다. 일부러 넉넉하게 잡는다. 그래야 남는 숫자가 "이만큼은
-확실히 주제가 다르다"는 하한이 된다. 모델을 부르지 않는다. 같은 입력에 같은
+확인한 누락 표현을 보충했다. 이 검사는 키워드 미검출 후보를 찾는다.
+추가 오탐이 남을 수 있으므로 확정 부적합률이나 그 하한으로 해석하지 않는다. 모델을 부르지 않는다. 같은 입력에 같은
 출력이다.
 
     python tools/build/audit_include.py
@@ -136,18 +136,18 @@ def main() -> None:
             c["P+I"] += has_p and has_i
             c["P+I+사람"] += has_p and has_i and has_human
             if not has_p and has_i:
-                c["대상만 어긋남"] += 1
+                c["대상어만 미검출"] += 1
             if has_p and not has_i:
-                c["노출만 어긋남"] += 1
+                c["노출어만 미검출"] += 1
             if not has_p and not has_i:
-                c["둘 다 어긋남"] += 1
+                c["둘 다 미검출"] += 1
 
     total = Counter()
     for c in stats.values():
         total.update(c)
 
     head = (f"{'질문':24s}{'retain':>9s}{'P+I':>9s}{'통과율':>8s}"
-            f"{'대상어긋':>9s}{'노출어긋':>9s}{'둘다':>7s}{'주제밖':>9s}{'비율':>7s}")
+            f"{'대상미검출':>9s}{'노출미검출':>9s}{'둘다':>7s}{'검토후보':>9s}{'비율':>7s}")
     print("\n" + head)
     print("-" * len(head))
     for q in sorted(stats):
@@ -155,16 +155,16 @@ def main() -> None:
         r, ok = c["retain"], c["P+I"]
         off = r - ok
         print(f"{q:24s}{r:>9,}{ok:>9,}{ok/r*100:>7.1f}%"
-              f"{c['대상만 어긋남']:>9,}{c['노출만 어긋남']:>9,}{c['둘 다 어긋남']:>7,}"
+              f"{c['대상어만 미검출']:>9,}{c['노출어만 미검출']:>9,}{c['둘 다 미검출']:>7,}"
               f"{off:>9,}{off/r*100:>6.1f}%")
     r, ok = total["retain"], total["P+I"]
     off = r - ok
     print("-" * len(head))
     print(f"{'합계':24s}{r:>9,}{ok:>9,}{ok/r*100:>7.1f}%"
-          f"{total['대상만 어긋남']:>9,}{total['노출만 어긋남']:>9,}{total['둘 다 어긋남']:>7,}"
+          f"{total['대상어만 미검출']:>9,}{total['노출어만 미검출']:>9,}{total['둘 다 미검출']:>7,}"
           f"{off:>9,}{off/r*100:>6.1f}%")
-    print(f"\n넉넉한 기준으로도 주제가 어긋나는 retain: {off:,}행 ({off/r*100:.1f}%)")
-    print(f"P·I 둘 다 맞는 retain:                  {ok:,}행")
+    print(f"\n키워드 기준 검토 후보 retain: {off:,}행 ({off/r*100:.1f}%)")
+    print(f"P·I 표현이 모두 검출된 retain:                  {ok:,}행")
     print(f"거기서 사람 대상까지 보이는 것:          {total['P+I+사람']:,}행")
 
 

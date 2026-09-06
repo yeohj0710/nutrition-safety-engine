@@ -200,7 +200,7 @@ describe("personalized safety UI contract", () => {
   it("says the axis filter also applies beyond the core in expanded mode", () => {
     // 확장 보기에도 축 색인이 있으므로 "적용하지 않았습니다" 문구가 남아 있으면 안 된다.
     expect(componentSource).not.toContain("표현 필터를 적용하지 않았습니다");
-    expect(componentSource).toContain("넓힌 목록에도 같은 조건을 걸었습니다");
+    expect(componentSource).toContain("문헌 후보 목록에도 같은 조건을 걸었습니다");
     expect(componentSource).toContain("extended_pool_total");
     // 값 대조를 하지 않는다는 단서는 확장 보기에서도 유지한다.
     expect(componentSource).toContain("값을 논문 내용과 맞춰 보지는 않습니다");
@@ -301,12 +301,13 @@ describe("personalized safety UI contract", () => {
     expect(componentSource).toContain(
       "result.query_snapshot.requested_axes.length",
     );
-    expect(componentSource).toContain("이 상황의 문헌을 전부 폈습니다");
+    expect(componentSource).toContain("이 상황의 후보를 30건씩 보여드립니다");
   });
 
   it("focuses updated result headings without moving pagination scroll", () => {
     expect(componentSource).toContain("focus({ preventScroll: true })");
-    expect(componentSource).toContain("{ scroll: false }");
+    expect(componentSource).toMatch(/scroll:\s*false/);
+    expect(componentSource).toMatch(/patientContext:\s*result.patient_context/);
   });
 
   it("never ships a bare validated / gold-standard claim", () => {

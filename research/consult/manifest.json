@@ -1,0 +1,25 @@
+{
+  "source_sha256": "d7a67c22ef4d6f443ab563807c84cfa2e01245d9c1b09ef3e01934a2800e06a4",
+  "questions": {
+    "HRS1_PERIOPERATIVE": {
+      "records": 3086,
+      "sha256": "760fe416153d825d795707071cd0bf792432c83e45fe23bd72aa600b52eb68ca"
+    },
+    "HRS2_KIDNEY_DISEASE": {
+      "records": 5741,
+      "sha256": "49888e828321a7ba1773d3ce103b2ab9a6103a78fbab4bc734ab7c2478fd9b00"
+    },
+    "HRS3_PREGNANCY": {
+      "records": 11562,
+      "sha256": "85fc2f92275b5771f57a8123e7286136c37a4d660f8bb1fbb490f57a494882d0"
+    },
+    "HRS4_LIVER_DISEASE": {
+      "records": 2466,
+      "sha256": "cd812441138df8420ecae1fd18388dbcf0a7f5ea247672a8ec76516519f706ba"
+    },
+    "HRS5_ANTICOAGULATION": {
+      "records": 2892,
+      "sha256": "b35eb4693db392dafffee6692a9339be465b3f8ffb28cc4b6fcf2379c3273922"
+    }
+  }
+}

@@ -9,11 +9,13 @@
     "lint": "eslint .",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "build:evidence": "python tools/v40/build_site_v4.py all",
-    "validate:evidence": "python tools/v40/build_site_v4.py validate",
-    "check:screening-invariants": "python tools/v40/screening_invariant_checks.py",
-    "check:screening-regression": "python tools/v40/screening_semantic_regression.py",
-    "build:local-only-manifest": "python tools/v40/build_local_only_manifest.py"
+    "build:evidence": "python -m tools.build.build_site all",
+    "build:consult": "python scripts/build-consult-sources.py",
+    "validate:evidence": "python -m tools.build.build_site verify",
+    "check:screening-invariants": "python ../evidence-recollect/reproduce.py verify yeo",
+    "check:screening-regression": "python -m unittest discover -s ../evidence-recollect/tests -t ../evidence-recollect",
+    "build:local-only-manifest": "python ../evidence-recollect/reproduce.py manifest yeo",
+    "validate:research": "python ../evidence-recollect/reproduce.py verify yeo"
   },
   "dependencies": {
     "next": "16.2.12",

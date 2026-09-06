@@ -20,10 +20,10 @@ const recordText: Record<string, string> = {
 };
 
 const okParagraphs = [
-  { text: "임신 중 상황에서 용량 관련 표현을 조건으로 걸어 찾았습니다.", recordIds: [] },
-  { text: "연결된 문헌은 15편이고 2022년부터 2025년 사이에 나왔습니다.", recordIds: [] },
-  { text: "이 문헌들은 개인별 안전 상한을 정하지 않았습니다.", recordIds: [] },
-  { text: "아래 문헌 목록에서 각 기록의 출처 문장을 확인하실 수 있습니다.", recordIds: [] },
+  { text: "체계적 문헌고찰에서 엽산 800 µg을 보고했습니다.", recordIds: ["PMID-1"] },
+  { text: "철분 65 mg을 사용한 무작위 대조시험입니다.", recordIds: ["PMID-2"] },
+  { text: "엽산 문헌은 2025년에 나왔습니다.", recordIds: ["PMID-1"] },
+  { text: "철분 문헌은 2024년에 나왔습니다.", recordIds: ["PMID-2"] },
 ];
 
 describe("consult referee", () => {
@@ -143,7 +143,7 @@ describe("consult referee", () => {
       paragraphs: [{ text: "혹시 다른 약도 함께 드시나요", recordIds: [] }],
       recordText, sharedText,
     });
-    expect(verdict.ok).toBe(true);
+    expect(verdict.ok).toBe(false);
     const withMark = refereeConsult({
       paragraphs: [{ text: "혹시 다른 약도 함께 드시나요?", recordIds: [] }],
       recordText, sharedText,
@@ -169,7 +169,7 @@ describe("consult referee", () => {
       }).ok,
     ).toBe(false);
     expect(
-      refereeConsult({ paragraphs: [{ text: "가".repeat(400), recordIds: [] }], recordText, sharedText }).ok,
+      refereeConsult({ paragraphs: [{ text: "가".repeat(601), recordIds: [] }], recordText, sharedText }).ok,
     ).toBe(false);
   });
 });
@@ -211,7 +211,7 @@ describe("ai layer boundary", () => {
 
   it("runs every composed paragraph through the referee", () => {
     expect(composeRoute).toContain("refereeConsult");
-    expect(composeRoute).toContain("source: \"deterministic\"");
+    expect(composeRoute).toMatch(/source:\s*"deterministic"/);
     // 심판이 걸러 낸 경우에도 화면에 보여줄 문단이 있어야 한다.
     expect(composeRoute).toContain("refereed_out");
   });
@@ -242,7 +242,7 @@ describe("ai layer boundary", () => {
     // 제한 시간이 함수 상한보다 길면 모델이 답을 쓰는 중에 함수가 끊기고,
     // 폴백 이름조차 안 남는다. 실측 10.9초짜리 호출을 12초로 자르고 있었다.
     for (const route of [composeRoute, interpretRoute, recordRoute]) {
-      expect(route).toMatch(/export const maxDuration = 60/);
+      expect(route).toMatch(/export const maxDuration = 300/);
     }
     // 값을 못박으면 상담문을 깊게 쓰도록 바꿀 때마다 테스트가 먼저 깨진다.
     // 지켜야 할 것은 숫자가 아니라 "함수 상한보다 짧다"는 관계다.
@@ -250,7 +250,7 @@ describe("ai layer boundary", () => {
     expect(timeout).not.toBeNull();
     const seconds = Number(timeout![1].replace(/_/g, "")) / 1000;
     expect(seconds).toBeGreaterThanOrEqual(30);
-    expect(seconds).toBeLessThan(60);
+    expect(seconds).toBeLessThan(300);
   });
 
   it("sends only the situation and axis switches to the lookup", () => {

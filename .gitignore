@@ -81,3 +81,6 @@ research/systematic_review/regex_gate.csv
 # 질문별로 쪼갠 것이 배포본이다(extended_evidence/). 합본 40MB 는 쪼개기
 # 입력으로만 남긴다. 콜드 요청이 6.3초였고 방문자는 한 번에 상황 하나만 본다.
 research/systematic_review/extended_evidence.json
+
+# Local review backups and scratch files
+etc/

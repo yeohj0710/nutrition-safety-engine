@@ -1,24 +1,24 @@
 {
   "schema_version": "2.0.0",
-  "checked_at": "2026-08-25T05:45:34+00:00",
+  "checked_at": "2026-09-05T09:46:38+00:00",
   "passed": true,
   "errors": [],
   "error_count": 0,
-  "corpus_rows": 257060,
-  "screening_rows": 257060,
-  "evidence_bundle_rows": 25066,
-  "core_records": 75,
+  "corpus_rows": 263982,
+  "screening_rows": 263982,
+  "evidence_bundle_rows": 25747,
+  "core_records": 44,
   "core_by_question": {
-    "HRS1_PERIOPERATIVE": 15,
-    "HRS2_KIDNEY_DISEASE": 15,
-    "HRS3_PREGNANCY": 15,
-    "HRS4_LIVER_DISEASE": 15,
-    "HRS5_ANTICOAGULATION": 15
+    "HRS1_PERIOPERATIVE": 11,
+    "HRS2_KIDNEY_DISEASE": 9,
+    "HRS3_PREGNANCY": 7,
+    "HRS4_LIVER_DISEASE": 13,
+    "HRS5_ANTICOAGULATION": 4
   },
-  "rules": 32,
-  "translations": 75,
-  "exact_gate_records": 25066,
-  "exact_core_records": 75,
+  "rules": 30,
+  "translations": 44,
+  "exact_gate_records": 25747,
+  "exact_core_records": 44,
   "generated_terminology_gate": {
     "passed": true,
     "verbatim_source_field_exceptions": [
@@ -45,27 +45,28 @@
     "scope": "evidence_linking_only"
   },
   "hashes": {
-    "corpus_manifest_sha256": "676b69376fa2cd5e66da52a49cac85a8d2780fc86a1a3456d86f3e47dbf319fd",
-    "corpus_sha256": "cc5dfd66357081941399deb03863bc8b3e4a0989ed31aa36d4582776669139d2",
-    "screening_sha256": "4d178457c29eb5862efa76f16d6e6794a9a7f55a4716ca9486e1b48b11ebb85d",
-    "screening_manifest_sha256": "d1f1e2ef3989a7a138f6e7e817a9469bcba658be025f94c116ca365294fbd58c",
-    "adapter_report_sha256": "4f6eda9a3c76560f5abb5d56bd93a14dcd00e9b5e42f1889eabe4c81a8b15718",
-    "base_builder_sha256": "bf92fdf341364a64efc7b09b7c05597150c68b8486996379712dd657ad6c41c4",
-    "regex_gate_sha256": "e58db3da13071b6c558f7e091a3bd6acda6ac5f279db48cc9ca3fa9da25a681b",
-    "evidence_bundle_sha256": "c01173d58471a2f5ed7b0b67e2cd3b800e17d2cb4c9bb4351e696c493e19b45d",
-    "core_evidence_sha256": "04fcbce917df3248c16682510e9f185919f83724800a3e959f9a1b8865d121ab",
-    "translations_sha256": "771f340ce6da76f9056d5d3e191a75ef73a50b9f950c68586ef050dc6dcc215b",
+    "corpus_manifest_sha256": "6e0aa44b2e7765f0c630d6d1e47f641347b8ea5733fb2be8370a8b7d16ac3da8",
+    "corpus_sha256": "d7a67c22ef4d6f443ab563807c84cfa2e01245d9c1b09ef3e01934a2800e06a4",
+    "screening_sha256": "db0f5c2f35d98cee680e8279d8db884b1f62d79f448483f64d7010ba075d2776",
+    "screening_manifest_sha256": "eba22a7e2f84551df9be11e3160eacf72a84a2a9e3ad2bd343b3c32394d62d77",
+    "adapter_report_sha256": "856ced441d43afc483abc828822d211ce1b6ef6efc3c5198ab9fe16f2bdbb615",
+    "base_builder_sha256": "e4d0d3cb92ec890c4fa357ee50758ba095f4da7599c44cb63982bb99a08278a8",
+    "core_review_sha256": "8a2d5f2e40b553f1d02c7e20625d5b554722475a8be9cb7c3294dd2d92318bdc",
+    "regex_gate_sha256": "ff1b2bf936e13a2148c036ca14da0f6d411af1202557f487666e8788756a99fb",
+    "evidence_bundle_sha256": "d1280439e0b7cfb74cdce95ffc0991b7a924bf57393d11ec436aab6c3fcc89ba",
+    "core_evidence_sha256": "8a3fde6800222bea2f20915579a02c3f22cf008d1d994fcd825f0c5f642c1c78",
+    "translations_sha256": "808c0a0480142090c55149d2e5fb277002bd8cb151cd3d499e413a654bf3b4a4",
     "translation_parts": {
-      "research/systematic_review/etc/translation_parts/hrs1_perioperative.json": "cd34f64d70b87c5606439cfddaca09901f8f34e06c3dd3ad9a9e839821ed18bf",
-      "research/systematic_review/etc/translation_parts/hrs2_kidney_disease.json": "497804107158352a781251782c92f10a0b7c37fe9ca159a8e135bb1d0c58fc70",
-      "research/systematic_review/etc/translation_parts/hrs3_pregnancy.json": "a5bb0782c9fcf2f7028dc3acfa1f5e97aee52edcb715f40d1d86470ec5a472c8",
-      "research/systematic_review/etc/translation_parts/hrs4_liver_disease.json": "930c59e8c68d558b929897bc2278711f67e4b954f3a8efe82db8832aa4c4164f",
-      "research/systematic_review/etc/translation_parts/hrs5_anticoagulation.json": "dce991312faa75ca5e75b4af64ed63e4670afa6843087db93676e9d50b46ffbc"
+      "research/systematic_review/etc/translation_parts/hrs1_perioperative.json": "c3ecbc93b4ad3694e898d1dd53a1f3e138aba581b7f6d27c55e27e1f156d137e",
+      "research/systematic_review/etc/translation_parts/hrs2_kidney_disease.json": "e340a344dcefd71b9c9c2776d68546f8ded0c67ce5f537f582b15e8bfade68b5",
+      "research/systematic_review/etc/translation_parts/hrs3_pregnancy.json": "a6023caebfc44e84bcf52a332a72d2158f53b7f2bcc5de7aca1675f09678e525",
+      "research/systematic_review/etc/translation_parts/hrs4_liver_disease.json": "45664b9e375f260743afe0f0893f99a213804206fc598d728bf73c9332bacd5a",
+      "research/systematic_review/etc/translation_parts/hrs5_anticoagulation.json": "b58501716eb3047859e9539b2e1ca01a2f88ab8837d9b4666ba669237344fb2a"
     },
-    "rules_sha256": "b9e78c0d6603afd790e380e60959755577162173e8506b9ee8e3e144026361fe",
-    "manifest_sha256": "d1e5161e3c66dc78212765364816ca69b8a2f0c6c8963aac2fc4bdb2c7d426a6",
-    "core_manifest_sha256": "39b27ac49aff59130e756cd3bd856e6019fd87231a3d9557b30d1f53c3bcb70e",
-    "generator_sha256": "8f068b926549e90ec6664ccd1b7a92489703780f63410c3d24cb7160be7ef822",
-    "base_generator_sha256": "bf92fdf341364a64efc7b09b7c05597150c68b8486996379712dd657ad6c41c4"
+    "rules_sha256": "5e723a96e86b7a767a15d91cb7d88a9feda2a8f2647539b5506f2e3c24e965cf",
+    "manifest_sha256": "c5a525f436b489eaea68921e5c3feb89d2418f1fe1ef0bccbbd37ea7f9a33a36",
+    "core_manifest_sha256": "3198bf8a4c548b424a0a977c64ac864faa46407e036efe00ed789c3c78bb6358",
+    "generator_sha256": "c0ed81ae04199b4492cc1e91725c854c0761f8ee06ef85aedd3b460e08900891",
+    "base_generator_sha256": "e4d0d3cb92ec890c4fa357ee50758ba095f4da7599c44cb63982bb99a08278a8"
   }
 }

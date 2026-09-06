@@ -7,8 +7,10 @@ import json
 import re
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
+from decimal import Decimal
 from pathlib import Path
 from typing import Any
+from tools.build import reviewed_evidence
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -27,7 +29,7 @@ RULES_OUT = OUT / "personalized_rules.json"
 MANIFEST_OUT = OUT / "manifest.json"
 CORE_MANIFEST_OUT = OUT / "core_manifest.json"
 TRANSLATION_PARTS_DIR = OUT / "etc" / "translation_parts"
-TRANSLATION_AUTHOR = "Claude"
+TRANSLATION_AUTHOR = "Claude; gpt-5.6-luna posthoc corrections"
 MAX_CORE_PER_QUESTION = 15
 
 
@@ -59,23 +61,23 @@ QUESTION_CONFIG: dict[str, dict[str, str]] = {
         "outcome": r"bleed|hemorr|transfus|coag|complication|interaction|adverse|mortality",
     },
     "HRS2_KIDNEY_DISEASE": {
-        "label_ko": "만성콩팥병·투석 환자의 보충제 안전성",
+        "label_ko": "신질환·투석 환자의 보충제 안전성",
         "population": r"kidney|renal|dialysis|ckd|esrd|nephro",
         "outcome": r"hyperkal|hypercal|toxic|adverse|cardiovascular|mortality|hospital|electrolyte",
     },
     "HRS3_PREGNANCY": {
-        "label_ko": "임신 중 보충제 안전성",
-        "population": r"pregnan|maternal|prenatal|fetal|foetal|neonat|birth|gestation",
+        "label_ko": "임신·수유 중 보충제 안전성",
+        "population": r"pregnan|maternal|prenatal|fetal|foetal|neonat|birth|gestation|lactat|breastfeed|breast.feed",
         "outcome": r"adverse|toxic|complication|congenital|terat|miscar|preterm|mortality|anomal",
     },
     "HRS4_LIVER_DISEASE": {
-        "label_ko": "간질환 환자의 보충제 안전성",
-        "population": r"liver|hepatic|cirrho|hepatitis|hepatocellular",
+        "label_ko": "간질환·간독성의 보충제 근거",
+        "population": r"liver|hepatic|cirrho|hepatitis|hepatocellular|hepatotox",
         "outcome": r"hepatotox|injur|failure|adverse|hospital|mortality|transplant|aminotransferase",
     },
     "HRS5_ANTICOAGULATION": {
-        "label_ko": "항응고제 복용자의 보충제 안전성",
-        "population": r"anticoag|warfarin|apixaban|rivaroxaban|dabigatran|heparin|coumarin",
+        "label_ko": "항응고·항혈소판·출혈 상황의 보충제 안전성",
+        "population": r"anticoag|warfarin|apixaban|rivaroxaban|dabigatran|heparin|coumarin|antiplatelet|aspirin|clopidogrel|bleed|hemorr|coagulopath|\binr\b",
         "outcome": r"bleed|hemorr|thromb|\binr\b|interaction|coag|adverse|antiplatelet",
     },
 }
@@ -148,11 +150,17 @@ def split_sentences(text: str) -> list[str]:
     stripped = text.strip()
     if not stripped:
         return []
-    return [
-        part.strip()
-        for part in re.split(r"(?<=[.!?])\s+(?=[A-Z0-9\[])", stripped)
-        if part.strip()
-    ]
+    # These abbreviations occur inside comparisons/citations, not at sentence ends.
+    # Use offsets into the original text so excerpts remain exact source substrings.
+    parts, start = [], 0
+    for boundary in re.finditer(r"(?<=[.!?])\s+(?=[A-Z0-9\[])", stripped):
+        prefix = stripped[:boundary.start()]
+        if re.search(r"\b(?:vs|e\.g|i\.e|et al)\.$", prefix, re.IGNORECASE):
+            continue
+        parts.append(stripped[start:boundary.start()].strip())
+        start = boundary.end()
+    parts.append(stripped[start:].strip())
+    return [part for part in parts if part]
 
 
 def regex_passes(row: dict[str, str]) -> tuple[bool, str]:
@@ -172,6 +180,9 @@ def choose_key_finding(row: dict[str, str]) -> tuple[str, str]:
     if not row["abstract"].strip():
         return "TITLE", row["title"].strip()
     sentences = split_sentences(row["abstract"])
+    checked = reviewed_evidence.finding(row, sentences)
+    if checked is not None:
+        return checked
     if not sentences:
         raise RuntimeError(f"abstract could not be split: {row['record_id']}")
     outcome_re = re.compile(QUESTION_CONFIG[row["question_id"]]["outcome"], re.IGNORECASE)
@@ -400,11 +411,17 @@ def build() -> dict[str, Any]:
     for question_id in QUESTION_CONFIG:
         candidates = [
             row for row in extracted
-            if row["question_id"] == question_id and topic_relevant(row)
+            if row["question_id"] == question_id
+            and reviewed_evidence.core_eligible(row)
         ]
         candidates.sort(key=lambda row: (-int(row["priority_score"]), -int(row["year"] or 0), row["record_id"]))
         core.extend(candidates[:MAX_CORE_PER_QUESTION])
     core.sort(key=lambda row: (row["question_id"], -int(row["priority_score"]), row["record_id"]))
+    expected_core = {(row['question_id'], row['record_id']) for row in corpus
+                     if reviewed_evidence.core_eligible(row)}
+    actual_core = {(row['question_id'], row['record_id']) for row in core}
+    if actual_core != expected_core:
+        raise RuntimeError(f'Reviewed core evidence omitted by a candidate filter or cap: {sorted(expected_core - actual_core)}')
     write_csv(CORE_OUT, core, PICOS_COLUMNS)
     regex_passed_count = sum(row["regex_passed"] == "true" for row in regex_rows)
     kept_count = len(extracted)
@@ -468,10 +485,12 @@ def normalized_number_tokens(text: str) -> list[str]:
         ("한 시험", "1"),
     )
     for phrase, value in semantic_phrases:
-        if phrase in text:
+        if re.search(r'(?<![가-힣])' + re.escape(phrase), text):
             word_tokens.add(value)
+    # The disease label T2DM can be translated as 제2형 당뇨병.
+    word_tokens.update(re.findall(r'\bT([12])DM\b', text, re.IGNORECASE))
     tokens.extend(sorted(word_tokens - set(tokens)))
-    return tokens
+    return [format(Decimal(token.replace(',', '')).normalize(), 'f') for token in tokens]
 
 
 def normalized_unit_tokens(text: str) -> list[str]:
@@ -490,8 +509,12 @@ def normalized_unit_tokens(text: str) -> list[str]:
     for source, target in korean_units.items():
         normalized = re.sub(rf"(?<=\d)\s*{source}", f" {target}", normalized)
     normalized = normalized.replace("/일", "/day").replace("/주", "/week")
+    normalized = re.sub(r'하루\s+(\d+(?:[.,]\d+)?\s*(?:mg|g|µg|mcg|iu|ml|mmol))\b',
+                        r'\1/day', normalized)
     normalized = re.sub(r"(?<=\d)(?=(?:mg|g|µg|mcg|iu|ml|mmol)\b)", " ", normalized)
     tokens = normalized_tokens(UNIT_RE, normalized)
+    # PubMed uses /d and /day for the same daily dose denominator.
+    tokens = [re.sub(r'/d$', '/day', token) for token in tokens]
     return [
         token.replace("units/pt", "units/patient")
         .replace("unit/pt", "units/patient")
@@ -509,8 +532,8 @@ def translation_is_valid(source: str, translation: str) -> bool:
     중 64건이 숫자를 나열한 자리표시로 남았다.
 
     막아야 할 것은 한쪽뿐이다. 번역에 있는 숫자와 단위는 모두 원문에 있어야
-    하고, 원문에 있는 것을 덜어내는 쪽은 요약이지 왜곡이 아니다. 방향은
-    direction_is_valid 가 따로 지킨다.
+    한다. 수치 생략과 문맥이 의미를 왜곡하는지는 별도 문헌 검토에서 확인한다.
+    direction_is_valid는 일부 방향 표현의 형식 검사만 담당한다.
     """
     if not re.search(r"[가-힣]", translation):
         return False
@@ -525,9 +548,9 @@ def translation_is_valid(source: str, translation: str) -> bool:
 def direction_is_valid(source: str, translation: str) -> bool:
     requirements = [
         (r"increase|higher|elevat|rise|greater", r"증가|높|상승|늘|커|많"),
-        (r"decrease|lower|reduc|declin|attenuat", r"감소|낮|줄|완화|저하"),
+        (r"\b(?:decreas\w*|lower\w*|reduc(?:e[ds]?|ing|tions?)\b|declin\w*|attenuat\w*)", r"감소|낮|줄|완화|저하"),
         (r"no significant|not significant|not associated|no association|no effect|did not", r"없|않|못|무관|무효과|차이"),
-        (r"\brisk\b", r"위험"),
+        (r"\brisk\b", r"위험|\bRR\b"),
         (r"mortality|death", r"사망"),
         (r"bleed|hemorrhag", r"출혈"),
     ]
@@ -628,7 +651,7 @@ def translate() -> dict[str, Any]:
         "schema_version": "1.0.0", "track": "v3.0_full_ai_autonomy",
         "generated_at": now(), "translation_authorship": "ai_generated",
         "author": TRANSLATION_AUTHOR,
-        "source": "agent-authored translation parts (no external or local translation model)",
+        "source": "AI translation parts with source-bound posthoc corrections",
         "parts": part_manifest,
         "records": len(translations), "translations": translations,
     }

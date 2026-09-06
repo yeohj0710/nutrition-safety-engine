@@ -14,8 +14,8 @@ import "server-only";
 const ENDPOINT = "https://api.openai.com/v1/responses";
 
 /** 2026-07-30 인하로 입력 $0.20 / 출력 $1.20 per 1M. 이 용도에 sol·terra 는 과하다. */
-export const CONSULT_MODEL = process.env.OPENAI_CONSULT_MODEL ?? "gpt-5.6-luna";
-const CONSULT_EFFORT = process.env.OPENAI_CONSULT_EFFORT ?? "low";
+export const CONSULT_MODEL = "gpt-5.6-luna";
+export const CONSULT_EFFORT = "max";
 
 /**
  * 기본 제한 시간. 부르는 쪽에서 늘릴 수 있다.
@@ -25,7 +25,7 @@ const CONSULT_EFFORT = process.env.OPENAI_CONSULT_EFFORT ?? "low";
  * 않으니 "AI 가 안 붙었다"로만 보인다. 글이 길수록 오래 걸리므로 부르는 쪽이
  * 자기 길이에 맞는 값을 준다.
  */
-const TIMEOUT_MS = Number(process.env.OPENAI_CONSULT_TIMEOUT_MS ?? 15_000);
+const TIMEOUT_MS = 240_000;
 
 export type LunaFailure =
   | "no_key"
@@ -61,9 +61,9 @@ export async function callLuna<T>({
   user,
   schemaName,
   schema,
-  maxOutputTokens = 2400,
+  maxOutputTokens = 24_000,
   timeoutMs = TIMEOUT_MS,
-  effort = CONSULT_EFFORT,
+  signal,
 }: {
   developer: string;
   user: string;
@@ -72,17 +72,18 @@ export async function callLuna<T>({
   maxOutputTokens?: number;
   timeoutMs?: number;
   /**
-   * 부르는 쪽이 정한다. 축을 옮기거나 한 줄로 줄이는 일은 low 로 충분하고,
-   * 문헌 여러 편을 읽고 묶는 상담문만 올려 쓴다. 전부 올리면 값은 그만큼
-   * 붙는데 짧은 호출에서는 결과가 달라지지 않는다.
+   * 부르는 쪽의 취소 신호. 사용자가 조건을 바꾸거나 화면을 떠나 요청이 끊기면
+   * 모델 호출도 같이 끊는다. 끊긴 요청의 답은 어디에도 쓰이지 않고 값만 든다.
    */
-  effort?: string;
+  signal?: AbortSignal;
 }): Promise<LunaResult<T>> {
   const key = process.env.OPENAI_API_KEY;
   if (!key) return { ok: false, reason: "no_key" };
+  if (signal?.aborted) return { ok: false, reason: "timeout", detail: "aborted_before_start" };
 
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
+  signal?.addEventListener("abort", () => controller.abort(), { once: true });
 
   try {
     const response = await fetch(ENDPOINT, {
@@ -99,7 +100,8 @@ export async function callLuna<T>({
           { role: "developer", content: developer },
           { role: "user", content: user },
         ],
-        reasoning: { effort },
+        reasoning: { effort: CONSULT_EFFORT },
+        store: false,
         max_output_tokens: maxOutputTokens,
         text: {
           format: {
@@ -155,7 +157,8 @@ export async function callLuna<T>({
     }
   } catch (caught) {
     if (caught instanceof DOMException && caught.name === "AbortError") {
-      return { ok: false, reason: "timeout" };
+      // 부르는 쪽이 끊은 것과 제한 시간이 지난 것을 로그에서 가른다. 화면 처리는 같다.
+      return { ok: false, reason: "timeout", detail: signal?.aborted ? "aborted_by_caller" : "deadline" };
     }
     return {
       ok: false,

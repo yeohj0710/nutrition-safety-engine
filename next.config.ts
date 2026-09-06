@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
+  outputFileTracingIncludes: { "/api/consult/*": ["./research/consult/*.json.gz"] },
   async headers() {
     return [
       {

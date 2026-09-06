@@ -1,0 +1,674 @@
+{
+  "schema_version": 2,
+  "study": "yeo",
+  "status": "final_research_posthoc_corrected",
+  "execution_root": "../evidence-recollect",
+  "repository_root": "nutrition-safety-engine",
+  "results": {
+    "corpus_rows": 263982,
+    "baseline_corpus_rows": 257060,
+    "sampling_frame_rows": 253810,
+    "sample_rows": 3250,
+    "screening_counts": {
+      "retain": 78136,
+      "deprioritize": 151122,
+      "uncertain": 34724
+    },
+    "baseline_screening_counts": {
+      "retain": 76730,
+      "deprioritize": 145588,
+      "uncertain": 34742
+    },
+    "ai_comparison": {
+      "agreement_vs_ai_reference": 74.79,
+      "sensitivity_vs_ai_reference": 63.89,
+      "specificity_vs_ai_reference": 85.84,
+      "positive_predictive_value_vs_ai_reference": 67.53,
+      "negative_predictive_value_vs_ai_reference": 83.76
+    },
+    "agreement_ci": [
+      73.75,
+      75.78
+    ],
+    "pipeline_retain_share": 29.85,
+    "scorer_retain_share": 31.55,
+    "retain_share_ratio": 1.057,
+    "comparison_scope": "historical AI comparison before posthoc correction; differences in criteria prevent a pure model comparison",
+    "posthoc_correction": {
+      "study": "yeo",
+      "protocol": "R20260905",
+      "scope": "posthoc_research_correction",
+      "review_model": "gpt-5.6-luna",
+      "reviewed_rows": 7843,
+      "corpus_rows": 263982,
+      "baseline_corpus_rows": 257060,
+      "restored_rows_screened": 6922,
+      "metadata_repair": {
+        "study": "yeo",
+        "protocol": "R20260905",
+        "repair": "primary_article_doi_and_pmid_deduplication",
+        "baseline_rows": 257060,
+        "final_rows": 263982,
+        "unique_papers": 256843,
+        "restored_rows": 6922,
+        "doi_corrected_rows": 36859,
+        "duplicate_pmid_rows_removed": 9417,
+        "restored_book_rows": 473,
+        "rows_with_abstract": 228869,
+        "rows_title_only": 35113,
+        "per_question": {
+          "HRS1_PERIOPERATIVE": 61593,
+          "HRS2_KIDNEY_DISEASE": 28447,
+          "HRS3_PREGNANCY": 126700,
+          "HRS4_LIVER_DISEASE": 25206,
+          "HRS5_ANTICOAGULATION": 22036
+        },
+        "baseline_corpus_sha256": "6e8b1a1e3ccdd06949ff7172643285b6c051bdd383398c17aa3ef35a17df1085",
+        "final_corpus_sha256": "f18ee1cd7e400d724d0e84afac91ec16781fe05fa9d5d3649519db377c5e223e",
+        "metadata_corrections_sha256": "2a7422f958d10d79763dbe96f7c89ed3ef2b6d656a1740f78ff13fb6f4d35c62",
+        "restored_input_sha256": "bfcca88cad9f202fd269047f819fffb60bf967e4410f45c76bd3b000c5b1af08",
+        "original_corpus_changed": false,
+        "non_doi_source_fields_changed": false
+      },
+      "baseline_counts": {
+        "retain": 76730,
+        "deprioritize": 145588,
+        "uncertain": 34742
+      },
+      "final_counts": {
+        "retain": 78136,
+        "deprioritize": 151122,
+        "uncertain": 34724
+      },
+      "final_retained_papers": 75368,
+      "final_counts_by_question": {
+        "HRS1_PERIOPERATIVE": {
+          "retain": 17012,
+          "deprioritize": 36299,
+          "uncertain": 8282
+        },
+        "HRS2_KIDNEY_DISEASE": {
+          "retain": 13405,
+          "deprioritize": 11267,
+          "uncertain": 3775
+        },
+        "HRS3_PREGNANCY": {
+          "retain": 38259,
+          "deprioritize": 70354,
+          "uncertain": 18087
+        },
+        "HRS4_LIVER_DISEASE": {
+          "deprioritize": 17287,
+          "retain": 5914,
+          "uncertain": 2005
+        },
+        "HRS5_ANTICOAGULATION": {
+          "uncertain": 2575,
+          "deprioritize": 15915,
+          "retain": 3546
+        }
+      },
+      "label_changes": 581,
+      "transitions": {
+        "deprioritize -> deprioritize": 99,
+        "deprioritize -> retain": 1,
+        "not_screened -> deprioritize": 4989,
+        "not_screened -> retain": 1836,
+        "not_screened -> uncertain": 97,
+        "retain -> deprioritize": 459,
+        "retain -> retain": 234,
+        "retain -> uncertain": 3,
+        "uncertain -> deprioritize": 87,
+        "uncertain -> retain": 31,
+        "uncertain -> uncertain": 7
+      },
+      "review_groups": {
+        "restored_after_doi_dedup_repair": 6922,
+        "nonempty_abstract_uncertain": 125,
+        "decision_reason_hash_sample": 200,
+        "bundle_keyword_flag": 510,
+        "title_only_retained_review": 12,
+        "core_evidence": 75
+      },
+      "reviewed_insufficient_rows": 107,
+      "baseline_sha256": "51b15014ad7c05bc785b78d1d103cf3852cec1a8f20e91dc3264742581a99b29",
+      "corpus_sha256": "f18ee1cd7e400d724d0e84afac91ec16781fe05fa9d5d3649519db377c5e223e",
+      "metadata_manifest_sha256": "7b32b85415262f95087f20b8389c849e74209247b306ce1fc8d1dd3c5184b218",
+      "original_blind_scores_changed": false,
+      "independent_validation_of_corrections": false,
+      "full_corpus_semantic_re_review": false,
+      "clinical_accuracy_established": false,
+      "input_queues": [
+        {
+          "input": "C:\\dev\\evidence-recollect\\etc\\remediation\\reason_review_input.json",
+          "input_sha256": "6938f5db7f76f2739c00f0eb6384e62d00838cf155d1f4208d272c415c39619b",
+          "review": "C:\\dev\\evidence-recollect\\etc\\remediation\\reason_resolution.json",
+          "review_sha256": "a18e56af66947abca689bea6d073bde6512d66fb43491dd967026517181c92bd",
+          "rows": 125
+        },
+        {
+          "input": "C:\\dev\\evidence-recollect\\etc\\remediation\\validity\\yeo_review_input.json",
+          "input_sha256": "a78069a2f6d108d3809afb4a693f6b0abbd1888a235a53cfba2088f9d8c20a7d",
+          "review": "C:\\dev\\evidence-recollect\\etc\\remediation\\validity\\yeo_review_results.json",
+          "review_sha256": "bf816121ccf69f134d5d663b882018f19d8f6363467823873eb2c48b920ac70a",
+          "rows": 784
+        },
+        {
+          "input": "C:\\dev\\evidence-recollect\\etc\\remediation\\validity\\yeo_title_1_input.json",
+          "input_sha256": "d89abb7837485b4f2c4cb7dc5727d0428f4085d13fe0f265e83bb95b0959799e",
+          "review": "C:\\dev\\evidence-recollect\\etc\\remediation\\validity\\yeo_title_1_results.json",
+          "review_sha256": "1d03b5778429d3910e73be5a955ac1e6fcb4fe9040699039d033e8f2b9873a81",
+          "rows": 12
+        },
+        {
+          "input": "C:\\dev\\evidence-recollect\\etc\\remediation\\validity\\yeo_restored_1_input.json",
+          "input_sha256": "d1045be4427f2755a143e2641ed5fadca973eedfea9e38a1d3db0f811c7d304b",
+          "review": "C:\\dev\\evidence-recollect\\etc\\remediation\\validity\\yeo_restored_1_results.json",
+          "review_sha256": "4c2e22d599c19d764f6888ad6a2b8d0598e141491d3a4174b228c41925be4052",
+          "rows": 2000
+        },
+        {
+          "input": "C:\\dev\\evidence-recollect\\etc\\remediation\\validity\\yeo_restored_2a_input.json",
+          "input_sha256": "e76a8398eba558c43c603e3efdd208e02f687a60c19576f3068b268095748e7f",
+          "review": "C:\\dev\\evidence-recollect\\etc\\remediation\\validity\\yeo_restored_2a_results.json",
+          "review_sha256": "bb21d5922f716dfd802aec1930ba64eeda47b81942e15c4edc8919b95043e7bc",
+          "rows": 1000
+        },
+        {
+          "input": "C:\\dev\\evidence-recollect\\etc\\remediation\\validity\\yeo_restored_3a_input.json",
+          "input_sha256": "24e4dbfbcfc6c0a0de0e8cd50e437f4a68af861720d8c9293fab31b0314f2d6e",
+          "review": "C:\\dev\\evidence-recollect\\etc\\remediation\\validity\\yeo_restored_3a_results.json",
+          "review_sha256": "cc08f8477fb011fd8d33a091a38ec742528b6fea71a23057b01133fb5df71f20",
+          "rows": 900
+        },
+        {
+          "input": "C:\\dev\\evidence-recollect\\etc\\remediation\\validity\\yeo_restored_4_input.json",
+          "input_sha256": "f1a5c6147a52b4bf5a25e57f46e0a0632b05454a5ec23a4ec9b4f3f3c8e5ac22",
+          "review": "C:\\dev\\evidence-recollect\\etc\\remediation\\validity\\yeo_restored_4_results.json",
+          "review_sha256": "5bc4a57244429d6315b7150a07c5ed3df833acd1bc2315a9da1948ace3b6028e",
+          "rows": 1122
+        },
+        {
+          "input": "C:\\dev\\evidence-recollect\\etc\\remediation\\validity\\yeo_restored_5a_input.json",
+          "input_sha256": "c5a7205e57b48ba02e546b7ed7c8e8b2eebb8721544ac035533b26b4dd98f270",
+          "review": "C:\\dev\\evidence-recollect\\etc\\remediation\\validity\\yeo_restored_5a_results.json",
+          "review_sha256": "e8be4c849ec64c7275aabf971dfa1515237e436fe22bfbeab15fad772f2f63eb",
+          "rows": 600
+        },
+        {
+          "input": "C:\\dev\\evidence-recollect\\etc\\remediation\\validity\\yeo_restored_5b_input.json",
+          "input_sha256": "c475ce2ebfc674c819d94a5db8c0e5fc4a282ccf93397305f93dc242a4f43ad9",
+          "review": "C:\\dev\\evidence-recollect\\etc\\remediation\\validity\\yeo_restored_5b_results.json",
+          "review_sha256": "8aa3b7c7ff86cb04364a18861fc7ad8638127196af372e6024a6880be7c913fd",
+          "rows": 200
+        },
+        {
+          "input": "C:\\dev\\evidence-recollect\\etc\\remediation\\validity\\yeo_restored_5c_input.json",
+          "input_sha256": "0ad01f8ed423c052a42b19f06c6bc57015aefec79dbcf4de3a730bb2933c5abe",
+          "review": "C:\\dev\\evidence-recollect\\etc\\remediation\\validity\\yeo_restored_5c_results.json",
+          "review_sha256": "557b7b3b54ea02466460ab9c57c1c0659768a2b1d4fbe8118bef86455cb510ed",
+          "rows": 200
+        },
+        {
+          "input": "C:\\dev\\evidence-recollect\\etc\\remediation\\validity\\yeo_restored_6a_input.json",
+          "input_sha256": "8d578a4ca5cc5ad0a75e378a6f980917988986a15b4ec31f654908eda6d39654",
+          "review": "C:\\dev\\evidence-recollect\\etc\\remediation\\validity\\yeo_restored_6a_results.json",
+          "review_sha256": "bff5469504fc8678ef524b691aa7ddef8b2d8db80e28b030829f2f99cee0e270",
+          "rows": 536
+        },
+        {
+          "input": "C:\\dev\\evidence-recollect\\etc\\remediation\\validity\\yeo_restored_7_input.json",
+          "input_sha256": "9104908bf3bff07b22d4b3c6f6aca1c9ef40d143d5392c6c8ee54d59349cfb8d",
+          "review": "C:\\dev\\evidence-recollect\\etc\\remediation\\validity\\yeo_restored_7_results.json",
+          "review_sha256": "02ed3cbf80b16aef8094d40d8a418c634e3e95840c52ed121859d5116ad77ab5",
+          "rows": 182
+        },
+        {
+          "input": "C:\\dev\\evidence-recollect\\etc\\remediation\\validity\\yeo_restored_8_input.json",
+          "input_sha256": "68ac981a0d0f7bde3145bd93bbc8ef398805c0348c457f343e5af166951db179",
+          "review": "C:\\dev\\evidence-recollect\\etc\\remediation\\validity\\yeo_restored_8_results.json",
+          "review_sha256": "5e94269bdfdafc6979e1f71bb165568ca0c696d772d4d7bb72b60652108bf731",
+          "rows": 182
+        }
+      ],
+      "criteria_sha256": "da9a24c36fc99268fdec4a068890c96182e1e08a7e25d5854be55000572d686f",
+      "review_sha256": "d818d0c6db843d62fd983814cfad17b424f521553a7bcf0e635c5c685d55bd05",
+      "effective_sha256": "ad1c1311309e171be52fdaea4d331039a350a0848ed026a807f9b305a7211d8e"
+    },
+    "correction_replay": {
+      "passed": true,
+      "reviewed_rows": 7843,
+      "effective_rows": 263982
+    },
+    "clinical_accuracy_established": false,
+    "raw_labels_changed": false
+  },
+  "files": [
+    {
+      "root": "execution",
+      "path": "data/yeo/corpus/evidence_map.csv",
+      "bytes": 478410334,
+      "sha256": "6e8b1a1e3ccdd06949ff7172643285b6c051bdd383398c17aa3ef35a17df1085"
+    },
+    {
+      "root": "execution",
+      "path": "data/yeo/corpus/corpus_manifest.json",
+      "bytes": 521,
+      "sha256": "1d8f6ce8f34c8812dcdd2848c2caf70906622782c307bad19398bbf85b80ae3a"
+    },
+    {
+      "root": "execution",
+      "path": "data/yeo/screen/decisions.jsonl",
+      "bytes": 72557218,
+      "sha256": "51b15014ad7c05bc785b78d1d103cf3852cec1a8f20e91dc3264742581a99b29"
+    },
+    {
+      "root": "execution",
+      "path": "data/yeo/queries/query_definitions_nodate.json",
+      "bytes": 51499,
+      "sha256": "e434f28ee248875a1e157a285c042e615f9f51f264c6c3017084185e5a392969"
+    },
+    {
+      "root": "execution",
+      "path": "data/yeo/score_arm2/sample.json",
+      "bytes": 264358,
+      "sha256": "9c3f6e68cebdeebcebdc1201f16a35c6dc6b27edb389916a6ca254e67158d1d9"
+    },
+    {
+      "root": "execution",
+      "path": "data/yeo/score_arm2/scores.jsonl",
+      "bytes": 650840,
+      "sha256": "b75df6ae2910f5dd846cff8fa5e96e2a11ce1b0d09f5425b237810e0d2ecccbb"
+    },
+    {
+      "root": "execution",
+      "path": "data/yeo/score_arm2/lock.json",
+      "bytes": 247,
+      "sha256": "c052888123e70776e96b68efed57525391caf2579c3bf4d1a8192aba90c3f485"
+    },
+    {
+      "root": "execution",
+      "path": "data/yeo/score_arm2/scoring_report.json",
+      "bytes": 2257,
+      "sha256": "9c860c4ec0b6a5d4a232db4c40e4a89431b7c3b4521286c83d9aa478594da5a4"
+    },
+    {
+      "root": "execution",
+      "path": "adopt.py",
+      "bytes": 4438,
+      "sha256": "135c6e13a3c5ec51ed0ab137456e0430af2acc608b7b1dd808dba725e43a080e"
+    },
+    {
+      "root": "execution",
+      "path": "amend_kwon.py",
+      "bytes": 8474,
+      "sha256": "ef3998bc322dfddf8e9ebc03c4c90d1a0ee3ba92013a3a644521c872006071f4"
+    },
+    {
+      "root": "execution",
+      "path": "cards.py",
+      "bytes": 15157,
+      "sha256": "6812e9929da8485b41810db9ea7d75db91d0ca73b742cb9bb3988ea0ab632528"
+    },
+    {
+      "root": "execution",
+      "path": "classify.py",
+      "bytes": 11136,
+      "sha256": "a2ff683e338b0f5e488296ae4083c3dedf6dced2f0d1c4cb3e9eb739930f83f9"
+    },
+    {
+      "root": "execution",
+      "path": "corpus.py",
+      "bytes": 7188,
+      "sha256": "645b17b5f02990ca54820d9f17c4dcd7a39085f491f700d9c5cb8c8712aaf4d5"
+    },
+    {
+      "root": "execution",
+      "path": "corrections.py",
+      "bytes": 13351,
+      "sha256": "d27b163b01469debf0f49d5d8c205cb205b91200333652f992d8442538d49ba7"
+    },
+    {
+      "root": "execution",
+      "path": "fetch.py",
+      "bytes": 16362,
+      "sha256": "0caab220ffd3726505d01856d111c9fb633b952818a9e5a9ff4df44571482a7d"
+    },
+    {
+      "root": "execution",
+      "path": "final_report.py",
+      "bytes": 5690,
+      "sha256": "702f7c96d8269cffcf8b7dea7adf9fbc21e2de86802cc81ce72fde13e5a23260"
+    },
+    {
+      "root": "execution",
+      "path": "fulltext.py",
+      "bytes": 25560,
+      "sha256": "c90426f39b4e31b2b1b22ae2b9dc0143aa33c65f85f4b6c0fcfa401825e123bb"
+    },
+    {
+      "root": "execution",
+      "path": "grind.py",
+      "bytes": 3422,
+      "sha256": "b866f82fab352cb7f6435863a6771a04a68be3b6e0b94f2d42245d18a39ff867"
+    },
+    {
+      "root": "execution",
+      "path": "lib.py",
+      "bytes": 5132,
+      "sha256": "b4c43e52670f4d47214864cfba3028844538f77f22c0f4c50adb8a94bd812e9c"
+    },
+    {
+      "root": "execution",
+      "path": "mark.py",
+      "bytes": 3227,
+      "sha256": "7dbb3ef8c078b35842bc16f002d2e04c501a23af452a7567dd4701e08c4815a8"
+    },
+    {
+      "root": "execution",
+      "path": "next.py",
+      "bytes": 34058,
+      "sha256": "64e6b3c3f4bbce4373c1dce38e96492b884a60e0387e2fb15dc8a8462483bb7f"
+    },
+    {
+      "root": "execution",
+      "path": "queries.py",
+      "bytes": 3768,
+      "sha256": "c7d7017ba4f5966041aebe92e910be4bdddb9547e8184e2c0a83085c81ee8bfa"
+    },
+    {
+      "root": "execution",
+      "path": "redo.py",
+      "bytes": 20872,
+      "sha256": "ae9cfaa4c5cc8c5b9653f50467e1061532dc0738c38d45d17747742f1373a406"
+    },
+    {
+      "root": "execution",
+      "path": "repair_metadata.py",
+      "bytes": 6480,
+      "sha256": "e834829ea762962d627edeee00ff41c5e4a46dd9eb397b521f2e8593fc531713"
+    },
+    {
+      "root": "execution",
+      "path": "reproduce.py",
+      "bytes": 7283,
+      "sha256": "dfbd8e6e25d6b957cb9d8a662ccf823a8bd6d708c7a6066d62e5e12ada5ed40e"
+    },
+    {
+      "root": "execution",
+      "path": "score.py",
+      "bytes": 46649,
+      "sha256": "b138324d297063a3e59b819cf5c3930cd0b8af1026f5441b687445160a911ab6"
+    },
+    {
+      "root": "execution",
+      "path": "show.py",
+      "bytes": 1618,
+      "sha256": "d03ed98dd79e5029435a04fed3e61e9a438205ab090eaa36eb9d63de5bc441ef"
+    },
+    {
+      "root": "execution",
+      "path": "verify.py",
+      "bytes": 24833,
+      "sha256": "e8178678d79576f4f99e354911eb96ea4b41c490379eedacdaae8a11da603026"
+    },
+    {
+      "root": "execution",
+      "path": "view_card.py",
+      "bytes": 3808,
+      "sha256": "2cbae35695142be15dfa8e4dcf8cc60049fa6df4a1545370be3762fc7501e744"
+    },
+    {
+      "root": "execution",
+      "path": "config.json",
+      "bytes": 6148,
+      "sha256": "58fcb74a954845d8cad97e1a1a2d8d8e51c98565f9b10471207a1799e8b52b3b"
+    },
+    {
+      "root": "execution",
+      "path": "README.md",
+      "bytes": 2087,
+      "sha256": "eb058f754c384d41566a919933daa08dd0b59e0582327cd8febba9b0ec9d8e39"
+    },
+    {
+      "root": "execution",
+      "path": "RESULTS.md",
+      "bytes": 524,
+      "sha256": "cf58f2b36eb99810c2e7a2bb31dd64d5eec46f567027fcd00cecdf995dce0e99"
+    },
+    {
+      "root": "execution",
+      "path": "data/yeo/audit/reason_review.json",
+      "bytes": 185214,
+      "sha256": "bee9fec045d1a323d6dbbd0ba952f46723435ffa2a3cc31d0079dae6ebdbd20e"
+    },
+    {
+      "root": "execution",
+      "path": "tests/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "root": "execution",
+      "path": "tests/test_card_binding.py",
+      "bytes": 2257,
+      "sha256": "b3f65af21abf628a3e806c5261b56f5b27b78cc7802ed42d7e7f33885d98dc11"
+    },
+    {
+      "root": "execution",
+      "path": "tests/test_comparison_metrics.py",
+      "bytes": 1371,
+      "sha256": "f4e3a114bdeab38724267a62d18b397bb7ab420634c8c2036961a465d6ef58d5"
+    },
+    {
+      "root": "execution",
+      "path": "tests/test_corrections.py",
+      "bytes": 2945,
+      "sha256": "a95f5fca4599b3bc261bf7eb2ac6b27a28616c02bd554a5fa6921a150a94ca9b"
+    },
+    {
+      "root": "execution",
+      "path": "tests/test_pubmed_identity.py",
+      "bytes": 2324,
+      "sha256": "8c5d829118dc1cab3e49ea72855e9ebc373e177bf9e90ebfdb5c559ce433e940"
+    },
+    {
+      "root": "execution",
+      "path": "data/yeo/final/criteria.md",
+      "bytes": 6520,
+      "sha256": "da9a24c36fc99268fdec4a068890c96182e1e08a7e25d5854be55000572d686f"
+    },
+    {
+      "root": "execution",
+      "path": "data/yeo/final/review.json",
+      "bytes": 6949432,
+      "sha256": "d818d0c6db843d62fd983814cfad17b424f521553a7bcf0e635c5c685d55bd05"
+    },
+    {
+      "root": "execution",
+      "path": "data/yeo/final/effective.decisions.jsonl",
+      "bytes": 72403027,
+      "sha256": "ad1c1311309e171be52fdaea4d331039a350a0848ed026a807f9b305a7211d8e"
+    },
+    {
+      "root": "execution",
+      "path": "data/yeo/final/summary.json",
+      "bytes": 9205,
+      "sha256": "2191af9edf4851ce4f982445edd89f4a700793241bf5c27f54fda3380c892161"
+    },
+    {
+      "root": "execution",
+      "path": "data/yeo/final/evidence_map.csv",
+      "bytes": 488810737,
+      "sha256": "f18ee1cd7e400d724d0e84afac91ec16781fe05fa9d5d3649519db377c5e223e"
+    },
+    {
+      "root": "execution",
+      "path": "data/yeo/final/metadata_manifest.json",
+      "bytes": 244677,
+      "sha256": "7b32b85415262f95087f20b8389c849e74209247b306ce1fc8d1dd3c5184b218"
+    },
+    {
+      "root": "execution",
+      "path": "data/yeo/final/metadata_corrections.jsonl",
+      "bytes": 9990220,
+      "sha256": "2a7422f958d10d79763dbe96f7c89ed3ef2b6d656a1740f78ff13fb6f4d35c62"
+    },
+    {
+      "root": "execution",
+      "path": "data/yeo/final/report.json",
+      "bytes": 19406,
+      "sha256": "a241a32cc2db46636a89733ffbdefb0c75938ff4c308ab292d167de683ec6b6e"
+    },
+    {
+      "root": "repository",
+      "path": "research/systematic_review/manifest.json",
+      "bytes": 2793,
+      "sha256": "c5a525f436b489eaea68921e5c3feb89d2418f1fe1ef0bccbbd37ea7f9a33a36"
+    },
+    {
+      "root": "repository",
+      "path": "research/systematic_review/core_manifest.json",
+      "bytes": 4937,
+      "sha256": "3198bf8a4c548b424a0a977c64ac864faa46407e036efe00ed789c3c78bb6358"
+    },
+    {
+      "root": "repository",
+      "path": "research/systematic_review/core_evidence.csv",
+      "bytes": 181512,
+      "sha256": "8a3fde6800222bea2f20915579a02c3f22cf008d1d994fcd825f0c5f642c1c78"
+    },
+    {
+      "root": "repository",
+      "path": "research/systematic_review/personalized_rules.json",
+      "bytes": 535097,
+      "sha256": "5e723a96e86b7a767a15d91cb7d88a9feda2a8f2647539b5506f2e3c24e965cf"
+    },
+    {
+      "root": "repository",
+      "path": "research/systematic_review/picos_extraction.csv",
+      "bytes": 85519643,
+      "sha256": "d1280439e0b7cfb74cdce95ffc0991b7a924bf57393d11ec436aab6c3fcc89ba"
+    },
+    {
+      "root": "repository",
+      "path": "research/systematic_review/extended_evidence.json",
+      "bytes": 42854020,
+      "sha256": "e8e0aa2e82fc876b78009bf6d6fd2ef34bb3f012caa432f6acb32a1979d02f84"
+    },
+    {
+      "root": "repository",
+      "path": "research/systematic_review/extended_axis_index.json",
+      "bytes": 1436155,
+      "sha256": "0f1f6b2429f4a6cb2a34b3a09d511d1a9e6c511aed4060d78f9554876b4142ce"
+    },
+    {
+      "root": "repository",
+      "path": "research/systematic_review/key_finding_translations_ko.json",
+      "bytes": 41815,
+      "sha256": "808c0a0480142090c55149d2e5fb277002bd8cb151cd3d499e413a654bf3b4a4"
+    },
+    {
+      "root": "repository",
+      "path": "research/systematic_review/regex_gate.csv",
+      "bytes": 18902464,
+      "sha256": "ff1b2bf936e13a2148c036ca14da0f6d411af1202557f487666e8788756a99fb"
+    },
+    {
+      "root": "repository",
+      "path": "tools/build/adapt_recollect_track.py",
+      "bytes": 16412,
+      "sha256": "73e9d692ba2988667309766ee801041676fdd03408f8b1d88a06da8cc43e328b"
+    },
+    {
+      "root": "repository",
+      "path": "tools/build/apply_translation_drafts.py",
+      "bytes": 3234,
+      "sha256": "522b1352c52246af69483473b6b4fd7c83998ff35560ea27623397fc0056f9e1"
+    },
+    {
+      "root": "repository",
+      "path": "tools/build/audit_include.py",
+      "bytes": 8713,
+      "sha256": "e983f5841d329b2d8f9880bf8b7102c60e68dcd859a230c897b2d8a332b26b46"
+    },
+    {
+      "root": "repository",
+      "path": "tools/build/base_builder.py",
+      "bytes": 42852,
+      "sha256": "e4d0d3cb92ec890c4fa357ee50758ba095f4da7599c44cb63982bb99a08278a8"
+    },
+    {
+      "root": "repository",
+      "path": "tools/build/build_extended_axis_index.py",
+      "bytes": 7190,
+      "sha256": "ba3a40d53edda01a6aa249c4e5370fe5621a106f457d6a248f94d5bf6bb22b99"
+    },
+    {
+      "root": "repository",
+      "path": "tools/build/build_extended_evidence.py",
+      "bytes": 3274,
+      "sha256": "f84cc4cb007a547e5d4f3b5af3f300fd63cc4d80d0ed8568141ba4eb852fdf81"
+    },
+    {
+      "root": "repository",
+      "path": "tools/build/build_site.py",
+      "bytes": 44656,
+      "sha256": "c0ed81ae04199b4492cc1e91725c854c0761f8ee06ef85aedd3b460e08900891"
+    },
+    {
+      "root": "repository",
+      "path": "tools/build/prepare_translation_parts.py",
+      "bytes": 4896,
+      "sha256": "1162e65e02d7c082cfa9b1a6a504f9ac7143b9ec957ac85f42fe3a1af44c80d5"
+    },
+    {
+      "root": "repository",
+      "path": "tools/build/report_ranking_axis_changes.py",
+      "bytes": 6609,
+      "sha256": "98e900fe4162c747af2a00383f9c8fd763053706520fe1c6c531a4d1f8e14b2d"
+    },
+    {
+      "root": "repository",
+      "path": "tools/build/reviewed_evidence.py",
+      "bytes": 1671,
+      "sha256": "721647477a9707c2dd550fd28f0d566ced498cef82238aa8f6e4f5b0eb2a7cd2"
+    },
+    {
+      "root": "repository",
+      "path": "tools/build/split_extended_evidence.py",
+      "bytes": 1918,
+      "sha256": "a316c382e92e4bab4d0d9cb5891f26590ae6dbf5989f3e8e50c0b8e61ee196b5"
+    },
+    {
+      "root": "repository",
+      "path": "tools/build/test_sentence_excerpts.py",
+      "bytes": 2723,
+      "sha256": "b8f85fe8881cd2fd3b4e5f4ce659fc55afed4c8127db7b3b6943e331b7a8d92a"
+    },
+    {
+      "root": "repository",
+      "path": "tools/build/translation_drafts.py",
+      "bytes": 17572,
+      "sha256": "6d926ac4d164c28d93ceb1d3967e3f7dbae390ad203d65101bea9730ba5f3740"
+    },
+    {
+      "root": "repository",
+      "path": "research/final/evidence-review.json",
+      "bytes": 175312,
+      "sha256": "8a2d5f2e40b553f1d02c7e20625d5b554722475a8be9cb7c3294dd2d92318bdc"
+    },
+    {
+      "root": "repository",
+      "path": "research/final/site-summary.json",
+      "bytes": 1075,
+      "sha256": "b342f409be45b2af271cc8063f104c5784427801cbba2a7ffca69ffc65678786"
+    },
+    {
+      "root": "repository",
+      "path": "src/lib/axis-coverage.ts",
+      "bytes": 1285,
+      "sha256": "4fffb0b7773a969940dff88d808be03d828492f7bc51b11d0ce736080f0f1e85"
+    }
+  ]
+}

@@ -118,9 +118,9 @@ def main() -> int:
     total_axis_rows = sum(len(v) for b in by_question.values() for v in b.values())
     payload = {
         "schema_version": "1.0.0",
-        "track": "recollect-v2",
+        "track": "recollect-v2-posthoc-R20260905",
         "purpose": (
-            "확장 근거에 축 색인을 붙여 조건 필터가 핵심 근거 15건 밖에서도 걸리게 한다. "
+            "문헌 후보에 조건 색인을 붙여 핵심 목록 밖에서도 조건 필터를 적용한다. "
             "판정식은 v3.0 build_site_v3.extract_observed_axes 와 동일하다."
         ),
         "derivation": {
@@ -143,7 +143,7 @@ def main() -> int:
             },
         },
         "parity_check": {
-            "note": "규칙 파일이 핵심 근거 75건에 기록한 축 소속과 재계산 결과를 대조한다",
+            "note": "규칙 파일의 최종 핵심 근거가 보고한 조건을 재계산한 결과와 대조한다",
             "comparisons": checked,
             "agree": agree,
             "disagree": len(disagree),

@@ -792,11 +792,12 @@ export async function POST(req: Request) {
   // 기본 화면 채우기. 조건을 여러 개 걸면 핵심 근거 15건 안에서 1~3건까지 줄어드는데,
   // 같은 조건에 맞는 확장 근거는 수십 건이 남아 있다. 핵심 근거를 먼저 두고 모자란
   // 자리를 확장 근거로 채운다. 두 층의 지위가 다르므로 응답에서 몇 건씩인지 밝힌다.
+  const questionLimit = Math.min(SELECTED_LIMIT, base.all_evidence.length);
   const coreSelected = expanded
     ? []
-    : selectDiverse(ranked, appliedAxisIds, querySeed, SELECTED_LIMIT);
+    : selectDiverse(ranked, appliedAxisIds, querySeed, questionLimit);
   const coreIds = new Set(coreSelected.map((item) => item.record_id));
-  const topUpNeeded = expanded ? 0 : SELECTED_LIMIT - coreSelected.length;
+  const topUpNeeded = expanded ? 0 : questionLimit - coreSelected.length;
   const topUp =
     topUpNeeded > 0 && applied.length
       ? orderForPaging(
@@ -837,7 +838,7 @@ export async function POST(req: Request) {
             : `${meta?.short ?? "이 상황"} 문헌 ${extendedTotal.toLocaleString("ko-KR")}건 가운데`,
           `${offset + 1}~${offset + selected.length}번째를 보여드립니다.`,
           applied.length
-            ? "핵심 15건 밖에 있던 문헌까지 같은 조건으로 걸렀습니다. 적어주신 값 자체로 문헌을 고르지는 않습니다."
+            ? "검토한 핵심 목록 밖의 문헌 후보까지 같은 조건으로 걸렀습니다. 적어주신 값 자체로 문헌을 고르지는 않습니다."
             : "",
           "아직 한국어로 옮기지 않아 영어 문장 그대로 보입니다.",
         ]
@@ -932,8 +933,8 @@ export async function POST(req: Request) {
       extended_pool_total: questionPoolTotal,
       extended_match_total: extendedMatchTotal,
       extended_note: applied.length
-        ? "넓혀 보기는 핵심 15건 밖에 있던 문헌까지 담고, 거기에도 같은 조건을 걸어 고르신 이야기가 나온 것만 남깁니다. 적어주신 값 자체로 문헌을 고르지는 않습니다. 아직 한국어로 옮기지 않아 영어 문장 그대로 보입니다."
-        : "넓혀 보기는 핵심 15건 밖에 있던 이 상황의 문헌을 모두 담습니다. 아직 한국어로 옮기지 않아 영어 문장 그대로 보입니다.",
+        ? "넓혀 보기는 검토한 핵심 목록 밖의 문헌 후보까지 담고, 거기에도 같은 조건을 걸어 고르신 이야기가 나온 것만 남깁니다. 적어주신 값 자체로 문헌을 고르지는 않습니다. 아직 한국어로 옮기지 않아 영어 문장 그대로 보입니다."
+        : "넓혀 보기는 핵심 목록 밖의 이 상황 문헌 후보를 모두 담습니다. 아직 한국어로 옮기지 않아 영어 문장 그대로 보입니다.",
       checks: base.checks,
       summary,
       narrative,

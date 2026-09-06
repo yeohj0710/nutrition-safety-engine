@@ -49,7 +49,8 @@ const MAX_PARAGRAPHS = 4;
  * 결정론 폴백으로 떨어졌다. 뭉뚱그린 문장을 막으려고 고친 것을 길이 상한이
  * 되돌리면 안 된다.
  */
-const MAX_PARAGRAPH_CHARS = 380;
+// 여러 연구의 대상·용량·결과를 함께 설명할 공간을 둔다. 처방·출처 검사는 별도로 유지한다.
+const MAX_PARAGRAPH_CHARS = 600;
 /**
  * 한 문단이 댈 수 있는 근거 수.
  *
@@ -66,8 +67,13 @@ const MAX_RECORD_REFS = 5;
 
 function collectNumbers(text: string) {
   return new Set(
-    (text.match(/\d+(?:[.,]\d+)*/g) ?? []).map((n) => n.replace(/,/g, "")),
+    (text.match(/\d+(?:[.,]\d+)*/g) ?? []).map((n) => String(Number(n.replace(/,/g, "")))),
   );
+}
+
+function measurements(text: string) {
+  return new Set([...text.matchAll(/(\d+(?:[.,]\d+)*)\s*(µg|μg|mcg|ug|mg|g|ml|mL|IU|mmol)(?![a-zA-Z])/g)]
+    .map(match => `${Number(match[1].replace(/,/g,""))}|${match[2].replace(/^(?:µg|μg|ug)$/,"mcg").toLowerCase()}`));
 }
 
 export function refereeConsult({
@@ -104,6 +110,7 @@ export function refereeConsult({
 
   for (const [index, paragraph] of cleaned.entries()) {
     const { text, recordIds } = paragraph;
+    if (!recordIds.length) rejections.push(`missing_source:${index}`);
 
     if (text.length > MAX_PARAGRAPH_CHARS) rejections.push(`too_long:${index}`);
     if (QUESTION.test(text)) rejections.push(`question:${index}`);
@@ -141,6 +148,10 @@ export function refereeConsult({
         rejections.push(`unsupported_number:${index}:${number}`);
         break;
       }
+    }
+    const allowedMeasurements = measurements([sharedText, ...recordIds.map(id => recordText[id] ?? "")].join("\n"));
+    for (const value of measurements(text)) {
+      if (!allowedMeasurements.has(value)) rejections.push(`unsupported_measurement:${index}:${value}`);
     }
   }
 

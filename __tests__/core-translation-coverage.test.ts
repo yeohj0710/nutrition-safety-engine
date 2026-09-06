@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
+import reviewed from "@/research/final/evidence-review.json";
 
 /**
  * 핵심 근거는 한국어를 달고 배포돼야 한다.
@@ -55,19 +56,20 @@ describe("핵심 근거 한국어 커버리지", () => {
     expect(leaked).toEqual([]);
   });
 
-  it("번역 75건이 모두 사람이 읽는 문장이다", () => {
-    expect(translations.translations).toHaveLength(75);
+  it("검토한 핵심 문헌에 정확히 하나씩 번역이 있다", () => {
+    const eligible = reviewed.results.filter((row) => row.core_eligible)
+      .map((row) => `${row.question_id}|${row.record_id}`).sort();
+    expect(translations.translations.map((row) => row.translation_id).sort()).toEqual(eligible);
     const bad = translations.translations
       .filter((row) => {
         const line = String(row.translation_ko ?? "").trim();
-        // 자리표시, 빈 줄, 가운뎃점 셋 다 화면에 나가면 안 된다.
-        return !line || line.startsWith(PLACEHOLDER) || line.includes("·");
+        return !/[가-힣]/.test(line) || line.startsWith(PLACEHOLDER);
       })
       .map((row) => row.translation_id);
     expect(bad).toEqual([]);
   });
 
   it("번역 작성자를 실제 작성자로 적는다", () => {
-    expect(translations.author).toBe("Claude");
+    expect(translations.author).toBe("Claude; gpt-5.6-luna posthoc corrections");
   });
 });

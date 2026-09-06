@@ -12,6 +12,7 @@ import {
 import { AnimatedDetails } from "@/src/components/animated-details";
 import { InfoTip } from "@/src/components/info-tip";
 import { isRetractedPublication, retractedPublicationNotice } from "@/src/lib/publication-status";
+import { elapsedLabel, readConsultResponse } from "@/src/lib/consult-stream";
 import {
   axes,
   axisById,
@@ -129,6 +130,11 @@ type ConsultText = {
   paragraphs: ConsultParagraph[];
   source: "ai_written" | "deterministic";
   reason?: string;
+  /** interim = 모델을 기다리는 동안 서버 원자료로 정리한 문단, final = 확정된 문단. */
+  stage?: "interim" | "final";
+  /** AI 해설이 붙은 뒤에도 접어 두는 문헌별 정리. */
+  interim?: ConsultParagraph[];
+  elapsedMs?: number;
 } | null;
 
 /**
@@ -146,8 +152,10 @@ function consultFallbackReason(reason?: string) {
   if (reason === "refereed_out")
     return "AI 해설이 출처 확인 기준을 통과하지 못했습니다. 문헌에서 확인한 결과 문장을 대신 표시합니다.";
   if (reason === "timeout")
-    return "AI 해설을 기다리는 시간이 길어져 문헌의 결과 문장을 표시합니다. 다시 조회하면 해설을 다시 요청합니다.";
-  return "AI 해설을 받지 못해 문헌의 결과 문장을 표시합니다. 다시 조회하면 해설을 다시 요청합니다.";
+    return "AI 해설을 기다리는 시간이 길어져 서버가 정리한 문헌별 내용을 표시합니다. 다시 조회하면 해설을 다시 요청합니다.";
+  if (reason === "rate_limited")
+    return "요청이 잠시 몰려 AI 해설을 쉬어 갑니다. 서버가 정리한 문헌별 내용을 표시합니다. 잠시 뒤 다시 조회할 수 있습니다.";
+  return "AI 해설을 받지 못해 서버가 정리한 문헌별 내용을 표시합니다. 다시 조회하면 해설을 다시 요청합니다.";
 }
 
 /** 카드 안에서 반복되는 버튼 모양. 높이와 모서리를 한곳에서 정한다. */
@@ -155,6 +163,25 @@ const buttonBase =
   "inline-flex min-h-12 items-center justify-center rounded-[var(--radius-control)] px-5 text-[0.9375rem] font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-50";
 const buttonPrimary = `${buttonBase} bg-accent text-white hover:bg-accent-strong`;
 const buttonQuiet = `${buttonBase} border border-border-strong bg-surface text-foreground hover:bg-surface-elevated`;
+
+/** 한꺼번에 N개까지만 부른다. 12건을 동시에 보내면 해설 호출과 자리를 다툰다. */
+async function runLimited<T, R>(
+  items: T[],
+  limit: number,
+  task: (item: T) => Promise<R>,
+): Promise<R[]> {
+  const results: R[] = new Array(items.length);
+  let next = 0;
+  const workers = Array.from({ length: Math.min(limit, items.length) }, async () => {
+    while (next < items.length) {
+      const index = next;
+      next += 1;
+      results[index] = await task(items[index]);
+    }
+  });
+  await Promise.all(workers);
+  return results;
+}
 
 function sortedAxes(values: AxisId[]) {
   return [...values].sort().join("|");
@@ -546,6 +573,11 @@ export function PersonalizedSafetyQuery() {
   const [interpreted, setInterpreted] = useState<Interpreted | null>(null);
   const [consult, setConsult] = useState<ConsultText>(null);
   const [composing, setComposing] = useState(false);
+  const [consultElapsedMs, setConsultElapsedMs] = useState(0);
+  // 취소한 요청이나 이전 환자의 해설이 새 결과에 섞이지 않게 요청마다 번호를 매긴다.
+  const composeSequenceRef = useRef(0);
+  // 같은 조건을 다시 조회하면 방금 받은 해설을 다시 사지 않는다(같은 화면 안에서만).
+  const consultCacheRef = useRef(new Map<string, NonNullable<ConsultText>>());
   const requestRef = useRef<AbortController | null>(null);
   const composeRef = useRef<AbortController | null>(null);
   const resultRef = useRef<HTMLDivElement | null>(null);
@@ -625,8 +657,7 @@ export function PersonalizedSafetyQuery() {
     const targets = (result?.evidence ?? []).filter((item) => !item.key_finding_ko && !isRetractedPublication(item.publication_types));
     setRecordLines({});
     setRecordLinesPending(true);
-    Promise.all(
-      targets.slice(0, 12).map(async (item) => {
+    runLimited(targets.slice(0, 12), 6, async (item) => {
         try {
           const res = await fetch("/api/consult/record", {
             method: "POST",
@@ -645,8 +676,7 @@ export function PersonalizedSafetyQuery() {
           // 개별 실패는 그 카드만 요약 없이 둔다.
         }
         return null;
-      }),
-    ).then((pairs) => {
+      }).then((pairs) => {
       if (controller.signal.aborted) return;
       setRecordLines(
         Object.fromEntries(pairs.filter(Boolean) as (readonly [string, string])[]),
@@ -663,69 +693,107 @@ export function PersonalizedSafetyQuery() {
   useEffect(() => {
     if (!result?.narrative?.length) {
       setConsult(null);
+      setConsultElapsedMs(0);
       return;
     }
     composeRef.current?.abort();
     const controller = new AbortController();
     composeRef.current = controller;
+    composeSequenceRef.current += 1;
+    const sequence = composeSequenceRef.current;
+    const live = () => !controller.signal.aborted && composeSequenceRef.current === sequence;
     setComposing(true);
-    // 결정론 문단을 먼저 띄웠다가 몇 초 뒤 갈아끼우면 읽는 중에 글이 바뀐다.
-    // 자리만 잡아 두고, 어느 쪽으로 확정되든 한 번만 그린다.
+    setConsultElapsedMs(0);
+    // 이전 결과의 해설을 먼저 비운다. 서버가 보내는 문헌별 정리(interim)가 오면
+    // 그것을 보여주고, AI 해설이 확정되면 바꿔 넣는다.
     setConsult(null);
+    const body = {
+      situation_label: result.situation_label,
+      situation_id: result.query_snapshot.situation,
+      patient_context: result.patient_context ?? "",
+      condition_line: result.query_snapshot.requested_axes
+        .map((axis) => axisById.get(axis)?.label ?? axis)
+        .join(", "),
+      narrative: result.narrative,
+      // 해설은 초록에서 뽑은 문장을 읽고 써야 한다. 제목과 연도만 보내면
+      // 모델이 볼 것이 건수뿐이라 "몇 편이 나왔습니다" 밖으로 못 나간다.
+      evidence: result.evidence.filter((item) => !isRetractedPublication(item.publication_types)).map((item) => ({
+        record_id: item.record_id,
+        title: item.title,
+        year: item.year,
+        publication_types: item.publication_types,
+        key_finding_ko: item.key_finding_ko,
+        source_sentence: item.source_sentence,
+        population: item.population,
+        dose: item.dose,
+        outcome: item.outcome,
+      })),
+    };
+    const cacheKey = JSON.stringify(body);
+    const cached = consultCacheRef.current.get(cacheKey);
+    if (cached) {
+      setConsult(cached);
+      setComposing(false);
+      composeRef.current = null;
+      return () => controller.abort();
+    }
+    // 서버까지 못 갔을 때 보여줄 최소한의 문단. 서버가 답하면 그쪽 정리를 쓴다.
     const deterministic = result.evidence
       .filter(item => !isRetractedPublication(item.publication_types) && item.source_scope === "abstract_only")
       .slice(0, 3).map(item => ({
         text: item.key_finding_ko || item.source_sentence || item.key_finding,
         recordIds: [item.record_id],
       }));
-    const fallback = (reason: string): ConsultText => ({
+    const fallback = (reason: string): NonNullable<ConsultText> => ({
       paragraphs: deterministic,
       source: "deterministic",
       reason,
+      stage: "final",
     });
+    let interim: ConsultParagraph[] = [];
 
     fetch("/api/consult/compose", {
       method: "POST",
       headers: { "content-type": "application/json" },
       signal: controller.signal,
-      body: JSON.stringify({
-        situation_label: result.situation_label,
-        situation_id: result.query_snapshot.situation,
-        patient_context: result.patient_context ?? "",
-        condition_line: result.query_snapshot.requested_axes
-          .map((axis) => axisById.get(axis)?.label ?? axis)
-          .join(", "),
-        narrative: result.narrative,
-        // 해설은 초록에서 뽑은 문장을 읽고 써야 한다. 제목과 연도만 보내면
-        // 모델이 볼 것이 건수뿐이라 "몇 편이 나왔습니다" 밖으로 못 나간다.
-        evidence: result.evidence.filter((item) => !isRetractedPublication(item.publication_types)).map((item) => ({
-          record_id: item.record_id,
-          title: item.title,
-          year: item.year,
-          publication_types: item.publication_types,
-          key_finding_ko: item.key_finding_ko,
-          source_sentence: item.source_sentence,
-          population: item.population,
-          dose: item.dose,
-          outcome: item.outcome,
-        })),
-      }),
+      body: cacheKey,
     })
-      .then((response) => (response.ok ? response.json() : null))
-      .then((body: ConsultText | null) => {
-        if (controller.signal.aborted) return;
-        setConsult(
-          body?.paragraphs?.length
-            ? {
-                paragraphs: body.paragraphs,
-                source: body.source,
-                reason: body.reason,
-              }
-            : fallback("empty_response"),
-        );
+      .then(async (response) => {
+        if (!response.ok) {
+          if (live()) setConsult(fallback(response.status === 429 ? "rate_limited" : "http_error"));
+          return;
+        }
+        await readConsultResponse(response, (event) => {
+          if (!live()) return;
+          if (event.type === "interim") {
+            interim = event.paragraphs;
+            setConsult({ paragraphs: event.paragraphs, source: "deterministic", reason: "generating", stage: "interim" });
+            return;
+          }
+          if (event.type === "heartbeat") {
+            setConsultElapsedMs(event.elapsedMs);
+            return;
+          }
+          const hasParagraphs = event.paragraphs?.length > 0;
+          const final: NonNullable<ConsultText> = {
+            paragraphs: hasParagraphs ? event.paragraphs : interim.length ? interim : deterministic,
+            source: hasParagraphs ? event.source : "deterministic",
+            reason: hasParagraphs ? event.reason : "empty_response",
+            stage: "final",
+            interim: interim.length ? interim : undefined,
+            elapsedMs: event.elapsedMs,
+          };
+          if (final.source === "ai_written") {
+            if (consultCacheRef.current.size >= 20) {
+              consultCacheRef.current.delete(consultCacheRef.current.keys().next().value as string);
+            }
+            consultCacheRef.current.set(cacheKey, final);
+          }
+          setConsult(final);
+        });
       })
       .catch(() => {
-        if (!controller.signal.aborted) setConsult(fallback("network"));
+        if (live()) setConsult(interim.length ? { paragraphs: interim, source: "deterministic", reason: "network", stage: "final" } : fallback("network"));
       })
       .finally(() => {
         if (composeRef.current === controller) {
@@ -733,6 +801,7 @@ export function PersonalizedSafetyQuery() {
           setComposing(false);
         }
       });
+    return () => controller.abort();
   }, [result]);
 
   const run = useCallback(
@@ -905,6 +974,7 @@ export function PersonalizedSafetyQuery() {
     setSentence("");
     setInterpreted(null);
     setConsult(null);
+    setConsultElapsedMs(0);
     setPickerOpen(false);
   }
 
@@ -1280,7 +1350,7 @@ export function PersonalizedSafetyQuery() {
                     <div className="flex items-center gap-2">
                       <span className="h-4 w-4 animate-spin rounded-full border-2 border-accent/25 border-t-accent" />
                       <span className="text-[0.9375rem] font-bold text-muted">
-                        결과 해설 작성 중
+                        문헌별 정리를 불러오는 중
                       </span>
                     </div>
                     <span className="loading-skeleton block h-4 w-full rounded" />
@@ -1296,7 +1366,7 @@ export function PersonalizedSafetyQuery() {
                   >
                     <div className="flex flex-wrap items-center gap-2">
                       <span className="chip inline-flex bg-navy text-white">
-                        {consult.source === "ai_written" ? "AI 작성" : "자동 생성"}
+                        {consult.stage === "interim" ? "문헌별 정리" : consult.source === "ai_written" ? "AI 작성" : "자동 생성"}
                       </span>
                       <h3
                         id="consult-title"
@@ -1310,9 +1380,24 @@ export function PersonalizedSafetyQuery() {
                         근거에 없는 숫자가 있으면 서버가 걸러 내고, 시스템이 계산한
                         문장을 대신 표시합니다.
                       </InfoTip>
+                      {consult.stage === "interim" ? (
+                        <span className="inline-flex items-center gap-1.5 text-[0.8125rem] font-semibold text-muted">
+                          <span
+                            aria-hidden="true"
+                            className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-accent/25 border-t-accent"
+                          />
+                          AI 해설 쓰는 중
+                          {consultElapsedMs > 0 ? ` (${elapsedLabel(consultElapsedMs)})` : ""}
+                        </span>
+                      ) : null}
                     </div>
-                    {consult.source === "deterministic" &&
-                    consultFallbackReason(consult.reason) ? (
+                    {consult.stage === "interim" ? (
+                      <p className="mt-2 text-[0.8125rem] leading-5 text-muted">
+                        AI가 문헌을 읽고 해설을 쓰는 동안, 서버 원자료로 정리한 문헌별 대상과
+                        양과 결과를 먼저 보여드립니다. 해설이 오면 이 자리에 바꿔 넣습니다.
+                      </p>
+                    ) : consult.source === "deterministic" &&
+                      consultFallbackReason(consult.reason) ? (
                       <p className="mt-2 text-[0.8125rem] leading-5 text-muted">
                         {consultFallbackReason(consult.reason)}
                       </p>
@@ -1353,6 +1438,18 @@ export function PersonalizedSafetyQuery() {
                         );
                       })}
                     </div>
+                    {consult.source === "ai_written" && consult.interim?.length ? (
+                      <details className="mt-3 text-[0.875rem] leading-6 text-muted">
+                        <summary className="min-h-11 cursor-pointer list-none font-semibold text-foreground">
+                          서버가 정리한 문헌별 대상, 양, 결과 보기
+                        </summary>
+                        <div className="mt-2 flex flex-col gap-2">
+                          {consult.interim.map((paragraph, index) => (
+                            <p key={`interim-${index}`}>{paragraph.text}</p>
+                          ))}
+                        </div>
+                      </details>
+                    ) : null}
                     <p className="mt-2 text-[0.8125rem] leading-5 text-muted">
                       복용 시작과 중단, 용량은 여기서 판단하지 않습니다.
                     </p>

@@ -2,10 +2,11 @@ import { NextResponse } from "next/server";
 import { callLuna, hasConsultKey } from "@/src/lib/ai-consult";
 import { clientKey, rateLimit, tooManyRequests } from "@/src/lib/rate-limit";
 import { refereeRecordLine } from "@/src/lib/consult-referee";
+import { isRetractedPublication } from "@/src/lib/publication-status";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-export const maxDuration = 60;
+export const maxDuration = 300;
 
 // 기록 한 건만 한국어 한 줄로 옮긴다. 확장 근거는 한국어 번역이 없어 영어 원문
 // 문장만 보이는데(임신·용량 조건에서 15건 중 7건이 그렇다), 그 문장이 무엇을
@@ -57,6 +58,9 @@ const CACHE_MAX = 400;
 
 export async function POST(req: Request) {
   const body = (await req.json().catch(() => null)) as Record<string, unknown> | null;
+  if (isRetractedPublication(body?.publication_types)) {
+    return NextResponse.json({ ok: false, reason: "retracted_source" });
+  }
   const sentence = str(body?.source_sentence);
   if (!sentence) {
     return NextResponse.json({ ok: false, reason: "no_sentence" }, { status: 400 });
@@ -90,7 +94,7 @@ export async function POST(req: Request) {
     user: source,
     schemaName: "record_line",
     schema: SCHEMA,
-    maxOutputTokens: 1600,
+    maxOutputTokens: 24000,
   });
 
   if (!result.ok) {

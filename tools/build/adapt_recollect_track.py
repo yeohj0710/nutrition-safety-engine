@@ -18,9 +18,10 @@ from typing import Any
 csv.field_size_limit(10**9)
 
 ROOT = Path(__file__).resolve().parents[2]
-INPUT_ROOT = Path(r"C:\dev\evidence-recollect\data\yeo")
-CORPUS_INPUT = INPUT_ROOT / "corpus" / "evidence_map.csv"
-DECISIONS_INPUT = INPUT_ROOT / "screen" / "decisions.jsonl"
+INPUT_ROOT = ROOT.parent / "evidence-recollect" / "data" / "yeo"
+CORPUS_INPUT = INPUT_ROOT / "final" / "evidence_map.csv"
+DECISIONS_INPUT = INPUT_ROOT / "final" / "effective.decisions.jsonl"
+CORRECTION_SUMMARY = INPUT_ROOT / "final" / "summary.json"
 FULLTEXT_INPUT = INPUT_ROOT / "fulltext" / "fulltext.jsonl"
 OUT = ROOT / "data" / "corpus"
 
@@ -249,11 +250,17 @@ def write_csv(path: Path, rows: list[dict[str, str]], columns: list[str]) -> Non
 
 
 def main() -> None:
-    for path in (CORPUS_INPUT, DECISIONS_INPUT, FULLTEXT_INPUT):
+    for path in (CORPUS_INPUT, DECISIONS_INPUT, FULLTEXT_INPUT, CORRECTION_SUMMARY):
         if not path.is_file():
             raise FileNotFoundError(path)
     OUT.mkdir(parents=True, exist_ok=True)
+    correction = json.loads(CORRECTION_SUMMARY.read_text(encoding="utf-8"))
+    if (sha256_file(DECISIONS_INPUT) != correction["effective_sha256"]
+            or sha256_file(CORPUS_INPUT) != correction["corpus_sha256"]):
+        raise RuntimeError("posthoc correction ledger or corpus hash mismatch")
     decisions, decision_report = load_decisions()
+    if decision_report["decision_counts"] != correction["final_counts"]:
+        raise RuntimeError("posthoc correction counts mismatch")
     fulltext, fulltext_report = load_fulltext()
     corpus, corpus_report = build_corpus(decisions, fulltext)
     screening = build_screening(corpus, decisions)
@@ -273,6 +280,7 @@ def main() -> None:
         "inputs": {
             "corpus": {"path": str(CORPUS_INPUT), "sha256": sha256_file(CORPUS_INPUT)},
             "decisions": {"path": str(DECISIONS_INPUT), "sha256": sha256_file(DECISIONS_INPUT)},
+            "posthoc_correction": {"path": str(CORRECTION_SUMMARY), "sha256": sha256_file(CORRECTION_SUMMARY)},
             "fulltext": {"path": str(FULLTEXT_INPUT), "sha256": sha256_file(FULLTEXT_INPUT)},
         },
         "corpus": corpus_report,
@@ -319,6 +327,8 @@ def main() -> None:
         },
         "decision_reuse": {
             "reclassified": False,
+            "source_scope": "ID-bound posthoc corrected ledger; original blind evaluation preserved",
+            "correction_protocol": correction["protocol"],
             "source_field": "decision",
             "unique_key": ["question_id", "record_id"],
         },

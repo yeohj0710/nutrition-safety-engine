@@ -1,20 +1,9 @@
 # -*- coding: utf-8 -*-
-"""질문별 확장 근거 목록을 만든다.
+"""정정한 선별 결과에서 질문별 문헌 후보 목록을 만든다.
 
-왜 새 파일인가. 화면이 질문당 15건만 보여주는 것은 근거가 없어서가 아니라
-`personalized_rules.json` 의 핵심근거 상한이 15이기 때문이다. 근거 후보는 이미
-1,899행이 있고 전부 근거 문장·위치·URL·우선순위를 갖추고 있다.
-
-그런데 그 상한을 올리려면 `personalized_rules.json` 을 재생성해야 하는데, 원장
-`research/logs/v40_run_report.json` 이 그 파일을 포함해 297개 경로의 SHA-256 을
-기록하고 있고 `finalize_run_report_v4.py` 는 커밋 후 재실행이 불가능하다.
-그래서 봉인된 산출물은 건드리지 않고 별도 파일을 추가한다.
-
-이 파일은 축(연령·병용약·용량·성별·기저질환) 부분집합을 갖지 않는다. 축 부분집합은
-핵심근거 15건 위에서만 계산돼 있기 때문이다. 따라서 확장 목록은 "이 상황의 전체 근거"
-이고 조건 필터가 적용되지 않는다는 점을 화면에서 밝혀야 한다.
-
-또한 한국어 번역은 핵심근거 75건에만 있다. 확장 목록의 근거 문장은 영어 원문이다.
+목록은 AI 선별과 검색어 필터를 통과한 후보이며, 모든 문헌의 적합성을 개별 검증한
+목록은 아니다. 핵심 문헌에는 별도의 원문·요약·번역 검토를 적용한다. 이 파일에는
+조건별 부분집합이 없으며, 조건 검색 색인은 별도 빌더가 만든다.
 """
 import csv, json, os, hashlib, collections
 
@@ -47,17 +36,16 @@ def main():
             item['priority_score'] = float(item['priority_score'])
         except ValueError:
             item['priority_score'] = 0.0
-        # 핵심근거 15건은 이미 규칙 파일에 있으므로 확장 목록에서는 표시만 해 둔다.
+        # 검토한 핵심 문헌의 포함 여부를 표시한다.
         item['in_core'] = (r['question_id'], r['record_id']) in core_ids
         by_q[r['question_id']].append(item)
 
     payload = {
         'schema_version': '1.0.0',
-        'track': 'v4.1',
+        'track': 'recollect-v2-posthoc-R20260905',
         'source': 'research/systematic_review/picos_extraction.csv',
-        'note': ('핵심근거 15건 상한 밖의 근거까지 담은 확장 목록. 축 부분집합이 없어 조건 '
-                 '필터가 적용되지 않으며, 근거 문장은 영어 원문이다(한국어 번역은 핵심근거 '
-                 '75건에만 있다). 봉인된 산출물을 재생성하지 않기 위해 별도 파일로 둔다.'),
+        'note': (f'AI 선별과 검색어 필터를 통과한 문헌 후보 목록. 한국어 번역은 별도로 검토한 '
+                 f'핵심 문헌 {len(core_ids)}건에 제공한다. 나머지 문장의 적합성을 모두 개별 검증하지 않았다.'),
         'clinical_recommendation': False,
         'decision_authority': 'none',
         'output_scope': 'evidence_linking_only',

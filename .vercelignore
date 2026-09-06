@@ -5,6 +5,7 @@
 output
 tmp
 coverage
+etc
 .venv
 
 # 연구 원자료는 배포 업로드에서 뺀다. 전부 올리면 약 1.4GB 라 Vercel CLI 가

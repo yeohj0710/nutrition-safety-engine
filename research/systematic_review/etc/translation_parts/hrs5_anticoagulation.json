@@ -1,22 +1,12 @@
 {
   "question_id": "HRS5_ANTICOAGULATION",
   "translation_authorship": "ai_generated",
-  "author": "Claude",
+  "author": "Claude; gpt-5.6-luna posthoc corrections",
+  "protocol": "R20260905",
   "translations": {
-    "HRS5_ANTICOAGULATION|pubmed:38353592": "4인자 프로트롬빈 복합체를 정해진 용량으로 준 쪽이 몸무게에 맞춰 준 쪽보다 투여가 빨랐고 지혈이 나았으며 사망과 혈전 사건이 줄었습니다.",
-    "HRS5_ANTICOAGULATION|pubmed:39082575": "여러 결과를 봤지만 뇌졸중, 색전증, 출혈, 사망 위험 어디에서도 뚜렷한 차이가 없었습니다.",
-    "HRS5_ANTICOAGULATION|pubmed:40634145": "직접작용 항응고제를 쓴 쪽에서 콩팥 기능이 30% 넘게 낮아질 위험이 적었습니다(위험비 0.72).",
-    "HRS5_ANTICOAGULATION|pubmed:34986908": "와파린과 아스피린은 검사 수치가 치료 범위를 벗어나는 일이 잦았는데, 그것이 출혈이나 혈전으로 이어지는지는 연구마다 엇갈렸습니다.",
-    "HRS5_ANTICOAGULATION|pubmed:35244208": "항응고제를 높은 용량으로 쓴 쪽은 낮은 용량과 견줘 사망 위험에 차이가 없었고, 가벼운 출혈만 늘었습니다(위험비 3.28).",
-    "HRS5_ANTICOAGULATION|pubmed:38772568": "뇌정맥혈전증에서 직접작용 항응고제를 쓴 쪽의 큰 출혈이 1.2%, 표준 치료가 2.4% 로 줄었지만 통계로 뚜렷하지는 않았습니다.",
-    "HRS5_ANTICOAGULATION|pubmed:38299639": "레닌안지오텐신계 억제제를 쓴 쪽에서 단백뇨가 줄었지만(3개 연구, 199명), 신부전이나 혈청 크레아티닌 배가에서는 차이가 뚜렷하지 않았습니다.",
-    "HRS5_ANTICOAGULATION|pubmed:33813916": "수술 나흘째부터 새 경구 항응고제를 시작해도 와파린과 출혈 발생이 비슷했지만, 연구마다 기준이 달라 그대로 적용하기는 어렵습니다.",
-    "HRS5_ANTICOAGULATION|pubmed:32333493": "심방세동 환자의 뇌출혈에서 결과는 대체로 비슷했지만, 30일 안의 치명적 뇌출혈 위험은 비타민 K 길항제 쪽이 더 높을 수 있습니다.",
-    "HRS5_ANTICOAGULATION|pubmed:28151543": "에독사반을 먹는 동안 큰 출혈 위험이 높았던 조건은 여성, 항혈소판제 병용, 헤모글로빈 10 g/dl 이하, 고혈압, 수축기혈압 160 초과였습니다.",
-    "HRS5_ANTICOAGULATION|pubmed:33759649": "항혈소판제만 쓴 쪽과 견줘 새 경구 항응고제를 같이 쓴 쪽의 허혈성 뇌졸중 위험이 낮았습니다(오즈비 0.75).",
-    "HRS5_ANTICOAGULATION|pubmed:35783817": "직접작용 항응고제를 쓴 쪽에서 큰 출혈(0.70)과 뇌출혈(0.42) 위험이 낮았지만, 전체 출혈과 위장관 출혈은 차이가 없었습니다.",
-    "HRS5_ANTICOAGULATION|pubmed:31168416": "항인지질항체 위험도가 높은 사람에서 저용량 아스피린이 혈전을 막아 줬다는 메타분석이 두 편 있었습니다.",
-    "HRS5_ANTICOAGULATION|pubmed:25700621": "DY-807f 는 360 mg 까지 용량을 올려도 이상반응이 늘지 않았고 잘 견뎠습니다.",
-    "HRS5_ANTICOAGULATION|pubmed:24760401": "이코사펜트에틸 4 g/day 를 와파린 25 mg 과 같이 먹었을 때 와파린 혈중 농도와 항응고 효과는 달라지지 않았습니다."
+    "HRS5_ANTICOAGULATION|pubmed:12577350": "heparin군과 XST군의 임상 현저 유효율은 각각 69.2%와 67.7%였고 유의한 차이가 없었다(P>0.05).",
+    "HRS5_ANTICOAGULATION|pubmed:18334143": "히루딘의 항응고 효과는 dipyridamole보다 우수했다(P<0.01).",
+    "HRS5_ANTICOAGULATION|pubmed:24760401": "이코사펜트 에틸(IPE) 4 g/day를 라세미체 와파린 25 mg과 병용해도 R·S-와파린의 단회 투여 AUC(0-∞) 또는 Cmax, 그리고 와파린의 항응고 약력학은 유의하게 변하지 않았습니다.",
+    "HRS5_ANTICOAGULATION|pubmed:37093741": "만성 간질환 입원 환자에서 비타민 K 투여 후 INR 변화는 미미해, 출혈 위험 감소라는 의도한 이득이 없을 수 있음을 시사했다."
   }
 }

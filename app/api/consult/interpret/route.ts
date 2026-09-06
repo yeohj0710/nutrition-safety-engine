@@ -12,7 +12,7 @@ import {
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-export const maxDuration = 60;
+export const maxDuration = 300;
 
 // 사람이 문장으로 쓴 상황을 다섯 입력칸으로 옮긴다. 여기서 나온 값은 그대로
 // 화면에 보이고 사용자가 고칠 수 있으며, 근거 조회는 이 값을 받은 뒤에도
@@ -135,10 +135,7 @@ export async function POST(req: Request) {
     user: text,
     schemaName: "safety_query_fields",
     schema: SCHEMA,
-    maxOutputTokens: 2000,
-    // 상황 분류가 low 에서 단서를 놓쳐 medium 으로 고정한다. 문장 한 건짜리
-    // 호출이라 비용 차이는 무시할 수준이다.
-    effort: "medium",
+    maxOutputTokens: 24000,
   });
 
   if (!result.ok) {
@@ -187,6 +184,6 @@ export async function POST(req: Request) {
     model: "ai_interpreted_input",
     // 화면이 반드시 같이 보여줄 사실. 값 자체로 문헌을 고르지 않는다.
     notice:
-      "적어주신 말은 어떤 이야기를 조건으로 걸지 정하는 데만 씁니다. 값 자체와 논문 내용을 대조하지는 않습니다.",
+      "문헌 검색은 고른 항목이 초록에 나왔는지 확인합니다. 결과 설명에서는 적어주신 상황과 연구 내용을 연결해 살펴봅니다.",
   });
 }
