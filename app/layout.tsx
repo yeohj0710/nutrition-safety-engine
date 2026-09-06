@@ -59,6 +59,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className="h-full antialiased">
+      <head>
+        {/* 공공 누리집이 쓰는 Pretendard 계열. 설치돼 있지 않은 기기에서도
+            같은 글꼴로 보이도록 CDN 에서 받는다. */}
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+        />
+      </head>
       <body className="min-h-full bg-background text-foreground">
         <SiteFrame>{children}</SiteFrame>
       </body>

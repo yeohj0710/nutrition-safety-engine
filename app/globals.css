@@ -1,38 +1,40 @@
 @import "tailwindcss";
 
+/* 공공데이터포털(data.go.kr)이 쓰는 KRDS 색과 크기를 따른다.
+   본문 #1e2124, 보조 #464c53, 선 #cdd1d5, 주요 파랑 #256ef4, 남색 #063a74,
+   머리띠 #eef2f7, 바닥글 #f4f5f6, 통계 띠 #ecf2fe. */
 :root {
-  --background: oklch(0.984 0.003 80);
-  --foreground: oklch(0.216 0.012 45);
-  --surface: oklch(1 0 0);
-  --surface-elevated: oklch(0.994 0.001 90);
-  --surface-strong: oklch(0.989 0.002 90);
-  --border-subtle: color-mix(in oklab, var(--foreground) 14%, transparent);
-  /* 보조 글자색. 0.51 은 흰 배경에서 4.6:1 로 AA 를 겨우 넘겼는데, 이 색을
-     12px 짜리 설명줄에 쓰고 있어서 실제로는 읽기 어려웠다. 0.44 로 낮추면
-     6.2:1 이 되어 작은 글자에서도 버틴다. */
-  --muted: oklch(0.44 0.012 52);
-  /* 화면의 유일한 강조색. 예전에는 본문 버튼이 파랑, 오류 화면 버튼이 청록으로
-     갈라져 있었다. 두 곳이 같은 토큰을 보게 한다. */
-  --accent: oklch(0.488 0.217 264.4);
-  --accent-strong: oklch(0.424 0.191 265.6);
-  --accent-soft: oklch(0.97 0.014 254.6);
-  /* 이 색은 배경으로도 쓰지만 칩 글자색으로도 쓴다. 0.57 은 10% 배경 위에서
-     4.03:1 이라 12px 짜리 칩 글자가 AA 를 못 넘겼다. */
+  --background: #ffffff;
+  --foreground: #1e2124;
+  --surface: #ffffff;
+  --surface-elevated: #f4f5f6;
+  --surface-strong: #eef2f7;
+  --border-subtle: #cdd1d5;
+  --border-strong: #8a949e;
+  --border-input: #58616a;
+  /* 보조 글자색. 흰 배경에서 6:1 이상을 지켜 12~14px 설명줄에서도 읽힌다. */
+  --muted: oklch(0.44 0.012 260);
+  --accent: #256ef4;
+  --accent-strong: #0b50d0;
+  --accent-soft: #eef2f7;
+  --navy: #063a74;
+  --navy-deep: #052b57;
+  --link: #0b50d0;
   --warning: oklch(0.5 0.09 60);
   --danger: oklch(0.56 0.11 28);
   --success: oklch(0.56 0.07 160);
-  --shadow-soft:
-    0 6px 18px rgba(27, 25, 22, 0.04), 0 1px 3px rgba(27, 25, 22, 0.03);
-  --shadow-panel:
-    0 10px 24px rgba(27, 25, 22, 0.045), 0 2px 8px rgba(27, 25, 22, 0.03);
-  --shadow-float:
-    0 12px 24px rgba(27, 25, 22, 0.055), 0 3px 10px rgba(27, 25, 22, 0.03);
+  --hero-a: #3d2256;
+  --hero-b: #6a1d57;
+  --hero-c: #1f3362;
+  --shadow-soft: 0 1px 2px rgba(30, 33, 36, 0.04);
+  --shadow-panel: 0 2px 8px rgba(30, 33, 36, 0.06);
+  --shadow-float: 0 8px 20px rgba(30, 33, 36, 0.1);
   --ease-emphasized: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-soft: cubic-bezier(0.25, 1, 0.5, 1);
   --ease-snappy: cubic-bezier(0.16, 1, 0.3, 1);
-  --duration-toggle-fast: 180ms;
-  --duration-toggle: 280ms;
-  --duration-expand: 320ms;
+  --duration-toggle-fast: 160ms;
+  --duration-toggle: 220ms;
+  --duration-expand: 280ms;
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -41,19 +43,19 @@
   --space-8: 2rem;
   --space-12: 3rem;
   --space-16: 4rem;
-  /* 카드·컨트롤·칩 세 단계만 쓴다. 화면에 반지름이 네 종류로 늘어나면
-     같은 위계의 상자가 서로 다른 모서리로 보인다. */
-  --radius-card: 1rem;
-  --radius-control: 0.75rem;
+  /* KRDS 는 모서리를 크게 깎지 않는다. 카드 8px, 입력칸 6px, 배지는 둥근 알약. */
+  --radius-card: 0.5rem;
+  --radius-control: 0.375rem;
   --radius-pill: 999px;
-  /* 카드 안쪽 여백과 카드 사이 간격은 각각 값 하나로 고정한다. */
   --card-pad: 1.25rem;
   --stack-gap: 1rem;
   --page-shell-max: 54rem;
   --page-shell-narrow-max: 48rem;
+  --site-shell-max: 78rem;
   --measure-readable: 54ch;
   --font-fallback-sans:
-    Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Segoe UI", sans-serif;
+    "Pretendard Variable", Pretendard, "Pretendard GOV", "Noto Sans KR",
+    "Apple SD Gothic Neo", "Malgun Gothic", "Segoe UI", sans-serif;
   --font-fallback-display: var(--font-fallback-sans);
   color-scheme: light;
 }
@@ -72,10 +74,13 @@
   --color-surface-elevated: var(--surface-elevated);
   --color-surface-strong: var(--surface-strong);
   --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
   --color-accent-strong: var(--accent-strong);
   --color-accent-soft: var(--accent-soft);
+  --color-navy: var(--navy);
+  --color-link: var(--link);
   --color-warning: var(--warning);
   --color-danger: var(--danger);
   --color-success: var(--success);
@@ -97,8 +102,6 @@ body {
   color: var(--foreground);
   font-family: var(--font-fallback-sans);
   font-kerning: normal;
-  /* 한글은 같은 px 에서 라틴 문자보다 작아 보인다. 본문 기준을 16px 로 두고
-     줄 간격을 넉넉히 줘야 12~14px 짜리 보조 설명이 읽힌다. */
   font-size: 1rem;
   line-height: 1.6;
   letter-spacing: 0;
@@ -148,34 +151,22 @@ input:focus-visible,
 select:focus-visible,
 textarea:focus-visible,
 summary:focus-visible {
-  outline: 2px solid color-mix(in oklab, var(--accent) 78%, white);
+  outline: 3px solid color-mix(in oklab, var(--accent) 70%, white);
   outline-offset: 2px;
 }
 
 ::selection {
-  background: #dbeafe;
+  background: #dbe7fb;
   color: var(--foreground);
 }
 
 /* 컴포넌트 클래스는 components 레이어에 둔다. 레이어 밖에 두면 Tailwind
-   유틸리티보다 항상 우선해서 hidden·border-dashed 같은 유틸리티가 조용히
-   무시된다. */
+   유틸리티보다 항상 우선해서 hidden 같은 유틸리티가 조용히 무시된다. */
 @layer components {
   .app-page {
     position: relative;
     isolation: isolate;
-    background:
-      radial-gradient(
-        72rem 28rem at 50% -12rem,
-        color-mix(in oklab, var(--accent-soft) 38%, white) 0%,
-        transparent 72%
-      ),
-      linear-gradient(
-        180deg,
-        color-mix(in oklab, var(--background) 97%, white) 0%,
-        var(--background) 42%,
-        var(--background) 100%
-      );
+    background: var(--background);
   }
 
   .page-shell {
@@ -190,41 +181,48 @@ summary:focus-visible {
     margin-inline: auto;
   }
 
+  .site-shell {
+    width: 100%;
+    max-width: var(--site-shell-max);
+    margin-inline: auto;
+    padding-inline: var(--space-4);
+  }
+
+  @media (min-width: 640px) {
+    .site-shell {
+      padding-inline: var(--space-6);
+    }
+  }
+
   .measure-copy {
     max-width: var(--measure-readable);
   }
 
-  /* 세로로 쌓이는 카드 사이 간격. 페이지도 결과 화면도 같은 값을 쓴다. */
   .page-stack {
     display: flex;
     flex-direction: column;
     gap: var(--stack-gap);
   }
 
-  /* 화면의 모든 카드는 이 한 클래스만 쓴다. 테두리·모서리·여백을 유틸리티로
-     따로 붙이면 카드마다 값이 갈라진다. */
+  /* 화면의 모든 카드는 이 한 클래스만 쓴다. 그림자 없이 1px 선으로 구획한다. */
   .card {
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-card);
-    background: color-mix(in oklab, var(--surface) 98%, var(--background));
-    box-shadow: var(--shadow-soft);
+    background: var(--surface);
     padding: var(--card-pad);
   }
 
-  /* 내부를 구분선으로 나눠 쓰는 카드는 바깥 여백을 각 구획이 갖는다. */
   .card-flush {
     padding: 0;
   }
 
-  /* 아직 결과가 없는 자리. 카드 자리는 그대로 두고 채움만 비운다. */
   .card-dashed {
     border-style: dashed;
-    background: color-mix(in oklab, var(--foreground) 2.5%, transparent);
-    box-shadow: none;
+    background: var(--surface-elevated);
   }
 
   .card-danger {
-    border-color: color-mix(in oklab, var(--danger) 38%, transparent);
+    border-color: color-mix(in oklab, var(--danger) 45%, transparent);
     background: color-mix(in oklab, var(--danger) 7%, white);
     color: var(--danger);
   }
@@ -238,19 +236,18 @@ summary:focus-visible {
     border-top: 1px solid var(--border-subtle);
   }
 
-  /* 카드 안에 두는 보조 상자: 설명 블록, 요약 타일, 인용문. */
   .inset-block {
-    border-radius: var(--radius-control);
+    border-radius: var(--radius-card);
     padding: var(--space-4);
   }
 
   .inset-block-quiet {
-    background: color-mix(in oklab, var(--foreground) 3.5%, transparent);
+    background: var(--surface-elevated);
   }
 
   .inset-block-note {
-    border: 1px solid color-mix(in oklab, var(--accent) 18%, transparent);
-    background: color-mix(in oklab, var(--accent) 6%, white);
+    border: 1px solid #c9d7ee;
+    background: var(--surface-strong);
   }
 
   .chip {
@@ -261,16 +258,15 @@ summary:focus-visible {
     padding: 0 0.75rem;
     border-radius: var(--radius-pill);
     font-size: 0.8125rem;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.25;
   }
 
   .chip-quiet {
-    background: color-mix(in oklab, var(--foreground) 5%, transparent);
+    background: var(--surface-elevated);
     color: var(--muted);
   }
 
-  /* 상황·표현 선택 줄. 두 목록이 같은 높이로 나란히 서도록 한곳에서 정한다. */
   .choice-row {
     display: flex;
     gap: var(--space-3);
@@ -287,35 +283,34 @@ summary:focus-visible {
   }
 
   .choice-row:hover {
-    border-color: color-mix(in oklab, var(--accent) 45%, white);
+    border-color: var(--border-strong);
   }
 
   .choice-row:has(input:checked) {
     border-color: var(--accent);
-    background: color-mix(in oklab, var(--accent) 7%, white);
+    background: var(--surface-strong);
   }
 
   .choice-row:has(input:focus-visible) {
-    outline: 2px solid color-mix(in oklab, var(--accent) 78%, white);
+    outline: 3px solid color-mix(in oklab, var(--accent) 70%, white);
     outline-offset: 2px;
   }
 
   .choice-row:has(input:disabled) {
     cursor: not-allowed;
     border-color: var(--border-subtle);
-    background: color-mix(in oklab, var(--foreground) 3%, transparent);
+    background: var(--surface-elevated);
     color: var(--muted);
   }
 
   .choice-row > input {
     margin-top: 0.125rem;
-    width: 1.05rem;
-    height: 1.05rem;
+    width: 1.125rem;
+    height: 1.125rem;
     flex-shrink: 0;
     accent-color: var(--accent);
   }
 
-  /* 문헌 번호 배지. 줄 높이 1.5rem 에 정확히 맞춰 첫 줄과 중심이 어긋나지 않게 한다. */
   .ref-badge {
     display: inline-flex;
     width: 1.5rem;
@@ -323,14 +318,13 @@ summary:focus-visible {
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
     font-size: 0.8125rem;
     font-weight: 700;
     line-height: 1;
     font-variant-numeric: tabular-nums;
   }
 
-  /* 44px 터치 영역은 유지하면서 음수 여백으로 배치 폭만 1.5rem 으로 되돌린다. */
   .ref-hit {
     margin: -0.625rem;
   }
@@ -342,11 +336,10 @@ summary:focus-visible {
   .eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: 0.65rem;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0;
     color: var(--muted);
   }
 
@@ -361,7 +354,6 @@ summary:focus-visible {
       color var(--duration-toggle) var(--ease-soft);
   }
 
-  /* 접었다 펴는 상자는 네 군데에 있고 전부 같은 줄 높이·여백을 쓴다. */
   .disclosure {
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-control);
@@ -377,8 +369,8 @@ summary:focus-visible {
     padding: 0.625rem 0.875rem;
     list-style: none;
     text-align: left;
-    font-size: 0.875rem;
-    font-weight: 600;
+    font-size: 0.9375rem;
+    font-weight: 700;
   }
 
   .disclosure-body {
@@ -394,11 +386,11 @@ summary:focus-visible {
   }
 
   .animated-details > summary:hover {
-    background: color-mix(in oklab, var(--foreground) 4%, transparent);
+    background: var(--surface-elevated);
   }
 
   .animated-details > summary:active {
-    background: color-mix(in oklab, var(--foreground) 7%, transparent);
+    background: var(--surface-strong);
   }
 
   .collapsible-chevron {
@@ -418,11 +410,6 @@ summary:focus-visible {
 
   .animated-details[data-open="true"] > summary .collapsible-chevron {
     transform: rotate(180deg);
-  }
-
-  .animated-details > summary:hover .collapsible-chevron {
-    background: color-mix(in oklab, var(--foreground) 5%, transparent);
-    color: var(--foreground);
   }
 
   .collapsible-panel {
@@ -461,7 +448,7 @@ summary:focus-visible {
     height: 1.25rem;
     align-items: center;
     justify-content: center;
-    border: 1px solid color-mix(in oklab, var(--foreground) 22%, transparent);
+    border: 1px solid var(--border-strong);
     border-radius: var(--radius-pill);
     background: var(--surface);
     font-size: 0.8125rem;
@@ -476,7 +463,7 @@ summary:focus-visible {
 
   .info-tip > summary:hover .info-tip-mark,
   .info-tip[open] > summary .info-tip-mark {
-    border-color: color-mix(in oklab, var(--accent) 42%, white);
+    border-color: var(--accent);
     background: var(--accent-soft);
     color: var(--accent-strong);
   }
@@ -529,6 +516,548 @@ summary:focus-visible {
       transparent 100%
     );
     animation: skeleton-shimmer 1.2s ease-in-out infinite;
+  }
+
+  /* 누리집 뼈대. 머리띠, 머리글, 주 메뉴, 바닥글 */
+  .masthead {
+    background: var(--surface-strong);
+    color: #464c53;
+    font-size: 0.875rem;
+  }
+
+  .masthead-inner {
+    display: flex;
+    min-height: 2.25rem;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .masthead-mark {
+    width: 1.125rem;
+    height: 1.125rem;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .site-header-top {
+    display: flex;
+    min-height: 4.5rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 640px) {
+    .site-header-top {
+      min-height: 5.5rem;
+    }
+  }
+
+  .site-wordmark {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: var(--space-3);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .site-wordmark-logo {
+    width: 2.25rem;
+    height: 2.25rem;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+
+  .site-wordmark-title {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  @media (min-width: 640px) {
+    .site-wordmark-title {
+      font-size: 1.5rem;
+    }
+  }
+
+  .site-wordmark-sub {
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #464c53;
+  }
+
+  .site-utility {
+    display: none;
+    align-items: center;
+    gap: var(--space-4);
+    font-size: 0.9375rem;
+  }
+
+  @media (min-width: 768px) {
+    .site-utility {
+      display: flex;
+    }
+  }
+
+  .site-utility a {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 0.375rem;
+    color: var(--foreground);
+    text-decoration: none;
+  }
+
+  .site-utility a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .site-nav-row {
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .site-nav {
+    display: flex;
+    gap: var(--space-1);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .site-nav a {
+    display: inline-flex;
+    min-height: 3.25rem;
+    flex-shrink: 0;
+    align-items: center;
+    padding-inline: var(--space-3);
+    border-bottom: 3px solid transparent;
+    color: #464c53;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition:
+      color var(--duration-toggle) var(--ease-soft),
+      border-color var(--duration-toggle) var(--ease-soft);
+  }
+
+  @media (min-width: 640px) {
+    .site-nav a {
+      min-height: 3.5rem;
+      padding-inline: var(--space-4);
+      font-size: 1.125rem;
+    }
+  }
+
+  .site-nav a:hover,
+  .site-nav a[aria-current="page"] {
+    color: var(--foreground);
+    border-bottom-color: var(--accent);
+  }
+
+  /* 검색 띠. 공공데이터포털의 "공공데이터, AI로 검색하세요" 자리 */
+  .hero {
+    background:
+      radial-gradient(60rem 30rem at 15% 20%, rgba(122, 30, 87, 0.55), transparent 65%),
+      linear-gradient(105deg, var(--hero-a) 0%, var(--hero-b) 42%, var(--hero-c) 100%);
+    color: #fff;
+    padding-block: var(--space-8) var(--space-12);
+  }
+
+  @media (min-width: 640px) {
+    .hero {
+      padding-block: var(--space-12) var(--space-16);
+    }
+  }
+
+  .hero-inner {
+    width: 100%;
+    max-width: 48rem;
+    margin-inline: auto;
+  }
+
+  .hero-eyebrow {
+    text-align: center;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .hero-title {
+    margin-top: var(--space-2);
+    text-align: center;
+    font-size: clamp(1.625rem, 3.6vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+  }
+
+  .hero-lead {
+    margin-top: var(--space-3);
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  @media (min-width: 640px) {
+    .hero-lead {
+      font-size: 1.0625rem;
+    }
+  }
+
+  .hero-search {
+    margin-top: var(--space-6);
+    border-radius: 0.75rem;
+    background: var(--surface);
+    padding: var(--space-4) var(--space-4) var(--space-3);
+    color: var(--foreground);
+    box-shadow: var(--shadow-float);
+  }
+
+  .hero-search textarea {
+    display: block;
+    width: 100%;
+    min-height: 4.75rem;
+    resize: none;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--foreground);
+  }
+
+  .hero-search textarea::placeholder {
+    color: var(--muted);
+  }
+
+  .hero-search-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-top: var(--space-2);
+  }
+
+  .hero-search-hint {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .hero-submit {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: var(--navy);
+    padding-inline: var(--space-4) var(--space-3);
+    color: #fff;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    transition: background-color var(--duration-toggle) var(--ease-soft);
+  }
+
+  .hero-submit:hover:not(:disabled) {
+    background: var(--navy-deep);
+  }
+
+  .hero-submit:disabled {
+    opacity: 0.55;
+  }
+
+  .hero-submit-arrow {
+    display: inline-flex;
+    width: 1.5rem;
+    height: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  .hero-chips {
+    display: grid;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+
+  .hero-chip {
+    display: flex;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: var(--space-2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-control);
+    background: rgba(11, 41, 83, 0.72);
+    padding: var(--space-2) var(--space-3);
+    color: #fff;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 1.4;
+    text-align: left;
+    transition:
+      background-color var(--duration-toggle) var(--ease-soft),
+      border-color var(--duration-toggle) var(--ease-soft);
+  }
+
+  .hero-chip:hover:not(:disabled) {
+    border-color: rgba(255, 255, 255, 0.7);
+    background: rgba(11, 41, 83, 0.92);
+  }
+
+  .hero-chip[aria-pressed="true"] {
+    border-color: #fff;
+    background: #fff;
+    color: var(--navy);
+  }
+
+  .hero-chip:disabled {
+    opacity: 0.6;
+  }
+
+  .hero-chip-icon {
+    flex-shrink: 0;
+    width: 1rem;
+    height: 1rem;
+    color: #ffd166;
+  }
+
+  .hero-chip[aria-pressed="true"] .hero-chip-icon {
+    color: var(--accent);
+  }
+
+  .hero-note {
+    margin-top: var(--space-4);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: var(--radius-card);
+    background: rgba(255, 255, 255, 0.1);
+    padding: var(--space-3) var(--space-4);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .hero-note strong {
+    display: block;
+    margin-bottom: 0.125rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  /* 절 제목과 통계 띠 */
+  .section-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2) var(--space-3);
+  }
+
+  .section-title {
+    font-size: clamp(1.375rem, 2.4vw, 1.75rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+  }
+
+  .section-sub {
+    font-size: 0.9375rem;
+    color: #464c53;
+  }
+
+  .stat-band {
+    background: #ecf2fe;
+    padding-block: var(--space-8);
+  }
+
+  @media (min-width: 640px) {
+    .stat-band {
+      padding-block: var(--space-12);
+    }
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+
+  @media (min-width: 1024px) {
+    .stat-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .stat-item {
+    border: 1px solid #cddcf3;
+    border-radius: var(--radius-card);
+    background: rgba(255, 255, 255, 0.72);
+    padding: var(--space-4);
+    text-align: center;
+  }
+
+  .stat-label {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #464c53;
+  }
+
+  .stat-value {
+    margin-top: var(--space-2);
+    font-size: clamp(1.625rem, 3vw, 2.25rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stat-note {
+    margin-top: var(--space-2);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: #464c53;
+  }
+
+  /* 버튼과 입력칸. KRDS 기본형 */
+  .btn-primary,
+  .btn-tertiary {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-card);
+    padding-inline: var(--space-6);
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition:
+      background-color var(--duration-toggle) var(--ease-soft),
+      border-color var(--duration-toggle) var(--ease-soft);
+  }
+
+  .btn-primary {
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .btn-primary:hover {
+    border-color: var(--accent-strong);
+    background: var(--accent-strong);
+  }
+
+  .btn-tertiary {
+    border: 1px solid var(--border-input);
+    background: var(--surface);
+    color: var(--foreground);
+  }
+
+  .btn-tertiary:hover {
+    background: var(--surface-elevated);
+  }
+
+  .gov-list {
+    display: grid;
+    gap: var(--space-2);
+    padding-left: var(--space-4);
+    list-style: disc;
+  }
+
+  .gov-list li::marker {
+    color: var(--border-strong);
+  }
+
+  /* 바닥글. 공공데이터포털 바닥글처럼 회색 띠 위에 운영 주체와 연락처 */
+  .site-footer {
+    background: #f4f5f6;
+    padding-block: var(--space-8) var(--space-6);
+    font-size: 0.9375rem;
+    color: var(--foreground);
+  }
+
+  .site-footer-top {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 768px) {
+    .site-footer-top {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+    }
+  }
+
+  .site-footer-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .site-footer-brand img {
+    width: 2rem;
+    height: 2rem;
+    object-fit: contain;
+  }
+
+  .site-footer-meta {
+    display: grid;
+    gap: 0.25rem;
+    margin-top: var(--space-4);
+    line-height: 1.6;
+  }
+
+  .site-footer-meta b {
+    font-weight: 700;
+  }
+
+  .site-footer-links {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .site-footer-links a {
+    display: inline-flex;
+    min-height: 2.25rem;
+    align-items: center;
+    gap: var(--space-1);
+    color: var(--foreground);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .site-footer-links a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .site-footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-2) var(--space-4);
+    margin-top: var(--space-6);
+    border-top: 1px solid var(--border-subtle);
+    padding-top: var(--space-4);
+    font-size: 0.875rem;
+    color: #464c53;
   }
 }
 

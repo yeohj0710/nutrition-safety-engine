@@ -5,15 +5,13 @@ export type PersonalizedSafetyExample = {
   /**
    * 예시를 누르면 이 문장이 입력칸에 그대로 들어간다.
    *
-   * 예전에는 예시가 라디오·체크박스만 켜고 입력칸은 빈 채로 뒀다. 그래서 "문장으로
-   * 찾기"가 무엇을 받는 칸인지 예시로는 알 수 없었고, 사람이 직접 한 문장을 지어내야
-   * 시험해 볼 수 있었다. 문장과 조건을 함께 채워야 예시 한 번으로 이 화면이 어떻게
-   * 도는지 다 보인다.
+   * 예시가 라디오와 체크박스만 켜고 입력칸은 빈 채로 두면, 문장 입력칸이
+   * 무엇을 받는 칸인지 예시로는 알 수 없다. 문장과 조건을 함께 채워야
+   * 예시 한 번으로 이 화면이 어떻게 도는지 다 보인다.
    */
   sentence: string;
   title: string;
   summary: string;
-  expectedEvidenceCount: number;
   input: {
     situation: SituationId;
     axes: AxisId[];
@@ -25,10 +23,9 @@ export type PersonalizedSafetyExample = {
 export const publicInputExamples: PersonalizedSafetyExample[] = [
   {
     id: "kidney-dose-metadata",
-    sentence: "콩팥이 안 좋은데 영양제를 하루 얼마씩 먹는 연구가 있는지 보고 싶어요",
-    title: "콩팥 + 용량",
-    summary: "핵심 문헌 15건 가운데 용량이 적힌 6건을 봅니다.",
-    expectedEvidenceCount: 6,
+    sentence: "신질환 환자에게 보충제를 하루 얼마나 썼는지 다룬 연구가 있는지 알고 싶습니다",
+    title: "신질환 + 용량",
+    summary: "이 상황의 문헌에서 용량을 언급한 후보를 찾습니다.",
     input: {
       situation: "HRS2_KIDNEY_DISEASE",
       axes: ["dose_range"],
@@ -36,10 +33,9 @@ export const publicInputExamples: PersonalizedSafetyExample[] = [
   },
   {
     id: "perioperative-core",
-    sentence: "다음 달에 수술을 받는데 먹던 영양제 이야기가 나온 연구를 보고 싶어요",
-    title: "수술 전후, 조건 없이",
-    summary: "조건을 걸지 않고 이 상황의 핵심 문헌 15건을 봅니다.",
-    expectedEvidenceCount: 15,
+    sentence: "다음 달 수술을 앞둔 사람이 먹던 보충제를 다룬 연구를 보고 싶습니다",
+    title: "수술 전후, 조건 없음",
+    summary: "조건을 걸지 않고 검토한 핵심 문헌을 봅니다.",
     input: {
       situation: "HRS1_PERIOPERATIVE",
       axes: [],
@@ -47,10 +43,9 @@ export const publicInputExamples: PersonalizedSafetyExample[] = [
   },
   {
     id: "pregnancy-dose-metadata",
-    sentence: "임신 중인데 철분제를 하루 얼마씩 먹는 연구가 있는지 보고 싶어요",
+    sentence: "임신 중 철분제 용량을 다룬 연구가 있는지 알고 싶습니다",
     title: "임신 + 용량",
-    summary: "핵심 문헌 15건 가운데 용량이 적힌 9건을 봅니다.",
-    expectedEvidenceCount: 9,
+    summary: "이 상황의 문헌에서 용량을 언급한 후보를 찾습니다.",
     input: {
       situation: "HRS3_PREGNANCY",
       axes: ["dose_range"],
@@ -58,10 +53,9 @@ export const publicInputExamples: PersonalizedSafetyExample[] = [
   },
   {
     id: "liver-age-metadata",
-    sentence: "간 수치가 높다고 들었어요. 나이를 나눠서 본 연구가 있는지 궁금해요",
-    title: "간질환 + 나이",
-    summary: "핵심 문헌 15건 가운데 나이 이야기가 나온 9건을 봅니다.",
-    expectedEvidenceCount: 9,
+    sentence: "간 수치가 높은 사람을 연령대로 나누어 본 보충제 연구가 있는지 궁금합니다",
+    title: "간질환 + 연령",
+    summary: "이 상황의 문헌에서 연령을 언급한 후보를 찾습니다.",
     input: {
       situation: "HRS4_LIVER_DISEASE",
       axes: ["age_group"],
@@ -69,10 +63,9 @@ export const publicInputExamples: PersonalizedSafetyExample[] = [
   },
   {
     id: "anticoagulation-medication-metadata",
-    sentence: "와파린을 먹고 있는데 다른 약이랑 같이 먹은 연구가 있는지 보고 싶어요",
+    sentence: "와파린을 먹는 사람이 다른 약과 함께 보충제를 쓴 연구를 보고 싶습니다",
     title: "항응고제 + 병용 약물",
-    summary: "핵심 문헌 15건 가운데 병용 약물이 적힌 15건을 봅니다.",
-    expectedEvidenceCount: 15,
+    summary: "이 상황의 문헌에서 병용 약물을 언급한 후보를 찾습니다.",
     input: {
       situation: "HRS5_ANTICOAGULATION",
       axes: ["concomitant_medication"],

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import manifest from "@/research/systematic_review/manifest.json";
 import core from "@/research/systematic_review/core_manifest.json";
+import correction from "@/research/final/site-summary.json";
 import { PersonalizedSafetyQuery } from "@/src/components/personalized-safety-query";
 import { siteDescription, siteName } from "@/src/lib/site";
 
@@ -9,6 +10,8 @@ export const metadata: Metadata = {
   description: siteDescription,
   alternates: { canonical: "/" },
 };
+
+const numberFormat = (value: number) => value.toLocaleString("ko-KR");
 
 export default function Home() {
   const perQuestion = Object.values(core.per_question);
@@ -19,24 +22,39 @@ export default function Home() {
 
   const stats = [
     {
-      label: "수집 근거",
+      label: "문헌 후보",
       value: manifest.records,
-      note: "선별과 근거 검사를 통과한 PubMed 문헌",
+      note: "AI 선별과 키워드 조건을 통과한 PubMed 문헌",
     },
     {
       label: "용량 기재 문헌",
       value: manifest.with_dose,
-      note: "초록에 mg, IU 처럼 양이 적힌 문헌",
+      note: "초록에 mg, IU 같은 양이 적힌 문헌",
     },
     {
-      label: "초록까지 확인",
+      label: "초록 확인 후보",
       value: manifest.source_scope.abstract_only,
-      note: `초록에서 문장 자리까지 확인한 문헌, 제목만 본 것 ${manifest.source_scope.title_only}건`,
+      note: `초록 문장을 표시한 후보. 제목만 있는 후보 ${numberFormat(manifest.source_scope.title_only)}건`,
     },
     {
       label: "상황별 핵심 근거",
       value: core.core_records,
-      note: coreRange,
+      note: `${coreRange}. 주제와 핵심 문장을 다시 검토한 문헌`,
+    },
+  ];
+
+  const guides = [
+    {
+      title: "조회 방식",
+      body: "다섯 임상 상황 가운데 하나를 고르고, 선택한 조건이 초록에 나온 문헌만 남깁니다. 문장으로 적으면 AI가 상황과 조건으로 옮기고, 조회 자체는 규칙 파일이 정한 순서로 돕니다.",
+    },
+    {
+      title: "자료 범위",
+      body: "자료는 PubMed에서 모았습니다. 선별과 문헌 연결에는 제목과 초록만 사용하며, 출판일자 제한 없이 모았기 때문에 오래전에 자리 잡은 상호작용 근거도 함께 들어 있습니다.",
+    },
+    {
+      title: "판단 범위",
+      body: "문헌 전체를 인공지능 에이전트가 판정해서 골랐고 사람이 만든 정답지는 없습니다. 화면에 나온 건수는 그만큼 맞다거나 효과가 크다는 뜻이 아니며, 개별 환자 상태를 평가하지 않습니다.",
     },
   ];
 
@@ -44,81 +62,112 @@ export default function Home() {
     <main
       id="main-content"
       tabIndex={-1}
-      data-scope="ai_selected_thesis_scope_v41"
-      className="app-page flex-1 px-4 py-4 sm:px-6 sm:py-6"
+      data-scope="posthoc_corrected_research"
+      className="app-page flex-1"
     >
-      <div className="page-shell page-stack">
-        <section aria-labelledby="page-title" className="card">
-          <h1
-            id="page-title"
-            className="text-[1.25rem] font-bold leading-snug text-foreground"
-          >
-            고위험 상황 보충제 안전성 근거
-          </h1>
-          <p className="mt-2 text-sm leading-6 text-muted">
-            수술 전후, 콩팥, 임신, 간, 항응고제 다섯 가운데 하나를 고르면 나이, 약,
-            용량, 남녀, 앓는 병 이야기가 나온 문헌만 좁혀 보여드립니다.
+      <PersonalizedSafetyQuery />
+
+      <section id="scope" aria-labelledby="scope-title" className="stat-band scroll-mt-16">
+        <div className="site-shell">
+          <div className="section-head">
+            <h2 id="scope-title" className="section-title">
+              자료 규모
+            </h2>
+            <p className="section-sub">문헌 재수집 트랙, 사후 정정 반영</p>
+          </div>
+          <p className="mt-3 max-w-[64ch] text-[0.9375rem] leading-7 text-[#464c53]">
+            조건은 초록에 그 항목이 나오는지만 확인합니다. 입력값과 논문 내용을 대조하는 도구가 아닙니다.
           </p>
-          <p className="mt-3 text-sm leading-6 text-muted">
-            <span className="font-semibold text-foreground">
-              입력값과 논문 내용을 대조하는 도구가 아닙니다.
-            </span>{" "}
-            그 이야기가 초록에 나왔는지만 찾아 드립니다. 먹기 시작할지 끊을지, 양을
-            얼마로 할지, 이 사람에게 안전한지는 판단하지 않습니다.
-          </p>
-        </section>
+          <dl className="stat-grid">
+            {stats.map((stat) => (
+              <div key={stat.label} className="stat-item">
+                <dt className="stat-label">{stat.label}</dt>
+                <dd className="stat-value">{numberFormat(stat.value)}</dd>
+                <dd className="stat-note">{stat.note}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
 
-        {/* 좁은 화면에서 한 줄에 하나씩 쌓으면 이 네 칸만으로 한 화면이 넘어가,
-            도구에 닿기까지 두 화면을 넘겨야 했다. 두 칸씩 세운다. */}
-        <section
-          aria-label="연구 자료 규모"
-          className="grid grid-cols-2 gap-[var(--stack-gap)] lg:grid-cols-4"
-        >
-          {stats.map((stat) => (
-            <div key={stat.label} className="card flex flex-col">
-              <p className="text-[0.8125rem] font-semibold text-muted">
-                {stat.label}
-              </p>
-              <p className="mt-2 text-[1.5rem] font-semibold leading-none tabular-nums text-foreground">
-                {stat.value.toLocaleString("ko-KR")}
-              </p>
-              <p className="mt-2 text-[0.8125rem] leading-5 text-muted">
-                {stat.note}
-              </p>
-            </div>
-          ))}
-        </section>
+      <section id="guide" aria-labelledby="guide-title" className="scroll-mt-16 py-10 sm:py-14">
+        <div className="site-shell">
+          <div className="section-head">
+            <h2 id="guide-title" className="section-title">
+              이용 안내
+            </h2>
+            <p className="section-sub">조회 전에 확인할 세 가지</p>
+          </div>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {guides.map((guide, index) => (
+              <article key={guide.title} className="card">
+                <p className="flex items-center gap-2 text-[0.9375rem] font-bold text-navy">
+                  <span className="ref-badge bg-navy text-white">{index + 1}</span>
+                  {guide.title}
+                </p>
+                <p className="mt-3 text-[0.9375rem] leading-7 text-foreground">{guide.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        <section id="explorer" aria-label="근거 기록 찾기">
-          <PersonalizedSafetyQuery />
-        </section>
-
-        <section aria-labelledby="limits-title" className="card">
-          <h2
-            id="limits-title"
-            className="text-base font-bold text-foreground"
-          >
-            읽기 전 참고
-          </h2>
-          <ul className="mt-3 flex flex-col gap-2 text-sm leading-6 text-muted">
-            <li>
-              문헌 전체를 인공지능 에이전트가 판정해서 골랐습니다. 사람이 만든
-              정답지는 없습니다.
-            </li>
-            <li>
-              화면에 나온 건수는 그만큼 맞다거나 효과가 크다는 뜻이 아닙니다.
-            </li>
-            <li>
-              자료는 PubMed 한 곳에서만 모았고 제목과 초록만 봤습니다. 원문을
-              구하거나 개별 환자 상태를 따져 보지 않았습니다.
-            </li>
-            <li>
-              출판일자 제한 없이 모았습니다. 오래전에 자리 잡은 상호작용
-              근거도 함께 들어 있습니다.
-            </li>
-          </ul>
-        </section>
-      </div>
+      <section
+        id="research"
+        aria-labelledby="research-title"
+        className="scroll-mt-16 border-t border-border-subtle bg-surface-elevated py-10 sm:py-14"
+      >
+        <div className="site-shell">
+          <div className="section-head">
+            <h2 id="research-title" className="section-title">
+              연구 정보
+            </h2>
+            <p className="section-sub">최종 자료 검토 기록</p>
+          </div>
+          <div className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
+            <article className="card">
+              <h3 className="text-base font-bold">사후 정정 내역</h3>
+              <ul className="gov-list mt-3 text-[0.9375rem] leading-7">
+                <li>
+                  사유 오류와 주제 적합성 검토 {numberFormat(correction.reviewed_rows)}행을 반영해{" "}
+                  {numberFormat(correction.label_changes)}행의 판정을 정정했습니다.
+                </li>
+                <li>
+                  핵심 근거 {numberFormat(core.core_records)}건의 주제, 요약, 번역을 다시 확인했습니다.
+                </li>
+                <li>
+                  전체 후보 목록은 AI가 선별한 탐색 자료이며 핵심 근거와 검토 범위가 다릅니다.
+                </li>
+                <li>
+                  정정 전 AI 채점 일치도는 74.79%입니다. 선별과 채점의 기준 차이를 포함한 과거 평가이며,
+                  정정 후 성능이나 임상적 정확도를 뜻하지 않습니다.
+                </li>
+              </ul>
+            </article>
+            <article className="card">
+              <h3 className="text-base font-bold">연구 개요</h3>
+              <dl className="mt-3 grid gap-2 text-[0.9375rem] leading-7">
+                <div className="flex gap-3">
+                  <dt className="w-24 shrink-0 font-bold text-[#464c53]">연구 주제</dt>
+                  <dd>개인맞춤 영양소 안전성 기준 제공 시스템 개발</dd>
+                </div>
+                <div className="flex gap-3">
+                  <dt className="w-24 shrink-0 font-bold text-[#464c53]">임상 상황</dt>
+                  <dd>수술 전후, 신질환, 임신과 수유, 간질환, 항응고 치료</dd>
+                </div>
+                <div className="flex gap-3">
+                  <dt className="w-24 shrink-0 font-bold text-[#464c53]">조회 조건</dt>
+                  <dd>연령, 병용 약물, 용량, 성별, 기저 질환</dd>
+                </div>
+                <div className="flex gap-3">
+                  <dt className="w-24 shrink-0 font-bold text-[#464c53]">자료 출처</dt>
+                  <dd>PubMed 제목과 초록</dd>
+                </div>
+              </dl>
+            </article>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

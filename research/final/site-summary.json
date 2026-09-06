@@ -1,0 +1,40 @@
+{
+  "protocol": "R20260905",
+  "reviewed_rows": 7843,
+  "label_changes": 581,
+  "restored_rows_screened": 6922,
+  "corpus_rows": 263982,
+  "candidates": 25747,
+  "candidates_by_question": {
+    "HRS1_PERIOPERATIVE": 3086,
+    "HRS2_KIDNEY_DISEASE": 5741,
+    "HRS3_PREGNANCY": 11562,
+    "HRS4_LIVER_DISEASE": 2466,
+    "HRS5_ANTICOAGULATION": 2892
+  },
+  "core_records": 44,
+  "core_by_question": {
+    "HRS1_PERIOPERATIVE": 11,
+    "HRS2_KIDNEY_DISEASE": 9,
+    "HRS3_PREGNANCY": 7,
+    "HRS4_LIVER_DISEASE": 13,
+    "HRS5_ANTICOAGULATION": 4
+  },
+  "original_core_reviewed": 75,
+  "original_core_retained": 41,
+  "additional_core_reviewed": 3,
+  "candidate_dose_rows": 6790,
+  "regex_passed_rows": 54728,
+  "connection_rules": 25,
+  "all_rule_records": 30,
+  "rule_axes": {
+    "base": 5,
+    "age_group": 5,
+    "dose_range": 5,
+    "sex": 3,
+    "underlying_condition": 5,
+    "concomitant_medication": 2,
+    "compatibility_alias": 5
+  },
+  "candidate_scope": "AI screening and keyword matching; not all individually reviewed"
+}

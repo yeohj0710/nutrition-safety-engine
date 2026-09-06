@@ -29,8 +29,8 @@ export type SituationMeta = {
   short: string;
   question: string;
   /**
-   * 요약 첫 문장에서 입력을 되짚을 때 쓰는 말투.
-   * "…라고 하셨어요" 앞에 붙는 연결형이라 뒤에 다른 조건이 이어질 수 있다.
+   * 요약 첫 문장에서 입력을 되짚을 때 쓰는 연결형.
+   * 뒤에 다른 조건이 이어질 수 있다.
    */
   spoken: string;
 };
@@ -38,43 +38,43 @@ export type SituationMeta = {
 export const situations: SituationMeta[] = [
   {
     id: "HRS1_PERIOPERATIVE",
-    label: "수술이나 시술을 앞두고 있어요",
+    label: "수술, 시술, 마취 전후",
     short: "수술 전후",
     question:
-      "수술 또는 침습적 시술을 받는 성인에서 수술 전 보충제 복용이 출혈, 수혈, 마취 상호작용 또는 수술 주위 합병증과 관련되는지를 다룬 문헌",
-    spoken: "수술이나 시술을 앞두고 계시고",
+      "수술, 시술, 마취 전후 사람에서 보충제와 영양 제제의 사용, 효과, 위해를 다룬 문헌",
+    spoken: "수술, 시술, 마취 전후 문헌을 찾으시고",
   },
   {
     id: "HRS2_KIDNEY_DISEASE",
-    label: "콩팥이 안 좋아요",
-    short: "만성콩팥병과 투석",
+    label: "신질환과 투석",
+    short: "신질환과 투석",
     question:
-      "만성콩팥병 또는 투석 중인 성인에서 보충제 복용이 전해질 이상, 신기능 변화 또는 축적 독성과 관련되는지를 다룬 문헌",
-    spoken: "콩팥이 걱정되는 상황이고",
+      "신질환, 신부전, 투석 환자에서 보충제와 영양 제제의 사용, 효과, 위해를 다룬 문헌",
+    spoken: "신질환과 투석 문헌을 찾으시고",
   },
   {
     id: "HRS3_PREGNANCY",
-    label: "임신 중이에요",
-    short: "임신 중",
+    label: "임신, 수유, 태아 노출",
+    short: "임신과 수유",
     question:
-      "임신한 사람에서 보충제 복용이 산모 또는 태아의 이상반응과 관련되는지를 다룬 문헌",
-    spoken: "임신 중이시고",
+      "임신과 수유 중 보충제와 영양 제제의 사용, 효과, 위해 및 태아 노출을 다룬 사람 문헌",
+    spoken: "임신, 수유, 태아 노출 문헌을 찾으시고",
   },
   {
     id: "HRS4_LIVER_DISEASE",
-    label: "간이 안 좋아요",
-    short: "간질환",
+    label: "간질환과 간독성",
+    short: "간질환과 간독성",
     question:
-      "간질환이 있는 성인에서 보충제 복용이 간손상 또는 간기능 악화와 관련되는지를 다룬 문헌",
-    spoken: "간이 걱정되는 상황이고",
+      "간질환과 간부전 환자의 보충제 사용 또는 보충제와 영양 제제의 간독성을 다룬 사람 문헌",
+    spoken: "간질환과 간독성 문헌을 찾으시고",
   },
   {
     id: "HRS5_ANTICOAGULATION",
-    label: "항응고제를 먹고 있어요",
-    short: "항응고제 복용",
+    label: "항응고, 항혈소판, 출혈",
+    short: "항응고와 출혈",
     question:
-      "항응고제 또는 항혈소판제를 복용하는 성인에서 보충제 복용이 출혈 또는 응고 지표 변화와 관련되는지를 다룬 문헌",
-    spoken: "항응고제를 드시고 계시고",
+      "항응고제, 항혈소판제 병용 또는 출혈 위험 상황에서 보충제와 영양 제제의 사용, 효과, 위해를 다룬 사람 문헌",
+    spoken: "항응고, 항혈소판, 출혈 문헌을 찾으시고",
   },
 ];
 
@@ -85,11 +85,8 @@ export type AxisMeta = {
   /** 사용자가 채우는 입력란 이름. 비어 있으면 그 축은 적용되지 않습니다. */
   field: "age" | "medication" | "dose" | "sex" | "condition";
   /**
-   * 화면에 거는 이름.
-   *
-   * "연령 관련 표현"처럼 쓰면 정확하긴 해도 입으로 하는 말이 아니라, 무엇을 고르는
-   * 것인지 읽는 사람이 한 번 더 옮겨야 한다. 이 화면이 실제로 하는 일은 "그 이야기가
-   * 초록에 나왔는가"를 보는 것이므로 이름도 그렇게 적는다.
+   * 화면에 거는 이름. 공공 누리집이 쓰는 짧은 명사로 적는다.
+   * 이 화면이 실제로 하는 일은 "그 항목이 초록에 언급됐는가"를 보는 것이다.
    */
   label: string;
   placeholder: string;
@@ -106,42 +103,42 @@ export const axes: AxisMeta[] = [
   {
     id: "age_group",
     field: "age",
-    label: "나이 이야기",
+    label: "연령",
     placeholder: "예: 68세",
-    filterHint: "age, older 처럼 나이를 말한 문헌",
-    noun: "나이",
+    filterHint: "age, older 등 연령을 언급한 문헌",
+    noun: "연령",
   },
   {
     id: "concomitant_medication",
     field: "medication",
-    label: "함께 먹는 약 이야기",
+    label: "병용 약물",
     placeholder: "예: 와파린",
-    filterHint: "drug, anticoagulation 처럼 약을 말한 문헌",
-    noun: "함께 먹는 약",
+    filterHint: "drug, anticoagulation 등 약물을 언급한 문헌",
+    noun: "병용 약물",
   },
   {
     id: "dose_range",
     field: "dose",
-    label: "용량 이야기",
+    label: "용량",
     placeholder: "예: 2000 mg",
-    filterHint: "500 mg, 2000 IU 처럼 양을 적은 문헌",
+    filterHint: "500 mg, 2000 IU 등 용량을 적은 문헌",
     noun: "용량",
   },
   {
     id: "sex",
     field: "sex",
-    label: "남녀 구분",
+    label: "성별",
     placeholder: "예: 여성",
-    filterHint: "female, male 처럼 성별을 나눈 문헌",
-    noun: "남녀",
+    filterHint: "female, male 등 성별을 나눈 문헌",
+    noun: "성별",
   },
   {
     id: "underlying_condition",
     field: "condition",
-    label: "앓는 병 이야기",
+    label: "기저 질환",
     placeholder: "예: 고혈압",
-    filterHint: "kidney, liver 처럼 병이나 상황을 말한 문헌",
-    noun: "앓는 병",
+    filterHint: "kidney, liver 등 질환이나 상황을 언급한 문헌",
+    noun: "기저 질환",
   },
 ];
 
@@ -150,4 +147,4 @@ export const axisByField = new Map(axes.map((item) => [item.field, item]));
 
 /** 이 사이트가 무엇을 하지 않는지. 모든 응답과 화면에 그대로 붙는다. */
 export const evidenceOnlyDisclaimer =
-  "연구가 누구를 보고 무엇을 확인했는지, 그 문장이 초록 어디에 있는지까지 이어서 보여드립니다. 먹기 시작할지 끊을지, 양을 얼마로 할지는 지시하지 않으며 진료를 대신하지 않습니다.";
+  "연구가 누구를 대상으로 무엇을 확인했는지, 그 문장이 초록 어디에 있는지까지 이어서 보여줍니다. 복용 시작과 중단, 용량은 지시하지 않으며 진료를 대신하지 않습니다.";
