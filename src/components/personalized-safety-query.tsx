@@ -13,6 +13,7 @@ import { AnimatedDetails } from "@/src/components/animated-details";
 import { InfoTip } from "@/src/components/info-tip";
 import { isRetractedPublication, retractedPublicationNotice } from "@/src/lib/publication-status";
 import { elapsedLabel, readConsultResponse } from "@/src/lib/consult-stream";
+import { COMPOSE_ROLES, groundedFallback } from "@/src/lib/consult-compose";
 import {
   axes,
   axisById,
@@ -130,8 +131,14 @@ type ConsultText = {
   paragraphs: ConsultParagraph[];
   source: "ai_written" | "deterministic";
   reason?: string;
-  /** interim = 모델을 기다리는 동안 서버 원자료로 정리한 문단, final = 확정된 문단. */
-  stage?: "interim" | "final";
+  /**
+   * interim   모델을 기다리는 동안 서버 원자료로 정리한 문단
+   * streaming 문단 하나가 도착해 그 자리만 바뀐 상태
+   * final     세 문단이 다 확정된 상태
+   */
+  stage?: "interim" | "streaming" | "final";
+  /** streaming 일 때 지금까지 도착한 문단 수. */
+  arrived?: number;
   /** AI 해설이 붙은 뒤에도 접어 두는 문헌별 정리. */
   interim?: ConsultParagraph[];
   elapsedMs?: number;
@@ -145,6 +152,12 @@ type ConsultText = {
  */
 function consultFallbackReason(reason?: string) {
   if (!reason) return "";
+  // 문단 셋 가운데 일부만 AI 해설이 붙은 경우. 어느 자리가 정리 문단으로 남았는지
+  // 말해 주지 않으면 같은 칸에 두 종류 글이 섞인 것을 읽는 사람이 알 수 없다.
+  if (reason.startsWith("partial_fallback:")) {
+    const failed = reason.slice("partial_fallback:".length).split(",").filter(Boolean);
+    return `해설 세 문단 가운데 ${failed.length}개는 AI 글을 쓰지 못해 서버가 정리한 문헌별 내용을 그대로 두었습니다(${failed.map(consultFallbackShort).join(", ")}).`;
+  }
   if (reason === "no_key")
     return "해설 작성 기능이 연결되지 않아 문헌에서 확인한 결과 문장을 표시합니다.";
   if (reason === "no_evidence")
@@ -156,6 +169,16 @@ function consultFallbackReason(reason?: string) {
   if (reason === "rate_limited")
     return "요청이 잠시 몰려 AI 해설을 쉬어 갑니다. 서버가 정리한 문헌별 내용을 표시합니다. 잠시 뒤 다시 조회할 수 있습니다.";
   return "AI 해설을 받지 못해 서버가 정리한 문헌별 내용을 표시합니다. 다시 조회하면 해설을 다시 요청합니다.";
+}
+
+/** 문단 하나가 정리로 남은 까닭을 짧은 말로. 긴 안내문은 위 함수가 따로 쓴다. */
+function consultFallbackShort(reason: string) {
+  if (reason === "timeout") return "시간 초과";
+  if (reason === "refereed_out") return "출처 확인 기준 미통과";
+  if (reason === "incomplete") return "작성이 중간에 끝남";
+  if (reason === "rate_limited") return "요청 몰림";
+  if (reason === "empty" || reason === "bad_json") return "응답 형식 오류";
+  return "호출 실패";
 }
 
 /** 카드 안에서 반복되는 버튼 모양. 높이와 모서리를 한곳에서 정한다. */
@@ -738,12 +761,38 @@ export function PersonalizedSafetyQuery() {
       return () => controller.abort();
     }
     // 서버까지 못 갔을 때 보여줄 최소한의 문단. 서버가 답하면 그쪽 정리를 쓴다.
-    const deterministic = result.evidence
-      .filter(item => !isRetractedPublication(item.publication_types) && item.source_scope === "abstract_only")
-      .slice(0, 3).map(item => ({
-        text: item.key_finding_ko || item.source_sentence || item.key_finding,
-        recordIds: [item.record_id],
-      }));
+    //
+    // 예전에는 결과 문장(key_finding_ko 또는 영어 원문)을 그대로 세 줄 늘어놨다.
+    // 그러면 "eGFR 4.2 mL/min/1.73m2 감소(P=0.03)" 같은 줄만 남아, 그 연구가 누구를
+    // 대상으로 얼마를 얼마나 오래 썼는지도, 적어 넣은 상황과 어떻게 이어지는지도
+    // 화면에 없었다. 서버가 기다리는 동안 쓰는 것과 같은 생성기로 바꾼다.
+    const deterministic = groundedFallback(
+      result.evidence
+        .filter((item) => !isRetractedPublication(item.publication_types))
+        .map((item) => ({
+          recordId: item.record_id,
+          title: item.title,
+          year: String(item.year),
+          publicationTypes: item.publication_types,
+          abstract: "",
+          finding: item.source_sentence || item.key_finding || "",
+          findingKo: item.key_finding_ko || "",
+          population: item.population || "",
+          dose: item.dose || "",
+          outcome: item.outcome || "",
+          locator: "",
+          url: "",
+          // 한국어 결과 문장이 붙은 것이 검토를 마친 핵심 근거다.
+          reviewed: Boolean(item.key_finding_ko),
+        })),
+      result.situation_label,
+      {
+        conditionLine: result.query_snapshot.requested_axes
+          .map((axis) => axisById.get(axis)?.label ?? axis)
+          .join(", "),
+        patientContext: result.patient_context ?? "",
+      },
+    );
     const fallback = (reason: string): NonNullable<ConsultText> => ({
       paragraphs: deterministic,
       source: "deterministic",
@@ -751,6 +800,8 @@ export function PersonalizedSafetyQuery() {
       stage: "final",
     });
     let interim: ConsultParagraph[] = [];
+    // 도착한 문단을 자리 번호로 들고 있다가, 오는 대로 그 자리만 갈아 끼운다.
+    const streamed = new Map<number, ConsultParagraph>();
 
     fetch("/api/consult/compose", {
       method: "POST",
@@ -772,6 +823,24 @@ export function PersonalizedSafetyQuery() {
           }
           if (event.type === "heartbeat") {
             setConsultElapsedMs(event.elapsedMs);
+            return;
+          }
+          // 문단 하나가 끝났다. 그 자리만 바꾸고 나머지는 정리 문단으로 둔다.
+          if (event.type === "partial") {
+            streamed.set(event.index, event.paragraph);
+            setConsultElapsedMs(event.elapsedMs);
+            const base = interim.length ? interim : deterministic;
+            const merged = Array.from(
+              { length: Math.max(base.length, COMPOSE_ROLES.length) },
+              (_, index) => streamed.get(index) ?? base[index],
+            ).filter(Boolean);
+            setConsult({
+              paragraphs: merged,
+              source: "deterministic",
+              reason: "generating",
+              stage: "streaming",
+              arrived: streamed.size,
+            });
             return;
           }
           const hasParagraphs = event.paragraphs?.length > 0;
@@ -1366,7 +1435,13 @@ export function PersonalizedSafetyQuery() {
                   >
                     <div className="flex flex-wrap items-center gap-2">
                       <span className="chip inline-flex bg-navy text-white">
-                        {consult.stage === "interim" ? "문헌별 정리" : consult.source === "ai_written" ? "AI 작성" : "자동 생성"}
+                        {consult.stage === "interim"
+                          ? "문헌별 정리"
+                          : consult.stage === "streaming"
+                            ? `AI 작성 중 ${consult.arrived ?? 0}/${COMPOSE_ROLES.length}`
+                            : consult.source === "ai_written"
+                              ? "AI 작성"
+                              : "자동 생성"}
                       </span>
                       <h3
                         id="consult-title"
@@ -1380,24 +1455,26 @@ export function PersonalizedSafetyQuery() {
                         근거에 없는 숫자가 있으면 서버가 걸러 내고, 시스템이 계산한
                         문장을 대신 표시합니다.
                       </InfoTip>
-                      {consult.stage === "interim" ? (
+                      {consult.stage === "interim" || consult.stage === "streaming" ? (
                         <span className="inline-flex items-center gap-1.5 text-[0.8125rem] font-semibold text-muted">
                           <span
                             aria-hidden="true"
                             className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-accent/25 border-t-accent"
                           />
-                          AI 해설 쓰는 중
+                          {consult.stage === "streaming"
+                            ? `남은 문단 ${COMPOSE_ROLES.length - (consult.arrived ?? 0)}개 쓰는 중`
+                            : "AI 해설 쓰는 중"}
                           {consultElapsedMs > 0 ? ` (${elapsedLabel(consultElapsedMs)})` : ""}
                         </span>
                       ) : null}
                     </div>
-                    {consult.stage === "interim" ? (
+                    {consult.stage === "interim" || consult.stage === "streaming" ? (
                       <p className="mt-2 text-[0.8125rem] leading-5 text-muted">
-                        AI가 문헌을 읽고 해설을 쓰는 동안, 서버 원자료로 정리한 문헌별 대상과
-                        양과 결과를 먼저 보여드립니다. 해설이 오면 이 자리에 바꿔 넣습니다.
+                        {consult.stage === "streaming"
+                          ? `해설은 ${COMPOSE_ROLES.map((role) => role.labelKo).join(", ")} 세 문단으로 나눠 씁니다. 끝난 문단부터 이 자리에 바꿔 넣고, 아직 안 온 자리는 서버가 정리한 문헌별 대상과 양과 결과를 그대로 둡니다.`
+                          : "AI가 문헌을 읽고 해설을 쓰는 동안, 서버 원자료로 정리한 문헌별 대상과 양과 결과를 먼저 보여드립니다. 해설이 오면 이 자리에 바꿔 넣습니다."}
                       </p>
-                    ) : consult.source === "deterministic" &&
-                      consultFallbackReason(consult.reason) ? (
+                    ) : consultFallbackReason(consult.reason) ? (
                       <p className="mt-2 text-[0.8125rem] leading-5 text-muted">
                         {consultFallbackReason(consult.reason)}
                       </p>

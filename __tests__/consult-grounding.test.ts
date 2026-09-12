@@ -11,6 +11,13 @@ it("rejects qualitative claims without an identifiable paper", () => {
 it("accepts equivalent decimal spelling in a cited study", () => {
   expect(refereeConsult({ paragraphs:[{text:"이 연구에서는 13개월을 관찰했습니다.",recordIds:["A"]}], recordText:{A:"Follow-up lasted 13.0 months."},sharedText:"" }).ok).toBe(true);
 });
+it("accepts the same amount when the abstract spells the unit out or pluralises it", () => {
+  // 실측: 초록의 "15 gs of raw herbs" 를 모델이 "15 g" 으로 옮겨 쓰자 문단이 떨어졌다.
+  expect(refereeConsult({ paragraphs:[{text:"이 연구는 하루 15 g에 해당하는 양을 썼습니다.",recordIds:["A"]}], recordText:{A:"add-on oral astragalus granules (15 gs of raw herbs daily equivalent)"},sharedText:"" }).ok).toBe(true);
+  expect(refereeConsult({ paragraphs:[{text:"출생 체중은 1400 g이었습니다.",recordIds:["A"]}], recordText:{A:"weighing 1,400 grams (about 3 pounds)"},sharedText:"" }).ok).toBe(true);
+  // 단위를 바꿔 쓰는 것은 그대로 막는다.
+  expect(refereeConsult({ paragraphs:[{text:"하루 15 mg을 썼습니다.",recordIds:["A"]}], recordText:{A:"15 gs of raw herbs daily"},sharedText:"" }).ok).toBe(false);
+});
 it("rejects a changed dose unit even when the number exists", () => {
   expect(refereeConsult({ paragraphs:[{text:"연구에서 5 g을 사용했습니다.",recordIds:["A"]}], recordText:{A:"The dose was 5 mg."},sharedText:"" }).ok).toBe(false);
 });

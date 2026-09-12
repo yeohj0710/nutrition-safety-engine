@@ -71,9 +71,30 @@ function collectNumbers(text: string) {
   );
 }
 
+/**
+ * 초록이 단위를 늘 짧게 쓰지는 않는다. "15 gs of raw herbs", "1,400 grams" 처럼
+ * 복수형이나 풀어 쓴 말이 그대로 저장돼 있다. 짧은 표기만 모으면 원문에 있는 양을
+ * 모델이 정상 표기로 옮겨 쓴 문단이 unsupported_measurement 로 걸린다(실측: 황기
+ * 15 g 문단이 이렇게 떨어졌다). 같은 양을 같은 열쇠로 모으고, 단위를 바꿔 쓴 것만
+ * 잡는다는 목적은 그대로다.
+ */
+const SPELLED_UNITS: Record<string, string> = {
+  gram: "g", grams: "g",
+  milligram: "mg", milligrams: "mg",
+  microgram: "mcg", micrograms: "mcg",
+  millilitre: "ml", millilitres: "ml", milliliter: "ml", milliliters: "ml",
+};
+
 function measurements(text: string) {
-  return new Set([...text.matchAll(/(\d+(?:[.,]\d+)*)\s*(µg|μg|mcg|ug|mg|g|ml|mL|IU|mmol)(?![a-zA-Z])/g)]
-    .map(match => `${Number(match[1].replace(/,/g,""))}|${match[2].replace(/^(?:µg|μg|ug)$/,"mcg").toLowerCase()}`));
+  const found = new Set<string>();
+  for (const match of text.matchAll(/(\d+(?:[.,]\d+)*)\s*(µg|μg|mcg|ug|mg|g|ml|mL|IU|mmol)s?(?![a-zA-Z])/g)) {
+    found.add(`${Number(match[1].replace(/,/g, ""))}|${match[2].replace(/^(?:µg|μg|ug)$/, "mcg").toLowerCase()}`);
+  }
+  for (const match of text.matchAll(/(\d+(?:[.,]\d+)*)\s*(grams?|milligrams?|micrograms?|millilitres?|milliliters?)(?![a-zA-Z])/gi)) {
+    const unit = SPELLED_UNITS[match[2].toLowerCase()];
+    if (unit) found.add(`${Number(match[1].replace(/,/g, ""))}|${unit}`);
+  }
+  return found;
 }
 
 export function refereeConsult({

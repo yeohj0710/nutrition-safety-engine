@@ -35,6 +35,27 @@ const infoTipSource = readFileSync(
   "utf8",
 );
 
+describe("결과 해설 대기와 대체 문단", () => {
+  it("never falls back to raw result sentences", () => {
+    // 예전 대체 문단은 key_finding_ko 나 영어 원문을 그대로 늘어놨다. 약어와
+    // 수치만 남아 그 연구가 누구를 얼마나 오래 봤는지, 입력한 상황과 어떻게
+    // 이어지는지가 화면에 없었다.
+    expect(componentSource).not.toContain("item.key_finding_ko || item.source_sentence || item.key_finding");
+    expect(componentSource).toContain("groundedFallback(");
+  });
+
+  it("shows each finished paragraph as it lands instead of waiting for all three", () => {
+    expect(componentSource).toContain('event.type === "partial"');
+    expect(componentSource).toContain('stage: "streaming"');
+    expect(componentSource).toContain("COMPOSE_ROLES.length");
+  });
+
+  it("says which slots stayed on the server summary when only some paragraphs land", () => {
+    expect(componentSource).toContain('reason.startsWith("partial_fallback:")');
+    expect(componentSource).toContain("consultFallbackShort");
+  });
+});
+
 type Rule = { question_id: string; personalization_axis: string };
 const allRules = rules as unknown as Rule[];
 

@@ -277,7 +277,10 @@ describe("ai layer boundary", () => {
       expect(call).toMatch(/situation|\.\.\.values/);
     }
     expect(component).toContain("JSON.stringify({ ...values, ...extra })");
-    // 화면은 상담문의 출처를 항상 밝힌다.
-    expect(component).toContain('consult.source === "ai_written" ? "AI 작성" : "자동 생성"');
+    // 화면은 상담문의 출처를 항상 밝힌다. 문단이 하나씩 도착하는 동안에도
+    // 몇 개가 AI 글로 바뀌었는지 배지에 적는다.
+    expect(component).toContain('"AI 작성"');
+    expect(component).toContain('"자동 생성"');
+    expect(component).toContain('`AI 작성 중 ${consult.arrived ?? 0}/${COMPOSE_ROLES.length}`');
   });
 });
