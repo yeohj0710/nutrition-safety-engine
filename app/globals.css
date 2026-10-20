@@ -155,6 +155,12 @@ summary:focus-visible {
   outline-offset: 2px;
 }
 
+/* 검색칸은 바깥 테두리 색으로만 초점을 보인다. 안쪽 글칸에도 고리를 그리면
+   테두리가 두 겹으로 겹쳐 보인다. */
+.hero-search textarea:focus-visible {
+  outline: none;
+}
+
 ::selection {
   background: #dbe7fb;
   color: var(--foreground);
@@ -714,11 +720,16 @@ summary:focus-visible {
     align-items: stretch;
     gap: var(--space-2);
     margin-top: var(--space-6);
-    border: 2px solid var(--accent);
+    border: 2px solid #b1b8be;
     border-radius: 0.375rem;
     background: var(--surface);
     padding: 0.375rem;
     color: var(--foreground);
+    transition: border-color 0.15s ease;
+  }
+
+  .hero-search:focus-within {
+    border-color: var(--accent);
   }
 
   .hero-search textarea {
@@ -1068,6 +1079,56 @@ summary:focus-visible {
     align-items: center;
     color: var(--navy);
     text-underline-offset: 4px;
+  }
+
+  /* 문헌 한 건. 무엇을 알아냈는지가 먼저, 영어 제목과 서지는 그 아래 */
+  .record-kicker {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem 0.625rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #464c53;
+  }
+
+  .record-tag {
+    border-radius: 0.25rem;
+    background: var(--accent-soft);
+    padding: 0 0.375rem;
+    color: var(--navy);
+  }
+
+  .record-tag-quiet {
+    background: var(--surface-elevated);
+    color: #58616a;
+  }
+
+  .record-plain {
+    display: grid;
+    gap: 0.25rem;
+    margin-top: var(--space-2);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #1e2124;
+  }
+
+  .record-title {
+    display: block;
+    margin-top: var(--space-3);
+    overflow-wrap: anywhere;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #33383d;
+    text-decoration: underline;
+    text-decoration-color: var(--border-subtle);
+    text-underline-offset: 3px;
+  }
+
+  .record-title:hover {
+    text-decoration-color: var(--accent);
   }
 
   .record-fields {

@@ -209,8 +209,8 @@ describe("personalized safety UI contract", () => {
   it("labels core, filtered, and expanded counts by their actual scope", () => {
     expect(componentSource).toContain("result.expanded");
     expect(componentSource).toContain('result.filter_mode === "metadata_axis_presence"');
-    expect(componentSource).toContain("핵심 근거");
-    expect(componentSource).toContain("조건에 맞는 핵심");
+    expect(componentSource).toContain("검토한 연구");
+    expect(componentSource).toContain("조건에 맞는 검토한 연구");
     expect(componentSource).toContain("이 상황의 문헌");
     expect(componentSource).toContain("title_derived_records");
     // 화면에 도구 안쪽 이름을 그대로 쓰면 읽는 쪽이 매번 자기 말로 옮겨야 한다.
@@ -279,7 +279,7 @@ describe("personalized safety UI contract", () => {
   it("uses one live region and announces expanded pagination ranges", () => {
     expect(componentSource.match(/aria-live="polite"/g)).toHaveLength(1);
     expect(componentSource).toContain("expanded_offset + 1");
-    expect(componentSource).toContain("번째까지 보여드립니다");
+    expect(componentSource).toContain("번째까지 보여 드립니다");
     expect(componentSource).toMatch(
       /pending\s*\?\s*"문헌을 찾는 중입니다\."\s*:\s*error\s*\?\s*error\s*:\s*result/,
     );
@@ -319,7 +319,7 @@ describe("personalized safety UI contract", () => {
     expect(componentSource).toContain(
       "result.query_snapshot.requested_axes.length",
     );
-    expect(componentSource).toContain("이 상황의 후보를 30건씩 보여드립니다");
+    expect(componentSource).toContain("이 상황의 후보를 30편씩 보여 드립니다");
   });
 
   it("focuses updated result headings without moving pagination scroll", () => {

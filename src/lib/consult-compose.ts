@@ -1,4 +1,5 @@
 import type { ComposedParagraph } from "@/src/lib/consult-referee";
+import { studyKind, withoutStatistics } from "@/src/lib/plain-reading";
 
 // 상담문(compose) 요청을 작게 만들고, 같은 요청을 합치고, 기다리는 동안과 실패했을 때
 // 보여줄 근거 있는 문단을 만드는 순수 함수들이다. 모델 호출은 여기 없다.
@@ -154,9 +155,11 @@ const GLOSSARY: [RegExp, string][] = [
   [/\bPTH\b/, "부갑상선호르몬"],
   [/\bLDL\b/, "저밀도 콜레스테롤"],
   [/\bHDL\b/, "고밀도 콜레스테롤"],
-  [/\bTG\b/, "중성지방"],
-  [/\bALT\b/, "간효소 ALT"],
-  [/\bAST\b/, "간효소 AST"],
+  [/\bTG\b|\bTAG\b/, "중성지방"],
+  [/γ-GT|\bGGT\b/, "간 수치"],
+  [/\bNAFLD\b/, "비알코올 지방간"],
+  [/\bALT\b/, "간 수치"],
+  [/\bAST\b/, "간 수치"],
   [/\bBMI\b/, "체질량지수"],
   [/\bRCT\b/, "무작위 대조시험"],
   [/\bVTE\b/, "정맥혈전색전증"],
@@ -213,17 +216,6 @@ export function readableSource(text: string) {
  * 용량이 아닐 때가 있다(결과 문장의 표준편차가 들어오기도 한다). "연구에서 쓴 양"
  * 이라고 적으면 없는 사실을 만드는 것이므로, 무엇을 모은 값인지 그대로 밝힌다.
  */
-function doseNote(dose: string) {
-  const values = dose
-    .split("|")
-    .map((part) => part.trim())
-    // 백분율은 용량이 아니다. 신뢰구간에서 딸려 온 "95%" 가 양 표기로 보이면 안 된다.
-    .filter((part) => part && !/%$/.test(part));
-  if (!values.length) return "";
-  const shown = values.slice(0, 3).join(", ");
-  const more = values.length > 3 ? ` 외 ${values.length - 3}개` : "";
-  return ` 초록에 나온 양 표기는 ${shown}${more}입니다. 이 표기가 연구가 준 용량인지는 초록만으로 확인하지 못했습니다.`;
-}
 
 /**
  * 모델이 쓰기 전과 실패했을 때 보여주는 문단. 문헌 한 편에 한 문단씩, 입력한 상황과
@@ -247,26 +239,24 @@ export function groundedFallback(
       },
     ];
   }
+  // 처음 보는 사람이 읽는 글이다. 영어 원문과 통계 괄호는 아래 목록의 '자세히'에 있으므로
+  // 여기서는 무엇을 알아냈는지와 초록에 적힌 양만 적는다.
   return selected.map((source, index) => {
-    const status = source.reviewed
-      ? "검토한 핵심 문헌"
-      : "추가 후보 문헌(주제와 요약을 사람이 하나하나 검토하지 않은 자료)";
+    const kind = `${source.year ? `${source.year}년 ` : ""}${studyKind(source.publicationTypes)}`;
+    const status = source.reviewed ? "" : ", 추가 후보";
     const lead =
       index === 0
-        ? `${patient ? `적어주신 상황(${excerpt(patient, 80)})과 ` : ""}${situation}${condition ? `, ${condition}` : ""} 조건으로 찾은 ${status}입니다.`
-        : `같은 조건으로 찾은 ${status}입니다.`;
+        ? `${patient ? "적어 주신 상황과 관련해 " : ""}${situation}${condition ? `(${condition})` : ""} 연구를 정리했습니다. `
+        : "";
     const finding = source.findingKo
-      ? `이 연구가 보고한 결과: ${plainLanguage(readableSource(source.findingKo))}`
+      ? withoutStatistics(plainLanguage(readableSource(source.findingKo)))
       : source.finding
-        ? `결과 문장은 아직 한국어로 옮기지 않아 원문 그대로입니다: ${excerpt(readableSource(source.finding), 220)}`
-        : `제목만 있어 결과 문장을 읽을 수 없습니다: ${excerpt(source.title, 160)}`;
-    const population = source.population
-      ? ` 초록이 밝힌 대상: ${excerpt(readableSource(source.population), 150).replace(/[.\s]*$/, "")}.`
-      : "";
-    const dose = doseNote(source.dose);
-    const relation = ` 입력하신 나이, 약, 용량 값과 이 연구 대상이 같은지는 여기서 대조하지 않았습니다.`;
+        ? `한국어 요약이 아직 없어 영어 문장을 그대로 옮깁니다: ${excerpt(readableSource(source.finding), 200)}`
+        : "제목만 있는 연구라 결과를 읽을 수 없습니다.";
+    // 초록에서 모은 양 표기에는 효과 크기(10.1 mg/dL 감소)도 섞여 있어, 처음 보는 사람에게
+    // 먹은 양처럼 읽힌다. 양 표기는 목록의 '자세히'에만 '초록의 양 표기'로 둔다.
     return {
-      text: `${lead} ${finding}${population}${dose}${relation}`.replace(/\s{2,}/g, " ").trim(),
+      text: `${lead}${kind}${status}. ${finding}`.replace(/\s{2,}/g, " ").trim(),
       recordIds: [source.recordId],
     };
   });
@@ -288,7 +278,7 @@ export const COMPOSE_SHARED_DEVELOPER = `사용자가 자기 상황을 이해하
 숫자와 단위는 인용한 문헌이나 사용자 입력에 있는 값만 그대로 쓴다. 초록에 없는 양·기간·효과는 만들지 않고, 서로 다른 연구의 대상·용량·결과를 한 연구처럼 합치지 않는다.
 효과의 방향, 차이가 없었다는 결론, 연구의 제한은 그대로 둔다. 방법에 적힌 용량을 안전 상한이나 개인 권장량으로 바꾸지 않는다.
 reviewed=false 는 후보 문헌이니 확정 근거로 단정하지 말고 추가 후보의 결과임을 일상적인 말로 짧게 밝힌다. abstractTruncated=true 면 초록 뒷부분이 잘린 것이라 잘린 부분을 추측하지 않고, abstract 가 비면 제목만 보고 결과를 추정하지 않는다. reviewed 같은 내부 필드명은 출력하지 않는다.
-eGFR(신장 여과 기능 지표), UACR(소변 알부민 지표)처럼 생소한 지표는 뜻을 먼저 풀어 쓴다. 핵심 용량·기간·결과 수치 1~2개를 중심으로 쓰고 p값과 신뢰구간은 나열하지 않는다.
+읽는 사람은 의학 지식이 없는 일반인이다. ALT, AST, BMI, eGFR 같은 약어와 전문 용어는 간 수치, 체질량지수, 콩팥 기능처럼 일상어로 바꾸고, 꼭 필요하면 처음 한 번만 괄호에 원래 이름을 적는다. 연구 설계 용어(메타분석, 무작위 대조시험)는 "여러 연구를 모아 본 분석", "무작위로 나눈 시험"처럼 풀어 쓴다. 가운뎃점(·)과 줄표를 쓰지 않고 쉼표로 나열한다. 핵심 용량·기간·결과 수치 1~2개를 중심으로 쓰고 p값과 신뢰구간은 나열하지 않는다.
 편수·연도 범위·검색 절차로 문단을 채우지 않는다. 신체 상태를 진단하거나 복용 시작·중단·증감·병용을 지시하지 않는다. 되묻는 물음표를 쓰지 않는다. 사용자가 말한 정보와 논문이 보고한 정보를 문장에서 구분한다.`;
 
 export type ComposeRole = {

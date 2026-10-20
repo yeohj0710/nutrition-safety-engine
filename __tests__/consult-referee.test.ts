@@ -280,8 +280,8 @@ describe("ai layer boundary", () => {
     // 화면은 상담문의 출처를 항상 밝힌다. 문단이 하나씩 도착하는 동안에도
     // 몇 개가 AI 글로 바뀌었는지 배지에 적는다.
     // AI가 쓴 해설과 규칙으로 만든 문헌별 요약은 이름이 서로 달라야 한다.
-    expect(component).toContain('"AI 해설"');
-    expect(component).toContain('"문헌별 요약"');
-    expect(component).toContain('`AI 해설 작성 중 ${consult.arrived ?? 0}/${COMPOSE_ROLES.length}`');
+    expect(component).toContain('"AI 설명"');
+    expect(component).toContain('"연구별 요약"');
+    expect(component).toContain('`AI 설명 ${consult.arrived ?? 0}/${COMPOSE_ROLES.length}`');
   });
 });

@@ -132,16 +132,14 @@ describe("근거 있는 대체 문단", () => {
     expect(paragraphs).toHaveLength(2);
     expect(paragraphs[0].recordIds).toEqual(["core"]);
     expect(paragraphs[0].text).toContain("신질환·투석");
-    expect(paragraphs[0].text).toContain("검토한 핵심 문헌");
+    // 처음 보는 사람이 읽는 글이라 연구 종류는 우리말로, 통계 괄호는 빼고 적는다.
+    expect(paragraphs[0].text).not.toContain("추가 후보");
     expect(paragraphs[0].text).toContain("Hgb(혈색소)");
-    // dose 는 초록에서 모은 "숫자 + 단위" 목록이라 연구가 준 용량이 아닐 수 있다.
-    // 그렇게 밝히지 않고 "연구에서 쓴 양" 이라고 적으면 없는 사실을 만든다.
-    expect(paragraphs[0].text).toContain("초록에 나온 양 표기는 2000 IU daily입니다");
-    expect(paragraphs[0].text).toContain("연구가 준 용량인지는 초록만으로 확인하지 못했습니다");
-    expect(paragraphs[0].text).toContain("초록이 밝힌 대상: 599 iron-replete chronic hemodialysis patients");
-    expect(paragraphs[0].text).toContain("대조하지 않았습니다");
-    expect(paragraphs[1].text).toContain("추가 후보 문헌");
-    expect(paragraphs[1].text).toContain("원문 그대로");
+    expect(paragraphs[0].text).not.toMatch(/95%|P\s*[<=>]/);
+    // dose 는 초록에서 모은 "숫자 + 단위" 목록이라 효과 크기도 섞인다. 요약 문단에는 싣지 않는다.
+    expect(paragraphs[0].text).not.toContain("2000 IU daily");
+    expect(paragraphs[1].text).toContain("추가 후보");
+    expect(paragraphs[1].text).toContain("영어 문장을 그대로");
     for (const paragraph of paragraphs) {
       expect(paragraph.text).not.toMatch(/복용하세요|드세요|안전합니다|위험합니다/);
     }
@@ -166,9 +164,7 @@ describe("근거 있는 대체 문단", () => {
     expect(paragraph.text).not.toContain("BACKGROUND:");
     expect(paragraph.text).not.toContain(" | ");
     expect(paragraph.text).toContain("Serum phosphate fell. The two arms were similar.");
-    expect(paragraph.text).toContain("We enrolled 217 adults on hemodialysis");
-    // 양 표기가 길면 앞의 셋만 보이고 나머지는 개수로 접는다.
-    expect(paragraph.text).toContain("0.59 mmol, 0.56 mmol, 1.5 mmol 외 1개");
+    expect(paragraph.text).not.toContain("0.59 mmol");
   });
 
   it("drops Korean section labels and percentages that are not a dose", () => {
