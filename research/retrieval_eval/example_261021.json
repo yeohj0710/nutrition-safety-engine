@@ -1,0 +1,224 @@
+{
+ "sentence": "혈액투석을 받고 있는 65세 남성인데 철분제를 하루 100mg 먹고 있어요",
+ "date": "2026-10-21 00:21",
+ "interpret": {
+  "situation": "HRS2_KIDNEY_DISEASE",
+  "values": {
+   "age": "65세",
+   "medication": "철분제",
+   "dose": "하루 100mg",
+   "sex": "남성",
+   "condition": ""
+  },
+  "applied_axes": [
+   {
+    "axis": "age_group",
+    "field": "age",
+    "value": "65세"
+   },
+   {
+    "axis": "concomitant_medication",
+    "field": "medication",
+    "value": "철분제"
+   },
+   {
+    "axis": "dose_range",
+    "field": "dose",
+    "value": "하루 100mg"
+   }
+  ],
+  "unavailable_axes": [
+   {
+    "axis": "sex",
+    "field": "sex",
+    "value": "남성"
+   }
+  ],
+  "unmatched": "",
+  "model": "ai_interpreted_input",
+  "notice": "문헌 검색은 고른 항목이 초록에 나왔는지 확인합니다. 결과 설명에서는 적어주신 상황과 연구 내용을 연결해 살펴봅니다."
+ },
+ "lookup_request": {
+  "situation": "HRS2_KIDNEY_DISEASE",
+  "axes": [
+   "age_group",
+   "concomitant_medication",
+   "dose_range"
+  ]
+ },
+ "lookup": {
+  "core_shown": 0,
+  "extended_shown": 5,
+  "extended_match_total": 5,
+  "filter_trace": [
+   {
+    "axis": "base",
+    "label": "핵심 근거",
+    "count": 9
+   },
+   {
+    "axis": "age_group",
+    "label": "연령",
+    "count": 2
+   },
+   {
+    "axis": "concomitant_medication",
+    "label": "병용 약물",
+    "count": 0
+   },
+   {
+    "axis": "dose_range",
+    "label": "용량",
+    "count": 0
+   }
+  ],
+  "applied_axes": [
+   {
+    "axis": "age_group",
+    "field": "age",
+    "value": "",
+    "reported": 2
+   },
+   {
+    "axis": "concomitant_medication",
+    "field": "medication",
+    "value": "",
+    "reported": 2
+   },
+   {
+    "axis": "dose_range",
+    "field": "dose",
+    "value": "",
+    "reported": 1
+   }
+  ],
+  "unavailable_axes": [],
+  "evidence": [
+   {
+    "record_id": "pubmed:22512666",
+    "title": "Total allowable concentrations of monomeric inorganic aluminum and hydrated aluminum silicates in drinking water."
+   },
+   {
+    "record_id": "pubmed:20228174",
+    "title": "Risk factors for peritoneal dialysis-associated peritonitis: the role of oral active vitamin d."
+   },
+   {
+    "record_id": "pubmed:2507707",
+    "title": "Use and safety of elevated dosages of vitamin E in adults."
+   },
+   {
+    "record_id": "pubmed:36153722",
+    "title": "Scurvy."
+   },
+   {
+    "record_id": "pubmed:24850120",
+    "title": "The potential contributing effect of ketorolac and fluoxetine to a spinal epidural hematoma following a cervical interlaminar epidural steroid injection: a case report and narrative review."
+   }
+  ]
+ },
+ "compose_events": [
+  {
+   "type": "interim",
+   "paragraphs": [
+    {
+     "text": "적어 주신 상황과 관련해 신질환과 투석(연령, 병용 약물, 용량) 연구를 정리했습니다. 2012년 종설, 추가 후보. 한국어 요약이 아직 없어 영어 문장을 그대로 옮깁니다: The results of dietary Phase I and II clinical trials conducted in healthy adult volunteers over 14 days and 90 days with montmorillonite found no adverse effects after feeding up to 40 mg/kg-day as A…",
+     "recordIds": [
+      "pubmed:22512666"
+     ]
+    },
+    {
+     "text": "2010년 비교 연구, 추가 후보. 한국어 요약이 아직 없어 영어 문장을 그대로 옮깁니다: Patient demographic data, comorbidities, concomitant medication, laboratory parameters, and microbiology results were obtained from the medical records and from the hospital's electronic database. ♢ R…",
+     "recordIds": [
+      "pubmed:20228174"
+     ]
+    },
+    {
+     "text": "1989년 종설, 추가 후보. 한국어 요약이 아직 없어 영어 문장을 그대로 옮깁니다: Administration of 800 IU/day of vitamin E to subjects with G6PD deficiency, sickle-cell anemia and beta-thalassemia has resulted in improvement of hematological parameters.",
+     "recordIds": [
+      "pubmed:2507707"
+     ]
+    }
+   ],
+   "reason": "generating",
+   "_t": 0.5
+  },
+  {
+   "type": "partial",
+   "index": 1,
+   "paragraph": {
+    "text": "확정 근거가 아닌 추가 후보 문헌에서는, 신장 기능이 떨어진 사람에게 알루미늄 수산화물 960 mg/day를 3개월 투여한 임상 경험에서 혈색소, 적혈구 비율(헤마토크릿), 저장 철분 수치(혈청 페리틴)가 증상 없이 낮아졌다고 보고했습니다. 보고된 변화는 증상이 없는 혈액 수치 변화였으며, 이 후보 문헌만으로 그 의미를 확정할 수는 없습니다.",
+    "recordIds": [
+     "pubmed:22512666"
+    ]
+   },
+   "source": "ai_written",
+   "elapsedMs": 24643,
+   "_t": 25.2
+  },
+  {
+   "type": "partial",
+   "index": 0,
+   "paragraph": {
+    "text": "혈액투석을 받는 65세 남성이 하루 100mg 철분제를 먹는 상황에서는 철분의 정확한 성분, 제형, 함께 쓰는 약, 연구의 대상과 비교군, 혈색소와 저장철 같은 결과를 확인해야 합니다. 제시된 추가 후보 문헌은 철분제가 아닌 신장 기능 저하 환자의 먹는 알루미늄 제제를 다루므로, 그 혈액 관련 결과를 현재 철분제에 그대로 적용할 수 없습니다.",
+    "recordIds": [
+     "pubmed:22512666"
+    ]
+   },
+   "source": "ai_written",
+   "elapsedMs": 39959,
+   "_t": 40.5
+  },
+  {
+   "type": "partial",
+   "index": 2,
+   "paragraph": {
+    "text": "제시된 자료는 모두 추가 후보라 확정 근거로 보기 어렵습니다. 65세 남성의 혈액투석 상태는 일부 자료의 혈액투석 또는 콩팥 기능 저하와 겹치지만, 건강한 성인, 복막투석 환자, 특정 사례가 섞여 있고 철분 100mg을 직접 평가한 자료는 없어 연령과 병용약물까지 맞춘 비교가 아닙니다. 현재 상황과 연결하려면 100mg이 제품 전체 무게인지 실제 철의 양인지, 알루미늄이 든 인 결합제 등 전체 복용약, 혈색소와 철 저장 수치가 확인되어야 합니다.",
+    "recordIds": [
+     "pubmed:22512666",
+     "pubmed:2507707",
+     "pubmed:20228174",
+     "pubmed:36153722"
+    ]
+   },
+   "source": "ai_written",
+   "elapsedMs": 58850,
+   "_t": 59.4
+  },
+  {
+   "type": "result",
+   "paragraphs": [
+    {
+     "text": "혈액투석을 받는 65세 남성이 하루 100mg 철분제를 먹는 상황에서는 철분의 정확한 성분, 제형, 함께 쓰는 약, 연구의 대상과 비교군, 혈색소와 저장철 같은 결과를 확인해야 합니다. 제시된 추가 후보 문헌은 철분제가 아닌 신장 기능 저하 환자의 먹는 알루미늄 제제를 다루므로, 그 혈액 관련 결과를 현재 철분제에 그대로 적용할 수 없습니다.",
+     "recordIds": [
+      "pubmed:22512666"
+     ]
+    },
+    {
+     "text": "확정 근거가 아닌 추가 후보 문헌에서는, 신장 기능이 떨어진 사람에게 알루미늄 수산화물 960 mg/day를 3개월 투여한 임상 경험에서 혈색소, 적혈구 비율(헤마토크릿), 저장 철분 수치(혈청 페리틴)가 증상 없이 낮아졌다고 보고했습니다. 보고된 변화는 증상이 없는 혈액 수치 변화였으며, 이 후보 문헌만으로 그 의미를 확정할 수는 없습니다.",
+     "recordIds": [
+      "pubmed:22512666"
+     ]
+    },
+    {
+     "text": "제시된 자료는 모두 추가 후보라 확정 근거로 보기 어렵습니다. 65세 남성의 혈액투석 상태는 일부 자료의 혈액투석 또는 콩팥 기능 저하와 겹치지만, 건강한 성인, 복막투석 환자, 특정 사례가 섞여 있고 철분 100mg을 직접 평가한 자료는 없어 연령과 병용약물까지 맞춘 비교가 아닙니다. 현재 상황과 연결하려면 100mg이 제품 전체 무게인지 실제 철의 양인지, 알루미늄이 든 인 결합제 등 전체 복용약, 혈색소와 철 저장 수치가 확인되어야 합니다.",
+     "recordIds": [
+      "pubmed:22512666",
+      "pubmed:2507707",
+      "pubmed:20228174",
+      "pubmed:36153722"
+     ]
+    }
+   ],
+   "source": "ai_written",
+   "rejections": [],
+   "usage": {
+    "input": 13737,
+    "output": 12376
+   },
+   "model": "gpt-5.6-luna",
+   "effort": "max",
+   "elapsedMs": 58850,
+   "_t": 59.4
+  }
+ ]
+}

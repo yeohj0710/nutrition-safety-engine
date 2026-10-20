@@ -1,0 +1,272 @@
+[
+  {
+    "item_id": "I002",
+    "topic": "relevant",
+    "axes": {"age_group": "yes"},
+    "reason": "Bariatric surgery patients are adults or adolescents with postoperative nutritional deficiencies and supplementation."
+  },
+  {
+    "item_id": "I005",
+    "topic": "relevant",
+    "axes": {"dose_range": "yes"},
+    "reason": "Geriatric hip-fracture patients received quantified oral protein-energy supplements around surgery."
+  },
+  {
+    "item_id": "I006",
+    "topic": "relevant",
+    "axes": {"dose_range": "yes"},
+    "reason": "Surgical patients received quantified preoperative carbohydrate, glutamine, and antioxidant nutrition."
+  },
+  {
+    "item_id": "I009",
+    "topic": "relevant",
+    "axes": {"age_group": "yes"},
+    "reason": "The review includes children receiving herbal prophylaxis during surgical correction of vesicoureteral reflux."
+  },
+  {
+    "item_id": "I011",
+    "topic": "relevant",
+    "axes": {"age_group": "yes"},
+    "reason": "Hip-fracture patients used calcium and vitamin D supplements after surgery."
+  },
+  {
+    "item_id": "I017",
+    "topic": "relevant",
+    "axes": {"dose_range": "yes"},
+    "reason": "Postoperative knee arthroplasty patients received quantified fish oil with aspirin."
+  },
+  {
+    "item_id": "I021",
+    "topic": "relevant",
+    "axes": {"age_group": "yes"},
+    "reason": "Adults undergoing colon or liver surgery received perioperative fish oil and energy drinks."
+  },
+  {
+    "item_id": "I024",
+    "topic": "relevant",
+    "axes": {"dose_range": "yes"},
+    "reason": "Open-heart surgery patients received quantified perioperative vitamin D."
+  },
+  {
+    "item_id": "I025",
+    "topic": "relevant",
+    "axes": {"dose_range": "no"},
+    "reason": "Adults undergoing tonsillectomy received probiotic gargles after surgery, but no supplement amount was stated."
+  },
+  {
+    "item_id": "I031",
+    "topic": "relevant",
+    "axes": {"dose_range": "yes"},
+    "reason": "Adults undergoing bariatric surgery were studied with explicitly categorized vitamin D doses."
+  },
+  {
+    "item_id": "I033",
+    "topic": "relevant",
+    "axes": {"dose_range": "yes"},
+    "reason": "Fracture surgery patients received a quantified polyherbal laxative for postoperative constipation."
+  },
+  {
+    "item_id": "I042",
+    "topic": "relevant",
+    "axes": {"dose_range": "yes"},
+    "reason": "Hemodialysis and transplant patients received quantified oral folate and vitamin B supplementation."
+  },
+  {
+    "item_id": "I043",
+    "topic": "relevant",
+    "axes": {"dose_range": "no"},
+    "reason": "Hemodialysis patients included multivitamin use, but the study did not quantify supplement dosing."
+  },
+  {
+    "item_id": "I045",
+    "topic": "relevant",
+    "axes": {"age_group": "yes"},
+    "reason": "Children with Bartter syndrome and kidney disease received potassium supplementation."
+  },
+  {
+    "item_id": "I048",
+    "topic": "relevant",
+    "axes": {"age_group": "yes"},
+    "reason": "Adults with stage 5 chronic kidney disease used vitamin D supplementation."
+  },
+  {
+    "item_id": "I052",
+    "topic": "relevant",
+    "axes": {"dose_range": "no"},
+    "reason": "Patients with chronic kidney disease were discussed with ketoacid supplements, but their dose was explicitly unknown."
+  },
+  {
+    "item_id": "I057",
+    "topic": "irrelevant",
+    "axes": {"age_group": "yes"},
+    "reason": "Hypertension patients had chronic kidney disease excluded, and no dietary supplement exposure was studied."
+  },
+  {
+    "item_id": "I058",
+    "topic": "partial",
+    "axes": {"dose_range": "yes"},
+    "reason": "A chronic kidney disease patient developed hypercalcemia from calcium polystyrene sulfonate, a medication rather than a supplement."
+  },
+  {
+    "item_id": "I061",
+    "topic": "relevant",
+    "axes": {"dose_range": "no"},
+    "reason": "The review includes a kidney-disease trial comparing an ACE inhibitor with vitamin C, but gives no supplement dose."
+  },
+  {
+    "item_id": "I068",
+    "topic": "partial",
+    "axes": {"age_group": "no"},
+    "reason": "CKD-MBD patients received phosphate binders, which are medications rather than dietary supplements."
+  },
+  {
+    "item_id": "I072",
+    "topic": "relevant",
+    "axes": {"dose_range": "yes"},
+    "reason": "Pregnant women received quantified folic acid with iron supplementation."
+  },
+  {
+    "item_id": "I073",
+    "topic": "partial",
+    "axes": {"age_group": "yes"},
+    "reason": "Preterm infants received vitamin K prophylaxis, but they were not pregnant or breastfeeding participants."
+  },
+  {
+    "item_id": "I074",
+    "topic": "relevant",
+    "axes": {"dose_range": "yes"},
+    "reason": "Mothers used quantified folic acid before or during pregnancy."
+  },
+  {
+    "item_id": "I079",
+    "topic": "partial",
+    "axes": {"dose_range": "no"},
+    "reason": "Preoperative adults received iron with erythropoietin, but the record does not concern pregnancy and gives no iron dose."
+  },
+  {
+    "item_id": "I082",
+    "topic": "partial",
+    "axes": {"age_group": "yes"},
+    "reason": "Preterm infants were assessed for supplementation needs, but they were not pregnant or breastfeeding participants."
+  },
+  {
+    "item_id": "I085",
+    "topic": "partial",
+    "axes": {"age_group": "yes"},
+    "reason": "Premature infants received human milk and some phosphorus supplementation, without a pregnancy or breastfeeding-person population."
+  },
+  {
+    "item_id": "I088",
+    "topic": "relevant",
+    "axes": {"age_group": "no"},
+    "reason": "The review directly evaluates folic acid supplementation during pregnancy and gestational diabetes."
+  },
+  {
+    "item_id": "I094",
+    "topic": "partial",
+    "axes": {"dose_range": "yes"},
+    "reason": "Infants received quantified vitamin A, but the study did not involve liver disease or liver toxicity."
+  },
+  {
+    "item_id": "I095",
+    "topic": "relevant",
+    "axes": {"dose_range": "yes"},
+    "reason": "Patients with chronic hepatitis C received quantified silymarin supplementation."
+  },
+  {
+    "item_id": "I096",
+    "topic": "relevant",
+    "axes": {"age_group": "no"},
+    "reason": "Kava hepatotoxicity and herbal kava exposure directly concern supplement-related liver injury, without participant ages."
+  },
+  {
+    "item_id": "I097",
+    "topic": "relevant",
+    "axes": {"dose_range": "yes"},
+    "reason": "Women consuming quantified black cohosh extract were evaluated for hepatic safety."
+  },
+  {
+    "item_id": "I100",
+    "topic": "relevant",
+    "axes": {"dose_range": "yes"},
+    "reason": "Cirrhotic patients received quantified probiotic capsules alongside norfloxacin."
+  },
+  {
+    "item_id": "I102",
+    "topic": "relevant",
+    "axes": {"dose_range": "yes"},
+    "reason": "Patients with nonalcoholic fatty liver disease received quantified omega-3 supplementation."
+  },
+  {
+    "item_id": "I103",
+    "topic": "relevant",
+    "axes": {"age_group": "yes"},
+    "reason": "Patients developed liver injury after ingesting a Chinese herbal product, with ages reported."
+  },
+  {
+    "item_id": "I106",
+    "topic": "relevant",
+    "axes": {"age_group": "no"},
+    "reason": "Cirrhotic patients received antioxidant and zinc supplements for minimal hepatic encephalopathy, without ages."
+  },
+  {
+    "item_id": "I107",
+    "topic": "partial",
+    "axes": {"dose_range": "yes"},
+    "reason": "General adults consumed quantified ginkgo, while liver relevance was limited to function markers."
+  },
+  {
+    "item_id": "I111",
+    "topic": "relevant",
+    "axes": {"age_group": "yes"},
+    "reason": "Adults with alcoholic cirrhosis received quantified supplementary parenteral nutrition."
+  },
+  {
+    "item_id": "I115",
+    "topic": "relevant",
+    "axes": {"dose_range": "yes"},
+    "reason": "Liver-transplant candidates received quantified whey or casein protein supplementation."
+  },
+  {
+    "item_id": "I119",
+    "topic": "relevant",
+    "axes": {"age_group": "no"},
+    "reason": "Drug-induced liver injury cases included herbal and dietary supplements, but no participant age information was stated."
+  },
+  {
+    "item_id": "I124",
+    "topic": "relevant",
+    "axes": {"age_group": "yes"},
+    "reason": "Children with beta-thalassemia and liver dysfunction received grape seed extract supplementation."
+  },
+  {
+    "item_id": "I125",
+    "topic": "relevant",
+    "axes": {"dose_range": "yes"},
+    "reason": "Adults with cirrhosis received quantified daily vitamin D3 doses."
+  },
+  {
+    "item_id": "I128",
+    "topic": "partial",
+    "axes": {"dose_range": "no"},
+    "reason": "A poisoning patient received nutritional supplementation, but the case did not involve liver disease or a quantified supplement dose."
+  },
+  {
+    "item_id": "I129",
+    "topic": "partial",
+    "axes": {"dose_range": "yes"},
+    "reason": "Severely obese participants received glycine, while liver disease was represented only indirectly by a MASLD marker."
+  },
+  {
+    "item_id": "I137",
+    "topic": "relevant",
+    "axes": {"age_group": "yes"},
+    "reason": "Anticoagulated patients with hematoma received vitamin K1 during conservative management."
+  },
+  {
+    "item_id": "I148",
+    "topic": "partial",
+    "axes": {"age_group": "yes"},
+    "reason": "An anticoagulated woman with bleeding received medical interventions, but no dietary supplement exposure."
+  }
+]

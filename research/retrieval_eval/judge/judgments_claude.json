@@ -5,143 +5,161 @@
   "axes": {
    "sex": "yes"
   },
-  "reason": "Presurgical patients surveyed on herbal and alternative supplement use; anesthetic interaction concern."
+  "reason": "Presurgical patients surveyed on herbal and alternative supplement use; anesthetic interaction concern.",
+  "reused": true
  },
  {
   "item_id": "I002",
   "topic": "relevant",
   "axes": {
-   "underlying_condition": "yes"
+   "age_group": "yes"
   },
-  "reason": "Bariatric surgery patients; oral iron, vitamin C and multivitamin prophylaxis discussed for deficiency."
+  "reason": "Bariatric surgery patients; nutritional deficiencies and supplementation compliance reviewed; adults and adolescents named.",
+  "reused": false
  },
  {
   "item_id": "I003",
   "topic": "relevant",
   "axes": {
-   "dose_range": "yes"
+   "underlying_condition": "yes"
   },
-  "reason": "Herbal medicine rikkunshito given perioperatively to gynecological laparoscopic surgery patients for PONV."
+  "reason": "Bariatric surgery patients; oral iron, vitamin C and multivitamin prophylaxis discussed for deficiency.",
+  "reused": true
  },
  {
   "item_id": "I004",
-  "topic": "partial",
+  "topic": "relevant",
   "axes": {
-   "underlying_condition": "yes"
+   "dose_range": "yes"
   },
-  "reason": "Pregnant women years after gastric bypass; iron supplementation, but not clearly perioperative."
+  "reason": "Herbal medicine rikkunshito given perioperatively to gynecological laparoscopic surgery patients for PONV.",
+  "reused": true
  },
  {
   "item_id": "I005",
   "topic": "relevant",
   "axes": {
-   "dose_range": "no"
+   "dose_range": "yes"
   },
-  "reason": "Postoperative colorectal cancer patients receiving parenteral, enteral nutrition and omega-3; no supplement amounts."
+  "reason": "Perioperative oral nutritional supplements in elderly hip fracture surgery patients, 40 g protein and 400 kcal daily.",
+  "reused": false
  },
  {
   "item_id": "I006",
   "topic": "relevant",
   "axes": {
-   "age_group": "no"
+   "dose_range": "yes"
   },
-  "reason": "Oral EPA given after surgical clipping for subarachnoid hemorrhage; postoperative supplement effect."
+  "reason": "Preoperative carbohydrate, glutamine, antioxidant oral supplement drink in cholecystectomy patients; volumes and amounts given.",
+  "reused": false
  },
  {
   "item_id": "I007",
+  "topic": "partial",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Pregnant women years after gastric bypass; iron supplementation, but not clearly perioperative.",
+  "reused": true
+ },
+ {
+  "item_id": "I008",
   "topic": "relevant",
   "axes": {
    "sex": "yes"
   },
-  "reason": "Male infant circumcision bleeding treated with vitamin K; procedure plus vitamin."
- },
- {
-  "item_id": "I008",
-  "topic": "irrelevant",
-  "axes": {
-   "sex": "yes"
-  },
-  "reason": "Breast cancer survivors after completed treatment; omega-3 intake observational, not perioperative."
+  "reason": "Male infant circumcision bleeding treated with vitamin K; procedure plus vitamin.",
+  "reused": true
  },
  {
   "item_id": "I009",
   "topic": "partial",
   "axes": {
-   "age_group": "no"
+   "age_group": "yes"
   },
-  "reason": "Folic acid supplement use studied for infant malformations; surgery or perioperative population not addressed."
+  "reason": "Herbal product reviewed; surgery only mentioned for children with vesicoureteral reflux correction, mostly urinary and gestational use.",
+  "reused": false
  },
  {
   "item_id": "I010",
-  "topic": "relevant",
-  "axes": {},
-  "reason": "Systematic review of oral nutritional supplements in hospitalized surgical and medical patients."
+  "topic": "irrelevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Breast cancer survivors after completed treatment; omega-3 intake observational, not perioperative.",
+  "reused": true
  },
  {
   "item_id": "I011",
-  "topic": "partial",
+  "topic": "relevant",
   "axes": {
-   "dose_range": "no"
+   "age_group": "yes"
   },
-  "reason": "Post-thyroidectomy hypocalcemia management; population fits but no supplement explicitly given."
+  "reason": "Hip fracture surgery patients; vitamin D level and postoperative calcium plus vitamin D supplementation linked to survival.",
+  "reused": false
  },
  {
   "item_id": "I012",
   "topic": "relevant",
-  "axes": {
-   "dose_range": "yes"
-  },
-  "reason": "CoQ10 supplement before CABG surgery, 150 mg daily for 7 days."
+  "axes": {},
+  "reason": "Systematic review of oral nutritional supplements in hospitalized surgical and medical patients.",
+  "reused": true
  },
  {
   "item_id": "I013",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "CoQ10 supplement before CABG surgery, 150 mg daily for 7 days.",
+  "reused": true
+ },
+ {
+  "item_id": "I014",
   "topic": "partial",
   "axes": {
    "age_group": "yes",
    "sex": "yes"
   },
-  "reason": "Elderly hip fracture surgery review; nutritional supplementation mentioned only as one beneficial intervention."
- },
- {
-  "item_id": "I014",
-  "topic": "relevant",
-  "axes": {
-   "sex": "yes"
-  },
-  "reason": "Women undergoing bariatric surgery; protocol records dietary supplement intake and vitamin levels."
+  "reason": "Elderly hip fracture surgery review; nutritional supplementation mentioned only as one beneficial intervention.",
+  "reused": true
  },
  {
   "item_id": "I015",
   "topic": "relevant",
   "axes": {
-   "age_group": "yes",
-   "underlying_condition": "yes"
+   "sex": "yes"
   },
-  "reason": "Older colorectal cancer surgery patients; nutritional prehabilitation and perioperative nutritional supplement."
+  "reason": "Women undergoing bariatric surgery; protocol records dietary supplement intake and vitamin levels.",
+  "reused": true
  },
  {
   "item_id": "I016",
-  "topic": "partial",
+  "topic": "relevant",
   "axes": {
-   "dose_range": "yes"
+   "age_group": "yes",
+   "underlying_condition": "yes"
   },
-  "reason": "Vitamin D supplement trial in heart failure; surgery only incidental outcomes, not a perioperative population."
+  "reason": "Older colorectal cancer surgery patients; nutritional prehabilitation and perioperative nutritional supplement.",
+  "reused": true
  },
  {
   "item_id": "I017",
   "topic": "relevant",
   "axes": {
-   "sex": "yes"
+   "dose_range": "yes"
   },
-  "reason": "Preoperative sucrosomial iron before hip replacement surgery; sex-specific hemoglobin thresholds reported."
+  "reason": "Total knee arthroplasty patients given fish oil supplement with aspirin for thromboprophylaxis; bleeding outcomes.",
+  "reused": false
  },
  {
   "item_id": "I018",
-  "topic": "partial",
+  "topic": "relevant",
   "axes": {
-   "age_group": "yes"
+   "sex": "yes"
   },
-  "reason": "Maternal probiotic supplements for preterm infants; supplement matches, surgery or anesthesia situation does not."
+  "reason": "Preoperative sucrosomial iron before hip replacement surgery; sex-specific hemoglobin thresholds reported.",
+  "reused": true
  },
  {
   "item_id": "I019",
@@ -149,7 +167,8 @@
   "axes": {
    "sex": "yes"
   },
-  "reason": "Herbal ointment for radiation dermatitis after breast-conserving surgery; topical, radiotherapy-focused."
+  "reason": "Herbal ointment for radiation dermatitis after breast-conserving surgery; topical, radiotherapy-focused.",
+  "reused": true
  },
  {
   "item_id": "I020",
@@ -157,90 +176,97 @@
   "axes": {
    "underlying_condition": "yes"
   },
-  "reason": "Vitamin D supplementation in kidney transplant recipients; transplant is a procedure but not clearly perioperative."
+  "reason": "Vitamin D supplementation in kidney transplant recipients; transplant is a procedure but not clearly perioperative.",
+  "reused": true
  },
  {
   "item_id": "I021",
   "topic": "relevant",
   "axes": {
-   "age_group": "yes",
-   "dose_range": "yes"
+   "age_group": "yes"
   },
-  "reason": "Adults having dental procedures given oral sedatives including valerian, passionflower and mulungu herbal products."
+  "reason": "Adults having colon or liver surgery receiving perioperative omega-3 fish oil infusion and energy drinks.",
+  "reused": false
  },
  {
   "item_id": "I022",
-  "topic": "partial",
+  "topic": "relevant",
   "axes": {
-   "sex": "yes"
+   "age_group": "yes"
   },
-  "reason": "Vitamin D supplement in hospitalized COVID-19 adults; supplement matches, surgery situation does not."
+  "reason": "Adults having dental procedures given oral sedatives including valerian, passionflower and mulungu herbal products.",
+  "reused": true
  },
  {
   "item_id": "I023",
-  "topic": "relevant",
-  "axes": {},
-  "reason": "Multivitamin-containing parenteral nutrition after gastrointestinal surgery, postoperative vitamin profile."
- },
- {
-  "item_id": "I024",
-  "topic": "partial",
-  "axes": {
-   "underlying_condition": "yes"
-  },
-  "reason": "Oral nutritional supplements in cancer patients, including after surgery; surgery only one treatment context."
- },
- {
-  "item_id": "I025",
   "topic": "partial",
   "axes": {
    "sex": "yes"
   },
-  "reason": "Natural remedy use among cancer survivors; supplement side matches, surgery only a treatment covariate."
+  "reason": "Vitamin D supplement in hospitalized COVID-19 adults; supplement matches, surgery situation does not.",
+  "reused": true
+ },
+ {
+  "item_id": "I024",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Open-heart surgery patients given perioperative vitamin D3 supplementation, 50,000 IU doses.",
+  "reused": false
+ },
+ {
+  "item_id": "I025",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Adults after tonsillectomy given probiotic gargles; probiotic is a supplement-type product, amount not stated.",
+  "reused": false
  },
  {
   "item_id": "I026",
-  "topic": "partial",
-  "axes": {
-   "sex": "yes",
-   "underlying_condition": "yes"
-  },
-  "reason": "Delta-tocotrienol with neoadjuvant therapy before breast surgery; presurgical but chemotherapy-focused."
+  "topic": "relevant",
+  "axes": {},
+  "reason": "Multivitamin-containing parenteral nutrition after gastrointestinal surgery, postoperative vitamin profile.",
+  "reused": true
  },
  {
   "item_id": "I027",
-  "topic": "relevant",
+  "topic": "partial",
   "axes": {
    "underlying_condition": "yes"
   },
-  "reason": "Preoperative nutrition and exercise prehabilitation in head and neck cancer surgery; nutritional supplements discussed."
+  "reason": "Oral nutritional supplements in cancer patients, including after surgery; surgery only one treatment context.",
+  "reused": true
  },
  {
   "item_id": "I028",
   "topic": "partial",
   "axes": {
-   "age_group": "yes",
-   "sex": "yes",
-   "underlying_condition": "yes"
+   "sex": "yes"
   },
-  "reason": "Herbal formula after colon cancer surgery during chemotherapy; postoperative but chemotherapy-focused."
+  "reason": "Natural remedy use among cancer survivors; supplement side matches, surgery only a treatment covariate.",
+  "reused": true
  },
  {
   "item_id": "I029",
-  "topic": "relevant",
+  "topic": "partial",
   "axes": {
-   "age_group": "yes"
+   "sex": "yes",
+   "underlying_condition": "yes"
   },
-  "reason": "Preoperative ginger, garlic and green tea use and bleeding in lacrimal surgery."
+  "reason": "Delta-tocotrienol with neoadjuvant therapy before breast surgery; presurgical but chemotherapy-focused.",
+  "reused": true
  },
  {
   "item_id": "I030",
   "topic": "relevant",
   "axes": {
-   "age_group": "yes",
-   "dose_range": "no"
+   "underlying_condition": "yes"
   },
-  "reason": "Parenteral nutrition emulsion given after gastrointestinal surgery in adults."
+  "reason": "Preoperative nutrition and exercise prehabilitation in head and neck cancer surgery; nutritional supplements discussed.",
+  "reused": true
  },
  {
   "item_id": "I031",
@@ -248,194 +274,218 @@
   "axes": {
    "dose_range": "yes"
   },
-  "reason": "Daikenchuto herbal medicine 7.5 or 15 g/d after bowel resection."
+  "reason": "Adults undergoing bariatric surgery; vitamin D supplementation doses compared in IU per day.",
+  "reused": false
  },
  {
   "item_id": "I032",
-  "topic": "relevant",
+  "topic": "partial",
   "axes": {
    "age_group": "yes",
-   "dose_range": "yes",
+   "sex": "yes",
    "underlying_condition": "yes"
   },
-  "reason": "Perioperative arginine and omega-3 immunonutrition in gastrointestinal cancer surgery."
+  "reason": "Herbal formula after colon cancer surgery during chemotherapy; postoperative but chemotherapy-focused.",
+  "reused": true
  },
  {
   "item_id": "I033",
-  "topic": "partial",
+  "topic": "relevant",
   "axes": {
-   "age_group": "yes"
+   "dose_range": "yes"
   },
-  "reason": "Chinese herbs for traumatic splenic rupture managed without surgery; herbal side matches, perioperative population does not."
+  "reason": "Postoperative orthopedic trauma patients given polyherbal laxative capsule 520 mg twice daily.",
+  "reused": false
  },
  {
   "item_id": "I034",
   "topic": "relevant",
   "axes": {
-   "underlying_condition": "yes"
+   "age_group": "yes"
   },
-  "reason": "Chinese herbal medicine given for 6 months after laparoscopic endometriosis surgery."
+  "reason": "Preoperative ginger, garlic and green tea use and bleeding in lacrimal surgery.",
+  "reused": true
  },
  {
   "item_id": "I035",
   "topic": "relevant",
   "axes": {
-   "dose_range": "no"
+   "age_group": "yes"
   },
-  "reason": "Oral nutritional supplements for three months in postoperative colorectal cancer patients; no amount stated."
+  "reason": "Parenteral nutrition emulsion given after gastrointestinal surgery in adults.",
+  "reused": true
  },
  {
   "item_id": "I036",
   "topic": "relevant",
   "axes": {
-   "underlying_condition": "no"
+   "dose_range": "yes"
   },
-  "reason": "Preoperative vitamins and nutritive substrates with steroids in gastric cancer surgery patients."
+  "reason": "Daikenchuto herbal medicine 7.5 or 15 g/d after bowel resection.",
+  "reused": true
  },
  {
   "item_id": "I037",
-  "topic": "partial",
+  "topic": "relevant",
   "axes": {
-   "dose_range": "yes"
+   "age_group": "yes",
+   "underlying_condition": "yes"
   },
-  "reason": "Vitamin E with pentoxifylline after surgical excision for radiation fibrosis; single case, treatment not perioperative."
+  "reason": "Perioperative arginine and omega-3 immunonutrition in gastrointestinal cancer surgery.",
+  "reused": true
  },
  {
   "item_id": "I038",
   "topic": "relevant",
   "axes": {
-   "dose_range": "no"
+   "underlying_condition": "yes"
   },
-  "reason": "Vitamin D intoxication in an anephric child on dialysis."
+  "reason": "Chinese herbal medicine given for 6 months after laparoscopic endometriosis surgery.",
+  "reused": true
  },
  {
   "item_id": "I039",
-  "topic": "partial",
+  "topic": "relevant",
   "axes": {
-   "concomitant_medication": "yes"
+   "underlying_condition": "no"
   },
-  "reason": "Children on renal replacement therapy; citrate anticoagulant solution, not a supplement."
+  "reason": "Preoperative vitamins and nutritive substrates with steroids in gastric cancer surgery patients.",
+  "reused": true
  },
  {
   "item_id": "I040",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Vitamin E with pentoxifylline after surgical excision for radiation fibrosis; single case, treatment not perioperative.",
+  "reused": true
+ },
+ {
+  "item_id": "I041",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Vitamin D intoxication in an anephric child on dialysis.",
+  "reused": true
+ },
+ {
+  "item_id": "I042",
   "topic": "relevant",
   "axes": {
    "dose_range": "yes"
   },
-  "reason": "Folic acid 1, 5 or 15 mg in renal multivitamin in dialysis patients."
- },
- {
-  "item_id": "I041",
-  "topic": "partial",
-  "axes": {
-   "age_group": "no"
-  },
-  "reason": "Hemodialysis patients' hyperparathyroidism risk factors; no supplement or nutritional product studied."
- },
- {
-  "item_id": "I042",
-  "topic": "partial",
-  "axes": {
-   "dose_range": "no"
-  },
-  "reason": "Milk-alkali hypercalcaemia in non-ESRD inpatients, many with CKD; calcium and vitamin D supplements implicated."
+  "reason": "Hemodialysis patients and transplant recipients given folic acid, methylfolate and B vitamins at stated mg doses.",
+  "reused": false
  },
  {
   "item_id": "I043",
-  "topic": "partial",
+  "topic": "relevant",
   "axes": {
-   "age_group": "yes"
+   "dose_range": "no"
   },
-  "reason": "Nutritional status of hemodialysis patients by age; no supplement or nutritional product studied."
+  "reason": "Hemodialysis patients' dietary vitamin and mineral intake, including Nephrovite multivitamin use; supplement amount not stated.",
+  "reused": false
  },
  {
   "item_id": "I044",
   "topic": "partial",
   "axes": {
-   "age_group": "yes"
+   "concomitant_medication": "yes"
   },
-  "reason": "Vitamin D review across general adults; CKD patients on activated vitamin D mentioned briefly."
+  "reason": "Children on renal replacement therapy; citrate anticoagulant solution, not a supplement.",
+  "reused": true
  },
  {
   "item_id": "I045",
-  "topic": "relevant",
-  "axes": {
-   "dose_range": "no"
-  },
-  "reason": "Chronic kidney disease caused by aristolochic acid in Chinese herbal products; herb harm."
- },
- {
-  "item_id": "I046",
   "topic": "partial",
   "axes": {
    "age_group": "yes"
   },
-  "reason": "Hemodialysis patients' corrected calcium and albumin assays; no supplement studied."
+  "reason": "Children with Bartter syndrome renal tubular disorder; potassium supplementation only mentioned as routine treatment.",
+  "reused": false
+ },
+ {
+  "item_id": "I046",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Folic acid 1, 5 or 15 mg in renal multivitamin in dialysis patients.",
+  "reused": true
  },
  {
   "item_id": "I047",
   "topic": "partial",
   "axes": {
-   "dose_range": "yes"
+   "age_group": "yes"
   },
-  "reason": "Hemodialysis patients given IV paricalcitol, a vitamin D analog drug, not a supplement."
+  "reason": "Vitamin D review across general adults; CKD patients on activated vitamin D mentioned briefly.",
+  "reused": true
  },
  {
   "item_id": "I048",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Review of vitamin D supplementation in stage 5 chronic kidney disease adults.",
+  "reused": false
+ },
+ {
+  "item_id": "I049",
   "topic": "partial",
   "axes": {
    "age_group": "yes"
   },
-  "reason": "CKD stage 3-5 patients' epicardial fat and events; no supplement intervention."
- },
- {
-  "item_id": "I049",
-  "topic": "relevant",
-  "axes": {
-   "dose_range": "yes",
-   "underlying_condition": "no"
-  },
-  "reason": "Iron delivered through dialysate to hemodialysis patients as maintenance iron replacement; supplement-like mineral product."
+  "reason": "Hemodialysis patients' corrected calcium and albumin assays; no supplement studied.",
+  "reused": true
  },
  {
   "item_id": "I050",
   "topic": "partial",
   "axes": {
-   "concomitant_medication": "yes"
+   "dose_range": "yes"
   },
-  "reason": "Epoetin drug review in renal anaemia; iron supplementation mentioned only as adjunct."
+  "reason": "Hemodialysis patients given IV paricalcitol, a vitamin D analog drug, not a supplement.",
+  "reused": true
  },
  {
   "item_id": "I051",
   "topic": "partial",
   "axes": {
-   "dose_range": "no"
+   "age_group": "yes"
   },
-  "reason": "Exercise in dialysis patients; no supplement or nutritional product studied."
+  "reason": "CKD stage 3-5 patients' epicardial fat and events; no supplement intervention.",
+  "reused": true
  },
  {
   "item_id": "I052",
-  "topic": "partial",
+  "topic": "relevant",
   "axes": {
-   "concomitant_medication": "yes"
+   "dose_range": "no"
   },
-  "reason": "Serum magnesium and mortality in hemodialysis; magnesium level only, no supplementation."
+  "reason": "Ketoacid and essential amino acid supplements in CKD; dose said to be unestablished, only diet protein amount given.",
+  "reused": false
  },
  {
   "item_id": "I053",
   "topic": "relevant",
   "axes": {
-   "concomitant_medication": "yes"
+   "underlying_condition": "no"
   },
-  "reason": "Pharmacist guidance for CKD patients on nephrotoxic drugs and risky food supplements and herbal products."
+  "reason": "Iron delivered through dialysate to hemodialysis patients as maintenance iron replacement; supplement-like mineral product.",
+  "reused": true
  },
  {
   "item_id": "I054",
-  "topic": "relevant",
+  "topic": "partial",
   "axes": {
-   "concomitant_medication": "no"
+   "concomitant_medication": "yes"
   },
-  "reason": "Herbal medicine and CAM use in peritoneal dialysis patients, with interaction and toxicity concern."
+  "reason": "Epoetin drug review in renal anaemia; iron supplementation mentioned only as adjunct.",
+  "reused": true
  },
  {
   "item_id": "I055",
@@ -443,306 +493,335 @@
   "axes": {
    "concomitant_medication": "yes"
   },
-  "reason": "Dialysis patients given citrate anticoagulant solution; a procedural agent, not a supplement."
+  "reason": "Serum magnesium and mortality in hemodialysis; magnesium level only, no supplementation.",
+  "reused": true
  },
  {
   "item_id": "I056",
-  "topic": "partial",
+  "topic": "relevant",
   "axes": {
-   "age_group": "yes",
-   "dose_range": "no",
-   "underlying_condition": "yes"
+   "concomitant_medication": "yes"
   },
-  "reason": "Hemodialysis patients given ferric citrate phosphate binder versus sevelamer; drug, not supplement."
+  "reason": "Pharmacist guidance for CKD patients on nephrotoxic drugs and risky food supplements and herbal products.",
+  "reused": true
  },
  {
   "item_id": "I057",
-  "topic": "relevant",
+  "topic": "irrelevant",
   "axes": {
-   "age_group": "no",
-   "concomitant_medication": "no",
-   "dose_range": "yes",
-   "underlying_condition": "yes"
+   "age_group": "yes"
   },
-  "reason": "Astragalus herbal granules added to standard care in diabetic CKD patients."
+  "reason": "Hypertensive patients with vitamin D deficiency, chronic kidney disease excluded; no supplement given.",
+  "reused": false
  },
  {
   "item_id": "I058",
   "topic": "partial",
   "axes": {
-   "concomitant_medication": "yes"
+   "dose_range": "yes"
   },
-  "reason": "Calciphylaxis in kidney disease treated with hyperbaric oxygen; vitamin K2 and other vitamins only incidental."
+  "reason": "CKD patient with hypercalcemia from calcium polystyrene sulfonate, a potassium-binding drug, called supplement.",
+  "reused": false
  },
  {
   "item_id": "I059",
   "topic": "relevant",
   "axes": {
-   "age_group": "no",
-   "underlying_condition": "yes"
+   "concomitant_medication": "no"
   },
-  "reason": "Tangshen Formula Chinese herbal medicine for diabetic kidney disease, meta-analysis."
+  "reason": "Herbal medicine and CAM use in peritoneal dialysis patients, with interaction and toxicity concern.",
+  "reused": true
  },
  {
   "item_id": "I060",
-  "topic": "relevant",
+  "topic": "partial",
   "axes": {
-   "underlying_condition": "no"
+   "concomitant_medication": "yes"
   },
-  "reason": "Multivitamin-containing total parenteral nutrition in chronic kidney disease patients."
+  "reason": "Dialysis patients given citrate anticoagulant solution; a procedural agent, not a supplement.",
+  "reused": true
  },
  {
   "item_id": "I061",
-  "topic": "relevant",
+  "topic": "partial",
   "axes": {
-   "underlying_condition": "yes"
+   "dose_range": "no"
   },
-  "reason": "Niaoduqing herbal granules for uremic pruritus in hemodialysis patients, meta-analysis."
+  "reason": "CKD in sickle cell disease; interventions are drugs, vitamin C appears only as a comparator.",
+  "reused": false
  },
  {
   "item_id": "I062",
-  "topic": "relevant",
-  "axes": {
-   "concomitant_medication": "yes",
-   "underlying_condition": "yes"
-  },
-  "reason": "Turmeric and curcumin in dialysis patients and immunosuppressant users, including nephrotoxic food-drug interaction."
- },
- {
-  "item_id": "I063",
   "topic": "partial",
   "axes": {
    "age_group": "yes",
    "underlying_condition": "yes"
   },
-  "reason": "Restless legs treatments in hemodialysis; mostly drugs, with iron therapy and TCM considered."
+  "reason": "Hemodialysis patients given ferric citrate phosphate binder versus sevelamer; drug, not supplement.",
+  "reused": true
+ },
+ {
+  "item_id": "I063",
+  "topic": "relevant",
+  "axes": {
+   "concomitant_medication": "no",
+   "dose_range": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Astragalus herbal granules added to standard care in diabetic CKD patients.",
+  "reused": true
  },
  {
   "item_id": "I064",
-  "topic": "relevant",
+  "topic": "partial",
   "axes": {
-   "underlying_condition": "yes"
+   "concomitant_medication": "yes"
   },
-  "reason": "Nutritional vitamin D supplementation in maintenance hemodialysis patients, meta-analysis of trials."
+  "reason": "Calciphylaxis in kidney disease treated with hyperbaric oxygen; vitamin K2 and other vitamins only incidental.",
+  "reused": true
  },
  {
   "item_id": "I065",
   "topic": "relevant",
   "axes": {
-   "age_group": "no"
+   "underlying_condition": "yes"
   },
-  "reason": "Multivitamin and vitamin A supplements in HIV-infected pregnant women in Tanzania."
+  "reason": "Tangshen Formula Chinese herbal medicine for diabetic kidney disease, meta-analysis.",
+  "reused": true
  },
  {
   "item_id": "I066",
   "topic": "relevant",
   "axes": {
-   "sex": "yes"
+   "underlying_condition": "no"
   },
-  "reason": "Maternal diet and multivitamin supplement use in relation to neural tube and heart defects."
+  "reason": "Multivitamin-containing total parenteral nutrition in chronic kidney disease patients.",
+  "reused": true
  },
  {
   "item_id": "I067",
-  "topic": "partial",
+  "topic": "relevant",
   "axes": {
-   "age_group": "no"
+   "underlying_condition": "yes"
   },
-  "reason": "Neural tube defects and folic acid flour fortification in Brazil; food fortification, not a supplement."
+  "reason": "Niaoduqing herbal granules for uremic pruritus in hemodialysis patients, meta-analysis.",
+  "reused": true
  },
  {
   "item_id": "I068",
   "topic": "partial",
   "axes": {
-   "dose_range": "no"
+   "age_group": "no"
   },
-  "reason": "Cord blood hepcidin and infant anemia in birth cohort; no supplement studied."
+  "reason": "CKD-MBD patients on phosphate binders including calcium-based ones; mostly drugs, not clearly supplements.",
+  "reused": false
  },
  {
   "item_id": "I069",
-  "topic": "partial",
+  "topic": "relevant",
   "axes": {
-   "dose_range": "yes"
+   "concomitant_medication": "yes",
+   "underlying_condition": "yes"
   },
-  "reason": "Vitamin D 400-1000 IU/d in preterm infants; supplement but neonates, not pregnancy or lactation."
+  "reason": "Turmeric and curcumin in dialysis patients and immunosuppressant users, including nephrotoxic food-drug interaction.",
+  "reused": true
  },
  {
   "item_id": "I070",
-  "topic": "relevant",
+  "topic": "partial",
   "axes": {
+   "age_group": "yes",
    "underlying_condition": "yes"
   },
-  "reason": "Folic acid 5 mg/day use in pregnant women with epilepsy and malformation outcomes."
+  "reason": "Restless legs treatments in hemodialysis; mostly drugs, with iron therapy and TCM considered.",
+  "reused": true
  },
  {
   "item_id": "I071",
   "topic": "relevant",
   "axes": {
-   "age_group": "yes",
-   "dose_range": "yes",
-   "underlying_condition": "no"
+   "underlying_condition": "yes"
   },
-  "reason": "DHA/EPA supplementation doses during pregnancy and offspring weight, meta-analysis."
+  "reason": "Nutritional vitamin D supplementation in maintenance hemodialysis patients, meta-analysis of trials.",
+  "reused": true
  },
  {
   "item_id": "I072",
-  "topic": "partial",
+  "topic": "relevant",
   "axes": {
-   "dose_range": "no"
+   "dose_range": "yes"
   },
-  "reason": "Progesterone therapy in early pregnancy with bleeding; hormone drug, not a dietary supplement."
+  "reason": "Pregnant women given iron with or without folic acid 0.5 mg daily; obstetric complications compared.",
+  "reused": false
  },
  {
   "item_id": "I073",
-  "topic": "relevant",
+  "topic": "irrelevant",
   "axes": {
-   "dose_range": "yes",
-   "sex": "yes",
-   "underlying_condition": "no"
+   "age_group": "yes"
   },
-  "reason": "DHA 200 versus 800 mg/d in pregnant women, maternal heart rate variability."
+  "reason": "Preterm infants given vitamin K after birth; not pregnant or breastfeeding people, no fetal exposure.",
+  "reused": false
  },
  {
   "item_id": "I074",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Mothers' folic acid supplement use and doses before and during pregnancy for preventing congenital defects.",
+  "reused": false
+ },
+ {
+  "item_id": "I075",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Maternal diet and multivitamin supplement use in relation to neural tube and heart defects.",
+  "reused": true
+ },
+ {
+  "item_id": "I076",
   "topic": "partial",
   "axes": {
    "age_group": "no"
   },
-  "reason": "Maternal folate antagonist drugs and congenital heart disease; folic acid protective effect mentioned briefly."
- },
- {
-  "item_id": "I075",
-  "topic": "partial",
-  "axes": {
-   "sex": "yes"
-  },
-  "reason": "Pregnant women with PCOS had lower serum vitamins A and C; levels measured, no supplementation."
- },
- {
-  "item_id": "I076",
-  "topic": "relevant",
-  "axes": {
-   "age_group": "no",
-   "sex": "yes",
-   "underlying_condition": "yes"
-  },
-  "reason": "Women's reproductive outcomes in LMICs; prenatal multiple micronutrient supplementation and miscarriage, stillbirth."
+  "reason": "Neural tube defects and folic acid flour fortification in Brazil; food fortification, not a supplement.",
+  "reused": true
  },
  {
   "item_id": "I077",
   "topic": "partial",
   "axes": {
-   "age_group": "yes",
-   "dose_range": "no",
-   "underlying_condition": "yes"
+   "dose_range": "yes"
   },
-  "reason": "Neuroblastoma risk factors; maternal vitamin and folic acid intake in pregnancy only one exposure examined."
+  "reason": "Vitamin D 400-1000 IU/d in preterm infants; supplement but neonates, not pregnancy or lactation.",
+  "reused": true
  },
  {
   "item_id": "I078",
   "topic": "relevant",
   "axes": {
-   "dose_range": "yes",
    "underlying_condition": "yes"
   },
-  "reason": "Folic acid supplement dose in pregnancy and gestational diabetes risk, systematic review."
+  "reason": "Folic acid 5 mg/day use in pregnant women with epilepsy and malformation outcomes.",
+  "reused": true
  },
  {
   "item_id": "I079",
-  "topic": "relevant",
+  "topic": "irrelevant",
   "axes": {
-   "sex": "yes"
+   "dose_range": "no"
   },
-  "reason": "First-trimester pregnant women's vitamin D deficiency and supplementation as predictor."
+  "reason": "Preoperative anaemic surgical adults given erythropoietin plus iron; pregnancy only appears in anaemia definition.",
+  "reused": false
  },
  {
   "item_id": "I080",
   "topic": "relevant",
   "axes": {
-   "age_group": "no",
-   "sex": "yes",
-   "underlying_condition": "yes"
+   "age_group": "yes",
+   "dose_range": "yes",
+   "underlying_condition": "no"
   },
-  "reason": "Herbal medicine use during pregnancy and offspring benefits and risks, meta-analysis."
+  "reason": "DHA/EPA supplementation doses during pregnancy and offspring weight, meta-analysis.",
+  "reused": true
  },
  {
   "item_id": "I081",
   "topic": "relevant",
   "axes": {
-   "sex": "yes"
+   "dose_range": "yes",
+   "sex": "yes",
+   "underlying_condition": "no"
   },
-  "reason": "Orofacial cleft cases examined for prenatal folic acid supplementation and maternal exposures."
+  "reason": "DHA 200 versus 800 mg/d in pregnant women, maternal heart rate variability.",
+  "reused": true
  },
  {
   "item_id": "I082",
-  "topic": "partial",
+  "topic": "irrelevant",
   "axes": {
-   "dose_range": "no"
+   "age_group": "yes"
   },
-  "reason": "Enteral and parenteral nutrition in seriously ill adults; cirrhosis only a subgroup finding."
+  "reason": "Preterm infants' parathyroid hormone screening; calcium supplementation only implied, no pregnancy or breastfeeding population.",
+  "reused": false
  },
  {
   "item_id": "I083",
-  "topic": "relevant",
-  "axes": {
-   "sex": "yes"
-  },
-  "reason": "Review of liver injury from herbal medicines and herb-drug interactions."
+  "topic": "partial",
+  "axes": {},
+  "reason": "Maternal folate antagonist drugs and congenital heart disease; folic acid protective effect mentioned briefly.",
+  "reused": true
  },
  {
   "item_id": "I084",
-  "topic": "relevant",
+  "topic": "partial",
   "axes": {
-   "age_group": "no"
+   "sex": "yes"
   },
-  "reason": "Chinese herbal decoction for fatty liver disease with hyperuricemia."
+  "reason": "Pregnant women with PCOS had lower serum vitamins A and C; levels measured, no supplementation.",
+  "reused": true
  },
  {
   "item_id": "I085",
   "topic": "partial",
   "axes": {
-   "sex": "yes"
+   "age_group": "yes"
   },
-  "reason": "Serum retinol and tocopherol in morbid obesity with fatty liver; levels measured, no supplementation."
+  "reason": "Very premature infants fed own mother's milk, some given phosphorus supplements; mothers not the studied population.",
+  "reused": false
  },
  {
   "item_id": "I086",
-  "topic": "irrelevant",
+  "topic": "relevant",
   "axes": {
-   "dose_range": "no"
+   "sex": "yes",
+   "underlying_condition": "yes"
   },
-  "reason": "Genetic kidney-liver disease entry with no abstract and no supplement content."
+  "reason": "Women's reproductive outcomes in LMICs; prenatal multiple micronutrient supplementation and miscarriage, stillbirth.",
+  "reused": true
  },
  {
   "item_id": "I087",
   "topic": "partial",
   "axes": {
-   "dose_range": "no"
+   "age_group": "yes",
+   "underlying_condition": "yes"
   },
-  "reason": "Biliary atresia after surgery; serum retinol binding protein measured, no supplement given."
+  "reason": "Neuroblastoma risk factors; maternal vitamin and folic acid intake in pregnancy only one exposure examined.",
+  "reused": true
  },
  {
   "item_id": "I088",
-  "topic": "partial",
+  "topic": "relevant",
   "axes": {
-   "dose_range": "yes"
+   "age_group": "no",
+   "dose_range": "yes",
+   "underlying_condition": "yes"
   },
-  "reason": "Folic acid 0.4 or 0.8 mg effect on ALT in hypertensives without liver disease."
+  "reason": "Folic acid supplement dose in pregnancy and gestational diabetes risk, systematic review.",
+  "reused": true
  },
  {
   "item_id": "I089",
   "topic": "relevant",
   "axes": {
-   "underlying_condition": "yes"
+   "sex": "yes"
   },
-  "reason": "Silymarin 630 mg/day in chronic hepatitis C patients."
+  "reason": "First-trimester pregnant women's vitamin D deficiency and supplementation as predictor.",
+  "reused": true
  },
  {
   "item_id": "I090",
-  "topic": "partial",
+  "topic": "relevant",
   "axes": {
-   "sex": "no"
+   "sex": "yes",
+   "underlying_condition": "yes"
   },
-  "reason": "Hair trace elements in liver cancer areas; element levels, no supplementation."
+  "reason": "Herbal medicine use during pregnancy and offspring benefits and risks, meta-analysis.",
+  "reused": true
  },
  {
   "item_id": "I091",
@@ -750,107 +829,116 @@
   "axes": {
    "sex": "yes"
   },
-  "reason": "BCAA supplementation 12 g/d in cirrhotic patients with sarcopenia and survival."
+  "reason": "Orofacial cleft cases examined for prenatal folic acid supplementation and maternal exposures.",
+  "reused": true
  },
  {
   "item_id": "I092",
   "topic": "relevant",
   "axes": {
-   "dose_range": "no"
+   "sex": "yes"
   },
-  "reason": "Children with Byler liver disease needing intensive fat-soluble vitamin supplementation."
+  "reason": "Review of liver injury from herbal medicines and herb-drug interactions.",
+  "reused": true
  },
  {
   "item_id": "I093",
-  "topic": "relevant",
-  "axes": {
-   "age_group": "yes"
-  },
-  "reason": "Acute liver toxicity case from adulterated herbal supplement containing sildenafil."
- },
- {
-  "item_id": "I094",
-  "topic": "relevant",
+  "topic": "partial",
   "axes": {
    "sex": "yes"
   },
-  "reason": "Acute hepatic failure patient treated with high-dose vitamin B2 supplement."
+  "reason": "Serum retinol and tocopherol in morbid obesity with fatty liver; levels measured, no supplementation.",
+  "reused": true
+ },
+ {
+  "item_id": "I094",
+  "topic": "irrelevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Vitamin A supplement safety with vaccine in healthy infants; no liver disease or liver toxicity addressed.",
+  "reused": false
  },
  {
   "item_id": "I095",
   "topic": "relevant",
   "axes": {
-   "dose_range": "no"
+   "dose_range": "yes"
   },
-  "reason": "Green tea supplementation in nonalcoholic fatty liver disease, meta-analysis."
+  "reason": "Chronic hepatitis C patients given silymarin 2 x 166 mg daily with peginterferon and ribavirin.",
+  "reused": false
  },
  {
   "item_id": "I096",
   "topic": "relevant",
   "axes": {
-   "dose_range": "no",
-   "underlying_condition": "yes"
+   "age_group": "no"
   },
-  "reason": "Prebiotic and probiotic treatment in NAFLD patients, meta-analysis."
+  "reason": "Review of kava herbal product hepatotoxicity and needed studies.",
+  "reused": false
  },
  {
   "item_id": "I097",
   "topic": "relevant",
   "axes": {
-   "sex": "yes"
+   "dose_range": "yes"
   },
-  "reason": "Acute hepatitis from Garcinia cambogia herbal weight loss supplement."
+  "reason": "Women taking black cohosh herbal extract 500-1000 mg daily followed for hepatic safety.",
+  "reused": false
  },
  {
   "item_id": "I098",
-  "topic": "relevant",
+  "topic": "partial",
   "axes": {
-   "dose_range": "no",
-   "underlying_condition": "yes"
+   "dose_range": "yes"
   },
-  "reason": "Probiotics and synbiotics in NAFLD, meta-analysis."
+  "reason": "Folic acid 0.4 or 0.8 mg effect on ALT in hypertensives without liver disease.",
+  "reused": true
  },
  {
   "item_id": "I099",
-  "topic": "partial",
+  "topic": "relevant",
   "axes": {
-   "age_group": "no"
+   "underlying_condition": "yes"
   },
-  "reason": "Rice bran arabinoxylan nutraceutical review; liver protection is one of many conditions."
+  "reason": "Silymarin 630 mg/day in chronic hepatitis C patients.",
+  "reused": true
  },
  {
   "item_id": "I100",
-  "topic": "partial",
+  "topic": "relevant",
   "axes": {
-   "age_group": "no"
+   "dose_range": "yes"
   },
-  "reason": "Silymarin with interferon beta in MS patients for drug-related liver toxicity; not liver disease population."
+  "reason": "Cirrhotic patients given probiotic capsules plus norfloxacin for spontaneous bacterial peritonitis prevention.",
+  "reused": false
  },
  {
   "item_id": "I101",
-  "topic": "relevant",
+  "topic": "partial",
   "axes": {
-   "age_group": "no",
-   "underlying_condition": "yes"
+   "sex": "no"
   },
-  "reason": "Network meta-analysis of nutritional supplements in NAFLD and NASH patients, including adverse events."
+  "reason": "Hair trace elements in liver cancer areas; element levels, no supplementation.",
+  "reused": true
  },
  {
   "item_id": "I102",
   "topic": "relevant",
   "axes": {
-   "sex": "no"
+   "dose_range": "yes"
   },
-  "reason": "Silybin, vitamin D and vitamin E nutraceutical in biopsy-proven NAFLD patients by genotype."
+  "reason": "NAFLD patients given 4 g/day purified omega-3 fatty acids versus placebo.",
+  "reused": false
  },
  {
   "item_id": "I103",
   "topic": "relevant",
   "axes": {
-   "age_group": "yes",
-   "underlying_condition": "yes"
+   "age_group": "yes"
   },
-  "reason": "Adults on home parenteral nutrition; lipid emulsion effects on liver function and intestinal failure liver disease."
+  "reason": "Case series of liver injury after Polygonum multiflorum herbal use; median age and range given.",
+  "reused": false
  },
  {
   "item_id": "I104",
@@ -858,35 +946,35 @@
   "axes": {
    "sex": "yes"
   },
-  "reason": "Licorice root 1,000 mg/day in women with NAFLD, liver enzymes and steatosis."
+  "reason": "BCAA supplementation 12 g/d in cirrhotic patients with sarcopenia and survival.",
+  "reused": true
  },
  {
   "item_id": "I105",
   "topic": "relevant",
   "axes": {
-   "age_group": "no",
-   "dose_range": "no",
-   "underlying_condition": "yes"
+   "age_group": "yes"
   },
-  "reason": "Functional foods and dietary supplements in NAFLD patients, meta-analysis of trials."
+  "reason": "Acute liver toxicity case from adulterated herbal supplement containing sildenafil.",
+  "reused": true
  },
  {
   "item_id": "I106",
-  "topic": "partial",
+  "topic": "relevant",
   "axes": {
    "age_group": "no"
   },
-  "reason": "Alcohol use disorder patients with some cirrhosis; serum vitamin D measured, no supplementation."
+  "reason": "Cirrhosis patients with minimal hepatic encephalopathy given zinc and antioxidant vitamin supplements.",
+  "reused": false
  },
  {
   "item_id": "I107",
   "topic": "relevant",
   "axes": {
-   "age_group": "no",
-   "dose_range": "no",
-   "underlying_condition": "yes"
+   "dose_range": "yes"
   },
-  "reason": "Umbrella meta-analysis of probiotics, prebiotics and synbiotics on liver enzymes in NAFLD."
+  "reason": "Ginkgo biloba supplement consumption and liver function markers in NHANES; intake 65.1 mg/day.",
+  "reused": false
  },
  {
   "item_id": "I108",
@@ -894,34 +982,35 @@
   "axes": {
    "sex": "yes"
   },
-  "reason": "HBV-infected postpartum women; traditional herbal remedies linked to hepatocellular injury."
+  "reason": "Acute hepatic failure patient treated with high-dose vitamin B2 supplement.",
+  "reused": true
  },
  {
   "item_id": "I109",
   "topic": "relevant",
   "axes": {
-   "age_group": "yes",
-   "dose_range": "yes",
    "underlying_condition": "yes"
   },
-  "reason": "Curcumin supplementation 50-3000 mg/day in adults with NAFLD, meta-analysis."
+  "reason": "Prebiotic and probiotic treatment in NAFLD patients, meta-analysis.",
+  "reused": true
  },
  {
   "item_id": "I110",
   "topic": "relevant",
   "axes": {
-   "dose_range": "yes",
-   "underlying_condition": "yes"
+   "sex": "yes"
   },
-  "reason": "Silymarin 420 mg/day to prevent doxorubicin liver toxicity in breast cancer patients."
+  "reason": "Acute hepatitis from Garcinia cambogia herbal weight loss supplement.",
+  "reused": true
  },
  {
   "item_id": "I111",
   "topic": "relevant",
   "axes": {
-   "dose_range": "no"
+   "age_group": "yes"
   },
-  "reason": "Curcumin Meriva randomized in MASH patients; analysis focuses on GLP-2 and kidney disease."
+  "reason": "Jaundiced alcoholic cirrhotic patients given supplementary parenteral nutrition; mean age 53.",
+  "reused": false
  },
  {
   "item_id": "I112",
@@ -929,68 +1018,71 @@
   "axes": {
    "underlying_condition": "yes"
   },
-  "reason": "Yi Guan Jian herbal decoction in primary liver cancer patients, meta-analysis."
+  "reason": "Probiotics and synbiotics in NAFLD, meta-analysis.",
+  "reused": true
  },
  {
   "item_id": "I113",
-  "topic": "relevant",
-  "axes": {
-   "age_group": "yes",
-   "underlying_condition": "yes"
-  },
-  "reason": "Traditional Chinese medicine herbs in adults with type 2 diabetes and MASLD."
+  "topic": "partial",
+  "axes": {},
+  "reason": "Silymarin with interferon beta in MS patients for drug-related liver toxicity; not liver disease population.",
+  "reused": true
  },
  {
   "item_id": "I114",
   "topic": "relevant",
   "axes": {
-   "sex": "yes"
+   "age_group": "no",
+   "underlying_condition": "yes"
   },
-  "reason": "Cirrhosis patients with peritonitis; herbal supplement exposure associated with higher mortality."
+  "reason": "Network meta-analysis of nutritional supplements in NAFLD and NASH patients, including adverse events.",
+  "reused": true
  },
  {
   "item_id": "I115",
   "topic": "relevant",
   "axes": {
-   "age_group": "no",
-   "underlying_condition": "yes"
+   "dose_range": "yes"
   },
-  "reason": "Probiotics, prebiotics and synbiotics in MASLD patients, network meta-analysis."
+  "reason": "Liver transplant candidates with chronic liver disease given whey protein supplement 40 g daily.",
+  "reused": false
  },
  {
   "item_id": "I116",
   "topic": "relevant",
   "axes": {
-   "age_group": "yes",
-   "sex": "yes",
-   "underlying_condition": "yes"
+   "sex": "no"
   },
-  "reason": "Traditional Chinese herbal medicine in adults with MASLD, mixed-method review."
+  "reason": "Silybin, vitamin D and vitamin E nutraceutical in biopsy-proven NAFLD patients by genotype.",
+  "reused": true
  },
  {
   "item_id": "I117",
   "topic": "relevant",
   "axes": {
-   "sex": "yes"
+   "age_group": "yes",
+   "underlying_condition": "yes"
   },
-  "reason": "Vitamin A dosing 450 microgram test and 10,000 microgram/day treatment in alcoholic cirrhosis."
+  "reason": "Adults on home parenteral nutrition; lipid emulsion effects on liver function and intestinal failure liver disease.",
+  "reused": true
  },
  {
   "item_id": "I118",
-  "topic": "partial",
+  "topic": "relevant",
   "axes": {
    "sex": "yes"
   },
-  "reason": "Cirrhotic patients' transthyretin, retinol-binding protein, zinc and vitamin A levels; no supplementation."
+  "reason": "Licorice root 1,000 mg/day in women with NAFLD, liver enzymes and steatosis.",
+  "reused": true
  },
  {
   "item_id": "I119",
   "topic": "relevant",
   "axes": {
-   "concomitant_medication": "yes",
-   "underlying_condition": "yes"
+   "age_group": "no"
   },
-  "reason": "Herbal Xueshuantong compared with heparin as anticoagulant therapy in stroke patients."
+  "reason": "Drug-induced liver injury cases, mostly traditional Chinese medicine and herbal or dietary supplements.",
+  "reused": false
  },
  {
   "item_id": "I120",
@@ -998,88 +1090,268 @@
   "axes": {
    "underlying_condition": "yes"
   },
-  "reason": "Pregnancy thrombosis and preeclampsia prevention with heparin, aspirin, and calcium, fish oil, folic acid supplements."
+  "reason": "Functional foods and dietary supplements in NAFLD patients, meta-analysis of trials.",
+  "reused": true
  },
  {
   "item_id": "I121",
   "topic": "partial",
   "axes": {
-   "dose_range": "no"
+   "age_group": "no"
   },
-  "reason": "Warfarin patients needing INR reversal with prothrombin complex concentrate and vitamin K; mainly a blood product."
+  "reason": "Alcohol use disorder patients with some cirrhosis; serum vitamin D measured, no supplementation.",
+  "reused": true
  },
  {
   "item_id": "I122",
-  "topic": "partial",
-  "axes": {
-   "dose_range": "no"
-  },
-  "reason": "Warfarin dose and CYP2C9/VKORC1 genotypes; no supplement or nutritional product studied."
- },
- {
-  "item_id": "I123",
-  "topic": "partial",
+  "topic": "relevant",
   "axes": {
    "underlying_condition": "yes"
   },
-  "reason": "Pregnant patient with lupus anticoagulant on heparinoid; vitamin K antagonists mentioned, no supplement."
+  "reason": "Umbrella meta-analysis of probiotics, prebiotics and synbiotics on liver enzymes in NAFLD.",
+  "reused": true
+ },
+ {
+  "item_id": "I123",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "HBV-infected postpartum women; traditional herbal remedies linked to hepatocellular injury.",
+  "reused": true
  },
  {
   "item_id": "I124",
-  "topic": "partial",
-  "axes": {},
-  "reason": "Hirudin capsules with anticoagulant effect in IgA nephropathy; not patients on anticoagulants."
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Children with beta-thalassemia and liver dysfunction given grape seed extract supplement; liver enzymes outcome.",
+  "reused": false
  },
  {
   "item_id": "I125",
-  "topic": "partial",
+  "topic": "relevant",
   "axes": {
-   "age_group": "no"
+   "dose_range": "yes"
   },
-  "reason": "Antithrombotic drug review in stroke patients; drugs only, no supplement."
+  "reason": "Cirrhosis patients given vitamin D3 supplements 2,000 or 4,000 IU/day.",
+  "reused": false
  },
  {
   "item_id": "I126",
-  "topic": "partial",
-  "axes": {
-   "age_group": "no"
-  },
-  "reason": "Apixaban versus aspirin in atrial fibrillation; anticoagulant drugs only, no supplement."
- },
- {
-  "item_id": "I127",
-  "topic": "relevant",
-  "axes": {
-   "age_group": "yes",
-   "concomitant_medication": "yes",
-   "dose_range": "yes"
-  },
-  "reason": "Icosapent ethyl (EPA) 4 g/day co-administered with warfarin 25 mg in healthy adults."
- },
- {
-  "item_id": "I128",
-  "topic": "partial",
-  "axes": {
-   "concomitant_medication": "yes"
-  },
-  "reason": "Atrial fibrillation patients on vitamin K antagonists, DOACs or aspirin; drugs only, no supplement."
- },
- {
-  "item_id": "I129",
   "topic": "relevant",
   "axes": {
    "age_group": "yes",
    "dose_range": "yes",
    "underlying_condition": "yes"
   },
-  "reason": "Vitamin K given to chronic liver disease patients with high INR and bleeding risk."
+  "reason": "Curcumin supplementation 50-3000 mg/day in adults with NAFLD, meta-analysis.",
+  "reused": true
+ },
+ {
+  "item_id": "I127",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Silymarin 420 mg/day to prevent doxorubicin liver toxicity in breast cancer patients.",
+  "reused": true
+ },
+ {
+  "item_id": "I128",
+  "topic": "irrelevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Pesticide and rodenticide poisoning case; vitamin K1 used as antidote, no liver disease or supplement liver toxicity.",
+  "reused": false
+ },
+ {
+  "item_id": "I129",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Glycine supplement in severe obesity with liver marker changes; liver disease only inferred through MASLD index.",
+  "reused": false
  },
  {
   "item_id": "I130",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Yi Guan Jian herbal decoction in primary liver cancer patients, meta-analysis.",
+  "reused": true
+ },
+ {
+  "item_id": "I131",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Traditional Chinese medicine herbs in adults with type 2 diabetes and MASLD.",
+  "reused": true
+ },
+ {
+  "item_id": "I132",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Cirrhosis patients with peritonitis; herbal supplement exposure associated with higher mortality.",
+  "reused": true
+ },
+ {
+  "item_id": "I133",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Probiotics, prebiotics and synbiotics in MASLD patients, network meta-analysis.",
+  "reused": true
+ },
+ {
+  "item_id": "I134",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "sex": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Traditional Chinese herbal medicine in adults with MASLD, mixed-method review.",
+  "reused": true
+ },
+ {
+  "item_id": "I135",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Vitamin A dosing 450 microgram test and 10,000 microgram/day treatment in alcoholic cirrhosis.",
+  "reused": true
+ },
+ {
+  "item_id": "I136",
+  "topic": "partial",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Cirrhotic patients' transthyretin, retinol-binding protein, zinc and vitamin A levels; no supplementation.",
+  "reused": true
+ },
+ {
+  "item_id": "I137",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Patients on anticoagulants with rectus sheath hematoma; vitamin K1 used as reversal drug, no supplement.",
+  "reused": false
+ },
+ {
+  "item_id": "I138",
+  "topic": "relevant",
+  "axes": {
+   "concomitant_medication": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Herbal Xueshuantong compared with heparin as anticoagulant therapy in stroke patients.",
+  "reused": true
+ },
+ {
+  "item_id": "I139",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Pregnancy thrombosis and preeclampsia prevention with heparin, aspirin, and calcium, fish oil, folic acid supplements.",
+  "reused": true
+ },
+ {
+  "item_id": "I140",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Warfarin patients needing INR reversal with prothrombin complex concentrate and vitamin K; mainly a blood product.",
+  "reused": true
+ },
+ {
+  "item_id": "I141",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Warfarin dose and CYP2C9/VKORC1 genotypes; no supplement or nutritional product studied.",
+  "reused": true
+ },
+ {
+  "item_id": "I142",
+  "topic": "partial",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Pregnant patient with lupus anticoagulant on heparinoid; vitamin K antagonists mentioned, no supplement.",
+  "reused": true
+ },
+ {
+  "item_id": "I143",
+  "topic": "partial",
+  "axes": {},
+  "reason": "Hirudin capsules with anticoagulant effect in IgA nephropathy; not patients on anticoagulants.",
+  "reused": true
+ },
+ {
+  "item_id": "I144",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "concomitant_medication": "yes",
+   "dose_range": "yes"
+  },
+  "reason": "Icosapent ethyl (EPA) 4 g/day co-administered with warfarin 25 mg in healthy adults.",
+  "reused": true
+ },
+ {
+  "item_id": "I145",
+  "topic": "partial",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "Atrial fibrillation patients on vitamin K antagonists, DOACs or aspirin; drugs only, no supplement.",
+  "reused": true
+ },
+ {
+  "item_id": "I146",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "dose_range": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Vitamin K given to chronic liver disease patients with high INR and bleeding risk.",
+  "reused": true
+ },
+ {
+  "item_id": "I147",
   "topic": "partial",
   "axes": {
    "concomitant_medication": "no"
   },
-  "reason": "Nurses' knowledge of warfarin-drug and food interactions including vitamin K foods; no patients or supplements."
+  "reason": "Nurses' knowledge of warfarin-drug and food interactions including vitamin K foods; no patients or supplements.",
+  "reused": true
+ },
+ {
+  "item_id": "I148",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Warfarin-anticoagulated patient with bleeding after miscarriage; no supplement or nutritional product mentioned.",
+  "reused": false
  }
 ]
