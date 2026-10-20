@@ -19,39 +19,39 @@ export default function Home() {
 
   const stats = [
     {
-      label: "PubMed 수집",
+      label: "PubMed 수집 문헌",
       value: final.corpus_rows,
-      unit: "행",
-      note: `고유 문헌 ${numberFormat(repair.unique_papers)}편, 문헌과 질문의 짝 기준`,
+      unit: "건",
+      note: `서로 다른 논문 ${numberFormat(repair.unique_papers)}편, 한 논문이 여러 상황에 걸리면 따로 셈`,
     },
     {
-      label: "AI 선별 유지",
+      label: "AI 선별 관련 문헌",
       value: counts.retain,
-      unit: "행",
-      note: "대상과 노출이 사람 자료에서 확인된 문헌",
+      unit: "건",
+      note: "해당 상황의 사람에게 보충제를 쓴 내용이 확인된 문헌",
     },
     {
-      label: "문헌 후보",
+      label: "조회 대상 문헌",
       value: correction.candidates,
-      unit: "행",
-      note: `초록에 용량 표기가 있는 후보 ${numberFormat(correction.candidate_dose_rows)}행`,
+      unit: "건",
+      note: `그 가운데 초록에 양(mg, IU 등)이 적힌 문헌 ${numberFormat(correction.candidate_dose_rows)}건`,
     },
     {
-      label: "핵심 문헌",
+      label: "AI 검토 연구",
       value: correction.core_records,
       unit: "건",
-      note: "주제, 결과 요약, 한국어 번역을 AI로 다시 검토한 문헌",
+      note: "주제, 결과 요약, 한국어 번역을 한 번 더 확인한 연구",
     },
   ];
 
   const guides = [
     {
       title: "조회 방식",
-      body: "다섯 임상 상황 가운데 하나를 고르면 그 상황의 핵심 문헌부터 보여 줍니다. 연령, 병용 약물, 용량, 성별, 기저 질환 조건을 고르면 초록에 해당 표현이 있는 문헌만 남깁니다. 같은 조건에서는 늘 같은 목록이 나옵니다.",
+      body: "다섯 상황 가운데 하나를 고르면 그 상황에서 다시 검토한 연구부터 보여 줍니다. 나이, 다른 약, 복용량, 성별, 지병을 고르면 제목이나 초록에 그 내용이 나오는 연구만 남깁니다. 같은 조건에서는 늘 같은 목록이 나옵니다.",
     },
     {
       title: "AI의 역할",
-      body: "AI는 문헌 선별, 입력 문장을 상황과 조건으로 바꾸는 일, 조회된 문헌의 초록만으로 해설을 쓰는 일을 맡습니다. 어떤 문헌이 목록에 오를지는 AI가 정하지 않습니다.",
+      body: "AI는 수집한 문헌을 고르는 일, 적어 주신 문장에서 상황을 읽는 일, 찾은 연구를 쉬운 말로 설명하는 일을 맡습니다. 어떤 연구가 목록에 오를지는 AI가 아니라 미리 정한 규칙이 정합니다.",
     },
     {
       title: "자료 범위",
@@ -59,7 +59,7 @@ export default function Home() {
     },
     {
       title: "이용 범위",
-      body: "문헌을 찾아보는 자료입니다. 입력한 나이나 용량 값을 연구 대상과 대조하지 않으며, 복용 여부나 용량을 판단하지 않습니다.",
+      body: "연구를 찾아보는 도구입니다. 적어 주신 나이나 양을 연구 대상과 하나하나 맞춰 보지 않으며, 먹어도 되는지나 얼마나 먹을지는 정해 주지 않습니다. 복용은 의사나 약사와 상의하세요.",
     },
   ];
 

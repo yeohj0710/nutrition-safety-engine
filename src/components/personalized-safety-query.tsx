@@ -229,14 +229,14 @@ function resultCountLabel(result: ApiResult) {
     const scope = result.applied_axes.length ? "조건에 맞는 연구" : "이 상황의 문헌";
     return `${scope} ${result.extended_total.toLocaleString("ko-KR")}편 중 ${first}~${last}번째`;
   }
-  // 검토한 연구가 모자라 추가 후보로 채운 화면에서는 두 층을 갈라 적는다.
+  // AI 검토 연구가 모자라 추가 후보로 채운 화면에서는 두 층을 갈라 적는다.
   if (result.extended_shown > 0) {
-    return `검토한 연구 ${result.core_shown.toLocaleString("ko-KR")}편, 추가 후보 ${result.extended_shown.toLocaleString("ko-KR")}편`;
+    return `AI 검토 연구 ${result.core_shown.toLocaleString("ko-KR")}편, 추가 후보 ${result.extended_shown.toLocaleString("ko-KR")}편`;
   }
   if (result.filter_mode === "metadata_axis_presence") {
-    return `조건에 맞는 검토한 연구 ${result.evidence_total_after_filter.toLocaleString("ko-KR")}편`;
+    return `조건에 맞는 AI 검토 연구 ${result.evidence_total_after_filter.toLocaleString("ko-KR")}편`;
   }
-  return `검토한 연구 ${result.evidence_total_after_filter.toLocaleString("ko-KR")}편`;
+  return `AI 검토 연구 ${result.evidence_total_after_filter.toLocaleString("ko-KR")}편`;
 }
 
 function resultHeading(result: ApiResult) {
@@ -267,7 +267,7 @@ function resultStatusMessage(result: ApiResult) {
     return `${scope} ${result.extended_total.toLocaleString("ko-KR")}편 가운데 ${first}번째부터 ${last}번째까지 보여 드립니다.`;
   }
   if (result.extended_shown > 0) {
-    return `검토한 연구 ${result.core_shown}편에 추가 후보 ${result.extended_shown}편을 더해 모두 ${result.evidence.length}편을 보여 드립니다.`;
+    return `AI 검토 연구 ${result.core_shown}편에 추가 후보 ${result.extended_shown}편을 더해 모두 ${result.evidence.length}편을 보여 드립니다.`;
   }
   return `연구 ${result.evidence.length}편을 보여 드립니다.`;
 }
@@ -275,10 +275,10 @@ function resultStatusMessage(result: ApiResult) {
 /** 조건 이름을 처음 보는 사람이 읽는 말로. 연구 자료와 지시문은 원래 이름을 그대로 쓴다. */
 const plainAxis: Record<AxisId, { label: string; hint: string }> = {
   age_group: { label: "나이", hint: "나이나 연령대를 다룬 연구" },
-  concomitant_medication: { label: "함께 먹는 약", hint: "다른 약과 함께 쓴 경우를 다룬 연구" },
-  dose_range: { label: "먹는 양", hint: "mg, IU 같은 양이 적힌 연구" },
+  concomitant_medication: { label: "다른 약", hint: "다른 약과 함께 쓴 경우를 다룬 연구" },
+  dose_range: { label: "복용량", hint: "mg, IU 같은 양이 적힌 연구" },
   sex: { label: "성별", hint: "남녀를 나누어 본 연구" },
-  underlying_condition: { label: "다른 지병", hint: "함께 앓는 병을 다룬 연구" },
+  underlying_condition: { label: "지병", hint: "함께 앓는 병을 다룬 연구" },
 };
 
 function axisName(axis: AxisId) {
@@ -406,7 +406,7 @@ function EvidenceRecord({
           <span>{studyKind(item.publication_types)}</span>
           {item.year ? <span>{item.year}년</span> : null}
           <span className={isCore ? "record-tag" : "record-tag record-tag-quiet"}>
-            {isCore ? "검토한 연구" : "추가 후보"}
+            {isCore ? "AI 검토 연구" : "추가 후보"}
           </span>
         </p>
 
@@ -454,7 +454,7 @@ function EvidenceRecord({
         bodyClassName="disclosure-body"
         summary={
           <>
-            <span>자세히 (숫자, 연구 대상, 원문)</span>
+            <span>자세히 보기 (숫자, 연구 대상, 원문)</span>
             <span aria-hidden="true" className="collapsible-chevron">
               ↓
             </span>
@@ -909,7 +909,9 @@ export function PersonalizedSafetyQuery() {
     setInterpreted(null);
     setForm(example.input);
     setActiveExample(example.id);
-    setPickerOpen(true);
+    // 열 개짜리 목록은 접어 둔다. 무엇이 채워졌는지는 검색칸 아래 'AI가 읽은 내용'과
+    // 결과 머리의 '함께 본 내용'이 보여 준다. 고칠 사람만 펼친다.
+    setPickerOpen(false);
     setError("");
     void run(example.input, {}, { patientContext: example.sentence });
   }
@@ -921,7 +923,7 @@ export function PersonalizedSafetyQuery() {
     setInterpreted(null);
     setForm(input);
     setActiveExample("");
-    setPickerOpen(true);
+    setPickerOpen(false);
     setError("");
     void run(input, {});
   }
@@ -932,7 +934,7 @@ export function PersonalizedSafetyQuery() {
   async function interpretSentence() {
     const text = sentence.trim();
     if (!text) {
-      setError("찾으려는 상황을 한두 문장으로 입력하세요.");
+      setError("지금 상황을 한두 문장으로 적어 주세요.");
       return;
     }
     setInterpreting(true);
@@ -948,7 +950,7 @@ export function PersonalizedSafetyQuery() {
         setInterpreted(null);
         setError(
           body.error ??
-            "문장에서 다섯 상황 중 어느 것인지 찾지 못했습니다. 아래에서 직접 선택하세요.",
+            "문장에서 해당하는 상황을 찾지 못했습니다. 아래에서 상황을 직접 골라 주세요.",
         );
         setPickerOpen(true);
         focusSoon(firstSituationRef);
@@ -961,11 +963,11 @@ export function PersonalizedSafetyQuery() {
       setInterpreted(body);
       setForm(next);
       setActiveExample("");
-      setPickerOpen(true);
+      setPickerOpen(false);
       void run(next, {}, { patientContext: text });
     } catch {
       setInterpreted(null);
-      setError("문장을 해석하지 못했습니다. 아래에서 직접 선택할 수 있습니다.");
+      setError("문장을 읽지 못했습니다. 아래에서 상황을 직접 고를 수 있습니다.");
       setPickerOpen(true);
     } finally {
       setInterpreting(false);
@@ -1081,7 +1083,7 @@ export function PersonalizedSafetyQuery() {
               <p>
                 {interpretedSituation?.label ?? "상황 미확인"}
                 {interpreted.applied_axes.length
-                  ? `, 함께 볼 내용: ${interpreted.applied_axes
+                  ? `, 추가 조건: ${interpreted.applied_axes
                       .map((item) => axisName(item.axis))
                       .join(", ")}`
                   : ""}
@@ -1114,7 +1116,7 @@ export function PersonalizedSafetyQuery() {
               상황 직접 고르기
             </h2>
             <p className="text-[0.875rem] leading-6 text-muted">
-              문장을 쓰는 대신 상황과 함께 볼 내용을 직접 고를 수 있습니다.
+              문장을 쓰는 대신 상황과 추가 조건을 직접 고를 수 있습니다.
             </p>
           </div>
 
@@ -1131,7 +1133,7 @@ export function PersonalizedSafetyQuery() {
               <span className="text-base font-bold text-foreground">{pickerOpen ? "접기" : "펼치기"}</span>
               <span className="flex items-center gap-2 text-[0.8125rem] leading-5 text-muted">
                 {selectedSituation
-                  ? `${selectedSituation.short}, 함께 볼 내용 ${form.axes.length}개`
+                  ? `${selectedSituation.short}, 추가 조건 ${form.axes.length}개`
                   : "아직 고르지 않음"}
                 <span
                   aria-hidden="true"
@@ -1178,7 +1180,7 @@ export function PersonalizedSafetyQuery() {
                           {situation.label}
                         </span>
                         <span className="mt-0.5 block text-[0.8125rem] leading-[1.125rem] text-muted">
-                          검토한 연구 {coreCoverage[situation.id]}편
+                          AI 검토 연구 {coreCoverage[situation.id]}편
                         </span>
                       </span>
                     </label>
@@ -1188,7 +1190,7 @@ export function PersonalizedSafetyQuery() {
 
               <fieldset className="min-w-0">
                 <legend className="text-base font-bold text-foreground">
-                  2. 함께 볼 내용
+                  2. 추가 조건
                   <span className="ml-2 text-[0.8125rem] font-bold text-muted">
                     선택
                   </span>
@@ -1245,7 +1247,7 @@ export function PersonalizedSafetyQuery() {
               </button>
               {selectedSituation ? (
                 <span className="text-[0.8125rem] text-muted">
-                  {selectedSituation.short}, 함께 볼 내용 {form.axes.length}개
+                  {selectedSituation.short}, 추가 조건 {form.axes.length}개
                 </span>
               ) : null}
             </div>
@@ -1283,7 +1285,7 @@ export function PersonalizedSafetyQuery() {
                 <h2 id="browse-title" className="section-title">
                   상황별 연구 바로 보기
                 </h2>
-                <p className="section-sub">AI가 주제와 결과를 다시 검토한 연구부터</p>
+                <p className="section-sub">AI 검토 연구 우선</p>
               </div>
               <ul className="browse-list">
                 {situations.map((situation) => (
@@ -1295,7 +1297,7 @@ export function PersonalizedSafetyQuery() {
                       className="browse-row"
                     >
                       <span className="browse-name">{situation.label}</span>
-                      <span className="browse-count">검토한 연구 {coreCoverage[situation.id]}편</span>
+                      <span className="browse-count">AI 검토 연구 {coreCoverage[situation.id]}편</span>
                       <span aria-hidden="true" className="browse-go">
                         보기
                       </span>
@@ -1349,7 +1351,7 @@ export function PersonalizedSafetyQuery() {
                   </h2>
                   <p className="mt-1.5 text-[0.9375rem] leading-6 text-muted">
                     {/* 이때 고른 조건. 지금 입력칸이 아니라 이 결과를 만든 조회 기록을 읽는다. */}
-                    함께 본 내용:{" "}
+                    추가 조건:{" "}
                     {result.query_snapshot.requested_axes.length
                       ? result.query_snapshot.requested_axes.map((axis) => axisName(axis)).join(", ")
                       : "없음"}
@@ -1383,7 +1385,7 @@ export function PersonalizedSafetyQuery() {
                         id="consult-title"
                         className="text-base font-bold text-foreground"
                       >
-                        쉬운 설명
+                        연구 설명
                       </h3>
                       <span className="consult-state">
                         {consult.stage === "interim"
@@ -1469,7 +1471,7 @@ export function PersonalizedSafetyQuery() {
                   <div>
                     <p className="text-[0.8125rem] font-bold text-foreground">연구를 더 보려면</p>
                     <p className="mt-1 text-[0.875rem] leading-6 text-muted">
-                      함께 볼 내용을 하나 빼면 검토한 연구가 몇 편 남는지 미리 세었습니다.
+                      추가 조건을 하나 빼면 AI 검토 연구가 몇 편 남는지 미리 세었습니다.
                     </p>
                     <div className="mt-2 flex flex-wrap gap-2">
                       {widen.map((row) => (
@@ -1499,7 +1501,19 @@ export function PersonalizedSafetyQuery() {
                 {result.evidence.length ? (
                   <nav aria-label="결과 안에서 이동" className="result-jump">
                     <a href="#evidence-list">연구 목록으로</a>
-                    <a href="#evidence-query-form">조건 바꾸기</a>
+                    <a
+                      href="#evidence-query-form"
+                      onClick={(event) => {
+                        // 목록이 접혀 있으면 이동할 자리가 없다. 먼저 펼친 뒤 그 자리로 간다.
+                        event.preventDefault();
+                        setPickerOpen(true);
+                        window.requestAnimationFrame(() =>
+                          document.getElementById("evidence-query-form")?.scrollIntoView({ block: "start" }),
+                        );
+                      }}
+                    >
+                      조건 바꾸기
+                    </a>
                   </nav>
                 ) : null}
 
@@ -1509,7 +1523,7 @@ export function PersonalizedSafetyQuery() {
                   bodyClassName="disclosure-body p-4"
                   summary={
                     <>
-                      <span>찾는 방법과 자료 범위</span>
+                      <span>검색 방법과 자료 범위</span>
                       <span aria-hidden="true" className="collapsible-chevron">
                         ↓
                       </span>
@@ -1578,7 +1592,7 @@ export function PersonalizedSafetyQuery() {
                         초록 결과 문장 모아 보기 ({findingSentences.length}개)
                       </p>
                       <p className="mt-1 text-[0.8125rem] leading-5 text-muted">
-                        검토한 연구의 초록에서 AI가 뽑아 한국어로 옮긴 결과 문장입니다. 번호를 누르면 그 연구로 이동합니다.
+                        AI 검토 연구의 초록에서 AI가 뽑아 한국어로 옮긴 결과 문장입니다. 번호를 누르면 그 연구로 이동합니다.
                       </p>
                       <ol>
                         {findingSentences.map((finding) => (

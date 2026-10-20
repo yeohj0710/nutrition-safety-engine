@@ -179,8 +179,14 @@ const STATISTIC_PARENTHESIS =
 /** 약어에 뜻을 붙이고 통계 괄호를 걷어낸 문장. 숫자와 단위는 그대로 둔다. */
 export function plainLanguage(text: string) {
   let result = text.replace(STATISTIC_PARENTHESIS, "");
+  // ALT와 AST처럼 같은 풀이(간 수치)를 쓰는 약어는 처음 나온 것에만 붙인다.
+  const explained = new Set<string>();
   for (const [pattern, meaning] of GLOSSARY) {
-    result = result.replace(pattern, (match) => (result.includes(`${match}(`) ? match : `${match}(${meaning})`));
+    result = result.replace(pattern, (match) => {
+      if (result.includes(`${match}(`) || explained.has(meaning)) return match;
+      explained.add(meaning);
+      return `${match}(${meaning})`;
+    });
   }
   return result.replace(/\s{2,}/g, " ").replace(/\s+([,.])/g, "$1").trim();
 }

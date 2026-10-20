@@ -175,10 +175,11 @@ describe("personalized safety UI contract", () => {
     expect(Math.abs(exampleChips - sentenceBox)).toBeLessThan(2000);
     expect(sentenceBox).toBeLessThan(form);
     expect(exampleChips).toBeLessThan(form);
-    // 열 개짜리 목록은 접어 두고, 조건이 채워지는 자리에서 함께 펼친다.
+    // 열 개짜리 목록은 접어 둔다. 예시를 눌러도 펼치지 않고, 채워진 내용은
+    // 검색칸 아래와 결과 머리에서 글로 보여 준다.
     expect(componentSource).toContain("pickerOpen");
     expect(componentSource).toMatch(
-      /function runExample[\s\S]*?setPickerOpen\(true\)/,
+      /function runExample[\s\S]*?setPickerOpen\(false\)/,
     );
     // 앞선 AI 해석이 남아 있으면 지금 문장과 다른 조건을 설명하게 된다.
     expect(componentSource).toMatch(
@@ -209,8 +210,8 @@ describe("personalized safety UI contract", () => {
   it("labels core, filtered, and expanded counts by their actual scope", () => {
     expect(componentSource).toContain("result.expanded");
     expect(componentSource).toContain('result.filter_mode === "metadata_axis_presence"');
-    expect(componentSource).toContain("검토한 연구");
-    expect(componentSource).toContain("조건에 맞는 검토한 연구");
+    expect(componentSource).toContain("AI 검토 연구");
+    expect(componentSource).toContain("조건에 맞는 AI 검토 연구");
     expect(componentSource).toContain("이 상황의 문헌");
     expect(componentSource).toContain("title_derived_records");
     // 화면에 도구 안쪽 이름을 그대로 쓰면 읽는 쪽이 매번 자기 말로 옮겨야 한다.
