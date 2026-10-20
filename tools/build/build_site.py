@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from tools.build import axis_patterns
 from tools.build import base_builder as base
 from tools.build import reviewed_evidence
 
@@ -461,7 +462,7 @@ def _expected_build_outputs(
         locator, key_finding = base.choose_key_finding(source)
         scope = "abstract_only" if source["abstract"].strip() else "title_only"
         text = f"{source['title']} {source['abstract']}"
-        doses = list(dict.fromkeys(match.group(0) for match in base.DOSE_RE.finditer(text)))[:8]
+        doses = axis_patterns.dose_mentions(text)[:8]
         config = base.QUESTION_CONFIG[source["question_id"]]
         outcome_sentences = [
             sentence for sentence in base.split_sentences(source["abstract"])

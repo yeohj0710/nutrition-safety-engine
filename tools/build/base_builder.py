@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 from decimal import Decimal
 from pathlib import Path
 from typing import Any
+from tools.build import axis_patterns
 from tools.build import reviewed_evidence
 
 
@@ -89,6 +90,7 @@ EXPOSURE_RE = re.compile(
     r"milk thistle|branched.chain|carnitine|choline|ascorb|ergocalciferol",
     re.IGNORECASE,
 )
+AXES = ["age_group", "concomitant_medication", "dose_range", "sex", "underlying_condition"]
 DOSE_RE = re.compile(
     r"\b\d+(?:[.,]\d+)?(?:\s*(?:-|–|to)\s*\d+(?:[.,]\d+)?)?\s*"
     r"(?:mg|g|µg|μg|mcg|iu|units?|ml|mmol|%)\b(?:\s*/\s*(?:d|day|week))?",
@@ -309,8 +311,8 @@ def legacy_extract_observed_axes(row: dict[str, str]) -> list[str]:
     return axes
 
 
-def extract_observed_axes(row: dict[str, str]) -> list[str]:
-    """보고한 축만 켠다. 일반 명사 하나만으로 약·병 축을 켜지 않는다."""
+def legacy_observed_axes_v41(row: dict[str, str]) -> list[str]:
+    """2026-10-20까지 쓴 판정식. 다시 받은 초록이 기존 색인을 재현하는지 대조할 때 쓴다."""
     text = f"{row['title']} {row['abstract']}"
     axes: list[str] = []
     if re.search(r"child|adolesc|adult|elder|older|aged|years? old|age[sd]?\b", text, re.IGNORECASE):
@@ -335,6 +337,25 @@ def extract_observed_axes(row: dict[str, str]) -> list[str]:
     ):
         axes.append("underlying_condition")
     if DOSE_RE.search(text):
+        axes.append("dose_range")
+    return axes
+
+
+def extract_observed_axes(row: dict[str, str]) -> list[str]:
+    """보고한 축만 켠다. 일반 명사 하나만으로 약·병 축을 켜지 않는다.
+
+    연령과 용량은 2026-10-21 정정한 판정식(axis_patterns)을 쓰고, 병용 약물, 성별,
+    기저 질환은 legacy_observed_axes_v41 과 같다.
+    """
+    text = f"{row['title']} {row['abstract']}"
+    kept = set(legacy_observed_axes_v41(row))
+    axes: list[str] = []
+    if axis_patterns.has_age(text):
+        axes.append("age_group")
+    for axis in ("sex", "concomitant_medication", "underlying_condition"):
+        if axis in kept:
+            axes.append(axis)
+    if axis_patterns.has_dose(text):
         axes.append("dose_range")
     return axes
 
@@ -374,7 +395,7 @@ def build() -> dict[str, Any]:
         locator, key_finding = choose_key_finding(row)
         scope = "abstract_only" if row["abstract"].strip() else "title_only"
         text = f"{row['title']} {row['abstract']}"
-        doses = list(dict.fromkeys(match.group(0) for match in DOSE_RE.finditer(text)))[:8]
+        doses = axis_patterns.dose_mentions(text)[:8]
         config = QUESTION_CONFIG[row["question_id"]]
         outcome_sentences = [
             sentence for sentence in split_sentences(row["abstract"])
