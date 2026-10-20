@@ -1,0 +1,2002 @@
+[
+ {
+  "situation": "HRS1_PERIOPERATIVE",
+  "axes": [],
+  "core_shown": 11,
+  "extended_shown": 0,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:28252474",
+    "title": "Physical and Nutritional Prehabilitation in Older Patients With Colorectal Carcinoma: A Systematic Review.",
+    "year": 2018,
+    "publication_types": "Journal Article|Systematic Review"
+   },
+   {
+    "rank": 2,
+    "layer": "core",
+    "record_id": "pubmed:35439754",
+    "title": "Postoperative Vitamin Profile after Receiving a Novel Peripheral Parenteral Nutrition Solution: Multicenter Randomized Controlled Phase III Trial.",
+    "year": 2022,
+    "publication_types": "Clinical Trial, Phase III|Journal Article|Multicenter Study|Randomized Controlled Trial|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 3,
+    "layer": "core",
+    "record_id": "pubmed:41754168",
+    "title": "Effect of Perioperative Supplementation with Arginine and Omega-3 on Postoperative Complications in Patients Undergoing Gastrointestinal Cancer Surgery: A Pilot Open-Label Randomized Controlled Trial.",
+    "year": 2026,
+    "publication_types": "Journal Article|Randomized Controlled Trial"
+   },
+   {
+    "rank": 4,
+    "layer": "core",
+    "record_id": "pubmed:39509846",
+    "title": "Chinese herbal medicine (JianPi-BuShen) and completion rate of adjuvant chemotherapy for patients with stage II and III colon cancer: A randomized clinical trial.",
+    "year": 2024,
+    "publication_types": "Journal Article|Randomized Controlled Trial|Multicenter Study|Clinical Trial, Phase III"
+   },
+   {
+    "rank": 5,
+    "layer": "core",
+    "record_id": "pubmed:33495257",
+    "title": "Effectiveness and safety of oral sedation in adult patients undergoing dental procedures: a systematic review.",
+    "year": 2021,
+    "publication_types": "Journal Article|Systematic Review"
+   },
+   {
+    "rank": 6,
+    "layer": "core",
+    "record_id": "pubmed:41114550",
+    "title": "Evaluation of TU-100 (Daikenchuto), a Traditional Japanese Kampo Medicine, as an Adjunct to Enhanced Recovery After Surgery, for Acceleration of Gastrointestinal Recovery After Bowel Resection: Results of a Proof-of-Concept, Phase 2, Randomized, Double-Blinded, Placebo-Controlled Trial.",
+    "year": 2026,
+    "publication_types": "Journal Article|Clinical Trial, Phase II|Randomized Controlled Trial|Multicenter Study"
+   },
+   {
+    "rank": 7,
+    "layer": "core",
+    "record_id": "pubmed:40598717",
+    "title": "Efficacy and Safety of SmofKabiven® Versus Hospital-Compounded All-in-One Parenteral Nutrition in Chinese Patients Undergoing Gastrointestinal Surgery: A Multicenter, Randomized, Active-Controlled, Phase III Trial.",
+    "year": 2025,
+    "publication_types": "Clinical Trial, Phase III|Equivalence Trial|Journal Article|Multicenter Study|Randomized Controlled Trial|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 8,
+    "layer": "core",
+    "record_id": "pubmed:27178770",
+    "title": "Quality of life after hip fracture in the elderly: A systematic literature review.",
+    "year": 2016,
+    "publication_types": "Journal Article|Systematic Review"
+   },
+   {
+    "rank": 9,
+    "layer": "core",
+    "record_id": "pubmed:37225860",
+    "title": "Phase II trial of delta-tocotrienol in neoadjuvant breast cancer with evaluation of treatment response using ctDNA.",
+    "year": 2023,
+    "publication_types": "Clinical Trial, Phase II|Randomized Controlled Trial|Journal Article|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 10,
+    "layer": "core",
+    "record_id": "pubmed:26123475",
+    "title": "A systematic review of the cost and cost effectiveness of using standard oral nutritional supplements in the hospital setting.",
+    "year": 2016,
+    "publication_types": "Journal Article|Meta-Analysis|Systematic Review"
+   },
+   {
+    "rank": 11,
+    "layer": "core",
+    "record_id": "pubmed:37897197",
+    "title": "Pre-rehabilitation interventions for patients with head and neck cancers: A systematic review and meta-analysis.",
+    "year": 2024,
+    "publication_types": "Meta-Analysis|Systematic Review|Journal Article|Research Support, Non-U.S. Gov't"
+   }
+  ]
+ },
+ {
+  "situation": "HRS1_PERIOPERATIVE",
+  "axes": [
+   "age_group"
+  ],
+  "core_shown": 6,
+  "extended_shown": 5,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:28252474",
+    "title": "Physical and Nutritional Prehabilitation in Older Patients With Colorectal Carcinoma: A Systematic Review.",
+    "year": 2018,
+    "publication_types": "Journal Article|Systematic Review"
+   },
+   {
+    "rank": 2,
+    "layer": "core",
+    "record_id": "pubmed:39509846",
+    "title": "Chinese herbal medicine (JianPi-BuShen) and completion rate of adjuvant chemotherapy for patients with stage II and III colon cancer: A randomized clinical trial.",
+    "year": 2024,
+    "publication_types": "Journal Article|Randomized Controlled Trial|Multicenter Study|Clinical Trial, Phase III"
+   },
+   {
+    "rank": 3,
+    "layer": "core",
+    "record_id": "pubmed:41754168",
+    "title": "Effect of Perioperative Supplementation with Arginine and Omega-3 on Postoperative Complications in Patients Undergoing Gastrointestinal Cancer Surgery: A Pilot Open-Label Randomized Controlled Trial.",
+    "year": 2026,
+    "publication_types": "Journal Article|Randomized Controlled Trial"
+   },
+   {
+    "rank": 4,
+    "layer": "core",
+    "record_id": "pubmed:33495257",
+    "title": "Effectiveness and safety of oral sedation in adult patients undergoing dental procedures: a systematic review.",
+    "year": 2021,
+    "publication_types": "Journal Article|Systematic Review"
+   },
+   {
+    "rank": 5,
+    "layer": "core",
+    "record_id": "pubmed:40598717",
+    "title": "Efficacy and Safety of SmofKabiven® Versus Hospital-Compounded All-in-One Parenteral Nutrition in Chinese Patients Undergoing Gastrointestinal Surgery: A Multicenter, Randomized, Active-Controlled, Phase III Trial.",
+    "year": 2025,
+    "publication_types": "Clinical Trial, Phase III|Equivalence Trial|Journal Article|Multicenter Study|Randomized Controlled Trial|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 6,
+    "layer": "core",
+    "record_id": "pubmed:27178770",
+    "title": "Quality of life after hip fracture in the elderly: A systematic literature review.",
+    "year": 2016,
+    "publication_types": "Journal Article|Systematic Review"
+   },
+   {
+    "rank": 7,
+    "layer": "topup",
+    "record_id": "pubmed:40343523",
+    "title": "Deciphering hemorrhagic risks in external dacryocystorhinostomy: a comprehensive analysis of associated factors.",
+    "year": 2025,
+    "publication_types": "Journal Article"
+   },
+   {
+    "rank": 8,
+    "layer": "topup",
+    "record_id": "pubmed:30548483",
+    "title": "Maternal probiotic supplementation for prevention of morbidity and mortality in preterm infants.",
+    "year": 2018,
+    "publication_types": "Journal Article|Meta-Analysis|Research Support, Non-U.S. Gov't|Systematic Review"
+   },
+   {
+    "rank": 9,
+    "layer": "topup",
+    "record_id": "pubmed:23032083",
+    "title": "A prospective, multicenter, randomized study of the efficacy of eicosapentaenoic acid for cerebral vasospasm: the EVAS study.",
+    "year": 2014,
+    "publication_types": "Journal Article|Multicenter Study|Randomized Controlled Trial"
+   },
+   {
+    "rank": 10,
+    "layer": "topup",
+    "record_id": "pubmed:42255005",
+    "title": "Non-surgical recovery from splenic rupture hemorrhage using herbal medicine: Insights from a case report.",
+    "year": 2026,
+    "publication_types": "Case Reports|Journal Article"
+   },
+   {
+    "rank": 11,
+    "layer": "topup",
+    "record_id": "pubmed:24841934",
+    "title": "No major role for periconceptional folic acid use and its interaction with the MTHFR C677T polymorphism in the etiology of congenital anorectal malformations.",
+    "year": 2014,
+    "publication_types": "Journal Article|Research Support, Non-U.S. Gov't"
+   }
+  ]
+ },
+ {
+  "situation": "HRS1_PERIOPERATIVE",
+  "axes": [
+   "dose_range"
+  ],
+  "core_shown": 4,
+  "extended_shown": 7,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:41114550",
+    "title": "Evaluation of TU-100 (Daikenchuto), a Traditional Japanese Kampo Medicine, as an Adjunct to Enhanced Recovery After Surgery, for Acceleration of Gastrointestinal Recovery After Bowel Resection: Results of a Proof-of-Concept, Phase 2, Randomized, Double-Blinded, Placebo-Controlled Trial.",
+    "year": 2026,
+    "publication_types": "Journal Article|Clinical Trial, Phase II|Randomized Controlled Trial|Multicenter Study"
+   },
+   {
+    "rank": 2,
+    "layer": "core",
+    "record_id": "pubmed:33495257",
+    "title": "Effectiveness and safety of oral sedation in adult patients undergoing dental procedures: a systematic review.",
+    "year": 2021,
+    "publication_types": "Journal Article|Systematic Review"
+   },
+   {
+    "rank": 3,
+    "layer": "core",
+    "record_id": "pubmed:41754168",
+    "title": "Effect of Perioperative Supplementation with Arginine and Omega-3 on Postoperative Complications in Patients Undergoing Gastrointestinal Cancer Surgery: A Pilot Open-Label Randomized Controlled Trial.",
+    "year": 2026,
+    "publication_types": "Journal Article|Randomized Controlled Trial"
+   },
+   {
+    "rank": 4,
+    "layer": "core",
+    "record_id": "pubmed:40598717",
+    "title": "Efficacy and Safety of SmofKabiven® Versus Hospital-Compounded All-in-One Parenteral Nutrition in Chinese Patients Undergoing Gastrointestinal Surgery: A Multicenter, Randomized, Active-Controlled, Phase III Trial.",
+    "year": 2025,
+    "publication_types": "Clinical Trial, Phase III|Equivalence Trial|Journal Article|Multicenter Study|Randomized Controlled Trial|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 5,
+    "layer": "topup",
+    "record_id": "pubmed:28498942",
+    "title": "Effect of vitamin D on all-cause mortality in heart failure (EVITA): a 3-year randomized clinical trial with 4000 IU vitamin D daily.",
+    "year": 2017,
+    "publication_types": "Journal Article|Randomized Controlled Trial"
+   },
+   {
+    "rank": 6,
+    "layer": "topup",
+    "record_id": "pubmed:21483641",
+    "title": "Nutrition support in surgical patients with colorectal cancer.",
+    "year": 2011,
+    "publication_types": "Journal Article|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 7,
+    "layer": "topup",
+    "record_id": "pubmed:8571185",
+    "title": "[The treatment of cutaneous radiation-induced fibrosis with pentoxifylline and vitamin E. An empirical report].",
+    "year": 1996,
+    "publication_types": "Case Reports|English Abstract|Journal Article|Review"
+   },
+   {
+    "rank": 8,
+    "layer": "topup",
+    "record_id": "pubmed:26214669",
+    "title": "Post-thyroidectomy hypocalcemia: Impact on length of stay.",
+    "year": 2015,
+    "publication_types": "Journal Article"
+   },
+   {
+    "rank": 9,
+    "layer": "topup",
+    "record_id": "pubmed:42521230",
+    "title": "Impact of oral nutritional supplements on chemotherapy tolerance and overall survival in postoperative colorectal cancer patients undergoing chemotherapy.",
+    "year": 2026,
+    "publication_types": "Journal Article|Randomized Controlled Trial"
+   },
+   {
+    "rank": 10,
+    "layer": "topup",
+    "record_id": "pubmed:19108494",
+    "title": "[Effects of rikkunshito on the postoperative nausea and vomiting (PONV) after laparoscopic gynecological surgery].",
+    "year": 2008,
+    "publication_types": "English Abstract|Journal Article|Randomized Controlled Trial"
+   },
+   {
+    "rank": 11,
+    "layer": "topup",
+    "record_id": "pubmed:27069560",
+    "title": "Q10 supplementation effects on cardiac enzyme CK-MB and troponin in patients undergoing coronary artery bypass graft: a randomized, double-blinded, placebo-controlled clinical trial.",
+    "year": 2016,
+    "publication_types": "Journal Article"
+   }
+  ]
+ },
+ {
+  "situation": "HRS1_PERIOPERATIVE",
+  "axes": [
+   "sex"
+  ],
+  "core_shown": 3,
+  "extended_shown": 8,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:27178770",
+    "title": "Quality of life after hip fracture in the elderly: A systematic literature review.",
+    "year": 2016,
+    "publication_types": "Journal Article|Systematic Review"
+   },
+   {
+    "rank": 2,
+    "layer": "core",
+    "record_id": "pubmed:39509846",
+    "title": "Chinese herbal medicine (JianPi-BuShen) and completion rate of adjuvant chemotherapy for patients with stage II and III colon cancer: A randomized clinical trial.",
+    "year": 2024,
+    "publication_types": "Journal Article|Randomized Controlled Trial|Multicenter Study|Clinical Trial, Phase III"
+   },
+   {
+    "rank": 3,
+    "layer": "core",
+    "record_id": "pubmed:37225860",
+    "title": "Phase II trial of delta-tocotrienol in neoadjuvant breast cancer with evaluation of treatment response using ctDNA.",
+    "year": 2023,
+    "publication_types": "Clinical Trial, Phase II|Randomized Controlled Trial|Journal Article|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 4,
+    "layer": "topup",
+    "record_id": "pubmed:11574384",
+    "title": "The prevalence and predictors of the use of alternative medicine in presurgical patients in five California hospitals.",
+    "year": 2001,
+    "publication_types": "Journal Article|Research Support, Non-U.S. Gov't|Research Support, U.S. Gov't, P.H.S."
+   },
+   {
+    "rank": 5,
+    "layer": "topup",
+    "record_id": "pubmed:30232527",
+    "title": "Improved patient blood management and cost saving in hip replacement surgery through the implementation of pre-operative Sucrosomial® iron supplementation: a quality improvement assessment study.",
+    "year": 2019,
+    "publication_types": "Journal Article"
+   },
+   {
+    "rank": 6,
+    "layer": "topup",
+    "record_id": "pubmed:23884276",
+    "title": "Vitamin K deficiency bleeding and early infant male circumcision in Africa.",
+    "year": 2013,
+    "publication_types": "Case Reports|Journal Article|Research Support, N.I.H., Extramural|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 7,
+    "layer": "topup",
+    "record_id": "pubmed:36871025",
+    "title": "Clinical associations for traditional and complementary medicine use among norwegian cancer survivors in the seventh survey of the Tromsø study: a cross-sectional study.",
+    "year": 2023,
+    "publication_types": "Journal Article"
+   },
+   {
+    "rank": 8,
+    "layer": "topup",
+    "record_id": "pubmed:24404435",
+    "title": "Muscle function and omega-3 fatty acids in the prediction of lean body mass after breast cancer treatment.",
+    "year": 2013,
+    "publication_types": "Journal Article"
+   },
+   {
+    "rank": 9,
+    "layer": "topup",
+    "record_id": "pubmed:33522946",
+    "title": "High-dose vitamin D versus placebo to prevent complications in COVID-19 patients: A structured summary of a study protocol for a randomised controlled trial (CARED-TRIAL).",
+    "year": 2021,
+    "publication_types": "Clinical Trial Protocol|Letter"
+   },
+   {
+    "rank": 10,
+    "layer": "topup",
+    "record_id": "pubmed:27473473",
+    "title": "AURORA: bariatric surgery registration in women of reproductive age - a multicenter prospective cohort study.",
+    "year": 2016,
+    "publication_types": "Journal Article|Multicenter Study"
+   },
+   {
+    "rank": 11,
+    "layer": "topup",
+    "record_id": "pubmed:30985703",
+    "title": "Effectiveness, safety, and economic evaluation of topical application of a herbal ointment, Jaungo, for radiation dermatitis after breast conserving surgery in patients with breast cancer (GREEN study): Study protocol for a randomized controlled trial.",
+    "year": 2019,
+    "publication_types": "Clinical Trial Protocol|Journal Article"
+   }
+  ]
+ },
+ {
+  "situation": "HRS1_PERIOPERATIVE",
+  "axes": [
+   "underlying_condition"
+  ],
+  "core_shown": 5,
+  "extended_shown": 6,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:41754168",
+    "title": "Effect of Perioperative Supplementation with Arginine and Omega-3 on Postoperative Complications in Patients Undergoing Gastrointestinal Cancer Surgery: A Pilot Open-Label Randomized Controlled Trial.",
+    "year": 2026,
+    "publication_types": "Journal Article|Randomized Controlled Trial"
+   },
+   {
+    "rank": 2,
+    "layer": "core",
+    "record_id": "pubmed:37897197",
+    "title": "Pre-rehabilitation interventions for patients with head and neck cancers: A systematic review and meta-analysis.",
+    "year": 2024,
+    "publication_types": "Meta-Analysis|Systematic Review|Journal Article|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 3,
+    "layer": "core",
+    "record_id": "pubmed:39509846",
+    "title": "Chinese herbal medicine (JianPi-BuShen) and completion rate of adjuvant chemotherapy for patients with stage II and III colon cancer: A randomized clinical trial.",
+    "year": 2024,
+    "publication_types": "Journal Article|Randomized Controlled Trial|Multicenter Study|Clinical Trial, Phase III"
+   },
+   {
+    "rank": 4,
+    "layer": "core",
+    "record_id": "pubmed:37225860",
+    "title": "Phase II trial of delta-tocotrienol in neoadjuvant breast cancer with evaluation of treatment response using ctDNA.",
+    "year": 2023,
+    "publication_types": "Clinical Trial, Phase II|Randomized Controlled Trial|Journal Article|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 5,
+    "layer": "core",
+    "record_id": "pubmed:28252474",
+    "title": "Physical and Nutritional Prehabilitation in Older Patients With Colorectal Carcinoma: A Systematic Review.",
+    "year": 2018,
+    "publication_types": "Journal Article|Systematic Review"
+   },
+   {
+    "rank": 6,
+    "layer": "topup",
+    "record_id": "pubmed:42448945",
+    "title": "Chinese Herbal Medicine Improves Pregnancy Outcome and Decreases Recurrence Rate after Surgery for Endometriosis-Associated Infertility: A Retrospective Study.",
+    "year": 2026,
+    "publication_types": "Journal Article"
+   },
+   {
+    "rank": 7,
+    "layer": "topup",
+    "record_id": "pubmed:35792925",
+    "title": "Clinical and economic value of oral nutrition supplements in patients with cancer: a position paper from the Survivorship Care and Nutritional Support Working Group of Alliance Against Cancer.",
+    "year": 2022,
+    "publication_types": "Review|Journal Article|Consensus Statement"
+   },
+   {
+    "rank": 8,
+    "layer": "topup",
+    "record_id": "pubmed:6388115",
+    "title": "[Indicators of nonspecific resistance of the body of patients with stomach cancer subjected to different methods of preoperative care].",
+    "year": 1984,
+    "publication_types": "English Abstract|Journal Article"
+   },
+   {
+    "rank": 9,
+    "layer": "topup",
+    "record_id": "pubmed:21336558",
+    "title": "Anemia during pregnancy after silastic ring Roux-en-Y gastric bypass: influence of time to conception.",
+    "year": 2011,
+    "publication_types": "Journal Article"
+   },
+   {
+    "rank": 10,
+    "layer": "topup",
+    "record_id": "pubmed:31319906",
+    "title": "Vitamin D in kidney transplant recipients .",
+    "year": 2020,
+    "publication_types": "Journal Article|Review"
+   },
+   {
+    "rank": 11,
+    "layer": "topup",
+    "record_id": "pubmed:18061940",
+    "title": "Obesity, bariatric surgery, and iron deficiency: true, true, true and related.",
+    "year": 2008,
+    "publication_types": "Journal Article|Review"
+   }
+  ]
+ },
+ {
+  "situation": "HRS2_KIDNEY_DISEASE",
+  "axes": [],
+  "core_shown": 9,
+  "extended_shown": 0,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:26175145",
+    "title": "Ferric pyrophosphate citrate (Triferic™) administration via the dialysate maintains hemoglobin and iron balance in chronic hemodialysis patients.",
+    "year": 2015,
+    "publication_types": "Clinical Trial, Phase III|Journal Article|Multicenter Study|Randomized Controlled Trial|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 2,
+    "layer": "core",
+    "record_id": "pubmed:40906605",
+    "title": "Vitamin Profile of the Patients with Chronic Kidney Disease Receiving a Novel Total Parenteral Nutrition Formula: Multicenter Randomized Controlled Phase III Trial.",
+    "year": 2026,
+    "publication_types": "Journal Article|Clinical Trial, Phase III|Multicenter Study|Randomized Controlled Trial"
+   },
+   {
+    "rank": 3,
+    "layer": "core",
+    "record_id": "pubmed:38810556",
+    "title": "Add-on astragalus in type 2 diabetes and chronic kidney disease: A multi-center, assessor-blind, randomized controlled trial.",
+    "year": 2024,
+    "publication_types": "Journal Article|Randomized Controlled Trial|Multicenter Study"
+   },
+   {
+    "rank": 4,
+    "layer": "core",
+    "record_id": "pubmed:42293210",
+    "title": "The role of nutritional vitamin D on microinflammation and nutritional status in maintenance hemodialysis patients: a meta-analysis of randomized controlled trials.",
+    "year": 2026,
+    "publication_types": "Journal Article|Systematic Review"
+   },
+   {
+    "rank": 5,
+    "layer": "core",
+    "record_id": "pubmed:37812931",
+    "title": "Efficacy and Safety of Ferric Citrate on Hyperphosphatemia among Chinese Patients with Chronic Kidney Disease Undergoing Hemodialysis: A Phase III Multicenter Randomized Open-Label Active-Drug-Controlled Study.",
+    "year": 2023,
+    "publication_types": "Randomized Controlled Trial|Multicenter Study|Clinical Trial, Phase III|Journal Article|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 6,
+    "layer": "core",
+    "record_id": "pubmed:40589511",
+    "title": "Chinese herbal medicine (Tangshen Formula) formula treatment of patients with diabetic kidney disease: a systematic review and meta-analysis.",
+    "year": 2025,
+    "publication_types": "Journal Article|Systematic Review|Meta-Analysis"
+   },
+   {
+    "rank": 7,
+    "layer": "core",
+    "record_id": "pubmed:41377821",
+    "title": "Meta-analysis of Niaoduqing Granules for uremic pruritus in Chinese hemodialysis patients: efficacy and safety evidence from RCTs.",
+    "year": 2025,
+    "publication_types": "Journal Article|Systematic Review"
+   },
+   {
+    "rank": 8,
+    "layer": "core",
+    "record_id": "pubmed:42047771",
+    "title": "Effects of turmeric and curcumin in patients on dialysis or using immunosuppressive agents: a systematic review.",
+    "year": 2026,
+    "publication_types": "Systematic Review|Journal Article"
+   },
+   {
+    "rank": 9,
+    "layer": "core",
+    "record_id": "pubmed:42246040",
+    "title": "Efficacy and safety of pharmacological treatments for restless legs syndrome in hemodialysis patients: a systematic review and meta-analysis.",
+    "year": 2026,
+    "publication_types": "Journal Article|Systematic Review"
+   }
+  ]
+ },
+ {
+  "situation": "HRS2_KIDNEY_DISEASE",
+  "axes": [
+   "age_group"
+  ],
+  "core_shown": 4,
+  "extended_shown": 5,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:38810556",
+    "title": "Add-on astragalus in type 2 diabetes and chronic kidney disease: A multi-center, assessor-blind, randomized controlled trial.",
+    "year": 2024,
+    "publication_types": "Journal Article|Randomized Controlled Trial|Multicenter Study"
+   },
+   {
+    "rank": 2,
+    "layer": "core",
+    "record_id": "pubmed:40589511",
+    "title": "Chinese herbal medicine (Tangshen Formula) formula treatment of patients with diabetic kidney disease: a systematic review and meta-analysis.",
+    "year": 2025,
+    "publication_types": "Journal Article|Systematic Review|Meta-Analysis"
+   },
+   {
+    "rank": 3,
+    "layer": "core",
+    "record_id": "pubmed:42246040",
+    "title": "Efficacy and safety of pharmacological treatments for restless legs syndrome in hemodialysis patients: a systematic review and meta-analysis.",
+    "year": 2026,
+    "publication_types": "Journal Article|Systematic Review"
+   },
+   {
+    "rank": 4,
+    "layer": "core",
+    "record_id": "pubmed:37812931",
+    "title": "Efficacy and Safety of Ferric Citrate on Hyperphosphatemia among Chinese Patients with Chronic Kidney Disease Undergoing Hemodialysis: A Phase III Multicenter Randomized Open-Label Active-Drug-Controlled Study.",
+    "year": 2023,
+    "publication_types": "Randomized Controlled Trial|Multicenter Study|Clinical Trial, Phase III|Journal Article|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 5,
+    "layer": "topup",
+    "record_id": "pubmed:25556720",
+    "title": "Epicardial fat accumulation, cardiometabolic profile and cardiovascular events in patients with stages 3-5 chronic kidney disease.",
+    "year": 2015,
+    "publication_types": "Journal Article|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 6,
+    "layer": "topup",
+    "record_id": "pubmed:15901975",
+    "title": "[Early risk factors for secondary hyperparathyroidism in hemodialysis patients].",
+    "year": 2005,
+    "publication_types": "Comparative Study|English Abstract|Journal Article"
+   },
+   {
+    "rank": 7,
+    "layer": "topup",
+    "record_id": "pubmed:16479823",
+    "title": "[Comparison of some nutritional parameters in hemodialysis patients over and below 65 years of age].",
+    "year": 2005,
+    "publication_types": "Comparative Study|English Abstract|Journal Article"
+   },
+   {
+    "rank": 8,
+    "layer": "topup",
+    "record_id": "pubmed:19696220",
+    "title": "Vitamin D and the cardiovascular system.",
+    "year": 2009,
+    "publication_types": "Journal Article|Research Support, N.I.H., Extramural|Research Support, Non-U.S. Gov't|Review"
+   },
+   {
+    "rank": 9,
+    "layer": "topup",
+    "record_id": "pubmed:22107690",
+    "title": "Influence of the assay for measuring serum albumin on corrected total calcium in chronic hemodialysis patients.",
+    "year": 2011,
+    "publication_types": "Comparative Study|Journal Article"
+   }
+  ]
+ },
+ {
+  "situation": "HRS2_KIDNEY_DISEASE",
+  "axes": [
+   "concomitant_medication"
+  ],
+  "core_shown": 2,
+  "extended_shown": 7,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:42047771",
+    "title": "Effects of turmeric and curcumin in patients on dialysis or using immunosuppressive agents: a systematic review.",
+    "year": 2026,
+    "publication_types": "Systematic Review|Journal Article"
+   },
+   {
+    "rank": 2,
+    "layer": "core",
+    "record_id": "pubmed:38810556",
+    "title": "Add-on astragalus in type 2 diabetes and chronic kidney disease: A multi-center, assessor-blind, randomized controlled trial.",
+    "year": 2024,
+    "publication_types": "Journal Article|Randomized Controlled Trial|Multicenter Study"
+   },
+   {
+    "rank": 3,
+    "layer": "topup",
+    "record_id": "pubmed:36900727",
+    "title": "The Use of Complementary and Alternative Medicine among Peritoneal Dialysis Patients at a Second-Level Hospital in Yucatán Mexico.",
+    "year": 2023,
+    "publication_types": "Journal Article"
+   },
+   {
+    "rank": 4,
+    "layer": "topup",
+    "record_id": "pubmed:31636049",
+    "title": "[Prevention of iatrogenic risk and screening of chronic kidney disease].",
+    "year": 2019,
+    "publication_types": "Journal Article"
+   },
+   {
+    "rank": 5,
+    "layer": "topup",
+    "record_id": "pubmed:30977017",
+    "title": "Hypomagnesemia is not an independent risk factor for mortality in Japanese maintenance hemodialysis patients.",
+    "year": 2019,
+    "publication_types": "Journal Article|Observational Study"
+   },
+   {
+    "rank": 6,
+    "layer": "topup",
+    "record_id": "pubmed:3752075",
+    "title": "Regional anticoagulation: hemodialysis with hypertonic trisodium citrate.",
+    "year": 1986,
+    "publication_types": "Journal Article"
+   },
+   {
+    "rank": 7,
+    "layer": "topup",
+    "record_id": "pubmed:2693045",
+    "title": "Epoetin (recombinant human erythropoietin). A review of its pharmacodynamic and pharmacokinetic properties and therapeutic potential in anaemia and the stimulation of erythropoiesis.",
+    "year": 1989,
+    "publication_types": "Journal Article|Review"
+   },
+   {
+    "rank": 8,
+    "layer": "topup",
+    "record_id": "pubmed:12376810",
+    "title": "Citrate clearance in children receiving continuous venovenous renal replacement therapy.",
+    "year": 2002,
+    "publication_types": "Clinical Trial|Journal Article|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 9,
+    "layer": "topup",
+    "record_id": "pubmed:39565075",
+    "title": "Hyperbaric oxygen treatment in addition to conventional multidisciplinary care in patients with calciphylaxis.",
+    "year": 2025,
+    "publication_types": "Journal Article"
+   }
+  ]
+ },
+ {
+  "situation": "HRS2_KIDNEY_DISEASE",
+  "axes": [
+   "dose_range"
+  ],
+  "core_shown": 3,
+  "extended_shown": 6,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:26175145",
+    "title": "Ferric pyrophosphate citrate (Triferic™) administration via the dialysate maintains hemoglobin and iron balance in chronic hemodialysis patients.",
+    "year": 2015,
+    "publication_types": "Clinical Trial, Phase III|Journal Article|Multicenter Study|Randomized Controlled Trial|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 2,
+    "layer": "core",
+    "record_id": "pubmed:37812931",
+    "title": "Efficacy and Safety of Ferric Citrate on Hyperphosphatemia among Chinese Patients with Chronic Kidney Disease Undergoing Hemodialysis: A Phase III Multicenter Randomized Open-Label Active-Drug-Controlled Study.",
+    "year": 2023,
+    "publication_types": "Randomized Controlled Trial|Multicenter Study|Clinical Trial, Phase III|Journal Article|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 3,
+    "layer": "core",
+    "record_id": "pubmed:38810556",
+    "title": "Add-on astragalus in type 2 diabetes and chronic kidney disease: A multi-center, assessor-blind, randomized controlled trial.",
+    "year": 2024,
+    "publication_types": "Journal Article|Randomized Controlled Trial|Multicenter Study"
+   },
+   {
+    "rank": 4,
+    "layer": "topup",
+    "record_id": "pubmed:29126841",
+    "title": "[Exercise as a protective cardiovascular and metabolic factor in end stage renal disease patients].",
+    "year": 2017,
+    "publication_types": "Journal Article|Multicenter Study"
+   },
+   {
+    "rank": 5,
+    "layer": "topup",
+    "record_id": "pubmed:1115441",
+    "title": "Vitamin D intoxication in an anephric child.",
+    "year": 1975,
+    "publication_types": "Journal Article|Research Support, U.S. Gov't, Non-P.H.S."
+   },
+   {
+    "rank": 6,
+    "layer": "topup",
+    "record_id": "pubmed:14747389",
+    "title": "Randomized trial of folic acid for prevention of cardiovascular events in end-stage renal disease.",
+    "year": 2004,
+    "publication_types": "Clinical Trial|Journal Article|Randomized Controlled Trial|Research Support, U.S. Gov't, P.H.S."
+   },
+   {
+    "rank": 7,
+    "layer": "topup",
+    "record_id": "pubmed:24131674",
+    "title": "Efficacy and initial dose determination of paricalcitol for treatment of secondary hyperparathyroidism in Chinese subjects.",
+    "year": 2014,
+    "publication_types": "Journal Article|Multicenter Study|Randomized Controlled Trial|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 8,
+    "layer": "topup",
+    "record_id": "pubmed:16268810",
+    "title": "Milk-alkali syndrome is a major cause of hypercalcaemia among non-end-stage renal disease (non-ESRD) inpatients.",
+    "year": 2005,
+    "publication_types": "Journal Article"
+   },
+   {
+    "rank": 9,
+    "layer": "topup",
+    "record_id": "pubmed:21719716",
+    "title": "Aristolochic acid nephropathy: variation in presentation and prognosis.",
+    "year": 2012,
+    "publication_types": "Journal Article|Research Support, Non-U.S. Gov't"
+   }
+  ]
+ },
+ {
+  "situation": "HRS2_KIDNEY_DISEASE",
+  "axes": [
+   "underlying_condition"
+  ],
+  "core_shown": 9,
+  "extended_shown": 0,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:38810556",
+    "title": "Add-on astragalus in type 2 diabetes and chronic kidney disease: A multi-center, assessor-blind, randomized controlled trial.",
+    "year": 2024,
+    "publication_types": "Journal Article|Randomized Controlled Trial|Multicenter Study"
+   },
+   {
+    "rank": 2,
+    "layer": "core",
+    "record_id": "pubmed:26175145",
+    "title": "Ferric pyrophosphate citrate (Triferic™) administration via the dialysate maintains hemoglobin and iron balance in chronic hemodialysis patients.",
+    "year": 2015,
+    "publication_types": "Clinical Trial, Phase III|Journal Article|Multicenter Study|Randomized Controlled Trial|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 3,
+    "layer": "core",
+    "record_id": "pubmed:40906605",
+    "title": "Vitamin Profile of the Patients with Chronic Kidney Disease Receiving a Novel Total Parenteral Nutrition Formula: Multicenter Randomized Controlled Phase III Trial.",
+    "year": 2026,
+    "publication_types": "Journal Article|Clinical Trial, Phase III|Multicenter Study|Randomized Controlled Trial"
+   },
+   {
+    "rank": 4,
+    "layer": "core",
+    "record_id": "pubmed:42293210",
+    "title": "The role of nutritional vitamin D on microinflammation and nutritional status in maintenance hemodialysis patients: a meta-analysis of randomized controlled trials.",
+    "year": 2026,
+    "publication_types": "Journal Article|Systematic Review"
+   },
+   {
+    "rank": 5,
+    "layer": "core",
+    "record_id": "pubmed:37812931",
+    "title": "Efficacy and Safety of Ferric Citrate on Hyperphosphatemia among Chinese Patients with Chronic Kidney Disease Undergoing Hemodialysis: A Phase III Multicenter Randomized Open-Label Active-Drug-Controlled Study.",
+    "year": 2023,
+    "publication_types": "Randomized Controlled Trial|Multicenter Study|Clinical Trial, Phase III|Journal Article|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 6,
+    "layer": "core",
+    "record_id": "pubmed:40589511",
+    "title": "Chinese herbal medicine (Tangshen Formula) formula treatment of patients with diabetic kidney disease: a systematic review and meta-analysis.",
+    "year": 2025,
+    "publication_types": "Journal Article|Systematic Review|Meta-Analysis"
+   },
+   {
+    "rank": 7,
+    "layer": "core",
+    "record_id": "pubmed:41377821",
+    "title": "Meta-analysis of Niaoduqing Granules for uremic pruritus in Chinese hemodialysis patients: efficacy and safety evidence from RCTs.",
+    "year": 2025,
+    "publication_types": "Journal Article|Systematic Review"
+   },
+   {
+    "rank": 8,
+    "layer": "core",
+    "record_id": "pubmed:42047771",
+    "title": "Effects of turmeric and curcumin in patients on dialysis or using immunosuppressive agents: a systematic review.",
+    "year": 2026,
+    "publication_types": "Systematic Review|Journal Article"
+   },
+   {
+    "rank": 9,
+    "layer": "core",
+    "record_id": "pubmed:42246040",
+    "title": "Efficacy and safety of pharmacological treatments for restless legs syndrome in hemodialysis patients: a systematic review and meta-analysis.",
+    "year": 2026,
+    "publication_types": "Journal Article|Systematic Review"
+   }
+  ]
+ },
+ {
+  "situation": "HRS3_PREGNANCY",
+  "axes": [],
+  "core_shown": 7,
+  "extended_shown": 0,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:35953431",
+    "title": "DHA Supplementation During Pregnancy Enhances Maternal Vagally Mediated Cardiac Autonomic Control in Humans.",
+    "year": 2023,
+    "publication_types": "Randomized Controlled Trial|Journal Article|Research Support, N.I.H., Extramural"
+   },
+   {
+    "rank": 2,
+    "layer": "core",
+    "record_id": "pubmed:40174967",
+    "title": "Nutrition and reproductive potential of women in low- and middle-income countries: a systematic review and meta-analysis.",
+    "year": 2025,
+    "publication_types": "Journal Article|Systematic Review|Meta-Analysis"
+   },
+   {
+    "rank": 3,
+    "layer": "core",
+    "record_id": "pubmed:33842522",
+    "title": "Systematic Literature Review and Meta-Analysis of the Relationship Between Polyunsaturated and Trans Fatty Acids During Pregnancy and Offspring Weight Development.",
+    "year": 2021,
+    "publication_types": "Systematic Review|Journal Article"
+   },
+   {
+    "rank": 4,
+    "layer": "core",
+    "record_id": "pubmed:40869296",
+    "title": "Folic Acid Supplementation and Risk of Gestational Diabetes Mellitus: A Systematic Review of the Literature.",
+    "year": 2025,
+    "publication_types": "Journal Article|Systematic Review"
+   },
+   {
+    "rank": 5,
+    "layer": "core",
+    "record_id": "pubmed:38369772",
+    "title": "Maternal exposure to folate antagonists and susceptibility to congenital heart disease in offspring: A systematic review and meta-analysis.",
+    "year": 2024,
+    "publication_types": "Journal Article|Meta-Analysis|Systematic Review"
+   },
+   {
+    "rank": 6,
+    "layer": "core",
+    "record_id": "pubmed:40636854",
+    "title": "Risk factors of neuroblastoma: a systematic review and meta-analysis.",
+    "year": 2025,
+    "publication_types": "Journal Article|Systematic Review|Meta-Analysis"
+   },
+   {
+    "rank": 7,
+    "layer": "core",
+    "record_id": "pubmed:41519415",
+    "title": "Benefits and risks of herbal medicine use during pregnancy on offspring outcomes: A systematic review and meta-analysis of randomized controlled trials and observational studies.",
+    "year": 2026,
+    "publication_types": "Journal Article|Systematic Review|Meta-Analysis"
+   }
+  ]
+ },
+ {
+  "situation": "HRS3_PREGNANCY",
+  "axes": [
+   "age_group"
+  ],
+  "core_shown": 5,
+  "extended_shown": 2,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:40174967",
+    "title": "Nutrition and reproductive potential of women in low- and middle-income countries: a systematic review and meta-analysis.",
+    "year": 2025,
+    "publication_types": "Journal Article|Systematic Review|Meta-Analysis"
+   },
+   {
+    "rank": 2,
+    "layer": "core",
+    "record_id": "pubmed:40636854",
+    "title": "Risk factors of neuroblastoma: a systematic review and meta-analysis.",
+    "year": 2025,
+    "publication_types": "Journal Article|Systematic Review|Meta-Analysis"
+   },
+   {
+    "rank": 3,
+    "layer": "core",
+    "record_id": "pubmed:33842522",
+    "title": "Systematic Literature Review and Meta-Analysis of the Relationship Between Polyunsaturated and Trans Fatty Acids During Pregnancy and Offspring Weight Development.",
+    "year": 2021,
+    "publication_types": "Systematic Review|Journal Article"
+   },
+   {
+    "rank": 4,
+    "layer": "core",
+    "record_id": "pubmed:41519415",
+    "title": "Benefits and risks of herbal medicine use during pregnancy on offspring outcomes: A systematic review and meta-analysis of randomized controlled trials and observational studies.",
+    "year": 2026,
+    "publication_types": "Journal Article|Systematic Review|Meta-Analysis"
+   },
+   {
+    "rank": 5,
+    "layer": "core",
+    "record_id": "pubmed:38369772",
+    "title": "Maternal exposure to folate antagonists and susceptibility to congenital heart disease in offspring: A systematic review and meta-analysis.",
+    "year": 2024,
+    "publication_types": "Journal Article|Meta-Analysis|Systematic Review"
+   },
+   {
+    "rank": 6,
+    "layer": "topup",
+    "record_id": "pubmed:15229304",
+    "title": "A randomized trial of multivitamin supplements and HIV disease progression and mortality.",
+    "year": 2004,
+    "publication_types": "Clinical Trial|Journal Article|Randomized Controlled Trial|Research Support, U.S. Gov't, P.H.S."
+   },
+   {
+    "rank": 7,
+    "layer": "topup",
+    "record_id": "pubmed:23990401",
+    "title": "Health needs assessment for congenital anomalies in middle-income countries: Examining the case for neural tube defects in Brazil.",
+    "year": 2014,
+    "publication_types": "Journal Article"
+   }
+  ]
+ },
+ {
+  "situation": "HRS3_PREGNANCY",
+  "axes": [
+   "dose_range"
+  ],
+  "core_shown": 4,
+  "extended_shown": 3,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:35953431",
+    "title": "DHA Supplementation During Pregnancy Enhances Maternal Vagally Mediated Cardiac Autonomic Control in Humans.",
+    "year": 2023,
+    "publication_types": "Randomized Controlled Trial|Journal Article|Research Support, N.I.H., Extramural"
+   },
+   {
+    "rank": 2,
+    "layer": "core",
+    "record_id": "pubmed:33842522",
+    "title": "Systematic Literature Review and Meta-Analysis of the Relationship Between Polyunsaturated and Trans Fatty Acids During Pregnancy and Offspring Weight Development.",
+    "year": 2021,
+    "publication_types": "Systematic Review|Journal Article"
+   },
+   {
+    "rank": 3,
+    "layer": "core",
+    "record_id": "pubmed:40869296",
+    "title": "Folic Acid Supplementation and Risk of Gestational Diabetes Mellitus: A Systematic Review of the Literature.",
+    "year": 2025,
+    "publication_types": "Journal Article|Systematic Review"
+   },
+   {
+    "rank": 4,
+    "layer": "core",
+    "record_id": "pubmed:40636854",
+    "title": "Risk factors of neuroblastoma: a systematic review and meta-analysis.",
+    "year": 2025,
+    "publication_types": "Journal Article|Systematic Review|Meta-Analysis"
+   },
+   {
+    "rank": 5,
+    "layer": "topup",
+    "record_id": "pubmed:28779655",
+    "title": "Multi-dose vitamin d supplementation in stable very preterm infants: Prospective randomized trial response to three different vitamin D supplementation doses.",
+    "year": 2017,
+    "publication_types": "Journal Article|Randomized Controlled Trial"
+   },
+   {
+    "rank": 6,
+    "layer": "topup",
+    "record_id": "pubmed:27352871",
+    "title": "Cord Blood Hepcidin: Cross-Sectional Correlates and Associations with Anemia, Malaria, and Mortality in a Tanzanian Birth Cohort Study.",
+    "year": 2016,
+    "publication_types": "Journal Article|Research Support, N.I.H., Intramural|Research Support, Non-U.S. Gov't|Research Support, N.I.H., Extramural"
+   },
+   {
+    "rank": 7,
+    "layer": "topup",
+    "record_id": "pubmed:35513779",
+    "title": "The association of maternal vaginal bleeding and progesterone supplementation in early pregnancy with offspring outcomes: a prospective cohort study.",
+    "year": 2022,
+    "publication_types": "Journal Article|Observational Study"
+   }
+  ]
+ },
+ {
+  "situation": "HRS3_PREGNANCY",
+  "axes": [
+   "sex"
+  ],
+  "core_shown": 3,
+  "extended_shown": 4,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:35953431",
+    "title": "DHA Supplementation During Pregnancy Enhances Maternal Vagally Mediated Cardiac Autonomic Control in Humans.",
+    "year": 2023,
+    "publication_types": "Randomized Controlled Trial|Journal Article|Research Support, N.I.H., Extramural"
+   },
+   {
+    "rank": 2,
+    "layer": "core",
+    "record_id": "pubmed:40174967",
+    "title": "Nutrition and reproductive potential of women in low- and middle-income countries: a systematic review and meta-analysis.",
+    "year": 2025,
+    "publication_types": "Journal Article|Systematic Review|Meta-Analysis"
+   },
+   {
+    "rank": 3,
+    "layer": "core",
+    "record_id": "pubmed:41519415",
+    "title": "Benefits and risks of herbal medicine use during pregnancy on offspring outcomes: A systematic review and meta-analysis of randomized controlled trials and observational studies.",
+    "year": 2026,
+    "publication_types": "Journal Article|Systematic Review|Meta-Analysis"
+   },
+   {
+    "rank": 4,
+    "layer": "topup",
+    "record_id": "pubmed:41523459",
+    "title": "Etiological Factors of Orofacial Clefts in a Hospital-Based Population: A Descriptive Analytical Study.",
+    "year": 2025,
+    "publication_types": "Journal Article"
+   },
+   {
+    "rank": 5,
+    "layer": "topup",
+    "record_id": "pubmed:23639938",
+    "title": "Maternal dietary patterns are associated with risk of neural tube and congenital heart defects.",
+    "year": 2013,
+    "publication_types": "Journal Article|Multicenter Study|Research Support, N.I.H., Extramural|Research Support, U.S. Gov't, P.H.S."
+   },
+   {
+    "rank": 6,
+    "layer": "topup",
+    "record_id": "pubmed:38450391",
+    "title": "Elevated serum malondialdehyde (MDA), insulin, follicle-stimulating hormone (FSH), luteinizing hormone (LH), and thyroid- stimulating hormone (TSH), and reduced antioxidant vitamins in polycystic ovarian syndrome patients.",
+    "year": 2022,
+    "publication_types": "Journal Article"
+   },
+   {
+    "rank": 7,
+    "layer": "topup",
+    "record_id": "pubmed:41053671",
+    "title": "Prevalence and determinants of hypovitaminosis D in early pregnancy: a cross-sectional study among first-trimester pregnant women.",
+    "year": 2025,
+    "publication_types": "Journal Article"
+   }
+  ]
+ },
+ {
+  "situation": "HRS3_PREGNANCY",
+  "axes": [
+   "underlying_condition"
+  ],
+  "core_shown": 6,
+  "extended_shown": 1,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:35953431",
+    "title": "DHA Supplementation During Pregnancy Enhances Maternal Vagally Mediated Cardiac Autonomic Control in Humans.",
+    "year": 2023,
+    "publication_types": "Randomized Controlled Trial|Journal Article|Research Support, N.I.H., Extramural"
+   },
+   {
+    "rank": 2,
+    "layer": "core",
+    "record_id": "pubmed:40636854",
+    "title": "Risk factors of neuroblastoma: a systematic review and meta-analysis.",
+    "year": 2025,
+    "publication_types": "Journal Article|Systematic Review|Meta-Analysis"
+   },
+   {
+    "rank": 3,
+    "layer": "core",
+    "record_id": "pubmed:33842522",
+    "title": "Systematic Literature Review and Meta-Analysis of the Relationship Between Polyunsaturated and Trans Fatty Acids During Pregnancy and Offspring Weight Development.",
+    "year": 2021,
+    "publication_types": "Systematic Review|Journal Article"
+   },
+   {
+    "rank": 4,
+    "layer": "core",
+    "record_id": "pubmed:40869296",
+    "title": "Folic Acid Supplementation and Risk of Gestational Diabetes Mellitus: A Systematic Review of the Literature.",
+    "year": 2025,
+    "publication_types": "Journal Article|Systematic Review"
+   },
+   {
+    "rank": 5,
+    "layer": "core",
+    "record_id": "pubmed:41519415",
+    "title": "Benefits and risks of herbal medicine use during pregnancy on offspring outcomes: A systematic review and meta-analysis of randomized controlled trials and observational studies.",
+    "year": 2026,
+    "publication_types": "Journal Article|Systematic Review|Meta-Analysis"
+   },
+   {
+    "rank": 6,
+    "layer": "core",
+    "record_id": "pubmed:40174967",
+    "title": "Nutrition and reproductive potential of women in low- and middle-income countries: a systematic review and meta-analysis.",
+    "year": 2025,
+    "publication_types": "Journal Article|Systematic Review|Meta-Analysis"
+   },
+   {
+    "rank": 7,
+    "layer": "topup",
+    "record_id": "pubmed:31855827",
+    "title": "Anti-epileptic drug and folic acid usage during pregnancy, seizure and malformation outcomes: Changes over two decades in the Kerala Registry of Epilepsy and Pregnancy.",
+    "year": 2020,
+    "publication_types": "Journal Article|Research Support, Non-U.S. Gov't"
+   }
+  ]
+ },
+ {
+  "situation": "HRS4_LIVER_DISEASE",
+  "axes": [],
+  "core_shown": 13,
+  "extended_shown": 0,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:30113661",
+    "title": "Prebiotic and probiotic treatment of nonalcoholic fatty liver disease: a systematic review and meta-analysis.",
+    "year": 2018,
+    "publication_types": "Journal Article|Meta-Analysis|Research Support, U.S. Gov't, Non-P.H.S.|Systematic Review"
+   },
+   {
+    "rank": 2,
+    "layer": "core",
+    "record_id": "pubmed:37550264",
+    "title": "The impact of gut microbiome-targeted therapy on liver enzymes in patients with nonalcoholic fatty liver disease: an umbrella meta-analysis.",
+    "year": 2024,
+    "publication_types": "Journal Article|Meta-Analysis|Research Support, Non-U.S. Gov't|Systematic Review"
+   },
+   {
+    "rank": 3,
+    "layer": "core",
+    "record_id": "pubmed:36866059",
+    "title": "Functional foods and dietary supplements in the management of non-alcoholic fatty liver disease: A systematic review and meta-analysis.",
+    "year": 2023,
+    "publication_types": "Systematic Review|Journal Article"
+   },
+   {
+    "rank": 4,
+    "layer": "core",
+    "record_id": "pubmed:41852476",
+    "title": "Traditional Chinese medicine for type 2 diabetes with metabolic-associated steatotic liver disease: unified effects and design thresholds.",
+    "year": 2026,
+    "publication_types": "Journal Article|Systematic Review"
+   },
+   {
+    "rank": 5,
+    "layer": "core",
+    "record_id": "pubmed:39110237",
+    "title": "Evaluation of oral silymarin formulation efficacy in prevention of doxorubicin induced hepatotoxicity in patients with non-metastatic breast cancer.",
+    "year": 2025,
+    "publication_types": "Journal Article|Randomized Controlled Trial"
+   },
+   {
+    "rank": 6,
+    "layer": "core",
+    "record_id": "pubmed:42381151",
+    "title": "Traditional Chinese Medicines for Metabolic Dysfunction-Associated Steatotic Liver Disease: A Mixed-Method Systematic Review.",
+    "year": 2026,
+    "publication_types": "Journal Article|Systematic Review|Meta-Analysis"
+   },
+   {
+    "rank": 7,
+    "layer": "core",
+    "record_id": "pubmed:34864457",
+    "title": "The effects of different parenteral nutrition lipid formulations on clinical and laboratory endpoints in patients receiving home parenteral nutrition: A systematic review.",
+    "year": 2022,
+    "publication_types": "Journal Article|Systematic Review"
+   },
+   {
+    "rank": 8,
+    "layer": "core",
+    "record_id": "pubmed:38232906",
+    "title": "Curcumin effects on glycaemic indices, lipid profile, blood pressure, inflammatory markers and anthropometric measurements of non-alcoholic fatty liver disease patients: A systematic review and meta-analysis of randomized clinical trials.",
+    "year": 2024,
+    "publication_types": "Journal Article|Meta-Analysis|Systematic Review"
+   },
+   {
+    "rank": 9,
+    "layer": "core",
+    "record_id": "pubmed:34280304",
+    "title": "Nutritional supplementation for nonalcohol-related fatty liver disease: a network meta-analysis.",
+    "year": 2021,
+    "publication_types": "Journal Article|Research Support, Non-U.S. Gov't|Systematic Review|Network Meta-Analysis"
+   },
+   {
+    "rank": 10,
+    "layer": "core",
+    "record_id": "pubmed:42038464",
+    "title": "The efficacy of gut microbiota-regulating drugs on metabolic dysfunction-associated steatotic liver disease: a systematic review and network meta-analysis.",
+    "year": 2026,
+    "publication_types": "Journal Article|Systematic Review|Network Meta-Analysis"
+   },
+   {
+    "rank": 11,
+    "layer": "core",
+    "record_id": "pubmed:41517800",
+    "title": "The effectiveness and safety of Yi Guan Jian decoction in the treatment of primary liver cancer: A systematic review and meta-analysis of randomized controlled trials.",
+    "year": 2026,
+    "publication_types": "Journal Article|Systematic Review|Meta-Analysis"
+   },
+   {
+    "rank": 12,
+    "layer": "core",
+    "record_id": "pubmed:31124558",
+    "title": "Gut microbiome-targeted therapies in nonalcoholic fatty liver disease: a systematic review, meta-analysis, and meta-regression.",
+    "year": 2019,
+    "publication_types": "Journal Article|Meta-Analysis|Research Support, N.I.H., Extramural|Systematic Review"
+   },
+   {
+    "rank": 13,
+    "layer": "core",
+    "record_id": "pubmed:33933848",
+    "title": "Significant immunomodulatory and hepatoprotective impacts of Silymarin in MS patients: A double-blind placebo-controlled clinicaltrial.",
+    "year": 2021,
+    "publication_types": "Clinical Trial, Phase III|Journal Article|Randomized Controlled Trial"
+   }
+  ]
+ },
+ {
+  "situation": "HRS4_LIVER_DISEASE",
+  "axes": [
+   "age_group"
+  ],
+  "core_shown": 9,
+  "extended_shown": 4,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:41852476",
+    "title": "Traditional Chinese medicine for type 2 diabetes with metabolic-associated steatotic liver disease: unified effects and design thresholds.",
+    "year": 2026,
+    "publication_types": "Journal Article|Systematic Review"
+   },
+   {
+    "rank": 2,
+    "layer": "core",
+    "record_id": "pubmed:37550264",
+    "title": "The impact of gut microbiome-targeted therapy on liver enzymes in patients with nonalcoholic fatty liver disease: an umbrella meta-analysis.",
+    "year": 2024,
+    "publication_types": "Journal Article|Meta-Analysis|Research Support, Non-U.S. Gov't|Systematic Review"
+   },
+   {
+    "rank": 3,
+    "layer": "core",
+    "record_id": "pubmed:42038464",
+    "title": "The efficacy of gut microbiota-regulating drugs on metabolic dysfunction-associated steatotic liver disease: a systematic review and network meta-analysis.",
+    "year": 2026,
+    "publication_types": "Journal Article|Systematic Review|Network Meta-Analysis"
+   },
+   {
+    "rank": 4,
+    "layer": "core",
+    "record_id": "pubmed:36866059",
+    "title": "Functional foods and dietary supplements in the management of non-alcoholic fatty liver disease: A systematic review and meta-analysis.",
+    "year": 2023,
+    "publication_types": "Systematic Review|Journal Article"
+   },
+   {
+    "rank": 5,
+    "layer": "core",
+    "record_id": "pubmed:34280304",
+    "title": "Nutritional supplementation for nonalcohol-related fatty liver disease: a network meta-analysis.",
+    "year": 2021,
+    "publication_types": "Journal Article|Research Support, Non-U.S. Gov't|Systematic Review|Network Meta-Analysis"
+   },
+   {
+    "rank": 6,
+    "layer": "core",
+    "record_id": "pubmed:42381151",
+    "title": "Traditional Chinese Medicines for Metabolic Dysfunction-Associated Steatotic Liver Disease: A Mixed-Method Systematic Review.",
+    "year": 2026,
+    "publication_types": "Journal Article|Systematic Review|Meta-Analysis"
+   },
+   {
+    "rank": 7,
+    "layer": "core",
+    "record_id": "pubmed:34864457",
+    "title": "The effects of different parenteral nutrition lipid formulations on clinical and laboratory endpoints in patients receiving home parenteral nutrition: A systematic review.",
+    "year": 2022,
+    "publication_types": "Journal Article|Systematic Review"
+   },
+   {
+    "rank": 8,
+    "layer": "core",
+    "record_id": "pubmed:38232906",
+    "title": "Curcumin effects on glycaemic indices, lipid profile, blood pressure, inflammatory markers and anthropometric measurements of non-alcoholic fatty liver disease patients: A systematic review and meta-analysis of randomized clinical trials.",
+    "year": 2024,
+    "publication_types": "Journal Article|Meta-Analysis|Systematic Review"
+   },
+   {
+    "rank": 9,
+    "layer": "core",
+    "record_id": "pubmed:33933848",
+    "title": "Significant immunomodulatory and hepatoprotective impacts of Silymarin in MS patients: A double-blind placebo-controlled clinicaltrial.",
+    "year": 2021,
+    "publication_types": "Clinical Trial, Phase III|Journal Article|Randomized Controlled Trial"
+   },
+   {
+    "rank": 10,
+    "layer": "topup",
+    "record_id": "pubmed:15339411",
+    "title": "[Clinical observation on treatment of nonalcoholic fatty liver disease complicating hyperuricemia by Zhifang I Decoction].",
+    "year": 2004,
+    "publication_types": "Clinical Trial|Comparative Study|Journal Article|Randomized Controlled Trial"
+   },
+   {
+    "rank": 11,
+    "layer": "topup",
+    "record_id": "pubmed:26560492",
+    "title": "A Case of Hepatotoxicity Induced by Adulterated \"Tiger King\", a Chinese Herbal Medicine Containing Sildenafil.",
+    "year": 2016,
+    "publication_types": "Case Reports|Journal Article"
+   },
+   {
+    "rank": 12,
+    "layer": "topup",
+    "record_id": "pubmed:37373124",
+    "title": "Sarcopenic Obesity in People with Alcoholic Use Disorder: Relation with Inflammation, Vascular Risk Factors and Serum Vitamin D Levels.",
+    "year": 2023,
+    "publication_types": "Journal Article"
+   },
+   {
+    "rank": 13,
+    "layer": "topup",
+    "record_id": "pubmed:33925340",
+    "title": "The Health-Promoting Properties and Clinical Applications of Rice Bran Arabinoxylan Modified with Shiitake Mushroom Enzyme-A Narrative Review.",
+    "year": 2021,
+    "publication_types": "Journal Article|Review"
+   }
+  ]
+ },
+ {
+  "situation": "HRS4_LIVER_DISEASE",
+  "axes": [
+   "dose_range"
+  ],
+  "core_shown": 6,
+  "extended_shown": 7,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:30113661",
+    "title": "Prebiotic and probiotic treatment of nonalcoholic fatty liver disease: a systematic review and meta-analysis.",
+    "year": 2018,
+    "publication_types": "Journal Article|Meta-Analysis|Research Support, U.S. Gov't, Non-P.H.S.|Systematic Review"
+   },
+   {
+    "rank": 2,
+    "layer": "core",
+    "record_id": "pubmed:37550264",
+    "title": "The impact of gut microbiome-targeted therapy on liver enzymes in patients with nonalcoholic fatty liver disease: an umbrella meta-analysis.",
+    "year": 2024,
+    "publication_types": "Journal Article|Meta-Analysis|Research Support, Non-U.S. Gov't|Systematic Review"
+   },
+   {
+    "rank": 3,
+    "layer": "core",
+    "record_id": "pubmed:36866059",
+    "title": "Functional foods and dietary supplements in the management of non-alcoholic fatty liver disease: A systematic review and meta-analysis.",
+    "year": 2023,
+    "publication_types": "Systematic Review|Journal Article"
+   },
+   {
+    "rank": 4,
+    "layer": "core",
+    "record_id": "pubmed:39110237",
+    "title": "Evaluation of oral silymarin formulation efficacy in prevention of doxorubicin induced hepatotoxicity in patients with non-metastatic breast cancer.",
+    "year": 2025,
+    "publication_types": "Journal Article|Randomized Controlled Trial"
+   },
+   {
+    "rank": 5,
+    "layer": "core",
+    "record_id": "pubmed:38232906",
+    "title": "Curcumin effects on glycaemic indices, lipid profile, blood pressure, inflammatory markers and anthropometric measurements of non-alcoholic fatty liver disease patients: A systematic review and meta-analysis of randomized clinical trials.",
+    "year": 2024,
+    "publication_types": "Journal Article|Meta-Analysis|Systematic Review"
+   },
+   {
+    "rank": 6,
+    "layer": "core",
+    "record_id": "pubmed:31124558",
+    "title": "Gut microbiome-targeted therapies in nonalcoholic fatty liver disease: a systematic review, meta-analysis, and meta-regression.",
+    "year": 2019,
+    "publication_types": "Journal Article|Meta-Analysis|Research Support, N.I.H., Extramural|Systematic Review"
+   },
+   {
+    "rank": 7,
+    "layer": "topup",
+    "record_id": "pubmed:10809454",
+    "title": "The effect of nutritional supplementation on survival in seriously ill hospitalized adults: an evaluation of the SUPPORT data. Study to Understand Prognoses and Preferences for Outcomes and Risks of Treatments.",
+    "year": 2000,
+    "publication_types": "Clinical Trial|Journal Article|Multicenter Study"
+   },
+   {
+    "rank": 8,
+    "layer": "topup",
+    "record_id": "pubmed:22085872",
+    "title": "Effect of folic acid intervention on ALT concentration in hypertensives without known hepatic disease: a randomized, double-blind, controlled trial.",
+    "year": 2012,
+    "publication_types": "Journal Article|Randomized Controlled Trial|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 9,
+    "layer": "topup",
+    "record_id": "pubmed:20301501",
+    "title": "Autosomal Recessive Polycystic Kidney Disease – PKHD1",
+    "year": 2001,
+    "publication_types": "Review"
+   },
+   {
+    "rank": 10,
+    "layer": "topup",
+    "record_id": "pubmed:21484122",
+    "title": "Serum retinol binding protein 4 and clinical outcome in postoperative biliary atresia.",
+    "year": 2011,
+    "publication_types": "Journal Article"
+   },
+   {
+    "rank": 11,
+    "layer": "topup",
+    "record_id": "pubmed:39620369",
+    "title": "Impaired postprandial GLP-2 response enhances endotoxemia, systemic inflammation, and kidney injury in metabolic dysfunction-associated steatohepatitis (MASH): effect of phospholipid curcumin meriva.",
+    "year": 2024,
+    "publication_types": "Journal Article|Randomized Controlled Trial|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 12,
+    "layer": "topup",
+    "record_id": "pubmed:29947156",
+    "title": "Green tea as a safe alternative approach for nonalcoholic fatty liver treatment: A systematic review and meta-analysis of clinical trials.",
+    "year": 2018,
+    "publication_types": "Journal Article|Meta-Analysis|Systematic Review"
+   },
+   {
+    "rank": 13,
+    "layer": "topup",
+    "record_id": "pubmed:25825852",
+    "title": "Byler disease: early natural history.",
+    "year": 2015,
+    "publication_types": "Journal Article|Research Support, N.I.H., Extramural|Research Support, Non-U.S. Gov't"
+   }
+  ]
+ },
+ {
+  "situation": "HRS4_LIVER_DISEASE",
+  "axes": [
+   "sex"
+  ],
+  "core_shown": 1,
+  "extended_shown": 12,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:42381151",
+    "title": "Traditional Chinese Medicines for Metabolic Dysfunction-Associated Steatotic Liver Disease: A Mixed-Method Systematic Review.",
+    "year": 2026,
+    "publication_types": "Journal Article|Systematic Review|Meta-Analysis"
+   },
+   {
+    "rank": 2,
+    "layer": "topup",
+    "record_id": "pubmed:12016550",
+    "title": "Herbal hepatotoxicity.",
+    "year": 2002,
+    "publication_types": "Journal Article|Review"
+   },
+   {
+    "rank": 3,
+    "layer": "topup",
+    "record_id": "pubmed:35785498",
+    "title": "Effects of licorice root supplementation on liver enzymes, hepatic steatosis, metabolic and oxidative stress parameters in women with nonalcoholic fatty liver disease: A randomized double-blind clinical trial.",
+    "year": 2022,
+    "publication_types": "Journal Article|Randomized Controlled Trial"
+   },
+   {
+    "rank": 4,
+    "layer": "topup",
+    "record_id": "pubmed:29747301",
+    "title": "[The 463rd case: rhabdomyolysis, acute kidney failure and acute hepatic failure].",
+    "year": 2018,
+    "publication_types": "Case Reports|Journal Article"
+   },
+   {
+    "rank": 5,
+    "layer": "topup",
+    "record_id": "pubmed:37561767",
+    "title": "Traditional medicine consumption in postpartum for HBV-infected women enrolled in the ANRS 12345 TA PROHM study in Cambodia.",
+    "year": 2023,
+    "publication_types": "Journal Article|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 6,
+    "layer": "topup",
+    "record_id": "pubmed:42001870",
+    "title": "Risk Factors Associated with Mortality for Nosocomial and Community-Acquired Spontaneous Bacterial Peritonitis in Patients with Liver Cirrhosis.",
+    "year": 2026,
+    "publication_types": "Journal Article"
+   },
+   {
+    "rank": 7,
+    "layer": "topup",
+    "record_id": "pubmed:9611291",
+    "title": "Plasma levels of transthyretin and retinol-binding protein in Child-A cirrhotic patients in relation to protein-calorie status and plasma amino acids, zinc, vitamin A and plasma thyroid hormones.",
+    "year": 1997,
+    "publication_types": "Journal Article"
+   },
+   {
+    "rank": 8,
+    "layer": "topup",
+    "record_id": "pubmed:7293954",
+    "title": "Evaluation of the relative dose response test for vitamin A nutriture in cirrhotics.",
+    "year": 1981,
+    "publication_types": "Journal Article|Research Support, U.S. Gov't, Non-P.H.S."
+   },
+   {
+    "rank": 9,
+    "layer": "topup",
+    "record_id": "pubmed:30147968",
+    "title": "Acute Hepatitis due to Garcinia Cambogia Extract, an Herbal Weight Loss Supplement.",
+    "year": 2018,
+    "publication_types": "Case Reports|Journal Article"
+   },
+   {
+    "rank": 10,
+    "layer": "topup",
+    "record_id": "pubmed:2320997",
+    "title": "Study on the relation of Se, Mn, Fe, Sr, Pb, Zn, Cu, and Ca to liver cancer mortality from analysis of scalp hair.",
+    "year": 1990,
+    "publication_types": "Journal Article"
+   },
+   {
+    "rank": 11,
+    "layer": "topup",
+    "record_id": "pubmed:18830789",
+    "title": "Retinol and alpha-tocopherol in morbid obesity and nonalcoholic fatty liver disease.",
+    "year": 2010,
+    "publication_types": "Journal Article|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 12,
+    "layer": "topup",
+    "record_id": "pubmed:34692725",
+    "title": "PNPLA3, TM6SF2, and MBOAT7 Influence on Nutraceutical Therapy Response for Non-alcoholic Fatty Liver Disease: A Randomized Controlled Trial.",
+    "year": 2021,
+    "publication_types": "Journal Article"
+   },
+   {
+    "rank": 13,
+    "layer": "topup",
+    "record_id": "pubmed:25441595",
+    "title": "Sarcopenia impairs prognosis of patients with liver cirrhosis.",
+    "year": 2015,
+    "publication_types": "Journal Article|Research Support, Non-U.S. Gov't"
+   }
+  ]
+ },
+ {
+  "situation": "HRS4_LIVER_DISEASE",
+  "axes": [
+   "underlying_condition"
+  ],
+  "core_shown": 12,
+  "extended_shown": 1,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:30113661",
+    "title": "Prebiotic and probiotic treatment of nonalcoholic fatty liver disease: a systematic review and meta-analysis.",
+    "year": 2018,
+    "publication_types": "Journal Article|Meta-Analysis|Research Support, U.S. Gov't, Non-P.H.S.|Systematic Review"
+   },
+   {
+    "rank": 2,
+    "layer": "core",
+    "record_id": "pubmed:34280304",
+    "title": "Nutritional supplementation for nonalcohol-related fatty liver disease: a network meta-analysis.",
+    "year": 2021,
+    "publication_types": "Journal Article|Research Support, Non-U.S. Gov't|Systematic Review|Network Meta-Analysis"
+   },
+   {
+    "rank": 3,
+    "layer": "core",
+    "record_id": "pubmed:31124558",
+    "title": "Gut microbiome-targeted therapies in nonalcoholic fatty liver disease: a systematic review, meta-analysis, and meta-regression.",
+    "year": 2019,
+    "publication_types": "Journal Article|Meta-Analysis|Research Support, N.I.H., Extramural|Systematic Review"
+   },
+   {
+    "rank": 4,
+    "layer": "core",
+    "record_id": "pubmed:36866059",
+    "title": "Functional foods and dietary supplements in the management of non-alcoholic fatty liver disease: A systematic review and meta-analysis.",
+    "year": 2023,
+    "publication_types": "Systematic Review|Journal Article"
+   },
+   {
+    "rank": 5,
+    "layer": "core",
+    "record_id": "pubmed:39110237",
+    "title": "Evaluation of oral silymarin formulation efficacy in prevention of doxorubicin induced hepatotoxicity in patients with non-metastatic breast cancer.",
+    "year": 2025,
+    "publication_types": "Journal Article|Randomized Controlled Trial"
+   },
+   {
+    "rank": 6,
+    "layer": "core",
+    "record_id": "pubmed:34864457",
+    "title": "The effects of different parenteral nutrition lipid formulations on clinical and laboratory endpoints in patients receiving home parenteral nutrition: A systematic review.",
+    "year": 2022,
+    "publication_types": "Journal Article|Systematic Review"
+   },
+   {
+    "rank": 7,
+    "layer": "core",
+    "record_id": "pubmed:41852476",
+    "title": "Traditional Chinese medicine for type 2 diabetes with metabolic-associated steatotic liver disease: unified effects and design thresholds.",
+    "year": 2026,
+    "publication_types": "Journal Article|Systematic Review"
+   },
+   {
+    "rank": 8,
+    "layer": "core",
+    "record_id": "pubmed:42381151",
+    "title": "Traditional Chinese Medicines for Metabolic Dysfunction-Associated Steatotic Liver Disease: A Mixed-Method Systematic Review.",
+    "year": 2026,
+    "publication_types": "Journal Article|Systematic Review|Meta-Analysis"
+   },
+   {
+    "rank": 9,
+    "layer": "core",
+    "record_id": "pubmed:38232906",
+    "title": "Curcumin effects on glycaemic indices, lipid profile, blood pressure, inflammatory markers and anthropometric measurements of non-alcoholic fatty liver disease patients: A systematic review and meta-analysis of randomized clinical trials.",
+    "year": 2024,
+    "publication_types": "Journal Article|Meta-Analysis|Systematic Review"
+   },
+   {
+    "rank": 10,
+    "layer": "core",
+    "record_id": "pubmed:42038464",
+    "title": "The efficacy of gut microbiota-regulating drugs on metabolic dysfunction-associated steatotic liver disease: a systematic review and network meta-analysis.",
+    "year": 2026,
+    "publication_types": "Journal Article|Systematic Review|Network Meta-Analysis"
+   },
+   {
+    "rank": 11,
+    "layer": "core",
+    "record_id": "pubmed:41517800",
+    "title": "The effectiveness and safety of Yi Guan Jian decoction in the treatment of primary liver cancer: A systematic review and meta-analysis of randomized controlled trials.",
+    "year": 2026,
+    "publication_types": "Journal Article|Systematic Review|Meta-Analysis"
+   },
+   {
+    "rank": 12,
+    "layer": "core",
+    "record_id": "pubmed:37550264",
+    "title": "The impact of gut microbiome-targeted therapy on liver enzymes in patients with nonalcoholic fatty liver disease: an umbrella meta-analysis.",
+    "year": 2024,
+    "publication_types": "Journal Article|Meta-Analysis|Research Support, Non-U.S. Gov't|Systematic Review"
+   },
+   {
+    "rank": 13,
+    "layer": "topup",
+    "record_id": "pubmed:22091246",
+    "title": "Effects of silybum marianum on patients with chronic hepatitis C.",
+    "year": 2011,
+    "publication_types": "Journal Article"
+   }
+  ]
+ },
+ {
+  "situation": "HRS5_ANTICOAGULATION",
+  "axes": [],
+  "core_shown": 4,
+  "extended_shown": 0,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:12577350",
+    "title": "[Clinical observation on effect of intervention therapy with anticoagulant in treating patients of hypertension complicated with acute ischemic cerebrovascular disease].",
+    "year": 2001,
+    "publication_types": "English Abstract|Journal Article"
+   },
+   {
+    "rank": 2,
+    "layer": "core",
+    "record_id": "pubmed:24760401",
+    "title": "Phase 1 study of the effect of icosapent ethyl on warfarin pharmacokinetic and anticoagulation parameters.",
+    "year": 2014,
+    "publication_types": "Clinical Trial, Phase I|Journal Article|Randomized Controlled Trial|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 3,
+    "layer": "core",
+    "record_id": "pubmed:37093741",
+    "title": "Impact of Vitamin K Administration on Elevated International Normalized Ratio in Chronic Liver Disease.",
+    "year": 2023,
+    "publication_types": "Journal Article"
+   },
+   {
+    "rank": 4,
+    "layer": "core",
+    "record_id": "pubmed:18334143",
+    "title": "[Efficacy of hirudin in treating immunoglobulin A nephropathy with hematuria: a randomized controlled trial].",
+    "year": 2008,
+    "publication_types": "English Abstract|Journal Article|Randomized Controlled Trial"
+   }
+  ]
+ },
+ {
+  "situation": "HRS5_ANTICOAGULATION",
+  "axes": [
+   "age_group"
+  ],
+  "core_shown": 2,
+  "extended_shown": 2,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:24760401",
+    "title": "Phase 1 study of the effect of icosapent ethyl on warfarin pharmacokinetic and anticoagulation parameters.",
+    "year": 2014,
+    "publication_types": "Clinical Trial, Phase I|Journal Article|Randomized Controlled Trial|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 2,
+    "layer": "core",
+    "record_id": "pubmed:37093741",
+    "title": "Impact of Vitamin K Administration on Elevated International Normalized Ratio in Chronic Liver Disease.",
+    "year": 2023,
+    "publication_types": "Journal Article"
+   },
+   {
+    "rank": 3,
+    "layer": "topup",
+    "record_id": "pubmed:21309657",
+    "title": "Apixaban in patients with atrial fibrillation.",
+    "year": 2011,
+    "publication_types": "Comparative Study|Journal Article|Multicenter Study|Randomized Controlled Trial|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 4,
+    "layer": "topup",
+    "record_id": "pubmed:20170841",
+    "title": "Antithrombotic drugs for patients with ischaemic stroke and transient ischaemic attack to prevent recurrent major vascular events.",
+    "year": 2010,
+    "publication_types": "Journal Article|Research Support, Non-U.S. Gov't|Review"
+   }
+  ]
+ },
+ {
+  "situation": "HRS5_ANTICOAGULATION",
+  "axes": [
+   "concomitant_medication"
+  ],
+  "core_shown": 2,
+  "extended_shown": 2,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:12577350",
+    "title": "[Clinical observation on effect of intervention therapy with anticoagulant in treating patients of hypertension complicated with acute ischemic cerebrovascular disease].",
+    "year": 2001,
+    "publication_types": "English Abstract|Journal Article"
+   },
+   {
+    "rank": 2,
+    "layer": "core",
+    "record_id": "pubmed:24760401",
+    "title": "Phase 1 study of the effect of icosapent ethyl on warfarin pharmacokinetic and anticoagulation parameters.",
+    "year": 2014,
+    "publication_types": "Clinical Trial, Phase I|Journal Article|Randomized Controlled Trial|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 3,
+    "layer": "topup",
+    "record_id": "pubmed:28326589",
+    "title": "Risk of myocardial infarction in patients with atrial fibrillation using vitamin K antagonists, aspirin or direct acting oral anticoagulants.",
+    "year": 2017,
+    "publication_types": "Comparative Study|Journal Article|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 4,
+    "layer": "topup",
+    "record_id": "pubmed:40234924",
+    "title": "Factors influencing nurses' knowledge and competence in warfarin-drug and nutrient interactions and patient counseling practices.",
+    "year": 2025,
+    "publication_types": "Journal Article"
+   }
+  ]
+ },
+ {
+  "situation": "HRS5_ANTICOAGULATION",
+  "axes": [
+   "dose_range"
+  ],
+  "core_shown": 2,
+  "extended_shown": 2,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:24760401",
+    "title": "Phase 1 study of the effect of icosapent ethyl on warfarin pharmacokinetic and anticoagulation parameters.",
+    "year": 2014,
+    "publication_types": "Clinical Trial, Phase I|Journal Article|Randomized Controlled Trial|Research Support, Non-U.S. Gov't"
+   },
+   {
+    "rank": 2,
+    "layer": "core",
+    "record_id": "pubmed:37093741",
+    "title": "Impact of Vitamin K Administration on Elevated International Normalized Ratio in Chronic Liver Disease.",
+    "year": 2023,
+    "publication_types": "Journal Article"
+   },
+   {
+    "rank": 3,
+    "layer": "topup",
+    "record_id": "pubmed:17111199",
+    "title": "Genotypes of the cytochrome p450 isoform, CYP2C9, and the vitamin K epoxide reductase complex subunit 1 conjointly determine stable warfarin dose: a prospective study.",
+    "year": 2006,
+    "publication_types": "Journal Article"
+   },
+   {
+    "rank": 4,
+    "layer": "topup",
+    "record_id": "pubmed:15792675",
+    "title": "Optimal dose of prothrombin complex concentrate for acute reversal of oral anticoagulation.",
+    "year": 2005,
+    "publication_types": "Journal Article|Research Support, Non-U.S. Gov't"
+   }
+  ]
+ },
+ {
+  "situation": "HRS5_ANTICOAGULATION",
+  "axes": [
+   "underlying_condition"
+  ],
+  "core_shown": 2,
+  "extended_shown": 2,
+  "results": [
+   {
+    "rank": 1,
+    "layer": "core",
+    "record_id": "pubmed:12577350",
+    "title": "[Clinical observation on effect of intervention therapy with anticoagulant in treating patients of hypertension complicated with acute ischemic cerebrovascular disease].",
+    "year": 2001,
+    "publication_types": "English Abstract|Journal Article"
+   },
+   {
+    "rank": 2,
+    "layer": "core",
+    "record_id": "pubmed:37093741",
+    "title": "Impact of Vitamin K Administration on Elevated International Normalized Ratio in Chronic Liver Disease.",
+    "year": 2023,
+    "publication_types": "Journal Article"
+   },
+   {
+    "rank": 3,
+    "layer": "topup",
+    "record_id": "pubmed:15027590",
+    "title": "[Prevention of deep vein thrombosis and preeclampsia. Therapeutic possibilities].",
+    "year": 2003,
+    "publication_types": "English Abstract|Journal Article|Review"
+   },
+   {
+    "rank": 4,
+    "layer": "topup",
+    "record_id": "pubmed:1712988",
+    "title": "Pregnancy associated with lupus anticoagulant and heparin induced thrombocytopenia: management with a low molecular weight heparinoid.",
+    "year": 1991,
+    "publication_types": "Case Reports|Journal Article"
+   }
+  ]
+ }
+]
