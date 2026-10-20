@@ -10,6 +10,8 @@ export type PersonalizedSafetyExample = {
    * 예시 한 번으로 이 화면이 어떻게 도는지 다 보인다.
    */
   sentence: string;
+  /** 검색칸 아래 예시 줄에 보이는 짧은 이름. */
+  short: string;
   title: string;
   summary: string;
   input: {
@@ -23,6 +25,7 @@ export type PersonalizedSafetyExample = {
 export const publicInputExamples: PersonalizedSafetyExample[] = [
   {
     id: "kidney-dose-metadata",
+    short: "신질환 하루 용량",
     sentence: "신질환 환자에게 보충제를 하루 얼마나 썼는지 다룬 연구가 있는지 알고 싶습니다",
     title: "신질환 + 용량",
     summary: "이 상황의 문헌에서 용량을 언급한 후보를 찾습니다.",
@@ -33,6 +36,7 @@ export const publicInputExamples: PersonalizedSafetyExample[] = [
   },
   {
     id: "perioperative-core",
+    short: "수술 전 복용 보충제",
     sentence: "다음 달 수술을 앞둔 사람이 먹던 보충제를 다룬 연구를 보고 싶습니다",
     title: "수술 전후, 조건 없음",
     summary: "조건을 걸지 않고 검토한 핵심 문헌을 봅니다.",
@@ -43,6 +47,7 @@ export const publicInputExamples: PersonalizedSafetyExample[] = [
   },
   {
     id: "pregnancy-dose-metadata",
+    short: "임신 중 철분제",
     sentence: "임신 중 철분제 용량을 다룬 연구가 있는지 알고 싶습니다",
     title: "임신 + 용량",
     summary: "이 상황의 문헌에서 용량을 언급한 후보를 찾습니다.",
@@ -53,6 +58,7 @@ export const publicInputExamples: PersonalizedSafetyExample[] = [
   },
   {
     id: "liver-age-metadata",
+    short: "간질환 연령대별",
     sentence: "간 수치가 높은 사람을 연령대로 나누어 본 보충제 연구가 있는지 궁금합니다",
     title: "간질환 + 연령",
     summary: "이 상황의 문헌에서 연령을 언급한 후보를 찾습니다.",
@@ -63,6 +69,7 @@ export const publicInputExamples: PersonalizedSafetyExample[] = [
   },
   {
     id: "anticoagulation-medication-metadata",
+    short: "와파린 병용",
     sentence: "와파린을 먹는 사람이 다른 약과 함께 보충제를 쓴 연구를 보고 싶습니다",
     title: "항응고제 + 병용 약물",
     summary: "이 상황의 문헌에서 병용 약물을 언급한 후보를 찾습니다.",

@@ -300,18 +300,15 @@ describe("personalized safety UI contract", () => {
     );
   });
 
-  it("shows a short result summary before the full paper list", () => {
-    // 첫 화면에 핵심 문헌 15편을 전부 펼치면 요약과 상세 목록이 중복된다.
-    // 문헌 수가 아니라 문장 수를 먼저 평탄화한 뒤 정확히 세 문장만 펼친다.
-    expect(componentSource).toContain("const SUMMARY_SENTENCE_LIMIT = 3");
-    expect(componentSource).toMatch(
-      /findingSentences\s*\.slice\(0, SUMMARY_SENTENCE_LIMIT\)/,
-    );
+  it("puts one explanation before the paper list and folds the extracted sentences", () => {
+    // 해설, 결과 문장 요약, 문헌별 번역이 모두 펼쳐져 있으면 같은 근거를 세 번 읽게 된다.
+    // 첫 화면은 해설 하나와 문헌 목록이고, 뽑은 문장 모음은 접어 둔다.
+    expect(componentSource).toContain("초록 결과 문장 모아 보기");
+    expect(componentSource).toMatch(/<AnimatedDetails[\s\S]*?초록 결과 문장 모아 보기[\s\S]*?<EvidenceFinding/);
     expect(componentSource).not.toMatch(
       /result\.evidence\s*\.slice\(0, SUMMARY_SENTENCE_LIMIT\)/,
     );
-    expect(componentSource).toContain("나머지");
-    expect(componentSource).toContain("자동 추출 문장 보기");
+    expect(componentSource).toContain("검토 상태");
     expect(componentSource).toContain('id="evidence-query-form"');
     expect(componentSource).toContain('id="evidence-list"');
     expect(componentSource).toContain('href="#evidence-list"');
