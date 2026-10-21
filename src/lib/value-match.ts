@@ -3,9 +3,9 @@ import terms from "@/src/lib/ingredient-terms.json";
 /**
  * 적어 주신 성분, 나이, 양을 목록의 문헌과 대조한다(2026-10-21).
  *
- * 조회 목록 자체는 바꾸지 않는다. 어떤 문헌이 나오는지는 지금처럼 상황과 조건
- * 규칙이 정하고, 여기서는 나온 문헌마다 "같은 성분인가, 나이대가 겹치는가,
- * 양이 비슷한가"를 표시만 한다. 언어모델은 쓰지 않는다.
+ * 어떤 문헌이 후보가 되는지는 상황과 조건 규칙이 정한다. 성분을 적으면 조회 API가
+ * 그 후보 가운데 같은 성분을 다룬 문헌을 앞에 두고(2026-10-21), 여기서는 나온 문헌마다
+ * "같은 성분인가, 나이대가 겹치는가, 양이 비슷한가"를 표시한다. 언어모델은 쓰지 않는다.
  *
  * - 성분: 입력 문장에서 성분 사전(ingredient-terms.json)의 한국어 이름을 찾고,
  *   빌드 때 제목과 초록에서 뽑아 둔 성분 열쇠와 비교한다.
@@ -129,4 +129,17 @@ export function matchRecord(query: ValueQuery, traits: RecordTraits | undefined,
       : null;
   }
   return { ingredient, age, dose: doseMatch };
+}
+
+/** 제목에 적어 주신 성분 이름이 나오는가. 초록에만 스치듯 나온 문헌보다 앞에 두려고 쓴다. */
+export function titleMentions(keys: string[], title: string) {
+  return TERMS.some((term) => keys.includes(term.key) && (term.enRe.test(title) || term.koRe.test(title)));
+}
+
+/** 이름 뒤에 붙는 목적격 조사. 받침이 있으면 "을", 없으면 "를", 한글이 아니면 둘 다 적는다. */
+export function objectParticle(word: string) {
+  const last = word.trim().slice(-1);
+  const code = last.charCodeAt(0) - 0xac00;
+  if (code < 0 || code > 11171) return "을(를)";
+  return code % 28 ? "을" : "를";
 }

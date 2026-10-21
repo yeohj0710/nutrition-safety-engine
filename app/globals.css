@@ -505,6 +505,55 @@ summary:focus-visible {
     }
   }
 
+  /* 해설 작성 진행 막대. 문단 셋을 칸 셋으로 보여 주고, 쓰는 중인 칸에는 빛이 지나간다. */
+  .consult-progress-track {
+    position: relative;
+    flex: 1 1 0;
+    height: 0.375rem;
+    overflow: hidden;
+    border-radius: 9999px;
+    background: color-mix(in oklab, var(--foreground) 10%, transparent);
+  }
+
+  .consult-progress-done {
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+  }
+
+  .consult-progress-run {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 40%;
+    border-radius: 9999px;
+    background: var(--accent);
+    animation: consult-progress-run 1.4s ease-in-out infinite;
+  }
+
+  .consult-progress-paused {
+    position: absolute;
+    inset: 0;
+    background: color-mix(in oklab, var(--accent) 35%, transparent);
+    animation: consult-progress-pulse 1.2s ease-in-out infinite;
+  }
+
+  @keyframes consult-progress-run {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(250%); }
+  }
+
+  @keyframes consult-progress-pulse {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .consult-progress-run,
+    .consult-progress-paused {
+      animation: none;
+    }
+  }
+
   .loading-skeleton {
     position: relative;
     overflow: hidden;

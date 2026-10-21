@@ -17,7 +17,7 @@ import {
   flattenTranslatedFindings,
 } from "@/src/lib/evidence-sentences";
 import { joinMultiValue, splitMultiValue } from "@/src/lib/multi-value-input";
-import { matchRecord, readValueMarks, type RecordTraits } from "@/src/lib/value-match";
+import { matchRecord, objectParticle, readValueMarks, titleMentions, type RecordTraits } from "@/src/lib/value-match";
 
 // 이 라우트는 외부 모델을 호출하지 않는다. 같은 입력에 같은 근거 목록이 나와야
 // 논문이 주장하는 "결정론적 탐색 도구"가 성립하고, 예전 구현이 쓰던 요약 API 키는
@@ -754,7 +754,12 @@ export async function POST(req: Request) {
   // 확장 보기: 이 상황의 근거 전체에 같은 조건을 건다. 축 색인이 확장 근거에도
   // 생겼으므로(extended_axis_index.json) 핵심근거 15건 밖에서도 조건이 걸린다.
   const expanded = payload.expanded === true;
-  const needExtended = expanded || applied.length > 0;
+  // 적어 주신 성분, 나이, 양. 자유 문장은 받지 않고 화면이 읽어 둔 값만 받는다.
+  const valueQuery = readValueMarks(payload.marks);
+  const ingredientKeys = valueQuery?.ingredients.map((item) => item.key) ?? [];
+  // 성분을 적으면 기본 화면에서 그 성분을 다룬 문헌을 앞에 둔다. 확장 근거에서도 찾아야 하므로 읽어 둔다.
+  const ingredientFirst = !expanded && ingredientKeys.length > 0;
+  const needExtended = expanded || applied.length > 0 || ingredientFirst;
   const extendedForQuestion = needExtended
     ? await loadExtendedEvidence(situation)
     : null;
@@ -828,14 +833,48 @@ export async function POST(req: Request) {
         ).slice(0, topUpNeeded)
       : [];
 
-  const selectedRaw = expanded
-    ? extendedOrdered.slice(offset, offset + EXTENDED_PAGE)
-    : [...coreSelected, ...topUp];
-  // 적어 주신 성분, 나이, 양과 목록의 문헌을 대조한다. 목록과 순서는 바꾸지 않고 표시만 붙인다.
-  // 자유 문장은 받지 않는다. 화면이 읽어 둔 성분 열쇠, 나이, 양만 받는다.
-  const valueQuery = readValueMarks(payload.marks);
   const wantsMatch = valueQuery !== null;
   const traits = wantsMatch ? await loadTraits(situation) : {};
+  // 성분을 적었으면 같은 상황과 조건의 문헌 가운데 그 성분을 다룬 문헌을 먼저 둔다.
+  // 순서: 성분을 다룬 핵심 근거, 성분을 다룬 확장 근거, 나머지 핵심 근거, 나머지 확장 근거.
+  // 규칙으로만 정하므로 같은 입력에는 늘 같은 목록이 나온다.
+  const mentionsIngredient = (item: Evidence) =>
+    Boolean(traits[item.record_id]?.i.some((key) => ingredientKeys.includes(key)));
+  let ingredientHits = 0;
+  let selectedRaw: Evidence[];
+  if (expanded) {
+    selectedRaw = extendedOrdered.slice(offset, offset + EXTENDED_PAGE);
+  } else if (ingredientFirst) {
+    const corePool = applied.length ? ranked : rankEvidence(base.all_evidence);
+    // 제목에 성분 이름이 나오는 문헌을 초록에만 나오는 문헌보다 앞에 둔다(같은 묶음 안의 순서는 그대로).
+    const titleFirst = (items: Evidence[]) => [
+      ...items.filter((item) => titleMentions(ingredientKeys, String(item.title ?? ""))),
+      ...items.filter((item) => !titleMentions(ingredientKeys, String(item.title ?? ""))),
+    ];
+    const coreHitList = titleFirst(corePool.filter(mentionsIngredient));
+    const coreHitIds = new Set(coreHitList.map((item) => item.record_id));
+    const extendedHitList = titleFirst(orderForPaging(
+      extendedAll.filter((item) => !coreHitIds.has(item.record_id) && mentionsIngredient(item)),
+      appliedAxisIds,
+      `${querySeed}|ingredient:${[...ingredientKeys].sort().join(",")}`,
+      EXTENDED_PAGE,
+    ));
+    const ordered: Evidence[] = [];
+    const seen = new Set<string>();
+    for (const item of [...coreHitList, ...extendedHitList, ...coreSelected, ...topUp]) {
+      if (ordered.length >= questionLimit) break;
+      if (seen.has(item.record_id)) continue;
+      seen.add(item.record_id);
+      ordered.push(item);
+    }
+    ingredientHits = ordered.filter(mentionsIngredient).length;
+    selectedRaw = ordered;
+  } else {
+    selectedRaw = [...coreSelected, ...topUp];
+  }
+  const coreRecordIds = new Set(base.all_evidence.map((item) => item.record_id));
+  const coreShown = selectedRaw.filter((item) => coreRecordIds.has(item.record_id)).length;
+  const extendedShown = selectedRaw.length - coreShown;
   const selected: PresentedEvidence[] = selectedRaw.map((item) => {
     const presented = presentEvidence(item);
     return wantsMatch
@@ -911,7 +950,12 @@ export async function POST(req: Request) {
     : axesProvided
       ? `${meta?.short ?? "이 상황"} 문헌을 조건 없이 살펴봤습니다.`
       : buildProfileLine(meta?.spoken ?? "이 상황을 고르셨고", requestedProfile);
-  const tierLine = topUp.length
+  const ingredientLabel = valueQuery?.ingredients.map((item) => item.label).join(", ") ?? "";
+  const tierLine = ingredientFirst
+    ? ingredientHits
+      ? `적어 주신 ${ingredientLabel}${objectParticle(ingredientLabel)} 다룬 연구 ${ingredientHits}편을 앞에 두었어요.${extendedShown ? ` 그 가운데 핵심 문헌이 아닌 것은 아직 한국어로 옮기지 않아 영어 문장 그대로 보입니다.` : ""}`
+      : `같은 조건의 문헌 가운데 ${ingredientLabel}${objectParticle(ingredientLabel)} 다룬 연구는 찾지 못해, 같은 상황의 다른 연구를 보여 드립니다.`
+    : topUp.length
     ? `핵심 문헌만으로는 ${coreSelected.length}건뿐이라, 같은 조건에 걸린 문헌 ${topUp.length}건을 더 찾아 붙였어요. 뒤에 붙인 것은 아직 한국어로 옮기지 않아 영어 문장 그대로 보입니다.`
     : "";
   const narrative = expanded
@@ -968,8 +1012,9 @@ export async function POST(req: Request) {
       expanded,
       expanded_offset: offset,
       expanded_page_size: EXTENDED_PAGE,
-      core_shown: coreSelected.length,
-      extended_shown: topUp.length,
+      core_shown: expanded ? coreSelected.length : coreShown,
+      extended_shown: expanded ? topUp.length : extendedShown,
+      ingredient_first: ingredientFirst ? { ingredients: valueQuery!.ingredients.map((item) => item.label), shown: ingredientHits } : null,
       extended_total: extendedTotal,
       extended_pool_total: questionPoolTotal,
       extended_match_total: extendedMatchTotal,

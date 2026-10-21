@@ -12,7 +12,7 @@ import { AnimatedDetails } from "@/src/components/animated-details";
 import { isRetractedPublication, retractedPublicationNotice } from "@/src/lib/publication-status";
 import { studyKind, withoutStatistics } from "@/src/lib/plain-reading";
 import { elapsedLabel, readConsultResponse } from "@/src/lib/consult-stream";
-import { COMPOSE_ROLES, groundedFallback, plainLanguage, readableSource } from "@/src/lib/consult-compose";
+import { COMPOSE_ROLES, groundedFallback, plainLanguage, readableSource, type ConsultStreamEvent } from "@/src/lib/consult-compose";
 import {
   axes,
   axisById,
@@ -147,8 +147,9 @@ type ConsultText = {
    * interim   모델을 기다리는 동안 서버 원자료로 정리한 문단
    * streaming 문단 하나가 도착해 그 자리만 바뀐 상태
    * final     세 문단이 다 확정된 상태
+   * reconnecting 연결이 끊겨 같은 요청으로 다시 붙는 중
    */
-  stage?: "interim" | "streaming" | "final";
+  stage?: "interim" | "streaming" | "reconnecting" | "final";
   /** streaming 일 때 지금까지 도착한 문단 수. */
   arrived?: number;
   /** AI 해설이 붙은 뒤에도 접어 두는 문헌별 정리. */
@@ -192,6 +193,30 @@ function consultFallbackShort(reason: string) {
   if (reason === "empty" || reason === "bad_json") return "응답 형식 오류";
   return "호출 실패";
 }
+
+/** 해설 연결이 끊겼을 때 다시 붙기 전 기다리는 시간. 모두 합쳐 1분 남짓이다. */
+const COMPOSE_RETRY_DELAYS_MS = [1_000, 2_000, 4_000, 8_000, 15_000, 30_000];
+
+/** 정해진 시간만큼 기다린다. 오프라인이면 다시 온라인이 될 때까지(최대 1분) 기다린다. */
+function waitBeforeRetry(ms: number, signal: AbortSignal) {
+  return new Promise<void>((resolve) => {
+    const offline = typeof navigator !== "undefined" && navigator.onLine === false;
+    const done = () => {
+      clearTimeout(timer);
+      window.removeEventListener("online", onOnline);
+      signal.removeEventListener("abort", done);
+      resolve();
+    };
+    const onOnline = () => setTimeout(done, 500);
+    const timer = setTimeout(done, offline ? 60_000 : ms);
+    window.addEventListener("online", onOnline);
+    signal.addEventListener("abort", done);
+  });
+}
+
+/** 기다리는 동안 도는 작은 원. 움직임을 줄인 설정에서는 멈춘다. */
+const spinnerClass =
+  "inline-block h-3.5 w-3.5 shrink-0 rounded-full border-2 border-current border-t-transparent animate-spin motion-reduce:animate-none";
 
 /** 카드 안에서 반복되는 버튼 모양. 높이와 모서리를 한곳에서 정한다. */
 const buttonBase =
@@ -572,6 +597,8 @@ export function PersonalizedSafetyQuery() {
   const [consult, setConsult] = useState<ConsultText>(null);
   const [composing, setComposing] = useState(false);
   const [consultElapsedMs, setConsultElapsedMs] = useState(0);
+  // 기다린 시간은 화면에서 1초마다 센다. 연결이 끊겨 다시 붙어도 처음 누른 때부터 센다.
+  const composeStartedRef = useRef(0);
   // 취소한 요청이나 이전 환자의 해설이 새 결과에 섞이지 않게 요청마다 번호를 매긴다.
   const composeSequenceRef = useRef(0);
   // 같은 조건을 다시 조회하면 방금 받은 해설을 다시 사지 않는다(같은 화면 안에서만).
@@ -702,6 +729,7 @@ export function PersonalizedSafetyQuery() {
     const live = () => !controller.signal.aborted && composeSequenceRef.current === sequence;
     setComposing(true);
     setConsultElapsedMs(0);
+    composeStartedRef.current = Date.now();
     // 이전 결과의 해설을 먼저 비운다. 서버가 보내는 문헌별 정리(interim)가 오면
     // 그것을 보여주고, AI 해설이 확정되면 바꿔 넣는다.
     setConsult(null);
@@ -768,85 +796,116 @@ export function PersonalizedSafetyQuery() {
         patientContext: result.patient_context ?? "",
       },
     );
-    const fallback = (reason: string): NonNullable<ConsultText> => ({
-      paragraphs: deterministic,
-      source: "deterministic",
-      reason,
-      stage: "final",
-    });
     let interim: ConsultParagraph[] = [];
     // 도착한 문단을 자리 번호로 들고 있다가, 오는 대로 그 자리만 갈아 끼운다.
     const streamed = new Map<number, ConsultParagraph>();
 
-    fetch("/api/consult/compose", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      signal: controller.signal,
-      body: cacheKey,
-    })
-      .then(async (response) => {
-        if (!response.ok) {
-          if (live()) setConsult(fallback(response.status === 429 ? "rate_limited" : "http_error"));
-          return;
-        }
-        await readConsultResponse(response, (event) => {
-          if (!live()) return;
-          if (event.type === "interim") {
-            interim = event.paragraphs;
-            setConsult({ paragraphs: event.paragraphs, source: "deterministic", reason: "generating", stage: "interim" });
-            return;
-          }
-          if (event.type === "heartbeat") {
-            setConsultElapsedMs(event.elapsedMs);
-            return;
-          }
-          // 문단 하나가 끝났다. 그 자리만 바꾸고 나머지는 정리 문단으로 둔다.
-          if (event.type === "partial") {
-            streamed.set(event.index, event.paragraph);
-            setConsultElapsedMs(event.elapsedMs);
-            const base = interim.length ? interim : deterministic;
-            const merged = Array.from(
-              { length: Math.max(base.length, COMPOSE_ROLES.length) },
-              (_, index) => streamed.get(index) ?? base[index],
-            ).filter(Boolean);
-            setConsult({
-              paragraphs: merged,
-              source: "deterministic",
-              reason: "generating",
-              stage: "streaming",
-              arrived: streamed.size,
-            });
-            return;
-          }
-          const hasParagraphs = event.paragraphs?.length > 0;
-          const final: NonNullable<ConsultText> = {
-            paragraphs: hasParagraphs ? event.paragraphs : interim.length ? interim : deterministic,
-            source: hasParagraphs ? event.source : "deterministic",
-            reason: hasParagraphs ? event.reason : "empty_response",
-            stage: "final",
-            interim: interim.length ? interim : undefined,
-            elapsedMs: event.elapsedMs,
-          };
-          if (final.source === "ai_written") {
-            if (consultCacheRef.current.size >= 20) {
-              consultCacheRef.current.delete(consultCacheRef.current.keys().next().value as string);
-            }
-            consultCacheRef.current.set(cacheKey, final);
-          }
-          setConsult(final);
+    // 연결이 끊기면(와이파이 전환, 잠깐의 오프라인) 같은 요청으로 다시 붙는다. 서버는
+    // 끊긴 뒤에도 해설을 끝까지 써 두므로, 다시 붙으면 진행 중인 작성에 합류하거나
+    // 다 쓴 문단을 바로 받는다. 기다리는 동안에는 지금까지 받은 문단을 그대로 둔다.
+    const handleEvent = (event: ConsultStreamEvent) => {
+      if (!live()) return;
+      if (event.type === "interim") {
+        interim = event.paragraphs;
+        setConsult((previous) =>
+          previous && (previous.stage === "streaming" || previous.stage === "reconnecting") && streamed.size
+            ? { ...previous, stage: "streaming" }
+            : { paragraphs: event.paragraphs, source: "deterministic", reason: "generating", stage: "interim" },
+        );
+        return;
+      }
+      if (event.type === "heartbeat") return;
+      // 문단 하나가 끝났다. 그 자리만 바꾸고 나머지는 정리 문단으로 둔다.
+      if (event.type === "partial") {
+        if (event.source === "ai_written" || !streamed.has(event.index)) streamed.set(event.index, event.paragraph);
+        const base = interim.length ? interim : deterministic;
+        const merged = Array.from(
+          { length: Math.max(base.length, COMPOSE_ROLES.length) },
+          (_, index) => streamed.get(index) ?? base[index],
+        ).filter(Boolean);
+        setConsult({
+          paragraphs: merged,
+          source: "deterministic",
+          reason: "generating",
+          stage: "streaming",
+          arrived: streamed.size,
         });
-      })
-      .catch(() => {
-        if (live()) setConsult(interim.length ? { paragraphs: interim, source: "deterministic", reason: "network", stage: "final" } : fallback("network"));
-      })
-      .finally(() => {
-        if (composeRef.current === controller) {
-          composeRef.current = null;
-          setComposing(false);
+        return;
+      }
+      const hasParagraphs = event.paragraphs?.length > 0;
+      const final: NonNullable<ConsultText> = {
+        paragraphs: hasParagraphs ? event.paragraphs : interim.length ? interim : deterministic,
+        source: hasParagraphs ? event.source : "deterministic",
+        reason: hasParagraphs ? event.reason : "empty_response",
+        stage: "final",
+        interim: interim.length ? interim : undefined,
+        elapsedMs: event.elapsedMs,
+      };
+      if (final.source === "ai_written") {
+        if (consultCacheRef.current.size >= 20) {
+          consultCacheRef.current.delete(consultCacheRef.current.keys().next().value as string);
         }
-      });
+        consultCacheRef.current.set(cacheKey, final);
+      }
+      setConsult(final);
+    };
+
+    const settleWithFallback = (reason: string) => {
+      if (!live()) return;
+      const base = interim.length ? interim : deterministic;
+      const merged = Array.from(
+        { length: Math.max(base.length, COMPOSE_ROLES.length) },
+        (_, index) => streamed.get(index) ?? base[index],
+      ).filter(Boolean);
+      setConsult({ paragraphs: merged, source: "deterministic", reason, stage: "final" });
+    };
+
+    (async () => {
+      for (let attempt = 0; ; attempt += 1) {
+        try {
+          const response = await fetch("/api/consult/compose", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            signal: controller.signal,
+            body: cacheKey,
+          });
+          if (response.status === 429) {
+            settleWithFallback("rate_limited");
+            return;
+          }
+          if (!response.ok) throw new Error(`compose http ${response.status}`);
+          await readConsultResponse(response, handleEvent);
+          return;
+        } catch {
+          if (!live()) return;
+          if (attempt >= COMPOSE_RETRY_DELAYS_MS.length) {
+            settleWithFallback("network");
+            return;
+          }
+          setConsult((previous) =>
+            previous
+              ? { ...previous, stage: "reconnecting" }
+              : { paragraphs: interim.length ? interim : deterministic, source: "deterministic", reason: "generating", stage: "reconnecting" },
+          );
+          await waitBeforeRetry(COMPOSE_RETRY_DELAYS_MS[attempt], controller.signal);
+          if (!live()) return;
+        }
+      }
+    })().finally(() => {
+      if (composeRef.current === controller) {
+        composeRef.current = null;
+        setComposing(false);
+      }
+    });
     return () => controller.abort();
   }, [result]);
+
+  // 해설을 기다리는 동안 1초마다 경과 시간을 올린다. 숫자가 움직여야 멈춘 것이 아님을 안다.
+  useEffect(() => {
+    if (!composing) return;
+    const timer = setInterval(() => setConsultElapsedMs(Date.now() - composeStartedRef.current), 1_000);
+    return () => clearInterval(timer);
+  }, [composing]);
 
   const run = useCallback(
     async (
@@ -1418,7 +1477,8 @@ export function PersonalizedSafetyQuery() {
                     aria-hidden="true"
                     className="inset-block inset-block-note flex flex-col gap-2"
                   >
-                    <span className="text-[0.9375rem] font-bold text-muted">
+                    <span className="inline-flex items-center gap-2 text-[0.9375rem] font-bold text-muted">
+                      <span className={spinnerClass} />
                       연구별 요약을 불러오는 중
                     </span>
                     <span className="loading-skeleton block h-4 w-full rounded" />
@@ -1442,22 +1502,46 @@ export function PersonalizedSafetyQuery() {
                       <span className="consult-state">
                         {consult.stage === "interim"
                           ? "연구별 요약"
-                          : consult.stage === "streaming"
+                          : consult.stage === "streaming" || consult.stage === "reconnecting"
                             ? `AI 설명 ${consult.arrived ?? 0}/${COMPOSE_ROLES.length}`
                             : consult.source === "ai_written"
                               ? "AI 설명"
                               : "연구별 요약"}
                       </span>
                       {consult.stage === "interim" || consult.stage === "streaming" ? (
-                        <span className="text-[0.8125rem] font-semibold text-muted">
+                        <span role="status" className="inline-flex items-center gap-1.5 text-[0.8125rem] font-semibold text-muted">
+                          <span className={spinnerClass} />
                           AI가 연구를 읽고 설명을 쓰는 중
                           {consultElapsedMs > 0 ? ` (${elapsedLabel(consultElapsedMs)})` : ""}
                         </span>
+                      ) : consult.stage === "reconnecting" ? (
+                        <span role="status" className="inline-flex items-center gap-1.5 text-[0.8125rem] font-semibold text-muted">
+                          <span className={spinnerClass} />
+                          연결이 끊겨 다시 연결하는 중
+                        </span>
                       ) : null}
                     </div>
-                    {consult.stage === "interim" || consult.stage === "streaming" ? (
+                    {consult.stage === "interim" || consult.stage === "streaming" || consult.stage === "reconnecting" ? (
+                      <div className="mt-3 flex gap-1.5" aria-hidden="true">
+                        {COMPOSE_ROLES.map((role, index) => {
+                          const arrived = consult.arrived ?? 0;
+                          return (
+                            <span key={role.id} className="consult-progress-track">
+                              {index < arrived ? (
+                                <span className="consult-progress-done" />
+                              ) : index === arrived ? (
+                                <span className={consult.stage === "reconnecting" ? "consult-progress-paused" : "consult-progress-run"} />
+                              ) : null}
+                            </span>
+                          );
+                        })}
+                      </div>
+                    ) : null}
+                    {consult.stage === "interim" || consult.stage === "streaming" || consult.stage === "reconnecting" ? (
                       <p className="mt-2 text-[0.8125rem] leading-5 text-muted">
-                        설명이 끝나기 전까지 연구별 요약을 먼저 보여 드립니다.
+                        {consult.stage === "reconnecting"
+                          ? "인터넷 연결이 돌아오면 쓰던 설명을 이어 받습니다. 그동안 연구별 요약을 보여 드립니다."
+                          : "설명이 끝나기 전까지 연구별 요약을 먼저 보여 드립니다."}
                       </p>
                     ) : consultFallbackReason(consult.reason) ? (
                       <p className="mt-2 text-[0.8125rem] leading-5 text-muted">

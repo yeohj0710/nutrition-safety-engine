@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { createHash } from "node:crypto";
 import { callLuna, hasConsultKey, CONSULT_MODEL, CONSULT_EFFORT } from "@/src/lib/ai-consult";
 import { clientKey, rateLimit, tooManyRequests } from "@/src/lib/rate-limit";
@@ -31,6 +31,9 @@ export const maxDuration = 300;
 //   2) partial   문단 하나가 끝날 때마다 그 자리만 바꿔 넣는다.
 //   3) heartbeat 8초마다. 중간 장비가 조용한 연결을 끊지 않게 하고 경과 시간을 알린다.
 //   4) result    확정된 문단 셋. 실패한 자리에는 같은 정리를 넣는다.
+//
+// 브라우저 연결이 끊겨도(와이파이 전환 등) 모델 호출은 끝까지 마쳐 캐시에 넣는다.
+// 브라우저가 같은 요청으로 다시 붙으면 진행 중인 호출에 합류하거나 캐시에서 바로 받는다.
 
 type Outcome = Omit<Extract<ConsultStreamEvent, { type: "result" }>, "type">;
 type RoleOutcome = {
@@ -120,6 +123,7 @@ export async function POST(req: Request) {
     });
 
   const encoder = new TextEncoder();
+  let work: Promise<unknown> = Promise.resolve();
   const stream = new ReadableStream<Uint8Array>({
     start(controller) {
       let closed = false;
@@ -143,15 +147,14 @@ export async function POST(req: Request) {
       };
       send({ type: "interim", paragraphs: interim, reason: "generating" });
       const heartbeat = setInterval(() => send({ type: "heartbeat", elapsedMs: Date.now() - started }), HEARTBEAT_MS);
-      // 브라우저가 연결을 끊으면 모델 호출도 끊는다(같은 요청을 함께 기다리는 사람이 없을 때).
-      const abort = new AbortController();
-      req.signal?.addEventListener("abort", () => { abort.abort(); finish(); }, { once: true });
-      Promise.all(
+      // 브라우저가 연결을 끊으면 보내기만 멈춘다. 모델 호출은 계속해 캐시를 채운다.
+      req.signal?.addEventListener("abort", finish, { once: true });
+      work = Promise.all(
         slots.map(async (slot, index): Promise<RoleOutcome> => {
           const hit = cache.get(slot.key);
           const outcome = hit
             ? { paragraph: hit, source: "ai_written" as const, reason: "cached" }
-            : await inflight.run(slot.key, composeSlot(slot), abort.signal).catch((error: unknown): RoleOutcome => {
+            : await inflight.run(slot.key, composeSlot(slot)).catch((error: unknown): RoleOutcome => {
                 console.warn("[consult/compose] failed", { role: slot.role.id, message: error instanceof Error ? error.message : "unknown" });
                 return { paragraph: slot.fallbackParagraph, source: "deterministic", reason: "http_error" };
               });
@@ -189,6 +192,14 @@ export async function POST(req: Request) {
       // 읽는 쪽이 사라졌다. 남은 일은 위의 abort 처리와 코얼레서가 정리한다.
     },
   });
+
+  // 응답이 끊긴 뒤에도 함수가 모델 호출을 마칠 때까지 살아 있게 한다.
+  // 요청 밖(테스트에서 직접 부를 때)에서는 after 를 쓸 수 없으므로 건너뛴다.
+  try {
+    after(() => work.catch(() => undefined));
+  } catch {
+    // 요청 범위가 없다.
+  }
 
   return new Response(stream, {
     headers: {

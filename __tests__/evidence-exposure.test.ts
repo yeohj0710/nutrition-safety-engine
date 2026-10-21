@@ -2,7 +2,21 @@ import { describe, expect, it } from "vitest";
 
 import { POST } from "@/app/api/personalized-safety/route";
 import { axisIds, situationIds, type AxisId } from "@/src/lib/clinical-situations";
-import extended from "@/research/systematic_review/extended_evidence.json";
+import hrs1 from "@/research/systematic_review/extended_evidence/HRS1_PERIOPERATIVE.json";
+import hrs2 from "@/research/systematic_review/extended_evidence/HRS2_KIDNEY_DISEASE.json";
+import hrs3 from "@/research/systematic_review/extended_evidence/HRS3_PREGNANCY.json";
+import hrs4 from "@/research/systematic_review/extended_evidence/HRS4_LIVER_DISEASE.json";
+import hrs5 from "@/research/systematic_review/extended_evidence/HRS5_ANTICOAGULATION.json";
+
+// 확장 근거는 상황별 파일로 나뉘어 있다. 테스트는 예전 한 파일 모양으로 모아 쓴다.
+const extended = {
+  questions: Object.fromEntries(
+    [hrs1, hrs2, hrs3, hrs4, hrs5].map((file) => [
+      (file as { question_id: string }).question_id,
+      (file as { evidence: { record_id: string }[] }).evidence,
+    ]),
+  ),
+};
 
 const AXES = [...axisIds] as AxisId[];
 
