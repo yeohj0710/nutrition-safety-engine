@@ -70,6 +70,6 @@ describe("핵심 근거 한국어 커버리지", () => {
   });
 
   it("번역 작성자를 실제 작성자로 적는다", () => {
-    expect(translations.author).toBe("Claude; gpt-5.6-luna posthoc corrections");
+    expect(translations.author).toBe("Claude; gpt-5.6-luna posthoc corrections; gpt-5.6-luna core expansion R20261021");
   });
 });

@@ -72,7 +72,7 @@
    "publication_types": "Journal Article|Randomized Controlled Trial|Comparative Study|Research Support, Non-U.S. Gov't",
    "priority_score": 3031.0,
    "source_scope": "abstract_only",
-   "in_core": false
+   "in_core": true
   },
   {
    "record_id": "pubmed:26922297",
@@ -129,7 +129,7 @@
    "publication_types": "Journal Article|Randomized Controlled Trial",
    "priority_score": 2988.0,
    "source_scope": "abstract_only",
-   "in_core": false
+   "in_core": true
   },
   {
    "record_id": "pubmed:42081645",
@@ -148,7 +148,7 @@
    "publication_types": "Journal Article|Systematic Review",
    "priority_score": 2968.0,
    "source_scope": "abstract_only",
-   "in_core": false
+   "in_core": true
   },
   {
    "record_id": "pubmed:39993439",
@@ -224,7 +224,7 @@
    "publication_types": "Journal Article|Systematic Review|Meta-Analysis",
    "priority_score": 2964.0,
    "source_scope": "abstract_only",
-   "in_core": false
+   "in_core": true
   },
   {
    "record_id": "pubmed:39672479",
@@ -376,7 +376,7 @@
    "publication_types": "Journal Article|Systematic Review",
    "priority_score": 2928.0,
    "source_scope": "abstract_only",
-   "in_core": false
+   "in_core": true
   },
   {
    "record_id": "pubmed:38264795",
@@ -433,7 +433,7 @@
    "publication_types": "Journal Article|Meta-Analysis|Systematic Review",
    "priority_score": 2896.0,
    "source_scope": "abstract_only",
-   "in_core": false
+   "in_core": true
   },
   {
    "record_id": "pubmed:38216446",
@@ -452,7 +452,7 @@
    "publication_types": "Journal Article|Meta-Analysis|Systematic Review",
    "priority_score": 2893.0,
    "source_scope": "abstract_only",
-   "in_core": false
+   "in_core": true
   },
   {
    "record_id": "pubmed:33150497",
@@ -661,7 +661,7 @@
    "publication_types": "Journal Article|Systematic Review",
    "priority_score": 2862.0,
    "source_scope": "abstract_only",
-   "in_core": false
+   "in_core": true
   },
   {
    "record_id": "pubmed:37802850",
@@ -680,7 +680,7 @@
    "publication_types": "English Abstract|Journal Article|Network Meta-Analysis",
    "priority_score": 2856.0,
    "source_scope": "abstract_only",
-   "in_core": false
+   "in_core": true
   },
   {
    "record_id": "pubmed:24832594",
@@ -699,7 +699,7 @@
    "publication_types": "Journal Article|Meta-Analysis|Research Support, Non-U.S. Gov't|Systematic Review",
    "priority_score": 2847.0,
    "source_scope": "abstract_only",
-   "in_core": false
+   "in_core": true
   },
   {
    "record_id": "pubmed:33730164",
@@ -851,7 +851,7 @@
    "publication_types": "Journal Article|Meta-Analysis|Systematic Review",
    "priority_score": 2826.0,
    "source_scope": "abstract_only",
-   "in_core": false
+   "in_core": true
   },
   {
    "record_id": "pubmed:26511068",

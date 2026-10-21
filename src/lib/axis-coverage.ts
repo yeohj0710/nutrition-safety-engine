@@ -6,44 +6,44 @@ export const axisCoverage: Record<SituationId, Record<AxisId, number | null>> = 
   "HRS1_PERIOPERATIVE": {
     "age_group": 6,
     "concomitant_medication": null,
-    "dose_range": 1,
-    "sex": 3,
+    "dose_range": 2,
+    "sex": 4,
     "underlying_condition": 5
   },
   "HRS2_KIDNEY_DISEASE": {
-    "age_group": 2,
+    "age_group": 3,
     "concomitant_medication": 2,
-    "dose_range": 1,
+    "dose_range": 4,
     "sex": null,
-    "underlying_condition": 9
+    "underlying_condition": 15
   },
   "HRS3_PREGNANCY": {
-    "age_group": 3,
+    "age_group": 9,
     "concomitant_medication": null,
-    "dose_range": 3,
-    "sex": 3,
-    "underlying_condition": 6
+    "dose_range": 5,
+    "sex": 8,
+    "underlying_condition": 13
   },
   "HRS4_LIVER_DISEASE": {
-    "age_group": 5,
+    "age_group": 6,
     "concomitant_medication": null,
-    "dose_range": 2,
+    "dose_range": 4,
     "sex": 1,
-    "underlying_condition": 12
+    "underlying_condition": 14
   },
   "HRS5_ANTICOAGULATION": {
-    "age_group": 2,
-    "concomitant_medication": 2,
-    "dose_range": 2,
+    "age_group": 3,
+    "concomitant_medication": 13,
+    "dose_range": 5,
     "sex": null,
-    "underlying_condition": 2
+    "underlying_condition": 5
   }
 };
 
 export const coreCoverage: Record<SituationId, number> = {
-  "HRS1_PERIOPERATIVE": 11,
-  "HRS2_KIDNEY_DISEASE": 9,
-  "HRS3_PREGNANCY": 7,
-  "HRS4_LIVER_DISEASE": 13,
-  "HRS5_ANTICOAGULATION": 4
+  "HRS1_PERIOPERATIVE": 15,
+  "HRS2_KIDNEY_DISEASE": 15,
+  "HRS3_PREGNANCY": 15,
+  "HRS4_LIVER_DISEASE": 15,
+  "HRS5_ANTICOAGULATION": 15
 };

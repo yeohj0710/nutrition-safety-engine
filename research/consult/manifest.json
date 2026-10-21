@@ -3,23 +3,23 @@
   "questions": {
     "HRS1_PERIOPERATIVE": {
       "records": 3086,
-      "sha256": "760fe416153d825d795707071cd0bf792432c83e45fe23bd72aa600b52eb68ca"
+      "sha256": "9361ba5e828880efd3f30ef4f0f5df380913e3a641f61305bf062e4610a70963"
     },
     "HRS2_KIDNEY_DISEASE": {
       "records": 5741,
-      "sha256": "49888e828321a7ba1773d3ce103b2ab9a6103a78fbab4bc734ab7c2478fd9b00"
+      "sha256": "eaaae4fdf32af3755f0c9a27139a439623264a169f9daeba7084e243a5da6f2f"
     },
     "HRS3_PREGNANCY": {
       "records": 11562,
-      "sha256": "85fc2f92275b5771f57a8123e7286136c37a4d660f8bb1fbb490f57a494882d0"
+      "sha256": "7bb4567605417ad40da0b3da48a18179dbc8b78656d0c2a7c39e6cc534813c44"
     },
     "HRS4_LIVER_DISEASE": {
       "records": 2466,
-      "sha256": "cd812441138df8420ecae1fd18388dbcf0a7f5ea247672a8ec76516519f706ba"
+      "sha256": "9cab17de5a9e58ea3b217197e85a1f63f301e592fc6178584da3c791ef4b444e"
     },
     "HRS5_ANTICOAGULATION": {
       "records": 2892,
-      "sha256": "b35eb4693db392dafffee6692a9339be465b3f8ffb28cc4b6fcf2379c3273922"
+      "sha256": "8e97c80cd5d1ca7186bd5a5a85b25ece7ef80b70848a63c0961a6b7f34bbc9c2"
     }
   }
 }

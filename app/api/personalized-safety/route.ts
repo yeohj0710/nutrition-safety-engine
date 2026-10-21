@@ -17,6 +17,7 @@ import {
   flattenTranslatedFindings,
 } from "@/src/lib/evidence-sentences";
 import { joinMultiValue, splitMultiValue } from "@/src/lib/multi-value-input";
+import { matchRecord, readValueMarks, type RecordTraits } from "@/src/lib/value-match";
 
 // 이 라우트는 외부 모델을 호출하지 않는다. 같은 입력에 같은 근거 목록이 나와야
 // 논문이 주장하는 "결정론적 탐색 도구"가 성립하고, 예전 구현이 쓰던 요약 API 키는
@@ -166,6 +167,7 @@ type PresentedEvidence = Evidence & {
   source_sentence: string;
   translation_authorship: "ai_generated" | null;
   sentence_role: "result_or_conclusion" | "background_or_methods" | "unclassified";
+  value_match?: ReturnType<typeof matchRecord>;
 };
 
 type Rule = {
@@ -218,6 +220,23 @@ function loadExtendedEvidence(situation: SituationId) {
       ),
     );
     extendedEvidencePromises.set(situation, promise);
+  }
+  return promise;
+}
+
+/**
+ * 문헌마다 빌드 때 뽑아 둔 성분과 대상 나이(tools/build/record_traits.py).
+ * 적어 주신 값과 대조할 때만 읽는다.
+ */
+const traitPromises = new Map<string, Promise<Record<string, RecordTraits>>>();
+
+function loadTraits(situation: SituationId) {
+  let promise = traitPromises.get(situation);
+  if (!promise) {
+    promise = import(`@/research/systematic_review/record_traits/${situation}.json`).then(
+      (module) => module.default as Record<string, RecordTraits>,
+    );
+    traitPromises.set(situation, promise);
   }
   return promise;
 }
@@ -669,6 +688,7 @@ export async function POST(req: Request) {
     axesProvided ? "" : Object.values(submittedInputs).join(""),
     payload.expanded === true,
     Number.isFinite(Number(payload.offset)) ? Number(payload.offset) : 0,
+    JSON.stringify(payload.marks ?? null),
   ]);
   const memo = cachedLookup(lookupKey);
   if (memo) return memo;
@@ -811,7 +831,27 @@ export async function POST(req: Request) {
   const selectedRaw = expanded
     ? extendedOrdered.slice(offset, offset + EXTENDED_PAGE)
     : [...coreSelected, ...topUp];
-  const selected = selectedRaw.map(presentEvidence);
+  // 적어 주신 성분, 나이, 양과 목록의 문헌을 대조한다. 목록과 순서는 바꾸지 않고 표시만 붙인다.
+  // 자유 문장은 받지 않는다. 화면이 읽어 둔 성분 열쇠, 나이, 양만 받는다.
+  const valueQuery = readValueMarks(payload.marks);
+  const wantsMatch = valueQuery !== null;
+  const traits = wantsMatch ? await loadTraits(situation) : {};
+  const selected: PresentedEvidence[] = selectedRaw.map((item) => {
+    const presented = presentEvidence(item);
+    return wantsMatch
+      ? { ...presented, value_match: matchRecord(valueQuery!, traits[item.record_id], String(item.dose ?? "")) }
+      : presented;
+  });
+  const valueSummary = wantsMatch
+    ? {
+        ingredients: valueQuery!.ingredients.map((item) => item.label),
+        age: valueQuery!.age,
+        dose: valueQuery!.dose?.text ?? null,
+        ingredient_matches: selected.filter((item) => item.value_match?.ingredient).length,
+        age_matches: selected.filter((item) => item.value_match?.age).length,
+        dose_matches: selected.filter((item) => item.value_match?.dose).length,
+      }
+    : null;
 
   const meta = situationById.get(situation);
   const axisCoverage = Object.fromEntries(
@@ -908,6 +948,7 @@ export async function POST(req: Request) {
       axis_coverage: axisCoverage,
       core_evidence_count: base.all_evidence.length,
       evidence: selected,
+      value_summary: valueSummary,
       evidence_total_after_filter: expanded ? extendedTotal : ranked.length,
       evidence_summary: evidenceSummary(selected),
       matching_basis: expanded

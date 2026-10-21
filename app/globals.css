@@ -1105,6 +1105,12 @@ summary:focus-visible {
     color: #58616a;
   }
 
+  /* 적어 주신 성분, 나이, 양과 맞는 연구 */
+  .record-tag-match {
+    background: #e6f4ea;
+    color: #1d5b33;
+  }
+
   .record-plain {
     display: grid;
     gap: 0.25rem;

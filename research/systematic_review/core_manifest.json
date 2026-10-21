@@ -2,18 +2,18 @@
   "schema_version": "1.0.0",
   "track": "recollect-v2",
   "generated_at": "2026-09-05T09:29:12+00:00",
-  "core_records": 44,
+  "core_records": 75,
   "per_question": {
-    "HRS1_PERIOPERATIVE": 11,
-    "HRS2_KIDNEY_DISEASE": 9,
-    "HRS3_PREGNANCY": 7,
-    "HRS4_LIVER_DISEASE": 13,
-    "HRS5_ANTICOAGULATION": 4
+    "HRS1_PERIOPERATIVE": 15,
+    "HRS2_KIDNEY_DISEASE": 15,
+    "HRS3_PREGNANCY": 15,
+    "HRS4_LIVER_DISEASE": 15,
+    "HRS5_ANTICOAGULATION": 15
   },
   "rules": 30,
   "source_sha256": "d1280439e0b7cfb74cdce95ffc0991b7a924bf57393d11ec436aab6c3fcc89ba",
-  "core_sha256": "8a3fde6800222bea2f20915579a02c3f22cf008d1d994fcd825f0c5f642c1c78",
-  "translation_sha256": "808c0a0480142090c55149d2e5fb277002bd8cb151cd3d499e413a654bf3b4a4",
+  "core_sha256": "eb2c31687fa5e79336232461094f3890dcaea8bb8225efe3764ce6ec0dc358a6",
+  "translation_sha256": "e216db6464c7b1c620844b3185865cca274db194f70d4bcbe731207d9eae4189",
   "translation_authorship": "ai_generated",
   "personalization": {
     "axes": [
@@ -26,33 +26,33 @@
     "evidence_rows_by_question_and_axis": {
       "HRS1_PERIOPERATIVE": {
         "age_group": 6,
-        "dose_range": 4,
-        "sex": 3,
+        "dose_range": 2,
+        "sex": 4,
         "underlying_condition": 5
       },
       "HRS2_KIDNEY_DISEASE": {
-        "age_group": 4,
+        "age_group": 3,
         "concomitant_medication": 2,
-        "dose_range": 3,
-        "underlying_condition": 9
+        "dose_range": 4,
+        "underlying_condition": 15
       },
       "HRS3_PREGNANCY": {
-        "age_group": 5,
-        "dose_range": 4,
-        "sex": 3,
-        "underlying_condition": 6
+        "age_group": 9,
+        "dose_range": 5,
+        "sex": 8,
+        "underlying_condition": 13
       },
       "HRS4_LIVER_DISEASE": {
-        "age_group": 9,
-        "dose_range": 6,
+        "age_group": 6,
+        "dose_range": 4,
         "sex": 1,
-        "underlying_condition": 12
+        "underlying_condition": 14
       },
       "HRS5_ANTICOAGULATION": {
-        "age_group": 2,
-        "concomitant_medication": 2,
-        "dose_range": 2,
-        "underlying_condition": 2
+        "age_group": 3,
+        "concomitant_medication": 13,
+        "dose_range": 5,
+        "underlying_condition": 5
       }
     },
     "compatibility_aliases": {
@@ -154,5 +154,13 @@
     "title",
     "url",
     "venue"
-  ]
+  ],
+  "expansion": {
+    "round": "R20261021",
+    "reviewer": "gpt-5.6-luna",
+    "reviewed": 104,
+    "eligible": 72,
+    "added": 31,
+    "selection": "사람 대상 연구 설계와 보충제 노출 표현이 있는 문헌 후보를 우선순위 점수 순으로 골라 검토"
+  }
 }

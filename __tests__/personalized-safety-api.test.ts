@@ -348,7 +348,7 @@ describe("personalized safety API", () => {
     // 고칠 때는 규칙 파일에서 교집합 0인 짝을 다시 찾아 넣는다.
     const { status, body } = await ask({
       situation: "HRS1_PERIOPERATIVE",
-      axes: ["dose_range", "sex"],
+      axes: ["age_group", "dose_range"],
     });
     expect(status).toBe(200);
     expect(body.core_shown).toBe(0);

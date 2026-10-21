@@ -23,6 +23,7 @@ import {
 } from "@/src/lib/clinical-situations";
 import { publicInputExamples } from "@/src/lib/personalized-safety-examples";
 import { axisCoverage, coreCoverage } from "@/src/lib/axis-coverage";
+import { readValueQuery, valueMarks } from "@/src/lib/value-match";
 import {
   flattenTranslatedFindings,
   splitEvidenceSentences,
@@ -49,6 +50,17 @@ type EvidenceItem = {
     | "result_or_conclusion"
     | "background_or_methods"
     | "unclassified";
+  /** 적어 주신 성분, 나이, 양과 맞춰 본 결과. 알 수 없으면 null. */
+  value_match?: { ingredient: boolean | null; age: boolean | null; dose: boolean | null };
+};
+
+type ValueSummary = {
+  ingredients: string[];
+  age: number | null;
+  dose: string | null;
+  ingredient_matches: number;
+  age_matches: number;
+  dose_matches: number;
 };
 
 type AppliedAxis = {
@@ -67,6 +79,7 @@ type ApiResult = {
   unavailable_axes: { axis: AxisId; field: string; value: string }[];
   core_evidence_count: number;
   evidence: EvidenceItem[];
+  value_summary?: ValueSummary | null;
   evidence_total_after_filter: number;
   evidence_summary: {
     displayed_records: number;
@@ -115,6 +128,7 @@ const emptyForm: FormState = { situation: "", axes: [] };
 /** 문장 정리기가 돌려주는 것. 값이 아니라 어떤 축을 켤지만 화면에 반영한다. */
 type Interpreted = {
   situation: SituationId | null;
+  values?: Record<string, string>;
   applied_axes: { axis: AxisId; field: string; value: string }[];
   unavailable_axes: { axis: AxisId; field: string; value: string }[];
   unmatched: string;
@@ -237,6 +251,17 @@ function resultCountLabel(result: ApiResult) {
     return `조건에 맞는 AI 검토 연구 ${result.evidence_total_after_filter.toLocaleString("ko-KR")}편`;
   }
   return `AI 검토 연구 ${result.evidence_total_after_filter.toLocaleString("ko-KR")}편`;
+}
+
+/** 적어 주신 값과 목록을 맞춰 본 결과를 한 줄로. 읽은 값이 없으면 줄을 그리지 않는다. */
+function valueSummaryLine(summary: ValueSummary | null | undefined, total: number) {
+  if (!summary) return "";
+  const parts = [
+    summary.ingredients.length ? `${summary.ingredients.join(", ")} 성분 ${summary.ingredient_matches}편` : "",
+    summary.age !== null ? `${summary.age}세 나이대 ${summary.age_matches}편` : "",
+    summary.dose ? `${summary.dose} 전후 용량 ${summary.dose_matches}편` : "",
+  ].filter(Boolean);
+  return parts.length ? `적어 주신 내용과 맞는 연구: ${parts.join(", ")} (목록 ${total}편 기준)` : "";
 }
 
 function resultHeading(result: ApiResult) {
@@ -408,6 +433,9 @@ function EvidenceRecord({
           <span className={isCore ? "record-tag" : "record-tag record-tag-quiet"}>
             {isCore ? "AI 검토 연구" : "추가 후보"}
           </span>
+          {item.value_match?.ingredient ? <span className="record-tag record-tag-match">성분 일치</span> : null}
+          {item.value_match?.age ? <span className="record-tag record-tag-match">나이대 일치</span> : null}
+          {item.value_match?.dose ? <span className="record-tag record-tag-match">용량 일치</span> : null}
         </p>
 
         {/* 첫 줄은 무엇을 알아냈는지다. 괄호 속 통계는 접고, 원래 문장은 아래 '자세히'에 둔다. */}
@@ -536,6 +564,11 @@ export function PersonalizedSafetyQuery() {
   const [sentence, setSentence] = useState("");
   const [interpreting, setInterpreting] = useState(false);
   const [interpreted, setInterpreted] = useState<Interpreted | null>(null);
+  // 조회 요청이 그 순간의 해석 값을 읽도록 ref 에도 둔다.
+  const interpretedRef = useRef<Interpreted | null>(null);
+  useEffect(() => {
+    interpretedRef.current = interpreted;
+  }, [interpreted]);
   const [consult, setConsult] = useState<ConsultText>(null);
   const [composing, setComposing] = useState(false);
   const [consultElapsedMs, setConsultElapsedMs] = useState(0);
@@ -818,9 +851,21 @@ export function PersonalizedSafetyQuery() {
   const run = useCallback(
     async (
       values: FormState,
-      extra: { expanded?: boolean; offset?: number } = {},
+      extra: { expanded?: boolean; offset?: number; marks?: ReturnType<typeof valueMarks> } = {},
       options: { scroll?: boolean; patientContext?: string } = {},
     ) => {
+      // 문장으로 찾았을 때만 성분, 나이, 양을 문헌과 대조한다. 문장은 여기서 읽고
+      // 조회 요청에는 읽은 결과만 싣는다. 목록과 순서는 바뀌지 않는다.
+      if (options.patientContext && !extra.marks) {
+        const marks = valueMarks(
+          readValueQuery({
+            text: options.patientContext,
+            age: interpretedRef.current?.values?.age ?? "",
+            dose: interpretedRef.current?.values?.dose ?? "",
+          }),
+        );
+        if (marks) extra = { ...extra, marks };
+      }
       if (!values.situation) {
         setError("먼저 임상 상황을 하나 선택하세요.");
         focusSoon(firstSituationRef);
@@ -906,6 +951,7 @@ export function PersonalizedSafetyQuery() {
   function runExample(example: (typeof publicInputExamples)[number]) {
     setSentence(example.sentence);
     // 앞선 AI 결과가 남아 있으면 지금 문장과 다른 조건을 설명하게 된다.
+    interpretedRef.current = null;
     setInterpreted(null);
     setForm(example.input);
     setActiveExample(example.id);
@@ -960,6 +1006,7 @@ export function PersonalizedSafetyQuery() {
         situation: body.situation,
         axes: body.applied_axes.map((item) => item.axis),
       };
+      interpretedRef.current = body;
       setInterpreted(body);
       setForm(next);
       setActiveExample("");
@@ -1356,6 +1403,11 @@ export function PersonalizedSafetyQuery() {
                       ? result.query_snapshot.requested_axes.map((axis) => axisName(axis)).join(", ")
                       : "없음"}
                   </p>
+                  {valueSummaryLine(result.value_summary, result.evidence.length) ? (
+                    <p className="mt-1 text-[0.9375rem] leading-6 text-muted">
+                      {valueSummaryLine(result.value_summary, result.evidence.length)}
+                    </p>
+                  ) : null}
                 </div>
 
                 {/* 결과 해설. 문단은 위에 연결된 문헌만 읽고 쓴 것이고, 어떤 문헌이
