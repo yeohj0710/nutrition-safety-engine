@@ -83,7 +83,7 @@ describe("문단별 지시문", () => {
 
   it("keeps three roles so one slow paragraph does not hold the other two", () => {
     expect(COMPOSE_ROLES).toHaveLength(3);
-    expect(COMPOSE_ROLES.map((role) => role.id)).toEqual(["situation", "study", "gap"]);
+    expect(COMPOSE_ROLES.map((role) => role.id)).toEqual(["effect", "safety", "fit"]);
     for (const role of COMPOSE_ROLES) expect(role.labelKo).toMatch(/[가-힣]/);
   });
 });

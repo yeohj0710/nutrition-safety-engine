@@ -22,7 +22,7 @@ export const maxDuration = 300;
 //
 // 문단 셋을 한 호출로 시키던 것을 역할별 세 호출로 나눠 동시에 보낸다. 실측:
 // 한 호출은 149초·출력 14,536토큰(그중 추론 13,700), 문단 하나짜리 호출은
-// 21.6초·출력 2,378토큰이었다. 모델(gpt-5.6-luna)과 effort(max)는 그대로다.
+// 21.6초·출력 2,378토큰이었다. 모델과 effort 는 src/lib/ai-consult.ts 에 있다.
 // 벽시계는 가장 느린 문단 하나로 줄고, 문단은 끝나는 대로 하나씩 내보낸다.
 //
 // 응답은 두 모양이다. 모델을 부르지 않는 경우(키 없음, 문헌 없음, 세 문단 모두
@@ -96,31 +96,49 @@ export async function POST(req: Request) {
   }
 
   const started = Date.now();
-  const composeSlot = (slot: (typeof slots)[number]) => (signal: AbortSignal): Promise<RoleOutcome> =>
-    callLuna<{ text: unknown; recordIds: unknown }>({
-      developer: slot.developer,
-      user: slot.user,
-      schemaName: "consult_paragraph",
-      schema: COMPOSE_PARAGRAPH_SCHEMA as unknown as Record<string, unknown>,
-      // 추론까지 함께 쓰는 예산. 문헌을 자리마다 넷~다섯으로 줄이고도 본문 없이
-      // 끝나는 일이 없도록 16,000으로 둔다(12,000에서 한 자리가 incomplete 였다).
-      maxOutputTokens: 16_000,
-      // 함수 상한(300초)보다 짧게 잘라 실패 사유와 대체 문단까지 돌려준다.
-      timeoutMs: 210_000,
-      signal,
-    }).then((result): RoleOutcome => {
+  // 문단 하나를 쓴다. 출처 검사에 걸리면 걸린 이유를 알려 주고 한 번만 다시 쓰게 한다.
+  const composeSlot = (slot: (typeof slots)[number]) => async (signal: AbortSignal): Promise<RoleOutcome> => {
+    let developer = slot.developer;
+    let rejections: string[] = [];
+    let usage = { input: 0, output: 0 };
+    for (let attempt = 0; attempt < 2; attempt += 1) {
+      const result = await callLuna<{ text: unknown; recordIds: unknown }>({
+        developer,
+        user: slot.user,
+        schemaName: "consult_paragraph",
+        schema: COMPOSE_PARAGRAPH_SCHEMA as unknown as Record<string, unknown>,
+        // 추론까지 함께 쓰는 예산. 12,000에서 한 자리가 incomplete 였고, 효과와 부작용
+        // 문단은 여섯 편을 읽으므로 넉넉히 둔다. 쓰지 않은 예산은 값이 들지 않는다.
+        maxOutputTokens: 32_000,
+        // 함수 상한(300초)보다 짧게 잘라 실패 사유와 대체 문단까지 돌려준다.
+        // 다시 쓰는 호출은 남은 시간 안에 끝나게 90초로 줄인다(190 + 90 < 300).
+        timeoutMs: 190_000 - attempt * 100_000,
+        signal,
+      });
+      // 모델 서버의 일시 오류(5xx)는 한 번만 다시 부른다.
+      if (!result.ok && attempt === 0 && result.reason === "http_error" && /^5\d\d$/.test(result.detail ?? "")) {
+        console.warn("[consult/compose] retry after server error", { role: slot.role.id, detail: result.detail });
+        continue;
+      }
       if (!result.ok) {
-        console.warn("[consult/compose] fallback", { role: slot.role.id, reason: result.reason, detail: result.detail, elapsedMs: Date.now() - started, sources: selectComposeSources(sources).length });
-        return { paragraph: slot.fallbackParagraph, source: "deterministic", reason: result.reason };
+        console.warn("[consult/compose] fallback", { role: slot.role.id, attempt, reason: result.reason, detail: result.detail, elapsedMs: Date.now() - started, sources: selectComposeSources(sources).length });
+        return { paragraph: slot.fallbackParagraph, source: "deterministic", reason: result.reason, rejections, usage };
       }
+      usage = { input: usage.input + result.usage.input, output: usage.output + result.usage.output };
       const verdict = refereeConsult({ paragraphs: [result.value], recordText, sharedText });
-      if (!verdict.ok) {
-        console.warn("[consult/compose] refereed out", { role: slot.role.id, rejections: verdict.rejections });
-        return { paragraph: slot.fallbackParagraph, source: "deterministic", reason: "refereed_out", rejections: verdict.rejections, usage: result.usage };
+      if (verdict.ok) {
+        const paragraph = { ...verdict.paragraphs[0], text: verdict.paragraphs[0].text.replace(/\s*[·—]\s*/g, ", ") };
+        remember(slot.key, paragraph);
+        return { paragraph, source: "ai_written", usage, rejections };
       }
-      remember(slot.key, verdict.paragraphs[0]);
-      return { paragraph: verdict.paragraphs[0], source: "ai_written", usage: result.usage };
-    });
+      console.warn("[consult/compose] refereed out", { role: slot.role.id, attempt, rejections: verdict.rejections });
+      rejections = verdict.rejections;
+      developer = `${slot.developer}
+
+[다시 쓰기] 앞서 쓴 문단이 출처 검사에서 다음 이유로 빠졌다: ${verdict.rejections.join(", ")}. unsupported_number 는 문헌이나 입력에 없는 숫자다. 단위를 바꾸거나 계산하지 말고 초록에 적힌 숫자와 단위를 그대로 쓴다.`;
+    }
+    return { paragraph: slot.fallbackParagraph, source: "deterministic", reason: "refereed_out", rejections, usage };
+  };
 
   const encoder = new TextEncoder();
   let work: Promise<unknown> = Promise.resolve();

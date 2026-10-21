@@ -12,6 +12,7 @@ import { AnimatedDetails } from "@/src/components/animated-details";
 import { isRetractedPublication, retractedPublicationNotice } from "@/src/lib/publication-status";
 import { studyKind, withoutStatistics } from "@/src/lib/plain-reading";
 import { elapsedLabel, readConsultResponse } from "@/src/lib/consult-stream";
+import { summarizeTally, type TallyDirection, type TallyRelation, type TallyRow } from "@/src/lib/consult-tally";
 import { COMPOSE_ROLES, groundedFallback, plainLanguage, readableSource, type ConsultStreamEvent } from "@/src/lib/consult-compose";
 import {
   axes,
@@ -31,6 +32,8 @@ import {
 
 type EvidenceItem = {
   record_id: string;
+  /** 검토를 마친 핵심 문헌인지. 서버가 문헌마다 싣는다. */
+  is_core?: boolean;
   title: string;
   authors: string;
   venue: string;
@@ -403,15 +406,133 @@ function ResultSkeleton() {
   );
 }
 
+const directionTagClass: Record<TallyDirection, string> = {
+  좋아짐: "record-tag record-tag-good",
+  "차이 없음": "record-tag record-tag-flat",
+  나빠짐: "record-tag record-tag-bad",
+  엇갈림: "record-tag record-tag-flat",
+  "결과 없음": "record-tag record-tag-quiet",
+};
+
+/**
+ * 맨 위 집계. 목록의 연구를 AI가 한 편씩 읽어 "직접 먹인 연구 9편 가운데 좋아짐 5편"처럼
+ * 센다. 번호를 누르면 그 연구로 내려간다. 해설 문단이 몇 편만 읽는 것을 보완한다.
+ */
+function TallyPanel({
+  tally,
+  elapsedMs,
+  numberOf,
+  ingredients,
+}: {
+  tally: { status: "loading" | "done" | "failed"; rows: TallyRow[] };
+  elapsedMs: number;
+  numberOf: (recordId: string) => number;
+  ingredients: string[];
+}) {
+  const subject = ingredients.length ? ingredients.join(", ") : "보충제";
+  const relationLabel: Record<TallyRelation, string> = {
+    "직접 먹인 연구": `${subject}${objectParticleKo(subject)} 먹인 연구`,
+    "다른 형태로 준 연구": `${subject}${objectParticleKo(subject)} 주사 등 다른 형태나 다른 목적으로 준 연구`,
+    "결과로만 잰 연구": `${subject}${objectParticleKo(subject)} 주지 않고 수치만 잰 연구`,
+    "관련 적음": `${subject}${objectParticleKo(subject)} 스치듯 다룬 연구`,
+  };
+  const numbers = (ids: string[]) => (
+    <>
+      {ids
+        .map(numberOf)
+        .filter((number) => number > 0)
+        .sort((a, b) => a - b)
+        .map((number) => (
+          <a key={number} href={`#result-ref-${number}`} className="ref-badge bg-accent/12 text-navy no-underline">
+            {number}
+          </a>
+        ))}
+    </>
+  );
+  if (tally.status === "loading") {
+    return (
+      <section aria-labelledby="tally-title" className="consult-block">
+        <div className="flex flex-wrap items-center gap-2">
+          <h3 id="tally-title" className="text-base font-bold text-foreground">연구 결과 한눈에</h3>
+          <span role="status" className="inline-flex items-center gap-1.5 text-[0.8125rem] font-semibold text-muted">
+            <span className={spinnerClass} />
+            AI가 연구를 한 편씩 읽고 결과를 나누는 중{elapsedMs > 0 ? ` (${elapsedLabel(elapsedMs)})` : ""}
+          </span>
+        </div>
+        <div className="mt-3 flex flex-col gap-2" aria-hidden="true">
+          <span className="loading-skeleton block h-4 w-2/3 rounded" />
+          <span className="loading-skeleton block h-4 w-1/2 rounded" />
+          <span className="loading-skeleton block h-4 w-3/5 rounded" />
+        </div>
+      </section>
+    );
+  }
+  if (tally.status === "failed" || !tally.rows.length) return null;
+  const summary = summarizeTally(tally.rows);
+  const harmIds = tally.rows.filter((row) => row.harm === "부작용 보고").map((row) => row.recordId);
+  return (
+    <section aria-labelledby="tally-title" className="consult-block">
+      <div className="flex flex-wrap items-center gap-2">
+        <h3 id="tally-title" className="text-base font-bold text-foreground">연구 결과 한눈에</h3>
+        <span className="consult-state">AI 집계</span>
+      </div>
+      <div className="mt-3 flex flex-col gap-3">
+        {summary.map((group) => (
+          <div key={group.relation}>
+            <p className="text-[0.9375rem] font-bold text-foreground">
+              {relationLabel[group.relation]} {group.total}편
+            </p>
+            <div className="mt-1 flex flex-col gap-1">
+              {group.byDirection.map((item) => {
+                const outcomes = [...new Set(tally.rows.filter((row) => item.recordIds.includes(row.recordId)).map((row) => row.outcome).filter(Boolean))];
+                return (
+                  <p key={item.direction} className="tally-row">
+                    <span className={directionTagClass[item.direction]}>{item.direction} {item.recordIds.length}편</span>
+                    {outcomes.length ? <span className="text-muted">{outcomes.slice(0, 4).join(", ")}</span> : null}
+                    {numbers(item.recordIds)}
+                  </p>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+        <p className="tally-row">
+          {harmIds.length ? (
+            <>
+              <span className="record-tag record-tag-harm">부작용 보고 {harmIds.length}편</span>
+              {numbers(harmIds)}
+            </>
+          ) : (
+            <span className="text-muted">부작용을 보고한 연구는 없었습니다.</span>
+          )}
+        </p>
+      </div>
+      <p className="mt-3 text-[0.8125rem] leading-5 text-muted">
+        AI가 연구마다 초록을 읽고 결과가 어느 쪽으로 나왔는지 나눈 것입니다. 연구마다 대상과 양이 다르니 번호를 눌러 각 연구를 확인하세요.
+      </p>
+    </section>
+  );
+}
+
+/** 이름 뒤 목적격 조사. 받침이 있으면 "을", 없으면 "를". */
+function objectParticleKo(word: string) {
+  const code = word.trim().slice(-1).charCodeAt(0) - 0xac00;
+  if (code < 0 || code > 11171) return "을(를)";
+  return code % 28 ? "을" : "를";
+}
+
 function EvidenceRecord({
   item,
   number,
   plainLine,
   pendingLine,
   isCore,
+  tallyRow,
 }: {
   item: EvidenceItem;
   number: number;
+  /** AI가 이 연구의 초록을 읽고 나눈 결과 방향과 부작용. 아직 없으면 비워 둔다. */
+  tallyRow?: TallyRow;
   /** 검토를 마친 핵심 문헌인지. 조회 결과는 핵심 문헌을 앞에 두므로 순번으로 정한다. */
   isCore: boolean;
   /** 한국어 번역이 없는 확장 근거에만 붙는 한 줄 요약. */
@@ -461,7 +582,18 @@ function EvidenceRecord({
           {item.value_match?.ingredient ? <span className="record-tag record-tag-match">성분 언급</span> : null}
           {item.value_match?.age ? <span className="record-tag record-tag-match">나이대 겹침</span> : null}
           {item.value_match?.dose ? <span className="record-tag record-tag-match">용량 근접</span> : null}
+          {tallyRow && tallyRow.direction !== "결과 없음" ? (
+            <span className={directionTagClass[tallyRow.direction]}>
+              {tallyRow.outcome ? `${tallyRow.outcome} ` : ""}{tallyRow.direction}
+            </span>
+          ) : null}
+          {tallyRow?.harm === "부작용 보고" ? (
+            <span className="record-tag record-tag-harm">부작용 보고{tallyRow.harmNote ? `: ${tallyRow.harmNote}` : ""}</span>
+          ) : null}
         </p>
+        {tallyRow?.exposure ? (
+          <p className="mt-1 text-[0.875rem] leading-6 text-muted">연구에서 준 것: {tallyRow.exposure}</p>
+        ) : null}
 
         {/* 첫 줄은 무엇을 알아냈는지다. 괄호 속 통계는 접고, 원래 문장은 아래 '자세히'에 둔다. */}
         {plainFinding ? (
@@ -597,6 +729,10 @@ export function PersonalizedSafetyQuery() {
   const [consult, setConsult] = useState<ConsultText>(null);
   const [composing, setComposing] = useState(false);
   const [consultElapsedMs, setConsultElapsedMs] = useState(0);
+  // 연구마다 결과 방향과 부작용을 AI가 읽어 나눈 표. 맨 위 집계와 목록의 결과 표시가 이것이다.
+  const [tally, setTally] = useState<{ status: "loading" | "done" | "failed"; rows: TallyRow[] } | null>(null);
+  const [tallyElapsedMs, setTallyElapsedMs] = useState(0);
+  const tallyCacheRef = useRef(new Map<string, TallyRow[]>());
   // 기다린 시간은 화면에서 1초마다 센다. 연결이 끊겨 다시 붙어도 처음 누른 때부터 센다.
   const composeStartedRef = useRef(0);
   // 취소한 요청이나 이전 환자의 해설이 새 결과에 섞이지 않게 요청마다 번호를 매긴다.
@@ -899,6 +1035,64 @@ export function PersonalizedSafetyQuery() {
     });
     return () => controller.abort();
   }, [result]);
+
+  // 목록의 연구를 한 편씩 읽어 결과 방향과 부작용을 나눈다. 해설과 따로 돌고, 목록은 바꾸지 않는다.
+  // 연결이 끊기면 같은 요청으로 다시 붙는다. 서버는 끊긴 뒤에도 읽기를 마쳐 캐시에 넣어 둔다.
+  const tallyKey = result && !result.expanded && result.evidence.length
+    ? JSON.stringify({
+        situation: result.query_snapshot.situation,
+        ids: result.evidence.filter((item) => !isRetractedPublication(item.publication_types)).map((item) => item.record_id),
+        ingredients: result.value_summary?.ingredients ?? [],
+      })
+    : "";
+  useEffect(() => {
+    if (!tallyKey) {
+      setTally(null);
+      return;
+    }
+    const cached = tallyCacheRef.current.get(tallyKey);
+    if (cached) {
+      setTally({ status: "done", rows: cached });
+      return;
+    }
+    const controller = new AbortController();
+    const parsed = JSON.parse(tallyKey) as { situation: string; ids: string[]; ingredients: string[] };
+    const started = Date.now();
+    setTally({ status: "loading", rows: [] });
+    setTallyElapsedMs(0);
+    const timer = setInterval(() => setTallyElapsedMs(Date.now() - started), 1_000);
+    (async () => {
+      for (let attempt = 0; ; attempt += 1) {
+        try {
+          const response = await fetch("/api/consult/tally", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            signal: controller.signal,
+            body: JSON.stringify({ situation_id: parsed.situation, record_ids: parsed.ids, ingredients: parsed.ingredients }),
+          });
+          if (!response.ok) throw new Error(`tally http ${response.status}`);
+          const body = (await response.json()) as { rows?: TallyRow[] };
+          const rows = Array.isArray(body.rows) ? body.rows : [];
+          if (controller.signal.aborted) return;
+          if (rows.length) tallyCacheRef.current.set(tallyKey, rows);
+          setTally({ status: rows.length ? "done" : "failed", rows });
+          return;
+        } catch {
+          if (controller.signal.aborted) return;
+          if (attempt >= 3) {
+            setTally({ status: "failed", rows: [] });
+            return;
+          }
+          await waitBeforeRetry(COMPOSE_RETRY_DELAYS_MS[attempt + 1], controller.signal);
+          if (controller.signal.aborted) return;
+        }
+      }
+    })().finally(() => clearInterval(timer));
+    return () => {
+      controller.abort();
+      clearInterval(timer);
+    };
+  }, [tallyKey]);
 
   // 해설을 기다리는 동안 1초마다 경과 시간을 올린다. 숫자가 움직여야 멈춘 것이 아님을 안다.
   useEffect(() => {
@@ -1487,6 +1681,18 @@ export function PersonalizedSafetyQuery() {
                   </div>
                 ) : null}
 
+                {tally ? (
+                  <TallyPanel
+                    tally={tally}
+                    elapsedMs={tallyElapsedMs}
+                    ingredients={result.value_summary?.ingredients ?? []}
+                    numberOf={(recordId) => {
+                      const position = result.evidence.findIndex((item) => item.record_id === recordId);
+                      return position < 0 ? 0 : result.expanded ? result.expanded_offset + position + 1 : position + 1;
+                    }}
+                  />
+                ) : null}
+
                 {consult ? (
                   <section
                     aria-labelledby="consult-title"
@@ -1768,7 +1974,8 @@ export function PersonalizedSafetyQuery() {
                         key={item.record_id}
                         item={item}
                         number={number}
-                        isCore={!result.expanded && index < result.core_shown}
+                        isCore={!result.expanded && (item.is_core ?? index < result.core_shown)}
+                        tallyRow={tally?.rows.find((row) => row.recordId === item.record_id)}
                         plainLine={recordLines[item.record_id]}
                         pendingLine={
                           recordLinesPending && !item.key_finding_ko

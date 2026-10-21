@@ -1160,6 +1160,32 @@ summary:focus-visible {
     color: #1d5b33;
   }
 
+  /* AI가 초록을 읽고 나눈 결과 방향. 좋아짐, 차이 없음, 나빠짐과 부작용 */
+  .record-tag-good {
+    background: #e6f4ea;
+    color: #1d5b33;
+  }
+
+  .record-tag-flat {
+    background: var(--surface-elevated);
+    color: #464c53;
+  }
+
+  .record-tag-bad,
+  .record-tag-harm {
+    background: #fdf0e6;
+    color: #8a3d0a;
+  }
+
+  .tally-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
   .record-plain {
     display: grid;
     gap: 0.25rem;

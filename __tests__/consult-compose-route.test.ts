@@ -105,8 +105,9 @@ describe("상담문 문단 나눠 쓰기", () => {
   });
 
   it("keeps the other paragraphs when one slot fails the referee", async () => {
-    respond = async (call, index) =>
-      index === 1
+    // 두 번째 자리는 다시 쓰게 해도 같은 숫자를 지어낸다. 한 번 다시 부른 뒤 정리 문단으로 남아야 한다.
+    respond = async (call) =>
+      call.developer.includes(COMPOSE_ROLES[1].taskKo)
         ? { ok: true, value: { text: "근거 없이 9999 mg을 권합니다.", recordIds: [RECORD] }, usage: { input: 1, output: 1 } }
         : { ok: true, value: { text: "수술 전후 환자를 대상으로 한 연구입니다.", recordIds: [RECORD] }, usage: { input: 1, output: 1 } };
 

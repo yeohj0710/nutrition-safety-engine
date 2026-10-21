@@ -168,6 +168,7 @@ type PresentedEvidence = Evidence & {
   translation_authorship: "ai_generated" | null;
   sentence_role: "result_or_conclusion" | "background_or_methods" | "unclassified";
   value_match?: ReturnType<typeof matchRecord>;
+  is_core?: boolean;
 };
 
 type Rule = {
@@ -615,6 +616,8 @@ function orderForPaging(
 // 5건으로 잘라 보여주면 남은 10건이 있는 줄도 모르게 되므로 핵심 근거는 전부 보여준다.
 // 그보다 넓은 근거는 확장 보기(extended_evidence.json)로 넘긴다.
 const SELECTED_LIMIT = 15;
+/** 성분을 직접 준 연구 설계. PubMed 출판 유형 이름 그대로다. */
+const INTERVENTION_DESIGN = /Randomized Controlled Trial|Controlled Clinical Trial|Clinical Trial|Meta-Analysis|Systematic Review/i;
 
 function readAxes(value: unknown) {
   if (value === undefined) return { ok: true as const, axes: [] as AxisId[] };
@@ -847,13 +850,16 @@ export async function POST(req: Request) {
   } else if (ingredientFirst) {
     const corePool = applied.length ? ranked : rankEvidence(base.all_evidence);
     // 성분 문헌 안에서는 적어 주신 값과 더 많이 맞는 문헌을 앞에 둔다. 제목에 성분
-    // 이름이 나오면 1점, 나이가 맞으면 1점, 양이 맞으면 1점. 점수가 같으면 원래 순서 그대로다.
+    // 이름이 나오면 1점, 나이가 맞으면 1점, 양이 맞으면 1점, 성분을 직접 준 시험이나
+    // 그런 시험을 모은 분석이면 1점. 성분을 결과 지표로만 잰 관찰 연구보다 실제로 먹인
+    // 연구가 앞에 오게 하려는 것이다. 점수가 같으면 원래 순서 그대로다.
     const fitScore = (item: Evidence) => {
       const match = matchRecord(valueQuery!, traits[item.record_id], String(item.dose ?? ""));
       return (
         (titleMentions(ingredientKeys, String(item.title ?? "")) ? 1 : 0) +
         (match.age === true ? 1 : 0) +
-        (match.dose === true ? 1 : 0)
+        (match.dose === true ? 1 : 0) +
+        (INTERVENTION_DESIGN.test(String(item.publication_types ?? "")) ? 1 : 0)
       );
     };
     const titleFirst = (items: Evidence[]) =>
@@ -886,7 +892,8 @@ export async function POST(req: Request) {
   const coreShown = selectedRaw.filter((item) => coreRecordIds.has(item.record_id)).length;
   const extendedShown = selectedRaw.length - coreShown;
   const selected: PresentedEvidence[] = selectedRaw.map((item) => {
-    const presented = presentEvidence(item);
+    // 성분을 앞세우면 핵심 문헌이 목록 중간에 올 수 있어, 순번 대신 문헌마다 지위를 싣는다.
+    const presented = { ...presentEvidence(item), is_core: coreRecordIds.has(item.record_id) };
     return wantsMatch
       ? { ...presented, value_match: matchRecord(valueQuery!, traits[item.record_id], String(item.dose ?? "")) }
       : presented;

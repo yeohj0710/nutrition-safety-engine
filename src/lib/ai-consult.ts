@@ -13,9 +13,10 @@ import "server-only";
 
 const ENDPOINT = "https://api.openai.com/v1/responses";
 
-/** 2026-07-30 인하로 입력 $0.20 / 출력 $1.20 per 1M. 이 용도에 sol·terra 는 과하다. */
-export const CONSULT_MODEL = "gpt-5.6-luna";
-export const CONSULT_EFFORT = "max";
+/** 261021 gpt-6-luna 로 바꿨다. 입력 $0.10 / 출력 $0.50 per 1M 로 5.6-luna 의 절반 아래이고, 같은 초록을 읽힌 실측에서 max 기준 22.2초, 출력 2,717토큰이 18.9초, 1,861토큰으로 줄었다. */
+export const CONSULT_MODEL = "gpt-6-luna";
+/** max 는 해설 한 문단에 140초를 넘겨 시간 초과가 났다. xhigh 는 같은 일을 1.5배쯤 빨리 끝낸다(261021 실측). */
+export const CONSULT_EFFORT = "xhigh";
 
 /**
  * 기본 제한 시간. 부르는 쪽에서 늘릴 수 있다.
@@ -64,6 +65,7 @@ export async function callLuna<T>({
   maxOutputTokens = 24_000,
   timeoutMs = TIMEOUT_MS,
   signal,
+  effort = CONSULT_EFFORT,
 }: {
   developer: string;
   user: string;
@@ -76,6 +78,8 @@ export async function callLuna<T>({
    * 모델 호출도 같이 끊는다. 끊긴 요청의 답은 어디에도 쓰이지 않고 값만 든다.
    */
   signal?: AbortSignal;
+  /** 추론 깊이. 기본은 CONSULT_EFFORT. 단순 분류는 낮춰서 빨리 끝낸다. */
+  effort?: "none" | "low" | "medium" | "high" | "xhigh" | "max";
 }): Promise<LunaResult<T>> {
   const key = process.env.OPENAI_API_KEY;
   if (!key) return { ok: false, reason: "no_key" };
@@ -100,7 +104,7 @@ export async function callLuna<T>({
           { role: "developer", content: developer },
           { role: "user", content: user },
         ],
-        reasoning: { effort: CONSULT_EFFORT },
+        reasoning: { effort },
         store: false,
         max_output_tokens: maxOutputTokens,
         text: {
