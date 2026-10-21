@@ -846,11 +846,21 @@ export async function POST(req: Request) {
     selectedRaw = extendedOrdered.slice(offset, offset + EXTENDED_PAGE);
   } else if (ingredientFirst) {
     const corePool = applied.length ? ranked : rankEvidence(base.all_evidence);
-    // 제목에 성분 이름이 나오는 문헌을 초록에만 나오는 문헌보다 앞에 둔다(같은 묶음 안의 순서는 그대로).
-    const titleFirst = (items: Evidence[]) => [
-      ...items.filter((item) => titleMentions(ingredientKeys, String(item.title ?? ""))),
-      ...items.filter((item) => !titleMentions(ingredientKeys, String(item.title ?? ""))),
-    ];
+    // 성분 문헌 안에서는 적어 주신 값과 더 많이 맞는 문헌을 앞에 둔다. 제목에 성분
+    // 이름이 나오면 1점, 나이가 맞으면 1점, 양이 맞으면 1점. 점수가 같으면 원래 순서 그대로다.
+    const fitScore = (item: Evidence) => {
+      const match = matchRecord(valueQuery!, traits[item.record_id], String(item.dose ?? ""));
+      return (
+        (titleMentions(ingredientKeys, String(item.title ?? "")) ? 1 : 0) +
+        (match.age === true ? 1 : 0) +
+        (match.dose === true ? 1 : 0)
+      );
+    };
+    const titleFirst = (items: Evidence[]) =>
+      items
+        .map((item, index) => ({ item, index, score: fitScore(item) }))
+        .sort((left, right) => right.score - left.score || left.index - right.index)
+        .map((row) => row.item);
     const coreHitList = titleFirst(corePool.filter(mentionsIngredient));
     const coreHitIds = new Set(coreHitList.map((item) => item.record_id));
     const extendedHitList = titleFirst(orderForPaging(
@@ -917,7 +927,7 @@ export async function POST(req: Request) {
             : `${meta?.short ?? "이 상황"} 문헌 ${extendedTotal.toLocaleString("ko-KR")}건 가운데`,
           `${offset + 1}~${offset + selected.length}번째를 보여드립니다.`,
           applied.length
-            ? "검토한 핵심 목록 밖의 문헌 후보까지 같은 조건으로 걸렀습니다. 적어주신 값 자체로 문헌을 고르지는 않습니다."
+            ? "검토한 핵심 목록 밖의 문헌 후보까지 같은 조건으로 걸렀습니다. 적어주신 성분, 나이, 양은 보여 드리는 순서를 정하는 데만 쓰고 문헌을 빼지는 않습니다."
             : "",
           "아직 한국어로 옮기지 않아 영어 문장 그대로 보입니다.",
         ]
@@ -1019,7 +1029,7 @@ export async function POST(req: Request) {
       extended_pool_total: questionPoolTotal,
       extended_match_total: extendedMatchTotal,
       extended_note: applied.length
-        ? "넓혀 보기는 검토한 핵심 목록 밖의 문헌 후보까지 담고, 거기에도 같은 조건을 걸어 고르신 이야기가 나온 것만 남깁니다. 적어주신 값 자체로 문헌을 고르지는 않습니다. 아직 한국어로 옮기지 않아 영어 문장 그대로 보입니다."
+        ? "넓혀 보기는 검토한 핵심 목록 밖의 문헌 후보까지 담고, 거기에도 같은 조건을 걸어 고르신 이야기가 나온 것만 남깁니다. 적어주신 성분, 나이, 양은 보여 드리는 순서를 정하는 데만 쓰고 문헌을 빼지는 않습니다. 아직 한국어로 옮기지 않아 영어 문장 그대로 보입니다."
         : "넓혀 보기는 핵심 목록 밖의 이 상황 문헌 후보를 모두 담습니다. 아직 한국어로 옮기지 않아 영어 문장 그대로 보입니다.",
       checks: base.checks,
       summary,

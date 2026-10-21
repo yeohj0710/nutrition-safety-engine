@@ -33,6 +33,16 @@ describe("성분을 적으면 그 성분을 다룬 문헌을 앞에 둔다", () 
     expect(mentionsIron(ids[0])).toBe(true);
   });
 
+  it("투석 65세 철분 100mg: 나이와 양까지 맞는 철분 연구가 맨 앞에 온다", async () => {
+    const body = await ask({
+      situation: "HRS2_KIDNEY_DISEASE",
+      axes: ["age_group", "dose_range"],
+      marks: { ingredients: ["iron"], age: 65, dose: { value: 100, family: "mass", text: "100mg" } },
+    });
+    const first = body.evidence[0].value_match;
+    expect(first).toEqual({ ingredient: true, age: true, dose: true });
+  });
+
   it("같은 입력에는 같은 목록이 나온다", async () => {
     const body = { situation: "HRS3_PREGNANCY", axes: ["dose_range"], marks: { ingredients: ["iron"] } };
     const first = (await ask(body)).evidence.map((item: { record_id: string }) => item.record_id);
