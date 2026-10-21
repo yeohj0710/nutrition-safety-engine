@@ -1,0 +1,118 @@
+{
+  "as_of": "2026-10-21",
+  "note": "논문에 쓸 최종 수치. 최종 자료와 최종 평가만 적는다. 과정 기록은 research/retrieval_eval/261020, 261021 과 research/final/core-expansion 에 있다.",
+  "candidates": {
+    "total": 25747,
+    "by_situation": {
+      "HRS1_PERIOPERATIVE": 3086,
+      "HRS2_KIDNEY_DISEASE": 5741,
+      "HRS3_PREGNANCY": 11562,
+      "HRS4_LIVER_DISEASE": 2466,
+      "HRS5_ANTICOAGULATION": 2892
+    },
+    "rows_with_condition_wording": {
+      "age_group": 12966,
+      "concomitant_medication": 3233,
+      "dose_range": 3810,
+      "sex": 8471,
+      "underlying_condition": 17199
+    },
+    "source": "research/systematic_review/extended_axis_index.json axis_totals"
+  },
+  "core": {
+    "total": 75,
+    "per_situation": 15,
+    "by_situation": {
+      "HRS1_PERIOPERATIVE": 15,
+      "HRS2_KIDNEY_DISEASE": 15,
+      "HRS3_PREGNANCY": 15,
+      "HRS4_LIVER_DISEASE": 15,
+      "HRS5_ANTICOAGULATION": 15
+    },
+    "how_selected": "후보 가운데 상황마다 최대 15건을 골라 GPT-5.6 luna 모델이 주제 적합성, 결과 문장, 한국어 번역을 따로 검토한 문헌. 모두 한국어 번역이 붙어 있다.",
+    "korean_translation": "75건 모두"
+  },
+  "rule_matrix": {
+    "description": "상황과 조건별 연결 규칙에 걸린 핵심 문헌 수. '-'는 해당 핵심 문헌이 없어 규칙을 만들지 않은 조합",
+    "columns": ["상황", "기본", "연령", "병용 약물", "용량", "성별", "기저 질환"],
+    "rows": [
+      ["HRS1 수술과 시술 전후", "15", "6", "-", "2", "4", "5"],
+      ["HRS2 신질환과 투석", "15", "3", "2", "4", "-", "15"],
+      ["HRS3 임신과 수유", "15", "9", "-", "5", "8", "13"],
+      ["HRS4 간질환과 간독성", "15", "6", "-", "4", "1", "14"],
+      ["HRS5 항응고와 출혈", "15", "3", "13", "5", "-", "5"]
+    ],
+    "rules_total": 25,
+    "base_rules": 5,
+    "condition_rules": 20,
+    "condition_range_one_condition": "조건 하나를 걸면 핵심 문헌이 1~15건 남는다"
+  },
+  "retrieval_eval": {
+    "date": "2026-10-21",
+    "design": "상황마다 조건 없는 조회 1개와 조건 하나씩 건 조회 4개, 모두 25개 조회의 첫 화면 결과를 운영 서비스에서 받아 평가. 첫 화면은 그 상황의 핵심 문헌 수를 따르며 최대 15건이고, 조건에 맞는 핵심 문헌이 모자라면 같은 조건의 후보로 채운다.",
+    "judges": "OpenAI Codex 에이전트(GPT-5.6 luna)와 Anthropic Claude 에이전트(Claude Sonnet 5.5)가 서로의 판정을 보지 않고 제목과 초록만으로 판정",
+    "units": {"results": 375, "unique_records_judged": 248, "condition_results": 300},
+    "topic_both_relevant": {
+      "all": {"n": 230, "of": 375, "pct": 61.3},
+      "core": {"n": 150, "of": 202, "pct": 74.3},
+      "candidate_fill": {"n": 80, "of": 173, "pct": 46.2},
+      "top5": {"n": 93, "of": 125, "pct": 74.4},
+      "by_situation": {
+        "HRS1_PERIOPERATIVE": {"n": 45, "of": 75, "pct": 60.0},
+        "HRS2_KIDNEY_DISEASE": {"n": 43, "of": 75, "pct": 57.3},
+        "HRS3_PREGNANCY": {"n": 52, "of": 75, "pct": 69.3},
+        "HRS4_LIVER_DISEASE": {"n": 60, "of": 75, "pct": 80.0},
+        "HRS5_ANTICOAGULATION": {"n": 30, "of": 75, "pct": 40.0}
+      }
+    },
+    "topic_per_judge": {
+      "codex": {"all": [286, 375, 76.3], "core": [177, 202, 87.6], "candidate_fill": [109, 173, 63.0], "top5": [108, 125, 86.4],
+                "HRS1": [66, 75, 88.0], "HRS2": [50, 75, 66.7], "HRS3": [62, 75, 82.7], "HRS4": [61, 75, 81.3], "HRS5": [47, 75, 62.7]},
+      "claude": {"all": [243, 375, 64.8], "core": [161, 202, 79.7], "candidate_fill": [82, 173, 47.4], "top5": [100, 125, 80.0],
+                 "HRS1": [46, 75, 61.3], "HRS2": [45, 75, 60.0], "HRS3": [53, 75, 70.7], "HRS4": [64, 75, 85.3], "HRS5": [35, 75, 46.7]},
+      "format": "[적합 수, 결과 수, 백분율]"
+    },
+    "condition_stated_both": {
+      "all": {"n": 249, "of": 300, "pct": 83.0},
+      "age_group": {"n": 63, "of": 75, "pct": 84.0, "codex": [67, 89.3], "claude": [63, 84.0]},
+      "concomitant_medication": {"n": 22, "of": 30, "pct": 73.3, "codex": [25, 83.3], "claude": [22, 73.3]},
+      "dose_range": {"n": 58, "of": 75, "pct": 77.3, "codex": [58, 77.3], "claude": [59, 78.7]},
+      "sex": {"n": 41, "of": 45, "pct": 91.1, "codex": [43, 95.6], "claude": [41, 91.1]},
+      "underlying_condition": {"n": 65, "of": 75, "pct": 86.7, "codex": [69, 92.0], "claude": [66, 88.0]},
+      "codex_all": [262, 87.3],
+      "claude_all": [251, 83.7],
+      "remaining_mismatch_note": "용량 조건에 남은 불일치에는 와파린 같은 약물의 용량이 보충제 문장 안에 함께 적힌 경우가 있다"
+    },
+    "agreement": {
+      "topic_3class": {"n": 248, "raw_pct": 77.4, "kappa": 0.54},
+      "topic_relevant_vs_not": {"n": 248, "raw_pct": 81.9, "kappa": 0.62},
+      "condition": {"n": 300, "raw_pct": 95.0, "kappa": 0.80}
+    },
+    "source": "research/retrieval_eval/score.json"
+  },
+  "example": {
+    "date": "2026-10-21",
+    "sentence": "혈액투석을 받고 있는 65세 남성인데 철분제를 하루 100mg 먹고 있어요",
+    "interpretation": "신질환과 투석 상황, 연령 65세, 병용 약물 철분제, 용량 하루 100mg, 성별 남성. 신질환과 투석에는 성별 규칙이 없어 성별은 조회 조건에서 빠짐",
+    "lookup": {
+      "core_after_each_condition": "핵심 15건에서 연령 조건 3건, 병용 약물까지 0건, 용량까지 0건",
+      "candidates_matching_all_three": 5,
+      "candidate_topics": "음용수의 알루미늄 허용 농도, 복막투석 환자의 활성형 비타민 D와 복막염, 고용량 비타민 E, 괴혈병, 경막외 혈종 증례. 철분제를 직접 다룬 문헌 없음",
+      "value_matching_on_these_5": "철분이 초록에 나온 문헌 1편(알루미늄 제제 복용 뒤 저장철 수치를 측정한 연구), 65세가 대상 나이 범위에 드는 문헌 3편, 100 mg 전후 용량이 적힌 문헌 1편",
+      "dose_condition_only": "핵심 4건, 같은 조건의 후보 전체 972행. 핵심 가운데 혈액투석 환자에서 정맥 철분과 경구 철분 보충의 반응을 비교한 무작위배정 임상시험의 사후 분석(PMID 40920599)에 '성분 언급'과 '용량 근접' 표시가 붙음"
+    },
+    "explanation": {
+      "paragraphs_returned_after_seconds": [43, 47, 57],
+      "all_passed_rule_check": true,
+      "connection_paragraph": "제시된 문헌은 신기능 저하 환자의 알루미늄 제제와 혈액투석 환자의 비타민 E를 다루었을 뿐, 철분과의 직접 비교나 병용 결과는 없다고 설명",
+      "difference_paragraph": "자료가 모두 추가 후보이고 철분을 직접 평가하지 않았으며, 100 mg이 무엇을 기준으로 한 양인지와 병용약, 페리틴 수치를 확인해야 한다고 적음"
+    },
+    "other_example": "항응고와 출혈에 병용 약물 조건을 걸면 핵심 15건 가운데 13건이 남고, 그중 1건은 건강한 성인에서 이코사펜트 에틸 하루 4 g과 와파린 25 mg 단회 투여를 함께 써도 와파린의 약동학 지표와 항응고 지표에 유의한 변화가 없었다는 연구(PMID 24760401, 제목: Phase 1 study of the effect of icosapent ethyl on warfarin pharmacokinetic and anticoagulation parameters, 2014)",
+    "source": "research/retrieval_eval/example_261021.json"
+  },
+  "value_matching": {
+    "plain": "문장으로 조회하면 입력에서 읽은 성분, 나이, 용량을 목록의 각 문헌 제목과 초록에 나온 성분, 대상 나이 범위, 양 표기와 맞춰 보고 '성분 언급', '나이대 겹침', '용량 근접' 표시를 붙인다. 언어모델을 쓰지 않고, 어떤 문헌이 어떤 순서로 나오는지는 바꾸지 않는다.",
+    "rules": "성분은 성분 사전의 한국어와 영어 이름이 제목이나 초록에 나오는지, 나이는 초록에서 뽑은 대상 나이 범위 안인지, 용량은 같은 단위 계열(mg 계열끼리, IU끼리)의 값이 입력 값의 절반에서 두 배 사이인지로 본다. 체중당 용량은 비교하지 않는다.",
+    "limit": "성분 언급 표시는 그 성분이 노출인지 결과 지표인지 구분하지 않는다(예시의 저장철)."
+  }
+}
