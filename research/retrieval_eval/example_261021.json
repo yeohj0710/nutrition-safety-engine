@@ -1,0 +1,274 @@
+{
+ "sentence": "혈액투석을 받고 있는 65세 남성인데 철분제를 하루 100mg 먹고 있어요",
+ "date": "2026-10-21 11:42",
+ "interpret": {
+  "situation": "HRS2_KIDNEY_DISEASE",
+  "values": {
+   "age": "65세",
+   "medication": "철분제",
+   "dose": "하루 100mg",
+   "sex": "남성",
+   "condition": ""
+  },
+  "applied_axes": [
+   {
+    "axis": "age_group",
+    "field": "age",
+    "value": "65세"
+   },
+   {
+    "axis": "concomitant_medication",
+    "field": "medication",
+    "value": "철분제"
+   },
+   {
+    "axis": "dose_range",
+    "field": "dose",
+    "value": "하루 100mg"
+   }
+  ],
+  "unavailable_axes": [
+   {
+    "axis": "sex",
+    "field": "sex",
+    "value": "남성"
+   }
+  ],
+  "unmatched": "",
+  "model": "ai_interpreted_input",
+  "notice": "문헌 검색은 고른 항목이 초록에 나왔는지 확인합니다. 결과 설명에서는 적어주신 상황과 연구 내용을 연결해 살펴봅니다."
+ },
+ "lookup_request": {
+  "situation": "HRS2_KIDNEY_DISEASE",
+  "axes": [
+   "age_group",
+   "concomitant_medication",
+   "dose_range"
+  ],
+  "marks": {
+   "ingredients": [
+    "iron"
+   ],
+   "age": 65,
+   "dose": {
+    "value": 100,
+    "family": "mass",
+    "text": "100mg"
+   }
+  }
+ },
+ "lookup": {
+  "core_shown": 0,
+  "extended_shown": 5,
+  "extended_match_total": 5,
+  "filter_trace": [
+   {
+    "axis": "base",
+    "label": "핵심 근거",
+    "count": 15
+   },
+   {
+    "axis": "age_group",
+    "label": "연령",
+    "count": 3
+   },
+   {
+    "axis": "concomitant_medication",
+    "label": "병용 약물",
+    "count": 0
+   },
+   {
+    "axis": "dose_range",
+    "label": "용량",
+    "count": 0
+   }
+  ],
+  "applied_axes": [
+   {
+    "axis": "age_group",
+    "field": "age",
+    "value": "",
+    "reported": 3
+   },
+   {
+    "axis": "concomitant_medication",
+    "field": "medication",
+    "value": "",
+    "reported": 2
+   },
+   {
+    "axis": "dose_range",
+    "field": "dose",
+    "value": "",
+    "reported": 4
+   }
+  ],
+  "unavailable_axes": [],
+  "value_summary": {
+   "ingredients": [
+    "철분"
+   ],
+   "age": 65,
+   "dose": "100mg",
+   "ingredient_matches": 1,
+   "age_matches": 3,
+   "dose_matches": 1
+  },
+  "evidence": [
+   {
+    "record_id": "pubmed:22512666",
+    "title": "Total allowable concentrations of monomeric inorganic aluminum and hydrated aluminum silicates in drinking water.",
+    "value_match": {
+     "ingredient": true,
+     "age": false,
+     "dose": false
+    }
+   },
+   {
+    "record_id": "pubmed:20228174",
+    "title": "Risk factors for peritoneal dialysis-associated peritonitis: the role of oral active vitamin d.",
+    "value_match": {
+     "ingredient": false,
+     "age": null,
+     "dose": false
+    }
+   },
+   {
+    "record_id": "pubmed:2507707",
+    "title": "Use and safety of elevated dosages of vitamin E in adults.",
+    "value_match": {
+     "ingredient": false,
+     "age": true,
+     "dose": null
+    }
+   },
+   {
+    "record_id": "pubmed:36153722",
+    "title": "Scurvy.",
+    "value_match": {
+     "ingredient": false,
+     "age": true,
+     "dose": true
+    }
+   },
+   {
+    "record_id": "pubmed:24850120",
+    "title": "The potential contributing effect of ketorolac and fluoxetine to a spinal epidural hematoma following a cervical interlaminar epidural steroid injection: a case report and narrative review.",
+    "value_match": {
+     "ingredient": false,
+     "age": true,
+     "dose": false
+    }
+   }
+  ]
+ },
+ "compose_events": [
+  {
+   "type": "interim",
+   "paragraphs": [
+    {
+     "text": "적어 주신 상황과 관련해 신질환과 투석(연령, 병용 약물, 용량) 연구를 정리했습니다. 2012년 종설, 추가 후보. 한국어 요약이 아직 없어 영어 문장을 그대로 옮깁니다: The results of dietary Phase I and II clinical trials conducted in healthy adult volunteers over 14 days and 90 days with montmorillonite found no adverse effects after feeding up to 40 mg/kg-day as A…",
+     "recordIds": [
+      "pubmed:22512666"
+     ]
+    },
+    {
+     "text": "2010년 비교 연구, 추가 후보. 한국어 요약이 아직 없어 영어 문장을 그대로 옮깁니다: Patient demographic data, comorbidities, concomitant medication, laboratory parameters, and microbiology results were obtained from the medical records and from the hospital's electronic database. ♢ R…",
+     "recordIds": [
+      "pubmed:20228174"
+     ]
+    },
+    {
+     "text": "1989년 종설, 추가 후보. 한국어 요약이 아직 없어 영어 문장을 그대로 옮깁니다: Administration of 800 IU/day of vitamin E to subjects with G6PD deficiency, sickle-cell anemia and beta-thalassemia has resulted in improvement of hematological parameters.",
+     "recordIds": [
+      "pubmed:2507707"
+     ]
+    }
+   ],
+   "reason": "generating",
+   "_t": 0.6
+  },
+  {
+   "type": "partial",
+   "index": 2,
+   "paragraph": {
+    "text": "입력하신 분은 65세 남성으로 혈액투석 중이고 철분제 100mg을 복용하지만, 제시된 자료는 추가 후보 문헌이며 철분을 직접 평가하지 않고 복막투석 환자나 비타민, 진통제 사례를 다뤄 결과를 그대로 비교하기 어렵습니다. 철분의 정확한 성분과 100mg이 무엇을 기준으로 한 양인지, 비타민 D, 비타민 E, 진통제, 항응고제 등 병용약, 혈색소와 철분 저장량을 반영하는 페리틴 수치가 확인되어야 투석 방식, 나이, 약물 차이를 구분해 해석할 수 있습니다.",
+    "recordIds": [
+     "pubmed:20228174",
+     "pubmed:2507707",
+     "pubmed:24850120",
+     "pubmed:22512666"
+    ]
+   },
+   "source": "ai_written",
+   "elapsedMs": 42019,
+   "_t": 42.6
+  },
+  {
+   "type": "partial",
+   "index": 1,
+   "paragraph": {
+    "text": "추가로 찾아진 후보 문헌에서는 콩팥 기능이 떨어진 사람이 알루미늄 수산화물 960 mg/day를 3개월 복용한 임상 경험에서 혈색소, 적혈구가 차지하는 비율, 저장철 수치가 임상적으로 뚜렷하지 않게 감소했습니다. 또 다른 후보 문헌의 한 사례에서는 먹는 비타민 C 500 mg을 매일 사용한 뒤 2주 후 전신 상태가 크게 좋아지고 피부 병변이 완전히 사라졌습니다. 두 초록 모두 뒷부분이 잘려 있어 그 이후 결과는 확인할 수 없습니다.",
+    "recordIds": [
+     "pubmed:22512666",
+     "pubmed:36153722"
+    ]
+   },
+   "source": "ai_written",
+   "elapsedMs": 46075,
+   "_t": 46.6
+  },
+  {
+   "type": "partial",
+   "index": 0,
+   "paragraph": {
+    "text": "혈액투석 중인 65세 남성이 하루 100mg 철분제를 먹는다면, 정확한 철분 성분과 제제, 알루미늄 함유 제산제나 인산을 붙잡는 약, 비타민 E 같은 병용 성분을 구분해 살펴봐야 합니다. 추가 후보 자료에서는 콩팥 기능 저하자에게 먹는 알루미늄 수산화물 뒤 알루미늄 축적과 빈혈 관련 수치 저하가, 혈액투석 환자에서는 비타민 E 부족이 다뤄졌지만, 철분과의 직접 비교나 병용 결과는 제시되지 않았습니다.",
+    "recordIds": [
+     "pubmed:22512666",
+     "pubmed:2507707"
+    ]
+   },
+   "source": "ai_written",
+   "elapsedMs": 56498,
+   "_t": 57.1
+  },
+  {
+   "type": "result",
+   "paragraphs": [
+    {
+     "text": "혈액투석 중인 65세 남성이 하루 100mg 철분제를 먹는다면, 정확한 철분 성분과 제제, 알루미늄 함유 제산제나 인산을 붙잡는 약, 비타민 E 같은 병용 성분을 구분해 살펴봐야 합니다. 추가 후보 자료에서는 콩팥 기능 저하자에게 먹는 알루미늄 수산화물 뒤 알루미늄 축적과 빈혈 관련 수치 저하가, 혈액투석 환자에서는 비타민 E 부족이 다뤄졌지만, 철분과의 직접 비교나 병용 결과는 제시되지 않았습니다.",
+     "recordIds": [
+      "pubmed:22512666",
+      "pubmed:2507707"
+     ]
+    },
+    {
+     "text": "추가로 찾아진 후보 문헌에서는 콩팥 기능이 떨어진 사람이 알루미늄 수산화물 960 mg/day를 3개월 복용한 임상 경험에서 혈색소, 적혈구가 차지하는 비율, 저장철 수치가 임상적으로 뚜렷하지 않게 감소했습니다. 또 다른 후보 문헌의 한 사례에서는 먹는 비타민 C 500 mg을 매일 사용한 뒤 2주 후 전신 상태가 크게 좋아지고 피부 병변이 완전히 사라졌습니다. 두 초록 모두 뒷부분이 잘려 있어 그 이후 결과는 확인할 수 없습니다.",
+     "recordIds": [
+      "pubmed:22512666",
+      "pubmed:36153722"
+     ]
+    },
+    {
+     "text": "입력하신 분은 65세 남성으로 혈액투석 중이고 철분제 100mg을 복용하지만, 제시된 자료는 추가 후보 문헌이며 철분을 직접 평가하지 않고 복막투석 환자나 비타민, 진통제 사례를 다뤄 결과를 그대로 비교하기 어렵습니다. 철분의 정확한 성분과 100mg이 무엇을 기준으로 한 양인지, 비타민 D, 비타민 E, 진통제, 항응고제 등 병용약, 혈색소와 철분 저장량을 반영하는 페리틴 수치가 확인되어야 투석 방식, 나이, 약물 차이를 구분해 해석할 수 있습니다.",
+     "recordIds": [
+      "pubmed:20228174",
+      "pubmed:2507707",
+      "pubmed:24850120",
+      "pubmed:22512666"
+     ]
+    }
+   ],
+   "source": "ai_written",
+   "rejections": [],
+   "usage": {
+    "input": 13737,
+    "output": 17043
+   },
+   "model": "gpt-5.6-luna",
+   "effort": "max",
+   "elapsedMs": 56499,
+   "_t": 57.1
+  }
+ ]
+}

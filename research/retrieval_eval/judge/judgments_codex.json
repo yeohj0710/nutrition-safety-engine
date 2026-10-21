@@ -1,0 +1,2278 @@
+[
+ {
+  "item_id": "I001",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Presurgical patients used herbal supplements, directly matching the perioperative situation.",
+  "reused": true
+ },
+ {
+  "item_id": "I002",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Liver disease and transplant patients received folate and vitamin B-6 around transplantation.",
+  "reused": false
+ },
+ {
+  "item_id": "I003",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Heart transplant recipients received specified doses of vitamins C and E.",
+  "reused": false
+ },
+ {
+  "item_id": "I004",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Bariatric surgery patients are adults or adolescents with postoperative nutritional deficiencies and supplementation.",
+  "reused": true
+ },
+ {
+  "item_id": "I005",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Post-bariatric surgery patients received or required iron and vitamin supplementation.",
+  "reused": true
+ },
+ {
+  "item_id": "I006",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "A herbal medicine was administered before, during, and after laparoscopic surgery.",
+  "reused": true
+ },
+ {
+  "item_id": "I007",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Geriatric hip-fracture patients received quantified oral protein-energy supplements around surgery.",
+  "reused": true
+ },
+ {
+  "item_id": "I008",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Surgical patients received quantified preoperative carbohydrate, glutamine, and antioxidant nutrition.",
+  "reused": true
+ },
+ {
+  "item_id": "I009",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Pregnant patients after bariatric surgery were evaluated for anemia and iron supplementation needs.",
+  "reused": true
+ },
+ {
+  "item_id": "I010",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "A female surgical case received food supplements during postoperative recovery.",
+  "reused": false
+ },
+ {
+  "item_id": "I011",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "An infant developed post-circumcision bleeding and was treated with vitamin K.",
+  "reused": true
+ },
+ {
+  "item_id": "I012",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "A child underwent an Ayurvedic herbal parasurgical procedure.",
+  "reused": false
+ },
+ {
+  "item_id": "I013",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "The review includes children receiving herbal prophylaxis during surgical correction of vesicoureteral reflux.",
+  "reused": true
+ },
+ {
+  "item_id": "I014",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Breast cancer survivors after treatment were studied for dietary omega-3 associations.",
+  "reused": true
+ },
+ {
+  "item_id": "I015",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Hip-fracture patients used calcium and vitamin D supplements after surgery.",
+  "reused": true
+ },
+ {
+  "item_id": "I016",
+  "topic": "partial",
+  "axes": {},
+  "reason": "Oral nutritional supplements were reviewed broadly in hospitals, with surgery representing only a subset.",
+  "reused": true
+ },
+ {
+  "item_id": "I017",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Patients undergoing bypass surgery received quantified preoperative CoQ10 supplementation.",
+  "reused": true
+ },
+ {
+  "item_id": "I018",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "sex": "yes"
+  },
+  "reason": "Elderly hip-fracture surgery patients were evaluated for postoperative nutritional supplementation.",
+  "reused": true
+ },
+ {
+  "item_id": "I019",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Women were followed for dietary supplement intake before and after bariatric surgery and during pregnancy.",
+  "reused": true
+ },
+ {
+  "item_id": "I020",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Older colorectal cancer patients undergoing surgery were studied for nutritional prehabilitation.",
+  "reused": true
+ },
+ {
+  "item_id": "I021",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Women undergoing cesarean surgery received vitamin B complex tablets before surgery.",
+  "reused": false
+ },
+ {
+  "item_id": "I022",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Postoperative knee arthroplasty patients received quantified fish oil with aspirin.",
+  "reused": true
+ },
+ {
+  "item_id": "I023",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Thiamine dosing is studied, but the perioperative connection is only an association with surgical services.",
+  "reused": false
+ },
+ {
+  "item_id": "I024",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Patients undergoing hip replacement received preoperative oral iron supplementation.",
+  "reused": true
+ },
+ {
+  "item_id": "I025",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Women after breast-conserving surgery applied a herbal ointment during radiation treatment.",
+  "reused": true
+ },
+ {
+  "item_id": "I026",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Kidney transplant recipients received vitamin D after a transplant procedure.",
+  "reused": true
+ },
+ {
+  "item_id": "I027",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Adults undergoing colon or liver surgery received perioperative fish oil and energy drinks.",
+  "reused": true
+ },
+ {
+  "item_id": "I028",
+  "topic": "partial",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Spices are studied for cancer, while surgery is mentioned only as cancer treatment context.",
+  "reused": false
+ },
+ {
+  "item_id": "I029",
+  "topic": "partial",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Natural products are studied in ovarian cancer, but perioperative treatment is only mentioned in passing.",
+  "reused": false
+ },
+ {
+  "item_id": "I030",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Adults undergoing dental procedures were studied with oral herbal sedatives and their doses.",
+  "reused": true
+ },
+ {
+  "item_id": "I031",
+  "topic": "partial",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Vitamin D was studied in hospitalized COVID-19 patients, not a perioperative population.",
+  "reused": true
+ },
+ {
+  "item_id": "I032",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Open-heart surgery patients received quantified perioperative vitamin D.",
+  "reused": true
+ },
+ {
+  "item_id": "I033",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Adults undergoing tonsillectomy received probiotic gargles after surgery, but no supplement amount was stated.",
+  "reused": true
+ },
+ {
+  "item_id": "I034",
+  "topic": "relevant",
+  "axes": {},
+  "reason": "Postoperative gastrointestinal surgery patients received a multivitamin-containing parenteral nutrition solution.",
+  "reused": true
+ },
+ {
+  "item_id": "I035",
+  "topic": "partial",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "A supplement is studied in metastatic colorectal cancer, with surgery limited to a small subgroup.",
+  "reused": false
+ },
+ {
+  "item_id": "I036",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Cancer patients following surgery or treatment were evaluated for oral nutritional supplements.",
+  "reused": true
+ },
+ {
+  "item_id": "I037",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes",
+   "sex": "yes"
+  },
+  "reason": "Patients received specified preoperative iron before cardiac surgery, with gender analyzed.",
+  "reused": false
+ },
+ {
+  "item_id": "I038",
+  "topic": "partial",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Cancer survivors used natural remedies, but surgery was only one historical treatment factor.",
+  "reused": true
+ },
+ {
+  "item_id": "I039",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Women with breast cancer received vitamin E during neoadjuvant treatment before surgery.",
+  "reused": true
+ },
+ {
+  "item_id": "I040",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Head and neck cancer patients undergoing surgery were studied with nutritional prehabilitation.",
+  "reused": true
+ },
+ {
+  "item_id": "I041",
+  "topic": "partial",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Postoperative bariatric patients are described, but no supplement exposure is clearly studied.",
+  "reused": false
+ },
+ {
+  "item_id": "I042",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Adults undergoing bariatric surgery were studied with explicitly categorized vitamin D doses.",
+  "reused": true
+ },
+ {
+  "item_id": "I043",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Patients over 80 undergoing colorectal surgery received oral nutritional and vitamin supplementation.",
+  "reused": false
+ },
+ {
+  "item_id": "I044",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "sex": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Post-surgery colon cancer patients received Chinese herbal medicine during adjuvant chemotherapy.",
+  "reused": true
+ },
+ {
+  "item_id": "I045",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Esophageal cancer patients received an amino acid supplement before esophagectomy.",
+  "reused": false
+ },
+ {
+  "item_id": "I046",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Fracture surgery patients received a quantified polyherbal laxative for postoperative constipation.",
+  "reused": true
+ },
+ {
+  "item_id": "I047",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Adults undergoing an eye procedure were assessed for perioperative ginger-related bleeding risk.",
+  "reused": true
+ },
+ {
+  "item_id": "I048",
+  "topic": "relevant",
+  "axes": {},
+  "reason": "The review directly evaluates perioperative probiotics in hepatectomy patients.",
+  "reused": false
+ },
+ {
+  "item_id": "I049",
+  "topic": "relevant",
+  "axes": {},
+  "reason": "The review directly evaluates perioperative probiotics or synbiotics in liver surgery patients.",
+  "reused": false
+ },
+ {
+  "item_id": "I050",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Adults undergoing gastrointestinal surgery received parenteral nutritional formulations postoperatively.",
+  "reused": true
+ },
+ {
+  "item_id": "I051",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Post-bariatric surgery refeeding cases included vitamin supplementation and reported participant age.",
+  "reused": false
+ },
+ {
+  "item_id": "I052",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Patients after bowel resection received quantified oral herbal medicine during recovery.",
+  "reused": true
+ },
+ {
+  "item_id": "I053",
+  "topic": "relevant",
+  "axes": {},
+  "reason": "Vitamin D pretreatment is evaluated before parathyroidectomy.",
+  "reused": false
+ },
+ {
+  "item_id": "I054",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Adults undergoing gastrointestinal cancer surgery received quantified perioperative immunonutrition.",
+  "reused": true
+ },
+ {
+  "item_id": "I055",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "A 54-year-old bleeding case used herbal medicine, but recovered without surgery.",
+  "reused": false
+ },
+ {
+  "item_id": "I056",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Patients after laparoscopic surgery for endometriosis received Chinese herbal medicine.",
+  "reused": true
+ },
+ {
+  "item_id": "I057",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Patients with gastric cancer received vitamins and nutritional substrates during preoperative care.",
+  "reused": true
+ },
+ {
+  "item_id": "I058",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "A post-surgical patient with radiation fibrosis received quantified vitamin E with pentoxifylline.",
+  "reused": true
+ },
+ {
+  "item_id": "I059",
+  "topic": "partial",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "Dialysis and kidney disease match, but the named products are medications rather than clear supplements.",
+  "reused": false
+ },
+ {
+  "item_id": "I060",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "An anephric child developed vitamin D toxicity, directly linking kidney failure and supplement harm.",
+  "reused": true
+ },
+ {
+  "item_id": "I061",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Hemodialysis and transplant patients received quantified oral folate and vitamin B supplementation.",
+  "reused": true
+ },
+ {
+  "item_id": "I062",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Hemodialysis patients included multivitamin use, but the study did not quantify supplement dosing.",
+  "reused": true
+ },
+ {
+  "item_id": "I063",
+  "topic": "partial",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "Children on renal replacement therapy were studied with citrate anticoagulation, not a dietary supplement.",
+  "reused": true
+ },
+ {
+  "item_id": "I064",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Hemodialysis patients received calcitriol with a specified daily calcium carbonate dose.",
+  "reused": false
+ },
+ {
+  "item_id": "I065",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Children with Bartter syndrome and kidney disease received potassium supplementation.",
+  "reused": true
+ },
+ {
+  "item_id": "I066",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Dialysis patients received quantified folic acid in a renal multivitamin.",
+  "reused": true
+ },
+ {
+  "item_id": "I067",
+  "topic": "partial",
+  "axes": {
+   "concomitant_medication": "no"
+  },
+  "reason": "Specialized nutrition is studied, but renal failure requiring dialysis was excluded.",
+  "reused": false
+ },
+ {
+  "item_id": "I068",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Adult hemodialysis patients received and were compared on calcium-based phosphate binders.",
+  "reused": false
+ },
+ {
+  "item_id": "I069",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Hemodialysis nutrition is assessed by age, but no dietary supplement exposure is studied.",
+  "reused": false
+ },
+ {
+  "item_id": "I070",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "The review discusses vitamin D treatment in chronic kidney disease patients.",
+  "reused": true
+ },
+ {
+  "item_id": "I071",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Adults with stage 5 chronic kidney disease used vitamin D supplementation.",
+  "reused": true
+ },
+ {
+  "item_id": "I072",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Hemodialysis patients were studied by laboratory assay without a dietary supplement exposure.",
+  "reused": true
+ },
+ {
+  "item_id": "I073",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Hemodialysis patients received paricalcitol, a pharmacologic vitamin D receptor activator rather than a supplement.",
+  "reused": true
+ },
+ {
+  "item_id": "I074",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Patients with chronic kidney disease were studied for vitamin D levels without supplementation.",
+  "reused": true
+ },
+ {
+  "item_id": "I075",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Patients with chronic kidney disease were discussed with ketoacid supplements, but their dose was explicitly unknown.",
+  "reused": true
+ },
+ {
+  "item_id": "I076",
+  "topic": "partial",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Hemodialysis patients received dialysate iron therapy, a drug treatment rather than a dietary supplement.",
+  "reused": true
+ },
+ {
+  "item_id": "I077",
+  "topic": "partial",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "CKD and vitamin D status are studied with named medications, not supplement use.",
+  "reused": false
+ },
+ {
+  "item_id": "I078",
+  "topic": "partial",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "Renal failure patients were treated with epoetin and discussed iron and heparin, not a supplement intervention.",
+  "reused": true
+ },
+ {
+  "item_id": "I079",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Patients with advanced CKD and supplementation were assessed for denosumab-related hypocalcemia, without supplement dosing.",
+  "reused": false
+ },
+ {
+  "item_id": "I080",
+  "topic": "partial",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "Hemodialysis mortality was studied without supplementation, though warfarin use was reported.",
+  "reused": true
+ },
+ {
+  "item_id": "I081",
+  "topic": "relevant",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "The review specifically warns kidney disease patients about food supplements and herbal products alongside nephrotoxic drugs.",
+  "reused": true
+ },
+ {
+  "item_id": "I082",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "An adolescent with end-stage kidney disease received magnesium supplementation during hemodialysis.",
+  "reused": false
+ },
+ {
+  "item_id": "I083",
+  "topic": "irrelevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Hypertension patients had chronic kidney disease excluded, and no dietary supplement exposure was studied.",
+  "reused": true
+ },
+ {
+  "item_id": "I084",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "The review directly evaluates biotic supplements in chronic kidney disease.",
+  "reused": false
+ },
+ {
+  "item_id": "I085",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "dose_range": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Children with CKD received specified daily vitamin D doses, with disease stages reported.",
+  "reused": false
+ },
+ {
+  "item_id": "I086",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Adults with mild to moderate CKD used astragalus-containing herbal preparations.",
+  "reused": false
+ },
+ {
+  "item_id": "I087",
+  "topic": "partial",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "Anemia treatments and CKD are mentioned, but CKD is not the study population focus.",
+  "reused": false
+ },
+ {
+  "item_id": "I088",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "no"
+  },
+  "reason": "Maintenance hemodialysis patients received an herbal capsule intervention.",
+  "reused": false
+ },
+ {
+  "item_id": "I089",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "A chronic kidney disease patient developed hypercalcemia from calcium polystyrene sulfonate, a medication rather than a supplement.",
+  "reused": true
+ },
+ {
+  "item_id": "I090",
+  "topic": "relevant",
+  "axes": {
+   "concomitant_medication": "no"
+  },
+  "reason": "Peritoneal dialysis patients reported herbal medicine use and possible interaction or toxicity risks.",
+  "reused": true
+ },
+ {
+  "item_id": "I091",
+  "topic": "partial",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "Hemodialysis patients received citrate anticoagulation, not a dietary supplement.",
+  "reused": true
+ },
+ {
+  "item_id": "I092",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "The review includes a kidney-disease trial comparing an ACE inhibitor with vitamin C, but gives no supplement dose.",
+  "reused": true
+ },
+ {
+  "item_id": "I093",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "A kidney-failure case is described, but no dietary supplement or nutritional product is studied.",
+  "reused": false
+ },
+ {
+  "item_id": "I094",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Adults with hemodialysis received ferric citrate, a phosphate-binding drug rather than a supplement.",
+  "reused": true
+ },
+ {
+  "item_id": "I095",
+  "topic": "relevant",
+  "axes": {
+   "concomitant_medication": "no",
+   "dose_range": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Patients with diabetic chronic kidney disease received quantified oral astragalus as an add-on herbal treatment.",
+  "reused": true
+ },
+ {
+  "item_id": "I096",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Omega-3 supplementation is evaluated across kidney-related conditions including proteinuria and CKD.",
+  "reused": false
+ },
+ {
+  "item_id": "I097",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "CKD patients received alpha-lipoic acid at a specified daily dose.",
+  "reused": false
+ },
+ {
+  "item_id": "I098",
+  "topic": "relevant",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "Kidney disease patients with calciphylaxis received vitamin K, vitamin D, iron, and nutritional care alongside drugs.",
+  "reused": true
+ },
+ {
+  "item_id": "I099",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Hemodialysis patients with CKD received specified intravenous vitamin K1 doses.",
+  "reused": false
+ },
+ {
+  "item_id": "I100",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Patients with diabetic kidney disease were treated with Chinese herbal formula therapy.",
+  "reused": true
+ },
+ {
+  "item_id": "I101",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Chronic kidney disease patients received multivitamin-containing parenteral nutrition.",
+  "reused": true
+ },
+ {
+  "item_id": "I102",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Anemic hemodialysis patients received specified oral or intravenous iron regimens.",
+  "reused": false
+ },
+ {
+  "item_id": "I103",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Hemodialysis patients with uremic pruritus received Chinese herbal granules.",
+  "reused": true
+ },
+ {
+  "item_id": "I104",
+  "topic": "partial",
+  "axes": {
+   "age_group": "no"
+  },
+  "reason": "CKD-MBD patients received phosphate binders, which are medications rather than dietary supplements.",
+  "reused": true
+ },
+ {
+  "item_id": "I105",
+  "topic": "relevant",
+  "axes": {
+   "concomitant_medication": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Turmeric and curcumin were evaluated in dialysis patients and patients using immunosuppressive drugs.",
+  "reused": true
+ },
+ {
+  "item_id": "I106",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Adults on hemodialysis were studied mainly with pharmacologic drugs and iron therapy, not clearly supplements.",
+  "reused": true
+ },
+ {
+  "item_id": "I107",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Maintenance hemodialysis patients received nutritional vitamin D supplementation.",
+  "reused": true
+ },
+ {
+  "item_id": "I108",
+  "topic": "relevant",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "Renal disease patients used NSAIDs and, in some cases, traditional herbal medicines.",
+  "reused": false
+ },
+ {
+  "item_id": "I109",
+  "topic": "partial",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "Acute renal failure is present, but the abstract describes drugs and dialysis rather than supplements.",
+  "reused": false
+ },
+ {
+  "item_id": "I110",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Pregnant women received traditional food supplementation providing specified energy and protein amounts.",
+  "reused": false
+ },
+ {
+  "item_id": "I111",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Pregnant women received quantified folic acid with iron supplementation.",
+  "reused": true
+ },
+ {
+  "item_id": "I112",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Pregnant women received micronutrients with detailed vitamin and mineral doses.",
+  "reused": false
+ },
+ {
+  "item_id": "I113",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Preterm infants received vitamin K prophylaxis, but they were not pregnant or breastfeeding participants.",
+  "reused": true
+ },
+ {
+  "item_id": "I114",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Mothers used quantified folic acid before or during pregnancy.",
+  "reused": true
+ },
+ {
+  "item_id": "I115",
+  "topic": "partial",
+  "axes": {
+   "sex": "no"
+  },
+  "reason": "Essential fatty acids and pregnancy are discussed, but no pregnancy-specific study population is described.",
+  "reused": false
+ },
+ {
+  "item_id": "I116",
+  "topic": "partial",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Vitamin A toxicity and pregnancy are discussed, but no defined pregnancy study population is given.",
+  "reused": false
+ },
+ {
+  "item_id": "I117",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Pregnant women and fetal outcomes were analyzed by maternal diet and multivitamin supplement use.",
+  "reused": true
+ },
+ {
+  "item_id": "I118",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Fetal and infant neural tube defect outcomes were evaluated against folic acid fortification.",
+  "reused": true
+ },
+ {
+  "item_id": "I119",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Pregnant or preconception women received folic acid with aspirin, but folic acid dosing is not stated.",
+  "reused": false
+ },
+ {
+  "item_id": "I120",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "sex": "yes"
+  },
+  "reason": "A review of mothers and infants examines maternal diet and supplement use during breastfeeding.",
+  "reused": false
+ },
+ {
+  "item_id": "I121",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Preterm infants received vitamin D, but the population was postnatal rather than pregnant or breastfeeding people.",
+  "reused": true
+ },
+ {
+  "item_id": "I122",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Pregnant and breastfeeding women, infants, and other age groups are evaluated for iodine supplementation needs.",
+  "reused": false
+ },
+ {
+  "item_id": "I123",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Pregnant women received randomized daily vitamin D doses of 400 or 4,400 IU.",
+  "reused": false
+ },
+ {
+  "item_id": "I124",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Pregnant women with epilepsy received folic acid during pregnancy.",
+  "reused": true
+ },
+ {
+  "item_id": "I125",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Preoperative adults received iron with erythropoietin, but the record does not concern pregnancy and gives no iron dose.",
+  "reused": true
+ },
+ {
+  "item_id": "I126",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Pregnant women with obesity received 2 g/day of omega-3 supplementation.",
+  "reused": false
+ },
+ {
+  "item_id": "I127",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "dose_range": "yes",
+   "underlying_condition": "no"
+  },
+  "reason": "Pregnancy studies evaluated quantified DHA or EPA supplementation and offspring weight.",
+  "reused": true
+ },
+ {
+  "item_id": "I128",
+  "topic": "partial",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Young women and iodine supplementation are studied, but pregnancy is only future potential conception.",
+  "reused": false
+ },
+ {
+  "item_id": "I129",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes",
+   "sex": "yes",
+   "underlying_condition": "no"
+  },
+  "reason": "Pregnant women received quantified DHA supplementation.",
+  "reused": true
+ },
+ {
+  "item_id": "I130",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Antenatal vitamin D exposure is linked to childhood eczema and food allergy outcomes.",
+  "reused": false
+ },
+ {
+  "item_id": "I131",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Pregnant women were assigned a specified 1,000 mg/day DHA dose.",
+  "reused": false
+ },
+ {
+  "item_id": "I132",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Preterm infants were assessed for supplementation needs, but they were not pregnant or breastfeeding participants.",
+  "reused": true
+ },
+ {
+  "item_id": "I133",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "no",
+   "sex": "yes",
+   "underlying_condition": "no"
+  },
+  "reason": "Pregnant women were studied for selenium supplementation and pregnancy outcomes, without age or disease details.",
+  "reused": false
+ },
+ {
+  "item_id": "I134",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Twin pregnant women were studied for preconception folic acid supplementation.",
+  "reused": false
+ },
+ {
+  "item_id": "I135",
+  "topic": "partial",
+  "axes": {},
+  "reason": "Pregnancy exposure is clear, but the primary exposure is folate-antagonist drugs rather than supplements.",
+  "reused": true
+ },
+ {
+  "item_id": "I136",
+  "topic": "partial",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Pregnant women were measured for vitamin levels, without a vitamin supplement exposure.",
+  "reused": true
+ },
+ {
+  "item_id": "I137",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Premature infants received human milk and some phosphorus supplementation, without a pregnancy or breastfeeding-person population.",
+  "reused": true
+ },
+ {
+  "item_id": "I138",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "sex": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Maternal folic acid supplementation is evaluated for congenital anomalies affecting children.",
+  "reused": false
+ },
+ {
+  "item_id": "I139",
+  "topic": "partial",
+  "axes": {
+   "sex": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Mineral supplementation is reviewed in women planning pregnancy and fertility disorders, not clearly pregnancy itself.",
+  "reused": false
+ },
+ {
+  "item_id": "I140",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Women in pregnancy or preconception studies received nutritional and micronutrient interventions.",
+  "reused": true
+ },
+ {
+  "item_id": "I141",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "dose_range": "yes",
+   "underlying_condition": "no"
+  },
+  "reason": "Adults including pregnant participants received selenium doses, with lipid outcomes assessed.",
+  "reused": false
+ },
+ {
+  "item_id": "I142",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Maternal vitamin and folic acid intake during pregnancy was evaluated for child neuroblastoma risk.",
+  "reused": true
+ },
+ {
+  "item_id": "I143",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "no",
+   "dose_range": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Pregnant people with gestational diabetes risk were studied by folic acid dose and duration.",
+  "reused": true
+ },
+ {
+  "item_id": "I144",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Pregnant women were assessed for vitamin D deficiency and supplementation.",
+  "reused": true
+ },
+ {
+  "item_id": "I145",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Maternal herbal medicine use during pregnancy was evaluated for offspring benefits and harms.",
+  "reused": true
+ },
+ {
+  "item_id": "I146",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Prenatal folic acid supplementation was evaluated among pregnancies resulting in cleft outcomes.",
+  "reused": true
+ },
+ {
+  "item_id": "I147",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "dose_range": "yes",
+   "underlying_condition": "no"
+  },
+  "reason": "Prenatal vitamin D supplementation and dose subgroups are evaluated across maternal and neonatal outcomes.",
+  "reused": false
+ },
+ {
+  "item_id": "I148",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Pregnant women with anemia were compared on intravenous versus oral iron treatment.",
+  "reused": false
+ },
+ {
+  "item_id": "I149",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Neonates were assessed after maternal iron supplementation during pregnancy.",
+  "reused": false
+ },
+ {
+  "item_id": "I150",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "The review directly examines herbal products as causes of liver injury and hepatotoxicity.",
+  "reused": true
+ },
+ {
+  "item_id": "I151",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Kava use and toxic liver injury are directly discussed with daily dose ranges.",
+  "reused": false
+ },
+ {
+  "item_id": "I152",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Patients with HBV cirrhosis received chemotherapy and traditional herbal medicine after liver resection.",
+  "reused": false
+ },
+ {
+  "item_id": "I153",
+  "topic": "partial",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Patients with fatty liver had measured vitamin levels, but no supplement exposure was studied.",
+  "reused": true
+ },
+ {
+  "item_id": "I154",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Infants received quantified vitamin A, but the study did not involve liver disease or liver toxicity.",
+  "reused": true
+ },
+ {
+  "item_id": "I155",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Patients with chronic hepatitis C received quantified silymarin supplementation.",
+  "reused": true
+ },
+ {
+  "item_id": "I156",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "no"
+  },
+  "reason": "Kava hepatotoxicity and herbal kava exposure directly concern supplement-related liver injury, without participant ages.",
+  "reused": true
+ },
+ {
+  "item_id": "I157",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Hypertensive adults received folic acid, but the study excluded known hepatic disease.",
+  "reused": true
+ },
+ {
+  "item_id": "I158",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Patients with chronic hepatitis C received quantified milk thistle extract for liver outcomes.",
+  "reused": true
+ },
+ {
+  "item_id": "I159",
+  "topic": "partial",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Liver cancer patients were assessed for trace elements without documented supplement use.",
+  "reused": true
+ },
+ {
+  "item_id": "I160",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Patients with nonalcoholic fatty liver disease received quantified omega-3 supplementation.",
+  "reused": true
+ },
+ {
+  "item_id": "I161",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Patients developed liver injury after ingesting a Chinese herbal product, with ages reported.",
+  "reused": true
+ },
+ {
+  "item_id": "I162",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Patients with cirrhosis received branched-chain amino acid supplementation and were assessed for survival.",
+  "reused": true
+ },
+ {
+  "item_id": "I163",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "A patient developed acute liver toxicity from an adulterated herbal supplement.",
+  "reused": true
+ },
+ {
+  "item_id": "I164",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "no"
+  },
+  "reason": "Cirrhotic patients received antioxidant and zinc supplements for minimal hepatic encephalopathy, without ages.",
+  "reused": true
+ },
+ {
+  "item_id": "I165",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "General adults consumed quantified ginkgo, while liver relevance was limited to function markers.",
+  "reused": true
+ },
+ {
+  "item_id": "I166",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "A male patient with acute liver failure received vitamin B2 supplementation.",
+  "reused": true
+ },
+ {
+  "item_id": "I167",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Patients with nonalcoholic fatty liver disease received prebiotic, probiotic, or synbiotic therapies.",
+  "reused": true
+ },
+ {
+  "item_id": "I168",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "A woman developed recurrent acute hepatitis after taking a Garcinia herbal weight-loss supplement.",
+  "reused": true
+ },
+ {
+  "item_id": "I169",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Adults with alcoholic cirrhosis received quantified supplementary parenteral nutrition.",
+  "reused": true
+ },
+ {
+  "item_id": "I170",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Patients with nonalcoholic fatty liver disease received probiotic or synbiotic therapies.",
+  "reused": true
+ },
+ {
+  "item_id": "I171",
+  "topic": "relevant",
+  "axes": {
+   "sex": "no"
+  },
+  "reason": "An herbal formula is evaluated in people with chronic hepatitis B, without participant sex details.",
+  "reused": false
+ },
+ {
+  "item_id": "I172",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Patients with hypoxic liver injury received silymarin at 280 mg every eight hours.",
+  "reused": false
+ },
+ {
+  "item_id": "I173",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "dose_range": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "NAFLD patients received resveratrol, with age, dose, and NAFLD subgroup findings reported.",
+  "reused": false
+ },
+ {
+  "item_id": "I174",
+  "topic": "partial",
+  "axes": {},
+  "reason": "Silymarin was used with interferon in multiple sclerosis, while liver toxicity was attributed to interferon.",
+  "reused": true
+ },
+ {
+  "item_id": "I175",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Children with NAFLD are discussed, but supplements are mentioned only as needing further study.",
+  "reused": false
+ },
+ {
+  "item_id": "I176",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "no",
+   "underlying_condition": "yes"
+  },
+  "reason": "Nutritional supplements were systematically evaluated in patients with nonalcoholic fatty liver disease.",
+  "reused": true
+ },
+ {
+  "item_id": "I177",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Hepatocellular carcinoma patients received a Chinese-Japanese herbal compound during lenvatinib treatment.",
+  "reused": false
+ },
+ {
+  "item_id": "I178",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Patients with nonalcoholic fatty liver disease received a quantified silybin, vitamin D, and vitamin E regimen.",
+  "reused": true
+ },
+ {
+  "item_id": "I179",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Adults with intestinal failure received parenteral nutrition, including formulations affecting liver disease outcomes.",
+  "reused": true
+ },
+ {
+  "item_id": "I180",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Patients with alcoholic cirrhosis received diet plus polymeric formula with specified calorie and protein targets.",
+  "reused": false
+ },
+ {
+  "item_id": "I181",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Women with nonalcoholic fatty liver disease received quantified licorice root supplementation.",
+  "reused": true
+ },
+ {
+  "item_id": "I182",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "no"
+  },
+  "reason": "Drug-induced liver injury cases included herbal and dietary supplements, but no participant age information was stated.",
+  "reused": true
+ },
+ {
+  "item_id": "I183",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Functional foods and dietary supplements were evaluated in patients with nonalcoholic fatty liver disease.",
+  "reused": true
+ },
+ {
+  "item_id": "I184",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Alcohol use disorder patients had liver-related complications and vitamin D measurements, but no supplement intervention.",
+  "reused": true
+ },
+ {
+  "item_id": "I185",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Probiotic, prebiotic, and synbiotic therapies were evaluated in nonalcoholic fatty liver disease.",
+  "reused": true
+ },
+ {
+  "item_id": "I186",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Postpartum women with hepatitis B used traditional medicines associated with liver injury.",
+  "reused": true
+ },
+ {
+  "item_id": "I187",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Children with beta-thalassemia and liver dysfunction received grape seed extract supplementation.",
+  "reused": true
+ },
+ {
+  "item_id": "I188",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "dose_range": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Adults with nonalcoholic fatty liver disease received quantified curcumin supplementation.",
+  "reused": true
+ },
+ {
+  "item_id": "I189",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Silymarin was tested against doxorubicin-induced liver toxicity, not toxicity caused by the supplement.",
+  "reused": true
+ },
+ {
+  "item_id": "I190",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Patients with HBV-associated liver cancer received specified doses of herbal decoction granules.",
+  "reused": false
+ },
+ {
+  "item_id": "I191",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "A poisoning patient received nutritional supplementation, but the case did not involve liver disease or a quantified supplement dose.",
+  "reused": true
+ },
+ {
+  "item_id": "I192",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Severely obese participants received glycine, while liver disease was represented only indirectly by a MASLD marker.",
+  "reused": true
+ },
+ {
+  "item_id": "I193",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Patients with primary liver cancer received a traditional Chinese herbal decoction.",
+  "reused": true
+ },
+ {
+  "item_id": "I194",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Adults with diabetes and metabolic steatotic liver disease were studied with Chinese herbal medicines.",
+  "reused": true
+ },
+ {
+  "item_id": "I195",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Patients with cirrhosis and bacterial peritonitis had prognostic exposure to herbal supplements.",
+  "reused": true
+ },
+ {
+  "item_id": "I196",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Patients with metabolic steatotic liver disease received gut microbiota-regulating nutritional therapies.",
+  "reused": true
+ },
+ {
+  "item_id": "I197",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "sex": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Adults with metabolic steatotic liver disease were treated with traditional Chinese medicine formulations.",
+  "reused": true
+ },
+ {
+  "item_id": "I198",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Patients with alcoholic cirrhosis received vitamin A testing and supplementation.",
+  "reused": true
+ },
+ {
+  "item_id": "I199",
+  "topic": "partial",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Cirrhotic patients had vitamin A status measured, but no supplement intervention was described.",
+  "reused": true
+ },
+ {
+  "item_id": "I200",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Anticoagulated patients with hematoma received vitamin K treatment, a drug rather than a dietary supplement.",
+  "reused": true
+ },
+ {
+  "item_id": "I201",
+  "topic": "partial",
+  "axes": {
+   "concomitant_medication": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Anticoagulant drugs were studied in cerebrovascular disease, but no dietary supplement exposure was clear.",
+  "reused": true
+ },
+ {
+  "item_id": "I202",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "A patient on phenprocoumon developed liver failure and received vitamin K treatment.",
+  "reused": false
+ },
+ {
+  "item_id": "I203",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Children on long-term parenteral nutrition received warfarin, with vitamin K intake measured.",
+  "reused": false
+ },
+ {
+  "item_id": "I204",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Pregnant or postpartum people at thrombotic or bleeding risk were discussed with calcium, fish oil, and folic acid.",
+  "reused": true
+ },
+ {
+  "item_id": "I205",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Anticoagulated patients with bleeding or procedure needs received vitamin K alongside reversal therapy.",
+  "reused": true
+ },
+ {
+  "item_id": "I206",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "no"
+  },
+  "reason": "Preeclamptic women are discussed with antiplatelet, antithrombotic, and antioxidant supplementation strategies.",
+  "reused": false
+ },
+ {
+  "item_id": "I207",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Warfarin dosing was studied in anticoagulated patients without a dietary supplement exposure.",
+  "reused": true
+ },
+ {
+  "item_id": "I208",
+  "topic": "partial",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Pregnant patients with coagulopathy received anticoagulant drugs, not a dietary supplement.",
+  "reused": true
+ },
+ {
+  "item_id": "I209",
+  "topic": "partial",
+  "axes": {},
+  "reason": "An anticoagulant drug and dipyridamole were studied in kidney disease without a clear supplement exposure.",
+  "reused": true
+ },
+ {
+  "item_id": "I210",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Healthy volunteers received warfarin with vitamin K, but the vitamin K dose is not stated.",
+  "reused": false
+ },
+ {
+  "item_id": "I211",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Older atrial fibrillation patients and anticoagulant drugs are discussed, without supplement use.",
+  "reused": false
+ },
+ {
+  "item_id": "I212",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "A warfarin-treated patient experienced INR elevation after specified cranberry juice amounts.",
+  "reused": false
+ },
+ {
+  "item_id": "I213",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Supplements and anticoagulant therapies appear in an IgA nephropathy treatment review, not a defined anticoagulated population.",
+  "reused": false
+ },
+ {
+  "item_id": "I214",
+  "topic": "partial",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Anticoagulant use is reviewed, but no supplement exposure is described; renal insufficiency is noted.",
+  "reused": false
+ },
+ {
+  "item_id": "I215",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "concomitant_medication": "yes",
+   "dose_range": "yes"
+  },
+  "reason": "Healthy adults received quantified EPA nutritional product with warfarin to assess anticoagulation interactions.",
+  "reused": true
+ },
+ {
+  "item_id": "I216",
+  "topic": "relevant",
+  "axes": {
+   "concomitant_medication": "yes",
+   "dose_range": "yes"
+  },
+  "reason": "The review evaluates vitamin K supplementation alongside warfarin at specified low doses.",
+  "reused": false
+ },
+ {
+  "item_id": "I217",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Pregnant women with mechanical heart valves used warfarin and vitamin K around cesarean delivery.",
+  "reused": false
+ },
+ {
+  "item_id": "I218",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Anticoagulated atrial fibrillation patients after stenting are studied, but no supplement exposure is included.",
+  "reused": false
+ },
+ {
+  "item_id": "I219",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Isoquercetin dosing and antithrombotic effects are studied, but participants are not clearly anticoagulated or bleeding-risk patients.",
+  "reused": false
+ },
+ {
+  "item_id": "I220",
+  "topic": "partial",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "Atrial fibrillation patients used anticoagulant or antiplatelet drugs without a dietary supplement exposure.",
+  "reused": true
+ },
+ {
+  "item_id": "I221",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "The review addresses vitamin K and anticoagulant reversal, including patients with renal or liver disease.",
+  "reused": false
+ },
+ {
+  "item_id": "I222",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Older atrial fibrillation patients on vitamin K antagonists are studied, without dietary supplement exposure.",
+  "reused": false
+ },
+ {
+  "item_id": "I223",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Ablation patients on anticoagulants are studied, but no supplement use is described.",
+  "reused": false
+ },
+ {
+  "item_id": "I224",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Ginseng interactions with antiplatelets and anticoagulants are reviewed alongside diabetic and cancer populations.",
+  "reused": false
+ },
+ {
+  "item_id": "I225",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Atrial fibrillation patients switch anticoagulant doses, but no dietary supplement exposure is studied.",
+  "reused": false
+ },
+ {
+  "item_id": "I226",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "An older patient with anticoagulant-rodenticide bleeding is described, without supplement exposure.",
+  "reused": false
+ },
+ {
+  "item_id": "I227",
+  "topic": "relevant",
+  "axes": {
+   "concomitant_medication": "yes",
+   "dose_range": "yes"
+  },
+  "reason": "Warfarin-treated valve patients received 2.5 mg oral vitamin K1 for coagulopathy.",
+  "reused": false
+ },
+ {
+  "item_id": "I228",
+  "topic": "partial",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Anticoagulation is discussed for thrombotic endocarditis, but no supplement exposure is described.",
+  "reused": false
+ },
+ {
+  "item_id": "I229",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "People aged 80 or older with atrial fibrillation received oral anticoagulants, without supplements.",
+  "reused": false
+ },
+ {
+  "item_id": "I230",
+  "topic": "relevant",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "Vitamin K1 safety is evaluated in mechanical-valve patients with supratherapeutic anticoagulation.",
+  "reused": false
+ },
+ {
+  "item_id": "I231",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "dose_range": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Patients with chronic liver disease and bleeding risk received quantified vitamin K during anticoagulation-related management.",
+  "reused": true
+ },
+ {
+  "item_id": "I232",
+  "topic": "relevant",
+  "axes": {
+   "concomitant_medication": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Chinese patent medicines are combined with antiplatelet or anticoagulant therapy in diabetes and coronary disease.",
+  "reused": false
+ },
+ {
+  "item_id": "I233",
+  "topic": "partial",
+  "axes": {
+   "concomitant_medication": "no"
+  },
+  "reason": "An herbal anticoagulant is studied in hypercoagulable COPD, not patients taking anticoagulants or at bleeding risk.",
+  "reused": false
+ },
+ {
+  "item_id": "I234",
+  "topic": "relevant",
+  "axes": {
+   "concomitant_medication": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Blood-activating herbal injections are combined with conventional therapy for acute myocardial infarction.",
+  "reused": false
+ },
+ {
+  "item_id": "I235",
+  "topic": "partial",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Anticoagulants are reviewed in cirrhosis, but no dietary supplement exposure is described.",
+  "reused": false
+ },
+ {
+  "item_id": "I236",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Herbal medicines are co-administered with edoxaban, but herbal amounts are not stated.",
+  "reused": false
+ },
+ {
+  "item_id": "I237",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "concomitant_medication": "no",
+   "dose_range": "yes"
+  },
+  "reason": "Neonates received randomized 1 mg or 2 mg vitamin K to prevent bleeding.",
+  "reused": false
+ },
+ {
+  "item_id": "I238",
+  "topic": "relevant",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "The review covers vitamin K reversal alongside anticoagulants and antiplatelet drugs during bleeding or procedures.",
+  "reused": false
+ },
+ {
+  "item_id": "I239",
+  "topic": "partial",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "Nurses studied warfarin nutrient interactions, not patients taking supplements or at bleeding risk.",
+  "reused": true
+ },
+ {
+  "item_id": "I240",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Atrial fibrillation patients received anticoagulants, but no supplement exposure is described.",
+  "reused": false
+ },
+ {
+  "item_id": "I241",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Adults with CKD received vitamin K antagonists, but no supplement exposure is described.",
+  "reused": false
+ },
+ {
+  "item_id": "I242",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "A pregnant woman with mechanical valves received anticoagulants and vitamin K during pregnancy and delivery.",
+  "reused": false
+ },
+ {
+  "item_id": "I243",
+  "topic": "relevant",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "Leech-containing herbal medicines are evaluated alongside conventional antiplatelet and cardiovascular treatments.",
+  "reused": false
+ },
+ {
+  "item_id": "I244",
+  "topic": "relevant",
+  "axes": {
+   "concomitant_medication": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Dialysis patients with ESRD received or were assessed alongside heparin, aspirin, and fish oil.",
+  "reused": false
+ },
+ {
+  "item_id": "I245",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "A 3-year-old bleeding patient received vitamin K during treatment of a coagulation syndrome.",
+  "reused": false
+ },
+ {
+  "item_id": "I246",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "An anticoagulated woman with bleeding received medical interventions, but no dietary supplement exposure.",
+  "reused": true
+ },
+ {
+  "item_id": "I247",
+  "topic": "partial",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "Ginkgo bleeding with anticoagulants is mentioned, but the review population is primarily traumatic brain injury.",
+  "reused": false
+ },
+ {
+  "item_id": "I248",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Warfarin-treated subjects received vitamin K1 repletion at a specified dose.",
+  "reused": false
+ }
+]

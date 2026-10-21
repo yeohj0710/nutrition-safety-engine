@@ -1,0 +1,855 @@
+[
+ {
+  "item_id": "I002",
+  "topic": "partial",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Chronic liver disease and post-liver-transplant patients given folate plus B6; transplant only partly perioperative."
+ },
+ {
+  "item_id": "I003",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Vitamin C/E supplementation in heart transplant recipients on maintenance immunosuppressants; chronic post-transplant, not clearly perioperative."
+ },
+ {
+  "item_id": "I010",
+  "topic": "partial",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Surgical case report of small bowel diverticulum; food supplements mentioned only in passing postoperatively."
+ },
+ {
+  "item_id": "I012",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Child undergoing parasurgical removal using herbal-coated thread; herbal product is topical procedure tool, not a supplement."
+ },
+ {
+  "item_id": "I021",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Women undergoing cesarean under spinal anesthesia given oral vitamin B complex with gabapentin before surgery."
+ },
+ {
+  "item_id": "I023",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Hospitalized encephalopathy patients receiving IV thiamine; not surgery-specific, only surgical service association."
+ },
+ {
+  "item_id": "I028",
+  "topic": "irrelevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Review of culinary spices against cancer; no perioperative population."
+ },
+ {
+  "item_id": "I029",
+  "topic": "irrelevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Review of natural products in ovarian cancer; postoperative chemotherapy mention only, no perioperative supplement question."
+ },
+ {
+  "item_id": "I035",
+  "topic": "partial",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Curcumin dietary supplement with chemotherapy in metastatic colorectal cancer; surgery only incidental (conversion surgery)."
+ },
+ {
+  "item_id": "I037",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes",
+   "sex": "yes"
+  },
+  "reason": "Oral Sucrosomial iron before elective cardiac surgery to reduce transfusion."
+ },
+ {
+  "item_id": "I041",
+  "topic": "partial",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Bariatric surgery patients with postoperative micronutrient deficiencies; supplementation not clearly the studied exposure."
+ },
+ {
+  "item_id": "I043",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Frail very old colorectal cancer surgery patients prehabilitation including oral nutritional supplements and vitamin D."
+ },
+ {
+  "item_id": "I045",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Perioperative HMB/Arg/Gln amino acid supplement before esophagectomy for esophageal cancer."
+ },
+ {
+  "item_id": "I048",
+  "topic": "relevant",
+  "axes": {},
+  "reason": "Perioperative probiotics in hepatectomy patients, meta-analysis of randomized trials."
+ },
+ {
+  "item_id": "I049",
+  "topic": "relevant",
+  "axes": {},
+  "reason": "Perioperative pro/synbiotics in liver resection and transplantation patients, meta-analysis."
+ },
+ {
+  "item_id": "I051",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Post bariatric surgery refeeding syndrome cases, with vitamin and electrolyte supplementation reported."
+ },
+ {
+  "item_id": "I053",
+  "topic": "relevant",
+  "axes": {},
+  "reason": "Preoperative vitamin D supplementation before parathyroidectomy to prevent postoperative hypocalcemia, meta-analysis."
+ },
+ {
+  "item_id": "I055",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Traumatic splenic rupture treated with Chinese herbs, explicitly non-surgical; trauma patient not perioperative."
+ },
+ {
+  "item_id": "I059",
+  "topic": "partial",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "Peritoneal dialysis patient with hyperparathyroidism; calcitriol and phosphate binders are drugs, not supplements."
+ },
+ {
+  "item_id": "I064",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Hemodialysis patients given calcitriol plus 4.5 g daily calcium carbonate supplement."
+ },
+ {
+  "item_id": "I067",
+  "topic": "irrelevant",
+  "axes": {
+   "concomitant_medication": "no"
+  },
+  "reason": "Critically ill trauma patients on nutrition support; renal failure excluded, study is about calcium estimation formulas."
+ },
+ {
+  "item_id": "I068",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Hemodialysis patients randomized to calcium carbonate or sevelamer as phosphate binders; binders are drugs."
+ },
+ {
+  "item_id": "I069",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Hemodialysis patients by age group with nutritional status parameters; no supplement exposure."
+ },
+ {
+  "item_id": "I077",
+  "topic": "partial",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "CKD patients with vitamin D deficiency and concomitant drugs; supplementation not the exposure."
+ },
+ {
+  "item_id": "I079",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Denosumab hypocalcaemia with CKD as risk factor; calcium/vitamin D supplementation only background."
+ },
+ {
+  "item_id": "I082",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Adolescent on hemodialysis given magnesium supplementation to shorten prolonged QT."
+ },
+ {
+  "item_id": "I084",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "CKD and dialysis patients; prebiotic, probiotic, synbiotic supplements lowering uremic toxins, meta-analysis."
+ },
+ {
+  "item_id": "I085",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "dose_range": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Children with CKD or kidney transplant given 1000 versus 4000 IU vitamin D3 daily."
+ },
+ {
+  "item_id": "I086",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Mild to moderate CKD patients taking astragalus root herbal preparations, eGFR change."
+ },
+ {
+  "item_id": "I087",
+  "topic": "irrelevant",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "Nursing home anemia and PPIs; CKD only a covariate, iron supplements as incidental outcome."
+ },
+ {
+  "item_id": "I088",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Bailing Capsules herbal product in maintenance hemodialysis patients, meta-analysis of trials."
+ },
+ {
+  "item_id": "I093",
+  "topic": "irrelevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Parathyroid cancer case with kidney failure managed surgically; no supplement involved."
+ },
+ {
+  "item_id": "I096",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Omega-3 fatty acid supplementation and proteinuria in kidney-related conditions, meta-analysis."
+ },
+ {
+  "item_id": "I097",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Alpha-lipoic acid supplementation in CKD patients, meta-analysis, 600 mg/day."
+ },
+ {
+  "item_id": "I099",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Hemodialysis patients given intravenous vitamin K1 10 mg thrice weekly against coronary calcification."
+ },
+ {
+  "item_id": "I102",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Hemodialysis patients on intravenous versus oral iron supplements, stratified by inflammation."
+ },
+ {
+  "item_id": "I108",
+  "topic": "partial",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "Chronic renal disease from NSAID analgesic use; herbal medications only mentioned in combination products."
+ },
+ {
+  "item_id": "I109",
+  "topic": "partial",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "Acute renal failure patient on CVVHDF with citrate anticoagulation; citrate is a procedure drug, not a supplement."
+ },
+ {
+  "item_id": "I110",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Pregnant and lactating women given traditional food supplement with extra 400 kcal and 15 g protein."
+ },
+ {
+  "item_id": "I112",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Pregnant women in Nepal given folic acid, iron, zinc or multiple micronutrients; fetal loss and infant mortality."
+ },
+ {
+  "item_id": "I115",
+  "topic": "partial",
+  "axes": {
+   "sex": "no"
+  },
+  "reason": "Hypothesis paper on essential fatty acids as polypill; pregnancy and lactation only mentioned in passing."
+ },
+ {
+  "item_id": "I116",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Vitamin A supplement toxicity review including birth defects in pregnant women at 25,000 IU/day."
+ },
+ {
+  "item_id": "I119",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Low-dose aspirin drug in women with prior pregnancy loss; folic acid given to both arms only as background."
+ },
+ {
+  "item_id": "I120",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "no",
+   "sex": "yes"
+  },
+  "reason": "Review of maternal diet and supplement use as determinants of breastfeeding in lactating mothers."
+ },
+ {
+  "item_id": "I122",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Iodine intake in pregnant and breastfeeding women; supplements only recommended, intake measured from diet."
+ },
+ {
+  "item_id": "I123",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Pregnant women randomized to 400 versus 4,400 IU vitamin D3; bacterial vaginosis association."
+ },
+ {
+  "item_id": "I126",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Pregnant women with obesity given 2 g/d DHA plus EPA; newborn outcomes."
+ },
+ {
+  "item_id": "I128",
+  "topic": "irrelevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Young nonpregnant women on oral contraceptives and iodine status; pregnancy only used as analogy."
+ },
+ {
+  "item_id": "I130",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Antenatal and early-life vitamin D, including pregnancy supplementation trials, and childhood eczema or food allergy."
+ },
+ {
+  "item_id": "I131",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Pregnant women on 200 versus 1000 mg/day DHA and preterm birth."
+ },
+ {
+  "item_id": "I133",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "no",
+   "sex": "yes",
+   "underlying_condition": "no"
+  },
+  "reason": "Selenium supplementation in pregnant women and preterm birth, meta-analysis."
+ },
+ {
+  "item_id": "I134",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Preconceptional folic acid supplement use and preterm birth in twin pregnancies."
+ },
+ {
+  "item_id": "I138",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "no",
+   "sex": "yes",
+   "underlying_condition": "no"
+  },
+  "reason": "Maternal periconceptional folic acid supplementation and congenital anomalies in offspring, meta-analysis."
+ },
+ {
+  "item_id": "I139",
+  "topic": "partial",
+  "axes": {
+   "sex": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Mineral supplementation in women planning pregnancy or IVF; fertility focus rather than pregnancy exposure."
+ },
+ {
+  "item_id": "I141",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes",
+   "dose_range": "yes",
+   "underlying_condition": "no"
+  },
+  "reason": "Selenium dose-response on lipids in adults; pregnant participants only one subgroup."
+ },
+ {
+  "item_id": "I147",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "dose_range": "yes",
+   "underlying_condition": "no"
+  },
+  "reason": "Prenatal vitamin D supplementation and maternal and neonatal outcomes, umbrella meta-analysis."
+ },
+ {
+  "item_id": "I148",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Pregnant women with anemia given intravenous ferric carboxymaltose versus oral iron, meta-analysis."
+ },
+ {
+  "item_id": "I149",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Cord blood iron indices in neonates of mothers who took iron supplementation during pregnancy."
+ },
+ {
+  "item_id": "I151",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Kava herbal extract hepatotoxicity with doses of 60-480 mg kavapyrones, liver transplants."
+ },
+ {
+  "item_id": "I152",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Adjuvant chemotherapy after HCC resection in cirrhosis; herbal medicine mentioned only in passing."
+ },
+ {
+  "item_id": "I171",
+  "topic": "relevant",
+  "axes": {
+   "sex": "no"
+  },
+  "reason": "Xiao Chai Hu Tang herbal formula in chronic hepatitis B patients, Cochrane review."
+ },
+ {
+  "item_id": "I172",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Silymarin 280 mg every 8 hours for hypoxic liver injury in emergency patients."
+ },
+ {
+  "item_id": "I173",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "dose_range": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Resveratrol supplementation and liver enzymes in NAFLD patients, meta-analysis."
+ },
+ {
+  "item_id": "I175",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Pediatric NAFLD review focusing on diet; omega-3 and probiotics supplements mentioned only briefly."
+ },
+ {
+  "item_id": "I177",
+  "topic": "relevant",
+  "axes": {
+   "sex": "yes"
+  },
+  "reason": "Ninjin'yoeito herbal medicine in hepatocellular carcinoma patients treated with lenvatinib, liver function."
+ },
+ {
+  "item_id": "I180",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Oral polymeric nutrition formula therapy in malnourished alcohol-related cirrhosis patients."
+ },
+ {
+  "item_id": "I190",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Erzhu Jiedu herbal granules in hepatitis B-related liver cancer patients, 2 packs twice daily."
+ },
+ {
+  "item_id": "I202",
+  "topic": "partial",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Anticoagulant phenprocoumon liver injury case; oral vitamin K only part of symptomatic treatment."
+ },
+ {
+  "item_id": "I203",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Children on warfarin and long-term parenteral nutrition; dietary vitamin K intake reported."
+ },
+ {
+  "item_id": "I206",
+  "topic": "partial",
+  "axes": {
+   "age_group": "no"
+  },
+  "reason": "Preeclampsia prevention review of antiplatelet drugs and vitamin E/C; no anticoagulant-supplement combination studied."
+ },
+ {
+  "item_id": "I210",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Drug interaction probe study with warfarin plus vitamin K in volunteers; supplement not the studied exposure."
+ },
+ {
+  "item_id": "I211",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Review of anticoagulant and antiplatelet drugs in atrial fibrillation; no supplement involved."
+ },
+ {
+  "item_id": "I212",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Case of warfarin patient with INR rise after drinking cranberry juice daily."
+ },
+ {
+  "item_id": "I213",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "IgA nephropathy treatment review mentioning fish oil, vitamin E, antiplatelets, anticoagulants; population not anticoagulated."
+ },
+ {
+  "item_id": "I214",
+  "topic": "partial",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Review of new oral anticoagulant drugs and bleeding risk; no supplement."
+ },
+ {
+  "item_id": "I216",
+  "topic": "relevant",
+  "axes": {
+   "concomitant_medication": "yes",
+   "dose_range": "yes"
+  },
+  "reason": "Low-dose oral vitamin K 150-175 mcg for INR control in patients taking warfarin."
+ },
+ {
+  "item_id": "I217",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Pregnant women with mechanical valves on warfarin, effect of preoperative vitamin K1 around cesarean."
+ },
+ {
+  "item_id": "I218",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Atrial fibrillation stenting patients on rivaroxaban or vitamin K antagonist; drugs only, no supplement."
+ },
+ {
+  "item_id": "I219",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Oral isoquercetin 1,000 mg reduces thrombin generation in healthy adults and antiphospholipid antibody patients; not anticoagulant users."
+ },
+ {
+  "item_id": "I221",
+  "topic": "partial",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Review of dabigatran anticoagulation reversal; phytonadione mentioned only as warfarin reversal."
+ },
+ {
+  "item_id": "I222",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Quality of vitamin K antagonist anticoagulation in atrial fibrillation patients; no supplement."
+ },
+ {
+  "item_id": "I223",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "NOAC versus warfarin patients before ablation, thrombus rates; no supplement."
+ },
+ {
+  "item_id": "I224",
+  "topic": "relevant",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Ginseng herbal interactions with drugs including antiplatelets and anticoagulants, review."
+ },
+ {
+  "item_id": "I225",
+  "topic": "partial",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Switching from vitamin K antagonist to dabigatran dosing in atrial fibrillation; no supplement."
+ },
+ {
+  "item_id": "I226",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Elderly man with superwarfarin rodenticide anticoagulant poisoning; no supplement."
+ },
+ {
+  "item_id": "I227",
+  "topic": "relevant",
+  "axes": {
+   "concomitant_medication": "yes",
+   "dose_range": "yes"
+  },
+  "reason": "Oral vitamin K1 2.5 mg to reverse high INR in warfarin-treated mechanical valve patients."
+ },
+ {
+  "item_id": "I228",
+  "topic": "partial",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Nonbacterial thrombotic endocarditis managed with anticoagulation; no supplement."
+ },
+ {
+  "item_id": "I229",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Oral anticoagulant outcomes in adults 80 and older with atrial fibrillation; no supplement."
+ },
+ {
+  "item_id": "I230",
+  "topic": "relevant",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "Low-dose vitamin K1 safety in mechanical valve patients with supratherapeutic INR on vitamin K antagonist."
+ },
+ {
+  "item_id": "I232",
+  "topic": "relevant",
+  "axes": {
+   "concomitant_medication": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Oral Chinese patent medicines added to routine antiplatelet and anticoagulant therapy in diabetic angina patients."
+ },
+ {
+  "item_id": "I233",
+  "topic": "partial",
+  "axes": {
+   "concomitant_medication": "no"
+  },
+  "reason": "Panax notoginseng herbal saponins for COPD hypercoagulability; participants not on anticoagulants, bleeding risk assessed."
+ },
+ {
+  "item_id": "I234",
+  "topic": "partial",
+  "axes": {
+   "concomitant_medication": "no",
+   "underlying_condition": "yes"
+  },
+  "reason": "Herbal injections with antiplatelet-like effects for myocardial infarction; no named anticoagulant co-medication."
+ },
+ {
+  "item_id": "I235",
+  "topic": "partial",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Direct oral anticoagulants in cirrhosis with bleeding risk; no supplement."
+ },
+ {
+  "item_id": "I236",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "no"
+  },
+  "reason": "Herbal medicines with edoxaban in healthy volunteers, anticoagulant herb-drug interaction study."
+ },
+ {
+  "item_id": "I237",
+  "topic": "relevant",
+  "axes": {
+   "age_group": "yes",
+   "concomitant_medication": "no",
+   "dose_range": "yes"
+  },
+  "reason": "Neonates given 1 versus 2 mg intramuscular vitamin K to prevent bleeding disease."
+ },
+ {
+  "item_id": "I238",
+  "topic": "partial",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "Anticoagulant and antiplatelet management around procedures and bleeding; phytonadione only as reversal agent."
+ },
+ {
+  "item_id": "I240",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Atrial fibrillation patients in Madagascar with anticoagulant prescribing; no supplement."
+ },
+ {
+  "item_id": "I241",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Vitamin K antagonist free drug levels in kidney disease patients; no supplement."
+ },
+ {
+  "item_id": "I242",
+  "topic": "partial",
+  "axes": {
+   "underlying_condition": "yes"
+  },
+  "reason": "Pregnant woman with mechanical valve switched from warfarin to heparin with vitamin K; anticoagulation case, vitamin K incidental."
+ },
+ {
+  "item_id": "I243",
+  "topic": "partial",
+  "axes": {
+   "concomitant_medication": "no"
+  },
+  "reason": "Leech-containing herbal medicines for coronary heart disease; anticoagulant hirudin background, no anticoagulant co-medication."
+ },
+ {
+  "item_id": "I244",
+  "topic": "partial",
+  "axes": {
+   "concomitant_medication": "yes",
+   "underlying_condition": "yes"
+  },
+  "reason": "Arteriovenous fistula outcomes in dialysis patients; fish oil, aspirin and heparin as incidental predictors."
+ },
+ {
+  "item_id": "I245",
+  "topic": "partial",
+  "axes": {
+   "age_group": "yes"
+  },
+  "reason": "Child with lupus anticoagulant bleeding disorder given vitamin K among treatments; supplement not the focus."
+ },
+ {
+  "item_id": "I247",
+  "topic": "relevant",
+  "axes": {
+   "concomitant_medication": "yes"
+  },
+  "reason": "Ginkgo biloba extract in traumatic brain injury, with bleeding reported when combined with anticoagulants."
+ },
+ {
+  "item_id": "I248",
+  "topic": "relevant",
+  "axes": {
+   "dose_range": "yes"
+  },
+  "reason": "Healthy older adults given warfarin 1 mg/day and vitamin K1 5 mg/day to assess vitamin K status."
+ }
+]

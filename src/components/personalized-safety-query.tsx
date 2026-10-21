@@ -257,11 +257,11 @@ function resultCountLabel(result: ApiResult) {
 function valueSummaryLine(summary: ValueSummary | null | undefined, total: number) {
   if (!summary) return "";
   const parts = [
-    summary.ingredients.length ? `${summary.ingredients.join(", ")} 성분 ${summary.ingredient_matches}편` : "",
-    summary.age !== null ? `${summary.age}세 나이대 ${summary.age_matches}편` : "",
+    summary.ingredients.length ? `${summary.ingredients.join(", ")} 언급 ${summary.ingredient_matches}편` : "",
+    summary.age !== null ? `${summary.age}세 포함 나이대 ${summary.age_matches}편` : "",
     summary.dose ? `${summary.dose} 전후 용량 ${summary.dose_matches}편` : "",
   ].filter(Boolean);
-  return parts.length ? `적어 주신 내용과 맞는 연구: ${parts.join(", ")} (목록 ${total}편 기준)` : "";
+  return parts.length ? `적어 주신 값이 초록에 나온 연구: ${parts.join(", ")} (목록 ${total}편 기준)` : "";
 }
 
 function resultHeading(result: ApiResult) {
@@ -433,9 +433,9 @@ function EvidenceRecord({
           <span className={isCore ? "record-tag" : "record-tag record-tag-quiet"}>
             {isCore ? "AI 검토 연구" : "추가 후보"}
           </span>
-          {item.value_match?.ingredient ? <span className="record-tag record-tag-match">성분 일치</span> : null}
-          {item.value_match?.age ? <span className="record-tag record-tag-match">나이대 일치</span> : null}
-          {item.value_match?.dose ? <span className="record-tag record-tag-match">용량 일치</span> : null}
+          {item.value_match?.ingredient ? <span className="record-tag record-tag-match">성분 언급</span> : null}
+          {item.value_match?.age ? <span className="record-tag record-tag-match">나이대 겹침</span> : null}
+          {item.value_match?.dose ? <span className="record-tag record-tag-match">용량 근접</span> : null}
         </p>
 
         {/* 첫 줄은 무엇을 알아냈는지다. 괄호 속 통계는 접고, 원래 문장은 아래 '자세히'에 둔다. */}

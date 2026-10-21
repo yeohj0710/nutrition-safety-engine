@@ -1,0 +1,16 @@
+{
+ "questions": {
+  "HRS1_PERIOPERATIVE": "People before, during or after surgery, procedures or anesthesia, and their use of dietary supplements or nutritional products (use, effect, harm).",
+  "HRS2_KIDNEY_DISEASE": "People with kidney disease, kidney failure or on dialysis, and their use of dietary supplements or nutritional products (use, effect, harm).",
+  "HRS3_PREGNANCY": "Pregnant or breastfeeding people, or fetal exposure, and dietary supplements or nutritional products (use, effect, harm).",
+  "HRS4_LIVER_DISEASE": "People with liver disease or liver failure using supplements, or liver toxicity caused by dietary supplements or nutritional products.",
+  "HRS5_ANTICOAGULATION": "People on anticoagulant or antiplatelet drugs, or at bleeding risk, and dietary supplements or nutritional products (use, effect, harm)."
+ },
+ "axis_tests": {
+  "age_group": "The abstract states the participants' age, age range or age group (e.g. older adults, children, mean age).",
+  "concomitant_medication": "The abstract names a drug the participants were taking besides the supplement, or a drug-supplement combination.",
+  "dose_range": "The abstract states how much of the supplement was given or taken (amount with a unit, e.g. 500 mg/day).",
+  "sex": "The abstract reports participants' sex, a sex breakdown, or a single-sex population.",
+  "underlying_condition": "The abstract names a disease or clinical condition of the participants other than the situation itself, or describes the situation-defining disease in a specific form."
+ }
+}

@@ -1,0 +1,572 @@
+{
+ "judges": [
+  "codex",
+  "claude"
+ ],
+ "per_judge": {
+  "codex": {
+   "topic_relevant": {
+    "HRS1_PERIOPERATIVE": {
+     "hit": 66,
+     "total": 75,
+     "pct": 88.0
+    },
+    "HRS2_KIDNEY_DISEASE": {
+     "hit": 50,
+     "total": 75,
+     "pct": 66.7
+    },
+    "HRS3_PREGNANCY": {
+     "hit": 62,
+     "total": 75,
+     "pct": 82.7
+    },
+    "HRS4_LIVER_DISEASE": {
+     "hit": 61,
+     "total": 75,
+     "pct": 81.3
+    },
+    "HRS5_ANTICOAGULATION": {
+     "hit": 47,
+     "total": 75,
+     "pct": 62.7
+    },
+    "all": {
+     "hit": 286,
+     "total": 375,
+     "pct": 76.3
+    },
+    "axis:age_group": {
+     "hit": 67,
+     "total": 75,
+     "pct": 89.3
+    },
+    "axis:all": {
+     "hit": 262,
+     "total": 300,
+     "pct": 87.3
+    },
+    "axis:concomitant_medication": {
+     "hit": 25,
+     "total": 30,
+     "pct": 83.3
+    },
+    "axis:core": {
+     "hit": 115,
+     "total": 127,
+     "pct": 90.6
+    },
+    "axis:dose_range": {
+     "hit": 58,
+     "total": 75,
+     "pct": 77.3
+    },
+    "axis:sex": {
+     "hit": 43,
+     "total": 45,
+     "pct": 95.6
+    },
+    "axis:topup": {
+     "hit": 147,
+     "total": 173,
+     "pct": 85.0
+    },
+    "axis:underlying_condition": {
+     "hit": 69,
+     "total": 75,
+     "pct": 92.0
+    },
+    "core": {
+     "hit": 177,
+     "total": 202,
+     "pct": 87.6
+    },
+    "top5": {
+     "hit": 108,
+     "total": 125,
+     "pct": 86.4
+    },
+    "topup": {
+     "hit": 109,
+     "total": 173,
+     "pct": 63.0
+    }
+   },
+   "topic_relevant_or_partial": {
+    "HRS1_PERIOPERATIVE": {
+     "hit": 75,
+     "total": 75,
+     "pct": 100.0
+    },
+    "HRS2_KIDNEY_DISEASE": {
+     "hit": 74,
+     "total": 75,
+     "pct": 98.7
+    },
+    "HRS3_PREGNANCY": {
+     "hit": 75,
+     "total": 75,
+     "pct": 100.0
+    },
+    "HRS4_LIVER_DISEASE": {
+     "hit": 75,
+     "total": 75,
+     "pct": 100.0
+    },
+    "HRS5_ANTICOAGULATION": {
+     "hit": 75,
+     "total": 75,
+     "pct": 100.0
+    },
+    "all": {
+     "hit": 374,
+     "total": 375,
+     "pct": 99.7
+    },
+    "axis:age_group": {
+     "hit": 67,
+     "total": 75,
+     "pct": 89.3
+    },
+    "axis:all": {
+     "hit": 262,
+     "total": 300,
+     "pct": 87.3
+    },
+    "axis:concomitant_medication": {
+     "hit": 25,
+     "total": 30,
+     "pct": 83.3
+    },
+    "axis:core": {
+     "hit": 115,
+     "total": 127,
+     "pct": 90.6
+    },
+    "axis:dose_range": {
+     "hit": 58,
+     "total": 75,
+     "pct": 77.3
+    },
+    "axis:sex": {
+     "hit": 43,
+     "total": 45,
+     "pct": 95.6
+    },
+    "axis:topup": {
+     "hit": 147,
+     "total": 173,
+     "pct": 85.0
+    },
+    "axis:underlying_condition": {
+     "hit": 69,
+     "total": 75,
+     "pct": 92.0
+    },
+    "core": {
+     "hit": 202,
+     "total": 202,
+     "pct": 100.0
+    },
+    "top5": {
+     "hit": 125,
+     "total": 125,
+     "pct": 100.0
+    },
+    "topup": {
+     "hit": 172,
+     "total": 173,
+     "pct": 99.4
+    }
+   },
+   "item_topic_counts": {
+    "relevant": 172,
+    "partial": 75,
+    "irrelevant": 1
+   }
+  },
+  "claude": {
+   "topic_relevant": {
+    "HRS1_PERIOPERATIVE": {
+     "hit": 46,
+     "total": 75,
+     "pct": 61.3
+    },
+    "HRS2_KIDNEY_DISEASE": {
+     "hit": 45,
+     "total": 75,
+     "pct": 60.0
+    },
+    "HRS3_PREGNANCY": {
+     "hit": 53,
+     "total": 75,
+     "pct": 70.7
+    },
+    "HRS4_LIVER_DISEASE": {
+     "hit": 64,
+     "total": 75,
+     "pct": 85.3
+    },
+    "HRS5_ANTICOAGULATION": {
+     "hit": 35,
+     "total": 75,
+     "pct": 46.7
+    },
+    "all": {
+     "hit": 243,
+     "total": 375,
+     "pct": 64.8
+    },
+    "axis:age_group": {
+     "hit": 63,
+     "total": 75,
+     "pct": 84.0
+    },
+    "axis:all": {
+     "hit": 251,
+     "total": 300,
+     "pct": 83.7
+    },
+    "axis:concomitant_medication": {
+     "hit": 22,
+     "total": 30,
+     "pct": 73.3
+    },
+    "axis:core": {
+     "hit": 109,
+     "total": 127,
+     "pct": 85.8
+    },
+    "axis:dose_range": {
+     "hit": 59,
+     "total": 75,
+     "pct": 78.7
+    },
+    "axis:sex": {
+     "hit": 41,
+     "total": 45,
+     "pct": 91.1
+    },
+    "axis:topup": {
+     "hit": 142,
+     "total": 173,
+     "pct": 82.1
+    },
+    "axis:underlying_condition": {
+     "hit": 66,
+     "total": 75,
+     "pct": 88.0
+    },
+    "core": {
+     "hit": 161,
+     "total": 202,
+     "pct": 79.7
+    },
+    "top5": {
+     "hit": 100,
+     "total": 125,
+     "pct": 80.0
+    },
+    "topup": {
+     "hit": 82,
+     "total": 173,
+     "pct": 47.4
+    }
+   },
+   "topic_relevant_or_partial": {
+    "HRS1_PERIOPERATIVE": {
+     "hit": 72,
+     "total": 75,
+     "pct": 96.0
+    },
+    "HRS2_KIDNEY_DISEASE": {
+     "hit": 71,
+     "total": 75,
+     "pct": 94.7
+    },
+    "HRS3_PREGNANCY": {
+     "hit": 71,
+     "total": 75,
+     "pct": 94.7
+    },
+    "HRS4_LIVER_DISEASE": {
+     "hit": 73,
+     "total": 75,
+     "pct": 97.3
+    },
+    "HRS5_ANTICOAGULATION": {
+     "hit": 75,
+     "total": 75,
+     "pct": 100.0
+    },
+    "all": {
+     "hit": 362,
+     "total": 375,
+     "pct": 96.5
+    },
+    "axis:age_group": {
+     "hit": 63,
+     "total": 75,
+     "pct": 84.0
+    },
+    "axis:all": {
+     "hit": 251,
+     "total": 300,
+     "pct": 83.7
+    },
+    "axis:concomitant_medication": {
+     "hit": 22,
+     "total": 30,
+     "pct": 73.3
+    },
+    "axis:core": {
+     "hit": 109,
+     "total": 127,
+     "pct": 85.8
+    },
+    "axis:dose_range": {
+     "hit": 59,
+     "total": 75,
+     "pct": 78.7
+    },
+    "axis:sex": {
+     "hit": 41,
+     "total": 45,
+     "pct": 91.1
+    },
+    "axis:topup": {
+     "hit": 142,
+     "total": 173,
+     "pct": 82.1
+    },
+    "axis:underlying_condition": {
+     "hit": 66,
+     "total": 75,
+     "pct": 88.0
+    },
+    "core": {
+     "hit": 202,
+     "total": 202,
+     "pct": 100.0
+    },
+    "top5": {
+     "hit": 125,
+     "total": 125,
+     "pct": 100.0
+    },
+    "topup": {
+     "hit": 160,
+     "total": 173,
+     "pct": 92.5
+    }
+   },
+   "item_topic_counts": {
+    "relevant": 141,
+    "partial": 94,
+    "irrelevant": 13
+   }
+  }
+ },
+ "consensus": {
+  "both_relevant": {
+   "HRS1_PERIOPERATIVE": {
+    "hit": 45,
+    "total": 75,
+    "pct": 60.0
+   },
+   "HRS2_KIDNEY_DISEASE": {
+    "hit": 43,
+    "total": 75,
+    "pct": 57.3
+   },
+   "HRS3_PREGNANCY": {
+    "hit": 52,
+    "total": 75,
+    "pct": 69.3
+   },
+   "HRS4_LIVER_DISEASE": {
+    "hit": 60,
+    "total": 75,
+    "pct": 80.0
+   },
+   "HRS5_ANTICOAGULATION": {
+    "hit": 30,
+    "total": 75,
+    "pct": 40.0
+   },
+   "all": {
+    "hit": 230,
+    "total": 375,
+    "pct": 61.3
+   },
+   "axis:age_group": {
+    "hit": 63,
+    "total": 75,
+    "pct": 84.0
+   },
+   "axis:all": {
+    "hit": 249,
+    "total": 300,
+    "pct": 83.0
+   },
+   "axis:concomitant_medication": {
+    "hit": 22,
+    "total": 30,
+    "pct": 73.3
+   },
+   "axis:core": {
+    "hit": 108,
+    "total": 127,
+    "pct": 85.0
+   },
+   "axis:dose_range": {
+    "hit": 58,
+    "total": 75,
+    "pct": 77.3
+   },
+   "axis:sex": {
+    "hit": 41,
+    "total": 45,
+    "pct": 91.1
+   },
+   "axis:topup": {
+    "hit": 141,
+    "total": 173,
+    "pct": 81.5
+   },
+   "axis:underlying_condition": {
+    "hit": 65,
+    "total": 75,
+    "pct": 86.7
+   },
+   "core": {
+    "hit": 150,
+    "total": 202,
+    "pct": 74.3
+   },
+   "top5": {
+    "hit": 93,
+    "total": 125,
+    "pct": 74.4
+   },
+   "topup": {
+    "hit": 80,
+    "total": 173,
+    "pct": 46.2
+   }
+  },
+  "both_relevant_or_partial": {
+   "HRS1_PERIOPERATIVE": {
+    "hit": 72,
+    "total": 75,
+    "pct": 96.0
+   },
+   "HRS2_KIDNEY_DISEASE": {
+    "hit": 71,
+    "total": 75,
+    "pct": 94.7
+   },
+   "HRS3_PREGNANCY": {
+    "hit": 71,
+    "total": 75,
+    "pct": 94.7
+   },
+   "HRS4_LIVER_DISEASE": {
+    "hit": 73,
+    "total": 75,
+    "pct": 97.3
+   },
+   "HRS5_ANTICOAGULATION": {
+    "hit": 75,
+    "total": 75,
+    "pct": 100.0
+   },
+   "all": {
+    "hit": 362,
+    "total": 375,
+    "pct": 96.5
+   },
+   "axis:age_group": {
+    "hit": 63,
+    "total": 75,
+    "pct": 84.0
+   },
+   "axis:all": {
+    "hit": 249,
+    "total": 300,
+    "pct": 83.0
+   },
+   "axis:concomitant_medication": {
+    "hit": 22,
+    "total": 30,
+    "pct": 73.3
+   },
+   "axis:core": {
+    "hit": 108,
+    "total": 127,
+    "pct": 85.0
+   },
+   "axis:dose_range": {
+    "hit": 58,
+    "total": 75,
+    "pct": 77.3
+   },
+   "axis:sex": {
+    "hit": 41,
+    "total": 45,
+    "pct": 91.1
+   },
+   "axis:topup": {
+    "hit": 141,
+    "total": 173,
+    "pct": 81.5
+   },
+   "axis:underlying_condition": {
+    "hit": 65,
+    "total": 75,
+    "pct": 86.7
+   },
+   "core": {
+    "hit": 202,
+    "total": 202,
+    "pct": 100.0
+   },
+   "top5": {
+    "hit": 125,
+    "total": 125,
+    "pct": 100.0
+   },
+   "topup": {
+    "hit": 160,
+    "total": 173,
+    "pct": 92.5
+   }
+  }
+ },
+ "agreement": {
+  "topic_3class": {
+   "n": 248,
+   "raw_pct": 77.4,
+   "kappa": 0.54
+  },
+  "topic_relevant_vs_not": {
+   "n": 248,
+   "raw_pct": 81.9,
+   "kappa": 0.617
+  },
+  "axis": {
+   "n": 300,
+   "raw_pct": 95.0,
+   "kappa": 0.799
+  },
+  "topic_confusion": {
+   "relevant|relevant": 134,
+   "relevant|partial": 37,
+   "relevant|irrelevant": 1,
+   "partial|relevant": 7,
+   "partial|partial": 57,
+   "partial|irrelevant": 11,
+   "irrelevant|irrelevant": 1
+  }
+ }
+}
